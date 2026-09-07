@@ -1,0 +1,86 @@
+[
+ {
+  "file": "Probability.pdf",
+  "unit": "Probability",
+  "kb": 2043.45703125,
+  "questions": 196,
+  "topics": 13,
+  "subtopics": 32,
+  "defects": 3,
+  "unkeyed": 1,
+  "perYear": {
+   "2018": 21,
+   "2019": 19,
+   "2020": 20,
+   "2021": 20,
+   "2022": 21,
+   "2023": 20,
+   "2024": 29,
+   "2025": 26,
+   "2026": 20
+  }
+ },
+ {
+  "file": "Statistical_Methods.pdf",
+  "unit": "Statistical Methods",
+  "kb": 1818.5556640625,
+  "questions": 164,
+  "topics": 14,
+  "subtopics": 29,
+  "defects": 5,
+  "unkeyed": 0,
+  "perYear": {
+   "2018": 19,
+   "2019": 21,
+   "2020": 20,
+   "2021": 20,
+   "2022": 19,
+   "2023": 20,
+   "2024": 11,
+   "2025": 14,
+   "2026": 20
+  }
+ },
+ {
+  "file": "Numerical_Analysis.pdf",
+  "unit": "Numerical Analysis",
+  "kb": 1836.400390625,
+  "questions": 180,
+  "topics": 8,
+  "subtopics": 22,
+  "defects": 2,
+  "unkeyed": 0,
+  "perYear": {
+   "2018": 20,
+   "2019": 20,
+   "2020": 20,
+   "2021": 20,
+   "2022": 20,
+   "2023": 20,
+   "2024": 20,
+   "2025": 20,
+   "2026": 20
+  }
+ },
+ {
+  "file": "Computer_Application_and_Data_Processing.pdf",
+  "unit": "Computer Application and Data Processing",
+  "kb": 1849.36328125,
+  "questions": 180,
+  "topics": 10,
+  "subtopics": 12,
+  "defects": 3,
+  "unkeyed": 1,
+  "perYear": {
+   "2018": 20,
+   "2019": 20,
+   "2020": 20,
+   "2021": 20,
+   "2022": 20,
+   "2023": 20,
+   "2024": 20,
+   "2025": 20,
+   "2026": 20
+  }
+ }
+]

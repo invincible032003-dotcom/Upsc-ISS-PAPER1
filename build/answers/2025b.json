@@ -1,0 +1,398 @@
+{
+  "2025-Q21": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "On b^x the operator E acts as multiplication by b, so E^2 becomes b^2 and 1/(1 - E^2) becomes 1/(1 - b^2). The answer is a b^x/(1 - b^2).",
+    "tips": [
+      "Substitution rule: E(b^x) = b^(x+1) = b . b^x, so any polynomial in E acting on b^x is that polynomial EVALUATED at b.",
+      "Here the operator is 1 - E^2, which becomes 1 - b^2 - the variable that appears is b, the base, not the constant a.",
+      "Options (b) and (c) put a in the denominator, which is impossible since a is only a multiplicative constant that passes through the operator.",
+      "The condition 0 < b < 1 guarantees 1 - b^2 is non-zero and positive, so the inverse operator is well defined."
+    ],
+    "solution": [
+      "With interval of differencing 1, E(b^x) = b^(x+1) = b . b^x, so E acts on b^x as multiplication by b.",
+      "Hence E^2 (a b^x) = b^2 (a b^x).",
+      "Therefore (1 - E^2)(a b^x) = a b^x (1 - b^2).",
+      "Applying the inverse operator simply divides by that constant: [1/(1 - E^2)](a b^x) = a b^x/(1 - b^2).",
+      "The condition 0 < b < 1 ensures 1 - b^2 is non-zero, so the operation is valid.",
+      "Option (a) is correct."
+    ]
+  },
+  "2025-Q22": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Delta^n(1/x) = (-1)^n n!/[x(x+1)...(x+n)]. With n = 5 and x = 2 this is -120/(2.3.4.5.6.7) = -120/5040 = -1/42.",
+    "tips": [
+      "Memorise Delta^n(1/x) = (-1)^n n! h^n/[x(x+h)...(x+nh)] - it converts a five-fold difference into one fraction.",
+      "Build it from the first step: Delta(1/x) = 1/(x+1) - 1/x = -1/[x(x+1)], and the pattern of alternating signs and factorials follows.",
+      "The denominator has n + 1 = 6 consecutive factors starting at x = 2: 2, 3, 4, 5, 6, 7, whose product is 5040.",
+      "Sign check: n = 5 is ODD, so the answer must be negative - options (a) and (c) can be tested by size, but the sign alone kills (a)."
+    ],
+    "solution": [
+      "With unit interval, Delta(1/x) = 1/(x+1) - 1/x = -1/[x(x+1)].",
+      "Applying Delta again gives Delta^2(1/x) = 2/[x(x+1)(x+2)], and the pattern continues.",
+      "In general Delta^n(1/x) = (-1)^n n!/[x(x+1)(x+2)...(x+n)].",
+      "For n = 5 and x = 2: the denominator is 2 x 3 x 4 x 5 x 6 x 7 = 5040 and the numerator is (-1)^5 5! = -120.",
+      "So Delta^5(1/x) at x = 2 = -120/5040 = -1/42, option (d)."
+    ]
+  },
+  "2025-Q23": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "The nth divided difference of 1/x is (-1)^n over the product of the nodes. Going from 10 nodes to 11 multiplies by -1 (sign flip) and divides by the new node 11h, giving -alpha/(11h).",
+    "tips": [
+      "Use f[x0,...,xn] = (-1)^n/(x0 x1 ... xn) for f = 1/x - the whole question is a ratio of two such expressions.",
+      "Count the nodes: i = 1 to 10 gives 10 nodes and hence the NINTH divided difference; i = 1 to 11 gives the tenth. The orders differ by one, so the sign flips.",
+      "The new product contains one extra factor, the node 11h, so the magnitude is divided by 11h.",
+      "Combining sign flip and extra factor: new = -alpha/(11h). Option (b) uses 10h, the LAST node of the old set rather than the new one."
+    ],
+    "solution": [
+      "For f(x) = 1/x the nth divided difference over nodes x0, ..., xn is (-1)^n/(x0 x1 ... xn).",
+      "The nodes x_i = ih for i = 1 to 10 are ten in number, so the corresponding divided difference is of order 9: alpha = (-1)^9/(h . 2h . ... . 10h) = -1/(10! h^10).",
+      "The nodes x_i = ih for i = 1 to 11 are eleven in number, giving the divided difference of order 10: (-1)^10/(h . 2h . ... . 11h) = 1/(11! h^11).",
+      "Taking the ratio: [1/(11! h^11)] / [-1/(10! h^10)] = -(10!/11!)(1/h) = -1/(11h).",
+      "So the tenth divided difference equals -alpha/(11h).",
+      "Option (a) is correct."
+    ]
+  },
+  "2025-Q24": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Simpson's rule with h = 1 gives (1/3)[f(0) + 4(0.5) + f(2)] = 2, so f(0) + f(2) = 4. The single-strip trapezoidal rule then gives (2/2)[f(0) + f(2)] = 4.",
+    "tips": [
+      "Simpson's 1/3 on [0,2] needs two strips, so h = 1 and the nodes are 0, 1, 2 - which is why f(1) is supplied.",
+      "Solve for the end ordinates: 3 x 2 = 6 = f(0) + 4(0.5) + f(2), so f(0) + f(2) = 4. That single quantity is all the trapezoidal rule needs.",
+      "The trapezoidal rule over the whole interval as ONE trapezium uses only the endpoints, so f(1) drops out entirely - the design of the question.",
+      "With h = 2 the prefactor h/2 = 1, so the answer is just f(0) + f(2) = 4."
+    ],
+    "solution": [
+      "Simpson's one-third rule on [0,2] requires an even number of strips, so the minimum is two, giving h = 1 with nodes 0, 1, 2.",
+      "The rule states (h/3)[f(0) + 4f(1) + f(2)] = 2, i.e. (1/3)[f(0) + 4(0.5) + f(2)] = 2.",
+      "Multiplying by 3: f(0) + 2 + f(2) = 6, so f(0) + f(2) = 4.",
+      "The trapezoidal rule applied over the whole interval as a single trapezium uses h = 2 and only the end ordinates: (h/2)[f(0) + f(2)] = (2/2)(4) = 4.",
+      "Option (b) is correct."
+    ]
+  },
+  "2025-Q25": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "With h = 1/4 and n = 4, Simpson gives (1/12)[1 + 4(0.8) + 2(0.6667) + 4(0.5714) + 0.5] = (1/12)(8.3190) = 0.6932.",
+    "tips": [
+      "Weight pattern 1, 4, 2, 4, 1 with prefactor h/3 = 1/12. Check n = 4 is even before applying the rule.",
+      "Convert the fractions to decimals carefully: 4/5 = 0.8, 2/3 = 0.6667, 4/7 = 0.5714. Four-decimal precision is needed since the options differ in the third decimal.",
+      "Weighted sum: 1 + 3.2 + 1.3333 + 2.2857 + 0.5 = 8.3190, and 8.3190/12 = 0.69325.",
+      "The tabulated values are f(x) = 1/(1+x), whose exact integral over (0,1) is ln 2 = 0.6931 - the near-agreement confirms the arithmetic and identifies option (c)."
+    ],
+    "solution": [
+      "The abscissae 0, 1/4, 1/2, 3/4, 1 give h = 1/4 and n = 4 strips - an even number, so Simpson's one-third rule applies.",
+      "Ordinates: f0 = 1, f1 = 0.8, f2 = 0.66667, f3 = 0.57143, f4 = 0.5.",
+      "Simpson's rule: I = (h/3)[f0 + 4f1 + 2f2 + 4f3 + f4] with h/3 = 1/12.",
+      "Weighted sum: 1 + 4(0.8) + 2(0.66667) + 4(0.57143) + 0.5 = 1 + 3.2 + 1.33333 + 2.28571 + 0.5 = 8.31905.",
+      "I = 8.31905/12 = 0.69325.",
+      "The data are f(x) = 1/(1+x), whose exact integral is ln 2 = 0.69315 - so the estimate 0.6932 is correct, option (c)."
+    ]
+  },
+  "2025-Q26": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "The single-interval trapezoidal error is h^3 f''(xi)/12 in magnitude. Setting h^3/12 = 2/3 gives h^3 = 8 and h = 2.",
+    "tips": [
+      "For ONE strip the trapezoidal error is -(h^3/12) f''(xi); the composite form -(b-a)h^2 f''/12 applies only to many strips.",
+      "The integral runs from a to a + h, i.e. a single strip - read the limits before choosing the error formula.",
+      "Equate coefficients of f''(xi): h^3/12 = 2/3, so h^3 = 8 and h = 2. The cube root is the key step.",
+      "Sanity check: with h = 2 the coefficient is 8/12 = 2/3, matching the stated error exactly."
+    ],
+    "solution": [
+      "The limits a to a + h span a single subinterval of width h, so the appropriate error formula is the single-strip one.",
+      "For one strip, the trapezoidal rule has error E = -(h^3/12) f''(xi) for some xi in the interval.",
+      "In absolute value, |E| = (h^3/12)|f''(xi)|.",
+      "Equating the coefficient with the given (2/3) f''(xi): h^3/12 = 2/3.",
+      "So h^3 = 24/3 = 8, giving h = 2.",
+      "Option (a) is correct."
+    ]
+  },
+  "2025-Q27": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Trapezoidal is exact for degree 1 but not degree 2, so I is true and II false. Simpson's 1/3 is exact up to degree 3, so both III and IV are true.",
+    "tips": [
+      "Exactness degrees: trapezoidal 1, Simpson's 1/3 = 3, Simpson's 3/8 = 3, Weddle 5. Every statement here is a direct comparison against these numbers.",
+      "Exactness for degree 3 IMPLIES exactness for degree 2, so statements III and IV must stand or fall together - both are true.",
+      "The trapezoidal error involves f'', which is non-zero for a quadratic, so statement II is definitively false.",
+      "Simpson's 1/3 fits parabolas yet is exact for cubics because the odd-degree error term cancels by symmetry - the classic bonus degree."
+    ],
+    "solution": [
+      "Statement I: the trapezoidal rule replaces the curve by a straight line, so it reproduces any polynomial of degree 1 exactly. TRUE.",
+      "Statement II: its error term is proportional to f'', which is a non-zero constant for a quadratic, so the rule is NOT exact for degree 2. FALSE.",
+      "Statement IV: Simpson's one-third rule is constructed by fitting a parabola through three points, so it integrates any quadratic exactly. TRUE.",
+      "Statement III: its error term is proportional to the FOURTH derivative, which vanishes for a cubic, so Simpson's one-third rule is exact for cubics as well - a bonus degree beyond the parabola it fits. TRUE.",
+      "The correct statements are I, III and IV.",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2025-Q28": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Euler gives y1 = 1 + 0.2(-2 x 0 x 1) = 1, while the exact solution y = 1/(1+x^2) gives y(0.2) = 1/1.04 = 0.9615. The difference is 0.0385.",
+    "tips": [
+      "Solve the ODE exactly: dy/y^2 = -2x dx integrates to -1/y = -x^2 + C, and y(0) = 1 gives y = 1/(1 + x^2).",
+      "The Euler step is trivially 1 here because the slope at x = 0 is zero - so the whole error is the curvature Euler misses.",
+      "1/1.04 = 0.961538, so the error is 1 - 0.961538 = 0.038462, i.e. about 0.0385.",
+      "Option (c) 0.9615 is the exact VALUE, not the error - read what is being asked before selecting."
+    ],
+    "solution": [
+      "Euler's method: y1 = y0 + h f(x0, y0) with f(x,y) = -2xy^2, x0 = 0, y0 = 1, h = 0.2.",
+      "f(0, 1) = -2(0)(1)^2 = 0, so y1 = 1 + 0.2(0) = 1.",
+      "The exact solution: separating variables, dy/y^2 = -2x dx gives -1/y = -x^2 + C, and y(0) = 1 gives C = -1.",
+      "Hence -1/y = -x^2 - 1, i.e. y = 1/(1 + x^2).",
+      "At x = 0.2: y(0.2) = 1/(1 + 0.04) = 1/1.04 = 0.961538.",
+      "|y(0.2) - y1| = |0.961538 - 1| = 0.038462, i.e. about 0.0385, option (b)."
+    ]
+  },
+  "2025-Q29": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Picard's first iterate is y = 1 - x^2, giving 0.96 at x = 0.2, while the exact value is 0.961538. The difference is 0.0015.",
+    "tips": [
+      "Picard: y1(x) = 1 + integral from 0 to x of (-2t)(1)^2 dt = 1 - x^2, using the constant y0 = 1 inside the integrand.",
+      "The exact solution y = 1/(1+x^2) expands as 1 - x^2 + x^4 - ..., so Picard's first iterate matches through the x^2 term - the error is O(x^4).",
+      "0.961538 - 0.96 = 0.001538, i.e. about 0.0015. Option (d) 0.0005 is a third of that and does not arise.",
+      "Compare with the previous part: Picard's error 0.0015 is 25 times smaller than Euler's 0.0385 - a good illustration of why series methods beat first-order stepping."
+    ],
+    "solution": [
+      "Picard's iteration for dy/dx = -2xy^2 with y(0) = 1 is y_(n+1)(x) = 1 + integral from 0 to x of (-2t y_n(t)^2) dt, starting from y0 = 1.",
+      "First iterate: y^(1)(x) = 1 + integral from 0 to x of (-2t) dt = 1 - x^2.",
+      "At x = 0.2: y^(1)(0.2) = 1 - 0.04 = 0.96.",
+      "The exact solution is y = 1/(1 + x^2), so y(0.2) = 1/1.04 = 0.961538.",
+      "|y^(1)(0.2) - y(0.2)| = |0.96 - 0.961538| = 0.001538.",
+      "This is approximately 0.0015, option (c). (Note 1/(1+x^2) = 1 - x^2 + x^4 - ..., so the first iterate is correct to order x^2.)"
+    ]
+  },
+  "2025-Q30": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Euler with h = 0.1: y(0.1) = 1.2, y(0.2) = 1.43, y(0.3) = 1.693.",
+    "tips": [
+      "Euler: y_(n+1) = y_n + h(1 + x_n + y_n). Tabulate x_n, y_n and the slope side by side and work down three lines.",
+      "Slopes are 2.0, 2.3 and 2.63; each increment is one tenth of the slope, so the running values are 1.2, 1.43 and 1.693.",
+      "Keep three decimals: the options differ in the first decimal, but rounding early can still shift the third step.",
+      "The exact solution y = 3e^x - x - 2 gives y(0.3) = 1.7493, so Euler's 1.693 underestimates - as expected for a convex solution."
+    ],
+    "solution": [
+      "Euler's method for dy/dx = 1 + x + y with y(0) = 1 and h = 0.1 is y_(n+1) = y_n + 0.1(1 + x_n + y_n).",
+      "Step 1 at (0, 1): slope = 1 + 0 + 1 = 2, so y(0.1) = 1 + 0.2 = 1.2.",
+      "Step 2 at (0.1, 1.2): slope = 1 + 0.1 + 1.2 = 2.3, so y(0.2) = 1.2 + 0.23 = 1.43.",
+      "Step 3 at (0.2, 1.43): slope = 1 + 0.2 + 1.43 = 2.63, so y(0.3) = 1.43 + 0.263 = 1.693.",
+      "The exact solution y = 3e^x - x - 2 gives y(0.3) = 1.7493, so Euler underestimates slightly, as expected.",
+      "Hence y(0.3) = 1.693, option (c)."
+    ]
+  },
+  "2025-Q31": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "A single shared backbone cable with all nodes tapping into it is the BUS topology.",
+    "tips": [
+      "Topology shapes: bus = one shared backbone; star = all nodes to a central hub; ring = closed loop; mesh = every node to every other; hybrid = a combination.",
+      "The phrase 'single backbone cable' is the definition of a bus - no other topology has one shared medium.",
+      "Bus needs terminators at both ends to prevent signal reflection, and a break in the backbone brings the whole network down.",
+      "Bus uses the least cable of any topology but offers the worst fault isolation - the classic trade-off to quote."
+    ],
+    "solution": [
+      "In a bus topology every node is attached, by a short drop cable, to one common backbone cable that runs the length of the network.",
+      "All transmissions travel along that shared medium and are seen by every node, with terminators at each end absorbing the signal.",
+      "A star topology connects each node by its own cable to a central hub or switch, so there is no shared backbone.",
+      "A mesh topology provides direct links between pairs of nodes, and a hybrid topology combines two or more basic types.",
+      "Hence the topology with a single backbone cable is the bus, option (d)."
+    ]
+  },
+  "2025-Q32": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "In a star topology every node connects to a central HUB (or switch), which forms the hub of the star.",
+    "tips": [
+      "The star's defining component is the central device - classically a hub, in modern networks a switch.",
+      "A repeater merely regenerates a signal along one link and a bridge joins two segments; neither serves as the centre of a star.",
+      "A router connects different NETWORKS at layer 3, not the nodes of a single LAN - a category difference.",
+      "Consequence worth remembering: the hub is the star's single point of failure, which is why hub failure disables the whole network."
+    ],
+    "solution": [
+      "In a star topology each node is connected by its own dedicated cable to a central device, which relays traffic between them.",
+      "That central device is a hub (or, in modern installations, a switch), giving the layout its star shape.",
+      "A repeater simply regenerates a weakened signal along a single link and connects only two segments.",
+      "A bridge joins two network segments and filters frames between them; it does not act as a central connection point for many nodes.",
+      "A router forwards packets between distinct networks at the network layer.",
+      "Hence the device at the centre of a star topology is the hub, option (b)."
+    ]
+  },
+  "2025-Q33": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "Allocating the CPU to each process for a fixed time slice (quantum) in rotation is Round Robin scheduling.",
+    "tips": [
+      "'Time slice' or 'quantum' is the signature of Round Robin - no other classical algorithm uses one.",
+      "Round Robin is PRE-EMPTIVE: when the quantum expires the process is moved to the back of the ready queue whether or not it has finished.",
+      "FCFS and (non-pre-emptive) SJF run each process to completion, and priority scheduling selects by priority rather than by a clock - none involves a time slice.",
+      "Quantum size matters: too large and Round Robin degenerates to FCFS; too small and context-switching overhead dominates."
+    ],
+    "solution": [
+      "Round Robin scheduling maintains a circular ready queue and allocates the CPU to each process for a fixed time slice, or quantum.",
+      "If a process does not complete within its quantum it is pre-empted and placed at the end of the queue, and the next process runs.",
+      "First-Come First-Served runs each process to completion in arrival order, with no time limit.",
+      "Shortest Job First selects the process with the smallest burst time; in its non-pre-emptive form it also runs to completion.",
+      "Priority scheduling selects the highest-priority process, again without any fixed slice.",
+      "Hence the time-slice algorithm is Round Robin, option (d)."
+    ]
+  },
+  "2025-Q34": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "SSDs beat hard disks on speed, power consumption and reliability, but they cost MORE per gigabyte - so items I, III and IV qualify and II does not.",
+    "tips": [
+      "SSDs have no moving parts, which explains all three genuine advantages at once: faster access, lower power and heat, and greater shock resistance.",
+      "Price per gigabyte is the classical DISADVANTAGE of solid-state storage - any option containing 'low price' is suspect.",
+      "Access-time contrast: an SSD responds in microseconds while a hard disk needs milliseconds of seek and rotational latency.",
+      "SSDs do have a finite write-endurance, but for the comparison asked here reliability still favours them over mechanical drives."
+    ],
+    "solution": [
+      "A solid-state drive stores data in flash memory with no moving parts, unlike a hard disk drive with its spinning platters and moving heads.",
+      "Item I, better performance: with no seek or rotational latency, access times fall from milliseconds to microseconds. ADVANTAGE.",
+      "Item III, low power and heat: no motor or actuator has to be driven, so power draw and heat generation are much lower. ADVANTAGE.",
+      "Item IV, high reliability: the absence of mechanical parts makes SSDs far more resistant to shock and mechanical failure. ADVANTAGE.",
+      "Item II, low price: solid-state storage costs substantially more per gigabyte than magnetic disk, so price is a DISADVANTAGE, not an advantage.",
+      "Hence the advantages are I, III and IV, option (c)."
+    ]
+  },
+  "2025-Q35": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Octal 366 is binary 011110110, which regroups in fours as 0000 1111 0110 = 0F6. And hex A53 = 10(256) + 5(16) + 3 = 2643. Both statements hold.",
+    "tips": [
+      "Octal to hex must pass through BINARY: three bits per octal digit out, four bits per hex digit in. There is no direct digit correspondence.",
+      "366 (octal) becomes 011 110 110, and regrouping from the right gives 1111 0110 with a leading nibble of zeros - hence the printed leading 0 in 0F6.",
+      "For statement II use place values 256, 16, 1: 10(256) = 2560, 5(16) = 80, plus 3 gives 2643.",
+      "Cross-check statement I in decimal: (366)_8 = 3(64) + 6(8) + 6 = 246, and (F6)_16 = 15(16) + 6 = 246. They agree."
+    ],
+    "solution": [
+      "Statement I: convert each octal digit to three bits: 3 = 011, 6 = 110, 6 = 110, giving the binary 011110110.",
+      "Regroup in fours from the right, padding on the left: 0000 | 1111 | 0110, which translates to 0, F, 6 - that is 0F6.",
+      "Decimal check: (366)_8 = 3(64) + 6(8) + 6 = 246, and (F6)_16 = 15(16) + 6 = 246. TRUE.",
+      "Statement II: (A53)_16 = A(16^2) + 5(16) + 3 with A = 10 = 10(256) + 80 + 3 = 2560 + 83 = 2643. TRUE.",
+      "Both statements are correct, option (c)."
+    ]
+  },
+  "2025-Q36": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "Linux supports many simultaneous users, many concurrent tasks and symmetric multiprocessing - all three descriptions apply.",
+    "tips": [
+      "Linux inherits the UNIX design: multi-user with separate accounts and permissions, multitasking with pre-emptive scheduling, and SMP support for multiple processors.",
+      "Multi-user means several people can be logged in at once with protected private files - not merely that several accounts exist.",
+      "Multitasking here is PRE-EMPTIVE: the kernel interrupts a running process at the end of its quantum rather than waiting for it to yield.",
+      "When every item in a list is a standard textbook property of the same system, 'all of them' is almost always the key."
+    ],
+    "solution": [
+      "Linux is a UNIX-like operating system and inherits the full set of UNIX capabilities.",
+      "Item I, multi-user: several users can be logged in simultaneously, each with a separate account, home directory and permission set, and the kernel isolates their processes and files. TRUE.",
+      "Item II, multitasking: the kernel schedules many processes concurrently using pre-emptive time slicing, so several programs progress at once. TRUE.",
+      "Item III, multiprocessor: the Linux kernel supports symmetric multiprocessing, distributing processes across multiple CPUs or cores. TRUE.",
+      "All three descriptions apply to Linux.",
+      "Hence option (d) is correct."
+    ]
+  },
+  "2025-Q37": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Definition",
+    "shortcut": "The memory an algorithm needs is its SPACE complexity; time complexity measures the number of operations instead.",
+    "tips": [
+      "Two complexities, two resources: TIME complexity counts operations, SPACE complexity counts memory. The question names memory, so space.",
+      "Space complexity has two parts: the fixed part (code, constants) and the variable part (dynamic data structures, recursion stack).",
+      "Both are expressed in big-O notation as functions of the input size n - e.g. merge sort is O(n log n) time but O(n) space.",
+      "'Hybrid complexity' and 'processing complexity' are not standard terms at all, so they can be dismissed immediately."
+    ],
+    "solution": [
+      "Algorithm analysis measures two resources: the time taken and the memory required.",
+      "Time complexity expresses the number of elementary operations as a function of the input size.",
+      "Space complexity expresses the amount of memory required as a function of the input size, comprising a fixed part (instructions and constants) and a variable part (dynamically allocated data and the recursion stack).",
+      "The question asks specifically about the amount of memory, which is space complexity.",
+      "'Hybrid complexity' and 'processing complexity' are not standard terms in algorithm analysis.",
+      "Hence the answer is space complexity, option (b)."
+    ]
+  },
+  "2025-Q38": {
+    "answer": 2,
+    "confidence": "medium",
+    "type": "Conceptual",
+    "shortcut": "The runtime environment supports the program WHILE it executes - allocating and reclaiming memory, running garbage collection and handling exceptions.",
+    "tips": [
+      "The clue is in the name: RUNTIME environment means services provided during execution, not before it.",
+      "Translation to machine code (option d) happens at COMPILE time, so it is by definition not a runtime activity.",
+      "Libraries and frameworks (option a) are development-time resources; they may be loaded at runtime but providing them is not the runtime system's defining role.",
+      "Executing machine code directly (option b) is the CPU's job; the runtime sits above it, managing resources on the program's behalf."
+    ],
+    "solution": [
+      "A runtime environment is the software layer that supports a program while it is executing.",
+      "Its responsibilities include allocating memory for objects and activation records, reclaiming unreachable memory through garbage collection, managing the call stack, handling exceptions, and mediating access to operating-system services.",
+      "Translating source code into machine code is the compiler's task and happens before execution, so option (d) is wrong.",
+      "Executing machine instructions is performed by the CPU itself, not by the runtime layer, so option (b) is wrong.",
+      "Libraries and frameworks are resources used during development; supplying them is not what defines a runtime environment.",
+      "Hence the runtime environment manages memory allocation, garbage collection and other runtime tasks, option (c)."
+    ]
+  },
+  "2025-Q39": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Definition",
+    "shortcut": "A breakpoint marks a line at which the debugger pauses execution so the programmer can inspect the program state.",
+    "tips": [
+      "Breakpoint = pause point. Once execution halts, the programmer can examine variables, the call stack and memory before resuming or single-stepping.",
+      "Option (c) inverts the meaning: a breakpoint stops execution AT a point, it does not skip code.",
+      "Timing a block (option b) is profiling, and detecting memory leaks (option d) is the work of a memory analyser - different tools entirely.",
+      "Conditional breakpoints, which trigger only when a stated condition holds, are the natural extension worth mentioning."
+    ],
+    "solution": [
+      "A breakpoint is a marker placed by the programmer at a chosen line of source code within a debugger.",
+      "When execution reaches that line, the debugger suspends the program before executing it.",
+      "While paused, the programmer can inspect variable values, the call stack and memory contents, and may then resume, single-step or terminate the run.",
+      "Measuring elapsed time is the function of a profiler, and detecting memory leaks is the function of a memory analyser.",
+      "A breakpoint does not skip code - it halts execution at the marked point.",
+      "Hence a breakpoint marks a point where execution pauses for inspection, option (a)."
+    ]
+  },
+  "2025-Q40": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "In client-server DBMS architecture the SERVER holds the database and enforces access control, security and integrity constraints; the client only issues requests and displays results.",
+    "tips": [
+      "Split the roles: the client provides the user interface and sends queries; the server stores the data and enforces all the rules.",
+      "Centralising security and integrity on the server is the whole point of the architecture - clients cannot be trusted to police themselves.",
+      "The query processor is a COMPONENT of the server software, not the responsible entity - a part-versus-whole distinction.",
+      "The database administrator is a PERSON who configures policies; the question asks which architectural component enforces them at run time."
+    ],
+    "solution": [
+      "In client-server DBMS architecture the workload is divided between two tiers.",
+      "The client provides the user interface, formulates requests and displays the results returned to it.",
+      "The server hosts the database itself and runs the DBMS engine: it authenticates users, enforces access privileges, validates integrity constraints, manages concurrency and performs backup and recovery.",
+      "Centralising these functions on the server is what allows a consistent security and integrity policy to be applied to every client.",
+      "The query processor is one component within the server software, and the database administrator is a person who defines policy rather than an architectural component.",
+      "Hence the server is primarily responsible, option (c)."
+    ]
+  }
+}

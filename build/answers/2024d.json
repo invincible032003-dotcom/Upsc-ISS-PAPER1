@@ -1,361 +1,399 @@
 {
-"2024-Q61": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "Picard gives y1 = x - 2 and then y2 = x + x^3/3 - x^2 - 2/3. At x = 3 this is 3 + 9 - 9 - 0.667 = 2.33.",
-  "tips": [
-    "Picard iteration starts at the GIVEN point: y_(n+1)(x) = y(2) + integral from 2 to x of f(t, y_n(t)) dt. Using 0 as the lower limit is the standard error.",
-    "First iterate: with y0 = 0 the integrand is just 1, so y1 = x - 2 - a clean start.",
-    "Second iterate: the integrand becomes 1 + t(t - 2) = t^2 - 2t + 1, whose antiderivative is t^3/3 - t^2 + t; evaluate between 2 and x.",
-    "The constant is -(8/3 - 4 + 2) = -2/3; keeping it as a fraction avoids rounding drift before the final substitution."
-  ],
-  "solution": [
-    "Picard's method for dy/dx = 1 + xy with y(2) = 0 uses y_(n+1)(x) = 0 + integral from 2 to x of (1 + t y_n(t)) dt, starting from y0 = 0.",
-    "First approximation: y1(x) = integral from 2 to x of 1 dt = x - 2.",
-    "Second approximation: the integrand is 1 + t(t - 2) = t^2 - 2t + 1, whose antiderivative is t^3/3 - t^2 + t.",
-    "Evaluating from 2 to x: y2(x) = (x^3/3 - x^2 + x) - (8/3 - 4 + 2) = x^3/3 - x^2 + x - 2/3.",
-    "At x = 3: y2(3) = 27/3 - 9 + 3 - 2/3 = 9 - 9 + 3 - 0.667.",
-    "= 2.333, i.e. about 2.33, option (b)."
-  ]
-},
-"2024-Q62": {
-  "answer": 3, "confidence": "high", "type": "Theoretical",
-  "shortcut": "Forward and backward Euler are both first-order methods, and RK4 is fourth order, so it exceeds both. All three statements hold.",
-  "tips": [
-    "Order table: forward Euler 1, backward Euler 1, RK2 (Heun/midpoint) 2, RK4 4. Memorise it and all three statements answer themselves.",
-    "Forward and backward Euler differ in STABILITY, not in order: backward Euler is implicit and unconditionally stable, but still first order.",
-    "Order refers to the GLOBAL error exponent: O(h) for Euler, O(h^4) for RK4 - a difference of three powers of h.",
-    "Do not confuse order with stability or with cost per step; the question asks only about order."
-  ],
-  "solution": [
-    "Forward Euler, y_(n+1) = y_n + h f(x_n, y_n), matches the Taylor expansion through the h term, so its local error is O(h^2) and its global error O(h) - first order.",
-    "Backward Euler, y_(n+1) = y_n + h f(x_(n+1), y_(n+1)), is implicit but likewise matches only through the h term, so it is also first order.",
-    "Statement I: both Euler methods therefore have the same order, namely 1. TRUE. (They differ in stability, not order.)",
-    "The classical fourth-order Runge-Kutta method matches the Taylor expansion through h^4, giving a global error O(h^4) - fourth order.",
-    "Statements II and III: RK4's order 4 exceeds the order 1 of both forward and backward Euler. Both TRUE.",
-    "All three statements are correct, option (d)."
-  ]
-},
-"2024-Q63": {
-  "answer": 2, "confidence": "high", "type": "Numerical",
-  "shortcut": "With h = 1 and nodes 1, 2, 3, Simpson gives (1/3)[1 + 64 + 81] = 48.667, while the exact value is 242/5 = 48.4. The error is 0.267, i.e. about 0.27.",
-  "tips": [
-    "Simpson's 1/3 is exact only up to CUBICS, so for x^4 there is a genuine error - that is the point of the question.",
-    "Compute both values: Simpson's bracket is 1 + 4(16) + 81 = 146, so the estimate is 146/3 = 48.6667; the exact integral is (3^5 - 1)/5 = 48.4.",
-    "Error formula check: -(b-a)h^4 f''''(xi)/180 with f'''' = 24 gives (2)(1)(24)/180 = 0.2667 in magnitude - matching exactly, since the fourth derivative is constant.",
-    "Simpson OVERestimates here (the fourth derivative is positive), so the error 48.667 - 48.4 is positive - a useful sign check."
-  ],
-  "solution": [
-    "Dividing [1,3] into two parts gives h = 1 with nodes x = 1, 2, 3 and ordinates f = 1, 16, 81.",
-    "Simpson's one-third rule: I = (h/3)[f0 + 4f1 + f2] = (1/3)[1 + 64 + 81] = 146/3 = 48.6667.",
-    "The exact value is the integral of x^4 from 1 to 3 = [x^5/5] from 1 to 3 = (243 - 1)/5 = 48.4.",
-    "Error = 48.6667 - 48.4 = 0.2667.",
-    "This agrees with the error formula -(b-a)h^4 f''''(xi)/180 = -(2)(1)(24)/180 = -0.2667 in magnitude, since f''''(x) = 24 is constant for x^4.",
-    "The error is approximately 0.27, option (c)."
-  ]
-},
-"2024-Q64": {
-  "answer": 3, "confidence": "high", "type": "Numerical",
-  "shortcut": "For f independent of y, RK4 reduces to Simpson's rule: y(h) = (h/6)[f(0) + 4f(h/2) + f(h)] = h[(1/6)f(0) + (2/3)f(h/2) + (1/6)f(h)].",
-  "tips": [
-    "When f does not involve y, the two midpoint stages coincide, so the weights 1, 2, 2, 1 over 6 collapse to 1, 4, 1 over 6.",
-    "Divide by 6 to read off the coefficients: 1/6, 4/6 = 2/3, 1/6. The end weights must be EQUAL by symmetry, which only option (d) satisfies.",
-    "The weights must sum to 1 so that a constant f integrates to h f: 1/6 + 2/3 + 1/6 = 1. Options (a), (b) and (c) sum to 1.5, 1.5 and 1 respectively - so use the symmetry test.",
-    "This is the same identity as 2018 Q44: RK4 applied to a pure quadrature problem IS Simpson's one-third rule."
-  ],
-  "solution": [
-    "For dy/dx = f(x) the RK4 increments are k1 = h f(0), k2 = h f(h/2), k3 = h f(h/2) and k4 = h f(h), since the y-arguments are irrelevant.",
-    "With y(0) = 0, y(h) = (k1 + 2k2 + 2k3 + k4)/6.",
-    "The two identical midpoint terms combine: y(h) = (h/6)[f(0) + 4f(h/2) + f(h)].",
-    "Writing this as h[a f(0) + b f(h/2) + c f(h)] gives a = 1/6, b = 4/6 = 2/3 and c = 1/6.",
-    "The weights are symmetric and sum to 1, as any such quadrature rule requires.",
-    "Hence (a, b, c) = (1/6, 2/3, 1/6), option (d)."
-  ]
-},
-"2024-Q65": {
-  "answer": 0, "confidence": "high", "type": "Numerical",
-  "shortcut": "Composite trapezoidal over two strips: (h/2)[y0 + 2y1 + y2] - the interior ordinate carries weight 2 and the ends weight 1.",
-  "tips": [
-    "Composite trapezoidal weights are 1, 2, 2, ..., 2, 1 with prefactor h/2 - only the two END ordinates are halved.",
-    "The weights must total 2n for n strips so that a constant integrates correctly: here 1 + 2 + 1 = 4 = 2(2). Options (b), (c) and (d) fail this test.",
-    "The specific function x^2 + 2x + 3 is a distractor - the trapezoidal FORMULA does not depend on it (though the rule is not exact for a quadratic).",
-    "Contrast with Simpson's 1/3 over the same two strips, which would be (h/3)[y0 + 4y1 + y2] and WOULD be exact for this quadratic."
-  ],
-  "solution": [
-    "The interval [a, a+2h] is divided into two equal strips of width h, with ordinates y0, y1, y2 at x = a, a+h, a+2h.",
-    "The trapezoidal rule approximates the curve by a straight line on each strip.",
-    "First strip: (h/2)(y0 + y1). Second strip: (h/2)(y1 + y2).",
-    "Adding: (h/2)(y0 + y1 + y1 + y2) = (h/2)(y0 + 2y1 + y2).",
-    "The weights 1, 2, 1 sum to 4 = 2 x 2, as required for two strips.",
-    "Hence the value is (h/2)(y0 + 2y1 + y2), option (a)."
-  ]
-},
-"2024-Q66": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "Since E = 1 + Delta, expanding 1 + E + E^2 + E^3 gives 4 + 6 Delta + 4 Delta^2 + Delta^3. So the expression equals y0 + y1 + y2 + y3.",
-  "tips": [
-    "Recognise the coefficients 4, 6, 4, 1 - they are the sums of the binomial columns from (1+Delta)^0 through (1+Delta)^3, which is the signature of y0 + y1 + y2 + y3.",
-    "Work backwards from the operator: 1 + E + E^2 + E^3 applied to y0 gives the four consecutive values, and substituting E = 1 + Delta reproduces the printed expression.",
-    "Verify the constant: the four expansions contribute 1 + 1 + 1 + 1 = 4, matching the leading coefficient exactly.",
-    "The alternating-sign options (a), (c) and (d) would require alternating operator signs, which the all-positive coefficients rule out."
-  ],
-  "solution": [
-    "Since E = 1 + Delta, we have E^2 = 1 + 2Delta + Delta^2 and E^3 = 1 + 3Delta + 3Delta^2 + Delta^3.",
-    "Adding: 1 + E + E^2 + E^3 = (1 + 1 + 1 + 1) + (1 + 2 + 3)Delta + (1 + 3)Delta^2 + Delta^3.",
-    "= 4 + 6 Delta + 4 Delta^2 + Delta^3, which is exactly the given operator.",
-    "Applying it to y0: (1 + E + E^2 + E^3) y0 = y0 + y1 + y2 + y3.",
-    "So the expression equals the sum of the four consecutive ordinates.",
-    "Option (b) is correct."
-  ]
-},
-"2024-Q67": {
-  "answer": 3, "confidence": "high", "type": "Theoretical",
-  "shortcut": "The bridge identity is nabla^n y_k = Delta^n y_(k-n). With n = 5 this gives nabla^5 y_n = Delta^5 y_(n-5).",
-  "tips": [
-    "Memorise nabla^n y_k = Delta^n y_(k-n): the same table entry read backwards from y_k or forwards from y_(k-n).",
-    "Operator proof: nabla = 1 - E^(-1) = (E - 1)E^(-1) = Delta E^(-1), so nabla^n = Delta^n E^(-n), which shifts the index down by n.",
-    "Index check: a fifth backward difference at n reaches back to n - 5, so the forward form must START at n - 5. Option (c) keeps the index at n and is wrong.",
-    "Option (a) restates nabla in terms of itself with a shifted index and is simply false; the identity must convert between the two OPERATORS."
-  ],
-  "solution": [
-    "The backward difference operator is nabla = 1 - E^(-1), where E is the shift operator.",
-    "Factorising, nabla = (E - 1)E^(-1) = Delta E^(-1).",
-    "Since Delta and E commute, nabla^n = Delta^n E^(-n).",
-    "Applying this to y_n: nabla^n y_n = Delta^n E^(-n) y_n = Delta^n y_(n-n) = Delta^n y_(n-n)... more precisely, E^(-n) y_n = y_(n-n) is the value at index n - n; in general nabla^n y_k = Delta^n y_(k-n).",
-    "With n = 5 and index n: nabla^5 y_n = Delta^5 y_(n-5). Both expand to y_n - 5y_(n-1) + 10y_(n-2) - 10y_(n-3) + 5y_(n-4) - y_(n-5).",
-    "Option (d) is correct."
-  ]
-},
-"2024-Q68": {
-  "answer": 1, "confidence": "high", "type": "Conceptual",
-  "shortcut": "b = a + 8h means 8 strips. Trapezoidal needs no condition and Simpson's 1/3 needs an even count - 8 qualifies. Simpson's 3/8 needs a multiple of 3 and Weddle a multiple of 6, neither of which 8 is.",
-  "tips": [
-    "Divisibility table: trapezoidal any n; Simpson's 1/3 needs n even; Simpson's 3/8 needs n divisible by 3; Weddle's needs n divisible by 6.",
-    "Read the number of strips straight from b - a = 8h, so n = 8. Everything else is a divisibility check.",
-    "8 is even but not divisible by 3 or 6, so exactly two of the four rules apply - which pins the answer without further thought.",
-    "In practice one could still apply the 3/8 rule to a sub-range and the 1/3 rule to the rest, but the question asks which rules apply to the whole interval."
-  ],
-  "solution": [
-    "Since b = a + 8h, the interval [a, b] is divided into n = 8 subintervals of equal width h.",
-    "The trapezoidal rule places no condition on n, so it applies.",
-    "Simpson's one-third rule requires n to be even; 8 is even, so it applies.",
-    "Simpson's three-eighth rule requires n to be a multiple of 3; 8 is not, so it does not apply.",
-    "Weddle's rule requires n to be a multiple of 6; 8 is not, so it does not apply.",
-    "Hence the applicable rules are the trapezoidal rule and Simpson's one-third rule, option (b)."
-  ]
-},
-"2024-Q69": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "The minimum for the trapezoidal rule is one strip: f(1) + f(3) = 5. The minimum for Simpson's 1/3 is two strips: (1/3)[f(1) + 4f(2) + f(3)] = 3, so f(1) + 4f(2) + f(3) = 9 and 4f(2) = 4, giving f(2) = 1.",
-  "tips": [
-    "'Minimum number of intervals' differs by rule: 1 for the trapezoidal rule (h = 2) but 2 for Simpson's 1/3 (h = 1, since n must be even).",
-    "The trapezoidal equation supplies f(1) + f(3) = 5 with no f(2) in it - substituting that into Simpson's equation isolates f(2) immediately.",
-    "Simpson's bracket must equal 9 because the prefactor is h/3 = 1/3 and the stated value is 3.",
-    "Consistency check: with f(1) + f(3) = 5 and f(2) = 1, Simpson gives (1/3)(5 + 4) = 3, exactly as stated."
-  ],
-  "solution": [
-    "For the trapezoidal rule the minimum number of intervals is 1, so h = 2 and the estimate is (h/2)[f(1) + f(3)] = f(1) + f(3).",
-    "Setting this equal to 5 gives f(1) + f(3) = 5.",
-    "For Simpson's one-third rule the number of intervals must be even, so the minimum is 2, giving h = 1 with nodes 1, 2, 3.",
-    "The estimate is (h/3)[f(1) + 4f(2) + f(3)] = (1/3)[f(1) + 4f(2) + f(3)], and setting this equal to 3 gives f(1) + 4f(2) + f(3) = 9.",
-    "Substituting f(1) + f(3) = 5: 5 + 4f(2) = 9, so 4f(2) = 4.",
-    "Hence f(2) = 1, option (b)."
-  ]
-},
-"2024-Q70": {
-  "answer": 0, "confidence": "high", "type": "Conceptual",
-  "shortcut": "The third divided difference of a cubic equals its leading coefficient, which is non-zero by definition of 'cubic' - so it is always constant but not necessarily zero.",
-  "tips": [
-    "Rule: the nth divided difference of a degree-n polynomial is its leading coefficient a_n, and all HIGHER divided differences are zero.",
-    "'Cubic' means the x^3 coefficient is non-zero, so the value cannot be zero - that distinction is exactly what separates options (a) and (b).",
-    "Option (c) 'sum of arguments' is the SECOND divided difference of x^3 (as in 2023 Q42) - a neighbouring fact deliberately offered as a distractor.",
-    "The value is independent of which four nodes are used, which is the sense in which it is 'constant'."
-  ],
-  "solution": [
-    "Divided differences are linear, and the kth divided difference of a polynomial of degree less than k is zero.",
-    "For a cubic f(x) = a3 x^3 + a2 x^2 + a1 x + a0, only the leading term survives a third divided difference.",
-    "For x^3 the third divided difference over any four distinct nodes equals 1, so for f it equals a3.",
-    "Since f is a cubic, a3 is non-zero by definition, so the third divided difference is a non-zero constant, the same for every choice of nodes.",
-    "It would be zero only for a polynomial of degree less than 3, and the SECOND divided difference of x^3 - not the third - is the sum of the arguments.",
-    "Hence it is always constant but not necessarily zero, option (a)."
-  ]
-},
-"2024-Q71": {
-  "answer": 0, "confidence": "high", "type": "Numerical",
-  "shortcut": "Delta(a b^x) = a b^x (b - 1), so applying Delta twice gives a b^x (b-1)^2. Hence alpha = a(b-1)^2.",
-  "tips": [
-    "For an exponential, each Delta multiplies by the constant (b - 1): Delta b^x = b^(x+1) - b^x = b^x(b-1).",
-    "The multiplicative constant a passes straight through the operator, so it must appear in alpha - eliminating option (c).",
-    "Two differences give the SQUARE of (b-1); one difference would give option (d), the 'one step short' trap.",
-    "Check with a = 1, b = 2: Delta^2 2^x = 2^x, and a(b-1)^2 = 1. Correct."
-  ],
-  "solution": [
-    "With interval of differencing 1, Delta(a b^x) = a b^(x+1) - a b^x = a b^x (b - 1).",
-    "Applying Delta a second time multiplies by the same constant factor (b - 1).",
-    "So Delta^2(a b^x) = a b^x (b - 1)^2.",
-    "Comparing with the given form alpha b^x, we read alpha = a(b - 1)^2.",
-    "Check with a = 1 and b = 2: Delta^2 2^x = 2^x and a(b-1)^2 = 1, consistent.",
-    "Option (a) is correct."
-  ]
-},
-"2024-Q72": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "Delta^2 x^3 = 6x + 6, and dividing by E shifts x to x - 1, giving 6(x-1) + 6 = 6x. So alpha = 6 and beta = 0.",
-  "tips": [
-    "1/E is the BACKWARD shift E^(-1), replacing x by x - 1 - not an algebraic division. Misreading it is the main trap.",
-    "Compute in two stages: Delta x^3 = 3x^2 + 3x + 1, then Delta^2 x^3 = 6x + 6.",
-    "The shift cancels the constant exactly: 6(x-1) + 6 = 6x - 6 + 6 = 6x, so beta = 0. Skipping the shift would give alpha = 6, beta = 6 - option (a).",
-    "This repeats 2021 Q67, where the same expression was asked for directly - the operator identity is clearly a favourite."
-  ],
-  "solution": [
-    "With h = 1, Delta x^3 = (x+1)^3 - x^3 = 3x^2 + 3x + 1.",
-    "Applying Delta again: Delta^2 x^3 = 3[(x+1)^2 - x^2] + 3[(x+1) - x] = 3(2x+1) + 3 = 6x + 6.",
-    "The operator 1/E is the backward shift E^(-1), which replaces x by x - 1.",
-    "So (Delta^2/E) x^3 = 6(x - 1) + 6 = 6x - 6 + 6 = 6x.",
-    "Comparing with alpha x + beta gives alpha = 6 and beta = 0.",
-    "Option (b) is correct."
-  ]
-},
-"2024-Q73": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "nabla E^n = E^n - E^(n-1), and delta = E^(1/2) - E^(-1/2). Matching the exponents gives n = 1/2 and alpha = 1.",
-  "tips": [
-    "Write both sides in powers of E: the right side is alpha(E^n - E^(n-1)) and the left is E^(1/2) - E^(-1/2).",
-    "Match the leading exponent first: n = 1/2, and then n - 1 = -1/2 automatically - a built-in consistency check.",
-    "With the exponents matched, the coefficients give alpha = 1; no scaling is needed.",
-    "Companion identity: delta = Delta E^(-1/2) as well, since Delta = E - 1 gives E^(-1/2)(E-1) = E^(1/2) - E^(-1/2)."
-  ],
-  "solution": [
-    "The central difference operator is delta = E^(1/2) - E^(-1/2), and the backward difference is nabla = 1 - E^(-1).",
-    "Therefore nabla E^n = (1 - E^(-1))E^n = E^n - E^(n-1).",
-    "Setting alpha(E^n - E^(n-1)) = E^(1/2) - E^(-1/2) and comparing the leading terms gives alpha = 1 and n = 1/2.",
-    "The second terms then match automatically: n - 1 = 1/2 - 1 = -1/2.",
-    "So delta = nabla E^(1/2), i.e. alpha = 1 and n = 1/2.",
-    "Option (b) is correct."
-  ]
-},
-"2024-Q74": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "Linear interpolation error <= h^2 M/8 with M = max|f''| = sin(pi/4) = 0.7071. Requiring h^2(0.7071)/8 <= 1e-5 gives h <= 0.01064, and pi/320 = 0.00982 is the largest listed value that satisfies it.",
-  "tips": [
-    "Error bound for linear interpolation: |E| <= h^2 M2/8 where M2 bounds |f''| on the interval. The 8 comes from max|p(p-1)|/2 = 1/8.",
-    "For f = sin x, f'' = -sin x, whose modulus is largest at the right end of [0, pi/4], giving M2 = sin(pi/4) = 0.7071.",
-    "Solve for h: h^2 <= 8(1e-5)/0.7071 = 1.131e-4, so h <= 0.01064. Then test the options: pi/320 = 0.00982 passes, pi/120 = 0.02618 fails.",
-    "'Best possible' means the LARGEST admissible step, since a smaller h wastes computation - pi/520 also satisfies the bound but is unnecessarily fine."
-  ],
-  "solution": [
-    "For linear interpolation on an interval of width h, the truncation error satisfies |E| <= h^2 M2/8, where M2 is a bound on |f''| over the interval.",
-    "Here f(x) = sin x, so f''(x) = -sin x and |f''| is largest at x = pi/4, giving M2 = sin(pi/4) = 0.7071.",
-    "Requiring h^2 (0.7071)/8 <= 10^(-5) gives h^2 <= 8 x 10^(-5)/0.7071 = 1.131 x 10^(-4).",
-    "Hence h <= 0.01064.",
-    "Testing the options: pi/520 = 0.00604 (satisfies), pi/320 = 0.00982 (satisfies), pi/120 = 0.02618 (fails), pi/92 = 0.03415 (fails).",
-    "The best choice is the largest admissible step, pi/320, option (b)."
-  ]
-},
-"2024-Q75": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "The slopes 1 and 3 differ, so the least-degree polynomial is a quadratic; fitting gives y = 2x^2 + 1, whose roots x = +-i/sqrt2 are purely imaginary.",
-  "tips": [
-    "Test linearity first by comparing slopes: (3/2 - 1)/(1/2) = 1 but (3 - 3/2)/(1/2) = 3. Different, so the degree is 2, not 1.",
-    "Use the point (0,1) to fix the constant immediately: c = 1, leaving only two unknowns.",
-    "Solving a + 2b = 2 with a + b = 2 gives b = 0 - the absence of a linear term is what makes the roots purely imaginary.",
-    "y = 2x^2 + 1 has no real roots since 2x^2 + 1 >= 1 > 0; the roots are +-i/sqrt(2), complex with real part zero."
-  ],
-  "solution": [
-    "Test whether the three points are collinear: the slope from (0,1) to (1/2, 3/2) is 1, while from (1/2, 3/2) to (1,3) it is 3. They differ, so no line fits and the least degree is 2.",
-    "Write y = ax^2 + bx + c. From (0,1): c = 1.",
-    "From (1/2, 3/2): a/4 + b/2 + 1 = 3/2, i.e. a + 2b = 2.",
-    "From (1,3): a + b + 1 = 3, i.e. a + b = 2.",
-    "Subtracting gives b = 0 and hence a = 2, so y = 2x^2 + 1.",
-    "Setting 2x^2 + 1 = 0 gives x^2 = -1/2, so x = +- i/sqrt(2): complex conjugates with real part zero. Option (b) is correct."
-  ]
-},
-"2024-Q76": {
-  "answer": 1, "confidence": "high", "type": "Conceptual",
-  "shortcut": "Through the same two points there is only ONE interpolating polynomial, so the Lagrange and Newton forward forms are algebraically identical and share the same error bound, epsilon.",
-  "tips": [
-    "Uniqueness theorem: through n + 1 distinct points there passes exactly one polynomial of degree at most n. Lagrange and Newton are just different ALGEBRAIC ARRANGEMENTS of it.",
-    "Since the polynomial is the same, the remainder term f''(xi)(x-x0)(x-x1)/2! is the same, and so is its bound.",
-    "The two forms differ in computational convenience - Newton's allows incremental addition of points - not in accuracy.",
-    "Any option other than epsilon would imply that two representations of the same function differ in error, which is impossible."
-  ],
-  "solution": [
-    "Through two distinct points there passes exactly one polynomial of degree at most 1, by the uniqueness of the interpolating polynomial.",
-    "Lagrange's linear form and Newton's forward linear form are therefore two algebraic representations of the SAME polynomial.",
-    "The truncation error of linear interpolation is R(x) = f''(xi)(x - x0)(x - x1)/2! for some xi in the interval, and this expression depends only on the function and the nodes, not on how the polynomial is written.",
-    "Hence the two forms have identical remainder terms and identical error bounds.",
-    "So the bound for the Newton forward form is also epsilon.",
-    "Option (b) is correct."
-  ]
-},
-"2024-Q77": {
-  "answer": 0, "confidence": "high", "type": "Numerical",
-  "shortcut": "Three equally spaced nodes with maximum exactness is Simpson's one-third rule, whose weights are h/3, 4h/3, h/3.",
-  "tips": [
-    "Recognise the pattern: a three-point rule on [x0, x0+2h] with the highest possible order IS Simpson's 1/3 rule - no derivation needed.",
-    "If you derive it: exactness for f = 1 gives alpha + beta + gamma = 2h, and symmetry gives alpha = gamma, so exactness for x^2 completes the system.",
-    "The weights must sum to the interval length 2h: h/3 + 4h/3 + h/3 = 6h/3 = 2h. Only option (a) satisfies this AND the symmetry alpha = gamma.",
-    "Bonus fact: this rule is exact for cubics too, because the odd-degree error term cancels by symmetry."
-  ],
-  "solution": [
-    "The three nodes x0, x0 + h, x0 + 2h are equally spaced across the interval of length 2h, and we require exactness for polynomials of the highest possible degree.",
-    "Exactness for f = 1: alpha + beta + gamma = 2h.",
-    "Exactness for f = x - x0 (odd about the midpoint): 0(alpha) + h(beta) + 2h(gamma) = 2h^2, i.e. beta + 2gamma = 2h.",
-    "Exactness for f = (x - x0)^2: h^2 beta + 4h^2 gamma = 8h^3/3, i.e. beta + 4 gamma = 8h/3.",
-    "Subtracting the second from the third: 2 gamma = 2h/3, so gamma = h/3; then beta = 2h - 2h/3 = 4h/3 and alpha = 2h - 4h/3 - h/3 = h/3.",
-    "These are Simpson's one-third weights h/3, 4h/3, h/3, option (a)."
-  ]
-},
-"2024-Q78": {
-  "answer": 1, "confidence": "high", "type": "Theoretical",
-  "shortcut": "Both Simpson's rules are exact up to degree 3, but the trapezoidal rule is exact only up to degree 1. So II and III hold and I fails.",
-  "tips": [
-    "Degrees of exactness: trapezoidal 1, Simpson's 1/3 = 3, Simpson's 3/8 = 3, Weddle 5. Compare each with the integrand's degree 3.",
-    "Simpson's 1/3 fits parabolas yet is exact for CUBICS because its odd-degree error term cancels by symmetry - a bonus degree worth remembering.",
-    "The trapezoidal error involves f'', which is generally non-zero for a cubic, so statement I must fail.",
-    "Simpson's 3/8 fits cubics directly, so its exactness for a cubic needs no special argument."
-  ],
-  "solution": [
-    "Statement I: the trapezoidal rule replaces the integrand by a straight line, and its error term involves f''. For a cubic f'' is not identically zero, so the rule is not exact. FALSE.",
-    "Statement II: Simpson's one-third rule has error term proportional to the FOURTH derivative, which vanishes for a cubic, so it integrates cubics exactly - a bonus degree beyond the parabola it fits. TRUE.",
-    "Statement III: Simpson's three-eighth rule is derived by fitting a cubic through four points, so it reproduces any cubic exactly; its error term also involves the fourth derivative. TRUE.",
-    "Only statements II and III are correct.",
-    "Hence option (b) is correct."
-  ]
-},
-"2024-Q79": {
-  "answer": 2, "confidence": "high", "type": "Numerical",
-  "shortcut": "With h = 10 and n = 4, Simpson's 1/3 gives (10/3)[0 + 4(4) + 2(7) + 4(9) + 12] = (10/3)(78) = 260 square metres.",
-  "tips": [
-    "Check n first: five ordinates give n = 4 subintervals, an even number, so Simpson's 1/3 applies.",
-    "Weight pattern 1, 4, 2, 4, 1: the odd-indexed depths get 4 and the single interior even one gets 2.",
-    "Weighted sum: 0 + 16 + 14 + 36 + 12 = 78, then multiply by h/3 = 10/3 to get 260.",
-    "Plausibility: the average depth is roughly 6.5 m over 40 m, giving about 260 square metres - the answer is exactly of that order, unlike options (a) and (b)."
-  ],
-  "solution": [
-    "The distances are 0, 10, 20, 30, 40 with h = 10, giving n = 4 subintervals - an even number, so Simpson's one-third rule applies.",
-    "Ordinates (depths): y0 = 0, y1 = 4, y2 = 7, y3 = 9, y4 = 12.",
-    "Simpson's rule: Area = (h/3)[y0 + 4y1 + 2y2 + 4y3 + y4].",
-    "Weighted sum: 0 + 4(4) + 2(7) + 4(9) + 12 = 0 + 16 + 14 + 36 + 12 = 78.",
-    "Area = (10/3)(78) = 780/3 = 260.",
-    "Hence the cross-sectional area is about 260 square metres, option (c)."
-  ]
-},
-"2024-Q80": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "Forward Euler is absolutely stable when |1 + lambda h| < 1. With lambda = -8 this gives -2 < -8h < 0, i.e. 0 < h < 1/4.",
-  "tips": [
-    "Stability condition: |1 + lambda h| < 1, which for real negative lambda becomes 0 < h < 2/|lambda|.",
-    "Here |lambda| = 8, so h < 2/8 = 1/4 - one division once the general rule is known.",
-    "The step must be positive, giving the open interval (0, 1/4); h = 1/4 exactly puts the amplification factor at -1, the boundary of stability.",
-    "Contrast with backward Euler, which is unconditionally stable for this problem - no restriction on h at all."
-  ],
-  "solution": [
-    "Applying forward Euler to y' = lambda y gives y_(n+1) = (1 + lambda h) y_n, so y_n = (1 + lambda h)^n.",
-    "The numerical solution decays, matching the true solution e^(lambda x) for lambda < 0, precisely when |1 + lambda h| < 1.",
-    "This means -1 < 1 + lambda h < 1, i.e. -2 < lambda h < 0.",
-    "Here lambda = -8, so -2 < -8h < 0, which gives 0 < h < 1/4.",
-    "Equivalently h < 2/|lambda| = 2/8 = 1/4.",
-    "Hence the largest interval is (0, 1/4), option (b)."
-  ]
-}
+  "2024-Q61": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Picard gives y1 = x - 2 and then y2 = x + x^3/3 - x^2 - 2/3. At x = 3 this is 3 + 9 - 9 - 0.667 = 2.33.",
+    "tips": [
+      "Picard iteration starts at the GIVEN point: y_(n+1)(x) = y(2) + integral from 2 to x of f(t, y_n(t)) dt. Using 0 as the lower limit is the standard error.",
+      "First iterate: with y0 = 0 the integrand is just 1, so y1 = x - 2 - a clean start.",
+      "Second iterate: the integrand becomes 1 + t(t - 2) = t^2 - 2t + 1, whose antiderivative is t^3/3 - t^2 + t; evaluate between 2 and x.",
+      "The constant is -(8/3 - 4 + 2) = -2/3; keeping it as a fraction avoids rounding drift before the final substitution."
+    ],
+    "solution": [
+      "Picard's method for dy/dx = 1 + xy with y(2) = 0 uses y_(n+1)(x) = 0 + integral from 2 to x of (1 + t y_n(t)) dt, starting from y0 = 0.",
+      "First approximation: y1(x) = integral from 2 to x of 1 dt = x - 2.",
+      "Second approximation: the integrand is 1 + t(t - 2) = t^2 - 2t + 1, whose antiderivative is t^3/3 - t^2 + t.",
+      "Evaluating from 2 to x: y2(x) = (x^3/3 - x^2 + x) - (8/3 - 4 + 2) = x^3/3 - x^2 + x - 2/3.",
+      "At x = 3: y2(3) = 27/3 - 9 + 3 - 2/3 = 9 - 9 + 3 - 0.667 = 2.333, i.e. about 2.33, option (b)."
+    ]
+  },
+  "2024-Q62": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Forward and backward Euler are both first-order methods, and RK4 is fourth order, so it exceeds both. All three statements hold.",
+    "tips": [
+      "Order table: forward Euler 1, backward Euler 1, RK2 (Heun/midpoint) 2, RK4 4. Memorise it and all three statements answer themselves.",
+      "Forward and backward Euler differ in STABILITY, not in order: backward Euler is implicit and unconditionally stable, but still first order.",
+      "Order refers to the GLOBAL error exponent: O(h) for Euler, O(h^4) for RK4 - a difference of three powers of h.",
+      "Do not confuse order with stability or with cost per step; the question asks only about order."
+    ],
+    "solution": [
+      "Forward Euler, y_(n+1) = y_n + h f(x_n, y_n), matches the Taylor expansion through the h term, so its local error is O(h^2) and its global error O(h) - first order.",
+      "Backward Euler, y_(n+1) = y_n + h f(x_(n+1), y_(n+1)), is implicit but likewise matches only through the h term, so it is also first order.",
+      "Statement I: both Euler methods therefore have the same order, namely 1. TRUE. (They differ in stability, not order.)",
+      "The classical fourth-order Runge-Kutta method matches the Taylor expansion through h^4, giving a global error O(h^4) - fourth order.",
+      "Statements II and III: RK4's order 4 exceeds the order 1 of both forward and backward Euler. Both TRUE.",
+      "All three statements are correct, option (d)."
+    ]
+  },
+  "2024-Q63": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "With h = 1 and nodes 1, 2, 3, Simpson gives (1/3)[1 + 64 + 81] = 48.667, while the exact value is 242/5 = 48.4. The error is 0.267, i.e. about 0.27.",
+    "tips": [
+      "Simpson's 1/3 is exact only up to CUBICS, so for x^4 there is a genuine error - that is the point of the question.",
+      "Compute both values: Simpson's bracket is 1 + 4(16) + 81 = 146, so the estimate is 146/3 = 48.6667; the exact integral is (3^5 - 1)/5 = 48.4.",
+      "Error formula check: -(b-a)h^4 f''''(xi)/180 with f'''' = 24 gives (2)(1)(24)/180 = 0.2667 in magnitude - matching exactly, since the fourth derivative is constant.",
+      "Simpson OVERestimates here (the fourth derivative is positive), so the error 48.667 - 48.4 is positive - a useful sign check."
+    ],
+    "solution": [
+      "Dividing [1,3] into two parts gives h = 1 with nodes x = 1, 2, 3 and ordinates f = 1, 16, 81.",
+      "Simpson's one-third rule: I = (h/3)[f0 + 4f1 + f2] = (1/3)[1 + 64 + 81] = 146/3 = 48.6667.",
+      "The exact value is the integral of x^4 from 1 to 3 = [x^5/5] from 1 to 3 = (243 - 1)/5 = 48.4.",
+      "Error = 48.6667 - 48.4 = 0.2667.",
+      "This agrees with the error formula -(b-a)h^4 f''''(xi)/180 = -(2)(1)(24)/180 = -0.2667 in magnitude, since f''''(x) = 24 is constant for x^4.",
+      "The error is approximately 0.27, option (c)."
+    ]
+  },
+  "2024-Q64": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "For f independent of y, RK4 reduces to Simpson's rule: y(h) = (h/6)[f(0) + 4f(h/2) + f(h)] = h[(1/6)f(0) + (2/3)f(h/2) + (1/6)f(h)].",
+    "tips": [
+      "When f does not involve y, the two midpoint stages coincide, so the weights 1, 2, 2, 1 over 6 collapse to 1, 4, 1 over 6.",
+      "Divide by 6 to read off the coefficients: 1/6, 4/6 = 2/3, 1/6. The end weights must be EQUAL by symmetry, which only option (d) satisfies.",
+      "The weights must sum to 1 so that a constant f integrates to h f: 1/6 + 2/3 + 1/6 = 1. Options (a), (b) and (c) sum to 1.5, 1.5 and 1 respectively - so use the symmetry test.",
+      "This is the same identity as 2018 Q44: RK4 applied to a pure quadrature problem IS Simpson's one-third rule."
+    ],
+    "solution": [
+      "For dy/dx = f(x) the RK4 increments are k1 = h f(0), k2 = h f(h/2), k3 = h f(h/2) and k4 = h f(h), since the y-arguments are irrelevant.",
+      "With y(0) = 0, y(h) = (k1 + 2k2 + 2k3 + k4)/6.",
+      "The two identical midpoint terms combine: y(h) = (h/6)[f(0) + 4f(h/2) + f(h)].",
+      "Writing this as h[a f(0) + b f(h/2) + c f(h)] gives a = 1/6, b = 4/6 = 2/3 and c = 1/6.",
+      "The weights are symmetric and sum to 1, as any such quadrature rule requires.",
+      "Hence (a, b, c) = (1/6, 2/3, 1/6), option (d)."
+    ]
+  },
+  "2024-Q65": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Composite trapezoidal over two strips: (h/2)[y0 + 2y1 + y2] - the interior ordinate carries weight 2 and the ends weight 1.",
+    "tips": [
+      "Composite trapezoidal weights are 1, 2, 2, ..., 2, 1 with prefactor h/2 - only the two END ordinates are halved.",
+      "The weights must total 2n for n strips so that a constant integrates correctly: here 1 + 2 + 1 = 4 = 2(2). Options (b), (c) and (d) fail this test.",
+      "The specific function x^2 + 2x + 3 is a distractor - the trapezoidal FORMULA does not depend on it (though the rule is not exact for a quadratic).",
+      "Contrast with Simpson's 1/3 over the same two strips, which would be (h/3)[y0 + 4y1 + y2] and WOULD be exact for this quadratic."
+    ],
+    "solution": [
+      "The interval [a, a+2h] is divided into two equal strips of width h, with ordinates y0, y1, y2 at x = a, a+h, a+2h.",
+      "The trapezoidal rule approximates the curve by a straight line on each strip.",
+      "First strip: (h/2)(y0 + y1). Second strip: (h/2)(y1 + y2).",
+      "Adding: (h/2)(y0 + y1 + y1 + y2) = (h/2)(y0 + 2y1 + y2).",
+      "The weights 1, 2, 1 sum to 4 = 2 x 2, as required for two strips.",
+      "Hence the value is (h/2)(y0 + 2y1 + y2), option (a)."
+    ]
+  },
+  "2024-Q66": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Since E = 1 + Delta, expanding 1 + E + E^2 + E^3 gives 4 + 6 Delta + 4 Delta^2 + Delta^3. So the expression equals y0 + y1 + y2 + y3.",
+    "tips": [
+      "Recognise the coefficients 4, 6, 4, 1 - they are the sums of the binomial columns from (1+Delta)^0 through (1+Delta)^3, which is the signature of y0 + y1 + y2 + y3.",
+      "Work backwards from the operator: 1 + E + E^2 + E^3 applied to y0 gives the four consecutive values, and substituting E = 1 + Delta reproduces the printed expression.",
+      "Verify the constant: the four expansions contribute 1 + 1 + 1 + 1 = 4, matching the leading coefficient exactly.",
+      "The alternating-sign options (a), (c) and (d) would require alternating operator signs, which the all-positive coefficients rule out."
+    ],
+    "solution": [
+      "Since E = 1 + Delta, we have E^2 = 1 + 2Delta + Delta^2 and E^3 = 1 + 3Delta + 3Delta^2 + Delta^3.",
+      "Adding: 1 + E + E^2 + E^3 = (1 + 1 + 1 + 1) + (1 + 2 + 3)Delta + (1 + 3)Delta^2 + Delta^3 = 4 + 6 Delta + 4 Delta^2 + Delta^3, which is exactly the given operator.",
+      "Applying it to y0: (1 + E + E^2 + E^3) y0 = y0 + y1 + y2 + y3.",
+      "So the expression equals the sum of the four consecutive ordinates.",
+      "Option (b) is correct."
+    ]
+  },
+  "2024-Q67": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "The bridge identity is nabla^n y_k = Delta^n y_(k-n). With n = 5 this gives nabla^5 y_n = Delta^5 y_(n-5).",
+    "tips": [
+      "Memorise nabla^n y_k = Delta^n y_(k-n): the same table entry read backwards from y_k or forwards from y_(k-n).",
+      "Operator proof: nabla = 1 - E^(-1) = (E - 1)E^(-1) = Delta E^(-1), so nabla^n = Delta^n E^(-n), which shifts the index down by n.",
+      "Index check: a fifth backward difference at n reaches back to n - 5, so the forward form must START at n - 5. Option (c) keeps the index at n and is wrong.",
+      "Option (a) restates nabla in terms of itself with a shifted index and is simply false; the identity must convert between the two OPERATORS."
+    ],
+    "solution": [
+      "The backward difference operator is nabla = 1 - E^(-1), where E is the shift operator.",
+      "Factorising, nabla = (E - 1)E^(-1) = Delta E^(-1).",
+      "Since Delta and E commute, nabla^n = Delta^n E^(-n).",
+      "Applying this to y_n: nabla^n y_n = Delta^n E^(-n) y_n = Delta^n y_(n-n) = Delta^n y_(n-n)... more precisely, E^(-n) y_n = y_(n-n) is the value at index n - n; in general nabla^n y_k = Delta^n y_(k-n).",
+      "With n = 5 and index n: nabla^5 y_n = Delta^5 y_(n-5). Both expand to y_n - 5y_(n-1) + 10y_(n-2) - 10y_(n-3) + 5y_(n-4) - y_(n-5).",
+      "Option (d) is correct."
+    ]
+  },
+  "2024-Q68": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "b = a + 8h means 8 strips. Trapezoidal needs no condition and Simpson's 1/3 needs an even count - 8 qualifies. Simpson's 3/8 needs a multiple of 3 and Weddle a multiple of 6, neither of which 8 is.",
+    "tips": [
+      "Divisibility table: trapezoidal any n; Simpson's 1/3 needs n even; Simpson's 3/8 needs n divisible by 3; Weddle's needs n divisible by 6.",
+      "Read the number of strips straight from b - a = 8h, so n = 8. Everything else is a divisibility check.",
+      "8 is even but not divisible by 3 or 6, so exactly two of the four rules apply - which pins the answer without further thought.",
+      "In practice one could still apply the 3/8 rule to a sub-range and the 1/3 rule to the rest, but the question asks which rules apply to the whole interval."
+    ],
+    "solution": [
+      "Since b = a + 8h, the interval [a, b] is divided into n = 8 subintervals of equal width h.",
+      "The trapezoidal rule places no condition on n, so it applies.",
+      "Simpson's one-third rule requires n to be even; 8 is even, so it applies.",
+      "Simpson's three-eighth rule requires n to be a multiple of 3; 8 is not, so it does not apply.",
+      "Weddle's rule requires n to be a multiple of 6; 8 is not, so it does not apply.",
+      "Hence the applicable rules are the trapezoidal rule and Simpson's one-third rule, option (b)."
+    ]
+  },
+  "2024-Q69": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "The minimum for the trapezoidal rule is one strip: f(1) + f(3) = 5. The minimum for Simpson's 1/3 is two strips: (1/3)[f(1) + 4f(2) + f(3)] = 3, so f(1) + 4f(2) + f(3) = 9 and 4f(2) = 4, giving f(2) = 1.",
+    "tips": [
+      "'Minimum number of intervals' differs by rule: 1 for the trapezoidal rule (h = 2) but 2 for Simpson's 1/3 (h = 1, since n must be even).",
+      "The trapezoidal equation supplies f(1) + f(3) = 5 with no f(2) in it - substituting that into Simpson's equation isolates f(2) immediately.",
+      "Simpson's bracket must equal 9 because the prefactor is h/3 = 1/3 and the stated value is 3.",
+      "Consistency check: with f(1) + f(3) = 5 and f(2) = 1, Simpson gives (1/3)(5 + 4) = 3, exactly as stated."
+    ],
+    "solution": [
+      "For the trapezoidal rule the minimum number of intervals is 1, so h = 2 and the estimate is (h/2)[f(1) + f(3)] = f(1) + f(3).",
+      "Setting this equal to 5 gives f(1) + f(3) = 5.",
+      "For Simpson's one-third rule the number of intervals must be even, so the minimum is 2, giving h = 1 with nodes 1, 2, 3.",
+      "The estimate is (h/3)[f(1) + 4f(2) + f(3)] = (1/3)[f(1) + 4f(2) + f(3)], and setting this equal to 3 gives f(1) + 4f(2) + f(3) = 9.",
+      "Substituting f(1) + f(3) = 5: 5 + 4f(2) = 9, so 4f(2) = 4.",
+      "Hence f(2) = 1, option (b)."
+    ]
+  },
+  "2024-Q70": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "The third divided difference of a cubic equals its leading coefficient, which is non-zero by definition of 'cubic' - so it is always constant but not necessarily zero.",
+    "tips": [
+      "Rule: the nth divided difference of a degree-n polynomial is its leading coefficient a_n, and all HIGHER divided differences are zero.",
+      "'Cubic' means the x^3 coefficient is non-zero, so the value cannot be zero - that distinction is exactly what separates options (a) and (b).",
+      "Option (c) 'sum of arguments' is the SECOND divided difference of x^3 (as in 2023 Q42) - a neighbouring fact deliberately offered as a distractor.",
+      "The value is independent of which four nodes are used, which is the sense in which it is 'constant'."
+    ],
+    "solution": [
+      "Divided differences are linear, and the kth divided difference of a polynomial of degree less than k is zero.",
+      "For a cubic f(x) = a3 x^3 + a2 x^2 + a1 x + a0, only the leading term survives a third divided difference.",
+      "For x^3 the third divided difference over any four distinct nodes equals 1, so for f it equals a3.",
+      "Since f is a cubic, a3 is non-zero by definition, so the third divided difference is a non-zero constant, the same for every choice of nodes.",
+      "It would be zero only for a polynomial of degree less than 3, and the SECOND divided difference of x^3 - not the third - is the sum of the arguments.",
+      "Hence it is always constant but not necessarily zero, option (a)."
+    ]
+  },
+  "2024-Q71": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Delta(a b^x) = a b^x (b - 1), so applying Delta twice gives a b^x (b-1)^2. Hence alpha = a(b-1)^2.",
+    "tips": [
+      "For an exponential, each Delta multiplies by the constant (b - 1): Delta b^x = b^(x+1) - b^x = b^x(b-1).",
+      "The multiplicative constant a passes straight through the operator, so it must appear in alpha - eliminating option (c).",
+      "Two differences give the SQUARE of (b-1); one difference would give option (d), the 'one step short' trap.",
+      "Check with a = 1, b = 2: Delta^2 2^x = 2^x, and a(b-1)^2 = 1. Correct."
+    ],
+    "solution": [
+      "With interval of differencing 1, Delta(a b^x) = a b^(x+1) - a b^x = a b^x (b - 1).",
+      "Applying Delta a second time multiplies by the same constant factor (b - 1).",
+      "So Delta^2(a b^x) = a b^x (b - 1)^2.",
+      "Comparing with the given form alpha b^x, we read alpha = a(b - 1)^2.",
+      "Check with a = 1 and b = 2: Delta^2 2^x = 2^x and a(b-1)^2 = 1, consistent.",
+      "Option (a) is correct."
+    ]
+  },
+  "2024-Q72": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Delta^2 x^3 = 6x + 6, and dividing by E shifts x to x - 1, giving 6(x-1) + 6 = 6x. So alpha = 6 and beta = 0.",
+    "tips": [
+      "1/E is the BACKWARD shift E^(-1), replacing x by x - 1 - not an algebraic division. Misreading it is the main trap.",
+      "Compute in two stages: Delta x^3 = 3x^2 + 3x + 1, then Delta^2 x^3 = 6x + 6.",
+      "The shift cancels the constant exactly: 6(x-1) + 6 = 6x - 6 + 6 = 6x, so beta = 0. Skipping the shift would give alpha = 6, beta = 6 - option (a).",
+      "This repeats 2021 Q67, where the same expression was asked for directly - the operator identity is clearly a favourite."
+    ],
+    "solution": [
+      "With h = 1, Delta x^3 = (x+1)^3 - x^3 = 3x^2 + 3x + 1.",
+      "Applying Delta again: Delta^2 x^3 = 3[(x+1)^2 - x^2] + 3[(x+1) - x] = 3(2x+1) + 3 = 6x + 6.",
+      "The operator 1/E is the backward shift E^(-1), which replaces x by x - 1.",
+      "So (Delta^2/E) x^3 = 6(x - 1) + 6 = 6x - 6 + 6 = 6x.",
+      "Comparing with alpha x + beta gives alpha = 6 and beta = 0.",
+      "Option (b) is correct."
+    ]
+  },
+  "2024-Q73": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "nabla E^n = E^n - E^(n-1), and delta = E^(1/2) - E^(-1/2). Matching the exponents gives n = 1/2 and alpha = 1.",
+    "tips": [
+      "Write both sides in powers of E: the right side is alpha(E^n - E^(n-1)) and the left is E^(1/2) - E^(-1/2).",
+      "Match the leading exponent first: n = 1/2, and then n - 1 = -1/2 automatically - a built-in consistency check.",
+      "With the exponents matched, the coefficients give alpha = 1; no scaling is needed.",
+      "Companion identity: delta = Delta E^(-1/2) as well, since Delta = E - 1 gives E^(-1/2)(E-1) = E^(1/2) - E^(-1/2)."
+    ],
+    "solution": [
+      "The central difference operator is delta = E^(1/2) - E^(-1/2), and the backward difference is nabla = 1 - E^(-1).",
+      "Therefore nabla E^n = (1 - E^(-1))E^n = E^n - E^(n-1).",
+      "Setting alpha(E^n - E^(n-1)) = E^(1/2) - E^(-1/2) and comparing the leading terms gives alpha = 1 and n = 1/2.",
+      "The second terms then match automatically: n - 1 = 1/2 - 1 = -1/2.",
+      "So delta = nabla E^(1/2), i.e. alpha = 1 and n = 1/2.",
+      "Option (b) is correct."
+    ]
+  },
+  "2024-Q74": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Linear interpolation error <= h^2 M/8 with M = max|f''| = sin(pi/4) = 0.7071. Requiring h^2(0.7071)/8 <= 1e-5 gives h <= 0.01064, and pi/320 = 0.00982 is the largest listed value that satisfies it.",
+    "tips": [
+      "Error bound for linear interpolation: |E| <= h^2 M2/8 where M2 bounds |f''| on the interval. The 8 comes from max|p(p-1)|/2 = 1/8.",
+      "For f = sin x, f'' = -sin x, whose modulus is largest at the right end of [0, pi/4], giving M2 = sin(pi/4) = 0.7071.",
+      "Solve for h: h^2 <= 8(1e-5)/0.7071 = 1.131e-4, so h <= 0.01064. Then test the options: pi/320 = 0.00982 passes, pi/120 = 0.02618 fails.",
+      "'Best possible' means the LARGEST admissible step, since a smaller h wastes computation - pi/520 also satisfies the bound but is unnecessarily fine."
+    ],
+    "solution": [
+      "For linear interpolation on an interval of width h, the truncation error satisfies |E| <= h^2 M2/8, where M2 is a bound on |f''| over the interval.",
+      "Here f(x) = sin x, so f''(x) = -sin x and |f''| is largest at x = pi/4, giving M2 = sin(pi/4) = 0.7071.",
+      "Requiring h^2 (0.7071)/8 <= 10^(-5) gives h^2 <= 8 x 10^(-5)/0.7071 = 1.131 x 10^(-4).",
+      "Hence h <= 0.01064.",
+      "Testing the options: pi/520 = 0.00604 (satisfies), pi/320 = 0.00982 (satisfies), pi/120 = 0.02618 (fails), pi/92 = 0.03415 (fails).",
+      "The best choice is the largest admissible step, pi/320, option (b)."
+    ]
+  },
+  "2024-Q75": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "The slopes 1 and 3 differ, so the least-degree polynomial is a quadratic; fitting gives y = 2x^2 + 1, whose roots x = +-i/sqrt2 are purely imaginary.",
+    "tips": [
+      "Test linearity first by comparing slopes: (3/2 - 1)/(1/2) = 1 but (3 - 3/2)/(1/2) = 3. Different, so the degree is 2, not 1.",
+      "Use the point (0,1) to fix the constant immediately: c = 1, leaving only two unknowns.",
+      "Solving a + 2b = 2 with a + b = 2 gives b = 0 - the absence of a linear term is what makes the roots purely imaginary.",
+      "y = 2x^2 + 1 has no real roots since 2x^2 + 1 >= 1 > 0; the roots are +-i/sqrt(2), complex with real part zero."
+    ],
+    "solution": [
+      "Test whether the three points are collinear: the slope from (0,1) to (1/2, 3/2) is 1, while from (1/2, 3/2) to (1,3) it is 3. They differ, so no line fits and the least degree is 2.",
+      "Write y = ax^2 + bx + c. From (0,1): c = 1.",
+      "From (1/2, 3/2): a/4 + b/2 + 1 = 3/2, i.e. a + 2b = 2.",
+      "From (1,3): a + b + 1 = 3, i.e. a + b = 2.",
+      "Subtracting gives b = 0 and hence a = 2, so y = 2x^2 + 1.",
+      "Setting 2x^2 + 1 = 0 gives x^2 = -1/2, so x = +- i/sqrt(2): complex conjugates with real part zero. Option (b) is correct."
+    ]
+  },
+  "2024-Q76": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "Through the same two points there is only ONE interpolating polynomial, so the Lagrange and Newton forward forms are algebraically identical and share the same error bound, epsilon.",
+    "tips": [
+      "Uniqueness theorem: through n + 1 distinct points there passes exactly one polynomial of degree at most n. Lagrange and Newton are just different ALGEBRAIC ARRANGEMENTS of it.",
+      "Since the polynomial is the same, the remainder term f''(xi)(x-x0)(x-x1)/2! is the same, and so is its bound.",
+      "The two forms differ in computational convenience - Newton's allows incremental addition of points - not in accuracy.",
+      "Any option other than epsilon would imply that two representations of the same function differ in error, which is impossible."
+    ],
+    "solution": [
+      "Through two distinct points there passes exactly one polynomial of degree at most 1, by the uniqueness of the interpolating polynomial.",
+      "Lagrange's linear form and Newton's forward linear form are therefore two algebraic representations of the SAME polynomial.",
+      "The truncation error of linear interpolation is R(x) = f''(xi)(x - x0)(x - x1)/2! for some xi in the interval, and this expression depends only on the function and the nodes, not on how the polynomial is written.",
+      "Hence the two forms have identical remainder terms and identical error bounds.",
+      "So the bound for the Newton forward form is also epsilon.",
+      "Option (b) is correct."
+    ]
+  },
+  "2024-Q77": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Three equally spaced nodes with maximum exactness is Simpson's one-third rule, whose weights are h/3, 4h/3, h/3.",
+    "tips": [
+      "Recognise the pattern: a three-point rule on [x0, x0+2h] with the highest possible order IS Simpson's 1/3 rule - no derivation needed.",
+      "If you derive it: exactness for f = 1 gives alpha + beta + gamma = 2h, and symmetry gives alpha = gamma, so exactness for x^2 completes the system.",
+      "The weights must sum to the interval length 2h: h/3 + 4h/3 + h/3 = 6h/3 = 2h. Only option (a) satisfies this AND the symmetry alpha = gamma.",
+      "Bonus fact: this rule is exact for cubics too, because the odd-degree error term cancels by symmetry."
+    ],
+    "solution": [
+      "The three nodes x0, x0 + h, x0 + 2h are equally spaced across the interval of length 2h, and we require exactness for polynomials of the highest possible degree.",
+      "Exactness for f = 1: alpha + beta + gamma = 2h.",
+      "Exactness for f = x - x0 (odd about the midpoint): 0(alpha) + h(beta) + 2h(gamma) = 2h^2, i.e. beta + 2gamma = 2h.",
+      "Exactness for f = (x - x0)^2: h^2 beta + 4h^2 gamma = 8h^3/3, i.e. beta + 4 gamma = 8h/3.",
+      "Subtracting the second from the third: 2 gamma = 2h/3, so gamma = h/3; then beta = 2h - 2h/3 = 4h/3 and alpha = 2h - 4h/3 - h/3 = h/3.",
+      "These are Simpson's one-third weights h/3, 4h/3, h/3, option (a)."
+    ]
+  },
+  "2024-Q78": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Both Simpson's rules are exact up to degree 3, but the trapezoidal rule is exact only up to degree 1. So II and III hold and I fails.",
+    "tips": [
+      "Degrees of exactness: trapezoidal 1, Simpson's 1/3 = 3, Simpson's 3/8 = 3, Weddle 5. Compare each with the integrand's degree 3.",
+      "Simpson's 1/3 fits parabolas yet is exact for CUBICS because its odd-degree error term cancels by symmetry - a bonus degree worth remembering.",
+      "The trapezoidal error involves f'', which is generally non-zero for a cubic, so statement I must fail.",
+      "Simpson's 3/8 fits cubics directly, so its exactness for a cubic needs no special argument."
+    ],
+    "solution": [
+      "Statement I: the trapezoidal rule replaces the integrand by a straight line, and its error term involves f''. For a cubic f'' is not identically zero, so the rule is not exact. FALSE.",
+      "Statement II: Simpson's one-third rule has error term proportional to the FOURTH derivative, which vanishes for a cubic, so it integrates cubics exactly - a bonus degree beyond the parabola it fits. TRUE.",
+      "Statement III: Simpson's three-eighth rule is derived by fitting a cubic through four points, so it reproduces any cubic exactly; its error term also involves the fourth derivative. TRUE.",
+      "Only statements II and III are correct.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2024-Q79": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "With h = 10 and n = 4, Simpson's 1/3 gives (10/3)[0 + 4(4) + 2(7) + 4(9) + 12] = (10/3)(78) = 260 square metres.",
+    "tips": [
+      "Check n first: five ordinates give n = 4 subintervals, an even number, so Simpson's 1/3 applies.",
+      "Weight pattern 1, 4, 2, 4, 1: the odd-indexed depths get 4 and the single interior even one gets 2.",
+      "Weighted sum: 0 + 16 + 14 + 36 + 12 = 78, then multiply by h/3 = 10/3 to get 260.",
+      "Plausibility: the average depth is roughly 6.5 m over 40 m, giving about 260 square metres - the answer is exactly of that order, unlike options (a) and (b)."
+    ],
+    "solution": [
+      "The distances are 0, 10, 20, 30, 40 with h = 10, giving n = 4 subintervals - an even number, so Simpson's one-third rule applies.",
+      "Ordinates (depths): y0 = 0, y1 = 4, y2 = 7, y3 = 9, y4 = 12.",
+      "Simpson's rule: Area = (h/3)[y0 + 4y1 + 2y2 + 4y3 + y4].",
+      "Weighted sum: 0 + 4(4) + 2(7) + 4(9) + 12 = 0 + 16 + 14 + 36 + 12 = 78.",
+      "Area = (10/3)(78) = 780/3 = 260.",
+      "Hence the cross-sectional area is about 260 square metres, option (c)."
+    ]
+  },
+  "2024-Q80": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Forward Euler is absolutely stable when |1 + lambda h| < 1. With lambda = -8 this gives -2 < -8h < 0, i.e. 0 < h < 1/4.",
+    "tips": [
+      "Stability condition: |1 + lambda h| < 1, which for real negative lambda becomes 0 < h < 2/|lambda|.",
+      "Here |lambda| = 8, so h < 2/8 = 1/4 - one division once the general rule is known.",
+      "The step must be positive, giving the open interval (0, 1/4); h = 1/4 exactly puts the amplification factor at -1, the boundary of stability.",
+      "Contrast with backward Euler, which is unconditionally stable for this problem - no restriction on h at all."
+    ],
+    "solution": [
+      "Applying forward Euler to y' = lambda y gives y_(n+1) = (1 + lambda h) y_n, so y_n = (1 + lambda h)^n.",
+      "The numerical solution decays, matching the true solution e^(lambda x) for lambda < 0, precisely when |1 + lambda h| < 1.",
+      "This means -1 < 1 + lambda h < 1, i.e. -2 < lambda h < 0.",
+      "Here lambda = -8, so -2 < -8h < 0, which gives 0 < h < 1/4.",
+      "Equivalently h < 2/|lambda| = 2/8 = 1/4.",
+      "Hence the largest interval is (0, 1/4), option (b)."
+    ]
+  }
 }

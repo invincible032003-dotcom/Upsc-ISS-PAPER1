@@ -1,0 +1,392 @@
+{
+  "2026-Q61": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Definition",
+    "shortcut": "The core of any UNIX-like operating system, sitting between hardware and software, is the kernel. The shell is only the command interpreter around it. Answer (b).",
+    "tips": [
+      "UNIX architecture in layers, from inside out: hardware -> kernel -> shell -> application programs.",
+      "The kernel manages processes, memory, file systems, device drivers and system calls - it is the resident core loaded at boot.",
+      "The shell (sh, bash, ksh, csh) is a user-level command interpreter; several shells can run over one kernel, which is why it cannot be the 'central part'.",
+      "A device driver (option d) controls one particular device and typically runs inside the kernel - a component of it, not the whole."
+    ],
+    "solution": [
+      "UNIX is structured in layers: the hardware at the centre, surrounded by the kernel, then the shell, then user applications and utilities.",
+      "The kernel is the resident core of the operating system. It manages the CPU, memory and devices, schedules processes, implements the file system, and provides the system-call interface through which all software reaches the hardware.",
+      "This is exactly the description of managing and controlling communication between hardware and software components.",
+      "The shell (option a) is a command interpreter that runs as an ordinary user program on top of the kernel; the compiler (option c) is a translation utility, not part of the OS core; a device driver (option d) handles a single class of device and is a kernel module, not the kernel itself.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q62": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "802.11ad (WiGig) operates in the 60 GHz band with rates up to about 6.7 Gbps, far above 802.11a/g (54 Mbps) and 802.11b (11 Mbps). Answer (b).",
+    "tips": [
+      "Data-rate ladder to memorise: 802.11b = 11 Mbps, 802.11a and 802.11g = 54 Mbps, 802.11n = 600 Mbps, 802.11ac = several Gbps, 802.11ad = about 6.7 Gbps.",
+      "The two-letter suffixes (ac, ad, ax, be) are always the newer, faster generations; single-letter ones (a, b, g, n) are older.",
+      "802.11ad uses the 60 GHz millimetre-wave band, which gives huge bandwidth but very short range - essentially in-room use.",
+      "802.11a and 802.11g share the same 54 Mbps ceiling but differ in band (5 GHz versus 2.4 GHz), so neither can be 'the maximum'."
+    ],
+    "solution": [
+      "Compare the nominal maximum physical-layer data rates of the listed IEEE 802.11 amendments.",
+      "802.11b (2.4 GHz, DSSS): 11 Mbps.",
+      "802.11a (5 GHz, OFDM): 54 Mbps.",
+      "802.11g (2.4 GHz, OFDM): 54 Mbps.",
+      "802.11ad (60 GHz, WiGig): up to approximately 6757 Mbps (about 6.7 Gbps).",
+      "802.11ad is therefore by far the fastest of the four.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q63": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Repeated division of 45796 by 8 gives remainders 4, 4, 3, 1, 3, 1, i.e. 131344 - statement I checks out. Octal 365 is 011 110 101 in binary; regrouping in fours gives 1111 0101 = F5, so statement II checks out too. Answer (c).",
+    "tips": [
+      "Decimal to octal: divide repeatedly by 8 and read the remainders bottom-up.",
+      "Octal to hexadecimal always goes via binary: expand each octal digit to 3 bits, then regroup the bit string into blocks of 4 from the right.",
+      "Octal 365 = 3(64) + 6(8) + 5 = 245 in decimal, and 245 = 15(16) + 5 = F5 in hex - a fast independent check.",
+      "A leading zero (0F5) does not change the value; treat it as cosmetic, not as an error in the statement."
+    ],
+    "solution": [
+      "Statement I: convert 45796 to octal by repeated division by 8.",
+      "45796 = 8(5724) + 4; 5724 = 8(715) + 4; 715 = 8(89) + 3; 89 = 8(11) + 1; 11 = 8(1) + 3; 1 = 8(0) + 1.",
+      "Reading the remainders from last to first gives 1 3 1 3 4 4 = 131344 (octal). Statement I is correct.",
+      "Statement II: expand octal 365 into binary, three bits per digit: 3 = 011, 6 = 110, 5 = 101, giving 011110101.",
+      "Regroup from the right in blocks of four: 0 1111 0101, i.e. 1111 0101 = F5 in hexadecimal (written 0F5 with a leading zero).",
+      "Check in decimal: octal 365 = 3(64) + 6(8) + 5 = 192 + 48 + 5 = 245, and 245 = 15(16) + 5 = F5. Statement II is correct.",
+      "Both statements hold.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q64": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "The process states are New, Ready, Running (executing), Waiting/Blocked and Terminated. Deadlock is a condition affecting a set of processes, not a state in the diagram. Answer (c).",
+    "tips": [
+      "Memorise the five-state model: New -> Ready -> Running -> (Waiting -> Ready) -> Terminated.",
+      "Deadlocked processes are technically in the WAITING/blocked state; deadlock describes why they are stuck, not a distinct state label.",
+      "The four Coffman conditions for deadlock - mutual exclusion, hold and wait, no preemption, circular wait - are about resource allocation, again not a process state.",
+      "'Executing' is simply another name for the Running state, so option (b) is a genuine state under a different label."
+    ],
+    "solution": [
+      "In the standard process state model an operating system tracks: New (being created), Ready (waiting for the CPU), Running or Executing (holding the CPU), Waiting or Blocked (awaiting an event or I/O), and Terminated (finished).",
+      "Options (a) Ready, (b) Executing and (d) Terminated are all genuine states in this model.",
+      "Deadlock is not a state of an individual process. It is a system condition in which a set of processes are permanently blocked because each holds a resource the next one needs (circular wait).",
+      "Processes caught in a deadlock are recorded by the operating system as being in the Waiting/Blocked state.",
+      "Hence option (c) is the one that is not a process state, and option (c) is correct."
+    ]
+  },
+  "2026-Q65": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Definition",
+    "shortcut": "Bringing pages into memory only when they are referenced - paging combined with swapping - is called demand paging. Answer (a).",
+    "tips": [
+      "Demand paging = paging + swapping: a page is loaded only on demand, i.e. when a page fault occurs.",
+      "Segmentation (option b) divides a program into logical variable-sized units; it is a different memory-management scheme, not a name for paging.",
+      "Plain swapping (option c) moves an ENTIRE process between memory and backing store, whereas demand paging moves individual pages - the granularity is the whole distinction.",
+      "Demand paging is what makes virtual memory practical, since a process can run with only part of its address space resident."
+    ],
+    "solution": [
+      "Paging divides the logical address space into fixed-size pages and physical memory into frames of the same size.",
+      "When paging is combined with swapping, pages are transferred between main memory and the backing store as required rather than all at once.",
+      "A page is brought in only when it is actually referenced and found to be absent (a page fault). This lazy, on-demand transfer scheme is called demand paging.",
+      "Segmentation (option b) is an alternative scheme using variable-sized logical segments; swapping alone (option c) relocates an entire process, not individual pages.",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2026-Q66": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "RISC architectures use a uniform 32-bit instruction word - that fixed width is what makes the pipeline simple. Answer (c).",
+    "tips": [
+      "Defining RISC features: fixed-length 32-bit instructions, load/store architecture, large uniform register file, few addressing modes, hardwired control, one instruction per cycle target.",
+      "CISC (for example x86) uses variable-length instructions, from 1 byte to 15 bytes - the direct contrast that the question is testing.",
+      "Fixed 32-bit width means the fetch stage always knows where the next instruction starts, which is exactly what enables clean pipelining.",
+      "Classic RISC families - MIPS, SPARC, early ARM, RISC-V's base RV32I - all use 32-bit instruction encodings."
+    ],
+    "solution": [
+      "A reduced instruction set computer (RISC) is designed around a simple, regular instruction encoding to support efficient pipelining.",
+      "All instructions in a classical RISC design occupy a single fixed-length word of 32 bits, regardless of the operation.",
+      "This uniformity lets the instruction fetch and decode stages operate at a constant rate, since the address of the next instruction is always the current one plus 4 bytes.",
+      "By contrast, CISC processors use variable-length instructions, which complicates decoding and pipelining.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q67": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "Python is interpreted, runs on Windows, Linux and macOS alike, and powers web frameworks such as Django and Flask. All three statements are true. Answer (d).",
+    "tips": [
+      "Python's core characteristics: high-level, interpreted (compiled to bytecode then executed by the PVM), dynamically typed, platform-independent, object-oriented, with a very large standard library.",
+      "Web frameworks Django, Flask and FastAPI make statement I obviously true.",
+      "Platform independence follows from the bytecode-plus-virtual-machine model, the same mechanism that makes Java portable.",
+      "In UPSC computer-awareness items, when all listed statements are standard textbook properties with no factual error, 'all of the above' is the expected answer."
+    ],
+    "solution": [
+      "Statement I: Python is widely used for web development through frameworks such as Django, Flask and FastAPI. Correct.",
+      "Statement II: Python source is compiled to bytecode which is then executed by the Python Virtual Machine, so it is classified as an interpreted (rather than natively compiled) language. Correct.",
+      "Statement III: because execution takes place on the virtual machine, the same Python program runs unchanged on Windows, Linux, macOS and other platforms with an interpreter available. Correct.",
+      "All three statements are correct.",
+      "Hence option (d) is correct."
+    ]
+  },
+  "2026-Q68": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "ISO/IEC 27001 is the information security management standard. The others cover quality (9001), environment (14001) and occupational health and safety (45001). Answer (a).",
+    "tips": [
+      "Memorise the four common management-system standards: 9001 quality, 14001 environment, 27001 information security, 45001 occupational health and safety.",
+      "The 27000 series as a whole deals with information security; 27002 gives the control guidance and 27005 covers risk management.",
+      "'ISO/IEC' as a joint prefix is itself a clue - IEC involvement signals an information-technology standard.",
+      "ISO/IEC 27001 specifies an Information Security Management System (ISMS) built on confidentiality, integrity and availability."
+    ],
+    "solution": [
+      "ISO/IEC 27001 specifies the requirements for establishing, implementing, maintaining and continually improving an Information Security Management System (ISMS), covering confidentiality, integrity and availability of information.",
+      "ISO 9001 is the Quality Management System standard.",
+      "ISO 14001 is the Environmental Management System standard.",
+      "ISO 45001 is the Occupational Health and Safety Management System standard.",
+      "Only ISO/IEC 27001 addresses information security management.",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2026-Q69": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "Address Resolution Protocol maps an IP address to the corresponding MAC address. Answer (c).",
+    "tips": [
+      "Direction matters: ARP goes IP -> MAC (logical to physical); RARP goes MAC -> IP (physical to logical).",
+      "ARP works by broadcasting 'who has this IP?' on the local link; the owner replies with its MAC address, which is then cached in the ARP table.",
+      "TCP (option a) is a transport-layer protocol, FTP (b) and SMTP (d) are application-layer protocols - none of them resolves addresses.",
+      "ARP sits between the network and data-link layers, which is exactly why it is the protocol that bridges IP addressing and MAC addressing."
+    ],
+    "solution": [
+      "Communication on a local network requires the physical (MAC) address of the destination interface, but applications address hosts by IP address.",
+      "The Address Resolution Protocol (ARP) performs this mapping: the sender broadcasts an ARP request asking which host owns a given IP address, and the owner replies with its MAC address, which is then cached in the ARP table.",
+      "TCP is a transport-layer protocol providing reliable byte streams; FTP transfers files; SMTP transfers mail - none of these performs address resolution.",
+      "(The reverse mapping, MAC to IP, was historically done by RARP.)",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q70": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "UNIX was rewritten in C by Dennis Ritchie and Ken Thompson at Bell Labs in 1973 - the first portable operating system. Answer (a).",
+    "tips": [
+      "The C language was created by Dennis Ritchie specifically to rewrite UNIX, so the two are historically inseparable.",
+      "Rewriting UNIX in a high-level language is what made it portable across machine architectures - previously operating systems were written in assembly.",
+      "Chronology check: COBOL (1959) and FORTRAN (1957) are business and scientific languages, and Java (1995) postdates UNIX (1969) entirely.",
+      "Linux, the BSDs, macOS's Darwin core and Android's kernel are all descendants or reimplementations written predominantly in C."
+    ],
+    "solution": [
+      "UNIX was created at Bell Laboratories by Ken Thompson and Dennis Ritchie beginning in 1969, initially in assembly language for the PDP-7 and PDP-11.",
+      "In 1973 the kernel was rewritten in C, a language Ritchie had developed for the purpose.",
+      "This made UNIX the first widely used operating system written in a high-level language, and therefore portable to different hardware by recompilation.",
+      "COBOL is a business data-processing language, FORTRAN a scientific computing language, and Java was released in 1995, long after UNIX.",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2026-Q71": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "Optical storage - CD, DVD, Blu-ray - reads and writes with a laser beam. The name 'optical' plus 'laser' is the whole answer. Answer (c).",
+    "tips": [
+      "Wavelength ladder worth knowing: CD uses a 780 nm infrared laser, DVD a 650 nm red laser, Blu-ray a 405 nm blue-violet laser. Shorter wavelength means a tighter spot and more capacity.",
+      "Note the distinction the question is drawing: the medium of reading/recording is LASER light, a coherent beam - not merely light of some colour band, which is what options (a), (b) and (d) name.",
+      "Data are stored as pits and lands whose transitions change the reflected laser intensity, which a photodetector converts into bits.",
+      "Contrast with magnetic storage (hard disks, tape), which uses magnetised regions, and solid-state storage, which uses trapped charge in flash cells."
+    ],
+    "solution": [
+      "Optical storage devices - CD, DVD and Blu-ray drives - store data as a spiral track of pits and lands on a reflective layer.",
+      "A focused laser beam is directed at the disc surface; the difference in reflected intensity between pits and lands is detected by a photodiode and decoded into bits.",
+      "For recordable media, a higher-power pulse from the same laser alters the dye or phase-change layer to write data.",
+      "The essential medium is therefore laser light - a coherent, precisely focusable beam. Options (a), (b) and (d) name broad light bands rather than the laser itself; while a CD laser happens to be infrared and Blu-ray blue-violet, what defines optical storage is the use of a laser.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q72": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "Moving the pen faster than the mechanism and ink can follow causes overshoot, skipping and wavering, so lines get distorted. Answer (d).",
+    "tips": [
+      "Plotters are mechanical devices: inertia in the pen carriage means acceleration and deceleration lag behind the commanded path at high speed.",
+      "Resolution and accuracy are set by the stepper-motor step size and the drive mechanics, not by how fast the pen is driven - so options (a) and (c) confuse speed with precision.",
+      "Physical symptoms of excessive pen speed: rounded or overshot corners, uneven ink density, broken lines and vibration-induced wobble.",
+      "There is always a speed-versus-quality trade-off in any mechanical output device, so 'no effect' (option b) is implausible on principle."
+    ],
+    "solution": [
+      "A flatbed plotter draws by physically moving a pen across the paper under X-Y stepper-motor control.",
+      "If the commanded pen speed is raised too far, the mechanical system cannot track the intended path: the carriage overshoots on direction changes, vibration sets in, and the pen may skip or lift momentarily.",
+      "In addition, ink flow is rate-limited, so at high speed the line becomes faint or broken.",
+      "The result is distorted lines - wavering, overshot corners and uneven density.",
+      "Resolution and accuracy (options a and c) are determined by the stepper step size and mechanical precision and are not improved by higher speed; and a purely mechanical process cannot be unaffected (option b).",
+      "Hence option (d) is correct."
+    ]
+  },
+  "2026-Q73": {
+    "answer": 1,
+    "confidence": "medium",
+    "type": "Conceptual",
+    "issue": "Textbook presentations of the absolute loading scheme split the four loader functions differently. In Dhamdhere's table, allocation and linking are done by the PROGRAMMER, relocation by the translator (assembler) and loading by the loader; on that reading the intended word would be 'relocation', which is not among the options. Among the choices offered, allocation is the function the assembler takes over from the loader, since in an absolute scheme the assembler fixes the actual load addresses at assembly time. Note also that options (a) 'combining object modules' and (c) 'linking' name the same function, so neither can be the intended key.",
+    "shortcut": "In absolute loading the assembler already fixes the actual memory addresses, so the loader has nothing to allocate - the assembler has done it. Options (a) and (c) both mean linking, and (d) is the one thing the loader still does, so (b) is the answer.",
+    "tips": [
+      "The four classical loader functions are allocation, linking, relocation and loading; each loading scheme distributes them differently between programmer, assembler and loader.",
+      "Absolute loader: addresses are fixed at assembly time, so the loader merely copies the code to the stated addresses - it is the simplest and fastest, but the program cannot be moved.",
+      "Relocating and linking loaders, by contrast, leave address binding to load time, which is what makes relocatable object modules possible.",
+      "Spot equivalent options: 'combining object modules' and 'linking' describe one and the same function, so an examiner cannot intend either as the unique key."
+    ],
+    "solution": [
+      "A loader classically performs four functions: allocation (reserving memory space), linking (resolving external references between modules), relocation (adjusting address-dependent fields), and loading (placing the code in memory).",
+      "In an absolute loading scheme the assembler translates the source into an absolute object program in which every address is already the final memory address at which the code will run.",
+      "Consequently the memory space is committed at assembly time: the assembler has performed the allocation function, and the loader is left with nothing to decide - it simply copies the image to the fixed addresses.",
+      "Option (d) loading is precisely what the loader still does, so it cannot be the answer; options (a) and (c) both describe linking, which in this scheme is handled outside the assembler.",
+      "Hence option (b) is correct among the choices offered (see the note above on the textbook variant that names relocation)."
+    ]
+  },
+  "2026-Q74": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Definition",
+    "shortcut": "A virus that rewrites its own code on each infection to defeat signature scanning is by definition polymorphic. Answer (c).",
+    "tips": [
+      "Match name to behaviour: polymorphic = changes its code/encryption key each time; stealth = hides the changes it has made from the OS; multipartite = infects both boot sector and files; boot sector = infects the MBR.",
+      "Polymorphic viruses typically encrypt the payload with a fresh key and mutate the decryptor, so no fixed byte signature exists.",
+      "Metamorphic viruses go further, rewriting the entire body rather than just the decryptor - a common follow-up distinction.",
+      "This is why modern antivirus software relies on heuristic and behavioural detection rather than signature matching alone."
+    ],
+    "solution": [
+      "A polymorphic virus alters its own code - typically by encrypting its body with a different key on each infection and mutating the accompanying decryption routine - so that no two copies share the same byte pattern.",
+      "Because signature-based antivirus scanners look for fixed byte sequences, this constant mutation defeats detection.",
+      "A stealth virus (option a) instead intercepts system calls to conceal the changes it has already made; a multipartite virus (option b) is classified by infecting both boot sectors and executable files; a boot sector virus (option d) is classified by its target location.",
+      "Only the polymorphic virus is defined by modifying its code on each spread.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q75": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Definition",
+    "shortcut": "Transferring a block of data straight between a device and memory without the CPU handling each word is Direct Memory Access. Answer (b).",
+    "tips": [
+      "Three I/O techniques in increasing CPU independence: programmed I/O (CPU polls and moves every word) -> interrupt-driven I/O (device signals, CPU still moves the data) -> DMA (a controller moves the whole block).",
+      "The key phrase in the question is 'continuously ... without constant CPU intervention' - only DMA removes the CPU from the per-word data path.",
+      "Under DMA the CPU is involved only twice: to program the DMA controller with source, destination and count, and to service the completion interrupt.",
+      "Polling (option c) is the most CPU-intensive scheme of all, and interrupt-driven transfer (option d) still requires the CPU to execute the transfer instructions for each item."
+    ],
+    "solution": [
+      "In programmed (program-controlled) I/O and in polling, the CPU executes instructions to move every individual data item, so it is fully occupied during the transfer.",
+      "In interrupt-driven I/O the device signals readiness, sparing the CPU from busy-waiting, but the CPU still runs the interrupt service routine to move each data item.",
+      "Direct Memory Access (DMA) uses a dedicated DMA controller that takes over the system bus and transfers an entire block directly between the peripheral and main memory.",
+      "The CPU only initialises the controller (source address, destination address, byte count) and is interrupted once at the end of the block, so the transfer proceeds continuously without constant CPU intervention.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q76": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "A fraudulent email with an urgent threat and a link to a fake login page that harvests credentials is a textbook phishing scam. Answer (c).",
+    "tips": [
+      "Phishing signature: an unsolicited message plus manufactured urgency plus a link to a spoofed site that captures credentials - all three appear in this scenario.",
+      "The theft happened because Rohit voluntarily entered his credentials on a fake site, not because software was installed - which rules out Trojan (a) and virus (d).",
+      "Blackmail (option b) would require a demand backed by a threat to release information; here the attacker simply impersonated the bank.",
+      "Related vocabulary: spear phishing targets a named individual, whaling targets executives, vishing uses voice calls and smishing uses SMS."
+    ],
+    "solution": [
+      "Rohit received an unsolicited email impersonating his bank, containing a manufactured urgency (the card will be cancelled) and a link to a page that asked for his online banking credentials.",
+      "By signing in, he supplied his username and password to an attacker-controlled site, which the attacker then used to withdraw money.",
+      "Deceiving a user into revealing credentials or sensitive data through a spoofed message and counterfeit website is precisely the definition of phishing.",
+      "A Trojan Horse (option a) or virus (option d) would require malicious software to be executed on his machine, which did not happen; online blackmail (option b) involves coercion by threatening to reveal information, which is also absent.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q77": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Definition",
+    "shortcut": "A page fault is the trap raised when a program references a page that is not currently resident in main memory. Answer (c).",
+    "tips": [
+      "'Fault' here does not mean an error: page faults are a normal, expected part of demand paging.",
+      "Sequence on a fault: trap to the OS -> locate the page on disk -> find or free a frame (page replacement) -> read the page in -> update the page table -> restart the faulting instruction.",
+      "Effective access time = (1 - p) * memory access time + p * page fault service time, where p is the fault rate - the formula behind most numerical questions on this topic.",
+      "Options (a), (b) and (d) are deliberately garbled non-definitions; read them carefully and they do not describe any coherent mechanism."
+    ],
+    "solution": [
+      "Under demand paging, only some of a process's pages are resident in physical memory at any time; the page table marks each page as valid (resident) or invalid (not resident).",
+      "When the process references an address on a page whose valid bit is not set, the memory management unit raises a trap called a page fault.",
+      "The operating system then locates the page in secondary storage, selects a frame (evicting a victim page if necessary), reads the page in, updates the page table, and restarts the interrupted instruction.",
+      "So a page fault refers precisely to an access to a page that is not currently in memory.",
+      "The remaining options do not describe this mechanism.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q78": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Dots per side: 1200 x 8 = 9600 and 1200 x 10 = 12000. Product = 9600 x 12000 = 115,200,000 = 115.2 million.",
+    "tips": [
+      "Resolution is dots per linear inch, so it must be applied to EACH dimension - the total is dpi^2 times the area.",
+      "Shortcut: total = 1200^2 x (8 x 10) = 1,440,000 x 80 = 115,200,000. Squaring the dpi first is the fastest route.",
+      "Multiplying 1200 by the area 80 just once gives 96,000, which inflates to the distractor 96 million - that is exactly the error the option list is testing.",
+      "Order-of-magnitude check: a 1200 dpi page has over 100 million dots, which is why high-resolution printing demands so much memory."
+    ],
+    "solution": [
+      "The printer resolution is 1200 dots per inch in each direction.",
+      "Along the 8-inch side: 1200 x 8 = 9600 dots.",
+      "Along the 10-inch side: 1200 x 10 = 12000 dots.",
+      "Total dots = 9600 x 12000 = 115,200,000.",
+      "Equivalently, total = (1200)^2 x (8 x 10) = 1,440,000 x 80 = 115,200,000 = 115.2 million.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q79": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Definition",
+    "shortcut": "Self-replicating malware that spreads across a network on its own, needing no host file and no user action, is a worm. Answer (b).",
+    "tips": [
+      "Worm versus virus: a worm is standalone and self-propagating; a virus needs a host file and some user action to execute it.",
+      "A Trojan (option a) is disguised as legitimate software and depends entirely on the user running it, so it cannot self-propagate.",
+      "Spyware (option d) is classified by what it does - covertly gathering information - not by how it spreads.",
+      "Famous worms - Morris, Code Red, SQL Slammer, Conficker, WannaCry - all spread by exploiting network service vulnerabilities without user interaction."
+    ],
+    "solution": [
+      "A computer worm is standalone malicious software that replicates itself and transmits copies to other computers over a network, typically by exploiting a vulnerability in a network service.",
+      "Because it does not attach itself to a host program and does not need to be opened or executed by a user, it propagates without any user interaction.",
+      "A virus, including a boot sector virus (option c), attaches to a host program or boot record and requires that host to be executed.",
+      "A Trojan (option a) masquerades as useful software and must be run deliberately by the victim; spyware (option d) is defined by its information-stealing payload rather than by autonomous spreading.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q80": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "The accumulator is the register that holds the result of ALU operations. Answer (b).",
+    "tips": [
+      "Register roles: PC holds the address of the next instruction; IR holds the current instruction; MAR holds the address being accessed; MBR/MDR holds the data in transit; accumulator holds ALU operands and results.",
+      "In an accumulator-based machine, one operand and the result of every arithmetic operation implicitly use this register - hence the name.",
+      "Mnemonic: the accumulator 'accumulates' successive results, as in repeated addition.",
+      "Modern RISC processors replace the single accumulator with a general-purpose register file, but the exam expects the classical accumulator answer."
+    ],
+    "solution": [
+      "The arithmetic and logic unit performs arithmetic and Boolean operations and must deposit its output in a register.",
+      "The accumulator is the special-purpose register directly connected to the ALU that supplies one operand and receives the result of each operation.",
+      "The program counter (option a) holds the address of the next instruction to be fetched; the memory address register (option c) holds the address of the memory location currently being accessed; the instruction register (option d) holds the instruction currently being decoded.",
+      "None of these stores ALU results.",
+      "Hence option (b) is correct."
+    ]
+  }
+}

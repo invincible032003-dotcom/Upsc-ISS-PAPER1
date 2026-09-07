@@ -1,0 +1,411 @@
+{
+  "2026-Q01": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Row sums of |x+y| for x = -2,-1,0,1,2 are 10, 7, 6, 7, 10, total 40, so c = 1/40 and P(X) = (0.25, 0.175, 0.15, 0.175, 0.25). Symmetry gives E(X) = 0, so Var(X) = E(X^2) = 2(4)(0.25) + 2(1)(0.175) = 2 + 0.35 = 2.35.",
+    "tips": [
+      "Get c first: the number of pairs summing to s is 5 - |s| for |s| <= 4, so sum |x+y| = 2(4*1 + 3*2 + 2*3 + 1*4) = 40 and c = 1/40.",
+      "The marginal row sums 10, 7, 6, 7, 10 are symmetric about x = 0, which forces E(X) = 0 and turns the variance into a pure E(X^2) computation.",
+      "Only x = +/-2 and x = +/-1 contribute to E(X^2); x = 0 contributes nothing, so it is a two-term sum.",
+      "The same marginal serves for Y by symmetry, so Var(Y) = 2.35 as well - handy if a companion question asks for it."
+    ],
+    "solution": [
+      "Normalising constant: sum over x, y in {-2,-1,0,1,2} of |x + y|. The number of pairs with x + y = s is 5 - |s|, so the total is 4(1) + 3(2) + 2(3) + 1(4) + 0(5) + 1(4) + 2(3) + 3(2) + 4(1) = 40. Hence c = 1/40.",
+      "Marginal of X: P(X = x) = (1/40) * sum over y of |x + y|.",
+      "x = -2: |x+y| values are 4, 3, 2, 1, 0, sum 10, so P = 10/40 = 0.25.",
+      "x = -1: 3, 2, 1, 0, 1, sum 7, so P = 7/40 = 0.175.",
+      "x = 0: 2, 1, 0, 1, 2, sum 6, so P = 6/40 = 0.15.",
+      "x = 1: 1, 0, 1, 2, 3, sum 7, so P = 0.175. x = 2: 0, 1, 2, 3, 4, sum 10, so P = 0.25. (Total 40/40 = 1, check.)",
+      "E(X) = (-2)(0.25) + (-1)(0.175) + 0(0.15) + 1(0.175) + 2(0.25) = 0 by symmetry.",
+      "E(X^2) = 4(0.25) + 1(0.175) + 0 + 1(0.175) + 4(0.25) = 1 + 0.175 + 0.175 + 1 = 2.35.",
+      "Var(X) = E(X^2) - [E(X)]^2 = 2.35 - 0 = 2.35.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q02": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Along the row X = 1 the weights |1+y| for y = -2,-1,0,1,2 are 1, 0, 1, 2, 3 with total 7. So E(Y|X=1) = [(-2)(1) + (-1)(0) + 0(1) + 1(2) + 2(3)]/7 = 6/7.",
+    "tips": [
+      "For a conditional expectation on a discrete grid, work with the unnormalised row weights and divide by the row total once at the end - the constant c cancels.",
+      "The row total 7 is exactly the marginal weight P(X = 1) = 7/40 found in the previous part; reuse it rather than recomputing.",
+      "Note that |1 + y| = 0 at y = -1, so that term drops out entirely.",
+      "Sanity check the sign: the row weights are heavier on the positive y side (2 and 3 versus 1 and 0), so E(Y|X=1) must be positive, ruling out any negative answer."
+    ],
+    "solution": [
+      "The joint weights along the row X = 1 are P(X = 1, Y = y) = |1 + y|/40.",
+      "y = -2: |-1| = 1; y = -1: |0| = 0; y = 0: |1| = 1; y = 1: |2| = 2; y = 2: |3| = 3.",
+      "Row total = (1 + 0 + 1 + 2 + 3)/40 = 7/40 = P(X = 1).",
+      "Conditional pmf: P(Y = y | X = 1) = |1 + y|/7, giving 1/7, 0, 1/7, 2/7, 3/7 for y = -2, -1, 0, 1, 2.",
+      "E(Y | X = 1) = (-2)(1/7) + (-1)(0) + (0)(1/7) + (1)(2/7) + (2)(3/7) = (-2 + 0 + 0 + 2 + 6)/7 = 6/7.",
+      "Hence option (d) is correct."
+    ]
+  },
+  "2026-Q03": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "|x - y| <= 1 means the main diagonal plus the two adjacent diagonals. Weights: diagonal |2x| gives 4+2+0+2+4 = 12; each off-diagonal gives 3+1+1+3 = 8. Total 12 + 8 + 8 = 28, so P = 28/40 = 0.7.",
+    "tips": [
+      "Organise the 25 cells by diagonals: on y = x the weight is |2x|, on y = x+1 it is |2x+1|, on y = x-1 it is |2x-1|. Each diagonal is then a four- or five-term sum.",
+      "The two off-diagonals give the same total by the symmetry of the weight in x and y - compute one and double it.",
+      "Always divide by 40, not by 25: the distribution is not uniform on the grid.",
+      "0.7 and 0.3 are complements, and 0.06 / 0.12 are far too small to be a 13-cell event - a quick magnitude check rules them out."
+    ],
+    "solution": [
+      "The event |X - Y| <= 1 covers the cells with y = x, y = x + 1 and y = x - 1, i.e. 5 + 4 + 4 = 13 of the 25 cells.",
+      "Cells with y = x: weight |x + y| = |2x| = 4, 2, 0, 2, 4 for x = -2, -1, 0, 1, 2, total 12.",
+      "Cells with y = x + 1 (x = -2, -1, 0, 1): weight |2x + 1| = 3, 1, 1, 3, total 8.",
+      "Cells with y = x - 1 (x = -1, 0, 1, 2): weight |2x - 1| = 3, 1, 1, 3, total 8.",
+      "Total weight = 12 + 8 + 8 = 28.",
+      "P(|X - Y| <= 1) = 28/40 = 0.7.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q04": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "The standard normal density is symmetric about 0, so Phi(-z) = 1 - Phi(z) for every z. Put z = 100. Answer (b).",
+    "tips": [
+      "Memorise the symmetry relation Phi(-z) + Phi(z) = 1; it is the single most-used property of the standard normal CDF.",
+      "A CDF can never be negative, so option (a) is impossible on sight.",
+      "Option (d) would give a negative number since Phi(100) is essentially 1; another instant rejection.",
+      "Numerically Phi(-100) is about 10^-2174, i.e. effectively 0, consistent with 1 - Phi(100)."
+    ],
+    "solution": [
+      "By definition Phi(x) = integral from -infinity to x of f_X(theta) d theta, where f_X is the N(0,1) density.",
+      "The density is symmetric: f_X(-t) = f_X(t).",
+      "Substituting theta = -u in the integral for Phi(-z) gives Phi(-z) = integral from z to infinity of f_X(u) du = 1 - Phi(z).",
+      "With z = 100: Phi(-100) = 1 - Phi(100).",
+      "Options (a) and (d) would be negative (since Phi(100) is essentially 1), which is impossible for a CDF; option (c) contradicts the symmetry relation.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q05": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "The inner integral g(y) = integral from -y to y of f_X = Phi(y) - Phi(-y) is an odd function of y, and the outer range [-10, 10] is symmetric about 0. An odd function integrated over a symmetric interval gives 0.",
+    "tips": [
+      "Do the inner integral symbolically first - here it collapses to 2Phi(y) - 1, whose oddness is the whole point.",
+      "Check oddness explicitly: g(-y) = Phi(-y) - Phi(y) = -g(y). Do not assume the inner integral is automatically non-negative just because f_X is.",
+      "When y < 0 the limits -y to y run backwards, so the inner integral is negative - this is the step most candidates miss, which is why 1/2 is the popular wrong answer.",
+      "General principle: integral from -a to a of an odd function is 0; integral from -a to a of an even function is 2 * integral from 0 to a."
+    ],
+    "solution": [
+      "Let g(y) = integral from -y to y of f_X(x) dx = Phi(y) - Phi(-y).",
+      "Using Phi(-y) = 1 - Phi(y), we get g(y) = 2 Phi(y) - 1.",
+      "Then g(-y) = 2 Phi(-y) - 1 = 2(1 - Phi(y)) - 1 = 1 - 2 Phi(y) = -g(y), so g is an odd function of y.",
+      "The required double integral is integral from -10 to 10 of g(y) dy.",
+      "An odd integrable function integrated over an interval symmetric about the origin gives 0: the contribution from y in (0, 10) exactly cancels that from y in (-10, 0).",
+      "Therefore the value is 0.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q06": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "f_Y(y) = integral from 0 to 1 of 2(x+2y)/3 dx = (1 + 4y)/3, so f_Y(0.5) = 1 exactly. Hence f(x | y = 0.5) = 2(x + 1)/3 and E(X | Y = 0.5) = (2/3)(1/3 + 1/2) = 5/9.",
+    "tips": [
+      "The marginal at y = 0.5 evaluating to exactly 1 is the designed simplification - the conditional density is then just the joint density with y substituted.",
+      "Substitute y = 0.5 before integrating, not after; carrying a symbolic y through doubles the work.",
+      "Verify the conditional integrates to 1: integral from 0 to 1 of 2(x+1)/3 dx = (2/3)(1/2 + 1) = 1. A ten-second check that catches algebra slips.",
+      "Since the conditional density increases in x, E(X | Y = 0.5) must exceed 1/2 - that alone eliminates options (a) and (b)."
+    ],
+    "solution": [
+      "Marginal of Y: f_Y(y) = integral from 0 to 1 of 2(x + 2y)/3 dx = (2/3)[x^2/2 + 2xy] from 0 to 1 = (2/3)(1/2 + 2y) = (1 + 4y)/3, for 0 < y < 1.",
+      "At y = 0.5: f_Y(0.5) = (1 + 2)/3 = 1.",
+      "Conditional density: f(x | y = 0.5) = f(x, 0.5)/f_Y(0.5) = [2(x + 1)/3]/1 = 2(x + 1)/3, for 0 < x < 1.",
+      "Check: integral from 0 to 1 of 2(x+1)/3 dx = (2/3)(1/2 + 1) = 1, as required.",
+      "E(X | Y = 0.5) = integral from 0 to 1 of x * 2(x + 1)/3 dx = (2/3) integral from 0 to 1 of (x^2 + x) dx = (2/3)(1/3 + 1/2) = (2/3)(5/6) = 5/9.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q07": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "With f(x | y = 0.5) = 2(x+1)/3: E(X^2 | .) = (2/3)(1/4 + 1/3) = 7/18 and E(X | .) = 5/9. Var = 7/18 - 25/81 = (63 - 50)/162 = 13/162.",
+    "tips": [
+      "Reuse the conditional density and the conditional mean from the previous part; only E(X^2 | Y = 0.5) is new work.",
+      "Convert to the common denominator 162 immediately: 7/18 = 63/162 and 25/81 = 50/162, so the subtraction is a single step.",
+      "Sanity bound: X lies in (0,1), so its conditional variance cannot exceed 1/4 = 40.5/162; 13/162 = 0.080 is comfortably inside, and even the uniform value 1/12 = 13.5/162 is close, as expected for a gently sloping density.",
+      "The distractors 11/162, 5/54 = 15/162 and 17/162 all come from small slips in E(X^2) or in squaring 5/9 - keep fractions exact throughout."
+    ],
+    "solution": [
+      "From the previous part, f(x | Y = 0.5) = 2(x + 1)/3 on 0 < x < 1, with E(X | Y = 0.5) = 5/9.",
+      "E(X^2 | Y = 0.5) = integral from 0 to 1 of x^2 * 2(x + 1)/3 dx = (2/3) integral from 0 to 1 of (x^3 + x^2) dx = (2/3)(1/4 + 1/3) = (2/3)(7/12) = 7/18.",
+      "Var(X | Y = 0.5) = E(X^2 | Y = 0.5) - [E(X | Y = 0.5)]^2 = 7/18 - (5/9)^2 = 7/18 - 25/81.",
+      "Common denominator 162: 7/18 = 63/162 and 25/81 = 50/162.",
+      "Var = (63 - 50)/162 = 13/162 (approximately 0.0802).",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q08": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Integrate out y over (0,2): f_X(x) = 2x^2 + 2x/3 = (2x/3)(3x + 1). Dividing the joint by this cancels the x, leaving (3x + y)/[2(3x + 1)]. Option (a).",
+    "tips": [
+      "Conditional of Y given X means divide by the marginal of X, so integrate the joint over the y-range - keep track of which variable is being eliminated.",
+      "Factor the joint as x(3x + y)/3 before dividing; the common factor x then cancels visibly and the answer's shape becomes obvious.",
+      "Elimination test: for a valid conditional density of Y given X, integrating over 0 < y < 2 must give 1. Option (a): integral of (3x+y)/[2(3x+1)] dy = (6x + 2)/[2(3x+1)] = 1. It passes; the others do not.",
+      "The conditional pdf of Y given X must not have a stray free x that fails to normalise - options (b), (c), (d) all break the normalisation check."
+    ],
+    "solution": [
+      "Marginal of X: f_X(x) = integral from 0 to 2 of (x^2 + xy/3) dy = [x^2 y + x y^2/6] from 0 to 2 = 2x^2 + 4x/6 = 2x^2 + 2x/3, for 0 < x < 1.",
+      "Factor: f_X(x) = (2x/3)(3x + 1).",
+      "Check normalisation: integral from 0 to 1 of (2x^2 + 2x/3) dx = 2/3 + 1/3 = 1, as required.",
+      "Joint density factored: f(x, y) = x^2 + xy/3 = (x/3)(3x + y).",
+      "Conditional density: f(y | x) = f(x, y)/f_X(x) = [(x/3)(3x + y)] / [(2x/3)(3x + 1)] = (3x + y)/[2(3x + 1)], for 0 < y < 2, 0 < x < 1.",
+      "Verification: integral from 0 to 2 of (3x + y)/[2(3x+1)] dy = [6x + 2]/[2(3x + 1)] = 1.",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2026-Q09": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "f_Y(y) = integral from 0 to 1 of (x^2 + xy/3) dx = 1/3 + y/6 = (2 + y)/6. Dividing the joint by this gives 6(x^2 + xy/3)/(2+y) = 2x(3x + y)/(2 + y). Option (c).",
+    "tips": [
+      "Now integrate out x over (0,1) - the opposite variable from the previous part; mixing the two up is the classic error.",
+      "Write the marginal as a single fraction (2 + y)/6 before dividing, so the factor 6 comes up cleanly in the numerator.",
+      "Normalisation check: integral from 0 to 1 of 2x(3x+y)/(2+y) dx = (2 + y)/(2 + y) = 1. Option (c) passes; test the others the same way and they fail.",
+      "Compare with the previous answer: the conditional of Y given X kept x in the denominator's shape, whereas this one keeps y - a useful structural cross-check."
+    ],
+    "solution": [
+      "Marginal of Y: f_Y(y) = integral from 0 to 1 of (x^2 + xy/3) dx = [x^3/3 + x^2 y/6] from 0 to 1 = 1/3 + y/6 = (2 + y)/6, for 0 < y < 2.",
+      "Check: integral from 0 to 2 of (2 + y)/6 dy = [2y + y^2/2]/6 from 0 to 2 = (4 + 2)/6 = 1, as required.",
+      "Conditional density: f(x | y) = f(x, y)/f_Y(y) = (x^2 + xy/3) * 6/(2 + y) = (6x^2 + 2xy)/(2 + y) = 2x(3x + y)/(2 + y), for 0 < x < 1, 0 < y < 2.",
+      "Verification: integral from 0 to 1 of 2x(3x + y)/(2 + y) dx = [2x^3 + x^2 y]/(2 + y) from 0 to 1 = (2 + y)/(2 + y) = 1.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q10": {
+    "answer": 3,
+    "confidence": "medium",
+    "type": "Numerical",
+    "issue": "The answer depends on the counting convention. Using the standard Indian-textbook convention in which both the geometric and the negative binomial count FAILURES (geometric mean q/p, negative binomial mean rq/p), E(X) = E(Y) = 1 and 2 = 3(1-p)/p gives p = 3/5, option (d). If instead both are taken as counting TRIALS (means 1/p and r/p), then 4 = 3/p gives p = 3/4, option (b), which is why both values appear among the choices. Option (d) is keyed here on the failure-counting convention; a candidate should state the convention used.",
+    "shortcut": "With the failure-counting convention, geometric(1/2) has mean q/p = 1, so E(X + Y) = 2, and NB(3, p) has mean 3q/p. Set 3(1 - p)/p = 2 to get 5p = 3, p = 3/5.",
+    "tips": [
+      "State your convention before computing: geometric as number of failures has mean q/p; as number of trials it has mean 1/p. The same split applies to the negative binomial (rq/p versus r/p).",
+      "Whichever convention you adopt, use it for BOTH distributions - the geometric is the negative binomial with r = 1, so mixing conventions is internally inconsistent.",
+      "Expectation is linear whether or not the variables are independent, so E(X + Y - Z) = E(X) + E(Y) - E(Z); the stated independence is needed only if a variance were asked.",
+      "The two consistent conventions produce exactly the two 'nice' options 3/5 and 3/4 - recognising that tells you which pair of distractors are decoys."
+    ],
+    "solution": [
+      "Adopt the standard convention in which the geometric variable counts the number of failures before the first success: P(X = x) = q^x p, x = 0, 1, 2, ..., with E(X) = q/p.",
+      "With p = 1/2: E(X) = (1/2)/(1/2) = 1, and likewise E(Y) = 1, so E(X + Y) = 2.",
+      "Under the matching convention, the negative binomial with parameters r = 3 and p counts the failures before the 3rd success: P(Z = z) = C(z + 2, z) p^3 q^z, with E(Z) = 3q/p = 3(1 - p)/p.",
+      "By linearity, E(X + Y - Z) = 0 requires E(Z) = E(X) + E(Y) = 2.",
+      "So 3(1 - p)/p = 2, giving 3 - 3p = 2p, hence 5p = 3 and p = 3/5.",
+      "(Consistency check: with p = 3/5, E(Z) = 3(2/5)/(3/5) = 2, matching E(X) + E(Y) = 2.)",
+      "Hence option (d) is correct under the failure-counting convention; see the note above for the trials convention."
+    ]
+  },
+  "2026-Q11": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "The ratio of two independent standard normals is the standard Cauchy - a memorised standard result. Answer (b).",
+    "tips": [
+      "Memorise the family: X/Y is Cauchy(0,1); X^2/Y^2 is F(1,1); X^2 + Y^2 is chi-square with 2 df; X/|Y| is also Cauchy.",
+      "Option (d) is the trap: F(1,1) is the distribution of the ratio of SQUARES, not of the variables themselves.",
+      "The Cauchy has no mean and no variance, which is why the ratio of two well-behaved normals is famously pathological - a favourite examiner point.",
+      "Cauchy(0,1) has density 1/[pi(1 + z^2)] on the whole real line; the location 0 and scale 1 follow from both normals having mean 0 and variance 1, so (c) with location 1 is wrong."
+    ],
+    "solution": [
+      "Let Z = X/Y with X, Y independent N(0,1).",
+      "Using the transformation Z = X/Y, W = Y with Jacobian |w|, the joint density of (Z, W) is |w| * (1/(2pi)) exp(-(z^2 w^2 + w^2)/2).",
+      "Integrating out w: f_Z(z) = (1/(2pi)) * integral over all w of |w| exp(-w^2(1 + z^2)/2) dw = (1/(2pi)) * 2/(1 + z^2) = 1/[pi(1 + z^2)].",
+      "This is exactly the standard Cauchy density, i.e. Cauchy with location 0 and scale 1.",
+      "Chi-square with 2 df (option a) is the distribution of X^2 + Y^2, not X/Y; F(1,1) (option d) is the distribution of X^2/Y^2; Cauchy(1,1) (option c) has the wrong location parameter.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q12": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "The prior 1/3 cancels, so the posterior is just 3/8 divided by (2/5 + 3/8 + 5/7). Over LCD 280 these are 112, 105 and 200, total 417. Answer 105/417 = 35/139.",
+    "tips": [
+      "When all priors are equal they cancel in Bayes' formula - the posterior is simply the likelihood divided by the sum of the likelihoods.",
+      "Put the three white-ball probabilities over a common denominator (280 here) at once; the numerators 112, 105, 200 then make the arithmetic exact.",
+      "Always reduce: 105/417 has common factor 3, giving 35/139. The unreduced form is deliberately absent, and 112/417 is the answer for urn 1 while 200/417 is for urn 3.",
+      "Cross-check: the three posteriors 112/417, 105/417 and 200/417 must sum to 1 - they do."
+    ],
+    "solution": [
+      "Let U1, U2, U3 be the events that urn 1, 2, 3 is chosen, each with prior probability 1/3, and let W be the event that the drawn ball is white.",
+      "Likelihoods: P(W | U1) = 2/5, P(W | U2) = 3/8, P(W | U3) = 5/7.",
+      "Law of total probability: P(W) = (1/3)(2/5 + 3/8 + 5/7).",
+      "Over the common denominator 280: 2/5 = 112/280, 3/8 = 105/280, 5/7 = 200/280, so the sum is 417/280 and P(W) = 417/840.",
+      "Bayes' theorem: P(U2 | W) = [(1/3)(3/8)] / [(1/3)(417/280)] = (3/8)/(417/280) = (105/280)/(417/280) = 105/417.",
+      "Reducing by 3: 105/417 = 35/139 (approximately 0.2518).",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2026-Q13": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "b(Y on X) = rho * sigma_y/sigma_x = 0.6 * (3/4) = 0.45 = 9/20. The means 5 and 8 are irrelevant.",
+    "tips": [
+      "Take square roots first: sigma_x = 4 and sigma_y = 3 from the variances 16 and 9. Using the variances directly is the standard trap and would give 0.6*(9/16) = 27/80.",
+      "Y on X puts sigma_y on top: b_yx = rho sigma_y/sigma_x. X on Y flips it: b_xy = rho sigma_x/sigma_y = 0.6(4/3) = 0.8.",
+      "Check: b_yx * b_xy = rho^2, so 0.45 * 0.8 = 0.36 = 0.6^2. A five-second confirmation.",
+      "The means mu_x and mu_y affect only the intercept of the regression line, never the slope - ignore them here."
+    ],
+    "solution": [
+      "For a bivariate normal distribution, the regression of Y on X is linear: E(Y | X = x) = mu_y + rho (sigma_y/sigma_x)(x - mu_x).",
+      "The regression coefficient of Y on X is therefore b_yx = rho * sigma_y / sigma_x.",
+      "Given sigma_x^2 = 16 so sigma_x = 4, and sigma_y^2 = 9 so sigma_y = 3, with rho = 0.6.",
+      "b_yx = 0.6 * (3/4) = 0.45 = 9/20.",
+      "Check with the reverse coefficient: b_xy = 0.6 * (4/3) = 0.8, and b_yx * b_xy = 0.45 * 0.8 = 0.36 = rho^2, as required.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q14": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "Constant density on [a, b] means X is uniform, whose variance is (b-a)^2/12, so the SD is (b-a)/(2 sqrt 3). Answer (b).",
+    "tips": [
+      "'Density constant on an interval and zero elsewhere' is the definition of the continuous uniform distribution - recognise the phrasing.",
+      "Uniform facts: mean (a+b)/2, variance (b-a)^2/12, and sqrt(12) = 2 sqrt 3.",
+      "Options (c) and (d) are the mean and the half-range respectively - both are spread or location quantities, but neither is the SD.",
+      "A standard deviation must be translation invariant, i.e. it can depend only on b - a, not on a + b. That instantly kills options (a) and (c)."
+    ],
+    "solution": [
+      "If the density is constant on a <= x <= b and zero elsewhere, then f(x) = 1/(b - a) on [a, b], i.e. X follows the uniform distribution U(a, b).",
+      "Mean: E(X) = (a + b)/2.",
+      "E(X^2) = integral from a to b of x^2/(b-a) dx = (b^3 - a^3)/[3(b - a)] = (a^2 + ab + b^2)/3.",
+      "Var(X) = (a^2 + ab + b^2)/3 - (a + b)^2/4 = [4(a^2 + ab + b^2) - 3(a^2 + 2ab + b^2)]/12 = (a^2 - 2ab + b^2)/12 = (b - a)^2/12.",
+      "Standard deviation = sqrt((b-a)^2/12) = (b - a)/sqrt(12) = (b - a)/(2 sqrt 3).",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q15": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Drop x = 1 and renormalise. The 15 in the denominator cancels, so E(X | X > 1) = (2^2 + 3^2 + 4^2 + 5^2)/(2 + 3 + 4 + 5) = 54/14 = 27/7.",
+    "tips": [
+      "For a conditional expectation on a truncated support, take the ratio of unnormalised sums - the common denominator (15 here) cancels.",
+      "Numerator terms are x * p(x) proportional to x * x = x^2; denominator terms are p(x) proportional to x. Recognising this turns the problem into sum of squares over sum.",
+      "Check the pmf is valid: (1 + 2 + 3 + 4 + 5)/15 = 1, so p(x) = x/15 is proper.",
+      "Bound check: conditioning on X > 1 must raise the mean above the unconditional E(X) = 55/15 = 11/3 = 3.67; 27/7 = 3.857 is above it, while 15/7 and 15/14 are far too small."
+    ],
+    "solution": [
+      "The pmf is p(x) = x/15 for x = 1, 2, 3, 4, 5 (check: sum = 15/15 = 1).",
+      "P(X > 1) = (2 + 3 + 4 + 5)/15 = 14/15.",
+      "E(X * indicator(X > 1)) = [2(2) + 3(3) + 4(4) + 5(5)]/15 = (4 + 9 + 16 + 25)/15 = 54/15.",
+      "E(X | X > 1) = (54/15)/(14/15) = 54/14 = 27/7 (approximately 3.857).",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2026-Q16": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Intersect the events first: (5, 7) intersect (6, 12) = (6, 7), of length 1. Divide by the length of the conditioning event (6, 12), which is 6. Answer 1/6.",
+    "tips": [
+      "For a uniform variable, conditional probability is just a ratio of interval lengths - no integration needed.",
+      "Always intersect before dividing: the numerator is P(5 < X < 7 AND X > 6) = P(6 < X < 7), not P(5 < X < 7) = 2/12.",
+      "The distractor 1/3 comes from forgetting the intersection: (2/12)/(6/12) = 1/3. This is the single most common error on this item.",
+      "General identity: P(A | B) = P(A intersect B)/P(B), valid whenever P(B) > 0."
+    ],
+    "solution": [
+      "X is uniform on (0, 12) with density 1/12, so probabilities are proportional to interval lengths.",
+      "Conditioning event: P(X > 6) = (12 - 6)/12 = 6/12 = 1/2.",
+      "Intersection: {5 < X < 7} intersect {X > 6} = {6 < X < 7}, so P = (7 - 6)/12 = 1/12.",
+      "P(5 < X < 7 | X > 6) = (1/12)/(1/2) = 2/12 = 1/6.",
+      "Hence option (d) is correct."
+    ]
+  },
+  "2026-Q17": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Add the expansions of (q + p)^n and (q - p)^n: odd terms cancel and even terms double. So the sum of even-index terms is [1 + (q - p)^n]/2. Answer (b).",
+    "tips": [
+      "The even/odd splitting trick: sum of even terms = [f(1) + f(-1)]/2 and sum of odd terms = [f(1) - f(-1)]/2, applied to the pgf.",
+      "Here f(s) = (q + ps)^n, so f(1) = 1 and f(-1) = (q - p)^n. That is the entire derivation.",
+      "Sanity check with n = 1: P(X = 0) = q, and the formula gives [1 + (q - p)]/2 = (1 + q - p)/2 = (q + q)/2 = q since p + q = 1. Correct.",
+      "Options (a) and (d) can exceed 1 (take p = 0, giving 2 and 2 respectively), so they are impossible probabilities; option (c) is the odd-count probability."
+    ],
+    "solution": [
+      "P(X = x) = C(n, x) p^x q^(n-x). We want P(X is even, including 0) = sum over even x of C(n, x) p^x q^(n-x).",
+      "Consider the binomial expansions (q + p)^n = sum over x of C(n, x) p^x q^(n-x) = 1, and (q - p)^n = sum over x of C(n, x) (-p)^x q^(n-x) = sum over x of (-1)^x C(n, x) p^x q^(n-x).",
+      "Adding the two: the terms with odd x cancel and the terms with even x double.",
+      "So (q + p)^n + (q - p)^n = 2 * sum over even x of C(n, x) p^x q^(n-x).",
+      "Therefore P(X even) = [1 + (q - p)^n]/2.",
+      "Verification at n = 1: [1 + q - p]/2 = q = P(X = 0), correct. (Correspondingly P(X odd) = [1 - (q - p)^n]/2, which is option (c) - a deliberate distractor.)",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q18": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Condition on N: E(e^{tS_N}) = E[(M_X(t))^N] = E[e^{N log M_X(t)}] = M_N(log M_X(t)). Answer (b).",
+    "tips": [
+      "The compounding rule: for a random sum, the outer MGF is evaluated at log of the inner MGF - M_{S_N}(t) = M_N(log M_X(t)).",
+      "In pgf language it is cleaner still: P_{S_N}(s) = P_N(P_X(s)) - a straight composition, with no logarithm.",
+      "Derivation in one line: E[a^N] = M_N(log a) with a = M_X(t), by writing a^N = e^{N log a}.",
+      "Standard application: if N is Poisson(lambda) then M_{S_N}(t) = exp(lambda[M_X(t) - 1]), the compound Poisson MGF - a frequent follow-up question."
+    ],
+    "solution": [
+      "By the law of total expectation, M_{S_N}(t) = E[e^{t S_N}] = E[ E(e^{t S_N} | N) ].",
+      "Given N = n, S_N is the sum of n iid copies of X_1, so E(e^{t S_N} | N = n) = [M_{X_1}(t)]^n by independence.",
+      "Hence M_{S_N}(t) = E[ (M_{X_1}(t))^N ].",
+      "Write a = M_{X_1}(t) > 0. Then a^N = e^{N log a}, so E[a^N] = E[e^{N log a}] = M_N(log a).",
+      "Therefore M_{S_N}(t) = M_N(log M_{X_1}(t)).",
+      "Check with N Poisson(lambda): M_N(u) = exp(lambda(e^u - 1)), so M_{S_N}(t) = exp(lambda(M_{X_1}(t) - 1)), the standard compound Poisson result.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q19": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "The support is x^2 <= y <= 1, so X >= Y means x^2 <= y <= x. Integrating: (21/2) integral of x^2 (x^2 - x^4)/2 dx = (21/4)(1/5 - 1/7) = (21/4)(2/35) = 0.3.",
+    "tips": [
+      "Sketch the region first: y = x^2 is the lower boundary and y = 1 the upper; the line y = x cuts it, and on (0,1) we have x^2 <= x, so the y-limits are x^2 to x.",
+      "Do the y-integral first (it is a plain power of y), leaving a single polynomial integral in x.",
+      "Verify the constant: integral over the full support gives (21/4)(1/3 - 1/7) = (21/4)(4/21) = 1, so 21/2 is right and your limits are set up correctly.",
+      "Note 0.7 is the complement P(X < Y); read the inequality direction carefully before choosing."
+    ],
+    "solution": [
+      "The density f(x, y) = (21/2) x^2 y is supported on {0 < x < 1, x^2 <= y <= 1}.",
+      "Normalisation check: integral from 0 to 1 of integral from x^2 to 1 of (21/2)x^2 y dy dx = integral from 0 to 1 of (21/4)x^2(1 - x^4) dx = (21/4)(1/3 - 1/7) = (21/4)(4/21) = 1. Correct.",
+      "For P(X >= Y) we need y <= x, and combined with the support y >= x^2 the y-range is x^2 <= y <= x (valid since x^2 <= x for 0 < x < 1).",
+      "Inner integral: integral from x^2 to x of (21/2)x^2 y dy = (21/2)x^2 * (x^2 - x^4)/2 = (21/4)(x^4 - x^6).",
+      "Outer integral: (21/4) integral from 0 to 1 of (x^4 - x^6) dx = (21/4)(1/5 - 1/7) = (21/4)(2/35) = 42/140 = 0.3.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q20": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Real roots need discriminant X^2 - 4Y >= 0, i.e. Y <= X^2/4. Since X^2/4 <= 9 on (0,6), the favourable area is integral from 0 to 6 of x^2/4 dx = 18, out of the total area 6*9 = 54. So P = 18/54 = 1/3.",
+    "tips": [
+      "Geometric probability: with X and Y independent uniforms, the probability is (favourable area)/(total area) of the rectangle - no densities needed beyond the constant 1/54.",
+      "Check whether the curve leaves the rectangle: y = x^2/4 reaches 9 exactly at x = 6, so the parabola stays inside and no truncation (min with 9) is needed. Getting this wrong is the usual pitfall.",
+      "The condition for real roots of z^2 - Xz + Y = 0 is X^2 >= 4Y; note the sign convention b^2 - 4ac with a = 1, b = -X, c = Y.",
+      "Area under a parabola: integral from 0 to 6 of x^2/4 dx = 6^3/12 = 18. Memorising integral of x^2 = x^3/3 makes this instant."
+    ],
+    "solution": [
+      "X is uniform on (0, 6) and Y is uniform on (0, 9), independently, so (X, Y) is uniform on the rectangle of area 6 * 9 = 54, with joint density 1/54.",
+      "The quadratic Z^2 - XZ + Y = 0 has real roots iff its discriminant is non-negative: X^2 - 4Y >= 0, i.e. Y <= X^2/4.",
+      "For 0 < x < 6 the bound x^2/4 ranges from 0 up to 36/4 = 9, which is exactly the top of the Y-range, so the parabola lies entirely within the rectangle and no truncation is needed.",
+      "Favourable area = integral from 0 to 6 of (x^2/4) dx = (1/4)(6^3/3) = (1/4)(72) = 18.",
+      "P(real roots) = 18/54 = 1/3.",
+      "Hence option (b) is correct."
+    ]
+  }
+}

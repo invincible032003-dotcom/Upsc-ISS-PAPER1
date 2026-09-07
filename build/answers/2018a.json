@@ -1,360 +1,399 @@
 {
-"2018-Q1": {
-  "answer": 2, "confidence": "high", "type": "Numerical",
-  "shortcut": "For independent events never expand inclusion-exclusion. Use P(none occurs) = product of the complements: (1/2)(3/4)(7/8)(15/16) = 315/1024, so the union is 1 - 315/1024 = 709/1024. Ten seconds.",
-  "tips": [
-    "Option (d) 315/1024 is the planted trap: it is P(no event occurs), i.e. the answer you get if you forget to subtract from 1.",
-    "Denominator check: 2x4x8x16 = 1024, so any correct answer must have 1024 (or a divisor of it) as denominator. That instantly kills (a) 15/16 unless it reduces, and it does not.",
-    "1023/1024 in option (b) equals 1 - 1/1024, the value you would get if all four probabilities were 1/2 each - another distractor built from a plausible slip.",
-    "Memorise: P(union of independent events) = 1 - PROD(1 - p_i). It is the single most reused one-line identity in this part of the paper."
-  ],
-  "solution": [
-    "The events A1, A2, A3, A4 are independent, therefore their complements A1', A2', A3', A4' are also independent.",
-    "P(A1') = 1 - 1/2 = 1/2;  P(A2') = 1 - 1/4 = 3/4;  P(A3') = 1 - 1/8 = 7/8;  P(A4') = 1 - 1/16 = 15/16.",
-    "P(no A_i occurs) = P(A1' n A2' n A3' n A4') = (1/2)(3/4)(7/8)(15/16) = (1x3x7x15)/(2x4x8x16) = 315/1024.",
-    "The union is the complement of that event: P(A1 u A2 u A3 u A4) = 1 - 315/1024 = (1024 - 315)/1024 = 709/1024.",
-    "Hence option (c) is correct."
-  ]
-},
-"2018-Q2": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "Split the event: 'exactly 3 defectives among the first 8' AND 'the 9th is the 4th defective'. Hypergeometric x conditional = [C(4,3)C(11,5)/C(15,8)] x (1/7) = (56/195)(1/7) = 8/195.",
-  "tips": [
-    "Option (a) 56/195 is exactly the first factor alone - the trap for candidates who stop after the hypergeometric step and forget the 9th draw.",
-    "After 8 draws, 7 mobiles remain and exactly 1 of them is defective, so the conditional probability of a defective on draw 9 is 1/7 - no new combinatorics needed.",
-    "'The k-th item is the LAST defective' always factors as P(exactly d-1 defectives in the first k-1) x P(defective on draw k | that). Learn this two-step template.",
-    "Sanity bound: the answer must be small (well under 1/7), so (c) 1/7 and (d) 24/65 = 0.37 can be eliminated on size alone."
-  ],
-  "solution": [
-    "Let the lot have N = 15 mobiles of which D = 4 are defective. We need P(the 9th mobile examined is the 4th and last defective).",
-    "This requires exactly 3 defectives among the first 8 mobiles, and then a defective on the 9th draw.",
-    "P(exactly 3 defectives in the first 8) = C(4,3) C(11,5) / C(15,8) = (4)(462)/6435 = 1848/6435 = 56/195.",
-    "Given that, 15 - 8 = 7 mobiles remain and exactly 4 - 3 = 1 of them is defective, so P(9th is defective | above) = 1/7.",
-    "Multiplying: (56/195)(1/7) = 8/195.",
-    "Hence option (b) is correct."
-  ]
-},
-"2018-Q3": {
-  "answer": null, "confidence": "source-defect", "type": "Numerical",
-  "issue": "SOURCE DEFECT - stem and options are mutually inconsistent. As printed, the third branch (3-x)/3 on 2<x<=3 contributes 1/6, giving a total mass of 1/4 + 1/2 + 1/6 = 11/12, so the printed function is not a density. With the third branch normalised to the only value that makes f a density, (3-x)/2, the exact answer is P(1.5<X<=2.5 | X>1) = (7/16)/(3/4) = 7/12, which is NOT among the four printed options; taking the branch exactly as printed gives 9/16, which is also not among them. The source has therefore been preserved verbatim and this question is flagged and excluded from scoring rather than silently rewritten. No option has been invented.",
-  "shortcut": "AI-derived: with the density normalised, P(X>1) = 3/4 and P(1.5<X<=2.5) = 1/2 x 0.5 + area of the trapezium under (3-x)/2 from 2 to 2.5 = 0.25 + 0.1875 = 7/16, giving 7/12.",
-  "tips": [
-    "Always run the normalisation check FIRST on a piecewise density: integrate every branch and confirm the pieces sum to 1. Here they do not, which is the fastest way to spot the misprint.",
-    "For a linear branch, the integral is just the area of a trapezium: (average height) x (width). From 2 to 2.5 the heights are 0.5 and 0.25, so the area is 0.375 x 0.5 = 0.1875.",
-    "P(A|B) with B = {X>1}: the denominator is 1 minus the mass of the first branch, not 1 minus the value of the density.",
-    "In a real exam, a stem that fails the normalisation check and whose exact answer is absent from the options is a candidate for a UPSC key challenge - mark it and move on rather than forcing a fit."
-  ],
-  "solution": [
-    "Step 0 (integrity check): integral of x/2 over (0,1] = 1/4; integral of 1/2 over (1,2] = 1/2; integral of (3-x)/3 over (2,3] = (1/3)(1/2) = 1/6. Total = 11/12, not 1, so the function as printed is not a probability density.",
-    "Reading the third branch as (3-x)/2 - the unique constant that normalises it - gives masses 1/4, 1/2, 1/4 which sum to 1.",
-    "Denominator: P(X>1) = 1 - 1/4 = 3/4.",
-    "Numerator: P(1.5 < X <= 2.5) = integral of 1/2 from 1.5 to 2 plus integral of (3-x)/2 from 2 to 2.5 = 0.25 + 0.1875 = 0.4375 = 7/16.",
-    "Therefore P(1.5 < X <= 2.5 | X > 1) = (7/16)/(3/4) = 7/12 = 0.5833.",
-    "7/12 does not equal 3/8, 1/2, 5/8 or 1/4, so no printed option is correct and the question is flagged as a source defect."
-  ]
-},
-"2018-Q4": {
-  "answer": 2, "confidence": "high", "type": "Numerical",
-  "shortcut": "All three urns hold 17 balls, so the denominators cancel. The posteriors are simply proportional to the white counts 7, 5, 17, whose total is 29. Answer: 7/29, 5/29, 17/29 - read straight off the counts.",
-  "tips": [
-    "Equal urn totals + equal prior selection probability = posterior proportional to the number of favourable balls. Look for this shortcut before writing Bayes' formula.",
-    "The three posteriors MUST sum to 1. Option (a) gives (7+6+18)/29 = 31/29 > 1 and option (b) gives 32/29 > 1 - both are eliminated by inspection in about five seconds.",
-    "Urn 3 has 17 white and 0 black, so P(white | urn 3) = 1; its posterior weight is the full 17.",
-    "The generic form is P(U_i | W) = P(U_i)P(W|U_i) / SUM_j P(U_j)P(W|U_j); the common prior 1/3 cancels top and bottom."
-  ],
-  "solution": [
-    "Each urn contains 17 balls: urn 1 has 7 white and 10 black, urn 2 has 5 white and 12 black, urn 3 has 17 white and 0 black.",
-    "Prior: P(urn i) = 1/3 for each i. Likelihoods: P(W|U1) = 7/17, P(W|U2) = 5/17, P(W|U3) = 17/17 = 1.",
-    "Total probability: P(W) = (1/3)(7/17 + 5/17 + 17/17) = (1/3)(29/17) = 29/51.",
-    "Bayes: P(U1|W) = (1/3)(7/17)/(29/51) = (7/51)(51/29) = 7/29.",
-    "Similarly P(U2|W) = 5/29 and P(U3|W) = 17/29. These sum to 29/29 = 1, confirming the arithmetic.",
-    "Hence option (c) is correct."
-  ]
-},
-"2018-Q5": {
-  "answer": 1, "confidence": "high", "type": "Conceptual",
-  "shortcut": "Both marginals are Uniform(-1,1) with density 1/2, so the product 1/4 does not equal (1+xy)/4 - statement 1 fails. But integrating the xy term over any symmetric rectangle kills it, so squares are independent - statement 2 holds. Answer: 2 only.",
-  "tips": [
-    "The 'copula-style' density (1 + xy)/4 on the square is a classic: dependent variables whose squares (and whose signs) behave independently.",
-    "Marginal shortcut: integrating (1+xy)/4 in y over (-1,1) kills the odd term xy, leaving 2/4 = 1/2. Any odd-in-y term always vanishes on a symmetric interval.",
-    "Cov(X,Y) here is NOT zero (E(XY) = 1/9), so this is not the usual 'uncorrelated but dependent' example - do not answer from pattern memory.",
-    "For 1-only / 2-only / both / neither items, test the CHEAPER statement first. Here statement 1 takes one line, so start there and use it to eliminate two options immediately."
-  ],
-  "solution": [
-    "Marginal of X: f_X(x) = integral over y in (-1,1) of (1+xy)/4 dy = (1/4)[y + xy^2/2] from -1 to 1 = (1/4)(2) = 1/2 for |x| < 1. By symmetry f_Y(y) = 1/2 for |y| < 1.",
-    "Statement 1: f_X(x) f_Y(y) = 1/4, but the joint density is (1+xy)/4. These differ whenever xy is not 0, so X and Y are NOT independent. Statement 1 is false.",
-    "Statement 2: take any 0 < a, b <= 1. P(X^2 <= a^2, Y^2 <= b^2) = P(|X| <= a, |Y| <= b) = double integral of (1+xy)/4 over [-a,a] x [-b,b].",
-    "The xy term is odd in x on a symmetric interval, so it integrates to 0; the remaining term gives (1/4)(2a)(2b) = ab.",
-    "Also P(X^2 <= a^2) = P(|X| <= a) = a and P(Y^2 <= b^2) = b. Since ab = a x b, the joint CDF of (X^2, Y^2) factorises, so X^2 and Y^2 ARE independent. Statement 2 is true.",
-    "Only statement 2 is correct, so option (b) is right."
-  ]
-},
-"2018-Q6": {
-  "answer": 1, "confidence": "high", "type": "Conceptual",
-  "shortcut": "A Pareto-type tail f(x) ~ 2/x^3 has E(X^k) finite only when k < 2. So k = 1 (mean) converges, k = 2 (second moment) diverges: mean exists, variance does not.",
-  "tips": [
-    "Tail rule to memorise: if f(x) behaves like c/x^(a+1) for large x, then E(X^k) exists exactly when k < a. Here a = 2, so only the first moment survives.",
-    "The integrand for the mean is 2/x^2, which converges; for E(X^2) it is 2/x, whose integral is log x and diverges. Reduce the power first, integrate second.",
-    "Distributions with heavy polynomial tails (Pareto, Cauchy, t with low d.f.) are the standard vehicle for 'which moments exist' questions - expect one every couple of papers.",
-    "Variance cannot exist while the mean fails to, so option (d) is logically impossible and can be struck out before any integration."
-  ],
-  "solution": [
-    "The density is f(x) = 2/x^3 for x >= 1 and 0 otherwise. Check: integral from 1 to infinity of 2x^(-3) dx = [-x^(-2)] from 1 to infinity = 1, so f is a valid density.",
-    "Mean: E(X) = integral from 1 to infinity of x (2/x^3) dx = integral of 2x^(-2) dx = [-2/x] from 1 to infinity = 0 - (-2) = 2. Finite, so the mean exists and equals 2.",
-    "Second moment: E(X^2) = integral from 1 to infinity of x^2 (2/x^3) dx = integral from 1 to infinity of 2/x dx = [2 log x] from 1 to infinity, which diverges.",
-    "Since E(X^2) is infinite, Var(X) = E(X^2) - [E(X)]^2 does not exist.",
-    "Mean exists but variance does not, so option (b) is correct."
-  ]
-},
-"2018-Q7": {
-  "answer": 3, "confidence": "high", "type": "Conceptual",
-  "shortcut": "Mode of Bin(n,p) = floor((n+1)p) = floor(14 x 0.3) = floor(4.2) = 4, not 3. Skewness sign = sign of (1-2p) = sign of 0.4 > 0, so positively skewed, not negatively. Both statements fail.",
-  "tips": [
-    "Mode formula: floor((n+1)p); if (n+1)p is an integer there are two modes, (n+1)p and (n+1)p - 1. Here 4.2 is not an integer, so the mode is unique at 4.",
-    "Binomial skewness = (1 - 2p)/sqrt(npq). Its sign depends only on p: p < 0.5 gives positive skew, p > 0.5 gives negative skew, p = 0.5 is symmetric. You never need to compute the value.",
-    "Common trap: using np = 3.9 and rounding to 3. The mean is 3.9 but the mode is 4 - mean and mode are not interchangeable for a skewed discrete law.",
-    "When both statements in a 1/2/both/neither item look 'nearly right', suspect (d). Examiners build these from two near-misses."
-  ],
-  "solution": [
-    "Here X ~ Binomial(n = 13, p = 0.3), so q = 0.7.",
-    "Statement 1 (mode): the mode is floor((n+1)p) = floor(14 x 0.3) = floor(4.2) = 4. Confirm by ratio: P(X=4)/P(X=3) = [(n-3)/4](p/q) = (10/4)(3/7) = 30/28 > 1, so P(X=4) > P(X=3) and 3 is not the mode. Statement 1 is FALSE.",
-    "Statement 2 (skewness): for the binomial, the coefficient of skewness is (1 - 2p)/sqrt(npq) = (1 - 0.6)/sqrt(13 x 0.3 x 0.7) = 0.4/sqrt(2.73) = +0.242.",
-    "The skewness is positive, so the distribution is positively skewed, not negatively skewed. Statement 2 is FALSE.",
-    "Neither statement is correct, so option (d) is right."
-  ]
-},
-"2018-Q8": {
-  "answer": 2, "confidence": "high", "type": "Conceptual",
-  "shortcut": "(X-4)/10 = Z ~ N(0,1), so Z^2 ~ chi-square(1) = Gamma(shape 1/2, scale 2). Halving a Gamma scales the scale parameter to 1, leaving Gamma with parameter 1/2 - option (c), not the chi-square in option (b).",
-  "tips": [
-    "The factor 1/2 is the whole question. Z^2 is chi-square(1); Z^2/2 is NOT, because chi-square has a fixed scale of 2. Read the coefficient before answering.",
-    "Standard identity: chi-square(v) = Gamma(shape v/2, scale 2). Dividing by 2 gives Gamma(shape v/2, scale 1), the 'Gamma with parameter v/2' of Indian textbook notation.",
-    "Variance 100 means sigma = 10, so the standardising divisor is 10 and not 100. Mis-standardising is the second trap here.",
-    "Option (b) is the answer to the question the examiner did NOT ask - it is correct for Y = Z^2. Distinguishing (b) from (c) is precisely the discrimination being tested."
-  ],
-  "solution": [
-    "X ~ N(4, 100) means mean 4 and variance 100, so the standard deviation is 10 and Z = (X - 4)/10 ~ N(0, 1).",
-    "The statistic is Y = (1/2) Z^2.",
-    "It is standard that Z^2 ~ chi-square with 1 degree of freedom, and chi-square(1) is the same as Gamma(shape 1/2, scale 2).",
-    "If W ~ Gamma(shape a, scale b) then cW ~ Gamma(shape a, scale cb). With c = 1/2 and b = 2, Y = Z^2/2 ~ Gamma(shape 1/2, scale 1).",
-    "Direct check: the density of Y is f(y) = y^(-1/2) e^(-y)/Gamma(1/2) for y > 0, which is exactly the standard Gamma density with parameter 1/2.",
-    "Hence Y follows a Gamma distribution with parameter 1/2, option (c)."
-  ]
-},
-"2018-Q9": {
-  "answer": 1, "confidence": "high", "type": "Theoretical",
-  "shortcut": "The Gamma-Beta connection: for independent G(a1,b) and G(a2,b) with the SAME scale, X/(X+Y) ~ Beta first kind (a1, a2), independent of the total X+Y. Read it straight off.",
-  "tips": [
-    "Both Gammas must share the same scale parameter beta for this to hold - that is why the question states it. If the scales differed the ratio would not be Beta.",
-    "Companion results worth memorising together: X + Y ~ G(a1 + a2, b); X/Y ~ Beta second kind (a1, a2); and X/(X+Y) is independent of X + Y.",
-    "Range check: X/(X+Y) lies in (0,1), which immediately rules out (a) G(a1+a2, b) and (d) G(a1,a2) since Gamma variables are unbounded above.",
-    "Option (c) U(0,1) is only the special case a1 = a2 = 1, so it is too narrow to be the general answer."
-  ],
-  "solution": [
-    "Let X ~ Gamma(a1, b) and Y ~ Gamma(a2, b) be independent, sharing the common scale parameter b.",
-    "Apply the transformation U = X/(X+Y), V = X + Y, so X = UV and Y = V(1-U). The Jacobian of the transformation is V.",
-    "The joint density becomes proportional to [ (uv)^(a1-1) (v(1-u))^(a2-1) e^(-v/b) ] v = [ u^(a1-1) (1-u)^(a2-1) ] [ v^(a1+a2-1) e^(-v/b) ].",
-    "This factorises into a function of u alone and a function of v alone, so U and V are independent.",
-    "The u-factor u^(a1-1)(1-u)^(a2-1) on (0,1) is exactly the Beta distribution of the first kind with parameters a1 and a2.",
-    "Hence X/(X+Y) ~ Beta first kind (a1, a2), option (b)."
-  ]
-},
-"2018-Q10": {
-  "answer": 3, "confidence": "high", "type": "Conceptual",
-  "shortcut": "For Exp(theta): mean = 1/theta, variance = 1/theta^2. Comparing 1/theta^2 with 1/theta reduces to comparing 1/theta with 1, i.e. comparing 1 with theta. So all three statements are just theta < 1, theta = 1, theta > 1 - all correct.",
-  "tips": [
-    "Var/mean = (1/theta^2)/(1/theta) = 1/theta. The whole item collapses to 'is 1/theta bigger, equal to, or smaller than 1?'.",
-    "Note that theta here is the RATE (the parameter in theta e^(-theta x)), not the mean. Mixing up rate and mean parameterisation inverts every inequality.",
-    "When three statements exhaustively cover theta < 1, theta = 1 and theta > 1 and each is internally consistent, (d) 'all of them' is the natural answer - check one and the pattern usually confirms.",
-    "For any distribution, comparing mean and variance is fastest via the ratio (the index of dispersion), not by subtracting."
-  ],
-  "solution": [
-    "For the exponential density f(x) = theta e^(-theta x), x > 0, the mean is E(X) = 1/theta and the variance is Var(X) = 1/theta^2.",
-    "Form the ratio Var(X)/E(X) = (1/theta^2)/(1/theta) = 1/theta.",
-    "Statement 1: variance > mean means 1/theta > 1, i.e. theta < 1. Combined with theta > 0 this is exactly 0 < theta < 1. TRUE.",
-    "Statement 2: variance = mean means 1/theta = 1, i.e. theta = 1 (both equal 1). TRUE.",
-    "Statement 3: variance < mean means 1/theta < 1, i.e. theta > 1. TRUE.",
-    "All three statements are correct, so option (d) is right."
-  ]
-},
-"2018-Q11": {
-  "answer": 2, "confidence": "high", "type": "Numerical",
-  "shortcut": "If the break point is U ~ Uniform(0, 2l), the shorter piece is min(U, 2l-U), which is Uniform(0, l). So mean = l/2 and variance = l^2/12 straight from the uniform formulas.",
-  "tips": [
-    "Key insight: the minimum of U and 2l - U for U uniform on (0,2l) is again uniform, on (0,l). Prove it once, then reuse it - this 'broken rod' set-up recurs constantly.",
-    "Uniform(0,a) has mean a/2 and variance a^2/12. With a = l that is l/2 and l^2/12 - no integration required.",
-    "The mean must be less than l (the shorter piece can never exceed half the rod), which kills options (b) and (d) immediately.",
-    "Variance l^2/3 in option (a) is the variance of Uniform(0, 2l) (namely 4l^2/12), the value you get if you forget to take the shorter piece."
-  ],
-  "solution": [
-    "Let the rod occupy the interval (0, 2l) and let U, the break point, be uniformly distributed on (0, 2l), so f_U(u) = 1/(2l).",
-    "The two pieces have lengths U and 2l - U. The shorter piece is S = min(U, 2l - U), which takes values in (0, l).",
-    "For 0 < s < l, P(S <= s) = P(U <= s) + P(U >= 2l - s) = s/(2l) + s/(2l) = s/l.",
-    "That is the CDF of a Uniform(0, l) variable, so S ~ U(0, l) with density 1/l on (0, l).",
-    "Hence E(S) = l/2 and Var(S) = l^2/12.",
-    "So the mean and variance are l/2 and l^2/12, option (c)."
-  ]
-},
-"2018-Q12": {
-  "answer": 0, "confidence": "high", "type": "Numerical",
-  "shortcut": "The joint CDF factorises into (1-e^(-x))(1-e^(-y)), so X and Y are i.i.d. Exp(1). For i.i.d. exponentials, |X - Y| is again Exp(1) by memorylessness, so P(|X-Y| <= 10) = 1 - e^(-10).",
-  "tips": [
-    "A factorised joint CDF is the fastest possible independence certificate - no integration, no marginals.",
-    "Memorise: for i.i.d. Exp(lambda), the absolute difference |X - Y| ~ Exp(lambda). This turns a two-dimensional integral into a one-line lookup.",
-    "Intuition for that fact: condition on which variable is smaller; by the lack-of-memory property the excess of the larger over the smaller is again Exp(lambda).",
-    "Option (b) is what you get if you forget to double the two symmetric regions X > Y and Y > X; option (c) mishandles the complement."
-  ],
-  "solution": [
-    "The joint CDF F(x,y) = (1 - e^(-x))(1 - e^(-y)) for x, y > 0 factorises as F_X(x) F_Y(y), so X and Y are independent, each Exponential with mean 1.",
-    "Let D = |X - Y|. For d > 0, P(D > d) = P(X - Y > d) + P(Y - X > d), and by symmetry this equals 2 P(X - Y > d).",
-    "P(X - Y > d) = integral over y from 0 to infinity of e^(-y) P(X > y + d) dy = integral of e^(-y) e^(-(y+d)) dy = e^(-d) integral of e^(-2y) dy = e^(-d)/2.",
-    "Therefore P(D > d) = 2 x e^(-d)/2 = e^(-d), i.e. |X - Y| ~ Exponential(1).",
-    "Putting d = 10 gives P(|X - Y| > 10) = e^(-10), so P(|X - Y| <= 10) = 1 - e^(-10).",
-    "Hence option (a) is correct."
-  ]
-},
-"2018-Q13": {
-  "answer": 0, "confidence": "high", "type": "Numerical",
-  "shortcut": "The density factorises: X ~ Exp(rate 1), Y ~ Exp(rate 2), independent. For independent exponentials, P(X < Y) = rate_X/(rate_X + rate_Y) = 1/(1+2) = 1/3.",
-  "tips": [
-    "Memorise the competing-risks formula P(X < Y) = lambda_X/(lambda_X + lambda_Y) for independent exponentials. It converts this whole question into one division.",
-    "Read the rates off the exponents, not off the constants: e^(-x) gives rate 1 and e^(-2y) gives rate 2; the leading 2 is only the normalising constant.",
-    "Sanity check: Y has the larger rate, so Y is stochastically smaller and X < Y should have probability less than 1/2. That alone eliminates (b) 1/2.",
-    "The same formula answers 'which component fails first' reliability questions, a recurring ISS theme."
-  ],
-  "solution": [
-    "The joint density f(x,y) = 2 e^(-x) e^(-2y) on x, y > 0 factorises into g(x) = e^(-x) and h(y) = 2 e^(-2y), so X ~ Exp(1) and Y ~ Exp(2) independently.",
-    "P(X < Y) = integral over y from 0 to infinity of f_Y(y) P(X < y) dy.",
-    "Now P(X < y) = 1 - e^(-y), so the integral is the integral from 0 to infinity of 2 e^(-2y) (1 - e^(-y)) dy.",
-    "= integral of 2e^(-2y) dy  -  integral of 2e^(-3y) dy = 1 - 2/3 = 1/3.",
-    "This agrees with the general rule P(X<Y) = lambda_X/(lambda_X + lambda_Y) = 1/(1+2) = 1/3.",
-    "Hence option (a) is correct."
-  ]
-},
-"2018-Q14": {
-  "answer": 2, "confidence": "high", "type": "Numerical",
-  "shortcut": "Expand first: E[3X(X+2Y)] = 3E(X^2) + 6E(XY). With f = (x+y)/3 on (0,1)x(0,2), E(X^2) = 7/18 and E(XY) = 2/3, so the value is 7/6 + 4 = 31/6.",
-  "tips": [
-    "Always expand the bracket by linearity before integrating. Integrating 3x(x + 2y) directly is the same work but far more error-prone.",
-    "Normalisation check takes five seconds here: the double integral of (x+y)/3 over the rectangle is (1/3)(1 + 2) = 1, so the density is valid and your set-up is right.",
-    "Integrate over y first (its range 0 to 2 is the wider one); the inner integral of (x + y) dy from 0 to 2 is 2x + 2, which is clean to carry forward.",
-    "The answer exceeds 4 because the 6E(XY) term alone contributes 4 - use that to eliminate any option below 4 at a glance."
-  ],
-  "solution": [
-    "The density is f(x,y) = (x + y)/3 on 0 < x < 1, 0 < y < 2. Check: integral over y of (x+y)/3 dy from 0 to 2 = (2x + 2)/3, and integrating that over x from 0 to 1 gives (1 + 2)/3 = 1. Valid density.",
-    "By linearity, E[3X(X + 2Y)] = 3 E(X^2) + 6 E(XY).",
-    "E(X^2) = integral from 0 to 1 of x^2 (2x + 2)/3 dx = (1/3) integral of (2x^3 + 2x^2) dx = (1/3)(1/2 + 2/3) = (1/3)(7/6) = 7/18.",
-    "E(XY) = (1/3) integral from 0 to 1 of x [ integral from 0 to 2 of y(x + y) dy ] dx. The inner integral is [xy^2/2 + y^3/3] from 0 to 2 = 2x + 8/3.",
-    "So E(XY) = (1/3) integral from 0 to 1 of (2x^2 + 8x/3) dx = (1/3)(2/3 + 4/3) = (1/3)(2) = 2/3.",
-    "Therefore E[3X(X+2Y)] = 3(7/18) + 6(2/3) = 7/6 + 4 = 7/6 + 24/6 = 31/6, option (c)."
-  ]
-},
-"2018-Q15": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "A single zero cell settles independence: P(X=0, Y=1) = 0 but P(X=0)P(Y=1) = (1/3)(1/3) is non-zero, so they are dependent. E(X) = 0 by symmetry and E(XY) = 1/6 - 1/6 - 1/6 + 1/6 = 0, so Cov = 0. Only statement 2 holds.",
-  "tips": [
-    "To DISPROVE independence, hunt for a zero entry whose marginal product is non-zero. It is a one-cell check and never requires the full table.",
-    "This is the textbook 'uncorrelated but dependent' table - the standard counterexample to 'zero covariance implies independence'.",
-    "Because X is symmetric about 0 with E(X) = 0, Cov(X,Y) = E(XY) alone; you can skip computing E(Y) entirely.",
-    "Marginals here are X: 1/3, 1/3, 1/3 and Y: 2/3, 0, 1/3. Compute marginals once and reuse them for both statements."
-  ],
-  "solution": [
-    "Row sums give the marginal of Y: P(Y=-1) = 1/6 + 1/3 + 1/6 = 2/3, P(Y=0) = 0, P(Y=1) = 1/6 + 0 + 1/6 = 1/3.",
-    "Column sums give the marginal of X: P(X=-1) = 1/6 + 0 + 1/6 = 1/3, P(X=0) = 1/3 + 0 + 0 = 1/3, P(X=1) = 1/6 + 0 + 1/6 = 1/3. The grand total is 1, so the table is consistent.",
-    "Statement 1: P(X = 0, Y = 1) = 0 from the table, but P(X=0) P(Y=1) = (1/3)(1/3) = 1/9, which is not 0. Hence X and Y are NOT independent; statement 1 is false.",
-    "Statement 2: E(X) = (-1)(1/3) + 0(1/3) + 1(1/3) = 0.",
-    "E(XY) = (-1)(-1)(1/6) + (1)(-1)(1/6) + (-1)(1)(1/6) + (1)(1)(1/6) = 1/6 - 1/6 - 1/6 + 1/6 = 0 (the X=0 column and the Y=0 row contribute nothing).",
-    "So Cov(X,Y) = E(XY) - E(X)E(Y) = 0 - 0 = 0; statement 2 is true. Only statement 2 holds, option (b)."
-  ]
-},
-"2018-Q16": {
-  "answer": 0, "confidence": "high", "type": "Conceptual",
-  "shortcut": "The density is the symmetric triangular law on (-1,1), so all odd moments vanish: Cov(X, X^2) = E(X^3) - E(X)E(X^2) = 0 - 0 = 0. But V = U^2 is a function of U, so they cannot be independent. Statement 1 only.",
-  "tips": [
-    "V = X^2 is a deterministic function of U = X. A non-degenerate variable is never independent of a non-constant function of itself - answer statement 2 without any computation.",
-    "Symmetry about 0 makes every odd moment zero. Spot the symmetry of f (it satisfies f(-x) = f(x)) and E(X) = E(X^3) = 0 follow instantly.",
-    "This is the mirror image of the previous item: there, zero covariance with dependence in a table; here, zero covariance with functional dependence. Both illustrate that Cov = 0 does not imply independence.",
-    "If you are ever tempted by 'both 1 and 2', remember that independence is strictly stronger than uncorrelatedness - never the other way round."
-  ],
-  "solution": [
-    "The density f(x) = 1 + x on (-1, 0] and 1 - x on (0, 1) is the symmetric triangular density; it satisfies f(-x) = f(x).",
-    "By symmetry every odd moment vanishes: E(X) = 0 and E(X^3) = 0.",
-    "Statement 1: Cov(U, V) = Cov(X, X^2) = E(X . X^2) - E(X) E(X^2) = E(X^3) - 0 . E(X^2) = 0 - 0 = 0. Statement 1 is TRUE.",
-    "Statement 2: V = X^2 is a (non-constant) deterministic function of U = X. For instance P(|U| < 1/2, V > 1/2) = 0 while both marginal probabilities are strictly positive, so the joint law does not factorise.",
-    "Hence U and V are dependent and statement 2 is FALSE.",
-    "Only statement 1 is correct, so option (a) is right."
-  ]
-},
-"2018-Q17": {
-  "answer": 2, "confidence": "high", "type": "Numerical",
-  "shortcut": "Z = 4X - 5Y is normal with mean 4(10) - 5(5) = 15 and variance 16(9) + 25(4) = 244. The normal MGF is exp(mt + s^2 t^2/2) = exp(15t + 122 t^2). Note the variance ADDS even though the coefficient is negative.",
-  "tips": [
-    "Var(aX - bY) = a^2 Var(X) + b^2 Var(Y) for independent X, Y - the minus sign disappears when squared. Options (b) and (d) with a negative t^2 coefficient are impossible for any MGF.",
-    "The MGF exponent carries sigma^2/2, not sigma^2. Here 244/2 = 122, which separates (c) from the 22 in option (a).",
-    "Option (a)'s 22 comes from 4(9) - 5(4) x ... i.e. from adding variances without squaring the coefficients - the single most common slip in this family.",
-    "A linear combination of independent normals is always normal, so you only ever need its mean and variance; never attempt a convolution integral."
-  ],
-  "solution": [
-    "X ~ N(10, 9) and Y ~ N(5, 4) are independent, so Z = 4X - 5Y is normally distributed.",
-    "Mean: E(Z) = 4 E(X) - 5 E(Y) = 4(10) - 5(5) = 40 - 25 = 15.",
-    "Variance: Var(Z) = 4^2 Var(X) + (-5)^2 Var(Y) = 16(9) + 25(4) = 144 + 100 = 244.",
-    "The MGF of a N(mu, sigma^2) variable is M(t) = exp(mu t + sigma^2 t^2 / 2).",
-    "Substituting mu = 15 and sigma^2 = 244 gives M_Z(t) = exp(15t + 244 t^2/2) = exp(15t + 122 t^2).",
-    "Hence option (c) is correct."
-  ]
-},
-"2018-Q18": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "Success = 'a 3 or a 4' has p = 2/6 = 1/3, so X is geometric on {1,2,3,...}. Its PGF is ps/(1 - qs) = (s/3)/(1 - 2s/3) = s/(3 - 2s).",
-  "tips": [
-    "Memorise the two geometric PGFs and keep them apart: counting TRIALS (support 1,2,3,...) gives ps/(1-qs); counting FAILURES (support 0,1,2,...) gives p/(1-qs).",
-    "Radius-of-convergence check: 1 - qs = 0 at s = 1/q = 3/2, which matches the stated |s| < 3/2. That single check confirms q = 2/3 and eliminates option (a), whose pole is at s = 3.",
-    "Every PGF must satisfy P(1) = 1. Testing s = 1: option (b) gives 1/(3-2) = 1 (valid); option (a) gives 2/2 = 1 as well, so use the pole test to separate them.",
-    "Options (c) and (d) are reciprocals of the first two and blow up at s = 0, so they are not PGFs at all - strike them immediately."
-  ],
-  "solution": [
-    "A 'success' is the appearance of a 3 or a 4, so p = 2/6 = 1/3 and q = 1 - p = 2/3.",
-    "X is the number of throws required for the first success, so X takes values 1, 2, 3, ... with P(X = k) = q^(k-1) p.",
-    "The probability generating function is P(s) = E(s^X) = sum over k >= 1 of q^(k-1) p s^k = ps sum over k >= 1 of (qs)^(k-1) = ps/(1 - qs), valid for |qs| < 1.",
-    "Substituting p = 1/3 and q = 2/3: P(s) = (s/3)/(1 - 2s/3).",
-    "Multiplying numerator and denominator by 3: P(s) = s/(3 - 2s).",
-    "The condition |qs| < 1 becomes |s| < 3/2, exactly as stated. Hence option (b) is correct."
-  ]
-},
-"2018-Q19": {
-  "answer": 2, "confidence": "high", "type": "Numerical",
-  "shortcut": "The interval 10 to 22 is centred at the mean 16 with half-width 6, and sigma = 3, so the half-width is exactly k = 2 standard deviations. Chebyshev gives at least 1 - 1/k^2 = 1 - 1/4 = 0.75.",
-  "tips": [
-    "Chebyshev's inequality: P(|X - mu| < k sigma) >= 1 - 1/k^2. The words 'at least' in the stem are the signal to use it rather than a normal table.",
-    "Always find k as (half-width)/sigma. Here (22 - 16)/3 = 2 and (16 - 10)/3 = 2 - the interval is symmetric, which is required for the standard form.",
-    "0.75 is the k = 2 bound and is worth memorising along with k = 3 giving 8/9 = 0.889 and k = 1.5 giving 5/9 = 0.556.",
-    "Do NOT use the normal 95% figure: option (d) 0.95 is the planted trap for candidates who assume normality where none is given."
-  ],
-  "solution": [
-    "Let X be next week's sales, with mu = E(X) = 16 and Var(X) = 9, so sigma = 3.",
-    "The event is 10 < X < 22, that is |X - 16| < 6.",
-    "Write the half-width as a multiple of sigma: 6 = k sigma = 3k, so k = 2.",
-    "Chebyshev's inequality states P(|X - mu| < k sigma) >= 1 - 1/k^2.",
-    "With k = 2 this gives P(10 < X < 22) >= 1 - 1/4 = 3/4 = 0.75.",
-    "Hence the probability is at least 0.75, option (c)."
-  ]
-},
-"2018-Q20": {
-  "answer": 0, "confidence": "high", "type": "Numerical",
-  "shortcut": "Substitute y = 2x/(1+2x), so 1 + 2x = 1/(1-y) and x = y/(2(1-y)). The density picks up x^3 (1+2x)^(-6) |dx/dy| ~ y^3 (1-y)^1, i.e. Beta(4, 2). So m = 4, n = 2.",
-  "tips": [
-    "Match exponents at the end: y^(m-1)(1-y)^(n-1) = y^3 (1-y)^1 gives m = 4 and n = 2 by inspection. Never integrate to identify a Beta.",
-    "The transformation y = 2x/(1+2x) is the standard Beta-second-kind to Beta-first-kind map; its inverse relation 1 - y = 1/(1+2x) is the piece that does all the work.",
-    "Check the parameter total: a density of the form x^(m-1)/(1+2x)^(m+n) transforms to Beta(m,n). Here the exponent 6 = m + n and the numerator power 3 = m - 1, giving m = 4, n = 2 in one line.",
-    "Do not forget the Jacobian dx/dy = 1/(2(1-y)^2) - omitting it changes n from 2 to 4 and lands you on a wrong option."
-  ],
-  "solution": [
-    "Let Y = 2X/(1 + 2X). Then 1 - Y = 1/(1 + 2X), so 1 + 2X = 1/(1 - Y) and X = Y/(2(1 - Y)), with Y in (0,1) as X ranges over (0, infinity).",
-    "Differentiating, dx/dy = 1/(2(1 - y)^2).",
-    "The density of X is f(x) = k x^3/(1 + 2x)^6. Substituting: x^3 = y^3/(8(1-y)^3) and (1 + 2x)^(-6) = (1 - y)^6.",
-    "So f(x) = k [y^3/(8(1-y)^3)] (1-y)^6 = (k/8) y^3 (1-y)^3.",
-    "The density of Y is g(y) = f(x) |dx/dy| = (k/8) y^3 (1-y)^3 . 1/(2(1-y)^2) = (k/16) y^3 (1 - y).",
-    "Comparing with the Beta first kind density proportional to y^(m-1)(1-y)^(n-1): m - 1 = 3 and n - 1 = 1, so m = 4 and n = 2, option (a)."
-  ]
-}
+  "2018-Q1": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "For independent events never expand inclusion-exclusion. Use P(none occurs) = product of the complements: (1/2)(3/4)(7/8)(15/16) = 315/1024, so the union is 1 - 315/1024 = 709/1024. Ten seconds.",
+    "tips": [
+      "Option (d) 315/1024 is the planted trap: it is P(no event occurs), i.e. the answer you get if you forget to subtract from 1.",
+      "Denominator check: 2x4x8x16 = 1024, so any correct answer must have 1024 (or a divisor of it) as denominator. That instantly kills (a) 15/16 unless it reduces, and it does not.",
+      "1023/1024 in option (b) equals 1 - 1/1024, the value you would get if all four probabilities were 1/2 each - another distractor built from a plausible slip.",
+      "Memorise: P(union of independent events) = 1 - PROD(1 - p_i). It is the single most reused one-line identity in this part of the paper."
+    ],
+    "solution": [
+      "The events A1, A2, A3, A4 are independent, therefore their complements A1', A2', A3', A4' are also independent.",
+      "P(A1') = 1 - 1/2 = 1/2;  P(A2') = 1 - 1/4 = 3/4;  P(A3') = 1 - 1/8 = 7/8;  P(A4') = 1 - 1/16 = 15/16.",
+      "P(no A_i occurs) = P(A1' n A2' n A3' n A4') = (1/2)(3/4)(7/8)(15/16) = (1x3x7x15)/(2x4x8x16) = 315/1024.",
+      "The union is the complement of that event: P(A1 u A2 u A3 u A4) = 1 - 315/1024 = (1024 - 315)/1024 = 709/1024.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2018-Q2": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Split the event: 'exactly 3 defectives among the first 8' AND 'the 9th is the 4th defective'. Hypergeometric x conditional = [C(4,3)C(11,5)/C(15,8)] x (1/7) = (56/195)(1/7) = 8/195.",
+    "tips": [
+      "Option (a) 56/195 is exactly the first factor alone - the trap for candidates who stop after the hypergeometric step and forget the 9th draw.",
+      "After 8 draws, 7 mobiles remain and exactly 1 of them is defective, so the conditional probability of a defective on draw 9 is 1/7 - no new combinatorics needed.",
+      "'The k-th item is the LAST defective' always factors as P(exactly d-1 defectives in the first k-1) x P(defective on draw k | that). Learn this two-step template.",
+      "Sanity bound: the answer must be small (well under 1/7), so (c) 1/7 and (d) 24/65 = 0.37 can be eliminated on size alone."
+    ],
+    "solution": [
+      "Let the lot have N = 15 mobiles of which D = 4 are defective. We need P(the 9th mobile examined is the 4th and last defective).",
+      "This requires exactly 3 defectives among the first 8 mobiles, and then a defective on the 9th draw.",
+      "P(exactly 3 defectives in the first 8) = C(4,3) C(11,5) / C(15,8) = (4)(462)/6435 = 1848/6435 = 56/195.",
+      "Given that, 15 - 8 = 7 mobiles remain and exactly 4 - 3 = 1 of them is defective, so P(9th is defective | above) = 1/7.",
+      "Multiplying: (56/195)(1/7) = 8/195.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2018-Q3": {
+    "answer": null,
+    "confidence": "source-defect",
+    "type": "Numerical",
+    "issue": "SOURCE DEFECT - stem and options are mutually inconsistent. As printed, the third branch (3-x)/3 on 2<x<=3 contributes 1/6, giving a total mass of 1/4 + 1/2 + 1/6 = 11/12, so the printed function is not a density. With the third branch normalised to the only value that makes f a density, (3-x)/2, the exact answer is P(1.5<X<=2.5 | X>1) = (7/16)/(3/4) = 7/12, which is NOT among the four printed options; taking the branch exactly as printed gives 9/16, which is also not among them. The source has therefore been preserved verbatim and this question is flagged and excluded from scoring rather than silently rewritten. No option has been invented.",
+    "shortcut": "AI-derived: with the density normalised, P(X>1) = 3/4 and P(1.5<X<=2.5) = 1/2 x 0.5 + area of the trapezium under (3-x)/2 from 2 to 2.5 = 0.25 + 0.1875 = 7/16, giving 7/12.",
+    "tips": [
+      "Always run the normalisation check FIRST on a piecewise density: integrate every branch and confirm the pieces sum to 1. Here they do not, which is the fastest way to spot the misprint.",
+      "For a linear branch, the integral is just the area of a trapezium: (average height) x (width). From 2 to 2.5 the heights are 0.5 and 0.25, so the area is 0.375 x 0.5 = 0.1875.",
+      "P(A|B) with B = {X>1}: the denominator is 1 minus the mass of the first branch, not 1 minus the value of the density.",
+      "In a real exam, a stem that fails the normalisation check and whose exact answer is absent from the options is a candidate for a UPSC key challenge - mark it and move on rather than forcing a fit."
+    ],
+    "solution": [
+      "Step 0 (integrity check): integral of x/2 over (0,1] = 1/4; integral of 1/2 over (1,2] = 1/2; integral of (3-x)/3 over (2,3] = (1/3)(1/2) = 1/6. Total = 11/12, not 1, so the function as printed is not a probability density.",
+      "Reading the third branch as (3-x)/2 - the unique constant that normalises it - gives masses 1/4, 1/2, 1/4 which sum to 1.",
+      "Denominator: P(X>1) = 1 - 1/4 = 3/4.",
+      "Numerator: P(1.5 < X <= 2.5) = integral of 1/2 from 1.5 to 2 plus integral of (3-x)/2 from 2 to 2.5 = 0.25 + 0.1875 = 0.4375 = 7/16.",
+      "Therefore P(1.5 < X <= 2.5 | X > 1) = (7/16)/(3/4) = 7/12 = 0.5833.",
+      "7/12 does not equal 3/8, 1/2, 5/8 or 1/4, so no printed option is correct and the question is flagged as a source defect."
+    ]
+  },
+  "2018-Q4": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "All three urns hold 17 balls, so the denominators cancel. The posteriors are simply proportional to the white counts 7, 5, 17, whose total is 29. Answer: 7/29, 5/29, 17/29 - read straight off the counts.",
+    "tips": [
+      "Equal urn totals + equal prior selection probability = posterior proportional to the number of favourable balls. Look for this shortcut before writing Bayes' formula.",
+      "The three posteriors MUST sum to 1. Option (a) gives (7+6+18)/29 = 31/29 > 1 and option (b) gives 32/29 > 1 - both are eliminated by inspection in about five seconds.",
+      "Urn 3 has 17 white and 0 black, so P(white | urn 3) = 1; its posterior weight is the full 17.",
+      "The generic form is P(U_i | W) = P(U_i)P(W|U_i) / SUM_j P(U_j)P(W|U_j); the common prior 1/3 cancels top and bottom."
+    ],
+    "solution": [
+      "Each urn contains 17 balls: urn 1 has 7 white and 10 black, urn 2 has 5 white and 12 black, urn 3 has 17 white and 0 black.",
+      "Prior: P(urn i) = 1/3 for each i. Likelihoods: P(W|U1) = 7/17, P(W|U2) = 5/17, P(W|U3) = 17/17 = 1.",
+      "Total probability: P(W) = (1/3)(7/17 + 5/17 + 17/17) = (1/3)(29/17) = 29/51.",
+      "Bayes: P(U1|W) = (1/3)(7/17)/(29/51) = (7/51)(51/29) = 7/29.",
+      "Similarly P(U2|W) = 5/29 and P(U3|W) = 17/29. These sum to 29/29 = 1, confirming the arithmetic.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2018-Q5": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "Both marginals are Uniform(-1,1) with density 1/2, so the product 1/4 does not equal (1+xy)/4 - statement 1 fails. But integrating the xy term over any symmetric rectangle kills it, so squares are independent - statement 2 holds. Answer: 2 only.",
+    "tips": [
+      "The 'copula-style' density (1 + xy)/4 on the square is a classic: dependent variables whose squares (and whose signs) behave independently.",
+      "Marginal shortcut: integrating (1+xy)/4 in y over (-1,1) kills the odd term xy, leaving 2/4 = 1/2. Any odd-in-y term always vanishes on a symmetric interval.",
+      "Cov(X,Y) here is NOT zero (E(XY) = 1/9), so this is not the usual 'uncorrelated but dependent' example - do not answer from pattern memory.",
+      "For 1-only / 2-only / both / neither items, test the CHEAPER statement first. Here statement 1 takes one line, so start there and use it to eliminate two options immediately."
+    ],
+    "solution": [
+      "Marginal of X: f_X(x) = integral over y in (-1,1) of (1+xy)/4 dy = (1/4)[y + xy^2/2] from -1 to 1 = (1/4)(2) = 1/2 for |x| < 1. By symmetry f_Y(y) = 1/2 for |y| < 1.",
+      "Statement 1: f_X(x) f_Y(y) = 1/4, but the joint density is (1+xy)/4. These differ whenever xy is not 0, so X and Y are NOT independent. Statement 1 is false.",
+      "Statement 2: take any 0 < a, b <= 1. P(X^2 <= a^2, Y^2 <= b^2) = P(|X| <= a, |Y| <= b) = double integral of (1+xy)/4 over [-a,a] x [-b,b].",
+      "The xy term is odd in x on a symmetric interval, so it integrates to 0; the remaining term gives (1/4)(2a)(2b) = ab.",
+      "Also P(X^2 <= a^2) = P(|X| <= a) = a and P(Y^2 <= b^2) = b. Since ab = a x b, the joint CDF of (X^2, Y^2) factorises, so X^2 and Y^2 ARE independent. Statement 2 is true.",
+      "Only statement 2 is correct, so option (b) is right."
+    ]
+  },
+  "2018-Q6": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "A Pareto-type tail f(x) ~ 2/x^3 has E(X^k) finite only when k < 2. So k = 1 (mean) converges, k = 2 (second moment) diverges: mean exists, variance does not.",
+    "tips": [
+      "Tail rule to memorise: if f(x) behaves like c/x^(a+1) for large x, then E(X^k) exists exactly when k < a. Here a = 2, so only the first moment survives.",
+      "The integrand for the mean is 2/x^2, which converges; for E(X^2) it is 2/x, whose integral is log x and diverges. Reduce the power first, integrate second.",
+      "Distributions with heavy polynomial tails (Pareto, Cauchy, t with low d.f.) are the standard vehicle for 'which moments exist' questions - expect one every couple of papers.",
+      "Variance cannot exist while the mean fails to, so option (d) is logically impossible and can be struck out before any integration."
+    ],
+    "solution": [
+      "The density is f(x) = 2/x^3 for x >= 1 and 0 otherwise. Check: integral from 1 to infinity of 2x^(-3) dx = [-x^(-2)] from 1 to infinity = 1, so f is a valid density.",
+      "Mean: E(X) = integral from 1 to infinity of x (2/x^3) dx = integral of 2x^(-2) dx = [-2/x] from 1 to infinity = 0 - (-2) = 2. Finite, so the mean exists and equals 2.",
+      "Second moment: E(X^2) = integral from 1 to infinity of x^2 (2/x^3) dx = integral from 1 to infinity of 2/x dx = [2 log x] from 1 to infinity, which diverges.",
+      "Since E(X^2) is infinite, Var(X) = E(X^2) - [E(X)]^2 does not exist.",
+      "Mean exists but variance does not, so option (b) is correct."
+    ]
+  },
+  "2018-Q7": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "Mode of Bin(n,p) = floor((n+1)p) = floor(14 x 0.3) = floor(4.2) = 4, not 3. Skewness sign = sign of (1-2p) = sign of 0.4 > 0, so positively skewed, not negatively. Both statements fail.",
+    "tips": [
+      "Mode formula: floor((n+1)p); if (n+1)p is an integer there are two modes, (n+1)p and (n+1)p - 1. Here 4.2 is not an integer, so the mode is unique at 4.",
+      "Binomial skewness = (1 - 2p)/sqrt(npq). Its sign depends only on p: p < 0.5 gives positive skew, p > 0.5 gives negative skew, p = 0.5 is symmetric. You never need to compute the value.",
+      "Common trap: using np = 3.9 and rounding to 3. The mean is 3.9 but the mode is 4 - mean and mode are not interchangeable for a skewed discrete law.",
+      "When both statements in a 1/2/both/neither item look 'nearly right', suspect (d). Examiners build these from two near-misses."
+    ],
+    "solution": [
+      "Here X ~ Binomial(n = 13, p = 0.3), so q = 0.7.",
+      "Statement 1 (mode): the mode is floor((n+1)p) = floor(14 x 0.3) = floor(4.2) = 4. Confirm by ratio: P(X=4)/P(X=3) = [(n-3)/4](p/q) = (10/4)(3/7) = 30/28 > 1, so P(X=4) > P(X=3) and 3 is not the mode. Statement 1 is FALSE.",
+      "Statement 2 (skewness): for the binomial, the coefficient of skewness is (1 - 2p)/sqrt(npq) = (1 - 0.6)/sqrt(13 x 0.3 x 0.7) = 0.4/sqrt(2.73) = +0.242.",
+      "The skewness is positive, so the distribution is positively skewed, not negatively skewed. Statement 2 is FALSE.",
+      "Neither statement is correct, so option (d) is right."
+    ]
+  },
+  "2018-Q8": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "(X-4)/10 = Z ~ N(0,1), so Z^2 ~ chi-square(1) = Gamma(shape 1/2, scale 2). Halving a Gamma scales the scale parameter to 1, leaving Gamma with parameter 1/2 - option (c), not the chi-square in option (b).",
+    "tips": [
+      "The factor 1/2 is the whole question. Z^2 is chi-square(1); Z^2/2 is NOT, because chi-square has a fixed scale of 2. Read the coefficient before answering.",
+      "Standard identity: chi-square(v) = Gamma(shape v/2, scale 2). Dividing by 2 gives Gamma(shape v/2, scale 1), the 'Gamma with parameter v/2' of Indian textbook notation.",
+      "Variance 100 means sigma = 10, so the standardising divisor is 10 and not 100. Mis-standardising is the second trap here.",
+      "Option (b) is the answer to the question the examiner did NOT ask - it is correct for Y = Z^2. Distinguishing (b) from (c) is precisely the discrimination being tested."
+    ],
+    "solution": [
+      "X ~ N(4, 100) means mean 4 and variance 100, so the standard deviation is 10 and Z = (X - 4)/10 ~ N(0, 1).",
+      "The statistic is Y = (1/2) Z^2.",
+      "It is standard that Z^2 ~ chi-square with 1 degree of freedom, and chi-square(1) is the same as Gamma(shape 1/2, scale 2).",
+      "If W ~ Gamma(shape a, scale b) then cW ~ Gamma(shape a, scale cb). With c = 1/2 and b = 2, Y = Z^2/2 ~ Gamma(shape 1/2, scale 1).",
+      "Direct check: the density of Y is f(y) = y^(-1/2) e^(-y)/Gamma(1/2) for y > 0, which is exactly the standard Gamma density with parameter 1/2.",
+      "Hence Y follows a Gamma distribution with parameter 1/2, option (c)."
+    ]
+  },
+  "2018-Q9": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "The Gamma-Beta connection: for independent G(a1,b) and G(a2,b) with the SAME scale, X/(X+Y) ~ Beta first kind (a1, a2), independent of the total X+Y. Read it straight off.",
+    "tips": [
+      "Both Gammas must share the same scale parameter beta for this to hold - that is why the question states it. If the scales differed the ratio would not be Beta.",
+      "Companion results worth memorising together: X + Y ~ G(a1 + a2, b); X/Y ~ Beta second kind (a1, a2); and X/(X+Y) is independent of X + Y.",
+      "Range check: X/(X+Y) lies in (0,1), which immediately rules out (a) G(a1+a2, b) and (d) G(a1,a2) since Gamma variables are unbounded above.",
+      "Option (c) U(0,1) is only the special case a1 = a2 = 1, so it is too narrow to be the general answer."
+    ],
+    "solution": [
+      "Let X ~ Gamma(a1, b) and Y ~ Gamma(a2, b) be independent, sharing the common scale parameter b.",
+      "Apply the transformation U = X/(X+Y), V = X + Y, so X = UV and Y = V(1-U). The Jacobian of the transformation is V.",
+      "The joint density becomes proportional to [ (uv)^(a1-1) (v(1-u))^(a2-1) e^(-v/b) ] v = [ u^(a1-1) (1-u)^(a2-1) ] [ v^(a1+a2-1) e^(-v/b) ].",
+      "This factorises into a function of u alone and a function of v alone, so U and V are independent.",
+      "The u-factor u^(a1-1)(1-u)^(a2-1) on (0,1) is exactly the Beta distribution of the first kind with parameters a1 and a2.",
+      "Hence X/(X+Y) ~ Beta first kind (a1, a2), option (b)."
+    ]
+  },
+  "2018-Q10": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "For Exp(theta): mean = 1/theta, variance = 1/theta^2. Comparing 1/theta^2 with 1/theta reduces to comparing 1/theta with 1, i.e. comparing 1 with theta. So all three statements are just theta < 1, theta = 1, theta > 1 - all correct.",
+    "tips": [
+      "Var/mean = (1/theta^2)/(1/theta) = 1/theta. The whole item collapses to 'is 1/theta bigger, equal to, or smaller than 1?'.",
+      "Note that theta here is the RATE (the parameter in theta e^(-theta x)), not the mean. Mixing up rate and mean parameterisation inverts every inequality.",
+      "When three statements exhaustively cover theta < 1, theta = 1 and theta > 1 and each is internally consistent, (d) 'all of them' is the natural answer - check one and the pattern usually confirms.",
+      "For any distribution, comparing mean and variance is fastest via the ratio (the index of dispersion), not by subtracting."
+    ],
+    "solution": [
+      "For the exponential density f(x) = theta e^(-theta x), x > 0, the mean is E(X) = 1/theta and the variance is Var(X) = 1/theta^2.",
+      "Form the ratio Var(X)/E(X) = (1/theta^2)/(1/theta) = 1/theta.",
+      "Statement 1: variance > mean means 1/theta > 1, i.e. theta < 1. Combined with theta > 0 this is exactly 0 < theta < 1. TRUE.",
+      "Statement 2: variance = mean means 1/theta = 1, i.e. theta = 1 (both equal 1). TRUE.",
+      "Statement 3: variance < mean means 1/theta < 1, i.e. theta > 1. TRUE.",
+      "All three statements are correct, so option (d) is right."
+    ]
+  },
+  "2018-Q11": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "If the break point is U ~ Uniform(0, 2l), the shorter piece is min(U, 2l-U), which is Uniform(0, l). So mean = l/2 and variance = l^2/12 straight from the uniform formulas.",
+    "tips": [
+      "Key insight: the minimum of U and 2l - U for U uniform on (0,2l) is again uniform, on (0,l). Prove it once, then reuse it - this 'broken rod' set-up recurs constantly.",
+      "Uniform(0,a) has mean a/2 and variance a^2/12. With a = l that is l/2 and l^2/12 - no integration required.",
+      "The mean must be less than l (the shorter piece can never exceed half the rod), which kills options (b) and (d) immediately.",
+      "Variance l^2/3 in option (a) is the variance of Uniform(0, 2l) (namely 4l^2/12), the value you get if you forget to take the shorter piece."
+    ],
+    "solution": [
+      "Let the rod occupy the interval (0, 2l) and let U, the break point, be uniformly distributed on (0, 2l), so f_U(u) = 1/(2l).",
+      "The two pieces have lengths U and 2l - U. The shorter piece is S = min(U, 2l - U), which takes values in (0, l).",
+      "For 0 < s < l, P(S <= s) = P(U <= s) + P(U >= 2l - s) = s/(2l) + s/(2l) = s/l.",
+      "That is the CDF of a Uniform(0, l) variable, so S ~ U(0, l) with density 1/l on (0, l).",
+      "Hence E(S) = l/2 and Var(S) = l^2/12.",
+      "So the mean and variance are l/2 and l^2/12, option (c)."
+    ]
+  },
+  "2018-Q12": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "The joint CDF factorises into (1-e^(-x))(1-e^(-y)), so X and Y are i.i.d. Exp(1). For i.i.d. exponentials, |X - Y| is again Exp(1) by memorylessness, so P(|X-Y| <= 10) = 1 - e^(-10).",
+    "tips": [
+      "A factorised joint CDF is the fastest possible independence certificate - no integration, no marginals.",
+      "Memorise: for i.i.d. Exp(lambda), the absolute difference |X - Y| ~ Exp(lambda). This turns a two-dimensional integral into a one-line lookup.",
+      "Intuition for that fact: condition on which variable is smaller; by the lack-of-memory property the excess of the larger over the smaller is again Exp(lambda).",
+      "Option (b) is what you get if you forget to double the two symmetric regions X > Y and Y > X; option (c) mishandles the complement."
+    ],
+    "solution": [
+      "The joint CDF F(x,y) = (1 - e^(-x))(1 - e^(-y)) for x, y > 0 factorises as F_X(x) F_Y(y), so X and Y are independent, each Exponential with mean 1.",
+      "Let D = |X - Y|. For d > 0, P(D > d) = P(X - Y > d) + P(Y - X > d), and by symmetry this equals 2 P(X - Y > d).",
+      "P(X - Y > d) = integral over y from 0 to infinity of e^(-y) P(X > y + d) dy = integral of e^(-y) e^(-(y+d)) dy = e^(-d) integral of e^(-2y) dy = e^(-d)/2.",
+      "Therefore P(D > d) = 2 x e^(-d)/2 = e^(-d), i.e. |X - Y| ~ Exponential(1).",
+      "Putting d = 10 gives P(|X - Y| > 10) = e^(-10), so P(|X - Y| <= 10) = 1 - e^(-10).",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2018-Q13": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "The density factorises: X ~ Exp(rate 1), Y ~ Exp(rate 2), independent. For independent exponentials, P(X < Y) = rate_X/(rate_X + rate_Y) = 1/(1+2) = 1/3.",
+    "tips": [
+      "Memorise the competing-risks formula P(X < Y) = lambda_X/(lambda_X + lambda_Y) for independent exponentials. It converts this whole question into one division.",
+      "Read the rates off the exponents, not off the constants: e^(-x) gives rate 1 and e^(-2y) gives rate 2; the leading 2 is only the normalising constant.",
+      "Sanity check: Y has the larger rate, so Y is stochastically smaller and X < Y should have probability less than 1/2. That alone eliminates (b) 1/2.",
+      "The same formula answers 'which component fails first' reliability questions, a recurring ISS theme."
+    ],
+    "solution": [
+      "The joint density f(x,y) = 2 e^(-x) e^(-2y) on x, y > 0 factorises into g(x) = e^(-x) and h(y) = 2 e^(-2y), so X ~ Exp(1) and Y ~ Exp(2) independently.",
+      "P(X < Y) = integral over y from 0 to infinity of f_Y(y) P(X < y) dy.",
+      "Now P(X < y) = 1 - e^(-y), so the integral is the integral from 0 to infinity of 2 e^(-2y) (1 - e^(-y)) dy = integral of 2e^(-2y) dy  -  integral of 2e^(-3y) dy = 1 - 2/3 = 1/3.",
+      "This agrees with the general rule P(X<Y) = lambda_X/(lambda_X + lambda_Y) = 1/(1+2) = 1/3.",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2018-Q14": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Expand first: E[3X(X+2Y)] = 3E(X^2) + 6E(XY). With f = (x+y)/3 on (0,1)x(0,2), E(X^2) = 7/18 and E(XY) = 2/3, so the value is 7/6 + 4 = 31/6.",
+    "tips": [
+      "Always expand the bracket by linearity before integrating. Integrating 3x(x + 2y) directly is the same work but far more error-prone.",
+      "Normalisation check takes five seconds here: the double integral of (x+y)/3 over the rectangle is (1/3)(1 + 2) = 1, so the density is valid and your set-up is right.",
+      "Integrate over y first (its range 0 to 2 is the wider one); the inner integral of (x + y) dy from 0 to 2 is 2x + 2, which is clean to carry forward.",
+      "The answer exceeds 4 because the 6E(XY) term alone contributes 4 - use that to eliminate any option below 4 at a glance."
+    ],
+    "solution": [
+      "The density is f(x,y) = (x + y)/3 on 0 < x < 1, 0 < y < 2. Check: integral over y of (x+y)/3 dy from 0 to 2 = (2x + 2)/3, and integrating that over x from 0 to 1 gives (1 + 2)/3 = 1. Valid density.",
+      "By linearity, E[3X(X + 2Y)] = 3 E(X^2) + 6 E(XY).",
+      "E(X^2) = integral from 0 to 1 of x^2 (2x + 2)/3 dx = (1/3) integral of (2x^3 + 2x^2) dx = (1/3)(1/2 + 2/3) = (1/3)(7/6) = 7/18.",
+      "E(XY) = (1/3) integral from 0 to 1 of x [ integral from 0 to 2 of y(x + y) dy ] dx. The inner integral is [xy^2/2 + y^3/3] from 0 to 2 = 2x + 8/3.",
+      "So E(XY) = (1/3) integral from 0 to 1 of (2x^2 + 8x/3) dx = (1/3)(2/3 + 4/3) = (1/3)(2) = 2/3.",
+      "Therefore E[3X(X+2Y)] = 3(7/18) + 6(2/3) = 7/6 + 4 = 7/6 + 24/6 = 31/6, option (c)."
+    ]
+  },
+  "2018-Q15": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "A single zero cell settles independence: P(X=0, Y=1) = 0 but P(X=0)P(Y=1) = (1/3)(1/3) is non-zero, so they are dependent. E(X) = 0 by symmetry and E(XY) = 1/6 - 1/6 - 1/6 + 1/6 = 0, so Cov = 0. Only statement 2 holds.",
+    "tips": [
+      "To DISPROVE independence, hunt for a zero entry whose marginal product is non-zero. It is a one-cell check and never requires the full table.",
+      "This is the textbook 'uncorrelated but dependent' table - the standard counterexample to 'zero covariance implies independence'.",
+      "Because X is symmetric about 0 with E(X) = 0, Cov(X,Y) = E(XY) alone; you can skip computing E(Y) entirely.",
+      "Marginals here are X: 1/3, 1/3, 1/3 and Y: 2/3, 0, 1/3. Compute marginals once and reuse them for both statements."
+    ],
+    "solution": [
+      "Row sums give the marginal of Y: P(Y=-1) = 1/6 + 1/3 + 1/6 = 2/3, P(Y=0) = 0, P(Y=1) = 1/6 + 0 + 1/6 = 1/3.",
+      "Column sums give the marginal of X: P(X=-1) = 1/6 + 0 + 1/6 = 1/3, P(X=0) = 1/3 + 0 + 0 = 1/3, P(X=1) = 1/6 + 0 + 1/6 = 1/3. The grand total is 1, so the table is consistent.",
+      "Statement 1: P(X = 0, Y = 1) = 0 from the table, but P(X=0) P(Y=1) = (1/3)(1/3) = 1/9, which is not 0. Hence X and Y are NOT independent; statement 1 is false.",
+      "Statement 2: E(X) = (-1)(1/3) + 0(1/3) + 1(1/3) = 0.",
+      "E(XY) = (-1)(-1)(1/6) + (1)(-1)(1/6) + (-1)(1)(1/6) + (1)(1)(1/6) = 1/6 - 1/6 - 1/6 + 1/6 = 0 (the X=0 column and the Y=0 row contribute nothing).",
+      "So Cov(X,Y) = E(XY) - E(X)E(Y) = 0 - 0 = 0; statement 2 is true. Only statement 2 holds, option (b)."
+    ]
+  },
+  "2018-Q16": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "The density is the symmetric triangular law on (-1,1), so all odd moments vanish: Cov(X, X^2) = E(X^3) - E(X)E(X^2) = 0 - 0 = 0. But V = U^2 is a function of U, so they cannot be independent. Statement 1 only.",
+    "tips": [
+      "V = X^2 is a deterministic function of U = X. A non-degenerate variable is never independent of a non-constant function of itself - answer statement 2 without any computation.",
+      "Symmetry about 0 makes every odd moment zero. Spot the symmetry of f (it satisfies f(-x) = f(x)) and E(X) = E(X^3) = 0 follow instantly.",
+      "This is the mirror image of the previous item: there, zero covariance with dependence in a table; here, zero covariance with functional dependence. Both illustrate that Cov = 0 does not imply independence.",
+      "If you are ever tempted by 'both 1 and 2', remember that independence is strictly stronger than uncorrelatedness - never the other way round."
+    ],
+    "solution": [
+      "The density f(x) = 1 + x on (-1, 0] and 1 - x on (0, 1) is the symmetric triangular density; it satisfies f(-x) = f(x).",
+      "By symmetry every odd moment vanishes: E(X) = 0 and E(X^3) = 0.",
+      "Statement 1: Cov(U, V) = Cov(X, X^2) = E(X . X^2) - E(X) E(X^2) = E(X^3) - 0 . E(X^2) = 0 - 0 = 0. Statement 1 is TRUE.",
+      "Statement 2: V = X^2 is a (non-constant) deterministic function of U = X. For instance P(|U| < 1/2, V > 1/2) = 0 while both marginal probabilities are strictly positive, so the joint law does not factorise.",
+      "Hence U and V are dependent and statement 2 is FALSE.",
+      "Only statement 1 is correct, so option (a) is right."
+    ]
+  },
+  "2018-Q17": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Z = 4X - 5Y is normal with mean 4(10) - 5(5) = 15 and variance 16(9) + 25(4) = 244. The normal MGF is exp(mt + s^2 t^2/2) = exp(15t + 122 t^2). Note the variance ADDS even though the coefficient is negative.",
+    "tips": [
+      "Var(aX - bY) = a^2 Var(X) + b^2 Var(Y) for independent X, Y - the minus sign disappears when squared. Options (b) and (d) with a negative t^2 coefficient are impossible for any MGF.",
+      "The MGF exponent carries sigma^2/2, not sigma^2. Here 244/2 = 122, which separates (c) from the 22 in option (a).",
+      "Option (a)'s 22 comes from 4(9) - 5(4) x ... i.e. from adding variances without squaring the coefficients - the single most common slip in this family.",
+      "A linear combination of independent normals is always normal, so you only ever need its mean and variance; never attempt a convolution integral."
+    ],
+    "solution": [
+      "X ~ N(10, 9) and Y ~ N(5, 4) are independent, so Z = 4X - 5Y is normally distributed.",
+      "Mean: E(Z) = 4 E(X) - 5 E(Y) = 4(10) - 5(5) = 40 - 25 = 15.",
+      "Variance: Var(Z) = 4^2 Var(X) + (-5)^2 Var(Y) = 16(9) + 25(4) = 144 + 100 = 244.",
+      "The MGF of a N(mu, sigma^2) variable is M(t) = exp(mu t + sigma^2 t^2 / 2).",
+      "Substituting mu = 15 and sigma^2 = 244 gives M_Z(t) = exp(15t + 244 t^2/2) = exp(15t + 122 t^2).",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2018-Q18": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Success = 'a 3 or a 4' has p = 2/6 = 1/3, so X is geometric on {1,2,3,...}. Its PGF is ps/(1 - qs) = (s/3)/(1 - 2s/3) = s/(3 - 2s).",
+    "tips": [
+      "Memorise the two geometric PGFs and keep them apart: counting TRIALS (support 1,2,3,...) gives ps/(1-qs); counting FAILURES (support 0,1,2,...) gives p/(1-qs).",
+      "Radius-of-convergence check: 1 - qs = 0 at s = 1/q = 3/2, which matches the stated |s| < 3/2. That single check confirms q = 2/3 and eliminates option (a), whose pole is at s = 3.",
+      "Every PGF must satisfy P(1) = 1. Testing s = 1: option (b) gives 1/(3-2) = 1 (valid); option (a) gives 2/2 = 1 as well, so use the pole test to separate them.",
+      "Options (c) and (d) are reciprocals of the first two and blow up at s = 0, so they are not PGFs at all - strike them immediately."
+    ],
+    "solution": [
+      "A 'success' is the appearance of a 3 or a 4, so p = 2/6 = 1/3 and q = 1 - p = 2/3.",
+      "X is the number of throws required for the first success, so X takes values 1, 2, 3, ... with P(X = k) = q^(k-1) p.",
+      "The probability generating function is P(s) = E(s^X) = sum over k >= 1 of q^(k-1) p s^k = ps sum over k >= 1 of (qs)^(k-1) = ps/(1 - qs), valid for |qs| < 1.",
+      "Substituting p = 1/3 and q = 2/3: P(s) = (s/3)/(1 - 2s/3).",
+      "Multiplying numerator and denominator by 3: P(s) = s/(3 - 2s).",
+      "The condition |qs| < 1 becomes |s| < 3/2, exactly as stated. Hence option (b) is correct."
+    ]
+  },
+  "2018-Q19": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "The interval 10 to 22 is centred at the mean 16 with half-width 6, and sigma = 3, so the half-width is exactly k = 2 standard deviations. Chebyshev gives at least 1 - 1/k^2 = 1 - 1/4 = 0.75.",
+    "tips": [
+      "Chebyshev's inequality: P(|X - mu| < k sigma) >= 1 - 1/k^2. The words 'at least' in the stem are the signal to use it rather than a normal table.",
+      "Always find k as (half-width)/sigma. Here (22 - 16)/3 = 2 and (16 - 10)/3 = 2 - the interval is symmetric, which is required for the standard form.",
+      "0.75 is the k = 2 bound and is worth memorising along with k = 3 giving 8/9 = 0.889 and k = 1.5 giving 5/9 = 0.556.",
+      "Do NOT use the normal 95% figure: option (d) 0.95 is the planted trap for candidates who assume normality where none is given."
+    ],
+    "solution": [
+      "Let X be next week's sales, with mu = E(X) = 16 and Var(X) = 9, so sigma = 3.",
+      "The event is 10 < X < 22, that is |X - 16| < 6.",
+      "Write the half-width as a multiple of sigma: 6 = k sigma = 3k, so k = 2.",
+      "Chebyshev's inequality states P(|X - mu| < k sigma) >= 1 - 1/k^2.",
+      "With k = 2 this gives P(10 < X < 22) >= 1 - 1/4 = 3/4 = 0.75.",
+      "Hence the probability is at least 0.75, option (c)."
+    ]
+  },
+  "2018-Q20": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Substitute y = 2x/(1+2x), so 1 + 2x = 1/(1-y) and x = y/(2(1-y)). The density picks up x^3 (1+2x)^(-6) |dx/dy| ~ y^3 (1-y)^1, i.e. Beta(4, 2). So m = 4, n = 2.",
+    "tips": [
+      "Match exponents at the end: y^(m-1)(1-y)^(n-1) = y^3 (1-y)^1 gives m = 4 and n = 2 by inspection. Never integrate to identify a Beta.",
+      "The transformation y = 2x/(1+2x) is the standard Beta-second-kind to Beta-first-kind map; its inverse relation 1 - y = 1/(1+2x) is the piece that does all the work.",
+      "Check the parameter total: a density of the form x^(m-1)/(1+2x)^(m+n) transforms to Beta(m,n). Here the exponent 6 = m + n and the numerator power 3 = m - 1, giving m = 4, n = 2 in one line.",
+      "Do not forget the Jacobian dx/dy = 1/(2(1-y)^2) - omitting it changes n from 2 to 4 and lands you on a wrong option."
+    ],
+    "solution": [
+      "Let Y = 2X/(1 + 2X). Then 1 - Y = 1/(1 + 2X), so 1 + 2X = 1/(1 - Y) and X = Y/(2(1 - Y)), with Y in (0,1) as X ranges over (0, infinity).",
+      "Differentiating, dx/dy = 1/(2(1 - y)^2).",
+      "The density of X is f(x) = k x^3/(1 + 2x)^6. Substituting: x^3 = y^3/(8(1-y)^3) and (1 + 2x)^(-6) = (1 - y)^6.",
+      "So f(x) = k [y^3/(8(1-y)^3)] (1-y)^6 = (k/8) y^3 (1-y)^3.",
+      "The density of Y is g(y) = f(x) |dx/dy| = (k/8) y^3 (1-y)^3 . 1/(2(1-y)^2) = (k/16) y^3 (1 - y).",
+      "Comparing with the Beta first kind density proportional to y^(m-1)(1-y)^(n-1): m - 1 = 3 and n - 1 = 1, so m = 4 and n = 2, option (a)."
+    ]
+  }
 }

@@ -1,0 +1,418 @@
+{
+  "2026-Q41": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Delta log f = log f(x+h) - log f(x) = log[f(x+h)/f(x)], and f(x+h) = f(x) + Delta f(x), so the ratio is 1 + Delta f(x)/f(x). Answer (c).",
+    "tips": [
+      "Turn a difference of logarithms into the logarithm of a ratio - that single step solves the whole item.",
+      "Use E f(x) = f(x) + Delta f(x) to convert the shifted value into something expressed through Delta.",
+      "Options (a) and (d) are dimensionally wrong: E f(x)/f(x) is already the full ratio f(x+h)/f(x), so adding 1 to it double-counts.",
+      "Sign check with a growing f: Delta f > 0 forces Delta log f > 0, which rules out the minus sign in options (b) and (d)."
+    ],
+    "solution": [
+      "By definition, Delta[log f(x)] = log f(x + h) - log f(x).",
+      "Combining the logarithms: Delta[log f(x)] = log[f(x + h)/f(x)].",
+      "Since Delta f(x) = f(x + h) - f(x), we have f(x + h) = f(x) + Delta f(x).",
+      "Therefore f(x + h)/f(x) = 1 + Delta f(x)/f(x).",
+      "Hence Delta[log f(x)] = log[1 + Delta f(x)/f(x)].",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q42": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Build the difference table: f = 1, 0, 1, 10 gives Delta = -1, 1, 9; Delta^2 = 2, 8; Delta^3 = 6. For a cubic Delta^3 stays 6, so extend: Delta^2 = 14, Delta = 23, f(4) = 10 + 23 = 33.",
+    "tips": [
+      "For a polynomial of degree 3 the third differences are constant - that constant is the engine that extends the table.",
+      "Extend the table from the bottom-right upwards: new Delta^3 = 6, then add up each column in turn.",
+      "Check: Delta^3 = 6 = 3! * a_3, so the leading coefficient is 1, i.e. f(x) = x^3 - 3x^2 + x + 1. Then f(4) = 64 - 48 + 4 + 1 = 33 - a clean independent verification.",
+      "Do not use Newton's forward formula with a fractional argument here; simple table extension is faster and error-free for an integer node."
+    ],
+    "solution": [
+      "Construct the forward difference table for f(0) = 1, f(1) = 0, f(2) = 1, f(3) = 10.",
+      "First differences: -1, 1, 9.",
+      "Second differences: 1 - (-1) = 2, and 9 - 1 = 8.",
+      "Third difference: 8 - 2 = 6.",
+      "Since f is a cubic, all third differences equal 6.",
+      "Extend the table: next Delta^2 = 8 + 6 = 14; next Delta = 9 + 14 = 23; hence f(4) = f(3) + 23 = 10 + 23 = 33.",
+      "Verification: Delta^3 = 6 = 3! times the leading coefficient, so a_3 = 1, and fitting gives f(x) = x^3 - 3x^2 + x + 1, whence f(4) = 64 - 48 + 4 + 1 = 33.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q43": {
+    "answer": 2,
+    "confidence": "medium",
+    "type": "Theoretical",
+    "issue": "Statement II is order-sensitive. The determinant representation quoted in most textbooks uses two determinants of order (n+1) - a Vandermonde denominator and a numerator with its last column replaced by the function values. Subtracting the first row from every other row reduces BOTH to determinants of order n, so the existence claim 'can be expressed as the quotient of two determinants, each of order n' is achievable and II is keyed as correct. A candidate who reads II as quoting the standard (n+1)-order form would answer (a) I only.",
+    "shortcut": "Statement I is the fundamental property: the nth divided difference of a degree-n polynomial equals its leading coefficient, so the (n+1)th vanishes. Statement II is the determinant representation of divided differences. Both stand, so (c).",
+    "tips": [
+      "Core fact: for a polynomial of degree n, f[x_0,...,x_n] = a_n (the leading coefficient) and every higher divided difference is 0 - exactly parallel to Delta^(n+1) = 0 for equal intervals.",
+      "The determinant form is f[x_0,...,x_n] = det(M)/det(V), where V is the Vandermonde matrix in x_0,...,x_n and M replaces its last column by the f-values.",
+      "Row-reduce to see the order-n version: subtracting the first row from the rest kills the leading column of ones and drops both determinants from order n+1 to order n.",
+      "Divided differences are symmetric functions of their arguments, so the order in which nodes are listed never matters - a companion fact often tested alongside these two."
+    ],
+    "solution": [
+      "Statement I: if p(x) has degree n, its nth divided difference on any n+1 distinct nodes equals the leading coefficient a_n, a constant independent of the nodes. Taking a further divided difference of a constant gives zero, so all (n+1)th divided differences vanish. Correct.",
+      "Statement II: the divided difference has the determinant representation f[x_0,...,x_n] = det(M)/det(V), where V is the (n+1)x(n+1) Vandermonde matrix with rows (1, x_i, x_i^2, ..., x_i^n) and M is V with its last column replaced by (f(x_0), ..., f(x_n)).",
+      "Both determinants have a first column of ones. Subtracting the first row from each of the remaining rows makes that column (1, 0, 0, ..., 0)^T, and expanding along it reduces each determinant to one of order n.",
+      "Hence the nth divided difference can indeed be written as the quotient of two determinants of order n, and statement II holds as an existence claim.",
+      "Both statements are therefore correct.",
+      "Hence option (c) is correct (see the note above on the order convention)."
+    ]
+  },
+  "2026-Q44": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Build the divided-difference table. First: 52, 97, 202, 310, 409. Second: 15, 21, 27, 33. Third: 1, 1, 1 - constant. A constant third divided difference means degree 3.",
+    "tips": [
+      "The lowest degree equals the order at which the divided differences first become constant (equivalently, one less than the order at which they vanish).",
+      "Divide by the SPREAD of the arguments, not by 1: e.g. f[5,7] = (294-100)/(7-5) = 97, since the nodes are unequally spaced.",
+      "The second differences 15, 21, 27, 33 form an arithmetic progression with common difference 6, which already hints that the next column will be constant.",
+      "Stop as soon as a column is constant - computing further columns of zeros wastes time in the exam."
+    ],
+    "solution": [
+      "Nodes x = 4, 5, 7, 10, 11, 13 with p = 48, 100, 294, 900, 1210, 2028.",
+      "First divided differences: (100-48)/(5-4) = 52; (294-100)/(7-5) = 97; (900-294)/(10-7) = 202; (1210-900)/(11-10) = 310; (2028-1210)/(13-11) = 409.",
+      "Second divided differences: (97-52)/(7-4) = 45/3 = 15; (202-97)/(10-5) = 105/5 = 21; (310-202)/(11-7) = 108/4 = 27; (409-310)/(13-10) = 99/3 = 33.",
+      "Third divided differences: (21-15)/(10-4) = 6/6 = 1; (27-21)/(11-5) = 6/6 = 1; (33-27)/(13-7) = 6/6 = 1.",
+      "The third divided differences are constant (all equal 1), so the fourth divided differences are all zero.",
+      "A constant nth divided difference characterises a polynomial of degree exactly n, so the lowest possible degree is 3 (with leading coefficient 1).",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2026-Q45": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "The two Delta^2 e^x factors cancel, leaving (1/E) e^x times E e^x = e^{x-h} * e^{x+h}... more simply the expression is [E^{-1} Delta^2 e^x] * [E e^x / Delta^2 e^x] = E^{-1}(e^x) * ... = e^x. Formally the Delta^2 and E factors cancel to give exactly e^x.",
+    "tips": [
+      "Work out the two key actions on e^x first: Delta e^x = e^x(e^h - 1), so Delta^2 e^x = e^x(e^h - 1)^2, and E e^x = e^{x+h}.",
+      "e^x is an eigenfunction of every difference operator, which is why all these operators reduce to multiplication by a constant - the fastest route on any question involving exponentials.",
+      "Track the factors: E^{-1} contributes e^{-h} and E contributes e^{+h}; they cancel, as do the two (e^h - 1)^2 factors.",
+      "Since the expression is a product of a quantity and (essentially) its reciprocal up to the shift, the answer must be free of (e^h - 1) - that alone points to a clean e^x."
+    ],
+    "solution": [
+      "For the exponential, Delta e^x = e^{x+h} - e^x = e^x (e^h - 1), so Delta^2 e^x = e^x (e^h - 1)^2, and E e^x = e^{x+h}.",
+      "First factor: (Delta^2/E) e^x = E^{-1}[Delta^2 e^x] = E^{-1}[e^x (e^h - 1)^2] = e^{x-h} (e^h - 1)^2.",
+      "Second factor: (E e^x)/(Delta^2 e^x) = e^{x+h}/[e^x (e^h - 1)^2] = e^h/(e^h - 1)^2.",
+      "Multiplying: e^{x-h}(e^h - 1)^2 * e^h/(e^h - 1)^2 = e^{x-h} * e^h = e^x.",
+      "The factors (e^h - 1)^2 cancel and the shifts e^{-h} and e^{+h} cancel, leaving e^x.",
+      "Hence option (d) is correct."
+    ]
+  },
+  "2026-Q46": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "The nth divided difference of a degree-n polynomial equals its leading coefficient, whatever the nodes. Here the polynomial x^3 - 2x is cubic with leading coefficient 1, so the third divided difference is 1.",
+    "tips": [
+      "Memorise: f[x_0, ..., x_n] = a_n for a degree-n polynomial. The arguments 2, 4, 9, 10 are irrelevant decoration.",
+      "The -2x term is of degree 1, so it contributes nothing to the third divided difference - lower-order terms always drop out.",
+      "Equal-interval analogue: Delta^n f = n! a_n h^n. Note the divided-difference version has NO factorial, which is why the answer is 1 and not 6. Option (d) 4 and option (c) 3 target that confusion.",
+      "If you must verify, compute the table: f(2) = 4, f(4) = 56, f(9) = 711, f(10) = 980, and the third divided difference works out to exactly 1."
+    ],
+    "solution": [
+      "Let f(x) = x^3 - 2x, a polynomial of degree 3 with leading coefficient a_3 = 1.",
+      "A standard property of divided differences: for a polynomial of degree n, the nth divided difference on any n + 1 distinct arguments equals the leading coefficient a_n.",
+      "Here n = 3 and the four arguments 2, 4, 9, 10 are distinct, so the third divided difference is a_3 = 1.",
+      "Verification: f(2) = 8 - 4 = 4; f(4) = 64 - 8 = 56; f(9) = 729 - 18 = 711; f(10) = 1000 - 20 = 980.",
+      "First: f[2,4] = (56-4)/2 = 26; f[4,9] = (711-56)/5 = 131; f[9,10] = (980-711)/1 = 269.",
+      "Second: f[2,4,9] = (131-26)/(9-2) = 105/7 = 15; f[4,9,10] = (269-131)/(10-4) = 138/6 = 23.",
+      "Third: f[2,4,9,10] = (23-15)/(10-2) = 8/8 = 1.",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2026-Q47": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Write f+ = f(x+h/2), f- = f(x-h/2). Then mu f mu g = (f+ + f-)(g+ + g-)/4 and delta f delta g = (f+ - f-)(g+ - g-). Adding one quarter of the second to the first cancels the cross terms and leaves (f+g+ + f-g-)/2 = mu(fg).",
+    "tips": [
+      "Always convert mu and delta to half-shifts: mu = (E^{1/2} + E^{-1/2})/2 and delta = E^{1/2} - E^{-1/2}. Everything then becomes ordinary algebra in f+, f-, g+, g-.",
+      "The cross terms f+g- and f-g+ must cancel, since mu(fg) contains only the 'aligned' products f+g+ and f-g- - that requirement alone identifies the coefficient 1/4.",
+      "Companion identity worth memorising: delta(fg) = mu f * delta g + delta f * mu g, which is option (c) here - a deliberately placed distractor.",
+      "Quick test: put g = 1, so mu g = 1 and delta g = 0. The correct formula must collapse to mu f. Option (b) gives mu f * 1 + 0 = mu f. Options (a), (c), (d) fail this test."
+    ],
+    "solution": [
+      "Let f+ = f(x + h/2), f- = f(x - h/2), and similarly for g. Then mu f = (f+ + f-)/2, delta f = f+ - f-, and mu(fg) = (f+ g+ + f- g-)/2.",
+      "Compute mu f * mu g = [(f+ + f-)/2][(g+ + g-)/2] = (f+g+ + f+g- + f-g+ + f-g-)/4.",
+      "Compute delta f * delta g = (f+ - f-)(g+ - g-) = f+g+ - f+g- - f-g+ + f-g-.",
+      "Then mu f mu g + (1/4) delta f delta g = (f+g+ + f+g- + f-g+ + f-g-)/4 + (f+g+ - f+g- - f-g+ + f-g-)/4.",
+      "The cross terms cancel, leaving (2 f+g+ + 2 f-g-)/4 = (f+g+ + f-g-)/2 = mu(fg).",
+      "Therefore mu[f(x) g(x)] = mu f(x) mu g(x) + (1/4) delta f(x) delta g(x).",
+      "Consistency check with g identically 1: the right side gives mu f * 1 + (1/4)(delta f)(0) = mu f, as required.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q48": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "y_0 = 1; y_1 = 1 + integral of (2 + t) = 1 + 2x + x^2/2; y_2 = 1 + integral of (2 + 3t + t^2/2) = 1 + 2x + (3/2)x^2 + x^3/6.",
+    "tips": [
+      "Picard recursion: y_{n+1}(x) = y_0 + integral from x_0 to x of f(t, y_n(t)) dt, starting from the constant y_0 = y(x_0).",
+      "Every iterate must satisfy the initial condition, so the constant term is always 1 - and the coefficient of x is always f(0,1) = 1 + 0 + 1 = 2, which immediately eliminates options (a) and (c).",
+      "The x^3/6 term appears in every option, so the discriminating terms are those in x and x^2; concentrate the arithmetic there.",
+      "Cross-check against the exact solution y = 3e^x - x - 2 = 1 + 2x + (3/2)x^2 + (1/2)x^3 + ...; the second iterate agrees through x^2, as Picard's theory predicts."
+    ],
+    "solution": [
+      "Picard's scheme for dy/dx = f(x,y) = 1 + x + y with y(0) = 1 is y_{n+1}(x) = 1 + integral from 0 to x of [1 + t + y_n(t)] dt.",
+      "Zeroth iterate: y_0(x) = 1.",
+      "First iterate: y_1(x) = 1 + integral from 0 to x of (1 + t + 1) dt = 1 + integral from 0 to x of (2 + t) dt = 1 + 2x + x^2/2.",
+      "Second iterate: y_2(x) = 1 + integral from 0 to x of [1 + t + 1 + 2t + t^2/2] dt = 1 + integral from 0 to x of (2 + 3t + t^2/2) dt.",
+      "Integrating: y_2(x) = 1 + 2x + (3/2)x^2/... more precisely 1 + 2x + 3x^2/2 + x^3/6.",
+      "Comparison with the exact solution y = 3e^x - x - 2 = 1 + 2x + 1.5x^2 + 0.5x^3 + ... confirms agreement up to the x^2 term.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q49": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Only the leading coefficient matters: (x)(-2x)(-3x)(-4x) gives -24x^4. Delta^4 of a quartic with leading coefficient a is 4! a h^4 = 24(-24)(1) = -576.",
+    "tips": [
+      "Rule: Delta^n of a degree-n polynomial with leading coefficient a_n and interval h equals n! a_n h^n - a constant.",
+      "Do not expand the product. Multiply only the x-coefficients: 1 * (-2) * (-3) * (-4) = -24. Three minus signs give a negative result.",
+      "Missing the 4! = 24 factor produces the distractor -24; missing the sign produces +576. Both traps are on the option list.",
+      "With h = 1 the factor h^n disappears, so the whole answer is just 24 * (-24) = -576."
+    ],
+    "solution": [
+      "The expression (x - 1)(1 - 2x)(1 - 3x)(1 - 4x) is a polynomial of degree 4.",
+      "Its leading coefficient is the product of the coefficients of x in each factor: (1)(-2)(-3)(-4) = -24. So the polynomial is -24x^4 + (lower order terms).",
+      "For a polynomial of degree n with leading coefficient a_n, the nth forward difference is the constant Delta^n = n! * a_n * h^n.",
+      "Here n = 4, a_4 = -24, h = 1, so Delta^4 = 4! * (-24) * 1^4 = 24 * (-24) = -576.",
+      "(Lower-degree terms contribute nothing, since Delta^4 annihilates every polynomial of degree below 4.)",
+      "Hence option (d) is correct."
+    ]
+  },
+  "2026-Q50": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Simpson: A = (h/3)[f0 + 4(f1+f3) + 2f2 + f4] with h = 1/4. Sum = 1 + 4(4/5 + 4/7) + 4/3 + 1/2 = 1747/210, so A = 1747/2520 and 2520A = 1747.",
+    "tips": [
+      "The multiplier 2520 in the question is a hint: it equals 12 * 210, i.e. (3/h) times the LCD, so the answer is designed to be an exact integer - work in fractions, never decimals.",
+      "Simpson's 1/3 pattern with 4 subintervals is 1, 4, 2, 4, 1 - odd-indexed ordinates get 4, the single interior even one gets 2.",
+      "4/5 + 4/7 = 48/35, and multiplying by 4 gives 192/35. Putting everything over 210 gives 210 + 1152 + 280 + 105 = 1747.",
+      "Cross-check: the data are f(x) = 1/(1+x^2)... in fact f(x) = 4/(4+... ) - numerically A = 1747/2520 = 0.6933, a plausible area under a curve falling from 1 to 0.5."
+    ],
+    "solution": [
+      "There are 4 equal subintervals on [0, 1], so h = 1/4, with ordinates f0 = 1, f1 = 4/5, f2 = 2/3, f3 = 4/7, f4 = 1/2.",
+      "Simpson's one-third rule: A = (h/3)[f0 + 4(f1 + f3) + 2 f2 + f4] = (1/12)[f0 + 4(f1 + f3) + 2 f2 + f4].",
+      "f1 + f3 = 4/5 + 4/7 = (28 + 20)/35 = 48/35, so 4(f1 + f3) = 192/35; and the even-position ordinate gives 2 f2 = 4/3.",
+      "Sum inside the bracket = 1 + 192/35 + 4/3 + 1/2. Over the common denominator 210: 210/210 + 1152/210 + 280/210 + 105/210 = 1747/210.",
+      "A = (1/12)(1747/210) = 1747/2520.",
+      "Therefore 2520 A = 1747.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q51": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "h = 1, so T = (1/2)[first + last + 2(interior)] = 0.5[1 + 0.2 + 2(0.5 + 0.3 + 0.25)] = 0.5[1.2 + 2.1] = 1.65.",
+    "tips": [
+      "Trapezoidal weights are 1, 2, 2, ..., 2, 1 multiplied by h/2 - only the two end ordinates get weight 1.",
+      "Add the interior ordinates first (0.5 + 0.3 + 0.25 = 1.05), then double: that single grouping avoids most arithmetic slips.",
+      "The spacing here is h = 1 (nodes 1 to 5), so the multiplier is 1/2 exactly.",
+      "Since f is convex and decreasing, the trapezoidal rule overestimates the integral - consistent with 1.65 exceeding Simpson's 1.60 in the next question."
+    ],
+    "solution": [
+      "The nodes 1, 2, 3, 4, 5 are equally spaced with h = 1, and there are n = 4 subintervals.",
+      "Trapezoidal rule: integral = (h/2)[f(1) + 2(f(2) + f(3) + f(4)) + f(5)].",
+      "Interior sum: f(2) + f(3) + f(4) = 0.5 + 0.3 + 0.25 = 1.05, so twice it is 2.10.",
+      "End values: f(1) + f(5) = 1 + 0.20 = 1.20.",
+      "Total inside the bracket = 1.20 + 2.10 = 3.30.",
+      "Integral = (1/2)(3.30) = 1.65.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q52": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Simpson with h = 1: (1/3)[f1 + 4(f2 + f4) + 2 f3 + f5] = (1/3)[1 + 4(0.75) + 0.6 + 0.2] = (1/3)(4.8) = 1.60.",
+    "tips": [
+      "Simpson's 1/3 rule needs an even number of subintervals; here n = 4, so it applies.",
+      "The 1, 4, 2, 4, 1 pattern maps to f(1), f(2), f(3), f(4), f(5): the second and fourth ordinates get weight 4, the middle one gets 2.",
+      "f(2) + f(4) = 0.5 + 0.25 = 0.75, and 4(0.75) = 3 exactly - the numbers are chosen to be clean.",
+      "Compare with the trapezoidal answer 1.65: Simpson's rule is exact for cubics and hence far more accurate, and for this convex decreasing data it sits below the trapezoidal value."
+    ],
+    "solution": [
+      "The five ordinates at x = 1, 2, 3, 4, 5 with h = 1 give n = 4 subintervals, an even number, so Simpson's one-third rule applies.",
+      "Simpson's one-third rule: integral = (h/3)[f(1) + 4 f(2) + 2 f(3) + 4 f(4) + f(5)].",
+      "Odd-position interior ordinates (weight 4): f(2) + f(4) = 0.5 + 0.25 = 0.75, contributing 4(0.75) = 3.00.",
+      "Even-position interior ordinate (weight 2): 2 f(3) = 2(0.3) = 0.60.",
+      "End ordinates: f(1) + f(5) = 1 + 0.20 = 1.20.",
+      "Bracket total = 3.00 + 0.60 + 1.20 = 4.80.",
+      "Integral = (1/3)(4.80) = 1.60.",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2026-Q53": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Local error per strip is -(h^3/12) f''; summing over n strips gives -(1/12) n h^3 f''(xi). Answer (b).",
+    "tips": [
+      "Local (one-strip) error of the trapezoidal rule is -(h^3/12) f''(xi); the global error over n strips is n times that, i.e. -(nh^3/12) f''(xi) = -((b-a)h^2/12) f''(xi).",
+      "The order of the derivative must be 2 for the trapezoidal rule (it is exact for linear functions), so option (a) with f' is wrong on principle.",
+      "The sign is negative for a convex f, expressing the familiar fact that trapezoids overestimate the area under a convex curve.",
+      "Option (c) with h^5 and f'''' is the error term for Simpson's 3/8 rule family (Simpson's 1/3 rule global error is -(1/180) n h^5 f''''), not for the trapezoidal rule."
+    ],
+    "solution": [
+      "On a single strip [x_i, x_{i+1}] of width h, Taylor expansion gives the trapezoidal error as -(h^3/12) f''(xi_i) for some xi_i in the strip.",
+      "Summing over the n strips that partition [a, b] and applying the intermediate value theorem to the average of the f''(xi_i) yields a single xi in [a, b].",
+      "Global truncation error E = -(1/12) n h^3 f''(xi).",
+      "Equivalently, since nh = b - a, E = -((b - a)/12) h^2 f''(xi), showing the method is second order accurate in h.",
+      "Option (a) uses the wrong derivative order, option (c) is a Simpson-type h^5 term, and option (d) has the wrong sign and coefficient.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q54": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Step 1: slope (1-0)/(1+0) = 1, so y(0.05) = 1.05. Step 2: slope (1.05-0.05)/(1.05+0.05) = 1/1.1 = 0.909, so y(0.1) = 1.05 + 0.05(0.909) = 1.0955, which rounds to 1.10.",
+    "tips": [
+      "h = 0.05 but the target is x = 0.1, so TWO Euler steps are required - taking one step gives 1.05, which is exactly distractor (b).",
+      "Euler formula: y_{n+1} = y_n + h f(x_n, y_n), always evaluating the slope at the point you are leaving.",
+      "Update x as well as y between steps: the second slope uses x = 0.05, not x = 0.",
+      "The exact solution of this homogeneous ODE gives y(0.1) about 1.0954, so the two-step Euler value is accurate to four decimals here - the options are far apart, so light rounding is safe."
+    ],
+    "solution": [
+      "Forward Euler: y_{n+1} = y_n + h f(x_n, y_n), with f(x, y) = (y - x)/(y + x), h = 0.05, x_0 = 0, y_0 = 1.",
+      "Step 1: f(0, 1) = (1 - 0)/(1 + 0) = 1. So y_1 = 1 + 0.05(1) = 1.05 at x = 0.05.",
+      "Step 2: f(0.05, 1.05) = (1.05 - 0.05)/(1.05 + 0.05) = 1/1.1 = 0.90909.",
+      "y_2 = 1.05 + 0.05(0.90909) = 1.05 + 0.04545 = 1.09545 at x = 0.10.",
+      "To two decimal places, y(0.1) is approximately 1.10.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q55": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Backward Euler gives y_{n+1} = y_n/(1 + 8h), and |1/(1+8h)| < 1 for every h > 0. Backward Euler is A-stable, so no step restriction exists. Answer (a).",
+    "tips": [
+      "Backward Euler applied to y' = lambda y gives the amplification factor 1/(1 - h lambda); with lambda = -8 this is 1/(1 + 8h), always inside the unit disc for h > 0.",
+      "A-stability means the stability region contains the whole left half-plane - true for backward Euler and the trapezoidal (Crank-Nicolson) method, false for forward Euler and explicit Runge-Kutta.",
+      "The step restrictions in options (b), (c), (d) are the sort produced by EXPLICIT methods; for forward Euler here the condition would be h < 2/8 = 0.25, which is exactly the trap in option (c).",
+      "Price of A-stability: backward Euler is implicit, so each step needs an algebraic solve (trivial here because the equation is linear)."
+    ],
+    "solution": [
+      "Backward (implicit) Euler for dy/dx = f(x,y) is y_{n+1} = y_n + h f(x_{n+1}, y_{n+1}).",
+      "With f = -8y: y_{n+1} = y_n - 8h y_{n+1}, so y_{n+1}(1 + 8h) = y_n, giving y_{n+1} = y_n/(1 + 8h).",
+      "The amplification factor is R(h) = 1/(1 + 8h).",
+      "Absolute stability requires |R(h)| < 1, i.e. |1 + 8h| > 1, which holds for every h > 0 (indeed 1 + 8h > 1).",
+      "Thus the method is absolutely stable for all positive step sizes - it is A-stable, and no restriction on h is needed.",
+      "(For comparison, forward Euler here would give R = 1 - 8h and require h < 0.25.)",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2026-Q56": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "With n+1 nodes there are n+1 factors in the product, so the error carries (n+1)! in the denominator and the (n+1)th derivative. Answer (b).",
+    "tips": [
+      "Matching rule: the number of factors (x - x_i), the factorial, and the derivative order must all agree - here all equal n + 1.",
+      "Consistency test: if f is itself a polynomial of degree at most n, interpolation is exact, so the error must vanish. Only the (n+1)th derivative guarantees this; the nth derivative in option (a) would not.",
+      "The same product times the (n+1)th divided difference gives the exact error: e(x) = product * f[x_0, ..., x_n, x], which links the two standard error forms.",
+      "This is the direct analogue of the Taylor remainder, with the single point x_0 repeated n+1 times replaced by n+1 distinct nodes."
+    ],
+    "solution": [
+      "Let p_n be the Lagrange interpolating polynomial of degree at most n through the n + 1 nodes x_0, x_1, ..., x_n.",
+      "The standard error theorem states e(x) = f(x) - p_n(x) = [(x - x_0)(x - x_1)...(x - x_n)/(n + 1)!] * f^{(n+1)}(xi), for some xi in the interval spanned by x_0, ..., x_n and x.",
+      "The product contains n + 1 factors, matching the factorial (n + 1)! and the derivative order n + 1.",
+      "Consistency check: if f is a polynomial of degree at most n, then f^{(n+1)} is identically zero and the error vanishes, as it must since interpolation is then exact. Option (a), using the nth derivative, fails this test.",
+      "Options (c) and (d) mismatch the factorial and the derivative order with the number of factors.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q57": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "At t = 0 the slope -2tu^2 is 0, so the first step leaves u unchanged at 1. Second step: slope = -2(0.2)(1)^2 = -0.4, so u(0.4) = 1 + 0.2(-0.4) = 0.92.",
+    "tips": [
+      "Notice the free first step: f(0, 1) = 0 because of the factor t, so u(0.2) = 1 with no arithmetic at all.",
+      "Two steps are needed to reach t = 0.4 with h = 0.2 - stopping after one step would leave you at 1, which is not on the option list, a useful warning sign.",
+      "Update t before evaluating the second slope: the derivative depends explicitly on t, so using t = 0 twice would give 1 again.",
+      "Exact solution: u = 1/(1 + t^2), so u(0.4) = 1/1.16 = 0.862. Euler's 0.92 overshoots, as expected for a convex decreasing solution with a coarse step - the option 0.86 is the exact value planted as a distractor."
+    ],
+    "solution": [
+      "Forward Euler: u_{n+1} = u_n + h f(t_n, u_n), with f(t, u) = -2 t u^2, h = 0.2, t_0 = 0, u_0 = 1.",
+      "Step 1 (t = 0 to t = 0.2): f(0, 1) = -2(0)(1)^2 = 0, so u_1 = 1 + 0.2(0) = 1.",
+      "Step 2 (t = 0.2 to t = 0.4): f(0.2, 1) = -2(0.2)(1)^2 = -0.4, so u_2 = 1 + 0.2(-0.4) = 1 - 0.08 = 0.92.",
+      "Therefore the Euler estimate of u(0.4) is 0.92.",
+      "(For reference the exact solution is u(t) = 1/(1 + t^2), giving u(0.4) = 0.8621; the Euler value is an overestimate because of the coarse step.)",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q58": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "The two series sum to 1/(1-x) and 1/(1+x). Their product is 1/(1-x^2), whose expansion is 1 + x^2 + x^4 + x^6 + ...",
+    "tips": [
+      "Recognise both series as geometric with ratios x and -x respectively; |x| < 1 guarantees convergence and justifies multiplying them term by term.",
+      "The product of sums telescopes cleanly through the closed forms - never attempt a direct Cauchy product here.",
+      "1/(1 - x^2) expands by substituting x^2 into the standard geometric series, so all signs are positive - option (b) with alternating signs is the trap.",
+      "Numerical check at x = 1/2: (2)(2/3) = 4/3, and 1/(1 - 1/4) = 4/3. Correct in five seconds."
+    ],
+    "solution": [
+      "For -1 < x < 1, the first series is geometric with first term 1 and ratio x: 1 + x + x^2 + ... = 1/(1 - x).",
+      "The second is geometric with first term 1 and ratio -x: 1 - x + x^2 - ... = 1/(1 + x).",
+      "Both converge absolutely for |x| < 1, so their product is the product of the sums: [1/(1-x)][1/(1+x)] = 1/(1 - x^2).",
+      "Expanding 1/(1 - x^2) as a geometric series in x^2 (valid since |x^2| < 1) gives 1 + x^2 + x^4 + x^6 + ...",
+      "Check at x = 1/2: 1/(1 - 0.25) = 4/3, matching (1/(1-0.5))(1/(1+0.5)) = 2 * (2/3) = 4/3.",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2026-Q59": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "The bracket is [(1+Delta)^n - 1]/Delta = (E^n - 1)/(E - 1) = 1 + E + ... + E^{n-1}. Applied to y_1 this gives y_1 + y_2 + ... + y_n = Q, so P/Q = 1.",
+    "tips": [
+      "Spot the binomial pattern: sum over k from 1 to n of C(n,k) Delta^{k-1} is exactly [(1 + Delta)^n - 1] divided by Delta.",
+      "Then use the fundamental relation E = 1 + Delta, turning the bracket into the geometric operator sum (E^n - 1)/(E - 1) = 1 + E + E^2 + ... + E^{n-1}.",
+      "E^k y_1 = y_{1+k} when h = 1, so the operator sum applied to y_1 reproduces the sum of the first n ordinates.",
+      "This is the standard operator proof of the summation formula sum y_i = [C(n,1) + C(n,2)Delta + ...] y_1 - a result worth memorising in its own right."
+    ],
+    "solution": [
+      "The bracket is B = sum from k = 1 to n of C(n, k) Delta^{k-1}.",
+      "Multiplying by Delta: Delta * B = sum from k = 1 to n of C(n, k) Delta^k = (1 + Delta)^n - 1, by the binomial theorem (the k = 0 term C(n,0) = 1 being subtracted off).",
+      "Using E = 1 + Delta, this is E^n - 1, and Delta = E - 1, so B = (E^n - 1)/(E - 1).",
+      "By the finite geometric sum for operators, (E^n - 1)/(E - 1) = 1 + E + E^2 + ... + E^{n-1}.",
+      "With h = 1, E^k y_1 = y_{1+k}, so B y_1 = y_1 + y_2 + ... + y_n.",
+      "Therefore P = B y_1 = y_1 + y_2 + ... + y_n = Q, and P/Q = 1.",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2026-Q60": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Euler's amplification factor is 1 + h*lambda = 1 - 20h, and |1 - 20h| < 1 requires 0 < h < 0.1. Only h = 0.05 qualifies.",
+    "tips": [
+      "Forward Euler on y' = lambda y is absolutely stable when |1 + h lambda| < 1; for real negative lambda this means 0 < h < 2/|lambda|.",
+      "Here |lambda| = 20, so h < 2/20 = 0.1 - compute this bound first, then simply read off which option fits.",
+      "The other three options all exceed 0.1 and would produce growing oscillations: for h = 0.15 the factor is 1 - 3 = -2, so the numerical solution alternates in sign and doubles in magnitude each step.",
+      "Contrast with backward Euler, which is A-stable and imposes no restriction on h - the pairing of these two questions is deliberate."
+    ],
+    "solution": [
+      "For the test equation dy/dx = lambda y with lambda = -20, forward Euler gives y_{n+1} = y_n + h(lambda y_n) = (1 + h lambda) y_n.",
+      "The amplification factor is R = 1 + h lambda = 1 - 20h.",
+      "Absolute stability requires |R| < 1, i.e. -1 < 1 - 20h < 1.",
+      "The right inequality gives h > 0; the left gives 20h < 2, i.e. h < 0.1.",
+      "So the method is absolutely stable exactly for 0 < h < 0.1.",
+      "Checking the options: h = 0.05 gives R = 1 - 1 = 0, stable. h = 0.15 gives R = -2, h = 0.25 gives R = -4, h = 0.35 gives R = -6 - all unstable.",
+      "Hence option (a) is correct."
+    ]
+  }
+}

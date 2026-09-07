@@ -1,0 +1,400 @@
+{
+  "2025-Q41": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "The joint pmf is Multinomial(50; 1/4, 1/4, 1/4, 1/4), so X1 ~ Binomial(50, 1/4) and therefore 50 - X1 ~ Binomial(50, 3/4).",
+    "tips": [
+      "Any single component of a multinomial is BINOMIAL with the same n and its own p - collapse the other categories into 'not category 1'.",
+      "Reflection rule: X ~ B(n,p) implies n - X ~ B(n, 1-p). Here 1 - 1/4 = 3/4.",
+      "Mean check: E(50 - X1) = 50 - 12.5 = 37.5, and B(50, 3/4) has mean 37.5. Consistent.",
+      "The Poisson options are implausible because 50 - X1 is bounded above by 50, whereas a Poisson variable is unbounded."
+    ],
+    "solution": [
+      "The joint pmf is the multinomial with n = 50 trials and four categories, each of probability 1/4 (the fourth category being 50 - x1 - x2 - x3).",
+      "For a multinomial, each individual count is binomial: grouping all categories other than the first together, X1 ~ Binomial(50, 1/4).",
+      "Hence 50 - X1 counts the trials NOT falling in category 1, and each trial fails to fall in category 1 with probability 3/4.",
+      "Therefore 50 - X1 ~ Binomial(50, 3/4).",
+      "Check: E(50 - X1) = 50 - 50(1/4) = 37.5 = 50(3/4), as required.",
+      "Option (b) is correct."
+    ]
+  },
+  "2025-Q42": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "For a multinomial, Corr(X_i, X_j) = -sqrt[p_i p_j/((1-p_i)(1-p_j))]. With p_i = p_j = 1/4 this is -(1/4)/(3/4) = -1/3.",
+    "tips": [
+      "Multinomial moments: Var(X_i) = n p_i(1-p_i) and Cov(X_i, X_j) = -n p_i p_j. The correlation then has n cancelling out.",
+      "The correlation is always NEGATIVE, since the counts must sum to n - options (c) and (d) are eliminated on sign alone.",
+      "With equal probabilities the formula simplifies to -p/(1-p) = -(1/4)/(3/4) = -1/3.",
+      "Substituting numbers: Cov = -50(1/16) = -25/8 and each Var = 50(3/16) = 75/8, so the ratio is -25/75 = -1/3."
+    ],
+    "solution": [
+      "For the multinomial distribution with n trials, Var(X_i) = n p_i (1 - p_i) and Cov(X_i, X_j) = -n p_i p_j for i not equal to j.",
+      "Here n = 50 and p_1 = p_2 = 1/4, so Cov(X1, X2) = -50(1/4)(1/4) = -50/16 = -25/8.",
+      "Var(X1) = Var(X2) = 50(1/4)(3/4) = 150/16 = 75/8.",
+      "Corr(X1, X2) = Cov/sqrt(Var(X1)Var(X2)) = (-25/8)/(75/8) = -1/3.",
+      "Equivalently, the general formula gives -sqrt[(1/4)(1/4)/((3/4)(3/4))] = -(1/4)/(3/4) = -1/3.",
+      "Option (b) is correct."
+    ]
+  },
+  "2025-Q43": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Given X2 = 5, the remaining 45 trials fall into the other three categories with conditional probability (1/4)/(3/4) = 1/3 each, so X1 | X2 = 5 ~ Binomial(45, 1/3) with mean 15.",
+    "tips": [
+      "Conditioning on one multinomial count leaves a multinomial on the REMAINING trials, with probabilities renormalised by dividing by 1 - p_2.",
+      "Remaining trials: 50 - 5 = 45. Renormalised probability: (1/4)/(1 - 1/4) = 1/3.",
+      "Mean = 45(1/3) = 15. Note this is LARGER than the unconditional mean 12.5, which seems odd until you recall that X2 = 5 is below its own mean of 12.5, freeing extra trials.",
+      "The same conditional distribution answers the next part, so record Binomial(45, 1/3) before moving on."
+    ],
+    "solution": [
+      "The vector follows a multinomial with n = 50 and four equally likely categories.",
+      "Conditioning on X2 = 5 leaves 50 - 5 = 45 trials to be distributed among the remaining three categories.",
+      "Each of those trials falls in category 1 with the renormalised probability p_1/(1 - p_2) = (1/4)/(3/4) = 1/3.",
+      "Hence X1 | X2 = 5 ~ Binomial(45, 1/3).",
+      "Its mean is 45(1/3) = 15.",
+      "Option (d) is correct."
+    ]
+  },
+  "2025-Q44": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "From the previous part X1 | X2 = 5 ~ Binomial(45, 1/3), whose variance is 45(1/3)(2/3) = 10.",
+    "tips": [
+      "Reuse the conditional distribution rather than rederiving it - shared-stem items are designed to chain.",
+      "Binomial variance npq = 45(1/3)(2/3). Compute 45/3 = 15 first, then 15 x 2/3 = 10.",
+      "The conditional variance 10 is below the conditional mean 15, as it must be for a binomial (since q < 1).",
+      "Option (d) 15 is the conditional MEAN, offered as the standard mean-variance confusion."
+    ],
+    "solution": [
+      "From the previous part, X1 given X2 = 5 follows a Binomial distribution with 45 trials and success probability 1/3.",
+      "For a binomial the variance is npq.",
+      "Here n = 45, p = 1/3 and q = 2/3.",
+      "V(X1 | X2 = 5) = 45 (1/3)(2/3) = 15(2/3) = 10.",
+      "Option (b) is correct."
+    ]
+  },
+  "2025-Q45": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "The relation M_Z(t) = M_Y(log M_X(t)) makes Z a random sum of X's stopped at Y, so E(Z) = E(Y)E(X) = lambda x lambda = lambda^2.",
+    "tips": [
+      "Recognise the compound structure: M_S(t) = G_N(M_X(t)) for a random sum, and G_N(s) = M_N(log s), so M_S(t) = M_N(log M_X(t)) - exactly the given relation.",
+      "Wald's identity: E(S) = E(N)E(X). With both Poisson(lambda), that is lambda^2.",
+      "Direct differentiation also works: M_Z'(0) = M_Y'(0) x M_X'(0)/M_X(0) = lambda x lambda, since every MGF equals 1 at t = 0.",
+      "Option (c) lambda^2 + lambda is the VARIANCE-style answer; keep mean and variance apart across the three parts of this stem."
+    ],
+    "solution": [
+      "For a random sum S = X_1 + ... + X_N with the X_i i.i.d. and independent of N, the moment generating function is M_S(t) = M_N(log M_X(t)).",
+      "The given relation M_Z(t) = M_Y(log M_X(t)) therefore identifies Z as the sum of Y independent copies of X.",
+      "Both X and Y are Poisson(lambda), so E(X) = E(Y) = lambda.",
+      "By Wald's identity, E(Z) = E(Y) E(X) = lambda . lambda.",
+      "Equivalently, differentiating M_Z(t) = M_Y(log M_X(t)) at t = 0 and using M_X(0) = 1 gives M_Z'(0) = M_Y'(0) M_X'(0) = lambda^2.",
+      "Hence E(Z) = lambda^2, option (b)."
+    ]
+  },
+  "2025-Q46": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "For a random sum, Var(Z) = E(Y)Var(X) + Var(Y)[E(X)]^2 = lambda(lambda) + lambda(lambda^2) = lambda^2 + lambda^3.",
+    "tips": [
+      "Compound-sum variance formula: Var(S) = E(N)Var(X) + Var(N)[E(X)]^2. Both terms are needed - dropping either loses a power of lambda.",
+      "With N and X both Poisson(lambda), every mean and variance equals lambda, so the two terms are lambda^2 and lambda^3.",
+      "The presence of lambda^3 reflects the extra variability from the RANDOM number of summands - a pure sum of a fixed number would give only lambda^2.",
+      "Options containing a constant 1 (options a and b) cannot be right: setting lambda = 0 must give Var = 0, since Z is then identically zero."
+    ],
+    "solution": [
+      "From the previous part, Z is the sum of Y independent copies of X, where X and Y are independent Poisson(lambda).",
+      "For such a random sum the variance is Var(Z) = E(Y) Var(X) + Var(Y) [E(X)]^2.",
+      "For the Poisson, mean and variance both equal lambda, so E(X) = Var(X) = E(Y) = Var(Y) = lambda.",
+      "First term: E(Y)Var(X) = lambda . lambda = lambda^2.",
+      "Second term: Var(Y)[E(X)]^2 = lambda . lambda^2 = lambda^3.",
+      "Hence Var(Z) = lambda^2 + lambda^3, option (c)."
+    ]
+  },
+  "2025-Q47": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "M_X(t) = e^(lambda(e^t - 1)), so log M_X(t) = lambda(e^t - 1). Substituting into M_Y gives M_Z(t) = e^(lambda[e^(lambda(e^t-1)) - 1]).",
+    "tips": [
+      "Poisson MGF: M(t) = e^(lambda(e^t - 1)). Taking the logarithm just strips the exponential, leaving lambda(e^t - 1) - a clean inner argument.",
+      "Substitute that argument wherever t appears in M_Y: the outer exponent becomes lambda[e^(inner) - 1].",
+      "The result is the compound-Poisson (Neyman type A) MGF - a nested double exponential, which is the structural signature to look for.",
+      "Check at t = 0: the inner bracket is lambda(1-1) = 0, so the outer is lambda(e^0 - 1) = 0 and M_Z(0) = 1, as every MGF must satisfy."
+    ],
+    "solution": [
+      "For X ~ Poisson(lambda), the moment generating function is M_X(t) = exp[lambda(e^t - 1)].",
+      "Taking logarithms: log M_X(t) = lambda(e^t - 1).",
+      "Y is also Poisson(lambda), so M_Y(s) = exp[lambda(e^s - 1)].",
+      "Substituting s = log M_X(t) = lambda(e^t - 1): M_Z(t) = exp{lambda[e^(lambda(e^t - 1)) - 1]}.",
+      "Check at t = 0: the inner exponent is 0, so M_Z(0) = e^(lambda(1-1)) = 1, as required.",
+      "Hence M_Z(t) = e^(lambda[e^(lambda(e^t-1)) - 1]), option (d)."
+    ]
+  },
+  "2025-Q48": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "lambda = np = 104(1/52) = 2, so P(at least 2) = 1 - e^(-2) - 2e^(-2) = 1 - 3(0.1353) = 0.5941.",
+    "tips": [
+      "Poisson approximation parameter: lambda = np. Here 104/52 = 2 exactly, which is why e^(-2) is supplied.",
+      "'At least twice' means 1 - P(0) - P(1); computing P(2) alone is the classic error.",
+      "P(0) + P(1) = e^(-2)(1 + 2) = 3e^(-2) - factor out e^(-2) before multiplying.",
+      "3 x 0.1353 = 0.4059, so the answer is 1 - 0.4059 = 0.5941. Option (c) 0.5419 is a digit transposition of the correct value."
+    ],
+    "solution": [
+      "The probability of drawing the ace of spades on a single trial is p = 1/52, and there are n = 104 independent trials with replacement.",
+      "The Poisson approximation uses lambda = np = 104/52 = 2.",
+      "P(X >= 2) = 1 - P(X = 0) - P(X = 1).",
+      "P(X = 0) = e^(-2) and P(X = 1) = 2 e^(-2), so P(X = 0) + P(X = 1) = 3 e^(-2).",
+      "With e^(-2) = 0.1353: 3(0.1353) = 0.4059.",
+      "Hence P(X >= 2) = 1 - 0.4059 = 0.5941, option (b)."
+    ]
+  },
+  "2025-Q49": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "The density is a shifted exponential with mean theta + 1, so by the weak law of large numbers Xbar converges in probability to 1 + theta.",
+    "tips": [
+      "Recognise the shift: writing Y = X - theta gives the standard Exp(1) density e^(-y) on y > 0, so X = theta + Y and E(X) = theta + 1.",
+      "The WLLN says the sample mean converges in probability to the POPULATION MEAN - so the whole question reduces to computing E(X).",
+      "The answer must be LINEAR in theta, since shifting the data shifts the mean by the same amount. Options (c) and (d) with theta^2 are structurally impossible.",
+      "Sign check: increasing theta shifts the distribution to the right, so the limit must increase with theta - eliminating option (a)."
+    ],
+    "solution": [
+      "The density f(x) = e^(-(x - theta)) for x >= theta is the exponential distribution with rate 1 shifted to start at theta.",
+      "Substituting Y = X - theta gives the standard density e^(-y) on y > 0, so Y ~ Exponential(1) with E(Y) = 1.",
+      "Hence E(X) = theta + E(Y) = theta + 1, which is finite.",
+      "The X_i are independent and identically distributed with this finite mean.",
+      "By the weak law of large numbers, Xbar_n converges in probability to E(X).",
+      "Therefore Xbar_n converges in probability to 1 + theta, option (b)."
+    ]
+  },
+  "2025-Q50": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Rewrite the characteristic function as e^(2it - 2t^2) = e^(i(2)t - (4)t^2/2), identifying N(2, 4). The fourth central moment of a normal is 3 sigma^4 = 3(16) = 48.",
+    "tips": [
+      "Normal characteristic function: phi(t) = exp(i mu t - sigma^2 t^2/2). Expand the given exponent 2t(i - t) = 2it - 2t^2 and match term by term.",
+      "From -sigma^2/2 = -2 we get sigma^2 = 4, NOT 2 - the factor of 2 in the denominator is where marks are lost.",
+      "Fourth central moment of N(mu, sigma^2) is 3 sigma^4 = 3(4^2) = 48. Remember the sequence 0, sigma^2, 0, 3 sigma^4 for the first four central moments.",
+      "Option (a) 12 would come from 3 sigma^2 and option (b) 24 from mis-reading sigma^2 as 2 (giving 3 x 4 x 2) - both are near-misses built on the same slip."
+    ],
+    "solution": [
+      "Expand the exponent: 2t(i - t) = 2it - 2t^2.",
+      "The characteristic function of N(mu, sigma^2) is phi(t) = exp(i mu t - sigma^2 t^2/2).",
+      "Matching the linear term: i mu t = 2it, so mu = 2.",
+      "Matching the quadratic term: -sigma^2 t^2/2 = -2t^2, so sigma^2 = 4.",
+      "For a normal distribution the fourth central moment is mu_4 = 3 sigma^4 = 3(4)^2 = 3(16) = 48, option (d)."
+    ]
+  },
+  "2025-Q51": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "n F_n(x) is Binomial(n, F(x)) with F(x) = x for U[0,1], so F_n(x) is asymptotically normal with mean x and variance x(1-x)/n.",
+    "tips": [
+      "The empirical CDF at a fixed x is an AVERAGE of indicator variables, each Bernoulli(F(x)) - so the CLT applies directly.",
+      "E[F_n(x)] = F(x) exactly (it is unbiased), and Var[F_n(x)] = F(x)(1-F(x))/n. For U[0,1], F(x) = x.",
+      "Option (b) gets the variance right but centres at zero - the empirical CDF estimates x, so its mean must be x, not 0.",
+      "The centred and scaled version sqrt(n)(F_n(x) - x) tends to N(0, x(1-x)); the option as stated keeps the 1/n inside, which is the finite-sample form."
+    ],
+    "solution": [
+      "The empirical distribution function is F_n(x) = (1/n) times the number of observations not exceeding x.",
+      "Each observation contributes an indicator I(X_i <= x), which is Bernoulli with success probability F(x); for U[0,1] and 0 <= x <= 1 this is F(x) = x.",
+      "Hence n F_n(x) ~ Binomial(n, x), so E[F_n(x)] = x and Var[F_n(x)] = x(1-x)/n.",
+      "Since F_n(x) is an average of i.i.d. bounded variables, the Central Limit Theorem applies.",
+      "Therefore F_n(x) is asymptotically normal with mean x and variance x(1-x)/n.",
+      "Option (c) is correct."
+    ]
+  },
+  "2025-Q52": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "X^2 and Y^2 are i.i.d. Exp(1), so T^2 = X^2 + Y^2 ~ Gamma(2,1) with density w e^(-w). Transforming to T = sqrt(W) gives 2t^3 e^(-t^2).",
+    "tips": [
+      "First identify the marginals: 4xy e^(-(x^2+y^2)) factorises as (2x e^(-x^2))(2y e^(-y^2)), so X and Y are i.i.d. Rayleigh.",
+      "P(X^2 > u) = P(X > sqrt u) = e^(-u), so X^2 ~ Exp(1); the sum of two such is Gamma(shape 2, rate 1) with density w e^(-w).",
+      "Change variable W = T^2: dw/dt = 2t, so f_T(t) = f_W(t^2)(2t) = t^2 e^(-t^2)(2t) = 2t^3 e^(-t^2).",
+      "Validity check: the integral of 2t^3 e^(-t^2) over (0, infinity) is 1 (substitute u = t^2), confirming a proper density."
+    ],
+    "solution": [
+      "The joint density factorises as f(x,y) = (2x e^(-x^2))(2y e^(-y^2)), so X and Y are independent, each with the Rayleigh density 2x e^(-x^2) on x > 0.",
+      "For such a variable, P(X > a) = e^(-a^2), so P(X^2 > u) = e^(-u): X^2 ~ Exponential(1), and likewise Y^2.",
+      "Hence W = T^2 = X^2 + Y^2 is the sum of two independent Exponential(1) variables, i.e. Gamma(shape 2, rate 1), with density f_W(w) = w e^(-w) for w > 0.",
+      "Now T = sqrt(W), so w = t^2 and dw/dt = 2t.",
+      "f_T(t) = f_W(t^2) |dw/dt| = t^2 e^(-t^2) (2t) = 2t^3 e^(-t^2) for t > 0.",
+      "Its integral over (0, infinity) is 1, confirming validity. Option (a) is correct."
+    ]
+  },
+  "2025-Q53": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "With every attribute and its negation at N/2, the identity (alpha beta) = N - (A) - (B) + (AB) collapses to (AB), giving statement I. Inclusion-exclusion with (ABC) = (alpha beta gamma) then yields 2(ABC) = (AB)+(AC)+(BC) - N/2.",
+    "tips": [
+      "Two-attribute identity: (alpha beta) = N - (A) - (B) + (AB). With (A) = (B) = N/2 the constants cancel and (alpha beta) = (AB) exactly.",
+      "The pair (A beta) = (alpha B) follows from the row and column totals: (AB) + (A beta) = (A) = N/2 and (AB) + (alpha B) = (B) = N/2.",
+      "Three-attribute inclusion-exclusion: (alpha beta gamma) = N - (A)-(B)-(C) + (AB)+(AC)+(BC) - (ABC). Substitute (A)=(B)=(C)=N/2 to get -N/2 + sums - (ABC).",
+      "Imposing (ABC) = (alpha beta gamma) then gives 2(ABC) = (AB)+(AC)+(BC) - N/2 - exactly statement II."
+    ],
+    "solution": [
+      "Statement I: from the 2x2 table, (AB) + (A beta) = (A) = N/2 and (AB) + (alpha B) = (B) = N/2, so subtracting gives (A beta) = (alpha B).",
+      "Also (alpha beta) = N - (A) - (B) + (AB) = N - N/2 - N/2 + (AB) = (AB). Both parts of statement I hold. TRUE.",
+      "Statement II: by inclusion-exclusion for three attributes, (alpha beta gamma) = N - (A) - (B) - (C) + (AB) + (AC) + (BC) - (ABC).",
+      "With (A) = (B) = (C) = N/2 this becomes (alpha beta gamma) = N - 3N/2 + (AB)+(AC)+(BC) - (ABC) = -N/2 + (AB)+(AC)+(BC) - (ABC).",
+      "Imposing the given condition (ABC) = (alpha beta gamma): (ABC) = -N/2 + (AB)+(AC)+(BC) - (ABC).",
+      "Rearranging, 2(ABC) = (AB) + (AC) + (BC) - N/2. TRUE. Both statements hold, option (c)."
+    ]
+  },
+  "2025-Q54": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "(a+b)/2 = 1 and (b-a)^2/12 = 4/3 give b - a = 4 and a + b = 2, so X ~ U(-1, 3). Then P(X < 0) = 1/4.",
+    "tips": [
+      "Uniform parameters from moments: the mean gives a + b = 2(mean) and the variance gives (b-a)^2 = 12(variance).",
+      "12 x 4/3 = 16, so b - a = 4. Solving with a + b = 2 gives a = -1 and b = 3.",
+      "Probability = length of the sub-interval divided by the total range: (0 - (-1))/4 = 1/4.",
+      "Sanity check: the mean 1 sits three-quarters of the way along [-1,3], so the mass below 0 should be well under a half - 1/4 is right."
+    ],
+    "solution": [
+      "Let X ~ U(a, b). The mean is (a + b)/2 = 1, so a + b = 2.",
+      "The variance is (b - a)^2/12 = 4/3, so (b - a)^2 = 16 and b - a = 4 (taking b > a).",
+      "Solving the pair: adding gives 2b = 6 so b = 3, and then a = -1.",
+      "Hence X is uniform on (-1, 3), a range of length 4.",
+      "P(X < 0) = (0 - (-1))/4 = 1/4.",
+      "Option (c) is correct."
+    ]
+  },
+  "2025-Q55": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "Standardise both limits and subtract the smaller from the larger: P(a <= X <= b) = Phi((b-mu)/sigma) - Phi((a-mu)/sigma).",
+    "tips": [
+      "Standardise by SUBTRACTING the mean and dividing by the standard deviation: z = (x - mu)/sigma. Options (c) and (d) add mu instead and are wrong.",
+      "The upper limit's Phi comes FIRST in the subtraction, since the CDF is increasing and the probability must be non-negative. Option (a) reverses the order.",
+      "Structural check: if b = a the expression must give 0, and if b tends to infinity while a tends to minus infinity it must give 1. Only option (b) satisfies both.",
+      "Generic rule: P(a <= X <= b) = F(b) - F(a) for any continuous variable, and standardising simply expresses F through Phi."
+    ],
+    "solution": [
+      "For X ~ N(mu, sigma^2), the standardised variable Z = (X - mu)/sigma follows N(0,1).",
+      "The event a <= X <= b is equivalent to (a - mu)/sigma <= Z <= (b - mu)/sigma.",
+      "For any continuous variable, P(a <= X <= b) = F(b) - F(a).",
+      "Expressing this through the standard normal CDF: P = Phi((b - mu)/sigma) - Phi((a - mu)/sigma).",
+      "The upper limit appears first because Phi is increasing, so the difference is non-negative.",
+      "Option (b) is correct."
+    ]
+  },
+  "2025-Q56": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "Each independent linear constraint removes one degree of freedom, so 53 squared standard normals subject to 3 constraints give chi-square with 53 - 3 = 50 degrees of freedom.",
+    "tips": [
+      "Rule: degrees of freedom = number of variables MINUS number of independent linear restrictions. Count the restrictions carefully - here three.",
+      "This is the same principle that makes sum (X_i - Xbar)^2 a chi-square with n - 1 d.f.: one constraint, one degree lost.",
+      "53 - 3 = 50; option (a) subtracts only one and option (c) subtracts four - both mis-count the restrictions.",
+      "Option (d) with 53 d.f. would be the unconstrained case, which the stem explicitly rules out."
+    ],
+    "solution": [
+      "For a random sample of 53 independent standard normal variables, the unconstrained sum of squares would follow a chi-square distribution with 53 degrees of freedom.",
+      "The three stated conditions are independent linear restrictions on the X_i.",
+      "Each independent linear constraint confines the vector to a subspace of one lower dimension, and hence removes one degree of freedom from the sum of squares.",
+      "Three such constraints therefore reduce the degrees of freedom by 3.",
+      "Hence the sum of squares follows chi-square with 53 - 3 = 50 degrees of freedom.",
+      "This is the same principle by which sum (X_i - Xbar)^2 has n - 1 degrees of freedom under the single constraint sum (X_i - Xbar) = 0. Option (b) is correct."
+    ]
+  },
+  "2025-Q57": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "P(M > m) = e^(-n(m - theta)), so M - theta ~ Exp(rate n). Then P(2n(M-theta) > w) = e^(-w/2), an exponential with mean 2.",
+    "tips": [
+      "Minimum of n shifted exponentials: the rate multiplies by n, so M - theta ~ Exp(n) with mean 1/n.",
+      "Scaling by 2n turns rate n into rate n/(2n) = 1/2, hence mean 2 - the factor 2n is chosen precisely to standardise it.",
+      "Exponential with mean 2 is the same as chi-square with 2 degrees of freedom, which is why such pivots are used to build confidence intervals for theta.",
+      "Options (a) and (d) have degrees of freedom growing with n, but the scaling removes all dependence on n - a structural giveaway."
+    ],
+    "solution": [
+      "The density f(x) = e^(-(x - theta)) for x > theta gives the survival function P(X > x) = e^(-(x - theta)).",
+      "For the minimum of n independent observations, P(M > m) = [e^(-(m - theta))]^n = e^(-n(m - theta)) for m > theta.",
+      "Hence M - theta follows an exponential distribution with rate n.",
+      "Let W = 2n(M - theta). Then P(W > w) = P(M - theta > w/(2n)) = e^(-n w/(2n)) = e^(-w/2).",
+      "That is the survival function of an exponential distribution with rate 1/2, i.e. mean 2 (equivalently chi-square with 2 degrees of freedom).",
+      "Option (b) is correct."
+    ]
+  },
+  "2025-Q58": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "With sigma = mu, P(X < -mu) = Phi(-2) = 1 - Phi(2) and P(X < mu) = Phi(0) = 1/2, so the conditional probability is 2[1 - Phi(2)].",
+    "tips": [
+      "sigma^2 = mu^2 with mu > 0 means sigma = mu, so standardising gives z = (x - mu)/mu - both limits become clean integers.",
+      "x = -mu gives z = -2 and x = mu gives z = 0. The denominator is therefore exactly 1/2, which is what produces the factor 2.",
+      "Because {X < -mu} is contained in {X < mu}, the intersection is just the numerator event - no extra work is needed.",
+      "Phi(-2) = 1 - Phi(2) by symmetry; dividing by 1/2 doubles it, giving 2[1 - Phi(2)] = 0.0455."
+    ],
+    "solution": [
+      "Since sigma^2 = mu^2 and mu > 0, we have sigma = mu, so Z = (X - mu)/mu is standard normal.",
+      "The event X < -mu corresponds to Z < (-mu - mu)/mu = -2, so P(X < -mu) = Phi(-2) = 1 - Phi(2).",
+      "The event X < mu corresponds to Z < (mu - mu)/mu = 0, so P(X < mu) = Phi(0) = 1/2.",
+      "Since {X < -mu} is a subset of {X < mu}, the intersection is {X < -mu} itself.",
+      "Hence P(X < -mu | X < mu) = [1 - Phi(2)]/(1/2) = 2[1 - Phi(2)].",
+      "Numerically this is 2(0.0228) = 0.0455. Option (d) is correct."
+    ]
+  },
+  "2025-Q59": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "(X4 + X5)/sqrt2 is standard normal and X1^2 + X2^2 + X3^2 is chi-square(3), so t = sqrt(3)(X4+X5)/(sqrt2 sqrt(sum)), giving C = sqrt(3/2).",
+    "tips": [
+      "t = N(0,1)/sqrt(chi-square_v/v). Identify the two pieces and their degrees of freedom before doing any algebra.",
+      "X4 + X5 has variance 2, so it needs a sqrt(2) divisor; the three squared normals give v = 3, so a sqrt(3) multiplier appears.",
+      "Combining: C = sqrt(3)/sqrt(2) = sqrt(3/2) = 1.2247. Option (b) sqrt(3)/2 = 0.866 takes the square root of 3 but not of 2.",
+      "This is a repeat of 2018 Q35 and 2019 Q28 with the variables relabelled - the construction is clearly a favourite."
+    ],
+    "solution": [
+      "X1, ..., X5 are independent N(0,1).",
+      "X4 + X5 ~ N(0, 2), so Z = (X4 + X5)/sqrt(2) is standard normal.",
+      "X1^2 + X2^2 + X3^2 ~ chi-square with 3 degrees of freedom, independent of X4 and X5.",
+      "By definition t = Z/sqrt(chi-square_3/3) = [(X4+X5)/sqrt2] sqrt(3)/sqrt(X1^2+X2^2+X3^2).",
+      "Rewriting, t = sqrt(3/2) (X4+X5)/(X1^2+X2^2+X3^2)^(1/2).",
+      "Hence C = sqrt(3/2), option (a)."
+    ]
+  },
+  "2025-Q60": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Q = (ad - bc)/(ad + bc) and Y = (sqrt(ad) - sqrt(bc))/(sqrt(ad) + sqrt(bc)). If bc = 0 both equal 1; if ad = 0 then Q = -1; if ad = bc then Q = 0. All three statements hold.",
+    "tips": [
+      "Yule's Q and the coefficient of colligation Y always share the same SIGN and reach +-1 together - so complete association is detected identically by both.",
+      "bc = 0 means one off-diagonal cell is empty (complete association), giving Q = ad/ad = 1 and Y = sqrt(ad)/sqrt(ad) = 1.",
+      "ad = 0 means one diagonal cell is empty (complete disassociation), giving Q = -bc/bc = -1.",
+      "ad = bc is precisely the independence condition, and it makes the numerator of Q vanish - so Q = 0 marks independence."
+    ],
+    "solution": [
+      "Yule's coefficient of association is Q = (ad - bc)/(ad + bc), and the coefficient of colligation is Y = (sqrt(ad) - sqrt(bc))/(sqrt(ad) + sqrt(bc)).",
+      "Statement I: if bc = 0 then Q = ad/ad = 1 and Y = sqrt(ad)/sqrt(ad) = 1, so both equal 1 - complete positive association. TRUE.",
+      "Statement II: if ad = 0 then Q = (0 - bc)/(0 + bc) = -1, indicating complete negative association. TRUE.",
+      "Statement III: if ad = bc the numerator of Q vanishes, so Q = 0. This is exactly the condition for the two attributes to be independent. TRUE.",
+      "All three statements are correct.",
+      "Hence option (d) is correct."
+    ]
+  }
+}

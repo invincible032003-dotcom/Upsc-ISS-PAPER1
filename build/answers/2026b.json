@@ -1,0 +1,412 @@
+{
+  "2026-Q21": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "f_X(x) = (1/3)(2x + 2), so f_X(1/2) = 1 and the conditional density is just (0.5 + y)/3 on (0,2). Then E(Y|X=1/2) = (1/3)[0.5(2) + 8/3] = (1/3)(11/3) = 11/9.",
+    "tips": [
+      "Integrate y over its full range 0 to 2 (not 0 to 1) when finding f_X - mismatched limits are the commonest slip on rectangular but non-square supports.",
+      "f_X(1/2) = (2/3)(1/2 + 1) = 1 exactly, so the conditional density equals the joint density with x = 1/2 substituted - a designed simplification.",
+      "Check the conditional integrates to 1: integral from 0 to 2 of (0.5 + y)/3 dy = (1 + 2)/3 = 1.",
+      "Bound check: Y lies in (0,2) and the conditional density increases in y, so the answer must exceed 1; 8/9 is therefore impossible."
+    ],
+    "solution": [
+      "Verify the joint density: integral from 0 to 1 of integral from 0 to 2 of (x+y)/3 dy dx = integral from 0 to 1 of (2x + 2)/3 dx = (1 + 2)/3 = 1. Valid.",
+      "Marginal of X: f_X(x) = integral from 0 to 2 of (x + y)/3 dy = (1/3)[xy + y^2/2] from 0 to 2 = (1/3)(2x + 2) = (2/3)(x + 1), for 0 <= x <= 1.",
+      "At x = 1/2: f_X(1/2) = (2/3)(3/2) = 1.",
+      "Conditional density: f(y | X = 1/2) = [(1/2 + y)/3]/1 = (0.5 + y)/3, for 0 <= y <= 2.",
+      "Check: integral from 0 to 2 of (0.5 + y)/3 dy = (1/3)[0.5(2) + 4/2] = (1/3)(1 + 2) = 1. Valid.",
+      "E(Y | X = 1/2) = integral from 0 to 2 of y(0.5 + y)/3 dy = (1/3)[0.25 y^2 + y^3/3] from 0 to 2 = (1/3)(1 + 8/3) = (1/3)(11/3) = 11/9.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q22": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "With r = 0.6, sqrt(1 - r^2) = 0.8, so t = 0.6 sqrt(n-2)/0.8 = 0.75 sqrt(n-2). Setting 0.75 sqrt(n-2) > 2.72 gives sqrt(n-2) > 3.627, n - 2 > 13.15, so n > 15.15, i.e. n > 15.",
+    "tips": [
+      "Test statistic for H0: rho = 0 is t = r sqrt(n-2)/sqrt(1 - r^2) with n - 2 degrees of freedom - memorise it exactly.",
+      "r = 0.6 gives the Pythagorean pair 0.6/0.8 = 0.75, so the algebra stays in clean decimals.",
+      "Solve the inequality for n rather than testing each option: n > 2 + (2.72/0.75)^2 = 2 + 13.15 = 15.15.",
+      "Since n must be a whole number, n >= 16, which is exactly the statement n > 15; do not round 15.15 down to 15."
+    ],
+    "solution": [
+      "To test the significance of an observed correlation coefficient, t = r sqrt(n - 2)/sqrt(1 - r^2) with (n - 2) degrees of freedom.",
+      "With r = 0.6: r^2 = 0.36, so 1 - r^2 = 0.64 and sqrt(1 - r^2) = 0.8.",
+      "Therefore t = 0.6 sqrt(n - 2)/0.8 = 0.75 sqrt(n - 2).",
+      "Require t > 2.72: 0.75 sqrt(n - 2) > 2.72, so sqrt(n - 2) > 2.72/0.75 = 3.62667.",
+      "Squaring: n - 2 > 13.1527, hence n > 15.1527.",
+      "Since n is an integer, n must be at least 16, i.e. n > 15.",
+      "Hence option (d) is correct."
+    ]
+  },
+  "2026-Q23": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Exactly as in the two-variable case, the product of the two reciprocal regression coefficients is the square of the corresponding correlation - here the partial correlation r_{13.2}. Answer (b).",
+    "tips": [
+      "Read the subscripts: both coefficients involve variables 1 and 3 with 2 held constant, so the answer must carry the subscript 13.2.",
+      "Simple-case analogue: b_yx * b_xy = r^2. The partial version simply carries the conditioning subscript through.",
+      "Explicit forms: b_{13.2} = r_{13.2} * sigma_{1.2}/sigma_{3.2} and b_{31.2} = r_{13.2} * sigma_{3.2}/sigma_{1.2}; the partial standard deviations cancel on multiplication.",
+      "Note r_{13.2} = r_{31.2} (partial correlation is symmetric in the two primary subscripts), which is why the single symbol suffices."
+    ],
+    "solution": [
+      "The partial regression coefficient of X_1 on X_3 holding X_2 fixed is b_{13.2} = r_{13.2} * (sigma_{1.2}/sigma_{3.2}), where sigma_{1.2} and sigma_{3.2} are the partial (residual) standard deviations.",
+      "Similarly b_{31.2} = r_{13.2} * (sigma_{3.2}/sigma_{1.2}), using the symmetry r_{31.2} = r_{13.2}.",
+      "Multiplying: b_{13.2} * b_{31.2} = r_{13.2}^2 * (sigma_{1.2}/sigma_{3.2})(sigma_{3.2}/sigma_{1.2}) = r_{13.2}^2.",
+      "This is the exact analogue of b_yx * b_xy = r^2 in simple linear regression.",
+      "Options (a) and (c) carry the wrong variable pair, and option (d) refers to an unspecified simple correlation.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q24": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Since s^2 is defined with divisor n, n s^2 = sum of (X_i - Xbar)^2, and that sum divided by sigma^2 is chi-square with n - 1 df (one df lost to estimating the mean by Xbar). Answer (c).",
+    "tips": [
+      "Track the divisor: with s^2 = (1/n) sum, the chi-square variable is n s^2/sigma^2; with S^2 = (1/(n-1)) sum, it is (n-1)S^2/sigma^2. Both equal the same raw sum over sigma^2 and both have n - 1 df.",
+      "One degree of freedom is always lost because Xbar is estimated from the same data; if the true mean mu were used instead, sum (X_i - mu)^2/sigma^2 would have n df - that is the trap in option (a).",
+      "Fisher's lemma also gives independence of Xbar and s^2 in the normal case, which is what makes the t-statistic work.",
+      "Consequence to remember: E(s^2) = (n-1)sigma^2/n, so s^2 with divisor n is biased downward, while S^2 with divisor n - 1 is unbiased."
+    ],
+    "solution": [
+      "Here s^2 = (1/n) sum from i = 1 to n of (X_i - Xbar)^2, so n s^2 = sum of (X_i - Xbar)^2.",
+      "Decompose sum (X_i - mu)^2 = sum (X_i - Xbar)^2 + n(Xbar - mu)^2.",
+      "Dividing by sigma^2: sum (X_i - mu)^2/sigma^2 is chi-square with n df, and n(Xbar - mu)^2/sigma^2 is chi-square with 1 df, the two terms on the right being independent (Fisher's lemma).",
+      "By the additivity of independent chi-square variables, sum (X_i - Xbar)^2/sigma^2 = n s^2/sigma^2 must be chi-square with n - 1 degrees of freedom.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q25": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "Correlation is unchanged by any linear change of scale and origin except that a negative multiplier flips the sign. 4x - 3 keeps the sign; (7 - 4y)/8 = 7/8 - y/2 reverses it. So the answer is -0.25.",
+    "tips": [
+      "Rule: r(a + bX, c + dY) = sign(bd) * r(X, Y). Only the signs of the multipliers matter; their magnitudes and the additive constants do not.",
+      "First simplify the given information: r(2x, y) = 0.25 means r(x, y) = 0.25, since 2 > 0.",
+      "Rewrite (7 - 4y)/8 as 7/8 - (1/2)y to expose the multiplier -1/2 clearly; leaving it as a compound fraction is what makes candidates miss the sign.",
+      "The magnitude never changes, so options (b) and (d) with 1/8 are wrong on principle - a scale change can never shrink a correlation."
+    ],
+    "solution": [
+      "The correlation coefficient is invariant under a change of origin and positive change of scale, and reverses sign under a negative change of scale: r(a + bX, c + dY) = sign(b)*sign(d)*r(X, Y).",
+      "Given r(2x, y) = 0.25. Since the multiplier 2 is positive, r(x, y) = 0.25.",
+      "First variable: 4x - 3 has multiplier b = 4 > 0, so the sign is preserved.",
+      "Second variable: (7 - 4y)/8 = 7/8 - (1/2) y has multiplier d = -1/2 < 0, so the sign is reversed.",
+      "Therefore r(4x - 3, (7 - 4y)/8) = sign(4) * sign(-1/2) * 0.25 = -0.25 = -1/4.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q26": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "The minimum of n iid exponentials with rate lambda is exponential with rate n*lambda. Here n = 6 and lambda = 0.5, so Y_1 is Exp(3) and its cdf is 1 - e^{-3y}.",
+    "tips": [
+      "Memorise: min of iid Exp(lambda) is Exp(n lambda) - the hazard rates simply add. This is the exponential's most exam-friendly property.",
+      "Derive it in one line if you forget: P(Y_1 > y) = [P(X > y)]^n = (e^{-lambda y})^n = e^{-n lambda y}.",
+      "A cdf must increase from 0 to 1, so any option with a positive exponent (e^{y/2}, e^{y/3}, e^{3y}) is impossible - that alone leaves only (d).",
+      "By contrast the maximum has cdf [1 - e^{-lambda y}]^n, which is NOT exponential - a common companion question."
+    ],
+    "solution": [
+      "The parent distribution is F(x) = 1 - e^{-lambda x} with lambda = 0.5, i.e. exponential with rate 0.5, and the sample size is n = 6.",
+      "Y_1 is the smallest order statistic, so Y_1 > y if and only if every one of the six observations exceeds y.",
+      "By independence, P(Y_1 > y) = [1 - F(y)]^6 = (e^{-0.5 y})^6 = e^{-3y}, for y > 0.",
+      "Therefore the cdf is F_{Y_1}(y) = 1 - P(Y_1 > y) = 1 - e^{-3y}, for y > 0.",
+      "So Y_1 is exponential with rate n*lambda = 6(0.5) = 3.",
+      "Hence option (d) is correct."
+    ]
+  },
+  "2026-Q27": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Statement I is dimensionally impossible - a squared correlation cannot carry sigma^2 factors - so drop it. II and III are both standard consequences of 1 - R^2_{1.23} = (1 - r_12^2)(1 - r^2_{13.2}). Answer (b).",
+    "tips": [
+      "Key identity: 1 - R^2_{1.23} = (1 - r_12^2)(1 - r^2_{13.2}). Almost every multiple-correlation inequality follows from it in one step.",
+      "Correlations are unit-free, so any formula for R^2 containing sigma_1^2 sigma_2^2 must be wrong - reject statement I on sight.",
+      "The correct formula is R^2_{1.23} = (r_12^2 + r_13^2 - 2 r_12 r_13 r_23)/(1 - r_23^2).",
+      "Remember the ordering 0 <= R^2_{1.23} <= 1 and R_{1.23} >= |r_1j| for every j: adding a regressor can never reduce the multiple correlation."
+    ],
+    "solution": [
+      "Statement I: R^2_{1.23} = sigma_1^2 sigma_2^2 (1 - r_12^2)(1 - r_13)^2. This is false. R^2 is a unit-free quantity lying in [0,1], so it cannot involve the variances; the correct expression is R^2_{1.23} = (r_12^2 + r_13^2 - 2 r_12 r_13 r_23)/(1 - r_23^2).",
+      "Use the standard identity 1 - R^2_{1.23} = (1 - r_12^2)(1 - r^2_{13.2}). Writing a = r_12^2 and b = r^2_{13.2}, both in [0,1], this gives R^2_{1.23} = 1 - (1 - a)(1 - b) = a + b - ab.",
+      "Statement II: R^2_{1.23} - r_12^2 = (a + b - ab) - a = b(1 - a) >= 0, since 0 <= a <= 1 and b >= 0. So R^2_{1.23} >= r_12^2 is correct.",
+      "Statement III: R^2_{1.23} - r^2_{13.2} = (a + b - ab) - b = a(1 - b) >= 0, since 0 <= b <= 1 and a >= 0. So R^2_{1.23} >= r^2_{13.2} is correct.",
+      "Only statements II and III hold.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q28": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Second group size = 150; combined mean gives 1500 + 150 m2 = 3900, so m2 = 16. Deviations are -0.6 and +0.4. Then 250(13.44) = 100(9 + 0.36) + 150(s2^2 + 0.16), i.e. 3360 = 960 + 150 s2^2 + 24, so s2^2 = 16.",
+    "tips": [
+      "Two-step routine: combined mean first (to get the missing group mean), then the combined-variance formula. You cannot do the variance without the mean.",
+      "Combined variance formula: N*sigma^2 = sum over groups of n_i(sigma_i^2 + d_i^2), where d_i = mean_i - combined mean.",
+      "Compute the deviations d_1 = 15 - 15.6 = -0.6 and d_2 = 16 - 15.6 = 0.4 and note n_1 d_1 + n_2 d_2 = -60 + 60 = 0 - a free check that the group mean is right.",
+      "The question asks for the variance, not the standard deviation: 16, not 4. Option (c) is the SD trap."
+    ],
+    "solution": [
+      "Group sizes: n_1 = 100, n_2 = 250 - 100 = 150, N = 250.",
+      "Combined mean: (n_1 m_1 + n_2 m_2)/N = 15.6, so 100(15) + 150 m_2 = 250(15.6) = 3900. Thus 150 m_2 = 3900 - 1500 = 2400 and m_2 = 16.",
+      "Deviations from the combined mean: d_1 = 15 - 15.6 = -0.6 and d_2 = 16 - 15.6 = 0.4. (Check: 100(-0.6) + 150(0.4) = -60 + 60 = 0.)",
+      "Combined variance formula: N sigma^2 = n_1(sigma_1^2 + d_1^2) + n_2(sigma_2^2 + d_2^2).",
+      "Substituting: 250(13.44) = 100(3^2 + 0.36) + 150(sigma_2^2 + 0.16).",
+      "3360 = 100(9.36) + 150 sigma_2^2 + 24 = 936 + 24 + 150 sigma_2^2 = 960 + 150 sigma_2^2.",
+      "150 sigma_2^2 = 2400, so sigma_2^2 = 16.",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2026-Q29": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "The means mu_1 and mu_2 are never specified, so neither E(X) = E(Y) nor E(XY) = 2 can be asserted. But for the bivariate normal, rho = 0 does imply independence. Only III. Answer (c).",
+    "tips": [
+      "Zero correlation implies independence ONLY for the joint normal - this is the single most-tested exception in the whole topic.",
+      "Ask what the data actually determine: the question gives variances and rho but leaves mu_1, mu_2 as free symbols, so any statement about means is unverifiable.",
+      "With rho = 0, E(XY) = E(X)E(Y) = mu_1 mu_2, not sigma_1^2 = 2. Statement II confuses the covariance with a variance.",
+      "Beware the counterexample direction too: uncorrelated normal MARGINALS need not be independent unless the JOINT distribution is bivariate normal, which is given here."
+    ],
+    "solution": [
+      "The distribution is bivariate normal with parameters mu_1, mu_2, sigma_1^2 = 2, sigma_2^2 = 3 and rho = 0. Note that mu_1 and mu_2 are not specified numerically.",
+      "Statement I: E(X) = mu_1 and E(Y) = mu_2. Nothing in the data forces mu_1 = mu_2, so this cannot be asserted. Incorrect.",
+      "Statement II: Cov(X,Y) = rho sigma_1 sigma_2 = 0, so E(XY) = E(X)E(Y) = mu_1 mu_2, which is unknown. There is no basis for the value 2 (that is sigma_1^2, a different quantity). Incorrect.",
+      "Statement III: for a bivariate normal density, setting rho = 0 makes the exponent separate into a function of x alone plus a function of y alone, so f(x,y) = f_X(x) f_Y(y). Hence X and Y are independent. Correct.",
+      "Only statement III holds.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q30": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "Given X = x, the density in y is proportional to y e^{-y/(1+x)}, a Gamma with shape 2 and scale (1+x), whose mean is 2(1+x) = 2 + 2x. That is linear in x.",
+    "tips": [
+      "The regression of Y on X is the conditional mean E(Y | X = x) viewed as a function of x - identify the conditional family first, then quote its mean.",
+      "Recognise the kernel: y^(k-1) e^{-y/theta} is Gamma(shape k, scale theta) with mean k*theta. Here k = 2 and theta = 1 + x.",
+      "You do not even need the marginal of X: the y-dependence alone identifies the conditional family, and the normalising factor is forced.",
+      "For completeness f_X(x) = 1/(1+x)^2 on x >= 0 - a Pareto-type density; the exponential shape in y must not be confused with an exponential regression curve."
+    ],
+    "solution": [
+      "Write theta = 1 + x. The joint density is f(x, y) = y e^{-y/theta}/theta^4 for x, y >= 0.",
+      "Marginal of X: f_X(x) = integral from 0 to infinity of y e^{-y/theta} dy / theta^4. Using integral from 0 to infinity of y e^{-y/theta} dy = theta^2 (Gamma function with shape 2), we get f_X(x) = theta^2/theta^4 = 1/theta^2 = 1/(1+x)^2.",
+      "Check: integral from 0 to infinity of dx/(1+x)^2 = 1, so f_X is a proper density.",
+      "Conditional density: f(y | x) = f(x,y)/f_X(x) = [y e^{-y/theta}/theta^4] * theta^2 = y e^{-y/theta}/theta^2.",
+      "This is the Gamma density with shape 2 and scale theta, whose mean is 2 theta.",
+      "Therefore E(Y | X = x) = 2(1 + x) = 2 + 2x, which is a straight line in x.",
+      "Hence the regression of Y on X is linear, and option (b) is correct."
+    ]
+  },
+  "2026-Q31": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "SE of the difference = sqrt(sigma^2/2000 + 4 sigma^2/2000) = sigma sqrt(5/2000) = sigma/20 = 0.05 sigma. 'In all probability' means within 3 SE, i.e. less than 0.15 sigma.",
+    "tips": [
+      "Variances add for a difference of independent means: sigma_1^2/n_1 + sigma_2^2/n_2, even though the means are subtracted.",
+      "The second sd is 2 sigma, so its variance is 4 sigma^2 - squaring the doubled sd is the step most often skipped.",
+      "5/2000 = 1/400, so the square root is exactly 1/20 - the numbers are chosen to make the SE come out as 0.05 sigma.",
+      "Exam convention: 'in all probability' (or 'practically certain') means within 3 standard errors, covering about 99.7% of the sampling distribution; 'probable error' would instead be 0.6745 SE."
+    ],
+    "solution": [
+      "Let sigma_1 = sigma and sigma_2 = 2 sigma, with n_1 = n_2 = 2000, and equal population means so E(xbar_1 - xbar_2) = 0.",
+      "V(xbar_1 - xbar_2) = sigma_1^2/n_1 + sigma_2^2/n_2 = sigma^2/2000 + 4 sigma^2/2000 = 5 sigma^2/2000 = sigma^2/400.",
+      "Standard error = sigma/20 = 0.05 sigma.",
+      "By the central limit theorem the difference of sample means is approximately normal with mean 0 and SE 0.05 sigma.",
+      "'In all probability' means within three standard errors: |xbar_1 - xbar_2| < 3(0.05 sigma) = 0.15 sigma, an event of probability about 0.997.",
+      "Hence the difference is in all probability less than 0.15 sigma, and option (b) is correct."
+    ]
+  },
+  "2026-Q32": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Difference 0.7, and SE = sqrt(14.09/n). Need 0.7 sqrt(n) / 3.7537 >= 1.645, so sqrt(n) >= 8.821 and n >= 77.8, i.e. n = 78. The increase over 50 is at least 28.",
+    "tips": [
+      "Keep the sample means and sds fixed and treat only n as unknown - that is the whole idea of a 'how much must n increase' question.",
+      "sigma_1^2 + sigma_2^2 = 6.25 + 7.84 = 14.09 with equal n, so SE = sqrt(14.09/n) and the test statistic is 0.7 sqrt(n)/sqrt(14.09).",
+      "Solve for n directly: n >= 14.09 (1.645/0.7)^2 = 14.09 * 5.5225 = 77.81, so n = 78 (round UP, since a larger n only helps).",
+      "Read the question's final step: it asks for the INCREASE, 78 - 50 = 28, not the new size 78. That is why both 78 and 28 appear as options, and 'at least' is right because more data only strengthens significance."
+    ],
+    "solution": [
+      "Observed difference of means: d = 68.2 - 67.5 = 0.7 inches, held fixed as n changes.",
+      "With equal sample sizes n in each group, SE(xbar_1 - xbar_2) = sqrt(s_1^2/n + s_2^2/n) = sqrt((6.25 + 7.84)/n) = sqrt(14.09/n).",
+      "Test statistic: Z = 0.7 / sqrt(14.09/n) = 0.7 sqrt(n)/sqrt(14.09) = 0.7 sqrt(n)/3.7537.",
+      "Significance at the 5% level (one-tailed, critical value 1.645) requires 0.7 sqrt(n)/3.7537 >= 1.645.",
+      "So sqrt(n) >= 1.645 * 3.7537/0.7 = 6.1748/0.7 = 8.8211, giving n >= 77.81.",
+      "Since n must be an integer, n = 78 at minimum.",
+      "Required increase in each group = 78 - 50 = 28, and any larger increase also gives significance, so the increase must be at least 28.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q33": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "SE = 2.1/sqrt(900) = 2.1/30 = 0.07, so z = (0 - 0.1)/0.07 = -1.43. P(Z < -1.43) = 0.5 - 0.4236 = 0.0764.",
+    "tips": [
+      "sqrt(900) = 30 exactly, so the standard error is a clean 0.07 - the numbers are chosen so that z lands on the tabulated 1.43.",
+      "The supplied value 0.4236 is P(0 < Z < 1.43), a CENTRAL area, so subtract it from 0.5 to get the tail; adding it to 0.5 gives the distractor 0.9236.",
+      "Draw the picture: 0 lies below the mean 0.1, so the required probability must be less than 0.5 - that alone eliminates options (c) and (d).",
+      "Standard error uses sigma/sqrt(n), not sigma; using 2.1 directly would give z = -0.048 and a probability near 0.48."
+    ],
+    "solution": [
+      "The population is normal with mu = 0.1 and sigma = 2.1, and the sample size is n = 900.",
+      "The sampling distribution of xbar is normal with mean 0.1 and standard error sigma/sqrt(n) = 2.1/30 = 0.07.",
+      "Standardise: z = (0 - 0.1)/0.07 = -0.1/0.07 = -1.4286, approximately -1.43.",
+      "P(xbar < 0) = P(Z < -1.43) = 0.5 - P(0 < Z < 1.43) = 0.5 - 0.4236 = 0.0764.",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2026-Q34": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "The finite population correction tends to 1 when n is negligible relative to N, and when N is infinite. When n = N it equals 0 - the opposite of ignorable. So I and III only, option (c).",
+    "tips": [
+      "Evaluate the factor at the limits: n/N -> 0 gives (N-n)/(N-1) -> 1 (ignorable); n = N gives (N-N)/(N-1) = 0 (a complete census, zero sampling variance).",
+      "Rule of thumb used in practice: drop the fpc when the sampling fraction n/N is below about 5%.",
+      "n = N means the whole population is surveyed, so V(xbar) = 0 exactly - the factor is doing its most important work there, not being ignored.",
+      "For an infinite population, sampling without replacement is equivalent to sampling with replacement, so V(xbar) = sigma^2/n with no correction."
+    ],
+    "solution": [
+      "The finite population correction (fpc) is (N - n)/(N - 1); it may be dropped only when it is (approximately) equal to 1.",
+      "Statement I: if n is small compared with N, then (N - n)/(N - 1) is approximately 1 - n/N, which is close to 1. The factor may be ignored. Correct.",
+      "Statement II: if n = N, then (N - n)/(N - 1) = 0, so V(xbar) = 0. The whole population has been enumerated, so there is no sampling error at all; the factor is emphatically not ignorable. Incorrect.",
+      "Statement III: for an infinite population, letting N tend to infinity gives (N - n)/(N - 1) -> 1, so V(xbar) = sigma^2/n with no correction. Correct.",
+      "Only statements I and III are right.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q35": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "(n-1)S^2/sigma^2 = 4S^2/36 = S^2/9 is chi-square with 4 df. S^2 in (27, 45) becomes chi-square in (3, 5). P = P(chi <= 5) - P(chi <= 3) = 0.71270 - (1 - 0.55783) = 0.27053.",
+    "tips": [
+      "Transform the limits, not the statistic: divide each bound by 9, since S^2/9 is the chi-square variable. 27/9 = 3 and 45/9 = 5.",
+      "Degrees of freedom are n - 1 = 4, not n = 5; the mean 2.5 is irrelevant because S^2 uses deviations from Xbar.",
+      "Convert the given tail probability first: P(chi^2_4 <= 3) = 1 - 0.55783 = 0.44217. Mixing an upper-tail value with a lower-tail value is the main trap here.",
+      "Final subtraction: 0.71270 - 0.44217 = 0.27053. The distractor 0.15487 is 0.71270 - 0.55783, i.e. what you get by forgetting to complement."
+    ],
+    "solution": [
+      "For a random sample of size n = 5 from a normal population with variance sigma^2 = 36, the quantity (n - 1)S^2/sigma^2 = 4S^2/36 = S^2/9 follows a chi-square distribution with n - 1 = 4 degrees of freedom.",
+      "Convert the bounds: S^2 = 27 gives 27/9 = 3, and S^2 = 45 gives 45/9 = 5.",
+      "So P(27 < S^2 < 45) = P(3 < chi^2_4 < 5) = P(chi^2_4 <= 5) - P(chi^2_4 <= 3).",
+      "From the data, P(chi^2_4 <= 5) = 0.71270, and P(chi^2_4 <= 3) = 1 - P(chi^2_4 >= 3) = 1 - 0.55783 = 0.44217.",
+      "Therefore the required probability = 0.71270 - 0.44217 = 0.27053.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q36": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "t is inversely proportional to the sample standard deviation s. Doubling the variance multiplies s by sqrt 2, so t becomes 3/sqrt 2.",
+    "tips": [
+      "Write t = (xbar - mu) sqrt(n)/s and note that only s changes - the numerator, n and mu are untouched.",
+      "Doubling the VARIANCE multiplies the SD by sqrt 2, not by 2; option (b) 3/2 is the trap for those who halve instead.",
+      "Option (a) 6 comes from multiplying rather than dividing - always check the direction: more variability means a smaller (less significant) t.",
+      "General scaling rule: if s^2 is multiplied by k, then t is divided by sqrt(k)."
+    ],
+    "solution": [
+      "The one-sample t-statistic is t = (xbar - mu)/(s/sqrt(n)) = (xbar - mu) sqrt(n)/s, where s^2 is the sample variance.",
+      "Only the sample variance is altered; the sample mean, hypothesised mean and sample size are unchanged.",
+      "If the sample variance is doubled, the new sample standard deviation is sqrt(2 s^2) = s sqrt(2).",
+      "Hence the new statistic is t_new = (xbar - mu) sqrt(n)/(s sqrt 2) = t/sqrt(2).",
+      "With t = 3, the new value is 3/sqrt(2), approximately 2.121.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2026-Q37": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "Kruskal-Wallis IS the one-way ANOVA computed on ranks - the H statistic is a monotone function of the between-groups sum of squares of the ranks. So the equivalence holds exactly when observations are replaced by their ranks. Answer (d).",
+    "tips": [
+      "Most classical non-parametric tests are the corresponding parametric test applied to ranks: Kruskal-Wallis to one-way ANOVA, Wilcoxon rank-sum to the two-sample t, Spearman's rho to Pearson's r, Friedman to two-way ANOVA.",
+      "Kruskal-Wallis is distribution-free, so normality (options a, b) is exactly what it does NOT require - those options invert the point of the test.",
+      "Equal sample sizes (option c) are convenient but neither necessary nor sufficient for the equivalence.",
+      "H = (12/[N(N+1)]) * sum (R_i^2/n_i) - 3(N+1), which is the between-groups sum of squares of the ranks scaled by the known variance of the ranks; H is compared with chi-square on k - 1 df."
+    ],
+    "solution": [
+      "The Kruskal-Wallis H test is the rank analogue of the one-way analysis of variance for comparing k independent samples.",
+      "Its statistic is H = 12/[N(N+1)] * sum over i of (R_i^2/n_i) - 3(N + 1), where R_i is the rank sum of the i-th group and N is the total sample size.",
+      "Because the ranks 1, 2, ..., N have a known total sum and known total sum of squares, the total sum of squares of the ranks is a constant. Consequently H is a strictly increasing function of the between-groups sum of squares of the ranks, which is exactly what one-way ANOVA's F is based on.",
+      "Therefore performing a one-way ANOVA on the ranks gives a test equivalent to Kruskal-Wallis: the two procedures coincide precisely when all observations are replaced by their ranks.",
+      "Options (a) and (b) are wrong because Kruskal-Wallis is a distribution-free test that does not assume normality; option (c) is wrong because equal sample sizes are not what creates the equivalence.",
+      "Hence option (d) is correct."
+    ]
+  },
+  "2026-Q38": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "The minimum exceeds x precisely when every observation exceeds x. For U(0,1), P(X_i > x) = 1 - x, so by independence P(X_(1) > x) = (1 - x)^n.",
+    "tips": [
+      "Golden rule of order statistics: 'minimum > x' means ALL exceed x, and 'maximum <= x' means ALL are at most x. Convert to these two forms first.",
+      "For the maximum the companion result is P(X_(n) <= x) = x^n, which is option (d) - the standard swap-the-extreme distractor.",
+      "Check the endpoints: at x = 0 the probability must be 1 and at x = 1 it must be 0. (1 - x)^n gives 1 and 0; x^n gives 0 and 1, so it is the wrong extreme.",
+      "Differentiating gives the density of the minimum, n(1-x)^(n-1), i.e. X_(1) is Beta(1, n) - useful if a follow-up asks for its mean 1/(n+1)."
+    ],
+    "solution": [
+      "Let X_1, ..., X_n be a random sample from U(0,1) and let X_(1) = min(X_1, ..., X_n).",
+      "The event {X_(1) > x} occurs if and only if every observation exceeds x.",
+      "For a single observation, P(X_i > x) = 1 - x for 0 <= x <= 1.",
+      "By independence, P(X_(1) > x) = [P(X_1 > x)]^n = (1 - x)^n.",
+      "(Endpoint check: at x = 0 this is 1 and at x = 1 it is 0, as a survival function must be.)",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q39": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "For odd n the sample median is the ((n+1)/2)-th order statistic from U(0,1), which is Beta(m, m) with m = (n+1)/2. Symmetry gives mean 1/2, and the Beta variance m^2/[(2m)^2(2m+1)] = 1/[4(n+2)] = 1/(4n+8).",
+    "tips": [
+      "Order statistics from U(0,1): X_(k) ~ Beta(k, n - k + 1), with mean k/(n+1) and variance k(n-k+1)/[(n+1)^2 (n+2)].",
+      "For the median of an odd sample, k = (n+1)/2, so both Beta parameters are equal and the distribution is symmetric about 1/2 - the mean follows without computation.",
+      "Plug into the variance formula directly: k(n-k+1) = [(n+1)/2]^2, so the variance is [(n+1)/2]^2/[(n+1)^2(n+2)] = 1/[4(n+2)].",
+      "Sanity check at n = 1: the 'median' is the single observation U(0,1) with variance 1/12, and 1/(4*1+8) = 1/12. Correct."
+    ],
+    "solution": [
+      "For a sample of odd size n from U(0,1), the sample median is the k-th order statistic with k = (n + 1)/2.",
+      "The k-th order statistic of a uniform (0,1) sample follows the Beta distribution with parameters k and n - k + 1.",
+      "Here n - k + 1 = n - (n+1)/2 + 1 = (n + 1)/2 = k, so the median follows Beta(k, k) with k = (n+1)/2 - a distribution symmetric about 1/2.",
+      "Mean = k/(k + k) = 1/2.",
+      "Variance of Beta(a, b) is ab/[(a+b)^2 (a + b + 1)]. With a = b = k: variance = k^2/[(2k)^2 (2k + 1)] = 1/[4(2k + 1)].",
+      "Since 2k + 1 = (n + 1) + 1 = n + 2, the variance = 1/[4(n + 2)] = 1/(4n + 8).",
+      "Check at n = 1: variance = 1/12, matching Var(U(0,1)) = 1/12.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2026-Q40": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "The k-th term is k(n-k+1)^2. Reversing the index turns the sum into sum of (n+1-j)j^2 = (n+1)*sum j^2 - sum j^3 = n(n+1)^2(n+2)/12. Dividing by n gives (n+1)^2(n+2)/12.",
+    "tips": [
+      "Write the general term first: the k-th number is k * (n - k + 1)^2, since the second factor counts down as the first counts up.",
+      "Substituting j = n - k + 1 converts the awkward product into (n + 1 - j) j^2, which splits into the standard sums of squares and cubes.",
+      "Standard sums: sum j^2 = n(n+1)(2n+1)/6 and sum j^3 = [n(n+1)/2]^2. Factor n(n+1)^2 out of both before combining.",
+      "Verify with n = 2: the numbers are 1*4 = 4 and 2*1 = 2, mean 3; the formula gives (3^2)(4)/12 = 36/12 = 3. Correct - a ten-second check that also kills options (b), (c) and (d)."
+    ],
+    "solution": [
+      "The k-th number in the list is a_k = k (n - k + 1)^2, for k = 1, 2, ..., n. (Check: k = 1 gives 1 * n^2 and k = n gives n * 1^2.)",
+      "Sum S = sum from k = 1 to n of k(n - k + 1)^2.",
+      "Substitute j = n - k + 1, so k = n + 1 - j and j runs from n down to 1: S = sum from j = 1 to n of (n + 1 - j) j^2.",
+      "Split: S = (n + 1) sum j^2 - sum j^3 = (n + 1) * n(n+1)(2n+1)/6 - [n(n+1)/2]^2 = n(n+1)^2 (2n+1)/6 - n^2 (n+1)^2/4 = n(n+1)^2 [ (2n+1)/6 - n/4 ].",
+      "Inside the bracket: (2(2n+1) - 3n)/12 = (4n + 2 - 3n)/12 = (n + 2)/12.",
+      "So S = n(n+1)^2 (n+2)/12.",
+      "Mean = S/n = (n + 1)^2 (n + 2)/12.",
+      "Verification at n = 2: numbers are 4 and 2 with mean 3; formula gives 9 * 4/12 = 3. Correct.",
+      "Hence option (a) is correct."
+    ]
+  }
+}

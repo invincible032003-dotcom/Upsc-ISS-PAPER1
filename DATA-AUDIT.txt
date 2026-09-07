@@ -1,0 +1,135 @@
+========================================================================
+UPSC ISS STATISTICS PAPER-I  --  PHASE 1 DATA AUDIT
+========================================================================
+
+TOTAL AUTHENTIC PYQs EXTRACTED : 720
+TOTAL ANSWER RECORDS AUTHORED  : 720
+TOTAL MERGED RECORDS           : 720
+
+-- Per-year counts -----------------------------------------------------
+  2018 : 80 questions   (Prob 21 | Stat 19 | Num 20 | Comp 20)
+  2019 : 80 questions   (Prob 19 | Stat 21 | Num 20 | Comp 20)
+  2020 : 80 questions   (Prob 20 | Stat 20 | Num 20 | Comp 20)
+  2021 : 80 questions   (Prob 20 | Stat 20 | Num 20 | Comp 20)
+  2022 : 80 questions   (Prob 21 | Stat 19 | Num 20 | Comp 20)
+  2023 : 80 questions   (Prob 20 | Stat 20 | Num 20 | Comp 20)
+  2024 : 80 questions   (Prob 29 | Stat 11 | Num 20 | Comp 20)
+  2025 : 80 questions   (Prob 26 | Stat 14 | Num 20 | Comp 20)
+  2026 : 80 questions   (Prob 20 | Stat 20 | Num 20 | Comp 20)
+  ------------------------------------------------------------------
+  ALL  : 720 questions
+
+-- Per-unit counts -----------------------------------------------------
+  Probability                                   196
+  Statistical Methods                           164
+  Numerical Analysis                            180
+  Computer Application and Data Processing      180
+  TOTAL                                         720
+
+-- Subtopic coverage (45 distinct syllabus topics) ------------------
+  [Probability]
+      Borel 0-1 Law, Kolmogorov 0-1 Law                                3
+      Characteristic Function, MGF & PGF; Inversion, Uniqueness, Con  21
+      Classical & Axiomatic Probability, Consequences                 10
+      Conditional Probability, Law of Total Probability, Bayes' Theo  13
+      Distributions of Functions of Random Variables                  15
+      Laws of Large Numbers & Central Limit Theorems                   7
+      Mathematical Expectation & Conditional Expectation              24
+      Modes of Convergence of Sequences of Random Variables            5
+      Random Variables & Distribution Functions                       10
+      Random Vectors: Joint, Marginal & Conditional Distributions     40
+      Standard Continuous Distributions                               21
+      Standard Discrete Distributions                                 20
+      Tchebycheff's & Kolmogorov's Inequalities                        7
+  [Statistical Methods]
+      Asymptotic Relative Efficiency                                   1
+      Bivariate & Multivariate Data; Association & Contingency        12
+      Bivariate Normal Distribution                                   25
+      Collection, Compilation & Presentation of Data; Frequency Dist   2
+      Correlation: Distribution of r, Partial, Multiple, Intraclass,  33
+      Curve Fitting & Orthogonal Polynomials                           3
+      Measures of Location & Dispersion                               10
+      Non-parametric Tests                                            13
+      Order Statistics - Minimum, Maximum, Range, Median              16
+      Regression - Linear & Polynomial                                 8
+      Sampling Distributions: Sample Mean, Sample Variance, t, Chi-s  23
+      Skewness & Kurtosis (Moments)                                    4
+      Standard Errors & Large Sample Tests                             6
+      Tests of Significance & Small Sample Tests                       8
+  [Numerical Analysis]
+      Central Difference Formulae - Gauss, Stirling, Bessel; Error T   4
+      Divided Differences; Newton's & Lagrange's Formulae (Unequal I  33
+      Finite Differences: Operators, Factorial Polynomials, Separati  62
+      Interpolation - Newton-Gregory Forward & Backward (Equal Inter  14
+      Inverse Interpolation                                            2
+      Numerical Integration - Trapezoidal, Simpson's 1/3 & 3/8, Wedd  36
+      Numerical Solution of Differential Equations - Euler, Milne, P  26
+      Summation of Series                                              3
+  [Computer Application and Data Processing]
+      Computer Organisation: CPU, ALU, Control & Memory Units, I/O U  11
+      Computer Security: Virus, Antivirus, Firewall, Spyware, Malwar  15
+      Data, Information, Database & DBMS; Frontend/Backend            11
+      Hardware: Input, Output & Peripheral Devices                    11
+      Languages, Compiler, Assembler, Interpreter; Low & High Level   16
+      Memory: RAM, ROM, Cache; Units of Memory & Storage Capacity     23
+      Networks: LAN, WAN, Internet, Intranet                          29
+      Number Systems & Binary Arithmetic                              24
+      Programming Basics: Algorithm, Flowchart, Control Structures,   16
+      Software, Operating Systems, Packages & Utilities               24
+
+-- Question-type mix ---------------------------------------------------
+  Numerical      381  (52.9%)
+  Conceptual     126  (17.5%)
+  Theoretical     99  (13.8%)
+  Factual         86  (11.9%)
+  Definition      28  (3.9%)
+
+-- Answer-key distribution ---------------------------------------------
+  option (a) : 158  (22.0%)
+  option (b) : 225  (31.3%)
+  option (c) : 177  (24.7%)
+  option (d) : 158  (22.0%)
+  keyed      : 718
+  unkeyed    :   2  (source defects, excluded from scoring)
+
+-- Confidence ----------------------------------------------------------
+  high            676
+  medium           42
+  source-defect     2
+
+-- Flagged source defects / caveats (13) ----------------------------
+  2018-Q03 [Probability]
+      SOURCE DEFECT - stem and options are mutually inconsistent. As printed, the third branch (3-x)/3 on 2<x<=3 contributes 1/6, giving a total mass of 1/4 + 1/2 + 1/6 = 11/12, so the printed function is n
+  2019-Q22 [Statistical Methods]
+      AI-derived key with a caveat. Statement 4 is unambiguously true and statements 2 and 3 are unambiguously false, which forces the key to (c) 'only 4' among the printed options. Statement 1, however, is
+  2019-Q24 [Statistical Methods]
+      AI-derived key with a caveat. Statements 1, 2 and 3 are exactly true: the pooled test statistic is Z = 1.543, which is below Z(0.05) = 1.645 but above Z(0.10) = 1.28, and the expected recoveries under
+  2019-Q32 [Probability]
+      SOURCE NOTE: sampling is without replacement, so the number of black balls is HYPERGEOMETRIC with exact variance r(m/N)(n/N)(N-r)/(N-1) where N = m+n, i.e. mnr(m+n-r)/[(m+n)^2 (m+n-1)]. Option (b) as 
+  2019-Q48 [Computer Application and Data Processing]
+      SOURCE DEFECT - the four answer options for this item are absent from the source scan; the page break in the original booklet falls immediately after statement 3. The question stem is reproduced exact
+  2021-Q33 [Statistical Methods]
+      AI-derived key with a caveat. Statement 1 is unambiguously true (mean n, variance 2n). Statement 2 states the additive property WITHOUT the independence requirement; as printed it is false, since the 
+  2021-Q40 [Statistical Methods]
+      AI-derived key with a caveat. The median is indeed 257.50 (mean of the 12th and 13th ordered values 253 and 262) and E(R) = 13 is correct for n1 = n2 = 12. However the printed standard deviation 1.396
+  2022-Q12 [Statistical Methods]
+      SOURCE NOTE: as printed the expression E(T^2 Xbar^2) evaluates, using the independence of Xbar and T with T ~ chi-square(4), to E(T^2) E(Xbar^2) = 24 x 0.2 = 4.8, which is NOT among the four printed o
+  2022-Q68 [Numerical Analysis]
+      AI-derived key with a caveat. The third difference is Delta^3 = 10, which is non-zero, so the four points do NOT lie on a quadratic and statement 1 fails. Applying Newton-Gregory forward interpolation
+  2024-Q55 [Computer Application and Data Processing]
+      SOURCE NOTE: HTTP, FTP and SMTP are strictly APPLICATION-layer protocols of the TCP/IP model, not network-layer protocols (the network layer carries IP, ICMP and ARP). 'NMP' is not a standard TCP/IP p
+  2026-Q10 [Probability]
+      The answer depends on the counting convention. Using the standard Indian-textbook convention in which both the geometric and the negative binomial count FAILURES (geometric mean q/p, negative binomial
+  2026-Q43 [Numerical Analysis]
+      Statement II is order-sensitive. The determinant representation quoted in most textbooks uses two determinants of order (n+1) - a Vandermonde denominator and a numerator with its last column replaced 
+  2026-Q73 [Computer Application and Data Processing]
+      Textbook presentations of the absolute loading scheme split the four loader functions differently. In Dhamdhere's table, allocation and linking are done by the PROGRAMMER, relocation by the translator
+
+-- Shared-stem groups --------------------------------------------------
+  questions carrying a shared stem : 59
+
+-- Validation result ---------------------------------------------------
+  blocking errors : 0
+  warnings        : 0
+
+========================================================================

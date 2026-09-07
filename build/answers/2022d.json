@@ -1,361 +1,397 @@
 {
-"2022-Q61": {
-  "answer": 2, "confidence": "high", "type": "Theoretical",
-  "shortcut": "Expressions 2, 3 and 4 are standard operator identities. Expression 1 fails: E^2 x^2 = (x+2h)^2 whereas (Ex)^2 = (x+h)^2. So three are correct.",
-  "tips": [
-    "E^n means shift n times, so E^2 x^2 = (x + 2h)^2 - the exponent on E is a SHIFT COUNT, not an algebraic power that distributes over the function.",
-    "E = 1 + Delta is the master identity; raising both sides to the nth power gives expression 2 immediately.",
-    "Both E and Delta obey the index law because repeated application of the same operator simply composes - expressions 3 and 4 are automatic.",
-    "Test the doubtful one numerically: with x = 1, h = 1, E^2 x^2 = 9 but (Ex)^2 = 4. One substitution settles expression 1."
-  ],
-  "solution": [
-    "Expression 1: E^2 x^2 means applying the shift twice to the function x^2, giving (x + 2h)^2. But (Ex)^2 means shifting x first and then squaring, giving (x + h)^2. These differ, e.g. at x = 1, h = 1 they are 9 and 4. FALSE.",
-    "Expression 2: since E = 1 + Delta by definition of the forward difference, raising both sides to the nth power gives E^n = (1 + Delta)^n. TRUE.",
-    "Expression 3: applying the shift n times and then m more times shifts a total of n + m steps, so E^n E^m f(x) = E^(n+m) f(x). TRUE.",
-    "Expression 4: likewise repeated differencing composes, so Delta^n Delta^m f(x) = Delta^(n+m) f(x). TRUE.",
-    "Exactly three of the four expressions are correct.",
-    "Hence option (c) is correct."
-  ]
-},
-"2022-Q62": {
-  "answer": 3, "confidence": "high", "type": "Numerical",
-  "shortcut": "Leading differences are -4, 12, -4, 10. With p = 5 the binomial coefficients are 5, 10, 10, 5, giving 5 - 20 + 120 - 40 + 50 = 115.",
-  "tips": [
-    "Extrapolating one step beyond the table means p = 5 here (x0 = 0, h = 1), so the coefficients are the binomial numbers C(5,1) = 5, C(5,2) = 10, C(5,3) = 10, C(5,4) = 5.",
-    "Build the full difference table: -4, 8, 16, 30; then 12, 8, 14; then -4, 6; then 10. Every level is needed because the data are not polynomial of low degree.",
-    "For integer p the factorial coefficients reduce to plain binomial coefficients - a large simplification worth spotting.",
-    "Running total: 5, -15, 105, 65, 115. Keeping a running sum makes a sign slip immediately visible."
-  ],
-  "solution": [
-    "With x0 = 0 and h = 1, the values are 5, 1, 9, 25, 55.",
-    "Differences: Delta = -4, 8, 16, 30; Delta^2 = 12, 8, 14; Delta^3 = -4, 6; Delta^4 = 10.",
-    "For x = 5, p = (5 - 0)/1 = 5, and since p is an integer the coefficients p(p-1).../k! are the binomial coefficients C(5,k): 5, 10, 10, 5.",
-    "Newton's forward formula: f(5) = 5 + 5(-4) + 10(12) + 10(-4) + 5(10).",
-    "= 5 - 20 + 120 - 40 + 50.",
-    "= 115, option (d)."
-  ]
-},
-"2022-Q63": {
-  "answer": 3, "confidence": "high", "type": "Numerical",
-  "shortcut": "Second differences are constant at 2, so y is quadratic with leading coefficient 1. Fitting gives y_x = x^2 - 18x + 83, and y_4 = 16 - 72 + 83 = 27.",
-  "tips": [
-    "Constant second differences equal to 2 with h = 1 mean 2a h^2 = 2, so the leading coefficient a = 1 - identify it before fitting anything else.",
-    "Two data points then pin down b and c: subtracting y_10 from y_11 gives 21 + b = 3, so b = -18.",
-    "Alternative route: extend the difference table BACKWARDS from y_10 six steps, subtracting 2 from each first difference each time. Slower but needs no algebra.",
-    "Check the fitted formula on a value you did not use: y_12 = 144 - 216 + 83 = 11, matching the table."
-  ],
-  "solution": [
-    "The values y_10 to y_14 are 3, 6, 11, 18, 27 with h = 1.",
-    "First differences: 3, 5, 7, 9. Second differences: 2, 2, 2 - constant, so y is a quadratic in x.",
-    "For y = ax^2 + bx + c with h = 1, the second difference is 2a, so 2a = 2 and a = 1.",
-    "From y_10 = 3: 100 + 10b + c = 3. From y_11 = 6: 121 + 11b + c = 6. Subtracting: 21 + b = 3, so b = -18.",
-    "Then 100 - 180 + c = 3 gives c = 83, so y_x = x^2 - 18x + 83 (check: y_12 = 144 - 216 + 83 = 11).",
-    "Therefore y_4 = 16 - 72 + 83 = 27, option (d)."
-  ]
-},
-"2022-Q64": {
-  "answer": 1, "confidence": "high", "type": "Theoretical",
-  "shortcut": "Delta - nabla = (E - 1) - (1 - E^(-1)) = E - 2 + E^(-1), and Delta nabla = (E-1)(1 - E^(-1)) = E - 2 + E^(-1). They are equal.",
-  "tips": [
-    "Convert everything to E: Delta = E - 1 and nabla = 1 - E^(-1). Every identity in this chapter falls out in one line from these two.",
-    "Both sides equal delta^2 = E - 2 + E^(-1), so the identity can also be written Delta - nabla = Delta nabla = delta^2 - a three-way identity worth memorising.",
-    "Numerical check on f(x) = x^2 with h = 1: Delta f = 2x + 1, nabla f = 2x - 1, so Delta f - nabla f = 2; and Delta nabla f = Delta(2x-1) = 2. Equal.",
-    "Companion identity from the same pair: Delta + nabla = E - E^(-1) = 2 mu delta."
-  ],
-  "solution": [
-    "In terms of the shift operator, Delta = E - 1 and nabla = 1 - E^(-1).",
-    "Therefore Delta - nabla = (E - 1) - (1 - E^(-1)) = E - 2 + E^(-1).",
-    "Also Delta nabla = (E - 1)(1 - E^(-1)) = E - E E^(-1) - 1 + E^(-1) = E - 1 - 1 + E^(-1) = E - 2 + E^(-1).",
-    "The two expressions coincide, so Delta - nabla = Delta nabla.",
-    "Both also equal delta^2, since delta^2 = (E^(1/2) - E^(-1/2))^2 = E - 2 + E^(-1).",
-    "Hence option (b) is correct."
-  ]
-},
-"2022-Q65": {
-  "answer": 3, "confidence": "high", "type": "Numerical",
-  "shortcut": "All four options give 12 at x = 1, so test x = 2 where the value must be 40: only x^3 + 5x^2 + 6x gives 8 + 20 + 12 = 40.",
-  "tips": [
-    "When several options agree at the first data point, move straight to the SECOND - do not keep testing the same value.",
-    "At x = 1 every cubic here evaluates to the sum of its coefficients, which the examiner has deliberately made equal to 12 in all four options.",
-    "The polynomial factorises as x(x+2)(x+3), so f(1) = 1(3)(4) = 12 and f(2) = 2(4)(5) = 40 - the factored form makes verification instant.",
-    "Cross-check with 2018 Q41, which used the same data and established that the underlying polynomial has degree 3 - consistent with all the options offered."
-  ],
-  "solution": [
-    "The data are f(1) = 12, f(2) = 40, f(3) = 90, f(4) = 168, f(5) = 280, f(6) = 432, which (as in 2018 Q41) have constant third differences and so come from a cubic.",
-    "At x = 1 all four options evaluate to the sum of their coefficients, which is 12 in every case, so this test does not discriminate.",
-    "Test x = 2, where the required value is 40. Option (a): 8 + 20 + 10 + 1 = 39. Option (b): 8 + 16 + 12 + 1 = 37. Option (c): 8 + 20 + 8 + 2 = 38.",
-    "Option (d): 8 + 20 + 12 = 40, which matches.",
-    "Confirm on further points: at x = 3, 27 + 45 + 18 = 90; at x = 4, 64 + 80 + 24 = 168; at x = 5, 125 + 125 + 30 = 280; at x = 6, 216 + 180 + 36 = 432. All correct.",
-    "Note f(x) = x(x+2)(x+3). Option (d) is correct."
-  ]
-},
-"2022-Q66": {
-  "answer": 3, "confidence": "high", "type": "Theoretical",
-  "shortcut": "nabla g(x) = Delta g(x-1), so w is literally u. And both u and v expand to f(x)Delta g(x) - f(x-1)Delta g(x-1). Hence u = v = w.",
-  "tips": [
-    "Key bridge identity: nabla g(x) = g(x) - g(x-1) = Delta g(x-1). Substituting it turns w into u without any expansion.",
-    "Expand u and v fully in terms of function values: both give f(x)Delta g(x) - f(x-1)Delta g(x-1). Writing out the two terms is the safest route.",
-    "Delta applied at x-1 and nabla applied at x reach the SAME pair of points - that shared reach is why all three expressions coincide.",
-    "Numerical check with f(x) = x and g(x) = x^2 at x = 2: all three expressions evaluate to 3 x 5 - 1 x 3 = ... compute once and the equality is confirmed."
-  ],
-  "solution": [
-    "With difference interval 1, nabla g(x) = g(x) - g(x-1) = Delta g(x-1).",
-    "Substituting this into w = Delta[f(x-1) nabla g(x)] gives w = Delta[f(x-1) Delta g(x-1)] = u. So u = w immediately.",
-    "Now expand u. Writing G(x) = f(x-1) Delta g(x-1), we have u = Delta G(x) = G(x+1) - G(x) = f(x) Delta g(x) - f(x-1) Delta g(x-1).",
-    "Expand v. Writing F(x) = f(x) Delta g(x), we have v = nabla F(x) = F(x) - F(x-1) = f(x) Delta g(x) - f(x-1) Delta g(x-1).",
-    "The two expansions are identical, so u = v.",
-    "Therefore u = v = w, option (d)."
-  ]
-},
-"2022-Q67": {
-  "answer": 1, "confidence": "high", "type": "Theoretical",
-  "shortcut": "Expressions 1 and 2 are standard. Expression 3 drops the factor delta: the true identity is nabla = -delta^2/2 + delta sqrt(1 + delta^2/4), so as printed it is false.",
-  "tips": [
-    "Master identities: mu = sqrt(1 + delta^2/4), Delta = delta^2/2 + delta mu, nabla = -delta^2/2 + delta mu. All three carry mu MULTIPLIED by delta in the second term.",
-    "Compare expressions 2 and 3 side by side: expression 2 has delta before the square root, expression 3 does not. That single missing factor is the whole question.",
-    "Verify with E-forms: delta mu = (E - E^(-1))/2 and delta^2/2 = (E - 2 + E^(-1))/2. Adding gives E - 1 = Delta; subtracting gives 1 - E^(-1) = nabla.",
-    "Dimensional check: Delta and nabla are first-order difference operators, so each term must contain an ODD total power of delta. In expression 3 the term mu alone is even-order, which cannot be right."
-  ],
-  "solution": [
-    "Write the operators in terms of E: delta = E^(1/2) - E^(-1/2), mu = (E^(1/2) + E^(-1/2))/2, so delta^2 = E - 2 + E^(-1) and delta mu = (E - E^(-1))/2.",
-    "Expression 1: mu^2 = (E + 2 + E^(-1))/4 = 1 + (E - 2 + E^(-1))/4 = 1 + delta^2/4, so mu = sqrt(1 + delta^2/4). TRUE.",
-    "Expression 2: delta^2/2 + delta mu = (E - 2 + E^(-1))/2 + (E - E^(-1))/2 = (2E - 2)/2 = E - 1 = Delta. TRUE.",
-    "Expression 3 as printed is -delta^2/2 + sqrt(1 + delta^2/4) = -delta^2/2 + mu, which is not nabla.",
-    "The correct identity is nabla = -delta^2/2 + delta mu = -(E - 2 + E^(-1))/2 + (E - E^(-1))/2 = 1 - E^(-1); the printed version omits the factor delta. FALSE.",
-    "Exactly two expressions are correct, option (b)."
-  ]
-},
-"2022-Q68": {
-  "answer": 3, "confidence": "medium", "type": "Numerical",
-  "issue": "AI-derived key with a caveat. The third difference is Delta^3 = 10, which is non-zero, so the four points do NOT lie on a quadratic and statement 1 fails. Applying Newton-Gregory forward interpolation at x = 25 (p = 0.5) gives 512 - 36.5 + 2.5 + 0.625 = 478.63, not the 477 asserted in statement 2 (truncating after the second difference still gives 478.0). Both statements therefore fail as printed, giving (d). If the intended value in statement 2 were 478.6 the key would be (b).",
-  "shortcut": "Differences: -73, -93, -103; then -20, -10; then 10. A non-zero third difference rules out a quadratic, and Newton forward at p = 0.5 gives 478.63, not 477.",
-  "tips": [
-    "Degree test: a quadratic requires CONSTANT second differences. Here they are -20 and -10, so at least a cubic is needed.",
-    "For p = 0.5 the factorial coefficients are p = 0.5, p(p-1)/2 = -0.125 and p(p-1)(p-2)/6 = +0.0625 - note the sign change at the third term.",
-    "Assemble carefully: 512 - 36.5 = 475.5, then +2.5 = 478.0, then +0.625 = 478.625.",
-    "The same data appear as 2020 Q74, where the statements concerned degree n < 2 and the choice of forward versus backward formula - a clear repeat of the underlying table."
-  ],
-  "solution": [
-    "The tabulated values at x = 20, 30, 40, 50 are 512, 439, 346, 243 with h = 10.",
-    "First differences: -73, -93, -103. Second differences: -20, -10. Third difference: 10.",
-    "Statement 1: a quadratic would require constant second differences, but they are -20 and -10, and the third difference is non-zero. A cubic is needed, so the claim of degree 2 is FALSE.",
-    "Statement 2: for x = 25, p = (25 - 20)/10 = 0.5. Newton's forward formula gives f(25) = 512 + 0.5(-73) + [0.5(-0.5)/2](-20) + [0.5(-0.5)(-1.5)/6](10).",
-    "= 512 - 36.5 + 2.5 + 0.625 = 478.63. Even truncating after the second-difference term gives 478.0, so the asserted value 477 is not obtained. FALSE.",
-    "Neither statement holds, option (d)."
-  ]
-},
-"2022-Q69": {
-  "answer": 2, "confidence": "high", "type": "Numerical",
-  "shortcut": "Delta^2 a^(4x) = a^(4x)(a^4 - 1)^2, and (a^4 - 1) = (a^2-1)(a^2+1), so dividing by (a^2-1)^2 leaves (a^2+1)^2 a^(4x).",
-  "tips": [
-    "For an exponential base b = a^4, each Delta multiplies by (b - 1) = (a^4 - 1). Two differences give the square.",
-    "Factorise the difference of squares: a^4 - 1 = (a^2 - 1)(a^2 + 1). The (a^2-1)^2 in the denominator is placed precisely to cancel.",
-    "The exponential factor a^(4x) never changes - only the constant multiplier does, which is why every option keeps a^(4x).",
-    "Sanity check with a = 2: a^4 - 1 = 15 and a^2 - 1 = 3, so the constant is (15/3)^2 = 25 = (a^2+1)^2 = 5^2. Confirmed."
-  ],
-  "solution": [
-    "With interval of differencing 1, Delta a^(4x) = a^(4(x+1)) - a^(4x) = a^(4x)(a^4 - 1).",
-    "Applying Delta a second time multiplies by the same constant: Delta^2 a^(4x) = a^(4x)(a^4 - 1)^2.",
-    "The constant (a^2 - 1)^(-2) passes through the operator unchanged, so Delta^2[a^(4x)/(a^2-1)^2] = a^(4x)(a^4-1)^2/(a^2-1)^2.",
-    "Factorise a^4 - 1 = (a^2 - 1)(a^2 + 1), so (a^4 - 1)^2 = (a^2-1)^2 (a^2+1)^2.",
-    "The (a^2-1)^2 factors cancel, leaving (a^2 + 1)^2 a^(4x).",
-    "Option (c) is correct."
-  ]
-},
-"2022-Q70": {
-  "answer": 2, "confidence": "high", "type": "Numerical",
-  "shortcut": "Delta(3x-3)^(-2) = (-2)(3)(3x-3)^(-3) = -6(3x-3)^(-3). Shifting by E^2 gives -6/[(3x+6)(3x+9)(3x+12)], which at x = 1 is -6/(9 x 12 x 15) = -1/270.",
-  "tips": [
-    "Negative factorial with a linear argument and coefficient a: u^(-n) = 1/[(u+a)(u+2a)...(u+na)]. Here a = 3, so (3x-3)^(-2) = 1/[(3x)(3x+3)].",
-    "The difference rule Delta u^(n) = n a u^(n-1) holds for negative n too, with n = -2 giving the factor (-2)(3) = -6.",
-    "E and Delta commute, so apply the difference rule first and the double shift afterwards - far cleaner than expanding four separate fractions.",
-    "Sign check: a negative factorial power decreases in magnitude as x grows, so its forward difference must be NEGATIVE - options (b) and (d) are eliminated at once."
-  ],
-  "solution": [
-    "With interval 1 and a linear argument of coefficient a = 3, the generalised factorial rule is Delta u^(n) = n a u^(n-1), valid for negative n as well.",
-    "So Delta[(3x-3)^(-2)] = (-2)(3)(3x-3)^(-3) = -6(3x-3)^(-3).",
-    "Since E and Delta commute, apply E^2, which replaces x by x + 2: E^2[-6(3x-3)^(-3)] = -6(3x+3)^(-3).",
-    "By definition of the negative factorial, (3x+3)^(-3) = 1/[(3x+3+3)(3x+3+6)(3x+3+9)] = 1/[(3x+6)(3x+9)(3x+12)].",
-    "At x = 1 the three factors are 9, 12 and 15, so the value is -6/(9 x 12 x 15) = -6/1620.",
-    "= -1/270, option (c)."
-  ]
-},
-"2022-Q71": {
-  "answer": 0, "confidence": "high", "type": "Factual",
-  "shortcut": "PROM - Programmable ROM - is blank when manufactured and can be programmed exactly ONCE by blowing internal fuses.",
-  "tips": [
-    "ROM family by erasability: ROM (fixed at manufacture), PROM (write once), EPROM (erasable by ultraviolet light), EEPROM/flash (electrically erasable, many times).",
-    "The 'E' prefixes signal ERASABLE, so any option beginning with E can be rewritten and cannot be the write-once answer.",
-    "PROM is programmed by permanently blowing fuse links, which is why the process is irreversible - a one-line justification worth quoting.",
-    "'EROM' in option (d) is not a standard device name; the genuine family members are ROM, PROM, EPROM, EEPROM and flash."
-  ],
-  "solution": [
-    "Plain ROM has its contents fixed during manufacture and cannot be written by the user at all.",
-    "PROM (Programmable Read-Only Memory) is supplied blank and can be programmed once by the user, typically by blowing internal fuse links. Because the fuses are destroyed permanently, the process cannot be reversed or repeated.",
-    "EPROM (Erasable PROM) can be erased by exposure to ultraviolet light and reprogrammed many times.",
-    "EEPROM (Electrically Erasable PROM) can be erased and rewritten electrically, byte by byte, without removal from the circuit.",
-    "'EROM' is not a standard device designation.",
-    "Hence data can be written only once on PROM, option (a)."
-  ]
-},
-"2022-Q72": {
-  "answer": 3, "confidence": "medium", "type": "Conceptual",
-  "shortcut": "A process is admitted from the waiting/new queue, becomes Ready, is dispatched to Executing, and finally Terminates - the only option that ends in a terminal state.",
-  "tips": [
-    "Process state model: New -> Ready -> Running -> Terminated, with excursions to Blocked/Waiting and back to Ready whenever I/O is needed.",
-    "A complete life cycle must END in Terminated; options ending in 'Blocked' describe an intermediate excursion rather than a completed cycle.",
-    "A process never goes directly from Ready to Waiting - it must be dispatched to Running first and then block on a request. That rules out options (a) and (b).",
-    "Only the scheduler moves a process from Ready to Running (dispatch), and only an I/O request moves it from Running to Blocked - keep the transition triggers in mind."
-  ],
-  "solution": [
-    "The standard process state diagram is: a new process is admitted to the READY queue, the scheduler dispatches it to the RUNNING (executing) state, and on completion it moves to TERMINATED.",
-    "While running, a process may issue an I/O request and move to the BLOCKED/WAITING state, returning to READY when the I/O completes.",
-    "Option (a) places Blocked after Terminated, which is impossible since termination is a final state.",
-    "Options (b) and (c) end at Blocked, which is an intermediate state rather than the end of a life cycle; option (b) additionally moves from Ready to Waiting directly, a transition that does not exist.",
-    "Option (d), Waiting -> Ready -> Executing -> Terminated, follows the admission, dispatch and completion path and ends in the terminal state.",
-    "Hence option (d) is correct."
-  ]
-},
-"2022-Q73": {
-  "answer": 1, "confidence": "high", "type": "Conceptual",
-  "shortcut": "Processing is done by the CPU using data held in the memory unit. The monitor is an OUTPUT device and takes no part in processing.",
-  "tips": [
-    "Functional units: input, memory, ALU, control, output. Processing is the ALU and control unit (i.e. the CPU) acting on data in memory.",
-    "The monitor merely DISPLAYS results after processing, so it belongs to the output stage - any option containing item 1 is out.",
-    "Data must be loaded into main memory before the CPU can operate on it, which is why the memory unit is genuinely part of processing rather than mere storage.",
-    "Input-process-output is the standard model: keyboard/mouse in, CPU plus memory processing, monitor/printer out."
-  ],
-  "solution": [
-    "A computer system is organised into input units, a memory unit, a central processing unit (comprising the ALU and control unit) and output units.",
-    "Item 3, the CPU: performs all arithmetic and logical operations and controls the sequence of execution - the processing element itself.",
-    "Item 2, the memory unit: holds the program and the data being operated on; the CPU cannot process data that is not in memory, so it is an essential part of the processing stage.",
-    "Item 1, the monitor: is an output device that displays results once processing is complete, and plays no part in the processing itself.",
-    "Hence data processing is performed by the memory unit and the CPU.",
-    "Option (b) is correct."
-  ]
-},
-"2022-Q74": {
-  "answer": 3, "confidence": "high", "type": "Conceptual",
-  "shortcut": "The machine cycle has the four phases fetch, decode, execute and store; it is the cycle in which machine instructions are executed; and each instruction consumes its own cycle, so six instructions take six cycles. All three statements hold.",
-  "tips": [
-    "Four phases to memorise: FETCH the instruction, DECODE it, EXECUTE it, STORE the result. Some texts merge the last two, but four is the standard exam answer.",
-    "One instruction per machine cycle is the defining relationship - hence a program of n instructions requires n machine cycles in a simple non-pipelined processor.",
-    "Distinguish the machine cycle from the CLOCK cycle: one machine cycle spans several clock cycles, which is why clock speed alone does not determine instruction throughput.",
-    "When all three statements restate parts of the same standard definition, 'all of them' is the natural key."
-  ],
-  "solution": [
-    "Statement 1: the machine cycle is conventionally described as having four phases - fetching the instruction from memory, decoding it in the control unit, executing it in the ALU, and storing the result. TRUE.",
-    "Statement 2: the machine cycle is precisely the repeating sequence by which the processor carries out machine-language instructions one after another. TRUE.",
-    "Statement 3: in a simple non-pipelined processor each instruction occupies one complete machine cycle, so a program of 6 machine-language instructions requires 6 machine cycles. TRUE.",
-    "Note that one machine cycle spans several clock cycles; the two must not be confused.",
-    "All three statements are correct.",
-    "Hence option (d) is correct."
-  ]
-},
-"2022-Q75": {
-  "answer": 0, "confidence": "medium", "type": "Conceptual",
-  "shortcut": "IPsec operates at the NETWORK layer, so it protects all traffic transparently regardless of the application; SSL sits above the transport layer and each application must be written to use it.",
-  "tips": [
-    "Layer determines transparency: IPsec at layer 3 secures every packet automatically, while SSL/TLS at the transport-session boundary must be invoked by the application (HTTPS, FTPS and so on).",
-    "'Application-independent' is the key phrase - it points to the layer BELOW the applications, which is where IPsec lives.",
-    "IPsec provides authentication (AH) and confidentiality (ESP) and is the basis of most VPNs, which is why it can protect legacy applications unchanged.",
-    "Plain IP and TCP (options c and d) provide no security at all - they are the protocols IPsec was designed to protect."
-  ],
-  "solution": [
-    "The question asks for a mechanism that secures internet communication without the applications needing to be aware of it.",
-    "IPsec operates at the network (IP) layer, encrypting and authenticating IP packets themselves. Because it sits below the transport and application layers, every application's traffic is protected transparently, with no modification to the applications.",
-    "SSL (and its successor TLS) operates above the transport layer; an application must be explicitly written to open an SSL connection, which is why HTTPS, FTPS and SMTPS exist as separate application-level variants.",
-    "IP and TCP provide addressing, routing and reliable delivery but offer no security services of their own.",
-    "Hence the application-independent mechanism is the IP security protocol, option (a)."
-  ]
-},
-"2022-Q76": {
-  "answer": 1, "confidence": "high", "type": "Factual",
-  "shortcut": "DRAM and SRAM are both volatile forms of RAM; only EPROM, a member of the ROM family, retains its contents without power.",
-  "tips": [
-    "Volatility rule of thumb: anything called RAM is volatile; anything in the ROM family (ROM, PROM, EPROM, EEPROM, flash) is non-volatile.",
-    "DRAM additionally needs periodic REFRESH even while powered, and SRAM holds its value only while power is applied - both lose everything at power-off.",
-    "EPROM stores charge on floating gates that persists for years without power, which is exactly what non-volatility means.",
-    "Practical anchor: main memory (RAM) is wiped on reboot, whereas the BIOS held in EPROM/flash survives - the everyday demonstration of the distinction."
-  ],
-  "solution": [
-    "Volatile memory loses its contents when the power supply is removed; non-volatile memory retains them.",
-    "Item 1, DRAM (Dynamic RAM): stores each bit as charge on a capacitor, requiring periodic refresh even while powered, and loses everything when power is removed. VOLATILE.",
-    "Item 2, SRAM (Static RAM): stores each bit in a flip-flop; no refresh is needed but power is, so the contents vanish at power-off. VOLATILE.",
-    "Item 3, EPROM (Erasable Programmable ROM): stores bits as trapped charge on floating gates, which persists for years without power and is removed only by ultraviolet exposure. NON-VOLATILE.",
-    "Hence only item 3 is non-volatile.",
-    "Option (b) is correct."
-  ]
-},
-"2022-Q77": {
-  "answer": 0, "confidence": "medium", "type": "Conceptual",
-  "shortcut": "In bus, star and mesh topologies a failed node simply drops off the network. In a RING the signal must pass through every node, so one failure breaks the loop for everyone.",
-  "tips": [
-    "The discriminator is whether traffic must PASS THROUGH the failed node. Only the ring routes every message through each station in turn.",
-    "In a bus, nodes tap a shared cable passively; in a star, each node has its own link to the hub; in a mesh, redundant paths bypass any failure. None depends on a particular node.",
-    "Note the caveat for the star: a HUB failure disables the network, but the question asks about the failure of a computer, not of the hub.",
-    "Ring networks mitigate this with dual counter-rotating rings (as in FDDI) precisely because the single-ring weakness is so severe."
-  ],
-  "solution": [
-    "The question is whether the failure of one computer disrupts the rest of the network.",
-    "Item 1, bus: all nodes tap a single shared backbone passively, so a failed node simply stops transmitting and the others continue. UNAFFECTED. (A break in the backbone cable itself is a different matter.)",
-    "Item 2, star: each node has its own dedicated link to the central hub, so a failed node affects only its own link. UNAFFECTED by another computer's failure.",
-    "Item 3, ring: data circulate from node to node around the loop, and every station must forward the signal. A single failed node breaks the ring and halts communication for all. AFFECTED.",
-    "Item 4, mesh: multiple redundant paths connect the nodes, so traffic is rerouted around any failure. UNAFFECTED.",
-    "Hence the failure of one computer does not affect the others in topologies 1, 2 and 4, option (a)."
-  ]
-},
-"2022-Q78": {
-  "answer": 3, "confidence": "high", "type": "Conceptual",
-  "shortcut": "The two standard models of interprocess communication are SHARED MEMORY and MESSAGE PASSING - items 3 and 4.",
-  "tips": [
-    "Memorise the pair: IPC = shared memory model + message passing model. Everything else in an options list is a distractor.",
-    "Cache memory is a hardware performance device managed by the processor, entirely invisible to processes - it is never an IPC mechanism.",
-    "Shared memory is fast (processes read and write a common region directly) but needs explicit synchronisation such as semaphores; message passing is slower but needs no shared address space and works across machines.",
-    "'Shared region' in item 1 is loose phrasing for the same idea as shared memory, but the option set pairs the two canonical mechanisms 3 and 4."
-  ],
-  "solution": [
-    "Interprocess communication (IPC) is the set of mechanisms by which cooperating processes exchange data and synchronise their actions.",
-    "Item 4, shared memory: the operating system maps a common region of memory into the address spaces of two or more processes, which then read and write it directly (with semaphores or mutexes for synchronisation). A standard IPC model.",
-    "Item 3, message passing: processes exchange data through send and receive primitives supplied by the kernel, requiring no shared address space and extending naturally across a network. The other standard IPC model.",
-    "Item 2, cache memory: a hardware buffer between the CPU and main memory, managed transparently by the processor and unrelated to communication between processes.",
-    "Hence the mechanisms related to interprocess communication are message passing and shared memory, option (d)."
-  ]
-},
-"2022-Q79": {
-  "answer": 3, "confidence": "high", "type": "Conceptual",
-  "shortcut": "The operating system is the resource manager for the whole machine, so efficient use of the CPU, of memory and of I/O devices are all among its goals.",
-  "tips": [
-    "The OS is defined as a RESOURCE MANAGER; the three principal resources are the processor, memory and I/O devices, so all three appear in its goals.",
-    "Concrete mechanisms: CPU scheduling for the processor, paging and virtual memory for memory, buffering and spooling for I/O.",
-    "The complementary goal is CONVENIENCE - providing an easy interface for the user - which sits alongside efficiency in every textbook list.",
-    "When all listed items are standard entries from the same textbook list, 'all of them' is almost always the key."
-  ],
-  "solution": [
-    "An operating system acts as the manager of all the computer's resources and as the interface between the user and the hardware.",
-    "Goal 1, efficient use of the CPU: achieved through multiprogramming and CPU scheduling, keeping the processor busy while other jobs wait for I/O. A genuine goal.",
-    "Goal 2, efficient use of memory: achieved through allocation strategies, paging, segmentation and virtual memory, so that as many processes as possible are resident. A genuine goal.",
-    "Goal 3, efficient use of I/O devices: achieved through buffering, caching, spooling and device scheduling, so that slow peripherals do not stall the system. A genuine goal.",
-    "All three are standard goals, alongside the complementary aim of user convenience.",
-    "Hence option (d) is correct."
-  ]
-},
-"2022-Q80": {
-  "answer": 0, "confidence": "high", "type": "Factual",
-  "shortcut": "Transactions obey the ACID properties: Atomicity, Consistency, Isolation and Durability. Security is not one of them, so items 1, 2 and 3 are correct.",
-  "tips": [
-    "ACID is the mnemonic: Atomicity, Consistency, Isolation, Durability. Any item outside those four is a distractor.",
-    "Consistency is the member NOT listed among the four items here, and Security is the intruder - identify the intruder and the answer follows.",
-    "Meanings: Atomicity = all or nothing; Consistency = the database moves from one valid state to another; Isolation = concurrent transactions do not interfere; Durability = committed changes survive failures.",
-    "Security is a broader access-control concern handled by authentication and authorisation, not by the transaction manager."
-  ],
-  "solution": [
-    "A database transaction is required to satisfy the four ACID properties.",
-    "Item 1, Atomicity: a transaction is indivisible - either all of its operations take effect or none do, with rollback on failure. CORRECT.",
-    "Item 2, Durability: once a transaction commits, its effects survive subsequent system crashes, being recoverable from the log. CORRECT.",
-    "Item 3, Isolation: concurrently executing transactions do not interfere with one another; each sees a state as if it ran alone. CORRECT.",
-    "Item 4, Security: protecting data against unauthorised access is achieved by authentication and authorisation mechanisms, not by the transaction manager, and is not one of the ACID properties. INCORRECT.",
-    "Hence items 1, 2 and 3 are the transaction properties, option (a)."
-  ]
-}
+  "2022-Q61": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Expressions 2, 3 and 4 are standard operator identities. Expression 1 fails: E^2 x^2 = (x+2h)^2 whereas (Ex)^2 = (x+h)^2. So three are correct.",
+    "tips": [
+      "E^n means shift n times, so E^2 x^2 = (x + 2h)^2 - the exponent on E is a SHIFT COUNT, not an algebraic power that distributes over the function.",
+      "E = 1 + Delta is the master identity; raising both sides to the nth power gives expression 2 immediately.",
+      "Both E and Delta obey the index law because repeated application of the same operator simply composes - expressions 3 and 4 are automatic.",
+      "Test the doubtful one numerically: with x = 1, h = 1, E^2 x^2 = 9 but (Ex)^2 = 4. One substitution settles expression 1."
+    ],
+    "solution": [
+      "Expression 1: E^2 x^2 means applying the shift twice to the function x^2, giving (x + 2h)^2. But (Ex)^2 means shifting x first and then squaring, giving (x + h)^2. These differ, e.g. at x = 1, h = 1 they are 9 and 4. FALSE.",
+      "Expression 2: since E = 1 + Delta by definition of the forward difference, raising both sides to the nth power gives E^n = (1 + Delta)^n. TRUE.",
+      "Expression 3: applying the shift n times and then m more times shifts a total of n + m steps, so E^n E^m f(x) = E^(n+m) f(x). TRUE.",
+      "Expression 4: likewise repeated differencing composes, so Delta^n Delta^m f(x) = Delta^(n+m) f(x). TRUE.",
+      "Exactly three of the four expressions are correct.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2022-Q62": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Leading differences are -4, 12, -4, 10. With p = 5 the binomial coefficients are 5, 10, 10, 5, giving 5 - 20 + 120 - 40 + 50 = 115.",
+    "tips": [
+      "Extrapolating one step beyond the table means p = 5 here (x0 = 0, h = 1), so the coefficients are the binomial numbers C(5,1) = 5, C(5,2) = 10, C(5,3) = 10, C(5,4) = 5.",
+      "Build the full difference table: -4, 8, 16, 30; then 12, 8, 14; then -4, 6; then 10. Every level is needed because the data are not polynomial of low degree.",
+      "For integer p the factorial coefficients reduce to plain binomial coefficients - a large simplification worth spotting.",
+      "Running total: 5, -15, 105, 65, 115. Keeping a running sum makes a sign slip immediately visible."
+    ],
+    "solution": [
+      "With x0 = 0 and h = 1, the values are 5, 1, 9, 25, 55.",
+      "Differences: Delta = -4, 8, 16, 30; Delta^2 = 12, 8, 14; Delta^3 = -4, 6; Delta^4 = 10.",
+      "For x = 5, p = (5 - 0)/1 = 5, and since p is an integer the coefficients p(p-1).../k! are the binomial coefficients C(5,k): 5, 10, 10, 5.",
+      "Newton's forward formula: f(5) = 5 + 5(-4) + 10(12) + 10(-4) + 5(10) = 5 - 20 + 120 - 40 + 50 = 115, option (d)."
+    ]
+  },
+  "2022-Q63": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Second differences are constant at 2, so y is quadratic with leading coefficient 1. Fitting gives y_x = x^2 - 18x + 83, and y_4 = 16 - 72 + 83 = 27.",
+    "tips": [
+      "Constant second differences equal to 2 with h = 1 mean 2a h^2 = 2, so the leading coefficient a = 1 - identify it before fitting anything else.",
+      "Two data points then pin down b and c: subtracting y_10 from y_11 gives 21 + b = 3, so b = -18.",
+      "Alternative route: extend the difference table BACKWARDS from y_10 six steps, subtracting 2 from each first difference each time. Slower but needs no algebra.",
+      "Check the fitted formula on a value you did not use: y_12 = 144 - 216 + 83 = 11, matching the table."
+    ],
+    "solution": [
+      "The values y_10 to y_14 are 3, 6, 11, 18, 27 with h = 1.",
+      "First differences: 3, 5, 7, 9. Second differences: 2, 2, 2 - constant, so y is a quadratic in x.",
+      "For y = ax^2 + bx + c with h = 1, the second difference is 2a, so 2a = 2 and a = 1.",
+      "From y_10 = 3: 100 + 10b + c = 3. From y_11 = 6: 121 + 11b + c = 6. Subtracting: 21 + b = 3, so b = -18.",
+      "Then 100 - 180 + c = 3 gives c = 83, so y_x = x^2 - 18x + 83 (check: y_12 = 144 - 216 + 83 = 11).",
+      "Therefore y_4 = 16 - 72 + 83 = 27, option (d)."
+    ]
+  },
+  "2022-Q64": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Delta - nabla = (E - 1) - (1 - E^(-1)) = E - 2 + E^(-1), and Delta nabla = (E-1)(1 - E^(-1)) = E - 2 + E^(-1). They are equal.",
+    "tips": [
+      "Convert everything to E: Delta = E - 1 and nabla = 1 - E^(-1). Every identity in this chapter falls out in one line from these two.",
+      "Both sides equal delta^2 = E - 2 + E^(-1), so the identity can also be written Delta - nabla = Delta nabla = delta^2 - a three-way identity worth memorising.",
+      "Numerical check on f(x) = x^2 with h = 1: Delta f = 2x + 1, nabla f = 2x - 1, so Delta f - nabla f = 2; and Delta nabla f = Delta(2x-1) = 2. Equal.",
+      "Companion identity from the same pair: Delta + nabla = E - E^(-1) = 2 mu delta."
+    ],
+    "solution": [
+      "In terms of the shift operator, Delta = E - 1 and nabla = 1 - E^(-1).",
+      "Therefore Delta - nabla = (E - 1) - (1 - E^(-1)) = E - 2 + E^(-1).",
+      "Also Delta nabla = (E - 1)(1 - E^(-1)) = E - E E^(-1) - 1 + E^(-1) = E - 1 - 1 + E^(-1) = E - 2 + E^(-1).",
+      "The two expressions coincide, so Delta - nabla = Delta nabla.",
+      "Both also equal delta^2, since delta^2 = (E^(1/2) - E^(-1/2))^2 = E - 2 + E^(-1).",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2022-Q65": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "All four options give 12 at x = 1, so test x = 2 where the value must be 40: only x^3 + 5x^2 + 6x gives 8 + 20 + 12 = 40.",
+    "tips": [
+      "When several options agree at the first data point, move straight to the SECOND - do not keep testing the same value.",
+      "At x = 1 every cubic here evaluates to the sum of its coefficients, which the examiner has deliberately made equal to 12 in all four options.",
+      "The polynomial factorises as x(x+2)(x+3), so f(1) = 1(3)(4) = 12 and f(2) = 2(4)(5) = 40 - the factored form makes verification instant.",
+      "Cross-check with 2018 Q41, which used the same data and established that the underlying polynomial has degree 3 - consistent with all the options offered."
+    ],
+    "solution": [
+      "The data are f(1) = 12, f(2) = 40, f(3) = 90, f(4) = 168, f(5) = 280, f(6) = 432, which (as in 2018 Q41) have constant third differences and so come from a cubic.",
+      "At x = 1 all four options evaluate to the sum of their coefficients, which is 12 in every case, so this test does not discriminate.",
+      "Test x = 2, where the required value is 40. Option (a): 8 + 20 + 10 + 1 = 39. Option (b): 8 + 16 + 12 + 1 = 37. Option (c): 8 + 20 + 8 + 2 = 38.",
+      "Option (d): 8 + 20 + 12 = 40, which matches.",
+      "Confirm on further points: at x = 3, 27 + 45 + 18 = 90; at x = 4, 64 + 80 + 24 = 168; at x = 5, 125 + 125 + 30 = 280; at x = 6, 216 + 180 + 36 = 432. All correct.",
+      "Note f(x) = x(x+2)(x+3). Option (d) is correct."
+    ]
+  },
+  "2022-Q66": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "nabla g(x) = Delta g(x-1), so w is literally u. And both u and v expand to f(x)Delta g(x) - f(x-1)Delta g(x-1). Hence u = v = w.",
+    "tips": [
+      "Key bridge identity: nabla g(x) = g(x) - g(x-1) = Delta g(x-1). Substituting it turns w into u without any expansion.",
+      "Expand u and v fully in terms of function values: both give f(x)Delta g(x) - f(x-1)Delta g(x-1). Writing out the two terms is the safest route.",
+      "Delta applied at x-1 and nabla applied at x reach the SAME pair of points - that shared reach is why all three expressions coincide.",
+      "Numerical check with f(x) = x and g(x) = x^2 at x = 2: all three expressions evaluate to 3 x 5 - 1 x 3 = ... compute once and the equality is confirmed."
+    ],
+    "solution": [
+      "With difference interval 1, nabla g(x) = g(x) - g(x-1) = Delta g(x-1).",
+      "Substituting this into w = Delta[f(x-1) nabla g(x)] gives w = Delta[f(x-1) Delta g(x-1)] = u. So u = w immediately.",
+      "Now expand u. Writing G(x) = f(x-1) Delta g(x-1), we have u = Delta G(x) = G(x+1) - G(x) = f(x) Delta g(x) - f(x-1) Delta g(x-1).",
+      "Expand v. Writing F(x) = f(x) Delta g(x), we have v = nabla F(x) = F(x) - F(x-1) = f(x) Delta g(x) - f(x-1) Delta g(x-1).",
+      "The two expansions are identical, so u = v.",
+      "Therefore u = v = w, option (d)."
+    ]
+  },
+  "2022-Q67": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Expressions 1 and 2 are standard. Expression 3 drops the factor delta: the true identity is nabla = -delta^2/2 + delta sqrt(1 + delta^2/4), so as printed it is false.",
+    "tips": [
+      "Master identities: mu = sqrt(1 + delta^2/4), Delta = delta^2/2 + delta mu, nabla = -delta^2/2 + delta mu. All three carry mu MULTIPLIED by delta in the second term.",
+      "Compare expressions 2 and 3 side by side: expression 2 has delta before the square root, expression 3 does not. That single missing factor is the whole question.",
+      "Verify with E-forms: delta mu = (E - E^(-1))/2 and delta^2/2 = (E - 2 + E^(-1))/2. Adding gives E - 1 = Delta; subtracting gives 1 - E^(-1) = nabla.",
+      "Dimensional check: Delta and nabla are first-order difference operators, so each term must contain an ODD total power of delta. In expression 3 the term mu alone is even-order, which cannot be right."
+    ],
+    "solution": [
+      "Write the operators in terms of E: delta = E^(1/2) - E^(-1/2), mu = (E^(1/2) + E^(-1/2))/2, so delta^2 = E - 2 + E^(-1) and delta mu = (E - E^(-1))/2.",
+      "Expression 1: mu^2 = (E + 2 + E^(-1))/4 = 1 + (E - 2 + E^(-1))/4 = 1 + delta^2/4, so mu = sqrt(1 + delta^2/4). TRUE.",
+      "Expression 2: delta^2/2 + delta mu = (E - 2 + E^(-1))/2 + (E - E^(-1))/2 = (2E - 2)/2 = E - 1 = Delta. TRUE.",
+      "Expression 3 as printed is -delta^2/2 + sqrt(1 + delta^2/4) = -delta^2/2 + mu, which is not nabla.",
+      "The correct identity is nabla = -delta^2/2 + delta mu = -(E - 2 + E^(-1))/2 + (E - E^(-1))/2 = 1 - E^(-1); the printed version omits the factor delta. FALSE.",
+      "Exactly two expressions are correct, option (b)."
+    ]
+  },
+  "2022-Q68": {
+    "answer": 3,
+    "confidence": "medium",
+    "type": "Numerical",
+    "issue": "AI-derived key with a caveat. The third difference is Delta^3 = 10, which is non-zero, so the four points do NOT lie on a quadratic and statement 1 fails. Applying Newton-Gregory forward interpolation at x = 25 (p = 0.5) gives 512 - 36.5 + 2.5 + 0.625 = 478.63, not the 477 asserted in statement 2 (truncating after the second difference still gives 478.0). Both statements therefore fail as printed, giving (d). If the intended value in statement 2 were 478.6 the key would be (b).",
+    "shortcut": "Differences: -73, -93, -103; then -20, -10; then 10. A non-zero third difference rules out a quadratic, and Newton forward at p = 0.5 gives 478.63, not 477.",
+    "tips": [
+      "Degree test: a quadratic requires CONSTANT second differences. Here they are -20 and -10, so at least a cubic is needed.",
+      "For p = 0.5 the factorial coefficients are p = 0.5, p(p-1)/2 = -0.125 and p(p-1)(p-2)/6 = +0.0625 - note the sign change at the third term.",
+      "Assemble carefully: 512 - 36.5 = 475.5, then +2.5 = 478.0, then +0.625 = 478.625.",
+      "The same data appear as 2020 Q74, where the statements concerned degree n < 2 and the choice of forward versus backward formula - a clear repeat of the underlying table."
+    ],
+    "solution": [
+      "The tabulated values at x = 20, 30, 40, 50 are 512, 439, 346, 243 with h = 10.",
+      "First differences: -73, -93, -103. Second differences: -20, -10. Third difference: 10.",
+      "Statement 1: a quadratic would require constant second differences, but they are -20 and -10, and the third difference is non-zero. A cubic is needed, so the claim of degree 2 is FALSE.",
+      "Statement 2: for x = 25, p = (25 - 20)/10 = 0.5. Newton's forward formula gives f(25) = 512 + 0.5(-73) + [0.5(-0.5)/2](-20) + [0.5(-0.5)(-1.5)/6](10) = 512 - 36.5 + 2.5 + 0.625 = 478.63. Even truncating after the second-difference term gives 478.0, so the asserted value 477 is not obtained. FALSE.",
+      "Neither statement holds, option (d)."
+    ]
+  },
+  "2022-Q69": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Delta^2 a^(4x) = a^(4x)(a^4 - 1)^2, and (a^4 - 1) = (a^2-1)(a^2+1), so dividing by (a^2-1)^2 leaves (a^2+1)^2 a^(4x).",
+    "tips": [
+      "For an exponential base b = a^4, each Delta multiplies by (b - 1) = (a^4 - 1). Two differences give the square.",
+      "Factorise the difference of squares: a^4 - 1 = (a^2 - 1)(a^2 + 1). The (a^2-1)^2 in the denominator is placed precisely to cancel.",
+      "The exponential factor a^(4x) never changes - only the constant multiplier does, which is why every option keeps a^(4x).",
+      "Sanity check with a = 2: a^4 - 1 = 15 and a^2 - 1 = 3, so the constant is (15/3)^2 = 25 = (a^2+1)^2 = 5^2. Confirmed."
+    ],
+    "solution": [
+      "With interval of differencing 1, Delta a^(4x) = a^(4(x+1)) - a^(4x) = a^(4x)(a^4 - 1).",
+      "Applying Delta a second time multiplies by the same constant: Delta^2 a^(4x) = a^(4x)(a^4 - 1)^2.",
+      "The constant (a^2 - 1)^(-2) passes through the operator unchanged, so Delta^2[a^(4x)/(a^2-1)^2] = a^(4x)(a^4-1)^2/(a^2-1)^2.",
+      "Factorise a^4 - 1 = (a^2 - 1)(a^2 + 1), so (a^4 - 1)^2 = (a^2-1)^2 (a^2+1)^2.",
+      "The (a^2-1)^2 factors cancel, leaving (a^2 + 1)^2 a^(4x).",
+      "Option (c) is correct."
+    ]
+  },
+  "2022-Q70": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Delta(3x-3)^(-2) = (-2)(3)(3x-3)^(-3) = -6(3x-3)^(-3). Shifting by E^2 gives -6/[(3x+6)(3x+9)(3x+12)], which at x = 1 is -6/(9 x 12 x 15) = -1/270.",
+    "tips": [
+      "Negative factorial with a linear argument and coefficient a: u^(-n) = 1/[(u+a)(u+2a)...(u+na)]. Here a = 3, so (3x-3)^(-2) = 1/[(3x)(3x+3)].",
+      "The difference rule Delta u^(n) = n a u^(n-1) holds for negative n too, with n = -2 giving the factor (-2)(3) = -6.",
+      "E and Delta commute, so apply the difference rule first and the double shift afterwards - far cleaner than expanding four separate fractions.",
+      "Sign check: a negative factorial power decreases in magnitude as x grows, so its forward difference must be NEGATIVE - options (b) and (d) are eliminated at once."
+    ],
+    "solution": [
+      "With interval 1 and a linear argument of coefficient a = 3, the generalised factorial rule is Delta u^(n) = n a u^(n-1), valid for negative n as well.",
+      "So Delta[(3x-3)^(-2)] = (-2)(3)(3x-3)^(-3) = -6(3x-3)^(-3).",
+      "Since E and Delta commute, apply E^2, which replaces x by x + 2: E^2[-6(3x-3)^(-3)] = -6(3x+3)^(-3).",
+      "By definition of the negative factorial, (3x+3)^(-3) = 1/[(3x+3+3)(3x+3+6)(3x+3+9)] = 1/[(3x+6)(3x+9)(3x+12)].",
+      "At x = 1 the three factors are 9, 12 and 15, so the value is -6/(9 x 12 x 15) = -6/1620 = -1/270, option (c)."
+    ]
+  },
+  "2022-Q71": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "PROM - Programmable ROM - is blank when manufactured and can be programmed exactly ONCE by blowing internal fuses.",
+    "tips": [
+      "ROM family by erasability: ROM (fixed at manufacture), PROM (write once), EPROM (erasable by ultraviolet light), EEPROM/flash (electrically erasable, many times).",
+      "The 'E' prefixes signal ERASABLE, so any option beginning with E can be rewritten and cannot be the write-once answer.",
+      "PROM is programmed by permanently blowing fuse links, which is why the process is irreversible - a one-line justification worth quoting.",
+      "'EROM' in option (d) is not a standard device name; the genuine family members are ROM, PROM, EPROM, EEPROM and flash."
+    ],
+    "solution": [
+      "Plain ROM has its contents fixed during manufacture and cannot be written by the user at all.",
+      "PROM (Programmable Read-Only Memory) is supplied blank and can be programmed once by the user, typically by blowing internal fuse links. Because the fuses are destroyed permanently, the process cannot be reversed or repeated.",
+      "EPROM (Erasable PROM) can be erased by exposure to ultraviolet light and reprogrammed many times.",
+      "EEPROM (Electrically Erasable PROM) can be erased and rewritten electrically, byte by byte, without removal from the circuit.",
+      "'EROM' is not a standard device designation.",
+      "Hence data can be written only once on PROM, option (a)."
+    ]
+  },
+  "2022-Q72": {
+    "answer": 3,
+    "confidence": "medium",
+    "type": "Conceptual",
+    "shortcut": "A process is admitted from the waiting/new queue, becomes Ready, is dispatched to Executing, and finally Terminates - the only option that ends in a terminal state.",
+    "tips": [
+      "Process state model: New -> Ready -> Running -> Terminated, with excursions to Blocked/Waiting and back to Ready whenever I/O is needed.",
+      "A complete life cycle must END in Terminated; options ending in 'Blocked' describe an intermediate excursion rather than a completed cycle.",
+      "A process never goes directly from Ready to Waiting - it must be dispatched to Running first and then block on a request. That rules out options (a) and (b).",
+      "Only the scheduler moves a process from Ready to Running (dispatch), and only an I/O request moves it from Running to Blocked - keep the transition triggers in mind."
+    ],
+    "solution": [
+      "The standard process state diagram is: a new process is admitted to the READY queue, the scheduler dispatches it to the RUNNING (executing) state, and on completion it moves to TERMINATED.",
+      "While running, a process may issue an I/O request and move to the BLOCKED/WAITING state, returning to READY when the I/O completes.",
+      "Option (a) places Blocked after Terminated, which is impossible since termination is a final state.",
+      "Options (b) and (c) end at Blocked, which is an intermediate state rather than the end of a life cycle; option (b) additionally moves from Ready to Waiting directly, a transition that does not exist.",
+      "Option (d), Waiting -> Ready -> Executing -> Terminated, follows the admission, dispatch and completion path and ends in the terminal state.",
+      "Hence option (d) is correct."
+    ]
+  },
+  "2022-Q73": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "Processing is done by the CPU using data held in the memory unit. The monitor is an OUTPUT device and takes no part in processing.",
+    "tips": [
+      "Functional units: input, memory, ALU, control, output. Processing is the ALU and control unit (i.e. the CPU) acting on data in memory.",
+      "The monitor merely DISPLAYS results after processing, so it belongs to the output stage - any option containing item 1 is out.",
+      "Data must be loaded into main memory before the CPU can operate on it, which is why the memory unit is genuinely part of processing rather than mere storage.",
+      "Input-process-output is the standard model: keyboard/mouse in, CPU plus memory processing, monitor/printer out."
+    ],
+    "solution": [
+      "A computer system is organised into input units, a memory unit, a central processing unit (comprising the ALU and control unit) and output units.",
+      "Item 3, the CPU: performs all arithmetic and logical operations and controls the sequence of execution - the processing element itself.",
+      "Item 2, the memory unit: holds the program and the data being operated on; the CPU cannot process data that is not in memory, so it is an essential part of the processing stage.",
+      "Item 1, the monitor: is an output device that displays results once processing is complete, and plays no part in the processing itself.",
+      "Hence data processing is performed by the memory unit and the CPU.",
+      "Option (b) is correct."
+    ]
+  },
+  "2022-Q74": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "The machine cycle has the four phases fetch, decode, execute and store; it is the cycle in which machine instructions are executed; and each instruction consumes its own cycle, so six instructions take six cycles. All three statements hold.",
+    "tips": [
+      "Four phases to memorise: FETCH the instruction, DECODE it, EXECUTE it, STORE the result. Some texts merge the last two, but four is the standard exam answer.",
+      "One instruction per machine cycle is the defining relationship - hence a program of n instructions requires n machine cycles in a simple non-pipelined processor.",
+      "Distinguish the machine cycle from the CLOCK cycle: one machine cycle spans several clock cycles, which is why clock speed alone does not determine instruction throughput.",
+      "When all three statements restate parts of the same standard definition, 'all of them' is the natural key."
+    ],
+    "solution": [
+      "Statement 1: the machine cycle is conventionally described as having four phases - fetching the instruction from memory, decoding it in the control unit, executing it in the ALU, and storing the result. TRUE.",
+      "Statement 2: the machine cycle is precisely the repeating sequence by which the processor carries out machine-language instructions one after another. TRUE.",
+      "Statement 3: in a simple non-pipelined processor each instruction occupies one complete machine cycle, so a program of 6 machine-language instructions requires 6 machine cycles. TRUE.",
+      "Note that one machine cycle spans several clock cycles; the two must not be confused.",
+      "All three statements are correct.",
+      "Hence option (d) is correct."
+    ]
+  },
+  "2022-Q75": {
+    "answer": 0,
+    "confidence": "medium",
+    "type": "Conceptual",
+    "shortcut": "IPsec operates at the NETWORK layer, so it protects all traffic transparently regardless of the application; SSL sits above the transport layer and each application must be written to use it.",
+    "tips": [
+      "Layer determines transparency: IPsec at layer 3 secures every packet automatically, while SSL/TLS at the transport-session boundary must be invoked by the application (HTTPS, FTPS and so on).",
+      "'Application-independent' is the key phrase - it points to the layer BELOW the applications, which is where IPsec lives.",
+      "IPsec provides authentication (AH) and confidentiality (ESP) and is the basis of most VPNs, which is why it can protect legacy applications unchanged.",
+      "Plain IP and TCP (options c and d) provide no security at all - they are the protocols IPsec was designed to protect."
+    ],
+    "solution": [
+      "The question asks for a mechanism that secures internet communication without the applications needing to be aware of it.",
+      "IPsec operates at the network (IP) layer, encrypting and authenticating IP packets themselves. Because it sits below the transport and application layers, every application's traffic is protected transparently, with no modification to the applications.",
+      "SSL (and its successor TLS) operates above the transport layer; an application must be explicitly written to open an SSL connection, which is why HTTPS, FTPS and SMTPS exist as separate application-level variants.",
+      "IP and TCP provide addressing, routing and reliable delivery but offer no security services of their own.",
+      "Hence the application-independent mechanism is the IP security protocol, option (a)."
+    ]
+  },
+  "2022-Q76": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "DRAM and SRAM are both volatile forms of RAM; only EPROM, a member of the ROM family, retains its contents without power.",
+    "tips": [
+      "Volatility rule of thumb: anything called RAM is volatile; anything in the ROM family (ROM, PROM, EPROM, EEPROM, flash) is non-volatile.",
+      "DRAM additionally needs periodic REFRESH even while powered, and SRAM holds its value only while power is applied - both lose everything at power-off.",
+      "EPROM stores charge on floating gates that persists for years without power, which is exactly what non-volatility means.",
+      "Practical anchor: main memory (RAM) is wiped on reboot, whereas the BIOS held in EPROM/flash survives - the everyday demonstration of the distinction."
+    ],
+    "solution": [
+      "Volatile memory loses its contents when the power supply is removed; non-volatile memory retains them.",
+      "Item 1, DRAM (Dynamic RAM): stores each bit as charge on a capacitor, requiring periodic refresh even while powered, and loses everything when power is removed. VOLATILE.",
+      "Item 2, SRAM (Static RAM): stores each bit in a flip-flop; no refresh is needed but power is, so the contents vanish at power-off. VOLATILE.",
+      "Item 3, EPROM (Erasable Programmable ROM): stores bits as trapped charge on floating gates, which persists for years without power and is removed only by ultraviolet exposure. NON-VOLATILE.",
+      "Hence only item 3 is non-volatile.",
+      "Option (b) is correct."
+    ]
+  },
+  "2022-Q77": {
+    "answer": 0,
+    "confidence": "medium",
+    "type": "Conceptual",
+    "shortcut": "In bus, star and mesh topologies a failed node simply drops off the network. In a RING the signal must pass through every node, so one failure breaks the loop for everyone.",
+    "tips": [
+      "The discriminator is whether traffic must PASS THROUGH the failed node. Only the ring routes every message through each station in turn.",
+      "In a bus, nodes tap a shared cable passively; in a star, each node has its own link to the hub; in a mesh, redundant paths bypass any failure. None depends on a particular node.",
+      "Note the caveat for the star: a HUB failure disables the network, but the question asks about the failure of a computer, not of the hub.",
+      "Ring networks mitigate this with dual counter-rotating rings (as in FDDI) precisely because the single-ring weakness is so severe."
+    ],
+    "solution": [
+      "The question is whether the failure of one computer disrupts the rest of the network.",
+      "Item 1, bus: all nodes tap a single shared backbone passively, so a failed node simply stops transmitting and the others continue. UNAFFECTED. (A break in the backbone cable itself is a different matter.)",
+      "Item 2, star: each node has its own dedicated link to the central hub, so a failed node affects only its own link. UNAFFECTED by another computer's failure.",
+      "Item 3, ring: data circulate from node to node around the loop, and every station must forward the signal. A single failed node breaks the ring and halts communication for all. AFFECTED.",
+      "Item 4, mesh: multiple redundant paths connect the nodes, so traffic is rerouted around any failure. UNAFFECTED.",
+      "Hence the failure of one computer does not affect the others in topologies 1, 2 and 4, option (a)."
+    ]
+  },
+  "2022-Q78": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "The two standard models of interprocess communication are SHARED MEMORY and MESSAGE PASSING - items 3 and 4.",
+    "tips": [
+      "Memorise the pair: IPC = shared memory model + message passing model. Everything else in an options list is a distractor.",
+      "Cache memory is a hardware performance device managed by the processor, entirely invisible to processes - it is never an IPC mechanism.",
+      "Shared memory is fast (processes read and write a common region directly) but needs explicit synchronisation such as semaphores; message passing is slower but needs no shared address space and works across machines.",
+      "'Shared region' in item 1 is loose phrasing for the same idea as shared memory, but the option set pairs the two canonical mechanisms 3 and 4."
+    ],
+    "solution": [
+      "Interprocess communication (IPC) is the set of mechanisms by which cooperating processes exchange data and synchronise their actions.",
+      "Item 4, shared memory: the operating system maps a common region of memory into the address spaces of two or more processes, which then read and write it directly (with semaphores or mutexes for synchronisation). A standard IPC model.",
+      "Item 3, message passing: processes exchange data through send and receive primitives supplied by the kernel, requiring no shared address space and extending naturally across a network. The other standard IPC model.",
+      "Item 2, cache memory: a hardware buffer between the CPU and main memory, managed transparently by the processor and unrelated to communication between processes.",
+      "Hence the mechanisms related to interprocess communication are message passing and shared memory, option (d)."
+    ]
+  },
+  "2022-Q79": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "The operating system is the resource manager for the whole machine, so efficient use of the CPU, of memory and of I/O devices are all among its goals.",
+    "tips": [
+      "The OS is defined as a RESOURCE MANAGER; the three principal resources are the processor, memory and I/O devices, so all three appear in its goals.",
+      "Concrete mechanisms: CPU scheduling for the processor, paging and virtual memory for memory, buffering and spooling for I/O.",
+      "The complementary goal is CONVENIENCE - providing an easy interface for the user - which sits alongside efficiency in every textbook list.",
+      "When all listed items are standard entries from the same textbook list, 'all of them' is almost always the key."
+    ],
+    "solution": [
+      "An operating system acts as the manager of all the computer's resources and as the interface between the user and the hardware.",
+      "Goal 1, efficient use of the CPU: achieved through multiprogramming and CPU scheduling, keeping the processor busy while other jobs wait for I/O. A genuine goal.",
+      "Goal 2, efficient use of memory: achieved through allocation strategies, paging, segmentation and virtual memory, so that as many processes as possible are resident. A genuine goal.",
+      "Goal 3, efficient use of I/O devices: achieved through buffering, caching, spooling and device scheduling, so that slow peripherals do not stall the system. A genuine goal.",
+      "All three are standard goals, alongside the complementary aim of user convenience.",
+      "Hence option (d) is correct."
+    ]
+  },
+  "2022-Q80": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "Transactions obey the ACID properties: Atomicity, Consistency, Isolation and Durability. Security is not one of them, so items 1, 2 and 3 are correct.",
+    "tips": [
+      "ACID is the mnemonic: Atomicity, Consistency, Isolation, Durability. Any item outside those four is a distractor.",
+      "Consistency is the member NOT listed among the four items here, and Security is the intruder - identify the intruder and the answer follows.",
+      "Meanings: Atomicity = all or nothing; Consistency = the database moves from one valid state to another; Isolation = concurrent transactions do not interfere; Durability = committed changes survive failures.",
+      "Security is a broader access-control concern handled by authentication and authorisation, not by the transaction manager."
+    ],
+    "solution": [
+      "A database transaction is required to satisfy the four ACID properties.",
+      "Item 1, Atomicity: a transaction is indivisible - either all of its operations take effect or none do, with rollback on failure. CORRECT.",
+      "Item 2, Durability: once a transaction commits, its effects survive subsequent system crashes, being recoverable from the log. CORRECT.",
+      "Item 3, Isolation: concurrently executing transactions do not interfere with one another; each sees a state as if it ran alone. CORRECT.",
+      "Item 4, Security: protecting data against unauthorised access is achieved by authentication and authorisation mechanisms, not by the transaction manager, and is not one of the ACID properties. INCORRECT.",
+      "Hence items 1, 2 and 3 are the transaction properties, option (a)."
+    ]
+  }
 }

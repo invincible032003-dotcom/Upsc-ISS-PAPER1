@@ -1,0 +1,364 @@
+{
+"2021-Q21": {
+  "answer": 0, "confidence": "high", "type": "Theoretical",
+  "shortcut": "A finite mean forces the sum of P(|X| > n/2) to converge (it is bounded by 2E|X|), so Borel-Cantelli I gives probability 0.",
+  "tips": [
+    "Key inequality: the sum over n >= 1 of P(|X| > cn) <= E|X|/c for c > 0. A finite mean therefore makes every such series converge.",
+    "'Infinitely many n' is exactly lim sup A_n, so the first Borel-Cantelli lemma applies directly and needs no independence.",
+    "This is the standard lemma behind the strong law: E|X| < infinity is equivalent to the convergence of sum P(|X| > n).",
+    "If the mean were infinite the answer would flip to 1 by the second Borel-Cantelli lemma (the X_n being independent) - the two lemmas give a clean 0-1 dichotomy here."
+  ],
+  "solution": [
+    "The x_n are i.i.d. with mean 1/2, so E|x_1| is finite.",
+    "Let A_n = {|x_n| > n/2}. Since the x_n are identically distributed, P(A_n) = P(|x_1| > n/2) = P(2|x_1| > n).",
+    "The standard bound gives the sum over n >= 1 of P(2|x_1| > n) <= E(2|x_1|) = 2E|x_1| < infinity.",
+    "Hence the series of P(A_n) converges.",
+    "By the first Borel-Cantelli lemma, P(A_n occurs for infinitely many n) = 0.",
+    "Therefore the required probability is 0, option (a)."
+  ]
+},
+"2021-Q22": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "Given Y^2 = k^2 the only possibilities are +k and -k, with probabilities in the ratio 2:1. So E(Y | Y^2 = k^2) = k(2/3) - k(1/3) = k/3 = sqrt(y)/3.",
+  "tips": [
+    "Conditioning on Y^2 = y collapses the sample space to just two points, +sqrt(y) and -sqrt(y) - the whole problem is a two-point weighted average.",
+    "The condition P(Y=k) = 2P(Y=-k) makes the conditional probabilities 2/3 and 1/3 regardless of k, so the answer is a fixed multiple of sqrt(y).",
+    "Sign check: the positive value is twice as likely, so the conditional mean must be POSITIVE - options (a) and (b) are eliminated at once.",
+    "Dimension check: E(Y | Y^2 = y) must scale like sqrt(y), not like y. That rules out option (d)."
+  ],
+  "solution": [
+    "Fix y = k^2 with k in {1, ..., n}. The event {Y^2 = y} is {Y = k} union {Y = -k}.",
+    "Write P(Y = -k) = p, so P(Y = k) = 2p by hypothesis, and P(Y^2 = y) = 3p.",
+    "Conditional probabilities: P(Y = k | Y^2 = y) = 2p/(3p) = 2/3 and P(Y = -k | Y^2 = y) = p/(3p) = 1/3.",
+    "Hence E(Y | Y^2 = y) = k(2/3) + (-k)(1/3) = k/3.",
+    "Since k = sqrt(y) is positive, E(Y | Y^2 = y) = sqrt(y)/3.",
+    "Option (c) is correct."
+  ]
+},
+"2021-Q23": {
+  "answer": 3, "confidence": "high", "type": "Numerical",
+  "shortcut": "The interval (2,22) is 12 +- 10, so 1 - sigma^2/100 = 3/4 gives sigma^2 = 25. Then E(X^2) = sigma^2 + mu^2 = 25 + 144 = 169.",
+  "tips": [
+    "Work Chebyshev BACKWARDS here: the bound is given, so solve 1 - sigma^2/e^2 = 3/4 for sigma^2 rather than for the probability.",
+    "The half-width is e = 10, and the equality form of Chebyshev pins sigma^2 = e^2/4 = 25 - equivalently k = 2 and sigma = 5.",
+    "E(X^2) = Var(X) + [E(X)]^2 is the step candidates forget; the question asks for the raw second moment, not the variance. Option (a) 17 and (b) 37 come from omitting mu^2.",
+    "Check: with mu = 12 and sigma = 5, the interval (2,22) is exactly mu +- 2 sigma, and Chebyshev's bound at k = 2 is 3/4, matching the datum."
+  ],
+  "solution": [
+    "Chebyshev's inequality gives P(|X - mu| < e) >= 1 - sigma^2/e^2.",
+    "The interval 2 < X < 22 is |X - 12| < 10, so e = 10.",
+    "We are told the resulting bound is exactly 3/4: 1 - sigma^2/100 = 3/4.",
+    "Hence sigma^2/100 = 1/4, so sigma^2 = 25 (i.e. sigma = 5 and the interval is mu +- 2 sigma).",
+    "Then E(X^2) = Var(X) + [E(X)]^2 = 25 + 12^2 = 25 + 144 = 169.",
+    "Option (d) is correct."
+  ]
+},
+"2021-Q24": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "Estimated prevalence = 8/200 = 0.04. In a sample of 500 the expected number affected is 500 x 0.04 = 20, so the count is approximately Poisson(20).",
+  "tips": [
+    "Poisson approximation to the binomial: with n large and p small, Binomial(n,p) is approximately Poisson(np). Here np = 20.",
+    "Estimate p from the pilot sample first - 8 out of 200 gives 4%. The city population of 100000 is a distractor and never enters the calculation.",
+    "Option (c) Poisson(8) reuses the pilot COUNT instead of rescaling to the new sample size - the commonest error.",
+    "Option (d) Poisson(16/5) = Poisson(3.2) comes from dividing rather than multiplying by the size ratio 500/200 = 2.5."
+  ],
+  "solution": [
+    "The pilot test of 200 citizens gave 8 positives, so the estimated prevalence is p = 8/200 = 0.04.",
+    "In a fresh random sample of size n = 500, the number affected is Binomial(500, 0.04).",
+    "Its mean is np = 500 x 0.04 = 20.",
+    "Since n is large and p is small, the binomial is well approximated by a Poisson distribution with the same mean.",
+    "Hence the number affected is approximately Poisson(20).",
+    "Option (b) is correct."
+  ]
+},
+"2021-Q25": {
+  "answer": 3, "confidence": "high", "type": "Numerical",
+  "shortcut": "A finite non-degenerate limit forces mu = 0, and then x/sigma = 2 with sigma = 2 gives x = 4. Replacing x by 1/x = 1/4 gives the limit Phi((1/4)/2) = Phi(1/8).",
+  "tips": [
+    "Standardise first: P(sum <= x sqrt n) = P(Z_n <= (x - sqrt(n) mu)/sigma). For the limit to be a finite constant, the sqrt(n) mu term must vanish, forcing mu = 0.",
+    "With mu = 0 the argument is simply x/sigma, so the given limit Phi(2) pins x = 2 sigma = 4.",
+    "The second probability replaces x by 1/x = 1/4, giving the argument (1/4)/2 = 1/8 - hence Phi(1/8).",
+    "Var = 4 means sigma = 2, not 4. Forgetting the square root turns Phi(1/8) into Phi(1/16) and misses the option."
+  ],
+  "solution": [
+    "Let mu = E(X_1) and sigma^2 = Var(X_1) = 4, so sigma = 2. By the CLT, (sum X_i - n mu)/(sigma sqrt n) converges to N(0,1).",
+    "P(sum X_i <= x sqrt n) = P[(sum X_i - n mu)/(sigma sqrt n) <= (x sqrt n - n mu)/(sigma sqrt n)] = P[Z_n <= (x - sqrt(n) mu)/sigma].",
+    "If mu were non-zero the bound (x - sqrt(n) mu)/sigma would tend to +-infinity and the probability would tend to 0 or 1, not to Phi(2). Hence mu = 0.",
+    "With mu = 0 the limit is Phi(x/sigma) = Phi(x/2), and this is given to equal Phi(2), so x/2 = 2 and x = 4.",
+    "Now consider P(sum X_i <= (1/x) sqrt n) with 1/x = 1/4. By the same argument the limit is Phi((1/4)/2) = Phi(1/8).",
+    "Hence the probability converges to Phi(1/8), option (d)."
+  ]
+},
+"2021-Q26": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "The CLT applied to Y_i = X_i^2 identifies E(X_1^2) = 5 and Var(X_1^2) = 12. Then Var(X_1) = E(X_1^2) - [E(X_1)]^2 = 5 - 1 = 4.",
+  "tips": [
+    "Read the centring and scaling constants directly: the '5n' is n E(Y) and the '12n' under the root is n Var(Y), where Y = X^2.",
+    "Do not confuse Var(X_1^2) = 12 with Var(X_1); the question deliberately supplies the variance of the SQUARED variable.",
+    "The condition E(X_1^4) < infinity is exactly what guarantees Var(X_1^2) is finite so that the CLT applies to Y - a hint about which variable is being averaged.",
+    "Final step is the standard identity Var(X) = E(X^2) - [E(X)]^2 = 5 - 1^2 = 4. Option (b) 5 is the raw second moment, the planted near-miss."
+  ],
+  "solution": [
+    "Set Y_i = X_i^2. These are i.i.d. with finite variance because E(X_1^4) is finite.",
+    "The Central Limit Theorem gives (sum Y_i - n E(Y_1))/sqrt(n Var(Y_1)) converging in distribution to N(0,1).",
+    "Comparing with the given expression (sum X_i^2 - 5n)/sqrt(12n), we identify E(Y_1) = E(X_1^2) = 5 and Var(Y_1) = 12.",
+    "We are told E(X_1) = 1.",
+    "Therefore Var(X_1) = E(X_1^2) - [E(X_1)]^2 = 5 - 1 = 4.",
+    "Option (a) is correct."
+  ]
+},
+"2021-Q27": {
+  "answer": 0, "confidence": "high", "type": "Theoretical",
+  "shortcut": "F(X) ~ U(0,1) by the probability integral transform, and -log U ~ Exp(1) for U uniform. So both statements are true and Statement-2 is precisely why Statement-1 holds.",
+  "tips": [
+    "Probability integral transform: for continuous F, U = F(X) is exactly Uniform(0,1). This is the workhorse of simulation and of distribution-free methods.",
+    "Companion fact: if U ~ U(0,1) then -log U ~ Exponential(1), since P(-log U > t) = P(U < e^(-t)) = e^(-t).",
+    "For 'assertion and reason' items, first check both statements independently, THEN ask whether the second is the mechanism behind the first. Here it plainly is.",
+    "The chain U(0,1) -> -log U -> Exp(1) is also the inverse-transform method for generating exponential random numbers - a useful anchor."
+  ],
+  "solution": [
+    "Statement-2: for a continuous CDF F, P(F(X) <= u) = P(X <= F^(-1)(u)) = u for 0 < u < 1, so F(X) ~ Uniform(0,1). TRUE.",
+    "Statement-1: put U = F(X), which is Uniform(0,1) by Statement-2, and let Y = -log U.",
+    "For t > 0, P(Y > t) = P(-log U > t) = P(U < e^(-t)) = e^(-t).",
+    "That is the survival function of an Exponential(1) variable, so Y is exponentially distributed. TRUE.",
+    "The derivation of Statement-1 rests entirely on the uniformity of F(X), so Statement-2 is the correct explanation of Statement-1.",
+    "Option (a) is correct."
+  ]
+},
+"2021-Q28": {
+  "answer": 3, "confidence": "high", "type": "Numerical",
+  "shortcut": "Independence gives 4V1 + 9V2 = 72 and V1 + 4V2 = 25. Solving, V2 = 4 and V1 = 9. Then Var((2/3)X1 - 4X2) = (4/9)(9) + 16(4) = 4 + 64 = 68.",
+  "tips": [
+    "Set up two linear equations in V1 and V2 from the two given variances - independence kills all covariance terms, so the coefficients are simply squared.",
+    "Solve by elimination: from V1 = 25 - 4V2, substitution gives 100 - 16V2 + 9V2 = 72, so 7V2 = 28 and V2 = 4.",
+    "In the final variance the minus sign vanishes on squaring: (-4)^2 = 16. Options (a) and (b) come from subtracting instead of adding.",
+    "The fraction 2/3 is squared to 4/9, which cancels neatly against V1 = 9 to give 4 - a sign the intermediate values are right."
+  ],
+  "solution": [
+    "X1 and X2 are independent, so Var(aX1 + bX2) = a^2 Var(X1) + b^2 Var(X2). Write V1 = Var(X1) and V2 = Var(X2).",
+    "From Y1 = 2X1 + 3X2: 4V1 + 9V2 = 72.",
+    "From Y2 = X1 + 2X2: V1 + 4V2 = 25, so V1 = 25 - 4V2.",
+    "Substituting: 4(25 - 4V2) + 9V2 = 72, i.e. 100 - 16V2 + 9V2 = 72, so 7V2 = 28 and V2 = 4.",
+    "Then V1 = 25 - 16 = 9.",
+    "Var((2/3)X1 - 4X2) = (4/9)(9) + 16(4) = 4 + 64 = 68, option (d)."
+  ]
+},
+"2021-Q29": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "Fix A; B is equally likely to occupy any of the remaining 15 seats. Exactly 4 people sit between them in exactly 2 of those seats (one on each side), so the probability is 2/15.",
+  "tips": [
+    "Anchor one person to break the rotational symmetry - then the other person's seat is uniform over the remaining n - 1 positions and no factorials are needed.",
+    "'Exactly 4 between' must be counted on ONE arc, and there are two such arcs, hence exactly 2 favourable seats. Forgetting the second side gives 1/15, option (d).",
+    "Seat check: with A at seat 1, four people between means B at seat 6 (seats 2-5) or at seat 12 (seats 13-16 going the other way).",
+    "The answer is free of the total 16 except through the denominator 15 - a good sign that the anchoring argument has been applied correctly."
+  ],
+  "solution": [
+    "Seat A at a fixed position; by rotational symmetry this loses no generality.",
+    "The remaining 15 people, including B, occupy the other 15 seats, and B is equally likely to be in any one of them, each with probability 1/15.",
+    "For exactly 4 persons to sit between A and B along one arc, B must be the 5th seat away from A.",
+    "There are two such seats - one going clockwise and one going anticlockwise.",
+    "Hence the probability is 2/15.",
+    "Option (c) is correct."
+  ]
+},
+"2021-Q30": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "Write A = npq. Then (1-4pq) = A/36 and 1 - 6pq = -A/12. Solving gives pq = 2/9 and A = 4, so n = 18; the positive skewness forces q > p, i.e. p = 1/3.",
+  "tips": [
+    "Binomial shape measures: gamma_1 = (q - p)/sqrt(npq) and gamma_2 = (1 - 6pq)/(npq). Both have npq in the denominator, which is what lets you eliminate n.",
+    "Use gamma_1^2 = (q-p)^2/(npq) = (1 - 4pq)/(npq) - squaring converts the skewness into an equation in pq alone once combined with the kurtosis equation.",
+    "The SIGN of the skewness decides between p and q: gamma_1 > 0 means q > p, so p is the smaller root 1/3. Options (a) and (c) take p = 2/3 and fail this test.",
+    "Verify at the end: n = 18, p = 1/3 gives npq = 4, so gamma_1 = (1/3)/2 = 1/6 and gamma_2 = (1 - 4/3)/4 = -1/12, both matching."
+  ],
+  "solution": [
+    "For the binomial, gamma_1 = (q - p)/sqrt(npq) and gamma_2 = (1 - 6pq)/(npq). Write A = npq and t = pq.",
+    "Squaring the skewness: (q - p)^2/A = 1/36. Since (q-p)^2 = (p+q)^2 - 4pq = 1 - 4t, this gives 1 - 4t = A/36.",
+    "From the kurtosis: (1 - 6t)/A = -1/12, so 1 - 6t = -A/12, i.e. A = 12(6t - 1) = 72t - 12.",
+    "Substituting into the first equation: 1 - 4t = (72t - 12)/36 = 2t - 1/3, so 4/3 = 6t and t = pq = 2/9.",
+    "Then A = 72(2/9) - 12 = 16 - 12 = 4, and since A = n t = 2n/9 = 4, we get n = 18. With p + q = 1 and pq = 2/9, p and q are 1/3 and 2/3.",
+    "Since gamma_1 = +1/6 > 0 we need q > p, so p = 1/3. Hence n = 18 and p = 1/3, option (b)."
+  ]
+},
+"2021-Q31": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "Cumulative frequencies 10, 25, 50, 75, 90, 100 land exactly on the class boundaries, so D1 = 5.5, Q1 = 10.5, Median = 15.5 and Q3 = 20.5, giving QD = (20.5-10.5)/2 = 5. Matching gives A-2, B-4, C-6, D-1.",
+  "tips": [
+    "Convert INCLUSIVE classes (1-5, 6-10, ...) to exclusive boundaries (0.5-5.5, 5.5-10.5, ...) before using any positional formula - the 0.5 correction is what produces the .5 endings in the options.",
+    "The cumulative frequencies here hit 10, 25, 50 and 75 exactly at class boundaries, so every quantile sits on a boundary and no interpolation within a class is needed.",
+    "Quartile deviation = (Q3 - Q1)/2, a SEMI-interquartile range. Forgetting to halve gives 10, which is also on the list as a distractor.",
+    "The distribution is symmetric (10, 15, 25, 25, 15, 10), so the median must sit at the centre of the range, 15.5 - a useful confirmation."
+  ],
+  "solution": [
+    "Convert to exclusive boundaries: 0.5-5.5, 5.5-10.5, 10.5-15.5, 15.5-20.5, 20.5-25.5, 25.5-30.5, each of width h = 5, with N = 100.",
+    "Cumulative frequencies: 10, 25, 50, 75, 90, 100.",
+    "First decile: N/10 = 10 falls at the end of the first class, so D1 = 0.5 + (10 - 0)/10 x 5 = 5.5 (List II item 2).",
+    "First quartile: N/4 = 25 falls at the end of the second class, so Q1 = 5.5 + (25 - 10)/15 x 5 = 10.5 (item 4).",
+    "Median: N/2 = 50 falls at the end of the third class, so M = 10.5 + (50 - 25)/25 x 5 = 15.5 (item 6). Similarly Q3 = 15.5 + (75 - 50)/25 x 5 = 20.5.",
+    "Quartile deviation = (Q3 - Q1)/2 = (20.5 - 10.5)/2 = 5 (item 1). Hence A-2, B-4, C-6, D-1, option (a)."
+  ]
+},
+"2021-Q32": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "r12.3 = (r - r^2)/sqrt((1-r^2)(1-r^2)) = r(1-r)/(1-r^2) = r/(1+r) after cancelling (1 - r).",
+  "tips": [
+    "Substitute all three correlations as r and the formula collapses immediately - no need to keep the subscripts separate.",
+    "Factor 1 - r^2 as (1-r)(1+r) BEFORE cancelling; the common factor (1 - r) is what produces the clean answer.",
+    "Check r = 0: independent variables must give partial correlation 0, and r/(1+r) = 0. Check r = 1: the formula gives 1/2, and indeed perfect mutual correlation is a degenerate boundary case.",
+    "Note the contrast with 2018 Q31: an exact linear relation gives partial correlation +-1, whereas equal pairwise correlations give the milder r/(1+r)."
+  ],
+  "solution": [
+    "The partial correlation formula is r12.3 = (r12 - r13 r23)/sqrt[(1 - r13^2)(1 - r23^2)].",
+    "With r12 = r13 = r23 = r, the numerator is r - r . r = r - r^2 = r(1 - r).",
+    "The denominator is sqrt[(1 - r^2)(1 - r^2)] = 1 - r^2 = (1 - r)(1 + r).",
+    "Cancelling the common factor (1 - r), valid since r is not 1, gives r12.3 = r/(1 + r).",
+    "Check: r = 0 gives 0, as it must for uncorrelated variables.",
+    "Option (c) is correct."
+  ]
+},
+"2021-Q33": {
+  "answer": 0, "confidence": "medium", "type": "Theoretical",
+  "issue": "AI-derived key with a caveat. Statement 1 is unambiguously true (mean n, variance 2n). Statement 2 states the additive property WITHOUT the independence requirement; as printed it is false, since the sum of two dependent chi-square variables need not be chi-square (e.g. Z^2 and (-Z)^2 sum to 2Z^2, which is not chi-square). Some textbooks state the reproductive property loosely and would treat statement 2 as true, which would make (c) the key; (a) is selected here as the mathematically correct reading.",
+  "shortcut": "Chi-square(n) has mean n and variance 2n, so statement 1 is true. The additive property needs INDEPENDENCE, which statement 2 omits, so as printed it is false.",
+  "tips": [
+    "Chi-square with v d.f.: mean v, variance 2v, so the two coincide only at v = 0. Statement 1 is safe.",
+    "Reproductive property: if U ~ chi-square(m) and V ~ chi-square(n) are INDEPENDENT then U + V ~ chi-square(m+n). The independence clause is not decorative.",
+    "Counterexample for the dependent case: with Z ~ N(0,1), both Z^2 and (-Z)^2 are chi-square(1), but their sum 2Z^2 has mean 2 and variance 8, whereas chi-square(2) has variance 4.",
+    "Whenever a reproductive or additive property is quoted, check whether independence is stated - its omission is a favourite falsification device."
+  ],
+  "solution": [
+    "Statement 1: for the chi-square distribution with n degrees of freedom, the mean is n and the variance is 2n. These differ for every n >= 1, so the mean and variance are not the same. TRUE.",
+    "Statement 2: the reproductive property of the chi-square distribution states that the sum of two INDEPENDENT chi-square variates with m and n degrees of freedom is chi-square with m + n degrees of freedom.",
+    "Without independence the conclusion fails. Take Z ~ N(0,1) and set U = Z^2 and V = (-Z)^2; each is chi-square with 1 d.f., but U + V = 2Z^2 has mean 2 and variance 8.",
+    "A chi-square variable with mean 2 would have 2 degrees of freedom and variance 4, not 8, so 2Z^2 is not chi-square.",
+    "Hence statement 2, as printed without the independence condition, is FALSE.",
+    "Only statement 1 is correct, option (a)."
+  ]
+},
+"2021-Q34": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "t = r sqrt(n-2)/sqrt(1 - r^2) = 0.6 sqrt(9)/sqrt(0.64) = 1.8/0.8 = 2.25.",
+  "tips": [
+    "Test statistic for H0: rho = 0 is t = r sqrt(n-2)/sqrt(1-r^2) with n - 2 degrees of freedom. Memorise it as one block.",
+    "The numbers are chosen to be clean: n - 2 = 9 gives sqrt = 3, and 1 - 0.36 = 0.64 gives sqrt = 0.8. Spot these before reaching for a calculator.",
+    "Do not use Fisher's z here - that is for testing a NON-ZERO rho or comparing two correlations. For rho = 0 the exact t-test applies.",
+    "With 9 d.f. the 5% two-tailed critical value is 2.262, so t = 2.25 is just short of significance - a nice illustration of how borderline a correlation of 0.6 is at n = 11."
+  ],
+  "solution": [
+    "To test H0: rho = 0 against an alternative, the statistic is t = r sqrt(n - 2)/sqrt(1 - r^2), which follows Student's t with n - 2 degrees of freedom.",
+    "Here r = 0.6 and n = 11, so n - 2 = 9 and sqrt(9) = 3.",
+    "1 - r^2 = 1 - 0.36 = 0.64, so sqrt(1 - r^2) = 0.8.",
+    "t = 0.6 x 3/0.8 = 1.8/0.8 = 2.25.",
+    "The statistic has 9 degrees of freedom.",
+    "Hence t = 2.25, option (a)."
+  ]
+},
+"2021-Q35": {
+  "answer": 0, "confidence": "medium", "type": "Numerical",
+  "shortcut": "Rank the combined sample: X occupies ranks 1, 2, 5, 7 so R_X = 15. Then U = R_X - n1(n1+1)/2 = 15 - 10 = 5.",
+  "tips": [
+    "Two equivalent counts: U = R1 - n1(n1+1)/2 = 5, and its complement n1 n2 - U = 12 - 5 = 7. Both appear among the options, so state which convention you are using.",
+    "Direct counting confirms it: for each X, count the Y observations that precede it - 0, 0, 2, 3, totalling 5.",
+    "Check U1 + U2 = n1 n2 = 4 x 3 = 12. Here 5 + 7 = 12, so the two values are consistent and one of them is the answer.",
+    "For the test itself the SMALLER of the two U values is compared with the tabulated critical value, which is why 5 is the statistic normally reported."
+  ],
+  "solution": [
+    "The combined ordering is x3 < x2 < y1 < y2 < x4 < y3 < x1, so the ranks are x3 = 1, x2 = 2, y1 = 3, y2 = 4, x4 = 5, y3 = 6, x1 = 7.",
+    "The X sample (n1 = 4) has ranks 1, 2, 5, 7, so R_X = 15; the Y sample (n2 = 3) has ranks 3, 4, 6, so R_Y = 13. (Total 28 = 7 x 8/2, as required.)",
+    "The Mann-Whitney statistic for the X sample is U = R_X - n1(n1 + 1)/2 = 15 - (4)(5)/2 = 15 - 10 = 5.",
+    "Equivalently, count for each X observation the number of Y observations preceding it: 0, 0, 2, 3, giving 5.",
+    "The complementary value is n1 n2 - U = 12 - 5 = 7, and 5 + 7 = 12 = n1 n2 confirms the arithmetic.",
+    "The statistic used for the test of identical distributions is the smaller value, U = 5, option (a)."
+  ]
+},
+"2021-Q36": {
+  "answer": 3, "confidence": "high", "type": "Numerical",
+  "shortcut": "Var(U) = n1 n2 (n1 + n2 + 1)/12 = 15 x 20 x 36/12 = 300 x 3 = 900.",
+  "tips": [
+    "Memorise the pair: E(U) = n1 n2/2 and Var(U) = n1 n2(n1 + n2 + 1)/12. Both are needed for the normal approximation.",
+    "Cancel before multiplying: 36/12 = 3, so the product is just 15 x 20 x 3 = 900. Multiplying first invites arithmetic slips.",
+    "Note the +1 in (n1 + n2 + 1) = 36; using 35 gives 875, which is planted as option (c).",
+    "For the large-sample test, z = (U - n1n2/2)/sqrt(Var(U)) = (U - 150)/30 here - the standard deviation of 30 is a memorable by-product."
+  ],
+  "solution": [
+    "For independent samples of sizes n1 and n2, the Mann-Whitney statistic U has, under the null hypothesis of identical distributions, mean n1 n2/2 and variance n1 n2 (n1 + n2 + 1)/12.",
+    "Here n1 = 15 and n2 = 20, so n1 + n2 + 1 = 36.",
+    "Var(U) = 15 x 20 x 36/12.",
+    "Simplify 36/12 = 3, giving Var(U) = 15 x 20 x 3.",
+    "= 300 x 3 = 900.",
+    "Hence the variance is 900, option (d)."
+  ]
+},
+"2021-Q37": {
+  "answer": 0, "confidence": "high", "type": "Theoretical",
+  "shortcut": "The asymptotic relative efficiency of the median to the mean under normality is 2/pi = 0.637, a constant free of mu and sigma^2. So the mean is more efficient for all parameter values.",
+  "tips": [
+    "Asymptotic variances under N(mu, sigma^2): mean has sigma^2/n, median has pi sigma^2/(2n). Their ratio 2/pi is independent of both parameters.",
+    "Because sigma^2 cancels in the ratio, no condition on sigma^2 can possibly matter - options (b), (c) and (d) impose conditions that are structurally irrelevant.",
+    "0.637 means the median 'wastes' about 36% of the sample: 100 observations analysed by the median carry the information of only 64 analysed by the mean.",
+    "The picture reverses for heavy-tailed parents; for the Laplace distribution the median is the more efficient estimator - useful contrast for a follow-up question."
+  ],
+  "solution": [
+    "For a random sample of size n from N(mu, sigma^2), the sample mean has variance sigma^2/n.",
+    "The sample median is asymptotically normal with variance 1/(4n [f(m)]^2), where f is the density at the median m = mu.",
+    "For the normal density, f(mu) = 1/(sigma sqrt(2 pi)), so the asymptotic variance of the median is pi sigma^2/(2n).",
+    "The asymptotic relative efficiency of the median with respect to the mean is (sigma^2/n)/(pi sigma^2/(2n)) = 2/pi = 0.637.",
+    "This ratio involves neither mu nor sigma^2, so the mean is more efficient whatever their values.",
+    "Hence the mean is more asymptotically efficient for all mu and sigma^2, option (a)."
+  ]
+},
+"2021-Q38": {
+  "answer": 3, "confidence": "high", "type": "Numerical",
+  "shortcut": "The 2^i and (1/2)^i cancel, leaving E(X) = sum of (-1)^(i+1)/i! for i >= 1 = -[e^(-1) - 1] = 1 - e^(-1).",
+  "tips": [
+    "Multiply value by probability FIRST: [(-1)^(i+1) 2^i/i!] x (1/2)^i = (-1)^(i+1)/i!. The cancellation is the entire design of the question.",
+    "Recognise the exponential series: sum over i >= 0 of (-1)^i/i! = e^(-1). The required sum starts at i = 1 and has the opposite sign, giving 1 - e^(-1).",
+    "Check the probabilities sum to 1: sum of (1/2)^i for i >= 1 = 1, so the distribution is valid.",
+    "Numerically 1 - e^(-1) = 0.632, and the first two terms of the sum are 1 - 1/2 = 0.5 with the next +1/6 = 0.667 - the partial sums bracket 0.632, confirming the answer."
+  ],
+  "solution": [
+    "X takes the value (-1)^(i+1) 2^i/i! with probability (1/2)^i for i = 1, 2, 3, ... The probabilities sum to 1, so the distribution is valid.",
+    "The contribution of the ith term to the expectation is [(-1)^(i+1) 2^i/i!] (1/2)^i.",
+    "The factors 2^i and (1/2)^i cancel, leaving (-1)^(i+1)/i!.",
+    "Hence E(X) = sum over i >= 1 of (-1)^(i+1)/i! = -sum over i >= 1 of (-1)^i/i!.",
+    "Since sum over i >= 0 of (-1)^i/i! = e^(-1), the sum from i = 1 equals e^(-1) - 1.",
+    "Therefore E(X) = -(e^(-1) - 1) = 1 - e^(-1), option (d)."
+  ]
+},
+"2021-Q39": {
+  "answer": 2, "confidence": "high", "type": "Conceptual",
+  "shortcut": "Mean deviation scales by the absolute value of the multiplier and is unaffected by a shift, so MD(2x + 3) = 2 x 5 = 10.",
+  "tips": [
+    "All measures of DISPERSION (range, MD, SD, QD) are unchanged by a change of origin and scale by |a| under a change of scale. Only the mean and other location measures absorb the +3.",
+    "The +3 shifts both the values and their mean by 3, so the deviations are identical - the constant cancels exactly.",
+    "Use |a|, not a: a multiplier of -2 would also give 10, since deviations are measured in absolute value.",
+    "Option (b) 13 = 2(5) + 3 is the trap for candidates who apply the whole transformation to the dispersion measure instead of just the scale factor."
+  ],
+  "solution": [
+    "Let y = 2x + 3. Then the mean of y is ybar = 2 xbar + 3.",
+    "The deviation of each observation from its mean is y_i - ybar = (2x_i + 3) - (2 xbar + 3) = 2(x_i - xbar).",
+    "Taking absolute values, |y_i - ybar| = 2|x_i - xbar|.",
+    "Averaging, MD(y) = 2 MD(x).",
+    "With MD(x) = 5, MD(y) = 2 x 5 = 10.",
+    "Option (c) is correct."
+  ]
+},
+"2021-Q40": {
+  "answer": 3, "confidence": "medium", "type": "Numerical",
+  "issue": "AI-derived key with a caveat. The median is indeed 257.50 (mean of the 12th and 13th ordered values 253 and 262) and E(R) = 13 is correct for n1 = n2 = 12. However the printed standard deviation 1.396 does not match the exact value sqrt(2 n1 n2 (2 n1 n2 - N)/(N^2 (N-1))) = sqrt(5.739) = 2.396, so statement 2 as printed is false; and the sequence as presented is sorted, giving only 2 runs against an expected 13 (z = -4.6), so the randomness claim in statement 1 fails. Both statements therefore fail as printed, giving (d). If 1.396 were a misprint for 2.396 the key would be (b).",
+  "shortcut": "n1 = n2 = 12 about the median 257.50, so E(R) = 2n1n2/N + 1 = 13 and SD(R) = sqrt(5.739) = 2.396 - not the printed 1.396. The sorted sequence has only 2 runs, so randomness is rejected.",
+  "tips": [
+    "Runs test about the median: E(R) = 2 n1 n2/(n1 + n2) + 1 and Var(R) = 2 n1 n2 (2 n1 n2 - n1 - n2)/[(n1+n2)^2 (n1+n2-1)]. Compute both before judging either statement.",
+    "Find the median first: with N = 24 it is the average of the 12th and 13th values, (253 + 262)/2 = 257.50.",
+    "A perfectly sorted sequence always yields exactly 2 runs - the theoretical minimum - so any ordered data set fails a runs test for randomness by construction.",
+    "Numerical care: 2 n1 n2 = 288 and 2 n1 n2 - N = 264, so Var(R) = 288 x 264/(576 x 23) = 5.739 and SD = 2.396."
+  ],
+  "solution": [
+    "There are N = 24 observations. The median is the average of the 12th and 13th ordered values: (253 + 262)/2 = 257.50, so that part of statement 1 is correct.",
+    "Twelve observations fall below the median and twelve above, so n1 = n2 = 12.",
+    "Expected number of runs: E(R) = 2 n1 n2/(n1 + n2) + 1 = 2(144)/24 + 1 = 12 + 1 = 13, matching statement 2's mean.",
+    "Variance: Var(R) = 2 n1 n2 (2 n1 n2 - N)/[N^2 (N-1)] = 288(264)/[576(23)] = 76032/13248 = 5.7391, so SD(R) = 2.396, not the printed 1.396. Statement 2 is therefore FALSE as printed.",
+    "The sequence as given is in ascending order, so all twelve values below the median precede all twelve above, producing exactly R = 2 runs. The standardised value is (2 - 13)/2.396 = -4.59, which decisively rejects randomness, so statement 1 is FALSE.",
+    "Neither statement holds as printed, option (d)."
+  ]
+}
+}

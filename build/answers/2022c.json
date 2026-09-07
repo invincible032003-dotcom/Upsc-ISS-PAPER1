@@ -1,0 +1,361 @@
+{
+"2022-Q41": {
+  "answer": 2, "confidence": "high", "type": "Theoretical",
+  "shortcut": "Kolmogorov's strong law for i.i.d. variables needs only a finite mean, i.e. E|X_k| < infinity - finite variance is sufficient but not necessary.",
+  "tips": [
+    "For i.i.d. sequences, E|X| < infinity is NECESSARY AND SUFFICIENT for the strong law; the sample mean then converges almost surely to E(X).",
+    "Finite variance (option a) is a stronger condition than needed - it guarantees the SLLN but is not required, so it is not the correct characterisation.",
+    "The Cauchy distribution is the standard counterexample: it has no finite mean and its sample means do not converge at all.",
+    "Contrast with the weak law, which also needs only a finite mean for i.i.d. variables but gives convergence in probability rather than almost surely."
+  ],
+  "solution": [
+    "Kolmogorov's strong law of large numbers states that for a sequence of independent and identically distributed random variables, the sample mean converges almost surely to the population mean if and only if E|X_1| is finite.",
+    "That is, a finite first absolute moment is both necessary and sufficient in the i.i.d. case.",
+    "A finite variance implies a finite mean and therefore also implies the SLLN, but it is a stronger assumption than required.",
+    "An infinite variance does not prevent the SLLN, provided the mean exists - so option (b) is not a condition for it either.",
+    "The information given is sufficient to answer, so option (d) is wrong.",
+    "Hence the condition is E(X_k) finite, option (c)."
+  ]
+},
+"2022-Q42": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "Condition on the first draw: (3/7)(5/9) + (4/7)(3/9) = 15/63 + 12/63 = 27/63 = 3/7 - unchanged from the initial proportion.",
+  "tips": [
+    "This is a Polya urn. Its signature property is that the marginal probability of drawing white is the SAME on every draw, whatever the reinforcement - so the answer is 3/7 without any computation.",
+    "If you compute directly: after adding 2 balls the urn holds 9, with 5 white if the first was white and 3 white if it was black.",
+    "The law of total probability is the standard route: P(W2) = P(W1)P(W2|W1) + P(B1)P(W2|B1).",
+    "The invariance means the draws are exchangeable but NOT independent - a useful distinction to remember for follow-up parts."
+  ],
+  "solution": [
+    "Initially the urn has 3 white and 4 black balls, so 7 in total; after the first draw the ball is replaced together with 2 more of the same colour, leaving 9 balls.",
+    "If the first ball is white (probability 3/7), the urn then holds 5 white out of 9, so P(second white | first white) = 5/9.",
+    "If the first ball is black (probability 4/7), the urn holds 3 white out of 9, so P(second white | first black) = 3/9.",
+    "By the law of total probability, P(second white) = (3/7)(5/9) + (4/7)(3/9).",
+    "= 15/63 + 12/63 = 27/63 = 3/7.",
+    "This equals the original proportion of white balls, the characteristic invariance of the Polya urn. Option (a) is correct."
+  ]
+},
+"2022-Q43": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "Split at 0: the integral from -1 to 0 gives (1/2)(1 - e^(-1)) and from 0 to 2 gives (1/2)(1 - e^(-2)). Adding: (1/2)(2 - e^(-1) - e^(-2)).",
+  "tips": [
+    "The Laplace density has |x| in the exponent, so ALWAYS split the range at 0 - on the left the density is (1/2)e^x and on the right (1/2)e^(-x).",
+    "Each half integrates to (1/2)(1 - e^(-a)) where a is the distance from 0, so the two pieces are structurally identical and both SUBTRACT an exponential.",
+    "Both exponential terms must therefore carry a minus sign, which identifies option (a) immediately; options (b), (c) and (d) have at least one wrong sign.",
+    "Numerical check: (1/2)(2 - 0.3679 - 0.1353) = 0.7484, a sensible probability for an interval covering most of the density's mass."
+  ],
+  "solution": [
+    "The density is the Laplace (double exponential) f(x) = (1/2)e^(-|x|), symmetric about 0.",
+    "Split the interval at 0. For -1 < x < 0, |x| = -x so f(x) = (1/2)e^x.",
+    "The integral from -1 to 0 of (1/2)e^x dx = (1/2)[e^x] from -1 to 0 = (1/2)(1 - e^(-1)).",
+    "For 0 < x < 2, |x| = x so f(x) = (1/2)e^(-x), and the integral from 0 to 2 is (1/2)[-e^(-x)] from 0 to 2 = (1/2)(1 - e^(-2)).",
+    "Adding: P(-1 < X < 2) = (1/2)(1 - e^(-1)) + (1/2)(1 - e^(-2)) = (1/2)(2 - e^(-1) - e^(-2)).",
+    "Numerically this is 0.748. Option (a) is correct."
+  ]
+},
+"2022-Q44": {
+  "answer": 3, "confidence": "high", "type": "Numerical",
+  "shortcut": "P(HH | two-headed) = 1 and P(HH | fair) = 1/4, with equal priors. So the posterior is 1/(1 + 1/4) = 4/5.",
+  "tips": [
+    "With EQUAL priors, Bayes reduces to the ratio of likelihoods: 1 : 1/4, i.e. 4 : 1, giving 4/5 directly.",
+    "Two heads is four times more likely under the two-headed coin, so the posterior must exceed the prior 1/2 substantially - options (b) and (c) are below 1/2 and can be dismissed.",
+    "Extend the pattern: with k heads the posterior is 1/(1 + 2^(-k)) = 2^k/(2^k + 1), which tends to 1 - a useful generalisation.",
+    "Option (a) 1/2 is the PRIOR, the trap for candidates who forget to update on the evidence."
+  ],
+  "solution": [
+    "Let T be the event that the two-headed coin was chosen and F that the fair coin was chosen, with P(T) = P(F) = 1/2.",
+    "P(two heads | T) = 1, since both faces are heads.",
+    "P(two heads | F) = (1/2)(1/2) = 1/4.",
+    "Total probability: P(two heads) = (1/2)(1) + (1/2)(1/4) = 1/2 + 1/8 = 5/8.",
+    "By Bayes' theorem, P(T | two heads) = (1/2)(1)/(5/8) = (1/2)(8/5) = 4/5.",
+    "Option (d) is correct."
+  ]
+},
+"2022-Q45": {
+  "answer": 3, "confidence": "high", "type": "Theoretical",
+  "shortcut": "F_n is the U(-n, n) distribution function. For any fixed x, F_n(x) = (x+n)/(2n) tends to 1/2, and the constant 1/2 is not a distribution function - so no limiting distribution exists.",
+  "tips": [
+    "Test the limit POINTWISE at a fixed x, letting n grow: (x + n)/(2n) = 1/2 + x/(2n) -> 1/2 for every x.",
+    "A valid distribution function must tend to 0 as x -> -infinity and to 1 as x -> +infinity; the constant function 1/2 does neither.",
+    "This is the standard illustration that probability mass can 'escape to infinity' - the uniform spreads out without limit and no proper limit law survives.",
+    "Contrast with a sequence like U(-1/n, 1/n), where mass CONCENTRATES and the limit is degenerate at 0 - the opposite failure mode."
+  ],
+  "solution": [
+    "F_n is the distribution function of a Uniform(-n, n) random variable.",
+    "Fix any real x. For all n large enough that -n <= x <= n, F_n(x) = (x + n)/(2n) = 1/2 + x/(2n).",
+    "As n tends to infinity, x/(2n) tends to 0, so F_n(x) tends to 1/2 for EVERY fixed x.",
+    "The pointwise limit is therefore the constant function G(x) = 1/2.",
+    "A distribution function must satisfy G(x) -> 0 as x -> -infinity and G(x) -> 1 as x -> +infinity; the constant 1/2 satisfies neither, so it is not a distribution function. The probability mass escapes to infinity.",
+    "Hence the limiting distribution function does not exist, option (d)."
+  ]
+},
+"2022-Q46": {
+  "answer": 0, "confidence": "high", "type": "Theoretical",
+  "shortcut": "Split the sequence into disjoint blocks of four trials. Each block equals SFSF with the same positive probability independently, so the sum of these probabilities diverges and the second Borel-Cantelli lemma gives probability 1.",
+  "tips": [
+    "Use DISJOINT blocks to obtain independence: trials 1-4, 5-8, 9-12, ... are independent, which is exactly what Borel-Cantelli II requires.",
+    "Each block matches SFSF with probability p^2 q^2 > 0, a constant, so the sum over infinitely many blocks diverges immediately.",
+    "Borel-Cantelli II: for INDEPENDENT events with divergent probability sum, P(infinitely often) = 1. Independence is essential and the blocking supplies it.",
+    "General principle: in an infinite sequence of Bernoulli trials, ANY fixed finite pattern occurs infinitely often with probability 1 - the 'infinite monkey' result."
+  ],
+  "solution": [
+    "Let p be the probability of success and q = 1 - p that of failure, with 0 < p < 1 so that both are positive.",
+    "Partition the trials into disjoint consecutive blocks of four: trials 1-4, 5-8, 9-12, and so on. These blocks are independent of one another.",
+    "Let A_k be the event that the kth block reads exactly S, F, S, F. Then P(A_k) = p^2 q^2, a fixed positive constant for every k.",
+    "The sum over k of P(A_k) is therefore infinite.",
+    "Since the A_k are independent, the second Borel-Cantelli lemma gives P(A_k occurs infinitely often) = 1.",
+    "The pattern SFSF must then appear infinitely often in the full sequence, so the probability is 1, option (a)."
+  ]
+},
+"2022-Q47": {
+  "answer": 3, "confidence": "high", "type": "Numerical",
+  "shortcut": "Substitute u = 2x to get (1/16) times the integral of u^3/(1+u)^6 du = (1/16)B(4,2) = (1/16)(1/20) = 1/320. Hence k = 320.",
+  "tips": [
+    "Beta second-kind integral: the integral from 0 to infinity of u^(m-1)/(1+u)^(m+n) du = B(m,n). Here m - 1 = 3 and m + n = 6, so m = 4 and n = 2.",
+    "The substitution u = 2x is what converts (1+2x) into (1+u); the factor picked up is (1/2)^3 from x^3 and (1/2) from dx, giving 1/16.",
+    "B(4,2) = Gamma(4)Gamma(2)/Gamma(6) = (6)(1)/120 = 1/20 - compute with factorials, not integrals.",
+    "Cross-check with 2018 Q20, which used the same density and showed that 2X/(1+2X) ~ Beta(4,2) - the same parameters appear, confirming m = 4 and n = 2."
+  ],
+  "solution": [
+    "The density must integrate to 1: k times the integral from 0 to infinity of x^3/(1+2x)^6 dx = 1.",
+    "Substitute u = 2x, so x = u/2 and dx = du/2. Then x^3 = u^3/8 and the integral becomes (1/8)(1/2) times the integral of u^3/(1+u)^6 du = (1/16) times that integral.",
+    "The standard Beta integral of the second kind gives the integral from 0 to infinity of u^(m-1)/(1+u)^(m+n) du = B(m,n); here m - 1 = 3 and m + n = 6, so m = 4 and n = 2.",
+    "B(4,2) = Gamma(4)Gamma(2)/Gamma(6) = (3!)(1!)/5! = 6/120 = 1/20.",
+    "So the integral equals (1/16)(1/20) = 1/320.",
+    "Therefore k/320 = 1 and k = 320, option (d)."
+  ]
+},
+"2022-Q48": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "Mean m/(m+n) = 1/3 gives n = 2m. Substituting into the variance 2m^2/[9m^2(3m+1)] = 2/(9(3m+1)) = 2/63 gives 3m + 1 = 7, so m = 2 and n = 4.",
+  "tips": [
+    "Beta(m,n) first kind: mean = m/(m+n), variance = mn/[(m+n)^2 (m+n+1)]. Write both down before substituting.",
+    "Use the mean FIRST to express n in terms of m; the variance equation then has a single unknown and the m^2 factors cancel.",
+    "Variance shortcut: variance = mean(1 - mean)/(m+n+1) = (1/3)(2/3)/(m+n+1) = 2/(9(m+n+1)). Setting this to 2/63 gives m + n + 1 = 7 directly, so m + n = 6.",
+    "With m + n = 6 and m/(m+n) = 1/3, we get m = 2 and n = 4 in one step - the fastest route of all."
+  ],
+  "solution": [
+    "For a Beta distribution of the first kind with parameters m and n, the mean is m/(m+n) and the variance is mn/[(m+n)^2(m+n+1)].",
+    "From the mean: m/(m+n) = 1/3, so 3m = m + n and n = 2m.",
+    "A convenient form of the variance is mean x (1 - mean)/(m + n + 1) = (1/3)(2/3)/(m+n+1) = 2/(9(m+n+1)).",
+    "Setting this equal to 2/63 gives 9(m + n + 1) = 63, so m + n + 1 = 7 and m + n = 6.",
+    "Combining with n = 2m: 3m = 6, so m = 2 and n = 4.",
+    "Check: mean = 2/6 = 1/3 and variance = (2)(4)/[36 x 7] = 8/252 = 2/63. Option (a) is correct."
+  ]
+},
+"2022-Q49": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "For fixed y, x ranges over (0, y), so f_Y(y) = the integral of 2 dx from 0 to y = 2y on (0,1).",
+  "tips": [
+    "The region 0 < x < y < 1 is the triangle below the line y = x reflected - for a given y, x runs from 0 up to y. Sketching the triangle prevents limit errors.",
+    "Integrating a constant density over a variable range gives a LINEAR marginal - so the answer must be proportional to y, which only option (b) is.",
+    "Validity check: the integral of 2y over (0,1) is 1, whereas options (a), (c) and (d) integrate to 1/2, 0 and 1/2 respectively - all invalid.",
+    "The area of the triangle is 1/2, so the constant density must be 2 for the total probability to be 1 - a quick confirmation that the set-up is right."
+  ],
+  "solution": [
+    "The joint density is f(x,y) = 2 on the triangular region 0 < x < y < 1, whose area is 1/2, so the total probability is 2 x 1/2 = 1 as required.",
+    "The marginal density of Y is obtained by integrating out x over the range permitted for that y.",
+    "For a fixed y in (0,1), the constraint 0 < x < y means x ranges from 0 to y.",
+    "f_Y(y) = the integral from 0 to y of 2 dx = 2y.",
+    "Check: the integral of 2y over (0,1) is [y^2] from 0 to 1 = 1, a valid density.",
+    "Hence f_Y(y) = 2y for 0 < y < 1, option (b)."
+  ]
+},
+"2022-Q50": {
+  "answer": 3, "confidence": "high", "type": "Numerical",
+  "shortcut": "F(x) = x/5 on [0,5] is the U(0,5) distribution, so the probability of any sub-interval is its length divided by 5: (2.5 - 1.5)/5 = 1/5.",
+  "tips": [
+    "A linear CDF means a UNIFORM distribution; probabilities are then proportional to interval length, with no integration needed.",
+    "P(a <= X <= b) = F(b) - F(a) = 2.5/5 - 1.5/5 = 0.5 - 0.3 = 0.2 - the direct route if you prefer the CDF.",
+    "For a continuous variable the endpoints carry no mass, so <= and < give the same answer - the closed interval in the stem is a distractor.",
+    "Option (c) 2/5 is the trap for candidates who use the interval length 1 over the half-range, or who mis-subtract 0.5 - 0.1."
+  ],
+  "solution": [
+    "The distribution function F(x) = x/5 for 0 <= x <= 5 is that of a Uniform(0,5) random variable, with density 1/5 on that range.",
+    "For any interval, P(a <= X <= b) = F(b) - F(a).",
+    "F(2.5) = 2.5/5 = 0.5 and F(1.5) = 1.5/5 = 0.3.",
+    "Hence P(1.5 <= X <= 2.5) = 0.5 - 0.3 = 0.2.",
+    "Equivalently, the interval has length 1 out of a total range of 5, giving 1/5.",
+    "Option (d) is correct."
+  ]
+},
+"2022-Q51": {
+  "answer": 3, "confidence": "high", "type": "Theoretical",
+  "shortcut": "The sum of absolute deviations is minimised at the MEDIAN and the sum of squared deviations at the MEAN. Statement 1 follows from the first, statements 2 and 3 from the second. All correct.",
+  "tips": [
+    "Two minimisation facts drive every question in this family: sum |x_i - a| is smallest at a = median; sum (x_i - a)^2 is smallest at a = mean.",
+    "Statement 1: the numerator is taken about the median (the minimiser) and the denominator about the mean, so the numerator is smaller and R < 1.",
+    "Statements 2 and 3: the DENOMINATOR is now the minimum, so any other centre - an assumed mean A or the median M - makes the numerator larger and R > 1.",
+    "Useful identity: sum(x_i - A)^2 = sum(x_i - xbar)^2 + n(xbar - A)^2, which makes the strict inequality obvious whenever A is not xbar."
+  ],
+  "solution": [
+    "Fact 1: for any constant a, sum |x_i - a| attains its minimum when a is the median M. Fact 2: sum (x_i - a)^2 attains its minimum when a is the mean xbar, by the identity sum(x_i - a)^2 = sum(x_i - xbar)^2 + n(xbar - a)^2.",
+    "Statement 1: the numerator uses the minimising centre M and the denominator the non-minimising centre xbar (given M is not equal to xbar), so the numerator is smaller and R < 1. CORRECT.",
+    "Statement 2: here the DENOMINATOR uses the minimising centre xbar for squared deviations, while the numerator uses A which is not xbar. By the identity, the numerator exceeds the denominator by n(xbar - A)^2 > 0, so R > 1. CORRECT.",
+    "Statement 3: this is the same situation with A replaced by the median M, which is assumed different from xbar, so again R > 1. CORRECT.",
+    "All three statements follow from the two minimisation properties.",
+    "Hence option (d) is correct."
+  ]
+},
+"2022-Q52": {
+  "answer": 1, "confidence": "high", "type": "Theoretical",
+  "shortcut": "P(Z > x) = [1 - F(x)]^n, so differentiating the CDF 1 - [1-F(x)]^n gives g(x) = n[1 - F(x)]^(n-1) f(x).",
+  "tips": [
+    "Derive from the SURVIVAL function for a minimum: Z > x means every X_i > x, giving [1 - F(x)]^n directly.",
+    "For the MAXIMUM the mirror argument uses the CDF: P(max <= x) = [F(x)]^n, so its density is n[F(x)]^(n-1) f(x) - option (a) here.",
+    "The constant n must be present: it is the number of ways the minimum can be attained by one of the n observations. Options (c) and (d) omit it and do not integrate to 1.",
+    "This is the r = 1 case of the general order-statistic density [n!/((r-1)!(n-r)!)][F]^(r-1)[1-F]^(n-r) f."
+  ],
+  "solution": [
+    "Let Z = min(X_1, ..., X_n) where the X_i are i.i.d. with CDF F and density f.",
+    "The event Z > x occurs exactly when every X_i > x, so by independence P(Z > x) = [1 - F(x)]^n.",
+    "Hence the CDF of Z is G(x) = 1 - [1 - F(x)]^n.",
+    "Differentiating with respect to x: g(x) = -n[1 - F(x)]^(n-1) . (-f(x)) = n[1 - F(x)]^(n-1) f(x).",
+    "This is the r = 1 case of the general order-statistic density formula.",
+    "Hence option (b) is correct."
+  ]
+},
+"2022-Q53": {
+  "answer": 1, "confidence": "high", "type": "Factual",
+  "shortcut": "Both the chi-square goodness-of-fit test and the Kolmogorov-Smirnov test compare an observed distribution with a fully specified theoretical one.",
+  "tips": [
+    "Sort the non-parametric tests by design: one sample against a specified distribution = chi-square and K-S; two independent samples = Mann-Whitney, median test; paired = Wilcoxon signed-rank, sign test.",
+    "K-S works on the ungrouped empirical CDF and needs no minimum expected frequencies, which makes it preferable to chi-square for small continuous samples.",
+    "The K-S statistic D = sup |F_n(x) - F_0(x)| is the largest vertical gap between the empirical and hypothesised CDFs.",
+    "This item repeats 2018 Q37 verbatim - the goodness-of-fit pairing is clearly worth memorising."
+  ],
+  "solution": [
+    "The chi-square goodness-of-fit test compares observed class frequencies with those expected under a fully specified theoretical distribution.",
+    "The Kolmogorov-Smirnov one-sample test performs the same task in a distribution-free way, comparing the empirical distribution function F_n(x) with the hypothesised F_0(x).",
+    "Its statistic is D = sup over x of |F_n(x) - F_0(x)|, and a large D leads to rejection of the hypothesised distribution.",
+    "The Mann-Whitney and Wilcoxon tests compare locations of samples, and the median test compares medians; none tests agreement with a specified distribution.",
+    "Hence the analogue of the chi-square goodness-of-fit test is the Kolmogorov-Smirnov test, option (b)."
+  ]
+},
+"2022-Q54": {
+  "answer": 1, "confidence": "high", "type": "Conceptual",
+  "shortcut": "A hypothesis about a SINGLE normal variance is tested with the chi-square statistic sum(X_i^2)/sigma_0^2 (here the mean is known to be 0).",
+  "tips": [
+    "Match test to parameter: one mean with unknown sigma = t-test; one variance = chi-square; ratio of TWO variances = F-test; one mean with known sigma or large n = normal test.",
+    "Because the mean is known to be 0, the statistic is sum(X_i^2)/sigma_0^2 with n degrees of freedom - no degree of freedom is lost for estimating the mean.",
+    "If the mean had to be estimated, the statistic would be (n-1)s^2/sigma_0^2 with n - 1 degrees of freedom. Knowing which applies is the finer point of this item.",
+    "Option (c) F-test is the trap: F compares TWO variances, whereas here a single variance is compared with a fixed constant."
+  ],
+  "solution": [
+    "The hypothesis concerns the variance of a single normal population, H0: sigma^2 = sigma_0^2.",
+    "For a sample from N(0, sigma^2) with the mean known to be 0, the statistic sum(X_i^2)/sigma_0^2 follows a chi-square distribution with n degrees of freedom under H0.",
+    "(If the mean had to be estimated, the statistic would be (n-1)s^2/sigma_0^2 with n - 1 degrees of freedom - still a chi-square test.)",
+    "A t-test concerns a mean when the variance is unknown, and a normal test concerns a mean when the variance is known.",
+    "An F-test compares the variances of TWO populations, not a single variance with a specified value.",
+    "Hence the appropriate procedure is the chi-square test, option (b)."
+  ]
+},
+"2022-Q55": {
+  "answer": 1, "confidence": "high", "type": "Theoretical",
+  "shortcut": "Lyapunov's inequality says the sequence beta_k^(1/k) is NON-DECREASING in k. Statement 2 states exactly that; statement 1 reverses the inequality and is false.",
+  "tips": [
+    "Lyapunov's inequality: [E|X|^r]^(1/r) is non-decreasing in r. Remember the DIRECTION - higher-order norms are larger, never smaller.",
+    "It follows from Jensen's inequality applied to the convex function t -> t^((k+1)/k), or from Holder's inequality.",
+    "Statements 1 and 2 assert opposite orderings, so exactly one can be true - decide the direction once and both are settled.",
+    "Concrete check: for X ~ U(0,1), beta_1 = 1/2 and beta_2^(1/2) = (1/3)^(1/2) = 0.577 > 0.5, confirming the increasing direction."
+  ],
+  "solution": [
+    "Let beta_n = E(|X|^n) denote the nth absolute moment.",
+    "Lyapunov's inequality states that for 0 < r < s, [E|X|^r]^(1/r) <= [E|X|^s]^(1/s), i.e. the sequence beta_k^(1/k) is non-decreasing in k.",
+    "It follows from Jensen's inequality applied to the convex function t -> t^(s/r).",
+    "Statement 1 asserts beta_k^(1/k) > beta_(k+1)^(1/(k+1)), the reverse ordering. FALSE.",
+    "Statement 2 asserts beta_1 <= beta_2^(1/2) <= beta_3^(1/3) <= ... <= beta_n^(1/n), which is exactly Lyapunov's inequality. TRUE.",
+    "Only statement 2 is correct, option (b)."
+  ]
+},
+"2022-Q56": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "Expected attacks among the vaccinated under independence = 343 x 368/1482 = 85.2, but only 35 were observed. Far fewer than expected means NEGATIVE association, so vaccination looks preventive - statement 2 only.",
+  "tips": [
+    "Independence test for attributes: compare the observed (AB) with (A)(B)/N. Observed above means positive association, below means negative.",
+    "Rates make it vivid: 35/343 = 10.2% among the vaccinated against 333/1139 = 29.2% among the unvaccinated - a large protective difference.",
+    "Statement 1 and statement 2 point in OPPOSITE directions, so exactly one can be right; deciding the sign of the association settles both.",
+    "Yule's Q would confirm it: the diagonal product 35(806) is far below the off-diagonal 308(333), giving a strongly negative Q."
+  ],
+  "solution": [
+    "Let V denote vaccination and A denote being attacked. Given N = 1482, (A) = 368, (V) = 343 and (AV) = 35.",
+    "Under independence the expected number both vaccinated and attacked would be (V)(A)/N = 343 x 368/1482 = 85.2.",
+    "The observed value 35 is far BELOW this, so vaccination and attack are negatively associated. Statement 1, which claims positive association, is FALSE.",
+    "Equivalently, the attack rate among the vaccinated is 35/343 = 10.2%, whereas among the 1139 unvaccinated it is (368 - 35)/1139 = 333/1139 = 29.2%.",
+    "A substantially lower attack rate among the vaccinated is exactly the evidence that vaccination may act as a preventive measure. Statement 2 is TRUE.",
+    "Only statement 2 is correct, option (b)."
+  ]
+},
+"2022-Q57": {
+  "answer": 1, "confidence": "high", "type": "Conceptual",
+  "shortcut": "The Wilcoxon signed-rank test uses both the SIGN of each difference and the RANK of its magnitude - the only correct statement here.",
+  "tips": [
+    "Sign test uses signs ONLY, discarding magnitudes; the Wilcoxon signed-rank test adds the ranks of the magnitudes, which is why it is more powerful.",
+    "Mann-Whitney U is a TWO-sample test for independent samples; Kruskal-Wallis is its k-sample generalisation (the non-parametric one-way ANOVA).",
+    "Sample-count map: sign and Wilcoxon signed-rank = one sample or paired; Mann-Whitney and median test = two independent samples; Kruskal-Wallis = k samples.",
+    "Options (a), (c) and (d) each misstate one of these design facts, so knowing the map answers the item without any computation."
+  ],
+  "solution": [
+    "Option (a): the sign test records only whether each observation lies above or below the hypothesised value, using the SIGNS and discarding the magnitudes entirely. It does not use ranks. FALSE.",
+    "Option (b): the Wilcoxon signed-rank test ranks the absolute differences and then attaches to each rank the sign of the corresponding difference, summing the positive (or negative) signed ranks. It therefore uses BOTH sign and rank. TRUE.",
+    "Option (c): the Mann-Whitney U test compares two INDEPENDENT samples, so it is a two-sample test, not a one-sample test. FALSE.",
+    "Option (d): the Kruskal-Wallis test is the non-parametric analogue of one-way ANOVA and compares k independent samples, k >= 2 in general. Calling it a two-sample test is wrong. FALSE.",
+    "Only the statement about the Wilcoxon test is correct.",
+    "Hence option (b) is correct."
+  ]
+},
+"2022-Q58": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "Total 50 balls over 5 colours gives expected 10 each. Deviations are 0, -2, -5, 2, 5, so chi-square = (0 + 4 + 25 + 4 + 25)/10 = 58/10 = 5.8.",
+  "tips": [
+    "Under 'equal frequency' the expected count is simply N/k = 50/5 = 10, the same for every class - which makes the denominator constant and the sum easy.",
+    "With a common expectation E, chi-square = [sum of (O - E)^2]/E. Compute the squared deviations first and divide once at the end.",
+    "Check the total: 10 + 8 + 5 + 12 + 15 = 50, so the expected counts are right; a wrong total invalidates everything downstream.",
+    "Degrees of freedom = k - 1 = 4, whose 5% critical value is 9.49; since 5.8 < 9.49 the hypothesis of equal frequencies is not rejected."
+  ],
+  "solution": [
+    "The observed frequencies are 10, 8, 5, 12 and 15, totalling N = 50 balls across k = 5 colours.",
+    "Under H0 of equal frequency, each expected frequency is E = 50/5 = 10.",
+    "Deviations O - E: 0, -2, -5, 2, 5.",
+    "Squared deviations: 0, 4, 25, 4, 25, summing to 58.",
+    "Since every expected frequency is 10, chi-square = 58/10 = 5.8.",
+    "Option (b) is correct. (With 4 degrees of freedom the 5% critical value is 9.49, so H0 would not be rejected.)"
+  ]
+},
+"2022-Q59": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "SE = sqrt(25)/sqrt(100) = 5/10 = 0.5, so the margin is 1.96(0.5) = 0.98 and the interval is 5.96 +- 0.98 = [4.98, 6.94].",
+  "tips": [
+    "Convert the variance to a standard deviation first: 25 gives sigma = 5, not 25. Using the variance directly inflates the interval enormously.",
+    "SE = sigma/sqrt(n) = 5/10 = 0.5. The clean numbers are deliberate - the margin 1.96 x 0.5 = 0.98 is exact.",
+    "The interval must be SYMMETRIC about the sample mean 5.96; check that 5.96 is the midpoint of your chosen option. For (b), (4.98 + 6.94)/2 = 5.96 exactly.",
+    "Option (a) [5.47, 6.45] has the right midpoint but a margin of 0.49 - the result of forgetting a factor of 2 or halving the SE."
+  ],
+  "solution": [
+    "The population is N(mu, 25), so sigma = sqrt(25) = 5, and the sample size is n = 100.",
+    "The standard error of the sample mean is sigma/sqrt(n) = 5/10 = 0.5.",
+    "For a 95% confidence interval the multiplier is Z = 1.96, so the margin of error is 1.96 x 0.5 = 0.98.",
+    "The interval is xbar +- 0.98 = 5.96 +- 0.98.",
+    "Lower limit 5.96 - 0.98 = 4.98; upper limit 5.96 + 0.98 = 6.94.",
+    "Hence the interval is [4.98, 6.94], option (b)."
+  ]
+},
+"2022-Q60": {
+  "answer": 3, "confidence": "high", "type": "Numerical",
+  "shortcut": "P(-2 log X > y) = P(X < e^(-y/2)) = e^(-y/2), the survival function of an Exponential with rate 1/2 (equivalently chi-square with 2 d.f.).",
+  "tips": [
+    "Work with the SURVIVAL function for monotone transformations - it avoids Jacobians entirely and the algebra is one line.",
+    "-log U ~ Exp(1) for U uniform, so -2 log U ~ Exp(rate 1/2) with mean 2. Scaling an exponential by c divides the rate by c.",
+    "Exp(rate 1/2) is exactly chi-square with 2 degrees of freedom - a fact worth carrying, and the basis of the Box-Muller and inverse-transform simulation methods.",
+    "Option (c) names a chi-square with n/2 degrees of freedom, but no n appears in the problem - a structural giveaway that it is a distractor."
+  ],
+  "solution": [
+    "Let X ~ U[0,1] and Y = -2 log X, which takes values in (0, infinity).",
+    "For y > 0, P(Y > y) = P(-2 log X > y) = P(log X < -y/2) = P(X < e^(-y/2)).",
+    "Since X is uniform on [0,1], this probability is simply e^(-y/2).",
+    "So the survival function of Y is e^(-y/2), which is that of an exponential distribution with rate parameter 1/2 (mean 2).",
+    "Differentiating, the density is f(y) = (1/2)e^(-y/2) for y > 0. Equivalently Y ~ chi-square with 2 degrees of freedom.",
+    "Hence the distribution is exponential with theta = 1/2, option (d)."
+  ]
+}
+}

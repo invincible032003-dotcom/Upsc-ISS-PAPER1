@@ -1,0 +1,2405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>UPSC ISS Statistics Paper-I — Offline Mock Engine</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header id="topbar">
+  <div class="topline">
+    <div class="brand">
+      ISS Statistics Paper-I
+      <small>2018–2026 PYQ Mock Engine · 100% offline</small>
+    </div>
+    <div class="spacer"></div>
+    <button type="button" data-act="go" data-r="search" title="Search (S)">Search</button>
+    <button type="button" data-act="go" data-r="home" title="Home (H)">Home</button>
+  </div>
+</header>
+
+<main id="app" class="wrap"></main>
+
+<noscript>
+  <div class="wrap"><div class="card"><h2>JavaScript is required</h2>
+  <p>This application runs entirely in your browser with no server. Please enable
+  JavaScript and reload <code>index.html</code>.</p></div></div>
+</noscript>
+
+<script src="questions.js"></script>
+<script>
+/* ==========================================================================
+   UPSC ISS Statistics Paper-I — Offline Mock Engine
+   All application logic. No modules, no fetch, no network, no dependencies.
+   ========================================================================== */
+(function () {
+'use strict';
+
+var DATA = window.quizData || [];
+var META = window.quizMeta || {};
+var DEFAULT_CFG = window.quizConfig || {};
+var app = document.getElementById('app');
+
+/* ======================================================================
+   1.  MATH-LITE  —  offline LaTeX subset renderer (no MathJax, no KaTeX)
+   ====================================================================== */
+var ML = (function () {
+
+  var SYM = {
+    alpha:'\u03b1',beta:'\u03b2',gamma:'\u03b3',delta:'\u03b4',epsilon:'\u03b5',
+    varepsilon:'\u03b5',zeta:'\u03b6',eta:'\u03b7',theta:'\u03b8',vartheta:'\u03d1',
+    iota:'\u03b9',kappa:'\u03ba',lambda:'\u03bb',mu:'\u03bc',nu:'\u03bd',xi:'\u03be',
+    pi:'\u03c0',rho:'\u03c1',varrho:'\u03f1',sigma:'\u03c3',varsigma:'\u03c2',
+    tau:'\u03c4',upsilon:'\u03c5',phi:'\u03c6',varphi:'\u03c6',chi:'\u03c7',
+    psi:'\u03c8',omega:'\u03c9',
+    Gamma:'\u0393',Delta:'\u0394',Theta:'\u0398',Lambda:'\u039b',Xi:'\u039e',
+    Pi:'\u03a0',Sigma:'\u03a3',Upsilon:'\u03a5',Phi:'\u03a6',Psi:'\u03a8',Omega:'\u03a9',
+    infty:'\u221e',partial:'\u2202',nabla:'\u2207',
+    times:'\u00d7',div:'\u00f7',pm:'\u00b1',mp:'\u2213',cdot:'\u00b7',ast:'\u2217',
+    star:'\u22c6',circ:'\u2218',bullet:'\u2022',
+    le:'\u2264',leq:'\u2264',ge:'\u2265',geq:'\u2265',ne:'\u2260',neq:'\u2260',
+    approx:'\u2248',sim:'\u223c',simeq:'\u2243',cong:'\u2245',equiv:'\u2261',
+    propto:'\u221d',ll:'\u226a',gg:'\u226b',
+    'in':'\u2208',notin:'\u2209',ni:'\u220b',subset:'\u2282',subseteq:'\u2286',
+    supset:'\u2283',supseteq:'\u2287',cup:'\u222a',cap:'\u2229',
+    setminus:'\\',backslash:'\\',emptyset:'\u2205',varnothing:'\u2205',
+    forall:'\u2200',exists:'\u2203',neg:'\u00ac',lnot:'\u00ac',land:'\u2227',lor:'\u2228',
+    to:'\u2192',rightarrow:'\u2192',leftarrow:'\u2190',gets:'\u2190',
+    leftrightarrow:'\u2194',Rightarrow:'\u21d2',Leftarrow:'\u21d0',
+    Leftrightarrow:'\u21d4',mapsto:'\u21a6',uparrow:'\u2191',downarrow:'\u2193',
+    ldots:'\u2026',cdots:'\u22ef',dots:'\u2026',vdots:'\u22ee',ddots:'\u22f1',
+    langle:'\u27e8',rangle:'\u27e9',lfloor:'\u230a',rfloor:'\u230b',
+    lceil:'\u2308',rceil:'\u2309',
+    perp:'\u22a5',angle:'\u2220',prime:'\u2032',ell:'\u2113',hbar:'\u210f',
+    aleph:'\u2135',oplus:'\u2295',otimes:'\u2297',mid:'|',parallel:'\u2225',
+    Re:'\u211c',Im:'\u2111',surd:'\u221a',because:'\u2235',therefore:'\u2234',
+    checkmark:'\u2713',degree:'\u00b0',pounds:'\u00a3',
+    lbrace:'{',rbrace:'}',lbrack:'[',rbrack:']',vert:'|',Vert:'\u2016'
+  };
+
+  var BIG = {
+    sum:'\u2211', prod:'\u220f', coprod:'\u2210',
+    'int':'\u222b', iint:'\u222c', iiint:'\u222d', oint:'\u222e',
+    bigcup:'\u22c3', bigcap:'\u22c2', bigoplus:'\u2a01', bigotimes:'\u2a02'
+  };
+
+  var OPS = {};
+  ('log ln lg exp sin cos tan cot sec csc sinh cosh tanh coth arcsin arccos arctan ' +
+   'min max lim limsup liminf det gcd lcm sup inf arg dim ker hom deg Pr mod ' +
+   'sgn tr rank var cov corr median mode').split(' ')
+    .forEach(function (o) { OPS[o] = o; });
+  OPS.bmod = 'mod'; OPS.pmod = 'mod';
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  /* plain (upright) rendering used inside \text{...}, \mathrm{...} etc. */
+  function plainArg(str) {
+    return esc(String(str)
+      .replace(/\\([a-zA-Z]+)/g, function (m, c) { return SYM[c] || OPS[c] || c; })
+      .replace(/[{}]/g, ''));
+  }
+
+  function splitCols(row) {
+    var out = [], cur = '', k = 0;
+    while (k < row.length) {
+      var ch = row.charAt(k);
+      if (ch === '\\') { cur += row.substr(k, 2); k += 2; continue; }
+      if (ch === '&') { out.push(cur); cur = ''; k++; continue; }
+      cur += ch; k++;
+    }
+    out.push(cur);
+    return out;
+  }
+
+  function splitRows(body) {
+    return body.split(/\\\\(?:\s*\[[^\]]*\])?/)
+      .filter(function (r) { return r.replace(/\s/g, '') !== ''; });
+  }
+
+  /* ---- the LaTeX-subset parser -------------------------------------- */
+  function tex(src) {
+    var s = String(src == null ? '' : src);
+    var i = 0;
+    var out = [];
+
+    function skipSp() { while (i < s.length && s.charAt(i) === ' ') i++; }
+
+    function readArg() {
+      skipSp();
+      if (i >= s.length) return '';
+      var c = s.charAt(i);
+      if (c === '{') {
+        var depth = 0, start = i;
+        while (i < s.length) {
+          var ch = s.charAt(i);
+          if (ch === '\\') { i += 2; continue; }
+          if (ch === '{') { depth++; }
+          else if (ch === '}') { depth--; if (depth === 0) { i++; return s.slice(start + 1, i - 1); } }
+          i++;
+        }
+        return s.slice(start + 1);
+      }
+      if (c === '\\') {
+        var m = /^\\([a-zA-Z]+|[\s\S])/.exec(s.slice(i));
+        i += m[0].length;
+        return m[0];
+      }
+      i++;
+      return c;
+    }
+
+    function readOpt() {
+      if (s.charAt(i) === '[') {
+        var j = s.indexOf(']', i);
+        if (j > -1) { var v = s.slice(i + 1, j); i = j + 1; return v; }
+      }
+      return null;
+    }
+
+    function delim(d) {
+      if (!d || d === '.') return '';
+      if (d.charAt(0) === '\\') {
+        var name = d.slice(1);
+        if (SYM[name]) return esc(SYM[name]);
+        return esc(name);
+      }
+      return esc(d);
+    }
+
+    function environment(name) {
+      var endTok = '\\end{' + name + '}';
+      var j = s.indexOf(endTok, i);
+      var body = j < 0 ? s.slice(i) : s.slice(i, j);
+      i = j < 0 ? s.length : j + endTok.length;
+      var rows = splitRows(body);
+      var h, lb = '', rb = '';
+      if (name === 'cases') {
+        h = '<span class="mcases"><span class="brace">{</span><table>';
+        rows.forEach(function (r) {
+          h += '<tr>';
+          splitCols(r).forEach(function (c) { h += '<td>' + tex(c) + '</td>'; });
+          h += '</tr>';
+        });
+        return h + '</table></span>';
+      }
+      if (name === 'vmatrix') { lb = '|'; rb = '|'; }
+      else if (name === 'pmatrix') { lb = '('; rb = ')'; }
+      else if (name === 'bmatrix') { lb = '['; rb = ']'; }
+      else if (name === 'Bmatrix') { lb = '{'; rb = '}'; }
+      else if (name === 'Vmatrix') { lb = '\u2016'; rb = '\u2016'; }
+      h = '<span class="mmat">' + (lb ? '<span class="b">' + lb + '</span>' : '') + '<table>';
+      rows.forEach(function (r) {
+        h += '<tr>';
+        splitCols(r).forEach(function (c) { h += '<td>' + tex(c) + '</td>'; });
+        h += '</tr>';
+      });
+      return h + '</table>' + (rb ? '<span class="b">' + rb + '</span>' : '') + '</span>';
+    }
+
+    function command(cmd) {
+      var a, b;
+      switch (cmd) {
+        case 'frac': case 'dfrac': case 'tfrac': case 'cfrac':
+          a = tex(readArg()); b = tex(readArg());
+          return '<span class="mfrac"><span class="n">' + a +
+                 '</span><span class="d">' + b + '</span></span>';
+        case 'binom': case 'dbinom': case 'tbinom':
+          a = tex(readArg()); b = tex(readArg());
+          return '<span class="mbig">(</span><span class="mbinom"><span>' + a +
+                 '</span><span>' + b + '</span></span><span class="mbig">)</span>';
+        case 'sqrt':
+          var idx = readOpt();
+          a = tex(readArg());
+          return '<span class="mroot">' + (idx ? '<sup>' + tex(idx) + '</sup>' : '') +
+                 '<span class="rad">\u221a</span><span class="bod">' + a + '</span></span>';
+        case 'overline': case 'bar': case 'widebar':
+          return '<span class="mover">' + tex(readArg()) + '</span>';
+        case 'underline': return '<u>' + tex(readArg()) + '</u>';
+        case 'hat': case 'widehat': return tex(readArg()) + '\u0302';
+        case 'tilde': case 'widetilde': return tex(readArg()) + '\u0303';
+        case 'vec': return tex(readArg()) + '\u20d7';
+        case 'dot': return tex(readArg()) + '\u0307';
+        case 'ddot': return tex(readArg()) + '\u0308';
+        case 'text': case 'textrm': case 'mathrm': case 'mbox': case 'operatorname':
+        case 'mathbf': case 'textbf': case 'mathsf': case 'mathtt':
+        case 'mathbb': case 'mathcal': case 'mathscr': case 'mathfrak':
+          return '<span class="op">' + plainArg(readArg()) + '</span>';
+        case 'mathit': case 'textit': case 'emph':
+          return '<i class="v">' + plainArg(readArg()) + '</i>';
+        case 'left': case 'right':
+        case 'big': case 'Big': case 'bigg': case 'Bigg':
+        case 'bigl': case 'bigr': case 'Bigl': case 'Bigr':
+        case 'biggl': case 'biggr': case 'Biggl': case 'Biggr':
+          return delim(readArg());
+        case 'displaystyle': case 'textstyle': case 'scriptstyle':
+        case 'limits': case 'nolimits': case 'boldsymbol': case 'nonumber':
+          return '';
+        case 'quad': return '<span class="msp"></span><span class="msp"></span>';
+        case 'qquad': return '<span class="msp"></span><span class="msp"></span>' +
+                             '<span class="msp"></span><span class="msp"></span>';
+        case ',': case ';': case ':': case ' ': case 'thinspace': case 'space':
+          return '<span class="msp"></span>';
+        case '!': case 'negthinspace': return '';
+        case '\\': case 'newline': return '<br>';
+        case 'begin': return environment(readArg());
+        case 'end': readArg(); return '';
+        case 'xrightarrow': case 'xlongrightarrow':
+          readOpt(); b = tex(readArg());
+          return '<span class="op">\u2192</span><sup>' + b + '</sup>';
+        case 'stackrel': case 'overset':
+          a = tex(readArg()); b = tex(readArg());
+          return b + '<sup>' + a + '</sup>';
+        case 'underset':
+          a = tex(readArg()); b = tex(readArg());
+          return b + '<sub>' + a + '</sub>';
+        case 'sfrac': case 'nicefrac':
+          a = tex(readArg()); b = tex(readArg());
+          return a + '\u2044' + b;
+        case 'label': case 'tag': case 'hspace': case 'vspace':
+          readArg(); return '';
+      }
+      if (BIG.hasOwnProperty(cmd)) return '<span class="mbig op">' + BIG[cmd] + '</span>';
+      if (OPS.hasOwnProperty(cmd)) return '<span class="op">' + OPS[cmd] + '</span>';
+      if (SYM.hasOwnProperty(cmd)) return '<span class="op">' + esc(SYM[cmd]) + '</span>';
+      if (cmd.length === 1) return esc(cmd);          /* \% \{ \} \$ \& \_ \# */
+      return '<span class="op">' + esc(cmd) + '</span>';
+    }
+
+    while (i < s.length) {
+      var c = s.charAt(i);
+      if (c === '\\') {
+        var m = /^\\([a-zA-Z]+|[\s\S])/.exec(s.slice(i));
+        if (!m) { i++; continue; }
+        i += m[0].length;
+        out.push(command(m[1]));
+      } else if (c === '^' || c === '_') {
+        i++;
+        var sub = tex(readArg());
+        out.push(c === '^' ? '<sup>' + sub + '</sup>' : '<sub>' + sub + '</sub>');
+      } else if (c === '{') {
+        out.push(tex(readArg()));
+      } else if (c === '}') {
+        i++;
+      } else if (c === '&') {
+        i++; out.push(' ');
+      } else if (c === '~') {
+        i++; out.push('&nbsp;');
+      } else if (/[A-Za-z]/.test(c)) {
+        var w = /^[A-Za-z]+/.exec(s.slice(i))[0];
+        i += w.length;
+        out.push(OPS.hasOwnProperty(w) ? '<span class="op">' + w + '</span>'
+                                       : '<i class="v">' + esc(w) + '</i>');
+      } else {
+        out.push(esc(c)); i++;
+      }
+    }
+    return out.join('');
+  }
+
+  /* ---- markdown-lite + math mixing ---------------------------------- */
+  function inline(t, parts) {
+    if (t === null || t === undefined || t === '') return '';
+    var h = esc(t);
+    h = h.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    h = h.replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
+    h = h.replace(/`([^`]+)`/g, '<code>$1</code>');
+    /* the AI-derived explanations are written in ASCII maths (x^2, 10^-6);
+       render the exponents as real superscripts for readability */
+    h = h.replace(/([A-Za-z0-9\)\]])\^(-?\d+|[a-z])(?![A-Za-z0-9])/g,
+                  '$1<sup>$2</sup>');
+    h = h.replace(/\u0001(\d+)\u0002/g, function (m, n) {
+      var p = parts[+n];
+      if (!p) return '';
+      return '<span class="mq' + (p.b ? ' mq-block' : '') + '">' + tex(p.s) + '</span>';
+    });
+    return h;
+  }
+
+  function renderTable(run, parts) {
+    var body = run.replace(/^\s*\|/, '').replace(/\|\s*$/, '');
+    var rows = body.split(/\|\s*\|/);
+    var grid = rows.map(function (r) {
+      return r.split('|').map(function (c) { return c.trim(); });
+    });
+    /* drop the |---|---| separator row */
+    var sepAt = -1;
+    for (var k = 0; k < grid.length; k++) {
+      var allDash = grid[k].length > 0 && grid[k].every(function (c) {
+        return /^:?-{2,}:?$/.test(c);
+      });
+      if (allDash) { sepAt = k; break; }
+    }
+    var head = null, rest = grid;
+    if (sepAt > 0) { head = grid[sepAt - 1]; rest = grid.slice(sepAt + 1); }
+    else if (sepAt === 0) { rest = grid.slice(1); }
+    var h = '<div class="scrollx"><table class="qtbl">';
+    if (head) {
+      h += '<thead><tr>';
+      head.forEach(function (c) { h += '<th>' + inline(c, parts) + '</th>'; });
+      h += '</tr></thead>';
+    }
+    h += '<tbody>';
+    rest.forEach(function (r) {
+      h += '<tr>';
+      r.forEach(function (c) { h += '<td>' + inline(c, parts) + '</td>'; });
+      h += '</tr>';
+    });
+    return h + '</tbody></table></div>';
+  }
+
+  function render(src) {
+    if (src === null || src === undefined) return '';
+    var s = String(src);
+    if (s === '') return '';
+    var parts = [];
+    var masked = s.replace(/\$\$([\s\S]*?)\$\$/g, function (m, a) {
+      parts.push({ b: true, s: a }); return '\u0001' + (parts.length - 1) + '\u0002';
+    });
+    masked = masked.replace(/\$([^$]*)\$/g, function (m, a) {
+      parts.push({ b: false, s: a }); return '\u0001' + (parts.length - 1) + '\u0002';
+    });
+    /* markdown blockquote markers carried over from the source booklets.
+       Math has already been masked out, so a bare '>' here is never an
+       inequality sign. */
+    masked = masked.replace(/^\s*>\s*/, '')
+                   .replace(/\s>\s*(?=\u0001)/g, ' ')
+                   .replace(/\s>\s*(?=\*\*)/g, ' ');
+    /* pipe tables (markdown-lite) — math is already masked out */
+    var re = /\|(?:[^|\n]*\|)+/g, out = '', last = 0, m2;
+    while ((m2 = re.exec(masked)) !== null) {
+      if (m2[0].indexOf('---') < 0) continue;
+      out += inline(masked.slice(last, m2.index), parts);
+      out += renderTable(m2[0], parts);
+      last = m2.index + m2[0].length;
+    }
+    out += inline(masked.slice(last), parts);
+    return out;
+  }
+
+  /* plain-text version (for search indexing) */
+  function strip(src) {
+    if (!src) return '';
+    return String(src)
+      .replace(/\$\$?/g, ' ')
+      .replace(/\\[a-zA-Z]+/g, ' ')
+      .replace(/[{}\\^_|&]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  return { render: render, esc: esc, strip: strip, tex: tex };
+})();
+
+var R = ML.render;
+var E = ML.esc;
+
+/* ======================================================================
+   2.  LOCAL STORAGE
+   ====================================================================== */
+var Store = (function () {
+  var KEY = 'upsc.iss.stat1.v1';
+  var available = true;
+  var cache = null;
+
+  function blank() {
+    return {
+      v: 1,
+      settings: {
+        marksCorrect: DEFAULT_CFG.marksCorrect,
+        marksIncorrect: DEFAULT_CFG.marksIncorrect,
+        negativeMarkingEnabled: DEFAULT_CFG.negativeMarkingEnabled,
+        negativeMarkFraction: DEFAULT_CFG.negativeMarkFraction,
+        minutesPerQuestion: DEFAULT_CFG.defaultMinutesPerQuestion,
+        fullPaperMinutes: DEFAULT_CFG.fullPaperMinutes,
+        defaultMode: 'exam',
+        timerOn: true
+      },
+      history: [],
+      bookmarks: {},
+      mistakes: {},
+      skipped: {},
+      seq: 0
+    };
+  }
+
+  function load() {
+    if (cache) return cache;
+    try {
+      var raw = window.localStorage.getItem(KEY);
+      cache = raw ? JSON.parse(raw) : blank();
+    } catch (e) {
+      available = false;
+      cache = blank();
+    }
+    if (!cache || cache.v !== 1) cache = blank();
+    var b = blank();
+    for (var k in b) if (!cache.hasOwnProperty(k)) cache[k] = b[k];
+    for (var sk in b.settings) {
+      if (!cache.settings.hasOwnProperty(sk)) cache.settings[sk] = b.settings[sk];
+    }
+    return cache;
+  }
+
+  function save() {
+    if (!cache) return;
+    try { window.localStorage.setItem(KEY, JSON.stringify(cache)); }
+    catch (e) { available = false; }
+  }
+
+  function reset(what) {
+    var b = blank();
+    var d = load();
+    if (what === 'all') { cache = b; }
+    else if (what === 'history') { d.history = []; }
+    else if (what === 'mistakes') { d.mistakes = {}; d.skipped = {}; }
+    else if (what === 'bookmarks') { d.bookmarks = {}; }
+    save();
+  }
+
+  return {
+    d: load, save: save, reset: reset, blank: blank,
+    ok: function () { load(); return available; },
+    nextId: function () { var d = load(); d.seq = (d.seq || 0) + 1; return 'a' + Date.now().toString(36) + '-' + d.seq; }
+  };
+})();
+
+/* ======================================================================
+   3.  INDEXES + HELPERS
+   ====================================================================== */
+var BY_ID = {};
+DATA.forEach(function (q) { BY_ID[q.id] = q; });
+
+var SEARCH_INDEX = DATA.map(function (q) {
+  return (q.id + ' ' + q.year + ' ' + q.unit + ' ' + q.topic + ' ' + q.subtopic + ' ' +
+          q.questionType + ' ' + ML.strip(q.sharedStem) + ' ' + ML.strip(q.question) + ' ' +
+          (q.options || []).map(ML.strip).join(' ')).toLowerCase();
+});
+
+var LET = ['a', 'b', 'c', 'd'];
+
+function pad2(n) { return (n < 10 ? '0' : '') + n; }
+function hms(sec) {
+  sec = Math.max(0, Math.round(sec));
+  var h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
+  return (h > 0 ? h + ':' : '') + pad2(m) + ':' + pad2(s);
+}
+function humanTime(sec) {
+  sec = Math.max(0, Math.round(sec));
+  var h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
+  if (h) return h + 'h ' + m + 'm';
+  if (m) return m + 'm ' + s + 's';
+  return s + 's';
+}
+function pct(a, b) { return b > 0 ? (100 * a / b) : 0; }
+function fx(n, d) { return (Math.round(n * Math.pow(10, d || 1)) / Math.pow(10, d || 1)).toFixed(d || 1); }
+function dateStr(ts) {
+  var d = new Date(ts);
+  return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()) +
+         ' ' + pad2(d.getHours()) + ':' + pad2(d.getMinutes());
+}
+function shuffle(arr) {
+  for (var i = arr.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+  }
+  return arr;
+}
+function uniqBy(arr, key) {
+  var seen = {}, out = [];
+  arr.forEach(function (x) { var k = key(x); if (!seen[k]) { seen[k] = 1; out.push(x); } });
+  return out;
+}
+function closest(el, sel) {
+  while (el && el.nodeType === 1) {
+    if (el.matches && el.matches(sel)) return el;
+    el = el.parentElement;
+  }
+  return null;
+}
+function scorable(q) { return q.correctAnswer !== null && q.correctAnswer !== undefined; }
+
+/* ======================================================================
+   4.  AUTOMATIC VALIDATION  (master prompt §32 / §33)
+   ====================================================================== */
+var AUDIT = (function () {
+  var rep = {
+    perYear: {}, total: DATA.length, errors: [], warnings: [],
+    duplicateIds: 0, duplicateText: 0, missingOptions: 0, missingAnswers: 0,
+    missingSolutions: 0, missingShortcuts: 0, missingTips: 0,
+    classificationIssues: 0, sourceIssues: 0, mathIssues: 0, orphans: 0,
+    units: {}, topics: 0, subtopics: 0
+  };
+  var ids = {}, yq = {}, texts = {}, topics = {}, subs = {};
+  var validUnits = {};
+  (META.units || []).forEach(function (u) { validUnits[u] = 1; });
+
+  DATA.forEach(function (q) {
+    rep.perYear[q.year] = (rep.perYear[q.year] || 0) + 1;
+    rep.units[q.unit] = (rep.units[q.unit] || 0) + 1;
+
+    if (ids[q.id]) { rep.duplicateIds++; rep.errors.push(q.id + ': duplicate question id'); }
+    ids[q.id] = 1;
+
+    var k = q.year + '#' + q.questionNumber;
+    if (yq[k]) { rep.duplicateIds++; rep.errors.push(k + ': duplicate year/question number'); }
+    yq[k] = 1;
+
+    if (!q.question || String(q.question).length < 5) {
+      rep.errors.push(q.id + ': question text missing');
+    }
+    if (!q.options || q.options.length !== 4) {
+      rep.missingOptions++;
+      if (!q.sourceIssue) rep.errors.push(q.id + ': options missing/incomplete and not flagged');
+      else rep.sourceIssues++;
+    }
+    if (!scorable(q)) {
+      rep.missingAnswers++;
+      if (q.sourceIssue) { if (q.options && q.options.length === 4) rep.sourceIssues++; }
+      else rep.errors.push(q.id + ': no correct answer and no source note');
+    } else if (q.correctAnswer < 0 || q.correctAnswer > 3) {
+      rep.errors.push(q.id + ': correct-answer index out of range');
+    }
+    if (!q.solution || !q.solution.length) { rep.missingSolutions++; rep.errors.push(q.id + ': solution missing'); }
+    if (!q.examShortcut) { rep.missingShortcuts++; rep.errors.push(q.id + ': exam shortcut missing'); }
+    if (!q.tipsTricks || !q.tipsTricks.length) { rep.missingTips++; rep.errors.push(q.id + ': tips missing'); }
+
+    if (!validUnits[q.unit]) { rep.classificationIssues++; rep.errors.push(q.id + ': invalid unit'); }
+    if (!q.topic) { rep.classificationIssues++; rep.errors.push(q.id + ': topic missing'); }
+    if (!q.subtopic) { rep.classificationIssues++; rep.errors.push(q.id + ': subtopic missing'); }
+    topics[q.unit + '|' + q.topic] = 1;
+    subs[q.unit + '|' + q.subtopic] = 1;
+
+    if (q.sourceIssue && scorable(q) && q.options && q.options.length === 4) rep.sourceIssues++;
+
+    /* duplicate question text across the dataset */
+    var norm = ML.strip(q.question).toLowerCase().replace(/[^a-z0-9]+/g, '');
+    if (norm.length > 40) {
+      if (texts[norm]) {
+        rep.duplicateText++;
+        rep.warnings.push(q.id + ': question text closely matches ' + texts[norm]);
+      } else texts[norm] = q.id;
+    }
+
+    /* mathematical notation sanity: balanced $ and balanced braces in math */
+    var blob = [q.sharedStem, q.question].concat(q.options || []).join(' ');
+    var dollars = (blob.match(/\$/g) || []).length;
+    if (dollars % 2 !== 0) { rep.mathIssues++; rep.warnings.push(q.id + ': unbalanced $ delimiters'); }
+    var open = (blob.match(/(^|[^\\])\{/g) || []).length;
+    var close = (blob.match(/(^|[^\\])\}/g) || []).length;
+    if (open !== close) { rep.mathIssues++; rep.warnings.push(q.id + ': unbalanced braces in notation'); }
+  });
+
+  rep.topics = Object.keys(topics).length;
+  rep.subtopics = Object.keys(subs).length;
+  rep.ok = rep.errors.length === 0;
+  return rep;
+})();
+
+/* ======================================================================
+   5.  SESSION ENGINE
+   ====================================================================== */
+var S = null;          /* current session */
+var TICK = null;
+
+function buildSession(opts) {
+  var qs = opts.questions.slice();
+  if (opts.shuffleQ) shuffle(qs);
+  var items = qs.map(function (q) {
+    var order = [0, 1, 2, 3];
+    if (opts.shuffleO && q.options && q.options.length === 4) shuffle(order);
+    return { qid: q.id, order: order };
+  });
+  var st = Store.d().settings;
+  var limit = 0;
+  if (opts.timed) {
+    limit = Math.round((opts.minutes || (items.length * st.minutesPerQuestion)) * 60);
+  }
+  S = {
+    id: Store.nextId(),
+    kind: opts.kind,
+    name: opts.name,
+    desc: opts.desc || '',
+    mode: opts.mode,
+    items: items,
+    answers: items.map(function () { return null; }),
+    marked: items.map(function () { return false; }),
+    revealed: items.map(function () { return false; }),
+    visited: items.map(function () { return false; }),
+    spent: items.map(function () { return 0; }),
+    cur: 0,
+    startTs: Date.now(),
+    lastTs: Date.now(),
+    limitSec: limit,
+    authentic: !!opts.authentic,
+    finished: false,
+    result: null
+  };
+  S.visited[0] = true;
+  startTick();
+  go('exam');
+}
+
+function startTick() {
+  stopTick();
+  TICK = window.setInterval(function () {
+    if (!S || S.finished) { stopTick(); return; }
+    var now = Date.now();
+    S.spent[S.cur] += (now - S.lastTs) / 1000;
+    S.lastTs = now;
+    var el = document.getElementById('timer');
+    if (el) {
+      var elapsed = (now - S.startTs) / 1000;
+      if (S.limitSec) {
+        var left = S.limitSec - elapsed;
+        if (left <= 0) { finishSession(true); return; }
+        el.textContent = hms(left);
+        el.className = 'timer' + (left < 300 ? ' low' : '');
+      } else {
+        el.textContent = hms(elapsed);
+      }
+    }
+  }, 1000);
+}
+function stopTick() { if (TICK) { window.clearInterval(TICK); TICK = null; } }
+
+function markSpent() {
+  if (!S) return;
+  var now = Date.now();
+  S.spent[S.cur] += (now - S.lastTs) / 1000;
+  S.lastTs = now;
+}
+
+function curQ() { return BY_ID[S.items[S.cur].qid]; }
+
+function chosenOriginal(idx) {
+  var a = S.answers[idx];
+  if (a === null) return null;
+  return S.items[idx].order[a];
+}
+
+function gotoQ(n) {
+  if (!S || n < 0 || n >= S.items.length) return;
+  markSpent();
+  S.cur = n;
+  S.visited[n] = true;
+  render();
+  window.scrollTo(0, 0);
+}
+
+function chooseOption(displayIdx) {
+  if (!S || S.finished) return;
+  if (S.mode === 'learn' && S.revealed[S.cur]) return;   /* locked after reveal */
+  S.answers[S.cur] = (S.answers[S.cur] === displayIdx && S.mode === 'exam') ? null : displayIdx;
+  if (S.mode === 'learn' && S.answers[S.cur] !== null) S.revealed[S.cur] = true;
+  render();
+}
+
+function finishSession(auto) {
+  if (!S || S.finished) return;
+  markSpent();
+  stopTick();
+  S.finished = true;
+  S.endTs = Date.now();
+  S.autoSubmitted = !!auto;
+  S.result = scoreSession(S);
+  persistAttempt(S);
+  go('result');
+  window.scrollTo(0, 0);
+}
+
+function scoreSession(sess) {
+  var st = Store.d().settings;
+  var neg = st.negativeMarkingEnabled ? (st.negativeMarkFraction * st.marksCorrect) : 0;
+  var r = {
+    total: sess.items.length, attempted: 0, correct: 0, incorrect: 0,
+    unanswered: 0, excluded: 0, score: 0, maxScore: 0, perQ: []
+  };
+  sess.items.forEach(function (it, i) {
+    var q = BY_ID[it.qid];
+    var chosen = chosenOriginal(i);
+    var rec = { qid: it.qid, chosen: chosen, marked: sess.marked[i],
+                secs: Math.round(sess.spent[i]), status: '' };
+    if (!scorable(q)) {
+      r.excluded++;
+      rec.status = 'excluded';
+      if (chosen !== null) r.attempted++;
+    } else {
+      r.maxScore += st.marksCorrect;
+      if (chosen === null) { r.unanswered++; rec.status = 'unanswered'; }
+      else {
+        r.attempted++;
+        if (chosen === q.correctAnswer) {
+          r.correct++; rec.status = 'correct'; r.score += st.marksCorrect;
+        } else {
+          r.incorrect++; rec.status = 'incorrect'; r.score -= neg;
+        }
+      }
+    }
+    r.perQ.push(rec);
+  });
+  r.seconds = Math.round(((sess.endTs || Date.now()) - sess.startTs) / 1000);
+  r.pct = pct(r.score, r.maxScore);
+  r.accuracy = pct(r.correct, r.correct + r.incorrect);
+  r.avgPerAttempt = r.attempted ? r.seconds / r.attempted : 0;
+  return r;
+}
+
+function persistAttempt(sess) {
+  var d = Store.d();
+  var res = sess.result;
+  d.history.unshift({
+    id: sess.id, name: sess.name, kind: sess.kind, desc: sess.desc,
+    mode: sess.mode, ts: sess.endTs,
+    total: res.total, attempted: res.attempted, correct: res.correct,
+    incorrect: res.incorrect, unanswered: res.unanswered, excluded: res.excluded,
+    score: res.score, maxScore: res.maxScore, pct: res.pct,
+    accuracy: res.accuracy, seconds: res.seconds,
+    perQ: res.perQ.map(function (p) {
+      return { qid: p.qid, chosen: p.chosen, status: p.status, secs: p.secs };
+    })
+  });
+  if (d.history.length > 60) d.history.length = 60;
+
+  res.perQ.forEach(function (p) {
+    if (p.status === 'incorrect') {
+      var m = d.mistakes[p.qid] || { c: 0, t: 0 };
+      m.c++; m.t = sess.endTs; d.mistakes[p.qid] = m;
+      if (d.skipped[p.qid]) delete d.skipped[p.qid];
+    } else if (p.status === 'unanswered') {
+      var s2 = d.skipped[p.qid] || { c: 0, t: 0 };
+      s2.c++; s2.t = sess.endTs; d.skipped[p.qid] = s2;
+    } else if (p.status === 'correct') {
+      if (d.mistakes[p.qid]) delete d.mistakes[p.qid];
+      if (d.skipped[p.qid]) delete d.skipped[p.qid];
+    }
+  });
+  Store.save();
+}
+
+/* ======================================================================
+   6.  ROUTING
+   ====================================================================== */
+var ROUTE = { name: 'home' };
+var BUILDER = null;
+var REVIEW = { idx: 0, filter: 'all' };
+var SEARCH = { q: '', unit: '', year: '' };
+var STUDY = { qid: null, back: 'home' };
+
+function go(name, params) {
+  ROUTE = { name: name };
+  if (params) for (var k in params) ROUTE[k] = params[k];
+  render();
+  window.scrollTo(0, 0);
+}
+
+/* ======================================================================
+   7.  SHARED VIEW FRAGMENTS
+   ====================================================================== */
+function crumb(parts) {
+  return '<div class="crumb">' + parts.map(function (p, i) {
+    return i === parts.length - 1 ? '<b>' + E(p) + '</b>' : E(p);
+  }).join(' &rsaquo; ') + '</div>';
+}
+
+function provenanceBanner() {
+  return '<div class="banner info"><b>Answer-key provenance.</b> The 720 questions and their ' +
+    'options are authentic UPSC PYQs, reproduced verbatim. None of the source booklets carried ' +
+    'an official answer key, so every answer, Exam Shortcut, Tips &amp; Tricks note and ' +
+    'Step-by-Step Solution in this app is an <b>AI-derived explanation</b> produced for this ' +
+    'project — a study aid, not an official UPSC solution.</div>';
+}
+
+function qMetaLine(q) {
+  return '<div class="qmeta"><span>' + E(q.id) + '</span><span>' + E(q.unit) +
+    '</span><span>' + E(q.topic) + '</span><span>' + E(q.subtopic) +
+    '</span><span>' + E(q.questionType) + '</span></div>';
+}
+
+function sharedStemHtml(q) {
+  if (!q.sharedStem) return '';
+  return '<div class="shared"><span class="lbl">Common data for this group</span>' +
+         R(q.sharedStem) + '</div>';
+}
+
+function bookmarkBtn(qid) {
+  var on = !!Store.d().bookmarks[qid];
+  return '<button type="button" class="btn sm' + (on ? ' primary' : '') +
+    '" data-act="bookmark" data-qid="' + E(qid) + '">' +
+    (on ? '\u2605 Bookmarked' : '\u2606 Bookmark') + '</button>';
+}
+
+/* the four reveal panes, in the fixed order required by the master prompt */
+function revealPanes(q, chosenOriginal, opts) {
+  opts = opts || {};
+  var h = '';
+  var isCorrect = scorable(q) && chosenOriginal === q.correctAnswer;
+  var answered = chosenOriginal !== null && chosenOriginal !== undefined;
+
+  /* 1 — Correct / Incorrect */
+  var cls = !scorable(q) ? 'verdict-skip' : (!answered ? 'verdict-skip' : (isCorrect ? 'verdict-ok' : 'verdict-bad'));
+  var verdict = !scorable(q) ? 'Not scored — source defect'
+              : (!answered ? 'Not answered' : (isCorrect ? 'Correct' : 'Incorrect'));
+  h += '<div class="pane ' + cls + '"><div class="hd"><span class="step">1</span>' +
+       E(verdict) + '</div><div class="bd">';
+  h += '<div class="small"><b>Your answer:</b> ' +
+       (answered ? '(' + LET[chosenOriginal] + ') ' + R(q.options[chosenOriginal])
+                 : '<span class="muted">not attempted</span>') + '</div>';
+  h += '<div class="small mt"><b>Correct answer:</b> ' +
+       (scorable(q) ? '(' + LET[q.correctAnswer] + ') ' + R(q.options[q.correctAnswer])
+                    : '<span class="muted">no valid option in the source paper</span>') + '</div>';
+  h += '</div></div>';
+
+  /* 2 — Exam Shortcut */
+  h += '<div class="pane"><div class="hd"><span class="step">2</span>Exam Shortcut ' +
+       '<span class="chip">~30 sec</span></div><div class="bd">' +
+       R(q.examShortcut) +
+       '<div class="ai-note">AI-derived explanation. Not an official UPSC solution.</div>' +
+       '</div></div>';
+
+  /* 3 — Tips & Tricks */
+  h += '<div class="pane"><div class="hd"><span class="step">3</span>Tips &amp; Tricks</div>' +
+       '<div class="bd"><ul>';
+  (q.tipsTricks || []).forEach(function (t) { h += '<li>' + R(t) + '</li>'; });
+  h += '</ul><div class="ai-note">AI-derived explanation. Not an official UPSC solution.</div>' +
+       '</div></div>';
+
+  /* 4 — Step-by-Step Solution */
+  h += '<div class="pane"><div class="hd"><span class="step">4</span>Step-by-Step Solution</div>' +
+       '<div class="bd"><ol>';
+  (q.solution || []).forEach(function (s) { h += '<li>' + R(s.text) + '</li>'; });
+  h += '</ol><div class="ai-note">AI-derived explanation. Not an official UPSC solution.</div>' +
+       '</div></div>';
+
+  if (opts.topic !== false) {
+    var ti = (META.topicIntel || {})[q.topicCode];
+    if (ti) {
+      h += '<div class="pane"><div class="hd">Topic intelligence · ' + E(ti.code) + ' ' +
+           E(ti.name) + '</div><div class="bd small">' +
+           '<p><b>Weight.</b> ' + E(ti.weight) + '</p>' +
+           '<p><b>Examiner\u2019s pattern.</b> ' + E(ti.pattern) + '</p>' +
+           '<p><b>Must-know.</b> ' + E(ti.mustKnow) + '</p></div></div>';
+    }
+  }
+  return h;
+}
+
+function optionList(q, order, selected, opts) {
+  opts = opts || {};
+  if (!q.options || !q.options.length) {
+    return '<div class="srcissue">The four answer options for this question are missing from ' +
+      'the source scan. The stem is reproduced exactly as printed; nothing has been invented.</div>';
+  }
+  var h = '<ul class="opts">';
+  for (var d = 0; d < order.length; d++) {
+    var orig = order[d];
+    var cls = 'opt';
+    if (opts.showAnswer) {
+      if (scorable(q) && orig === q.correctAnswer) cls += ' correct';
+      else if (selected === d) cls += ' wrong';
+    } else if (selected === d) cls += ' sel';
+    h += '<li><button type="button" class="' + cls + '"' +
+         (opts.disabled ? ' disabled' : '') +
+         ' data-act="opt" data-i="' + d + '">' +
+         '<span class="k">' + LET[d] + '</span><span class="v">' + R(q.options[orig]) + '</span>' +
+         '</button></li>';
+  }
+  return h + '</ul>';
+}
+
+/* ======================================================================
+   8.  SCREENS
+   ====================================================================== */
+var V = {};
+
+/* ------------------------------------------------------------- 8.1 home */
+V.home = function () {
+  var d = Store.d();
+  var nMis = Object.keys(d.mistakes).length;
+  var nSkip = Object.keys(d.skipped).length;
+  var nBm = Object.keys(d.bookmarks).length;
+  var h = '';
+
+  if (!AUDIT.ok) {
+    h += '<div class="banner" style="background:var(--bad-bg);border-color:var(--bad-line);color:var(--bad)">' +
+      '<b>Dataset validation failed:</b> ' + AUDIT.errors.length +
+      ' error(s). <button class="btn sm" data-act="go" data-r="audit">Open data audit</button></div>';
+  }
+  if (!Store.ok()) {
+    h += '<div class="banner info"><b>Local storage unavailable.</b> Your browser is blocking ' +
+      'site data for local files, so history, bookmarks and the mistake bank will not survive ' +
+      'a reload. Everything else works normally.</div>';
+  }
+
+  h += '<div class="card"><h1>UPSC ISS Statistics Paper-I &mdash; Objective</h1>' +
+    '<p class="card-sub">' + META.totalQuestions + ' authentic previous-year questions from ' +
+    META.years.length + ' papers (' + META.years[0] + '\u2013' + META.years[META.years.length - 1] +
+    '), classified against the official syllabus. Runs entirely offline.</p>' +
+    '<div class="kpis">' +
+    '<div class="kpi"><div class="v">' + META.totalQuestions + '</div><div class="l">Questions</div></div>' +
+    '<div class="kpi"><div class="v">' + META.years.length + '</div><div class="l">Papers</div></div>' +
+    '<div class="kpi"><div class="v">' + AUDIT.topics + '</div><div class="l">Topics</div></div>' +
+    '<div class="kpi"><div class="v">' + AUDIT.subtopics + '</div><div class="l">Subtopics</div></div>' +
+    '</div></div>';
+
+  h += provenanceBanner();
+
+  h += '<h2>Practise</h2><div class="grid g3">';
+  h += tile('setup', { k: 'year' }, 'Full Year Mocks',
+    'Any of the nine authentic papers, in the original order.', META.years.length + ' papers · 80 questions each');
+  h += tile('setup', { k: 'section' }, 'Sectional Mocks',
+    'By unit \u2014 single year, or across 2018\u20132026.', '4 units');
+  h += tile('setup', { k: 'topic' }, 'Topic Mocks',
+    'Unit \u2192 topic, drawn from every paper.', AUDIT.topics + ' syllabus topics');
+  h += tile('setup', { k: 'subtopic' }, 'Subtopic Mocks',
+    'Drill down to a single syllabus concept.', AUDIT.subtopics + ' concepts');
+  h += tile('setup', { k: 'custom' }, 'Custom Mock',
+    'Pick years, units, topics, length, mode and order.', 'Full control');
+  h += tile('go', { r: 'mistakes' }, 'Practice My Mistakes',
+    'Everything you have answered incorrectly, plus questions you skipped.',
+    nMis + ' incorrect · ' + nSkip + ' skipped');
+  h += '</div>';
+
+  h += '<h2 class="mt">Review &amp; track</h2><div class="grid g3">';
+  h += tile('go', { r: 'analytics' }, 'Analytics',
+    'Accuracy by year, unit, topic, subtopic and question type; weak-area engine.',
+    d.history.length + ' attempt(s) recorded');
+  h += tile('go', { r: 'history' }, 'Attempt History',
+    'Every mock you have submitted, with score trend.', d.history.length + ' attempt(s)');
+  h += tile('go', { r: 'bookmarks' }, 'My Bookmarks',
+    'Questions you flagged to come back to.', nBm + ' bookmarked');
+  h += tile('go', { r: 'search' }, 'Search the Question Bank',
+    'Find questions by text, year, unit, topic or subtopic.', 'All ' + META.totalQuestions + ' questions');
+  h += tile('go', { r: 'audit' }, 'Data Audit',
+    'Automatic validation report, counts and flagged source issues.',
+    AUDIT.ok ? 'All checks passed' : AUDIT.errors.length + ' error(s)');
+  h += tile('go', { r: 'settings' }, 'Settings &amp; Data',
+    'Marking scheme, timer, export / import / reset.', Store.ok() ? 'Saved locally' : 'Storage blocked');
+  h += '</div>';
+
+  h += '<div class="card mt"><h3>Paper composition</h3><div class="scrollx">' +
+    '<table class="dt"><thead><tr><th>Year</th>';
+  META.units.forEach(function (u) { h += '<th class="num">' + E(META.taxonomy[u].short) + '</th>'; });
+  h += '<th class="num">Total</th></tr></thead><tbody>';
+  META.years.forEach(function (y) {
+    h += '<tr><td><b>' + y + '</b></td>';
+    META.units.forEach(function (u) {
+      h += '<td class="num">' + META.perYearUnit[y][u] + '</td>';
+    });
+    h += '<td class="num"><b>' + META.perYear[y] + '</b></td></tr>';
+  });
+  h += '<tr><td><b>Total</b></td>';
+  META.units.forEach(function (u) { h += '<td class="num"><b>' + META.taxonomy[u].count + '</b></td>'; });
+  h += '<td class="num"><b>' + META.totalQuestions + '</b></td></tr>';
+  h += '</tbody></table></div></div>';
+
+  return h;
+};
+
+function tile(act, params, title, desc, note) {
+  var attrs = '';
+  for (var k in params) attrs += ' data-' + k + '="' + E(params[k]) + '"';
+  return '<button type="button" class="tile" data-act="' + act + '"' + attrs + '>' +
+    '<span class="t">' + title + '</span><span class="d">' + desc + '</span>' +
+    (note ? '<span class="n">' + note + '</span>' : '') + '</button>';
+}
+
+/* ---------------------------------------------------------- 8.2 setup */
+function newBuilder(kind) {
+  var st = Store.d().settings;
+  return {
+    kind: kind,
+    years: [], units: [], topics: [], subtopics: [],
+    count: 0, mode: st.defaultMode, timed: st.timerOn,
+    minutes: 0, shuffleQ: false, shuffleO: false
+  };
+}
+
+function builderQuestions(B) {
+  var qs = DATA.filter(function (q) {
+    if (B.years.length && B.years.indexOf(String(q.year)) < 0) return false;
+    if (B.units.length && B.units.indexOf(q.unit) < 0) return false;
+    if (B.topics.length && B.topics.indexOf(q.topic) < 0) return false;
+    if (B.subtopics.length && B.subtopics.indexOf(q.subtopic) < 0) return false;
+    return true;
+  });
+  qs = uniqBy(qs, function (q) { return q.id; });
+  qs.sort(function (a, b) { return a.year - b.year || a.questionNumber - b.questionNumber; });
+  return qs;
+}
+
+function builderName(B) {
+  if (B.kind === 'year') return B.years[0] + ' Full Paper';
+  var bits = [];
+  if (B.years.length === 1) bits.push(B.years[0]);
+  else if (B.years.length > 1) bits.push(B.years.length + ' years');
+  else bits.push('2018\u20132026');
+  if (B.subtopics.length === 1) bits.push(B.subtopics[0]);
+  else if (B.topics.length === 1) bits.push(B.topics[0]);
+  else if (B.units.length === 1) bits.push(META.taxonomy[B.units[0]].short);
+  else if (B.units.length > 1) bits.push(B.units.length + ' units');
+  else bits.push('All units');
+  return bits.join(' \u00b7 ');
+}
+
+function builderDesc(B, n) {
+  var st = Store.d().settings;
+  var p = [];
+  p.push('Years: ' + (B.years.length ? B.years.join(', ') : 'all 2018\u20132026'));
+  p.push('Units: ' + (B.units.length ? B.units.map(function (u) { return META.taxonomy[u].short; }).join(', ') : 'all four'));
+  if (B.topics.length) p.push('Topics: ' + B.topics.join(', '));
+  if (B.subtopics.length) p.push('Subtopics: ' + B.subtopics.join(', '));
+  p.push('Questions: ' + n);
+  p.push('Mode: ' + (B.mode === 'exam' ? 'Strict Exam' : 'Learning'));
+  p.push('Timer: ' + (B.timed ? (B.minutes || Math.round(n * st.minutesPerQuestion)) + ' min' : 'off (stopwatch)'));
+  p.push('Order: ' + (B.shuffleQ ? 'randomised' : 'paper order') +
+         ', options ' + (B.shuffleO ? 'randomised' : 'as printed'));
+  return p.join(' \u00b7 ');
+}
+
+V.setup = function () {
+  var B = BUILDER;
+  var st = Store.d().settings;
+  var titles = { year: 'Full Year Mock', section: 'Sectional Mock', topic: 'Topic Mock',
+                 subtopic: 'Subtopic Mock', custom: 'Custom Mock' };
+  var h = crumb(['Home', 'Mock setup', titles[B.kind]]);
+  h += '<div class="card"><h1>' + titles[B.kind] + '</h1>';
+
+  if (B.kind === 'year') {
+    h += '<p class="card-sub">An authentic paper simulation: the actual questions, in the ' +
+      'original printed order, with the original options and numbering. Question order and ' +
+      'option order are never randomised for a full paper.</p>';
+    h += '<label class="f"><span>Paper</span><select data-act="setYear">';
+    META.years.forEach(function (y) {
+      h += '<option value="' + y + '"' + (B.years[0] == y ? ' selected' : '') + '>' +
+        y + ' \u2014 ' + META.perYear[y] + ' questions</option>';
+    });
+    h += '</select></label>';
+  }
+
+  if (B.kind === 'section' || B.kind === 'custom' || B.kind === 'topic' || B.kind === 'subtopic') {
+    h += '<label class="f"><span>Years <span class="hint">(none selected = all nine papers)</span></span>' +
+      '<div class="checks">';
+    META.years.forEach(function (y) {
+      h += '<label><input type="checkbox" data-act="tgYear" value="' + y + '"' +
+        (B.years.indexOf(String(y)) >= 0 ? ' checked' : '') + '> ' + y + '</label>';
+    });
+    h += '</div></label>';
+
+    h += '<label class="f"><span>Units <span class="hint">(none selected = all four)</span></span>' +
+      '<div class="checks">';
+    META.units.forEach(function (u) {
+      h += '<label><input type="checkbox" data-act="tgUnit" value="' + E(u) + '"' +
+        (B.units.indexOf(u) >= 0 ? ' checked' : '') + '> ' + E(META.taxonomy[u].short) +
+        ' <span class="muted tiny">(' + META.taxonomy[u].count + ')</span></label>';
+    });
+    h += '</div></label>';
+  }
+
+  if (B.kind === 'topic' || B.kind === 'subtopic' || B.kind === 'custom') {
+    var unitsFor = B.units.length ? B.units : META.units;
+    h += '<label class="f"><span>Topics <span class="hint">(none selected = every topic in the chosen units)</span></span>';
+    unitsFor.forEach(function (u) {
+      h += '<div class="mt tiny muted"><b>' + E(META.taxonomy[u].short) + '</b></div><div class="checks">';
+      var tps = META.taxonomy[u].topics;
+      Object.keys(tps).forEach(function (t) {
+        h += '<label><input type="checkbox" data-act="tgTopic" value="' + E(t) + '"' +
+          (B.topics.indexOf(t) >= 0 ? ' checked' : '') + '> ' +
+          E(tps[t].code) + ' \u00b7 ' + E(t) + ' <span class="muted tiny">(' + tps[t].count + ')</span></label>';
+      });
+      h += '</div>';
+    });
+    h += '</label>';
+  }
+
+  if (B.kind === 'subtopic' || B.kind === 'custom') {
+    var subMap = {};
+    var unitsFor2 = B.units.length ? B.units : META.units;
+    unitsFor2.forEach(function (u) {
+      var tps = META.taxonomy[u].topics;
+      Object.keys(tps).forEach(function (t) {
+        if (B.topics.length && B.topics.indexOf(t) < 0) return;
+        Object.keys(tps[t].subtopics).forEach(function (sname) {
+          subMap[sname] = (subMap[sname] || 0) + tps[t].subtopics[sname];
+        });
+      });
+    });
+    var subNames = Object.keys(subMap).sort();
+    h += '<label class="f"><span>Subtopics / syllabus concepts <span class="hint">(none selected = all)</span></span><div class="checks">';
+    subNames.forEach(function (sn) {
+      h += '<label><input type="checkbox" data-act="tgSub" value="' + E(sn) + '"' +
+        (B.subtopics.indexOf(sn) >= 0 ? ' checked' : '') + '> ' + E(sn) +
+        ' <span class="muted tiny">(' + subMap[sn] + ')</span></label>';
+    });
+    h += '</div></label>';
+  }
+
+  var qs = builderQuestions(B);
+  var maxN = qs.length;
+
+  if (B.kind !== 'year') {
+    h += '<div class="grid g2">';
+    h += '<label class="f"><span>Number of questions <span class="hint">(0 = all ' + maxN + ')</span></span>' +
+      '<input type="number" min="0" max="' + maxN + '" step="1" value="' + B.count +
+      '" data-act="setCount"></label>';
+    h += '<label class="f"><span>Time limit in minutes <span class="hint">(0 = auto, ' +
+      st.minutesPerQuestion + ' min/question)</span></span>' +
+      '<input type="number" min="0" step="1" value="' + B.minutes + '" data-act="setMinutes"></label>';
+    h += '</div>';
+  }
+
+  h += '<label class="f"><span>Mode</span><div class="checks">' +
+    '<label><input type="radio" name="mode" data-act="setMode" value="exam"' +
+    (B.mode === 'exam' ? ' checked' : '') + '> Strict Exam Mode</label>' +
+    '<label><input type="radio" name="mode" data-act="setMode" value="learn"' +
+    (B.mode === 'learn' ? ' checked' : '') + '> Learning Mode</label>' +
+    '</div><div class="hint">Strict Exam Mode hides the answer, shortcut, tips and solution ' +
+    'until you submit. Learning Mode reveals them one question at a time, in the fixed order: ' +
+    'verdict &rarr; exam shortcut &rarr; tips &amp; tricks &rarr; step-by-step solution.</div></label>';
+
+  h += '<label class="f"><span>Options</span><div class="checks">' +
+    '<label><input type="checkbox" data-act="tgTimed"' + (B.timed ? ' checked' : '') +
+    '> Timer with limit (auto-submit at 0)</label>';
+  if (B.kind !== 'year') {
+    h += '<label><input type="checkbox" data-act="tgShuffleQ"' + (B.shuffleQ ? ' checked' : '') +
+      '> Randomise question order</label>' +
+      '<label><input type="checkbox" data-act="tgShuffleO"' + (B.shuffleO ? ' checked' : '') +
+      '> Randomise option order</label>';
+  } else {
+    h += '<span class="hint">Authentic full papers always keep the printed question and option order.</span>';
+  }
+  h += '</div></label>';
+
+  var n = B.count > 0 ? Math.min(B.count, maxN) : maxN;
+  h += '<div class="banner" id="mockSummary"><b>This mock:</b> ' + E(builderDesc(B, n)) + '</div>';
+
+  if (maxN === 0) {
+    h += '<div class="banner info">No questions match this selection. Widen the filters.</div>';
+  }
+  h += '<div class="btnrow">' +
+    '<button type="button" class="btn primary" id="startBtn" data-act="startMock"' +
+    (maxN ? '' : ' disabled') +
+    '>Start \u2014 ' + n + ' question' + (n === 1 ? '' : 's') + '</button>' +
+    '<button type="button" class="btn" data-act="go" data-r="home">Cancel</button></div>';
+  h += '</div>';
+  return h;
+};
+
+/* Numeric fields must NOT trigger a full re-render: the change event fires on
+   blur, i.e. during the mousedown of whatever the user clicks next, and
+   replacing the DOM at that moment swallows that click.  Update in place. */
+function refreshSetupSummary() {
+  var B = BUILDER;
+  if (!B) return;
+  var maxN = builderQuestions(B).length;
+  var n = B.count > 0 ? Math.min(B.count, maxN) : maxN;
+  var sm = document.getElementById('mockSummary');
+  if (sm) sm.innerHTML = '<b>This mock:</b> ' + E(builderDesc(B, n));
+  var sb = document.getElementById('startBtn');
+  if (sb) {
+    sb.textContent = 'Start \u2014 ' + n + ' question' + (n === 1 ? '' : 's');
+    sb.disabled = maxN === 0;
+  }
+}
+
+/* ----------------------------------------------------------- 8.3 exam */
+V.exam = function () {
+  if (!S) { return V.home(); }
+  var it = S.items[S.cur];
+  var q = BY_ID[it.qid];
+  var st = Store.d().settings;
+  var answered = 0, markedN = 0;
+  S.answers.forEach(function (a) { if (a !== null) answered++; });
+  S.marked.forEach(function (m) { if (m) markedN++; });
+
+  var elapsed = ((S.finished ? S.endTs : Date.now()) - S.startTs) / 1000;
+  var tdisp = S.limitSec ? hms(Math.max(0, S.limitSec - elapsed)) : hms(elapsed);
+
+  var h = '';
+  h += '<div class="exam-head">' +
+    '<span class="qpos">Q ' + (S.cur + 1) + ' / ' + S.items.length + '</span>' +
+    '<span class="chip' + (S.mode === 'exam' ? ' brand' : ' mark') + '">' +
+    (S.mode === 'exam' ? 'Strict Exam' : 'Learning') + '</span>' +
+    (S.authentic ? '<span class="chip">Authentic paper</span>' : '') +
+    '<span class="spacer"></span>' +
+    '<span class="chip ok">' + answered + ' answered</span>' +
+    '<span class="chip mark">' + markedN + ' marked</span>' +
+    '<span id="timer" class="timer">' + tdisp + '</span>' +
+    '</div>';
+
+  h += '<div class="progbar"><i style="width:' +
+    fx(pct(answered, S.items.length), 1) + '%"></i></div>';
+
+  h += '<div class="exam-layout mt">';
+
+  /* ---- main column ---- */
+  h += '<div>';
+  h += '<div class="card">';
+  h += '<div class="tiny muted mb">' + E(S.name) + '</div>';
+  if (S.mode !== 'exam') h += qMetaLine(q);
+  else h += '<div class="qmeta"><span>Question ' + (S.cur + 1) + '</span></div>';
+  h += sharedStemHtml(q);
+  h += '<div class="qtext">' + R(q.question) + '</div>';
+  if (!q.options || !q.options.length) {
+    h += optionList(q, it.order, S.answers[S.cur], {});
+  } else {
+    var reveal = (S.mode === 'learn' && S.revealed[S.cur]);
+    h += optionList(q, it.order, S.answers[S.cur],
+      { showAnswer: reveal, disabled: reveal });
+  }
+  h += '<div class="btnrow mt">' +
+    '<button type="button" class="btn' + (S.marked[S.cur] ? ' primary' : '') +
+    '" data-act="markQ">' + (S.marked[S.cur] ? '\u25c9 Marked for review' : '\u25cb Mark for review') + '</button>' +
+    bookmarkBtn(q.id) +
+    (S.answers[S.cur] !== null && S.mode === 'exam'
+      ? '<button type="button" class="btn ghost" data-act="clearAns">Clear response</button>' : '') +
+    '</div>';
+
+  if (S.mode === 'learn' && S.revealed[S.cur]) {
+    if (q.sourceIssue) {
+      h += '<div class="srcissue mt"><b>Source note.</b> ' + E(q.sourceIssue) + '</div>';
+    }
+    h += '<div class="reveal">' + revealPanes(q, chosenOriginal(S.cur)) + '</div>';
+  } else if (S.mode === 'learn') {
+    h += '<div class="banner mt">Choose an option to reveal the verdict, the exam shortcut, ' +
+      'the tips and the full solution.</div>';
+  }
+  h += '</div>';
+
+  h += '<div class="btnrow">' +
+    '<button type="button" class="btn" data-act="prevQ"' + (S.cur === 0 ? ' disabled' : '') + '>&larr; Previous</button>' +
+    '<button type="button" class="btn" data-act="nextQ"' +
+    (S.cur === S.items.length - 1 ? ' disabled' : '') + '>Next &rarr;</button>' +
+    '<span style="flex:1"></span>' +
+    '<button type="button" class="btn primary" data-act="submitMock">Submit</button>' +
+    '<button type="button" class="btn danger" data-act="abandon">Abandon</button>' +
+    '</div>';
+  h += '</div>';
+
+  /* ---- palette column ---- */
+  h += '<div class="exam-side"><div class="card">' +
+    '<h3>Question palette</h3><div class="palette">';
+  for (var i = 0; i < S.items.length; i++) {
+    var c = 'pal';
+    var ans = S.answers[i] !== null;
+    if (ans && S.marked[i]) c += ' both';
+    else if (S.marked[i]) c += ' marked';
+    else if (ans) c += ' answered';
+    if (i === S.cur) c += ' cur';
+    c += ' pal';
+    h += '<button type="button" class="' + c + '" data-act="jump" data-i="' + i + '">' +
+      (i + 1) + '</button>';
+  }
+  h += '</div><div class="legend">' +
+    '<span><i style="background:var(--ok-bg);border-color:var(--ok-line)"></i>Answered</span>' +
+    '<span><i style="background:var(--mark-bg);border-color:var(--mark-line)"></i>Marked</span>' +
+    '<span><i style="background:var(--surface-2)"></i>Not visited</span>' +
+    '</div>' +
+    '<div class="tiny muted mt">Keyboard: 1\u20134 select an option, \u2190 \u2192 move, ' +
+    'M marks for review.</div>' +
+    '</div></div>';
+
+  h += '</div>';
+  return h;
+};
+
+/* --------------------------------------------------------- 8.4 result */
+V.result = function () {
+  if (!S || !S.result) return V.home();
+  var r = S.result;
+  var st = Store.d().settings;
+  var h = crumb(['Home', S.name, 'Result']);
+
+  if (S.autoSubmitted) {
+    h += '<div class="banner info"><b>Time expired.</b> The paper was submitted automatically.</div>';
+  }
+
+  h += '<div class="card"><h1>' + E(S.name) + '</h1>' +
+    '<p class="card-sub">' + E(S.desc || '') + '</p>' +
+    '<div class="kpis">' +
+    '<div class="kpi"><div class="v">' + fx(r.score, 2) + ' / ' + r.maxScore + '</div><div class="l">Score</div></div>' +
+    '<div class="kpi"><div class="v">' + fx(r.pct, 1) + '%</div><div class="l">Percentage</div></div>' +
+    '<div class="kpi ok"><div class="v">' + fx(r.accuracy, 1) + '%</div><div class="l">Accuracy</div></div>' +
+    '<div class="kpi"><div class="v">' + humanTime(r.seconds) + '</div><div class="l">Time taken</div></div>' +
+    '</div>' +
+    '<div class="kpis mt">' +
+    '<div class="kpi"><div class="v">' + r.attempted + '</div><div class="l">Attempted</div></div>' +
+    '<div class="kpi ok"><div class="v">' + r.correct + '</div><div class="l">Correct</div></div>' +
+    '<div class="kpi bad"><div class="v">' + r.incorrect + '</div><div class="l">Incorrect</div></div>' +
+    '<div class="kpi warn"><div class="v">' + r.unanswered + '</div><div class="l">Unanswered</div></div>' +
+    '</div>';
+
+  h += '<div class="small muted mt">Total questions ' + r.total +
+    (r.excluded ? ' \u00b7 ' + r.excluded + ' excluded from scoring (source defect)' : '') +
+    ' \u00b7 average time per attempted question ' +
+    (r.attempted ? humanTime(r.avgPerAttempt) : '\u2014') +
+    ' \u00b7 marking: +' + st.marksCorrect + ' correct, ' +
+    (st.negativeMarkingEnabled ? '\u2212' + fx(st.negativeMarkFraction * st.marksCorrect, 3) : '0') +
+    ' incorrect, 0 unanswered.</div>';
+  h += '<div class="tiny muted mt">The marking scheme and paper duration are configurable ' +
+    'settings, not official UPSC values \u2014 the source booklets did not state either.</div>';
+  h += '</div>';
+
+  /* per-unit / per-topic breakdown */
+  h += breakdownCard(r.perQ, 'unit', 'Performance by unit');
+  h += breakdownCard(r.perQ, 'topic', 'Performance by topic');
+  h += breakdownCard(r.perQ, 'questionType', 'Performance by question type');
+
+  /* result palette */
+  h += '<div class="card"><h3>Question map</h3><div class="palette">';
+  r.perQ.forEach(function (p, i) {
+    var c = 'pal ' + (p.status === 'correct' ? 'gcorrect'
+      : p.status === 'incorrect' ? 'gwrong' : 'gskip');
+    h += '<button type="button" class="' + c + '" data-act="reviewAt" data-i="' + i + '">' +
+      (i + 1) + '</button>';
+  });
+  h += '</div><div class="legend">' +
+    '<span><i style="background:var(--ok-bg);border-color:var(--ok-line)"></i>Correct</span>' +
+    '<span><i style="background:var(--bad-bg);border-color:var(--bad-line)"></i>Incorrect</span>' +
+    '<span><i style="background:var(--surface-3)"></i>Unanswered / not scored</span>' +
+    '</div></div>';
+
+  h += '<div class="btnrow mb">' +
+    '<button type="button" class="btn primary" data-act="reviewAt" data-i="0">Review all questions</button>' +
+    (r.incorrect ? '<button type="button" class="btn" data-act="retryIncorrect">Retry incorrect (' + r.incorrect + ')</button>' : '') +
+    (r.unanswered ? '<button type="button" class="btn" data-act="retryUnanswered">Retry unanswered (' + r.unanswered + ')</button>' : '') +
+    '<button type="button" class="btn" data-act="retakeSame">Retake this mock</button>' +
+    '<button type="button" class="btn ghost" data-act="go" data-r="analytics">Analytics</button>' +
+    '<button type="button" class="btn ghost" data-act="go" data-r="home">Home</button>' +
+    '</div>';
+  return h;
+};
+
+function breakdownCard(perQ, field, title) {
+  var agg = {};
+  perQ.forEach(function (p) {
+    var q = BY_ID[p.qid];
+    if (!q) return;
+    var k = q[field];
+    var a = agg[k] || (agg[k] = { n: 0, c: 0, w: 0, s: 0 });
+    a.n++;
+    if (p.status === 'correct') a.c++;
+    else if (p.status === 'incorrect') a.w++;
+    else if (p.status === 'unanswered') a.s++;
+  });
+  var keys = Object.keys(agg).sort(function (a, b) { return agg[b].n - agg[a].n; });
+  if (!keys.length) return '';
+  var h = '<div class="card"><h3>' + title + '</h3><div class="scrollx"><table class="dt">' +
+    '<thead><tr><th>' + (field === 'unit' ? 'Unit' : field === 'topic' ? 'Topic' : 'Type') +
+    '</th><th class="num">Q</th><th class="num">Correct</th><th class="num">Wrong</th>' +
+    '<th class="num">Skipped</th><th class="num">Accuracy</th><th style="width:110px">&nbsp;</th></tr></thead><tbody>';
+  keys.forEach(function (k) {
+    var a = agg[k];
+    var acc = pct(a.c, a.c + a.w);
+    h += '<tr><td>' + E(k) + '</td><td class="num">' + a.n + '</td><td class="num">' + a.c +
+      '</td><td class="num">' + a.w + '</td><td class="num">' + a.s + '</td>' +
+      '<td class="num">' + (a.c + a.w ? fx(acc, 0) + '%' : '\u2014') + '</td>' +
+      '<td><div class="bar"><i class="' + (acc >= 70 ? 'ok' : acc >= 40 ? 'warn' : 'bad') +
+      '" style="width:' + fx(acc, 0) + '%"></i></div></td></tr>';
+  });
+  return h + '</tbody></table></div></div>';
+}
+
+/* --------------------------------------------------------- 8.5 review */
+V.review = function () {
+  if (!S || !S.result) return V.home();
+  var r = S.result;
+  var list = r.perQ.map(function (p, i) { return i; });
+  if (REVIEW.filter === 'incorrect') list = list.filter(function (i) { return r.perQ[i].status === 'incorrect'; });
+  else if (REVIEW.filter === 'correct') list = list.filter(function (i) { return r.perQ[i].status === 'correct'; });
+  else if (REVIEW.filter === 'unanswered') list = list.filter(function (i) { return r.perQ[i].status === 'unanswered'; });
+  else if (REVIEW.filter === 'marked') list = list.filter(function (i) { return r.perQ[i].marked; });
+  if (!list.length) list = [0];
+
+  var pos = list.indexOf(REVIEW.idx);
+  if (pos < 0) { REVIEW.idx = list[0]; pos = 0; }
+
+  var p = r.perQ[REVIEW.idx];
+  var q = BY_ID[p.qid];
+  var it = S.items[REVIEW.idx];
+
+  var h = crumb(['Home', S.name, 'Review']);
+  h += '<div class="card"><div class="btnrow mb">';
+  [['all', 'All ' + r.perQ.length], ['incorrect', 'Incorrect ' + r.incorrect],
+   ['correct', 'Correct ' + r.correct], ['unanswered', 'Unanswered ' + r.unanswered],
+   ['marked', 'Marked']].forEach(function (f) {
+    h += '<button type="button" class="btn sm' + (REVIEW.filter === f[0] ? ' primary' : '') +
+      '" data-act="revFilter" data-f="' + f[0] + '">' + f[1] + '</button>';
+  });
+  h += '</div>';
+
+  h += '<div class="qmeta">Question ' + (REVIEW.idx + 1) + ' of ' + r.perQ.length +
+    ' \u00b7 ' + (pos + 1) + ' of ' + list.length + ' in this filter \u00b7 time spent ' +
+    humanTime(p.secs) + '</div>';
+  h += qMetaLine(q);
+  h += sharedStemHtml(q);
+  h += '<div class="qtext">' + R(q.question) + '</div>';
+  h += optionList(q, it.order, S.answers[REVIEW.idx], { showAnswer: true, disabled: true });
+  h += '<div class="btnrow mt">' + bookmarkBtn(q.id) +
+    '<button type="button" class="btn sm" data-act="study" data-qid="' + E(q.id) +
+    '" data-back="review">Open as study card</button></div>';
+  if (q.sourceIssue) {
+    h += '<div class="srcissue mt"><b>Source note.</b> ' + E(q.sourceIssue) + '</div>';
+  }
+  h += '<div class="reveal">' + revealPanes(q, p.chosen) + '</div>';
+  h += '</div>';
+
+  h += '<div class="btnrow mb">' +
+    '<button type="button" class="btn" data-act="revStep" data-d="-1"' + (pos === 0 ? ' disabled' : '') + '>&larr; Previous</button>' +
+    '<button type="button" class="btn" data-act="revStep" data-d="1"' + (pos === list.length - 1 ? ' disabled' : '') + '>Next &rarr;</button>' +
+    '<span style="flex:1"></span>' +
+    '<button type="button" class="btn ghost" data-act="go" data-r="result">Back to result</button>' +
+    '<button type="button" class="btn ghost" data-act="go" data-r="home">Home</button></div>';
+
+  h += '<div class="card"><h3>Jump to question</h3><div class="palette">';
+  r.perQ.forEach(function (pp, i) {
+    var c = 'pal ' + (pp.status === 'correct' ? 'gcorrect' : pp.status === 'incorrect' ? 'gwrong' : 'gskip') +
+      (i === REVIEW.idx ? ' cur' : '');
+    h += '<button type="button" class="' + c + '" data-act="reviewAt" data-i="' + i + '">' + (i + 1) + '</button>';
+  });
+  h += '</div></div>';
+  return h;
+};
+
+/* --------------------------------------------------- 8.6 study card */
+V.study = function () {
+  var q = BY_ID[STUDY.qid];
+  if (!q) return V.home();
+  var h = crumb(['Home', 'Study card', q.id]);
+  h += '<div class="card">';
+  h += qMetaLine(q);
+  h += sharedStemHtml(q);
+  h += '<div class="qtext">' + R(q.question) + '</div>';
+  h += optionList(q, [0, 1, 2, 3], null, { showAnswer: true, disabled: true });
+  h += '<div class="btnrow mt">' + bookmarkBtn(q.id) +
+    '<button type="button" class="btn sm ghost" data-act="go" data-r="' + E(STUDY.back) + '">Back</button></div>';
+  if (q.sourceIssue) h += '<div class="srcissue mt"><b>Source note.</b> ' + E(q.sourceIssue) + '</div>';
+  h += '<div class="reveal">' + revealPanes(q, null) + '</div>';
+  h += '</div>';
+  h += '<div class="tiny muted mb">Source: ' + E(q.sourceFile) + ' \u00b7 original question number ' +
+    q.sourceQuestionNumber + ' of the ' + q.sourceYear + ' paper.</div>';
+  return h;
+};
+
+/* ------------------------------------------------------ 8.7 analytics */
+function historyPerQ() {
+  var d = Store.d(), out = [];
+  d.history.forEach(function (a) {
+    (a.perQ || []).forEach(function (p) {
+      if (BY_ID[p.qid]) out.push(p);
+    });
+  });
+  return out;
+}
+
+function aggBy(perQ, fn) {
+  var agg = {};
+  perQ.forEach(function (p) {
+    var q = BY_ID[p.qid];
+    if (!q) return;
+    var k = fn(q);
+    var a = agg[k] || (agg[k] = { n: 0, c: 0, w: 0, s: 0, t: 0 });
+    a.n++; a.t += p.secs || 0;
+    if (p.status === 'correct') a.c++;
+    else if (p.status === 'incorrect') a.w++;
+    else if (p.status === 'unanswered') a.s++;
+  });
+  return agg;
+}
+
+function aggTable(agg, label, minAttempt) {
+  var keys = Object.keys(agg).sort(function (a, b) {
+    return pct(agg[b].c, agg[b].c + agg[b].w) - pct(agg[a].c, agg[a].c + agg[a].w);
+  });
+  if (!keys.length) return '<div class="empty">No data yet.</div>';
+  var h = '<div class="scrollx"><table class="dt"><thead><tr><th>' + label +
+    '</th><th class="num">Seen</th><th class="num">Correct</th><th class="num">Wrong</th>' +
+    '<th class="num">Skipped</th><th class="num">Accuracy</th><th style="width:110px">&nbsp;</th></tr></thead><tbody>';
+  keys.forEach(function (k) {
+    var a = agg[k], att = a.c + a.w, acc = pct(a.c, att);
+    h += '<tr><td>' + E(k) + '</td><td class="num">' + a.n + '</td><td class="num">' + a.c +
+      '</td><td class="num">' + a.w + '</td><td class="num">' + a.s + '</td><td class="num">' +
+      (att >= (minAttempt || 1) ? fx(acc, 0) + '%' : '\u2014') + '</td>' +
+      '<td><div class="bar"><i class="' + (acc >= 70 ? 'ok' : acc >= 40 ? 'warn' : 'bad') +
+      '" style="width:' + fx(acc, 0) + '%"></i></div></td></tr>';
+  });
+  return h + '</tbody></table></div>';
+}
+
+function weakAreas(minAttempt) {
+  var perQ = historyPerQ();
+  var agg = aggBy(perQ, function (q) { return q.unit + ' \u2014 ' + q.topic; });
+  var rows = [];
+  Object.keys(agg).forEach(function (k) {
+    var a = agg[k], att = a.c + a.w;
+    if (att >= (minAttempt || 3)) rows.push({ k: k, att: att, acc: pct(a.c, att), a: a });
+  });
+  rows.sort(function (x, y) { return x.acc - y.acc; });
+  return rows;
+}
+
+V.analytics = function () {
+  var d = Store.d();
+  var perQ = historyPerQ();
+  var h = crumb(['Home', 'Analytics']);
+
+  if (!d.history.length) {
+    return h + '<div class="card"><h1>Analytics</h1><div class="empty">' +
+      'No attempts recorded yet. Finish a mock and your performance by year, unit, topic, ' +
+      'subtopic and question type will appear here.</div>' +
+      '<div class="btnrow"><button class="btn primary" data-act="go" data-r="home">Start a mock</button></div></div>';
+  }
+
+  var tot = { n: perQ.length, c: 0, w: 0, s: 0, t: 0 };
+  perQ.forEach(function (p) {
+    if (p.status === 'correct') tot.c++;
+    else if (p.status === 'incorrect') tot.w++;
+    else if (p.status === 'unanswered') tot.s++;
+    tot.t += p.secs || 0;
+  });
+  var attempted = tot.c + tot.w;
+
+  h += '<div class="card"><h1>Analytics</h1>' +
+    '<p class="card-sub">Across ' + d.history.length + ' recorded attempt(s).</p>' +
+    '<div class="kpis">' +
+    '<div class="kpi"><div class="v">' + tot.n + '</div><div class="l">Questions seen</div></div>' +
+    '<div class="kpi ok"><div class="v">' + fx(pct(tot.c, attempted), 1) + '%</div><div class="l">Overall accuracy</div></div>' +
+    '<div class="kpi"><div class="v">' + attempted + '</div><div class="l">Attempted</div></div>' +
+    '<div class="kpi warn"><div class="v">' + tot.s + '</div><div class="l">Skipped</div></div>' +
+    '</div>' +
+    '<div class="small muted mt">Average ' +
+    (tot.n ? humanTime(tot.t / tot.n) : '\u2014') + ' per question seen. Unique questions ' +
+    'touched: ' + Object.keys(perQ.reduce(function (o, p) { o[p.qid] = 1; return o; }, {})).length +
+    ' of ' + META.totalQuestions + '.</div></div>';
+
+  /* weak-area engine */
+  var weak = weakAreas(3);
+  h += '<div class="card"><h3>Weak-area engine</h3>';
+  if (!weak.length) {
+    h += '<p class="small muted">Attempt at least three questions in a topic and it will be ' +
+      'ranked here.</p>';
+  } else {
+    var worst = weak[0], best = weak[weak.length - 1];
+    h += '<div class="grid g2">';
+    h += '<div class="banner" style="background:var(--bad-bg);border-color:var(--bad-line);color:var(--bad)">' +
+      '<b>Weakest topic:</b> ' + E(worst.k) + '<br>Accuracy ' + fx(worst.acc, 0) + '% over ' +
+      worst.att + ' attempted question(s).<br><b>Recommendation:</b> practise this topic\u2019s PYQs next.</div>';
+    h += '<div class="banner" style="background:var(--ok-bg);border-color:var(--ok-line);color:var(--ok)">' +
+      '<b>Strongest topic:</b> ' + E(best.k) + '<br>Accuracy ' + fx(best.acc, 0) + '% over ' +
+      best.att + ' attempted question(s).</div>';
+    h += '</div>';
+    h += '<div class="scrollx"><table class="dt"><thead><tr><th>Topic</th><th class="num">Attempted</th>' +
+      '<th class="num">Accuracy</th><th style="width:110px">&nbsp;</th></tr></thead><tbody>';
+    weak.slice(0, 8).forEach(function (r) {
+      h += '<tr><td>' + E(r.k) + '</td><td class="num">' + r.att + '</td><td class="num">' +
+        fx(r.acc, 0) + '%</td><td><div class="bar"><i class="' +
+        (r.acc >= 70 ? 'ok' : r.acc >= 40 ? 'warn' : 'bad') + '" style="width:' + fx(r.acc, 0) +
+        '%"></i></div></td></tr>';
+    });
+    h += '</tbody></table></div>';
+    h += '<div class="btnrow mt"><button type="button" class="btn primary" data-act="practiceWeak">' +
+      'Practice My Weak Areas</button></div>';
+  }
+  h += '</div>';
+
+  /* trends */
+  var hist = d.history.slice(0, 15).slice().reverse();
+  h += '<div class="card"><h3>Trend across attempts</h3><div class="scrollx"><table class="dt">' +
+    '<thead><tr><th>#</th><th>Mock</th><th>When</th><th class="num">Score %</th>' +
+    '<th class="num">Accuracy</th><th class="num">Attempted</th><th class="num">Time</th>' +
+    '<th style="width:110px">&nbsp;</th></tr></thead><tbody>';
+  hist.forEach(function (a, i) {
+    h += '<tr><td class="num">' + (i + 1) + '</td><td>' + E(a.name) + '</td><td class="tiny">' +
+      dateStr(a.ts) + '</td><td class="num">' + fx(a.pct, 1) + '%</td><td class="num">' +
+      fx(a.accuracy, 1) + '%</td><td class="num">' + a.attempted + '/' + a.total +
+      '</td><td class="num">' + humanTime(a.seconds) + '</td>' +
+      '<td><div class="bar"><i class="' + (a.pct >= 70 ? 'ok' : a.pct >= 40 ? 'warn' : 'bad') +
+      '" style="width:' + fx(Math.max(0, Math.min(100, a.pct)), 0) + '%"></i></div></td></tr>';
+  });
+  h += '</tbody></table></div></div>';
+
+  h += '<div class="card"><h3>By unit</h3>' + aggTable(aggBy(perQ, function (q) { return q.unit; }), 'Unit') + '</div>';
+  h += '<div class="card"><h3>By year</h3>' + aggTable(aggBy(perQ, function (q) { return String(q.year); }), 'Year') + '</div>';
+  h += '<div class="card"><h3>By topic</h3>' + aggTable(aggBy(perQ, function (q) { return q.topic; }), 'Topic') + '</div>';
+  h += '<div class="card"><h3>By subtopic (syllabus concept)</h3>' +
+    aggTable(aggBy(perQ, function (q) { return q.subtopic; }), 'Subtopic') + '</div>';
+  h += '<div class="card"><h3>By question type</h3>' +
+    aggTable(aggBy(perQ, function (q) { return q.questionType; }), 'Type') + '</div>';
+  return h;
+};
+
+/* -------------------------------------------------------- 8.8 history */
+V.history = function () {
+  var d = Store.d();
+  var h = crumb(['Home', 'Attempt history']);
+  h += '<div class="card"><h1>Attempt history</h1>';
+  if (!d.history.length) {
+    h += '<div class="empty">Nothing yet. Submit a mock and it will be listed here.</div></div>';
+    return h;
+  }
+  var byName = {};
+  d.history.forEach(function (a) { (byName[a.name] = byName[a.name] || []).push(a); });
+
+  h += '<div class="scrollx"><table class="dt"><thead><tr><th>Mock</th><th>Mode</th><th>When</th>' +
+    '<th class="num">Score</th><th class="num">%</th><th class="num">Acc.</th>' +
+    '<th class="num">C</th><th class="num">W</th><th class="num">U</th><th class="num">Time</th></tr></thead><tbody>';
+  d.history.forEach(function (a) {
+    h += '<tr><td>' + E(a.name) + '</td><td class="tiny">' + (a.mode === 'exam' ? 'Exam' : 'Learning') +
+      '</td><td class="tiny">' + dateStr(a.ts) + '</td>' +
+      '<td class="num">' + fx(a.score, 2) + '/' + a.maxScore + '</td>' +
+      '<td class="num">' + fx(a.pct, 1) + '</td><td class="num">' + fx(a.accuracy, 1) + '</td>' +
+      '<td class="num">' + a.correct + '</td><td class="num">' + a.incorrect + '</td>' +
+      '<td class="num">' + a.unanswered + '</td><td class="num">' + humanTime(a.seconds) + '</td></tr>';
+  });
+  h += '</tbody></table></div></div>';
+
+  h += '<div class="card"><h3>Progress on repeated mocks</h3>';
+  var any = false;
+  Object.keys(byName).forEach(function (n) {
+    var arr = byName[n];
+    if (arr.length < 2) return;
+    any = true;
+    h += '<div class="mb"><b>' + E(n) + '</b><ul class="small" style="margin:6px 0 0;padding-left:20px">';
+    arr.slice().reverse().forEach(function (a, i) {
+      h += '<li>Attempt ' + (i + 1) + ': ' + fx(a.pct, 1) + '% \u00b7 accuracy ' +
+        fx(a.accuracy, 1) + '% \u00b7 ' + dateStr(a.ts) + '</li>';
+    });
+    h += '</ul></div>';
+  });
+  if (!any) h += '<p class="small muted">Take the same mock more than once to see a progress line here.</p>';
+  h += '</div>';
+
+  h += '<div class="btnrow mb"><button type="button" class="btn danger" data-act="resetHistory">Clear attempt history</button></div>';
+  return h;
+};
+
+/* ------------------------------------------------------ 8.9 bookmarks */
+V.bookmarks = function () {
+  var d = Store.d();
+  var ids = Object.keys(d.bookmarks).filter(function (i) { return BY_ID[i]; });
+  ids.sort(function (a, b) { return d.bookmarks[b] - d.bookmarks[a]; });
+  var h = crumb(['Home', 'My bookmarks']);
+  h += '<div class="card"><h1>My bookmarks</h1>' +
+    '<p class="card-sub">' + ids.length + ' question(s) flagged.</p>';
+  if (!ids.length) {
+    h += '<div class="empty">No bookmarks yet. Use the \u2606 Bookmark button on any question.</div></div>';
+    return h;
+  }
+  h += '<div class="btnrow mb">' +
+    '<button type="button" class="btn primary" data-act="practiceIds" data-src="bookmarks">' +
+    'Practise these ' + ids.length + ' question(s)</button>' +
+    '<button type="button" class="btn danger" data-act="resetBookmarks">Clear all bookmarks</button></div>';
+  h += '<label class="f"><span>Filter</span><input type="search" id="bmq" placeholder="year, unit, topic or text\u2026" value="' +
+    E(SEARCH.q) + '" data-act="bmFilter"></label>';
+  var qq = SEARCH.q.toLowerCase();
+  h += '<ul class="list">';
+  ids.forEach(function (id) {
+    var q = BY_ID[id];
+    var idx = DATA.indexOf(q);
+    if (qq && SEARCH_INDEX[idx].indexOf(qq) < 0) return;
+    h += bmRow(q);
+  });
+  h += '</ul></div>';
+  return h;
+};
+
+function bmRow(q) {
+  return '<li><div class="top"><span class="id">' + E(q.id) + '</span>' +
+    '<span class="chip">' + E(META.taxonomy[q.unit].short) + '</span>' +
+    '<span class="chip">' + E(q.topic) + '</span></div>' +
+    '<div class="small">' + R(q.question) + '</div>' +
+    '<div class="btnrow mt"><button type="button" class="btn sm" data-act="study" data-qid="' +
+    E(q.id) + '" data-back="bookmarks">Open study card</button>' +
+    '<button type="button" class="btn sm ghost" data-act="bookmark" data-qid="' + E(q.id) +
+    '">Remove bookmark</button></div></li>';
+}
+
+/* ------------------------------------------------------- 8.10 mistakes */
+V.mistakes = function () {
+  var d = Store.d();
+  var mis = Object.keys(d.mistakes).filter(function (i) { return BY_ID[i]; });
+  var skp = Object.keys(d.skipped).filter(function (i) { return BY_ID[i]; });
+  mis.sort(function (a, b) { return d.mistakes[b].c - d.mistakes[a].c; });
+
+  var h = crumb(['Home', 'Practice my mistakes']);
+  h += '<div class="card"><h1>Mistake bank</h1>' +
+    '<p class="card-sub">Questions you answered incorrectly stay here until you get them right. ' +
+    'Questions you skipped are tracked separately.</p>' +
+    '<div class="kpis">' +
+    '<div class="kpi bad"><div class="v">' + mis.length + '</div><div class="l">Incorrect</div></div>' +
+    '<div class="kpi warn"><div class="v">' + skp.length + '</div><div class="l">Skipped</div></div>' +
+    '<div class="kpi"><div class="v">' + Object.keys(d.bookmarks).length + '</div><div class="l">Bookmarked</div></div>' +
+    '<div class="kpi"><div class="v">' + d.history.length + '</div><div class="l">Attempts</div></div>' +
+    '</div>';
+  h += '<div class="btnrow mt">' +
+    (mis.length ? '<button type="button" class="btn primary" data-act="practiceIds" data-src="mistakes">Retry incorrect (' + mis.length + ')</button>' : '') +
+    (skp.length ? '<button type="button" class="btn" data-act="practiceIds" data-src="skipped">Retry unanswered (' + skp.length + ')</button>' : '') +
+    (mis.length + skp.length ? '<button type="button" class="btn" data-act="practiceIds" data-src="both">Practise all (' + (mis.length + skp.length) + ')</button>' : '') +
+    (mis.length + skp.length ? '<button type="button" class="btn danger" data-act="resetMistakes">Clear mistake bank</button>' : '') +
+    '</div>';
+  if (!mis.length && !skp.length) {
+    h += '<div class="empty">Nothing here yet \u2014 submit a mock and any question you get ' +
+      'wrong or leave blank will be collected automatically.</div>';
+  }
+  h += '</div>';
+
+  if (mis.length) {
+    h += '<div class="card"><h3>Incorrect (' + mis.length + ')</h3><ul class="list">';
+    mis.slice(0, 60).forEach(function (id) {
+      var q = BY_ID[id];
+      h += '<li><div class="top"><span class="id">' + E(q.id) + '</span>' +
+        '<span class="chip bad">missed ' + d.mistakes[id].c + '\u00d7</span>' +
+        '<span class="chip">' + E(q.topic) + '</span></div>' +
+        '<div class="small">' + R(q.question) + '</div>' +
+        '<div class="btnrow mt"><button type="button" class="btn sm" data-act="study" data-qid="' +
+        E(q.id) + '" data-back="mistakes">Open study card</button></div></li>';
+    });
+    if (mis.length > 60) h += '<li class="muted small">\u2026 and ' + (mis.length - 60) + ' more.</li>';
+    h += '</ul></div>';
+  }
+  if (skp.length) {
+    h += '<div class="card"><h3>Skipped (' + skp.length + ')</h3><ul class="list">';
+    skp.slice(0, 40).forEach(function (id) {
+      var q = BY_ID[id];
+      h += '<li><div class="top"><span class="id">' + E(q.id) + '</span>' +
+        '<span class="chip warn">skipped ' + d.skipped[id].c + '\u00d7</span>' +
+        '<span class="chip">' + E(q.topic) + '</span></div>' +
+        '<div class="small">' + R(q.question) + '</div>' +
+        '<div class="btnrow mt"><button type="button" class="btn sm" data-act="study" data-qid="' +
+        E(q.id) + '" data-back="mistakes">Open study card</button></div></li>';
+    });
+    if (skp.length > 40) h += '<li class="muted small">\u2026 and ' + (skp.length - 40) + ' more.</li>';
+    h += '</ul></div>';
+  }
+  return h;
+};
+
+/* --------------------------------------------------------- 8.11 search */
+V.search = function () {
+  var h = crumb(['Home', 'Search']);
+  h += '<div class="card"><h1>Search the question bank</h1>' +
+    '<p class="card-sub">Searches question text, options, year, unit, topic, subtopic and ' +
+    'question id across all ' + META.totalQuestions + ' PYQs.</p>';
+  h += '<label class="f"><span>Query</span><input type="search" id="sq" autocomplete="off" ' +
+    'placeholder="Bayes, 2023, Regression, Runge-Kutta, 2026-Q12\u2026" value="' + E(SEARCH.q) +
+    '" data-act="searchInput"></label>';
+  h += '<div class="grid g2">';
+  h += '<label class="f"><span>Unit</span><select data-act="searchUnit"><option value="">All units</option>';
+  META.units.forEach(function (u) {
+    h += '<option value="' + E(u) + '"' + (SEARCH.unit === u ? ' selected' : '') + '>' + E(u) + '</option>';
+  });
+  h += '</select></label>';
+  h += '<label class="f"><span>Year</span><select data-act="searchYear"><option value="">All years</option>';
+  META.years.forEach(function (y) {
+    h += '<option value="' + y + '"' + (SEARCH.year == y ? ' selected' : '') + '>' + y + '</option>';
+  });
+  h += '</select></label></div>';
+
+  var qq = SEARCH.q.trim().toLowerCase();
+  var terms = qq ? qq.split(/\s+/) : [];
+  var hits = [];
+  for (var i = 0; i < DATA.length; i++) {
+    var q = DATA[i];
+    if (SEARCH.unit && q.unit !== SEARCH.unit) continue;
+    if (SEARCH.year && String(q.year) !== String(SEARCH.year)) continue;
+    var idx = SEARCH_INDEX[i], ok = true;
+    for (var t = 0; t < terms.length; t++) {
+      if (idx.indexOf(terms[t]) < 0) { ok = false; break; }
+    }
+    if (ok) hits.push(q);
+  }
+  h += '<div class="small muted mb">' + hits.length + ' match(es).' +
+    (hits.length ? ' <button type="button" class="btn sm" data-act="practiceSearch">' +
+      'Practise these ' + Math.min(hits.length, 200) + '</button>' : '') + '</div>';
+  h += '<ul class="list">';
+  hits.slice(0, 60).forEach(function (q) {
+    h += '<li><div class="top"><span class="id">' + E(q.id) + '</span>' +
+      '<span class="chip">' + E(META.taxonomy[q.unit].short) + '</span>' +
+      '<span class="chip">' + E(q.topic) + '</span>' +
+      '<span class="chip">' + E(q.subtopic) + '</span></div>' +
+      '<div class="small">' + R(q.question) + '</div>' +
+      '<div class="btnrow mt"><button type="button" class="btn sm" data-act="study" data-qid="' +
+      E(q.id) + '" data-back="search">Open study card</button>' + bookmarkBtn(q.id) + '</div></li>';
+  });
+  h += '</ul>';
+  if (hits.length > 60) h += '<div class="muted small">Showing the first 60 of ' + hits.length + '.</div>';
+  h += '</div>';
+  return h;
+};
+
+/* ------------------------------------------------------- 8.12 settings */
+V.settings = function () {
+  var d = Store.d(), st = d.settings;
+  var h = crumb(['Home', 'Settings & data']);
+  h += '<div class="card"><h1>Settings</h1>';
+  h += '<div class="banner info"><b>No official marking scheme was supplied.</b> The nine source ' +
+    'booklets in this build did not state a marking scheme or a paper duration, so nothing below ' +
+    'is presented as official. Set the values your own preparation uses.</div>';
+  h += '<div class="grid g2">';
+  h += '<label class="f"><span>Marks per correct answer</span>' +
+    '<input type="number" step="0.25" min="0" value="' + st.marksCorrect + '" data-act="setCfg" data-k="marksCorrect"></label>';
+  h += '<label class="f"><span>Negative marking fraction of a correct mark</span>' +
+    '<input type="number" step="0.0001" min="0" max="1" value="' + st.negativeMarkFraction +
+    '" data-act="setCfg" data-k="negativeMarkFraction"></label>';
+  h += '<label class="f"><span>Minutes per question (auto timer)</span>' +
+    '<input type="number" step="0.1" min="0.1" value="' + st.minutesPerQuestion +
+    '" data-act="setCfg" data-k="minutesPerQuestion"></label>';
+  h += '<label class="f"><span>Full-paper minutes (80 questions)</span>' +
+    '<input type="number" step="1" min="1" value="' + st.fullPaperMinutes +
+    '" data-act="setCfg" data-k="fullPaperMinutes"></label>';
+  h += '</div>';
+  h += '<label class="f"><span>Behaviour</span><div class="checks">' +
+    '<label><input type="checkbox" data-act="setCfgBool" data-k="negativeMarkingEnabled"' +
+    (st.negativeMarkingEnabled ? ' checked' : '') + '> Apply negative marking</label>' +
+    '<label><input type="checkbox" data-act="setCfgBool" data-k="timerOn"' +
+    (st.timerOn ? ' checked' : '') + '> Timed mocks by default</label>' +
+    '</div></label>';
+  h += '<label class="f"><span>Default mode</span><div class="checks">' +
+    '<label><input type="radio" name="dmode" data-act="setDefMode" value="exam"' +
+    (st.defaultMode === 'exam' ? ' checked' : '') + '> Strict Exam</label>' +
+    '<label><input type="radio" name="dmode" data-act="setDefMode" value="learn"' +
+    (st.defaultMode === 'learn' ? ' checked' : '') + '> Learning</label></div></label>';
+  h += '</div>';
+
+  h += '<div class="card"><h3>Export / import progress</h3>' +
+    '<p class="small muted">Everything is stored in this browser only. Export writes a plain ' +
+    'JSON file you can copy to another device; import replaces the current data.</p>' +
+    '<div class="btnrow mb">' +
+    '<button type="button" class="btn primary" data-act="exportData">Download progress JSON</button>' +
+    '<button type="button" class="btn" data-act="showExport">Show JSON to copy</button>' +
+    '<label class="btn" style="cursor:pointer">Import from file' +
+    '<input type="file" accept="application/json,.json" style="display:none" data-act="importFile"></label>' +
+    '</div>' +
+    '<label class="f"><span>Or paste exported JSON here and import</span>' +
+    '<textarea id="importbox" rows="5" style="width:100%;font-family:var(--font-mono);font-size:.8rem;' +
+    'border:1px solid var(--line-2);border-radius:var(--r-s);padding:8px;background:var(--surface);' +
+    'color:var(--ink)"></textarea></label>' +
+    '<div class="btnrow"><button type="button" class="btn" data-act="importText">Import pasted JSON</button></div>' +
+    '</div>';
+
+  h += '<div class="card"><h3>Reset</h3><div class="btnrow">' +
+    '<button type="button" class="btn danger" data-act="resetHistory">Reset attempt history</button>' +
+    '<button type="button" class="btn danger" data-act="resetMistakes">Reset mistake bank</button>' +
+    '<button type="button" class="btn danger" data-act="resetBookmarks">Reset bookmarks</button>' +
+    '<button type="button" class="btn danger" data-act="resetAll">Reset everything</button>' +
+    '</div></div>';
+
+  h += '<div class="card"><h3>About this build</h3><div class="small">' +
+    '<p><b>Dataset:</b> ' + META.totalQuestions + ' authentic PYQs, ' + META.years.length +
+    ' papers, version ' + E(META.datasetVersion) + '.</p>';
+  Object.keys(META.provenance).forEach(function (k) {
+    h += '<p><b>' + E(k) + ':</b> ' + E(META.provenance[k]) + '</p>';
+  });
+  h += '<p><b>Offline:</b> this application makes no network request of any kind. There is no ' +
+    'CDN, no API, no server, no external font and no external library. It runs from ' +
+    '<code>file://</code> by opening <code>index.html</code>.</p></div></div>';
+  return h;
+};
+
+/* ---------------------------------------------------------- 8.13 audit */
+V.audit = function () {
+  var h = crumb(['Home', 'Data audit']);
+  h += '<div class="card"><h1>Data audit</h1>' +
+    '<p class="card-sub">Validation runs automatically every time the application loads.</p>';
+  h += '<div class="kpis">' +
+    '<div class="kpi"><div class="v">' + AUDIT.total + '</div><div class="l">Total questions</div></div>' +
+    '<div class="kpi ' + (AUDIT.ok ? 'ok' : 'bad') + '"><div class="v">' + AUDIT.errors.length +
+    '</div><div class="l">Errors</div></div>' +
+    '<div class="kpi warn"><div class="v">' + AUDIT.warnings.length + '</div><div class="l">Warnings</div></div>' +
+    '<div class="kpi"><div class="v">' + AUDIT.sourceIssues + '</div><div class="l">Source issues</div></div>' +
+    '</div></div>';
+
+  h += '<div class="card"><h3>Counts</h3><div class="scrollx"><table class="dt">' +
+    '<thead><tr><th>Year</th><th class="num">Questions</th><th>Source file</th></tr></thead><tbody>';
+  META.years.forEach(function (y) {
+    h += '<tr><td>' + y + '</td><td class="num">' + (AUDIT.perYear[y] || 0) + '</td><td class="tiny">' +
+      E(META.sourceFiles[y]) + '</td></tr>';
+  });
+  h += '<tr><td><b>TOTAL</b></td><td class="num"><b>' + AUDIT.total + '</b></td><td>9 papers</td></tr>';
+  h += '</tbody></table></div>';
+
+  h += '<div class="scrollx mt"><table class="dt"><thead><tr><th>Check</th><th class="num">Count</th></tr></thead><tbody>' +
+    row2('Duplicate ids', AUDIT.duplicateIds) +
+    row2('Duplicate / near-duplicate question text', AUDIT.duplicateText) +
+    row2('Missing options', AUDIT.missingOptions) +
+    row2('Missing answers', AUDIT.missingAnswers) +
+    row2('Missing solutions', AUDIT.missingSolutions) +
+    row2('Missing exam shortcuts', AUDIT.missingShortcuts) +
+    row2('Missing tips', AUDIT.missingTips) +
+    row2('Classification issues', AUDIT.classificationIssues) +
+    row2('Mathematical-notation warnings', AUDIT.mathIssues) +
+    row2('Source issues flagged and preserved', AUDIT.sourceIssues) +
+    row2('Distinct topics', AUDIT.topics) +
+    row2('Distinct subtopics', AUDIT.subtopics) +
+    '</tbody></table></div></div>';
+
+  var flagged = DATA.filter(function (q) { return q.sourceIssue; });
+  h += '<div class="card"><h3>Flagged source issues (' + flagged.length + ')</h3>' +
+    '<p class="small muted">These are defects in the printed source papers. Nothing has been ' +
+    'silently rewritten: the stem and options are reproduced exactly as printed and the problem ' +
+    'is recorded here and on the question itself. Items with no valid option are excluded from ' +
+    'scoring.</p><ul class="list">';
+  flagged.forEach(function (q) {
+    h += '<li><div class="top"><span class="id">' + E(q.id) + '</span>' +
+      '<span class="chip">' + E(q.unit) + '</span>' +
+      (scorable(q) ? '<span class="chip warn">keyed with caveat</span>'
+                   : '<span class="chip bad">not scored</span>') + '</div>' +
+      '<div class="small">' + E(q.sourceIssue) + '</div>' +
+      '<div class="btnrow mt"><button type="button" class="btn sm" data-act="study" data-qid="' +
+      E(q.id) + '" data-back="audit">Open study card</button></div></li>';
+  });
+  h += '</ul></div>';
+
+  if (AUDIT.errors.length) {
+    h += '<div class="card"><h3>Errors</h3><ul class="small">';
+    AUDIT.errors.slice(0, 200).forEach(function (e) { h += '<li>' + E(e) + '</li>'; });
+    h += '</ul></div>';
+  }
+  if (AUDIT.warnings.length) {
+    h += '<div class="card"><h3>Warnings</h3><ul class="small">';
+    AUDIT.warnings.slice(0, 200).forEach(function (e) { h += '<li>' + E(e) + '</li>'; });
+    h += '</ul></div>';
+  }
+  return h;
+};
+
+function row2(a, b) {
+  return '<tr><td>' + a + '</td><td class="num">' + b + '</td></tr>';
+}
+
+/* ======================================================================
+   9.  RENDER + EVENTS
+   ====================================================================== */
+function render() {
+  var fn = V[ROUTE.name] || V.home;
+  app.innerHTML = fn();
+}
+
+function startFromBuilder() {
+  var B = BUILDER;
+  var st = Store.d().settings;
+  var qs = builderQuestions(B);
+  if (!qs.length) return;
+  if (B.kind !== 'year' && B.count > 0 && B.count < qs.length) {
+    var pick = qs.slice();
+    shuffle(pick);
+    qs = pick.slice(0, B.count);
+    qs.sort(function (a, b) { return a.year - b.year || a.questionNumber - b.questionNumber; });
+  }
+  var minutes = B.minutes > 0 ? B.minutes
+    : (B.kind === 'year' ? st.fullPaperMinutes : Math.round(qs.length * st.minutesPerQuestion));
+  buildSession({
+    kind: B.kind,
+    name: builderName(B),
+    desc: builderDesc(B, qs.length),
+    mode: B.mode,
+    questions: qs,
+    shuffleQ: B.kind === 'year' ? false : B.shuffleQ,
+    shuffleO: B.kind === 'year' ? false : B.shuffleO,
+    timed: B.timed,
+    minutes: minutes,
+    authentic: B.kind === 'year'
+  });
+}
+
+function practiceFromIds(ids, name, kind) {
+  var qs = ids.map(function (i) { return BY_ID[i]; }).filter(Boolean);
+  qs = uniqBy(qs, function (q) { return q.id; });
+  if (!qs.length) { window.alert('Nothing to practise here yet.'); return; }
+  var st = Store.d().settings;
+  buildSession({
+    kind: kind || 'custom',
+    name: name,
+    desc: qs.length + ' question(s) \u00b7 mode: ' + (st.defaultMode === 'exam' ? 'Strict Exam' : 'Learning'),
+    mode: st.defaultMode,
+    questions: qs,
+    shuffleQ: true, shuffleO: false,
+    timed: st.timerOn,
+    minutes: Math.round(qs.length * st.minutesPerQuestion),
+    authentic: false
+  });
+}
+
+app.addEventListener('click', function (ev) {
+  var t = closest(ev.target, '[data-act]');
+  if (!t) return;
+  var act = t.getAttribute('data-act');
+  var d = Store.d();
+
+  switch (act) {
+    case 'go':
+      if (S && !S.finished && ROUTE.name === 'exam') {
+        if (!window.confirm('Leave the mock in progress? Your answers will be lost.')) return;
+        stopTick(); S = null;
+      }
+      go(t.getAttribute('data-r'));
+      return;
+
+    case 'setup':
+      BUILDER = newBuilder(t.getAttribute('data-k'));
+      if (BUILDER.kind === 'year') BUILDER.years = [String(META.years[META.years.length - 1])];
+      go('setup');
+      return;
+
+    case 'startMock': startFromBuilder(); return;
+
+    case 'opt': chooseOption(+t.getAttribute('data-i')); return;
+    case 'jump': gotoQ(+t.getAttribute('data-i')); return;
+    case 'prevQ': gotoQ(S.cur - 1); return;
+    case 'nextQ': gotoQ(S.cur + 1); return;
+    case 'markQ': S.marked[S.cur] = !S.marked[S.cur]; render(); return;
+    case 'clearAns': S.answers[S.cur] = null; render(); return;
+
+    case 'submitMock': {
+      var un = 0;
+      S.answers.forEach(function (a) { if (a === null) un++; });
+      var msg = 'Submit this mock?\n\nAnswered: ' + (S.items.length - un) +
+        '\nUnanswered: ' + un + '\n\nYou cannot return to the paper after submitting.';
+      if (window.confirm(msg)) finishSession(false);
+      return;
+    }
+    case 'abandon':
+      if (window.confirm('Abandon this mock? Nothing will be saved.')) {
+        stopTick(); S = null; go('home');
+      }
+      return;
+
+    case 'reviewAt':
+      REVIEW.idx = +t.getAttribute('data-i');
+      REVIEW.filter = 'all';
+      go('review');
+      return;
+    case 'revFilter': REVIEW.filter = t.getAttribute('data-f'); render(); return;
+    case 'revStep': {
+      var r = S.result;
+      var list = r.perQ.map(function (p, i) { return i; });
+      if (REVIEW.filter === 'incorrect') list = list.filter(function (i) { return r.perQ[i].status === 'incorrect'; });
+      else if (REVIEW.filter === 'correct') list = list.filter(function (i) { return r.perQ[i].status === 'correct'; });
+      else if (REVIEW.filter === 'unanswered') list = list.filter(function (i) { return r.perQ[i].status === 'unanswered'; });
+      else if (REVIEW.filter === 'marked') list = list.filter(function (i) { return r.perQ[i].marked; });
+      var p2 = list.indexOf(REVIEW.idx) + (+t.getAttribute('data-d'));
+      if (p2 >= 0 && p2 < list.length) { REVIEW.idx = list[p2]; render(); window.scrollTo(0, 0); }
+      return;
+    }
+
+    case 'retryIncorrect':
+      practiceFromIds(S.result.perQ.filter(function (p) { return p.status === 'incorrect'; })
+        .map(function (p) { return p.qid; }), 'Retry incorrect \u00b7 ' + S.name, 'mistakes');
+      return;
+    case 'retryUnanswered':
+      practiceFromIds(S.result.perQ.filter(function (p) { return p.status === 'unanswered'; })
+        .map(function (p) { return p.qid; }), 'Retry unanswered \u00b7 ' + S.name, 'mistakes');
+      return;
+    case 'retakeSame':
+      practiceFromIds(S.result.perQ.map(function (p) { return p.qid; }), S.name + ' (retake)', S.kind);
+      return;
+
+    case 'practiceIds': {
+      var src = t.getAttribute('data-src');
+      var ids = src === 'mistakes' ? Object.keys(d.mistakes)
+        : src === 'skipped' ? Object.keys(d.skipped)
+        : src === 'bookmarks' ? Object.keys(d.bookmarks)
+        : Object.keys(d.mistakes).concat(Object.keys(d.skipped));
+      var nm = src === 'mistakes' ? 'Practice My Mistakes'
+        : src === 'skipped' ? 'Retry unanswered'
+        : src === 'bookmarks' ? 'My bookmarks practice' : 'Mistakes + skipped';
+      practiceFromIds(ids, nm, 'mistakes');
+      return;
+    }
+    case 'practiceWeak': {
+      var weak = weakAreas(3).slice(0, 3).map(function (r) { return r.k.split(' \u2014 ')[1]; });
+      var pool = DATA.filter(function (q) { return weak.indexOf(q.topic) >= 0; });
+      shuffle(pool);
+      practiceFromIds(pool.slice(0, 40).map(function (q) { return q.id; }),
+        'Practice My Weak Areas', 'custom');
+      return;
+    }
+    case 'practiceSearch': {
+      var qq = SEARCH.q.trim().toLowerCase();
+      var terms = qq ? qq.split(/\s+/) : [];
+      var hits = [];
+      for (var i = 0; i < DATA.length; i++) {
+        var q = DATA[i];
+        if (SEARCH.unit && q.unit !== SEARCH.unit) continue;
+        if (SEARCH.year && String(q.year) !== String(SEARCH.year)) continue;
+        var ok = true;
+        for (var k = 0; k < terms.length; k++) if (SEARCH_INDEX[i].indexOf(terms[k]) < 0) { ok = false; break; }
+        if (ok) hits.push(q.id);
+      }
+      practiceFromIds(hits.slice(0, 200), 'Search practice' + (qq ? ' \u00b7 ' + SEARCH.q : ''), 'custom');
+      return;
+    }
+
+    case 'bookmark': {
+      var qid = t.getAttribute('data-qid');
+      if (d.bookmarks[qid]) delete d.bookmarks[qid];
+      else d.bookmarks[qid] = Date.now();
+      Store.save();
+      render();
+      return;
+    }
+    case 'study':
+      STUDY.qid = t.getAttribute('data-qid');
+      STUDY.back = t.getAttribute('data-back') || 'home';
+      go('study');
+      return;
+
+    case 'resetHistory':
+      if (window.confirm('Clear all attempt history? Analytics will be reset.')) { Store.reset('history'); render(); }
+      return;
+    case 'resetMistakes':
+      if (window.confirm('Clear the mistake bank?')) { Store.reset('mistakes'); render(); }
+      return;
+    case 'resetBookmarks':
+      if (window.confirm('Remove all bookmarks?')) { Store.reset('bookmarks'); render(); }
+      return;
+    case 'resetAll':
+      if (window.confirm('Erase ALL local data: history, analytics, mistakes, bookmarks and settings?')) {
+        Store.reset('all'); Store.save(); go('home');
+      }
+      return;
+
+    case 'exportData': exportData(); return;
+    case 'showExport': showExport(); return;
+    case 'importText': {
+      var box = document.getElementById('importbox');
+      if (box && box.value.trim()) doImport(box.value);
+      else window.alert('Paste the exported JSON into the box first.');
+      return;
+    }
+  }
+});
+
+/* change / input events */
+app.addEventListener('change', function (ev) {
+  var t = closest(ev.target, '[data-act]');
+  if (!t) return;
+  var act = t.getAttribute('data-act');
+  var B = BUILDER, d = Store.d();
+
+  function toggle(arr, val, on) {
+    var i = arr.indexOf(val);
+    if (on && i < 0) arr.push(val);
+    if (!on && i >= 0) arr.splice(i, 1);
+  }
+
+  switch (act) {
+    case 'setYear': B.years = [t.value]; render(); return;
+    case 'tgYear': toggle(B.years, t.value, t.checked); render(); return;
+    case 'tgUnit': toggle(B.units, t.value, t.checked);
+      B.topics = B.topics.filter(function (tp) {
+        return !B.units.length || B.units.some(function (u) { return !!META.taxonomy[u].topics[tp]; });
+      });
+      render(); return;
+    case 'tgTopic': toggle(B.topics, t.value, t.checked); render(); return;
+    case 'tgSub': toggle(B.subtopics, t.value, t.checked); render(); return;
+    case 'setCount': B.count = Math.max(0, parseInt(t.value, 10) || 0); refreshSetupSummary(); return;
+    case 'setMinutes': B.minutes = Math.max(0, parseInt(t.value, 10) || 0); refreshSetupSummary(); return;
+    case 'setMode': B.mode = t.value; render(); return;
+    case 'tgTimed': B.timed = t.checked; render(); return;
+    case 'tgShuffleQ': B.shuffleQ = t.checked; render(); return;
+    case 'tgShuffleO': B.shuffleO = t.checked; render(); return;
+
+    case 'setCfg': {
+      var v = parseFloat(t.value);
+      if (!isNaN(v)) { d.settings[t.getAttribute('data-k')] = v; Store.save(); }
+      return;
+    }
+    case 'setCfgBool': d.settings[t.getAttribute('data-k')] = t.checked; Store.save(); return;
+    case 'setDefMode': d.settings.defaultMode = t.value; Store.save(); return;
+
+    case 'searchUnit': SEARCH.unit = t.value; render(); focusSearch(); return;
+    case 'searchYear': SEARCH.year = t.value; render(); focusSearch(); return;
+
+    case 'importFile': {
+      var f = t.files && t.files[0];
+      if (!f) return;
+      var fr = new FileReader();
+      fr.onload = function () { doImport(String(fr.result)); };
+      fr.readAsText(f);
+      return;
+    }
+  }
+});
+
+var searchTimer = null;
+app.addEventListener('input', function (ev) {
+  var t = closest(ev.target, '[data-act]');
+  if (!t) return;
+  var act = t.getAttribute('data-act');
+  if (act === 'setCount' && BUILDER) {
+    BUILDER.count = Math.max(0, parseInt(t.value, 10) || 0);
+    refreshSetupSummary();
+    return;
+  }
+  if (act === 'setMinutes' && BUILDER) {
+    BUILDER.minutes = Math.max(0, parseInt(t.value, 10) || 0);
+    refreshSetupSummary();
+    return;
+  }
+  if (act === 'searchInput' || act === 'bmFilter') {
+    SEARCH.q = t.value;
+    if (searchTimer) window.clearTimeout(searchTimer);
+    searchTimer = window.setTimeout(function () { render(); focusSearch(); }, 180);
+  }
+});
+
+function focusSearch() {
+  var el = document.getElementById('sq') || document.getElementById('bmq');
+  if (el) {
+    el.focus();
+    try { el.setSelectionRange(el.value.length, el.value.length); } catch (e) {}
+  }
+}
+
+/* top bar */
+document.getElementById('topbar').addEventListener('click', function (ev) {
+  var t = closest(ev.target, '[data-act]');
+  if (!t || t.getAttribute('data-act') !== 'go') return;
+  if (S && !S.finished && ROUTE.name === 'exam') {
+    if (!window.confirm('Leave the mock in progress? Your answers will be lost.')) return;
+    stopTick(); S = null;
+  }
+  go(t.getAttribute('data-r'));
+});
+
+/* keyboard shortcuts */
+document.addEventListener('keydown', function (ev) {
+  var tag = (ev.target && ev.target.tagName) || '';
+  if (/^(INPUT|TEXTAREA|SELECT)$/.test(tag) || ev.target.isContentEditable) return;
+  if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
+
+  if (ROUTE.name === 'exam' && S && !S.finished) {
+    if (ev.key >= '1' && ev.key <= '4') { chooseOption(+ev.key - 1); ev.preventDefault(); return; }
+    if (ev.key === 'ArrowLeft') { gotoQ(S.cur - 1); ev.preventDefault(); return; }
+    if (ev.key === 'ArrowRight') { gotoQ(S.cur + 1); ev.preventDefault(); return; }
+    if (ev.key === 'm' || ev.key === 'M') { S.marked[S.cur] = !S.marked[S.cur]; render(); ev.preventDefault(); return; }
+  }
+  if (ROUTE.name === 'review' && S && S.result) {
+    if (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight') {
+      var btn = app.querySelector('[data-act="revStep"][data-d="' + (ev.key === 'ArrowLeft' ? '-1' : '1') + '"]');
+      if (btn && !btn.disabled) btn.click();
+      ev.preventDefault();
+      return;
+    }
+  }
+  if (ev.key === 'h' || ev.key === 'H') { go('home'); return; }
+  if (ev.key === 's' || ev.key === 'S') { go('search'); focusSearch(); return; }
+});
+
+/* leaving the page mid-exam */
+window.addEventListener('beforeunload', function (ev) {
+  if (S && !S.finished) { ev.preventDefault(); ev.returnValue = ''; return ''; }
+});
+
+/* ======================================================================
+   10. EXPORT / IMPORT
+   ====================================================================== */
+function exportPayload() {
+  var d = Store.d();
+  return JSON.stringify({
+    app: 'upsc-iss-stat1-mock-engine',
+    v: 1,
+    exportedAt: new Date().toISOString(),
+    datasetVersion: META.datasetVersion,
+    data: d
+  }, null, 1);
+}
+
+function exportData() {
+  var txt = exportPayload();
+  try {
+    var blob = new Blob([txt], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'iss-stat1-progress-' + new Date().toISOString().slice(0, 10) + '.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+  } catch (e) {
+    showExport();
+  }
+}
+
+function showExport() {
+  var txt = exportPayload();
+  var back = document.createElement('div');
+  back.className = 'modal-back';
+  back.innerHTML = '<div class="modal"><h3>Progress JSON</h3>' +
+    '<p class="small muted">Select all and copy. Paste it into the import box on another device.</p>' +
+    '<textarea rows="12" style="width:100%;font-family:var(--font-mono);font-size:.72rem;' +
+    'border:1px solid var(--line-2);border-radius:5px;padding:8px;background:var(--surface);' +
+    'color:var(--ink)"></textarea>' +
+    '<div class="btnrow mt"><button type="button" class="btn primary" data-close="1">Close</button></div></div>';
+  document.body.appendChild(back);
+  var ta = back.querySelector('textarea');
+  ta.value = txt;
+  ta.focus(); ta.select();
+  back.addEventListener('click', function (e) {
+    if (e.target === back || (e.target.getAttribute && e.target.getAttribute('data-close'))) {
+      document.body.removeChild(back);
+    }
+  });
+}
+
+function doImport(text) {
+  var obj;
+  try { obj = JSON.parse(text); }
+  catch (e) { window.alert('That is not valid JSON.'); return; }
+  var payload = obj && obj.data ? obj.data : obj;
+  if (!payload || typeof payload !== 'object' || !payload.settings) {
+    window.alert('This file does not look like an exported progress file.');
+    return;
+  }
+  if (!window.confirm('Import will REPLACE your current history, bookmarks, mistakes and settings. Continue?')) return;
+  var d = Store.d();
+  var b = Store.blank();
+  d.settings = payload.settings || b.settings;
+  d.history = payload.history || [];
+  d.bookmarks = payload.bookmarks || {};
+  d.mistakes = payload.mistakes || {};
+  d.skipped = payload.skipped || {};
+  d.seq = payload.seq || 0;
+  Store.save();
+  window.alert('Progress imported: ' + d.history.length + ' attempt(s).');
+  go('home');
+}
+
+/* ======================================================================
+   11. BOOT
+   ====================================================================== */
+if (!DATA.length) {
+  app.innerHTML = '<div class="card"><h1>Question database not loaded</h1>' +
+    '<p>Make sure <code>questions.js</code>, <code>styles.css</code> and <code>index.html</code> ' +
+    'are all in the same folder, then reopen <code>index.html</code>.</p></div>';
+} else {
+  /* small read-only hook, used by the build-time validation harness and handy
+     for anyone who wants to inspect the dataset from the browser console */
+  window.ISSApp = {
+    version: META.datasetVersion,
+    audit: AUDIT,
+    render: R,
+    strip: ML.strip,
+    session: function () {
+      return S ? { ids: S.items.map(function (i) { return i.qid; }),
+                   order: S.items.map(function (i) { return i.order; }),
+                   cur: S.cur, mode: S.mode, finished: S.finished } : null;
+    }
+  };
+  if (window.console && window.console.log) {
+    window.console.log('[ISS Stat-I] dataset ' + META.datasetVersion + ' · ' + DATA.length +
+      ' questions · audit ' + (AUDIT.ok ? 'PASSED' : 'FAILED (' + AUDIT.errors.length + ' errors)'));
+  }
+  render();
+}
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+{
+ "P1": {
+  "code": "P1",
+  "name": "Classical & Axiomatic Probability, Consequences",
+  "weight": "10 questions (5.1% of Probability) · appeared in 7 of 9 papers · peak year 2018 (2)",
+  "pattern": "Two flavours only. (a) Combinatorial/classical counting — round-table seating, splitting 4n people into batches, ordered vs unordered samples. (b) Geometric probability — Buffon's needle, a point dropped in a square, the condition for a quadratic to have real roots. Independence-based unions appear as the opening question of a paper.",
+  "mustKnow": "P(A1 u ... u An) = 1 - prod(1 - P(Ai)) for independent events; inclusion-exclusion; geometric probability = favourable area / total area; ordered samples n^r vs nPr."
+ },
+ "P2": {
+  "code": "P2",
+  "name": "Conditional Probability, Law of Total Probability, Bayes' Theorem",
+  "weight": "13 questions (6.6% of Probability) · appeared in 7 of 9 papers · peak year 2020 (3)",
+  "pattern": "The urn/agency/factory Bayes template is the single most reliable item in this sub-topic — it appeared in 2018, 2019 (twice), 2023 and 2026. Two other patterns: conditioning that truncates the support of a uniform (P(5<X<7 | X>6) is a trap — the answer is 0, not a ratio of lengths), and Polya-type urns where the ball is replaced with additions.",
+  "mustKnow": "Bayes with unequal priors: P(Bk|A) = P(A|Bk)P(Bk) / sum_j P(A|Bj)P(Bj). When conditioning truncates the support, intersect the events FIRST, then divide."
+ },
+ "P3": {
+  "code": "P3",
+  "name": "Random Variables & Distribution Functions",
+  "weight": "10 questions (5.1% of Probability) · appeared in 5 of 9 papers · peak year 2019 (3)",
+  "pattern": "Given a piecewise CDF containing an unknown alpha, solve for alpha or evaluate a probability — the exact same shell was used twice in one paper (2020 Q33 and Q36). Also: verifying a constant makes a function a valid pmf/pdf, and mixed distributions with a jump.",
+  "mustKnow": "F is non-decreasing, right-continuous, F(-inf)=0, F(inf)=1; jump size at x equals P(X=x); for a valid pdf, integral over the support = 1."
+ },
+ "P4": {
+  "code": "P4",
+  "name": "Standard Discrete Distributions",
+  "weight": "20 questions (10.2% of Probability) · appeared in 9 of 9 papers · peak year 2019 (5)",
+  "pattern": "Poisson approximation to the binomial, binomial mode and skewness, and waiting-time counting are the workhorses. Negative binomial appears disguised ('the seventh child is the second daughter', 'the first win is on trial N'). Hypergeometric shows up as sampling without replacement with a variance ask. Multinomial appears once as a covariance ask.",
+  "mustKnow": "NB: P(X=n) = C(n-1, r-1) p^r q^(n-r); hypergeometric Var = n(K/N)(1-K/N)(N-n)/(N-1); multinomial Cov(Xi,Xj) = -npipj; binomial mode = floor((n+1)p)."
+ },
+ "P5": {
+  "code": "P5",
+  "name": "Standard Continuous Distributions",
+  "weight": "21 questions (10.7% of Probability) · appeared in 8 of 9 papers · peak year 2025 (7)",
+  "pattern": "Beta of the first kind is the recent favourite (mode, and recovering parameters from mean and variance). Also standard: exponential mean-vs-variance comparison, Laplace CDF, Cauchy having no mean, and writing P(a<=X<=b) for a normal in terms of Phi.",
+  "mustKnow": "Beta-I mode = (a-1)/(a+b-2) for a,b>1; Laplace F(x) = 0.5exp(x) for x<0; Cauchy has no moments; exponential: Var > mean iff theta < 1."
+ },
+ "P6": {
+  "code": "P6",
+  "name": "Random Vectors: Joint, Marginal & Conditional Distributions",
+  "weight": "40 questions (20.4% of Probability) · appeared in 9 of 9 papers · peak year 2026 (9)",
+  "pattern": "THE highest-yield block in Probability (40 items). Modern papers bundle 2-3 questions onto one joint density — 2021, 2023, 2025 and 2026 all did this, so one setup can be worth 3 marks. The drill is always the same: marginal, then conditional, then a probability over a region, then E(XY) or a conditional moment. Watch the region: triangular supports (0<x<y<1) and curved supports (x^2 <= y) are deliberately chosen to punish careless limits.",
+  "mustKnow": "f_X(x) = integral f(x,y) dy; f(y|x) = f(x,y)/f_X(x); independence iff f(x,y) factorises AND the support is a rectangle; always sketch the region before setting limits."
+ },
+ "P7": {
+  "code": "P7",
+  "name": "Distributions of Functions of Random Variables",
+  "weight": "15 questions (7.7% of Probability) · appeared in 8 of 9 papers · peak year 2018 (3)",
+  "pattern": "Pure transformation drills, and the same half-dozen results recycle: X/Y of two independent standard normals -> Cauchy; X-Y of two iid exponentials -> Laplace; -ln X for U(0,1) -> exponential; the probability integral transform -log F(X) -> exponential(1); Y = X^2 on (0,1); sum of iid exponentials -> Gamma.",
+  "mustKnow": "Jacobian method: f_Y(y) = f_X(g^-1(y))  |d/dy g^-1(y)|. For non-monotone maps sum over all branches. Memorise the six standard results above."
+ },
+ "P8": {
+  "code": "P8",
+  "name": "Mathematical Expectation & Conditional Expectation",
+  "weight": "24 questions (12.2% of Probability) · appeared in 8 of 9 papers · peak year 2024 (8)",
+  "pattern": "Mostly computational: E(XY) and Var of linear combinations from a joint law, conditional expectation from a table or density, and the tower property. A recurring trap is a series whose sum is only conditionally convergent — the question is whether the mean exists at all, not what it equals.",
+  "mustKnow": "Var(aX+bY) = a^2 Var(X) + b^2 Var(Y) + 2ab Cov(X,Y); E(X) = E[E(X|Y)]; Var(X) = E[Var(X|Y)] + Var[E(X|Y)]; a mean exists only if E|X| < infinity."
+ },
+ "P9": {
+  "code": "P9",
+  "name": "Characteristic Function, MGF & PGF; Inversion, Uniqueness, Continuity",
+  "weight": "21 questions (10.7% of Probability) · appeared in 7 of 9 papers · peak year 2024 (7)",
+  "pattern": "Rising sharply — 7 items in 2024 and 5 in 2025. Recurring: identify a distribution from its MGF, MGF of a linear combination of normals, the pgf P(s) = E(s^X), and the compound/random-sum result M_SN(t) = M_N(log M_X(t)), which was asked in 2024, 2025 AND 2026. Characteristic functions of products and ratios also appear.",
+  "mustKnow": "M_(aX+b)(t) = e^(bt) M_X(at); uniqueness theorem; compound sums: M_SN(t) = M_N(log M_X(t)); cumulants k1 = mu1', k2 = mu2, k3 = mu3, k4 = mu4 - 3mu2^2."
+ },
+ "P10": {
+  "code": "P10",
+  "name": "Modes of Convergence of Sequences of Random Variables",
+  "weight": "5 questions (2.6% of Probability) · appeared in 4 of 9 papers · peak year 2022 (2)",
+  "pattern": "Small but pure-theory. Always a constructed counterexample: a sequence that converges in probability but not in mean square, or a limiting CDF that must be checked at the boundaries. Know which implication fails in which direction.",
+  "mustKnow": "a.s. => in probability => in distribution; mean-square => in probability. None of the converses hold without extra conditions (uniform integrability, or a constant limit for dist => prob)."
+ },
+ "P11": {
+  "code": "P11",
+  "name": "Borel 0-1 Law, Kolmogorov 0-1 Law",
+  "weight": "3 questions (1.5% of Probability) · appeared in 2 of 9 papers · peak year 2021 (2)",
+  "pattern": "Only three appearances in nine years, all in 2021-2022, and all recognisable on sight: 'sum P(An) < infinity, what is P(limsup An)?' and 'does the pattern SFSF occur infinitely often?'. Cheap marks if you know both halves of Borel-Cantelli.",
+  "mustKnow": "BC-I: sum P(An) < inf => P(limsup An) = 0. BC-II: if the An are independent and sum P(An) = inf => P(limsup An) = 1."
+ },
+ "P12": {
+  "code": "P12",
+  "name": "Tchebycheff's & Kolmogorov's Inequalities",
+  "weight": "7 questions (3.6% of Probability) · appeared in 5 of 9 papers · peak year 2019 (2)",
+  "pattern": "A fixed template: mean and variance are given, and the answer is a bound with the words 'at least' or 'at most'. It also appears as a sample-size question ('how large must n be so that the probability is at least 0.95'). Spotting 'at least' next to a mean and a variance is the whole skill.",
+  "mustKnow": "P(|X - mu| >= ksigma) <= 1/k^2, so P(|X - mu| < ksigma) >= 1 - 1/k^2. Markov: P(X >= a) <= E(X)/a. Sample size: n >= sigma^2 / (eps^2  alpha)."
+ },
+ "P13": {
+  "code": "P13",
+  "name": "Laws of Large Numbers & Central Limit Theorems",
+  "weight": "7 questions (3.6% of Probability) · appeared in 5 of 9 papers · peak year 2021 (3)",
+  "pattern": "CLT dressed up as a limit of a binomial sum, consistency of the sample proportion, the CLT applied to sums of squares, and the asymptotic distribution of the empirical CDF. Recognise a sum standardised by sqrt(n) and you are done.",
+  "mustKnow": "CLT: (sum Xi - nmu)/(sigmasqrt(n)) -> N(0,1). WLLN needs finite mean (Khinchine); SLLN gives almost-sure convergence."
+ },
+ "S1": {
+  "code": "S1",
+  "name": "Collection, Compilation & Presentation of Data; Frequency Distributions",
+  "weight": "2 questions (1.2% of Statistical Methods) · appeared in 2 of 9 papers · peak year 2018 (1)",
+  "pattern": "Almost dead — two items in nine years, both conceptual: scales of measurement (nominal/ordinal/interval/ratio) and what counts as data condensation. Do not spend preparation time here beyond knowing the four scales.",
+  "mustKnow": "Nominal < ordinal < interval < ratio in permitted operations; only ratio scale has a true zero, so only it permits meaningful ratios."
+ },
+ "S2": {
+  "code": "S2",
+  "name": "Measures of Location & Dispersion",
+  "weight": "10 questions (6.1% of Statistical Methods) · appeared in 6 of 9 papers · peak year 2021 (3)",
+  "pattern": "Mean deviation is minimum about the median — asked directly and also embedded in a ratio. Other repeats: effect of y = ax + b on mean, SD and MD; comparing variability across two variables via the coefficient of variation; pooling two groups' means and variances.",
+  "mustKnow": "MD(ax+b) = |a| MD(x); SD(ax+b) = |a| SD(x); CV = 100sigma/mean; combined variance = [n1(s1^2 + d1^2) + n2(s2^2 + d2^2)]/(n1+n2) with di = mean_i - combined mean."
+ },
+ "S3": {
+  "code": "S3",
+  "name": "Skewness & Kurtosis (Moments)",
+  "weight": "4 questions (2.4% of Statistical Methods) · appeared in 4 of 9 papers · peak year 2018 (1)",
+  "pattern": "Small but consistent: back out sigma from Pearson's coefficient of skewness, the third central moment of a binomial, recovering (n,p) from gamma1 and gamma2, and extracting a fourth central moment from a characteristic function.",
+  "mustKnow": "Sk = (mean - mode)/sigma = 3(mean - median)/sigma; binomial mu3 = npq(q-p), mu4 = 3n^2q^2p^2 + npq(1-6pq); gamma1 = mu3/sigma^3, gamma2 = mu4/sigma^4 - 3."
+ },
+ "S4": {
+  "code": "S4",
+  "name": "Bivariate & Multivariate Data; Association & Contingency",
+  "weight": "12 questions (7.3% of Statistical Methods) · appeared in 7 of 9 papers · peak year 2025 (3)",
+  "pattern": "2x2 attribute tables are the whole topic. Three asks recur: Yule's coefficient of association Q, the consistency conditions on class frequencies, and the positive/negative/independent verdict by comparing (AB) with (A)(B)/N. The coefficient of contingency from a chi-square value shows up once.",
+  "mustKnow": "Q = (ad - bc)/(ad + bc); independence iff (AB) = (A)(B)/N; consistency requires every ultimate class frequency >= 0; C = sqrt(chi2/(chi2 + N))."
+ },
+ "S5": {
+  "code": "S5",
+  "name": "Curve Fitting & Orthogonal Polynomials",
+  "weight": "3 questions (1.8% of Statistical Methods) · appeared in 3 of 9 papers · peak year 2021 (1)",
+  "pattern": "Thin (3 items) but never zero for long. Orthogonality is the recurring idea — the degree-3 orthogonal polynomial for a standard normal (Hermite), orthogonality checks on pairs of quadratic forms, and picking between competing least-squares models.",
+  "mustKnow": "Orthogonality: sum over the design of p_i(x) p_j(x) = 0 for i != j. Hermite: H3(x) = x^3 - 3x for the standard normal weight."
+ },
+ "S6": {
+  "code": "S6",
+  "name": "Bivariate Normal Distribution",
+  "weight": "25 questions (15.2% of Statistical Methods) · appeared in 9 of 9 papers · peak year 2023 (8)",
+  "pattern": "Very high yield (26 items) and highly formulaic. The recurring asks are the regression coefficient b_yx = rhosigma_y/sigma_x, the conditional law Y|X=x, independence of X+Y and X-Y, E[max(X,Y)], E(e^(X+Y)) via the MGF, and the characterisation 'every linear combination is normal'. 2021 and 2023 both ran multi-question BVN clusters.",
+  "mustKnow": "Y|X=x ~ N(mu_y + rho(sigma_y/sigma_x)(x - mu_x), sigma_y^2 (1 - rho^2)); for BVN(0,0,1,1,rho), E[max] = sqrt((1-rho)/pi); MGF = exp(t'mu + 0.5 t'St)."
+ },
+ "S7": {
+  "code": "S7",
+  "name": "Regression - Linear & Polynomial",
+  "weight": "8 questions (4.9% of Statistical Methods) · appeared in 6 of 9 papers · peak year 2019 (2)",
+  "pattern": "The two-regression-lines problem dominates: you are handed two equations and must decide which is which, then extract r, and often solve for the means. The validity check is |r| <= 1 — the wrong assignment gives |r| > 1. Regression derived from a joint pdf also appears.",
+  "mustKnow": "b_yx  b_xy = r^2; both lines pass through (xbar, ybar); r takes the sign of the b's; b_yx = rsigma_y/sigma_x."
+ },
+ "S8": {
+  "code": "S8",
+  "name": "Correlation: Distribution of r, Partial, Multiple, Intraclass, Correlation Ratio",
+  "weight": "33 questions (20.1% of Statistical Methods) · appeared in 8 of 9 papers · peak year 2018 (6)",
+  "pattern": "The largest topic in Statistical Methods (32 items). The equicorrelated trivariate setup — all pairwise r equal — is the most repeated single template, asked for both partial and multiple correlation. Also constant: invariance of r under linear transformation (only the SIGN can change), intraclass correlation range, correlation ratio properties, and testing the significance of r.",
+  "mustKnow": "r12.3 = (r12 - r13r23)/sqrt((1-r13^2)(1-r23^2)); R^2_1.23 = (r12^2 + r13^2 - 2 r12 r13 r23)/(1 - r23^2); equicorrelated: R^2_1.23 = 2r^2/(1+r); intraclass r lies in [-1/(k-1), 1]; eta^2 >= r^2."
+ },
+ "S9": {
+  "code": "S9",
+  "name": "Standard Errors & Large Sample Tests",
+  "weight": "6 questions (3.7% of Statistical Methods) · appeared in 4 of 9 papers · peak year 2023 (3)",
+  "pattern": "Standard-error arithmetic: SE of a proportion, SE of a mean, SE of r, plus confidence intervals and sample-size determination. Usually one or two easy marks — the formulae are short and the numbers are clean.",
+  "mustKnow": "SE(phat) = sqrt(pq/n); SE(xbar) = sigma/sqrt(n); SE(r) = (1 - r^2)/sqrt(n); 95% CI = xbar +/- 1.96sigma/sqrt(n)."
+ },
+ "S10": {
+  "code": "S10",
+  "name": "Sampling Distributions: Sample Mean, Sample Variance, t, Chi-square, F",
+  "weight": "23 questions (14.0% of Statistical Methods) · appeared in 9 of 9 papers · peak year 2018 (4)",
+  "pattern": "Constructing t and F from independent normals and chi-squares is the signature item — the C(X1+X2)/sqrt(X3^2+X4^2+X5^2) shell appeared in 2018, 2019 AND 2025 with only the indices changed. Also recurring: ns^2/sigma^2 ~ chi-square(n-1), E(X)E(1/X) for an F variate (asked verbatim in 2018 and 2019), and the MGF of s^2.",
+  "mustKnow": "t_k = Z/sqrt(V/k) with Z and V independent; F(m,n) = (U/m)/(V/n); (n-1)s^2/sigma^2 ~ chi2(n-1); for F(m,n): E(X) = n/(n-2), E(1/X) = m/(m-2); X/Y of two chi-squares gives Beta."
+ },
+ "S11": {
+  "code": "S11",
+  "name": "Tests of Significance & Small Sample Tests",
+  "weight": "8 questions (4.9% of Statistical Methods) · appeared in 4 of 9 papers · peak year 2019 (3)",
+  "pattern": "Conceptual rather than computational: interpreting Type I and Type II errors, the validity conditions for the chi-square test, choosing the right test for a variance, and getting the degrees of freedom right for an F-test of equal variances.",
+  "mustKnow": "Type I = reject a true H0 (= alpha); chi-square validity needs independent observations and expected frequencies >= 5; F-test for two variances uses df (n1-1, n2-1); test for sigma^2 uses chi-square."
+ },
+ "S12": {
+  "code": "S12",
+  "name": "Non-parametric Tests",
+  "weight": "13 questions (7.9% of Statistical Methods) · appeared in 5 of 9 papers · peak year 2020 (5)",
+  "pattern": "Named-test recognition plus two computations. 'Which non-parametric test is analogous to the chi-square goodness-of-fit test?' was asked verbatim in 2018 and 2022 — free marks. Computation appears for the KS statistic, Mann-Whitney U and its variance, and run-test moments.",
+  "mustKnow": "E(U) = mn/2, Var(U) = mn(m+n+1)/12; runs: E(R) = 2 n1 n2/n + 1; KS = sup|Fn(x) - F(x)|; the KS test is the analogue of chi-square goodness of fit."
+ },
+ "S13": {
+  "code": "S13",
+  "name": "Order Statistics - Minimum, Maximum, Range, Median",
+  "weight": "16 questions (9.8% of Statistical Methods) · appeared in 8 of 9 papers · peak year 2020 (3)",
+  "pattern": "Steady 1-3 marks every year. The pdf of the minimum, maximum, r-th order statistic and the sample median, plus expectations for uniform and exponential parents. The minimum of iid exponentials being exponential with rate nlambda is the single most reused fact.",
+  "mustKnow": "g_r(x) = n!/((r-1)!(n-r)!)  F^(r-1)  (1-F)^(n-r)  f; min of n iid Exp(lambda) ~ Exp(nlambda); for U(0,1): E[X_(r)] = r/(n+1); P(X_(1) > x) = (1 - F(x))^n."
+ },
+ "S14": {
+  "code": "S14",
+  "name": "Asymptotic Relative Efficiency",
+  "weight": "1 question (0.6% of Statistical Methods) · appeared in 1 of 9 papers · peak year 2021 (1)",
+  "pattern": "Asked exactly once in nine years (2021), comparing the sample mean and sample median as estimators of a normal mean. Learn the one number and move on.",
+  "mustKnow": "ARE(median : mean) at the normal = 2/pi = 0.637. ARE = ratio of asymptotic variances (inverted), so the mean is the more efficient estimator here."
+ },
+ "N1": {
+  "code": "N1",
+  "name": "Finite Differences: Operators, Factorial Polynomials, Separation of Symbols",
+  "weight": "62 questions (34.4% of Numerical Analysis) · appeared in 9 of 9 papers · peak year 2022 (11)",
+  "pattern": "The single largest topic in the entire paper (62 items, roughly 7 per paper). Separation of symbols is the engine: everything reduces to E = 1 + Delta. Recurring drills are (i) evaluate (Delta^2/E) f(x), (ii) act with 1/(E - a) on a^x-type functions, (iii) Delta^n applied to a product of linear/polynomial factors — the answer is n!  (leading coefficient)  h^n, or 0 if the degree is below n, (iv) differences of zero Delta^n 0^m, (v) factorial-polynomial conversion, (vi) delta and mu operator identities, (vii) missing-term problems in an equal-interval table.",
+  "mustKnow": "E = e^(hD); Delta = E - 1; nabla = 1 - E^(-1); delta = E^(1/2) - E^(-1/2); mu = (E^(1/2) + E^(-1/2))/2; Delta - nabla = Deltanabla; Delta^n(a^x) = a^x (a^h - 1)^n; for degree-n poly, Delta^n f = n! a_n h^n and Delta^(n+1) f = 0; Delta x^(n) = n h x^(n-1)."
+ },
+ "N2": {
+  "code": "N2",
+  "name": "Interpolation - Newton-Gregory Forward & Backward (Equal Intervals)",
+  "weight": "14 questions (7.8% of Numerical Analysis) · appeared in 7 of 9 papers · peak year 2021 (3)",
+  "pattern": "Forward formula for the head of a table, backward for the tail, and one step of extrapolation beyond the last entry. Also: the linear-interpolation error bound and choosing a step size to hit a target accuracy. The f(20)=512, f(30)=439, f(40)=346, f(50)=243 table was reused verbatim in 2020 and 2022.",
+  "mustKnow": "Forward: y = y0 + pDy0 + p(p-1)/2!  D^2 y0 + ... with p = (x - x0)/h. Backward uses p = (x - xn)/h and nabla. Linear interpolation error <= (h^2/8)  max|f''|."
+ },
+ "N3": {
+  "code": "N3",
+  "name": "Divided Differences; Newton's & Lagrange's Formulae (Unequal Intervals)",
+  "weight": "33 questions (18.3% of Numerical Analysis) · appeared in 9 of 9 papers · peak year 2021 (7)",
+  "pattern": "Second-largest numerical topic. The signature item is the n-th divided difference of a polynomial — the third divided difference of x^3 - 2x over the arguments 2, 4, 9, 10 was asked identically in 2019 and 2026. Also constant: the divided difference of 1/x, symmetry in the arguments, Lagrange with unequal nodes, and truncation-error bounds.",
+  "mustKnow": "For degree n, f[x0..xn] = leading coefficient a_n, and f[x0..x_(n+1)] = 0. For f(x) = 1/x, f[x0..xn] = (-1)^n/(x0 x1 ... xn). Divided differences are symmetric in their arguments."
+ },
+ "N4": {
+  "code": "N4",
+  "name": "Central Difference Formulae - Gauss, Stirling, Bessel; Error Terms",
+  "weight": "4 questions (2.2% of Numerical Analysis) · appeared in 4 of 9 papers · peak year 2019 (1)",
+  "pattern": "Thin (4 items) and almost always conceptual rather than computational: which formula suits which part of the table. Gauss forward/backward near the middle, Stirling for p near 0, Bessel for p near 1/2.",
+  "mustKnow": "Use Stirling when |p| < 0.25 and Bessel when 0.25 < p < 0.75, where p = (x - x0)/h. Gauss's formulae use the central-difference (zig-zag) path of the difference table."
+ },
+ "N5": {
+  "code": "N5",
+  "name": "Inverse Interpolation",
+  "weight": "2 questions (1.1% of Numerical Analysis) · appeared in 2 of 9 papers · peak year 2019 (1)",
+  "pattern": "Only two appearances (2019, 2025). One was a direct table inversion, the other inverted a Lagrange form. Method: swap the roles of x and y and re-apply Lagrange, or iterate the forward formula.",
+  "mustKnow": "Inverse interpolation by Lagrange: x = sum over i of [prod_(j != i) (y - yj)/(yi - yj)]  xi. Successive approximation from Newton forward is the alternative."
+ },
+ "N6": {
+  "code": "N6",
+  "name": "Numerical Integration - Trapezoidal, Simpson's 1/3 & 3/8, Weddle's Rule",
+  "weight": "36 questions (20.0% of Numerical Analysis) · appeared in 9 of 9 papers · peak year 2024 (7)",
+  "pattern": "Second-highest numerical topic and the most computational (36 items). Expect a direct Simpson's 1/3 or trapezoidal evaluation on a supplied table every single year, plus one conceptual item on degree of precision, the number of subintervals each rule requires, or deriving quadrature weights so the formula is exact to the highest possible order.",
+  "mustKnow": "Simpson 1/3 needs n even and is exact for cubics; Simpson 3/8 needs n a multiple of 3; Weddle needs n a multiple of 6; trapezoidal error = -(b-a) h^2 f''/12; Simpson 1/3 error = -(b-a) h^4 f''''/180."
+ },
+ "N7": {
+  "code": "N7",
+  "name": "Summation of Series",
+  "weight": "3 questions (1.7% of Numerical Analysis) · appeared in 3 of 9 papers · peak year 2020 (1)",
+  "pattern": "The thinnest numerical topic (3 items), and both patterns from the syllabus have now been sampled: recovering f from its first difference (2020, 2025) and multiplying two geometric series (2026). Cheap marks if you recognise the antidifference.",
+  "mustKnow": "Sum from a to b-1 of Delta f(x) = f(b) - f(a) (telescoping). To invert Delta on a polynomial, integrate in factorial-polynomial form: Delta^(-1) x^(n) = x^(n+1)/((n+1)h)."
+ },
+ "N8": {
+  "code": "N8",
+  "name": "Numerical Solution of Differential Equations - Euler, Milne, Picard, Runge-Kutta",
+  "weight": "26 questions (14.4% of Numerical Analysis) · appeared in 9 of 9 papers · peak year 2026 (5)",
+  "pattern": "Steady 2-5 marks per paper and rising. Recurring: one or two Euler steps by hand, the absolute-stability interval for forward Euler, successive Picard iterates (first through fourth), and the observation that RK4 applied to y' = -y reproduces the Taylor series through h^4.",
+  "mustKnow": "Euler: y_(n+1) = y_n + h f(x_n, y_n); absolute stability for y' = lambda y needs |1 + hlambda| < 1, i.e. h < 2/|lambda|. Backward Euler is unconditionally stable. RK4: local error O(h^5), global O(h^4). Picard: y_(k+1)(x) = y0 + integral of f(t, y_k(t)) dt."
+ },
+ "C1": {
+  "code": "C1",
+  "name": "Computer Organisation: CPU, ALU, Control & Memory Units, I/O Units",
+  "weight": "11 questions (6.1% of Computer Application and Data Processing) · appeared in 7 of 9 papers · peak year 2022 (3)",
+  "pattern": "Fetch-decode-execute and the CPU's internal division of labour. Recurring: which unit does what (ALU vs control unit), the main operations of the CPU, BIOS functions, the machine cycle phases, the system bus, and RISC vs CISC.",
+  "mustKnow": "Machine cycle = fetch, decode, execute, store. ALU performs arithmetic AND logic (AND/OR live here). The control unit directs but does not compute. BIOS runs POST and boots the machine."
+ },
+ "C2": {
+  "code": "C2",
+  "name": "Hardware: Input, Output & Peripheral Devices",
+  "weight": "11 questions (6.1% of Computer Application and Data Processing) · appeared in 5 of 9 papers · peak year 2020 (4)",
+  "pattern": "Device classification and one arithmetic item. Know input vs output vs both, the OCR/OMR/MICR trio, CRT internals, and plotter/printer behaviour. The dpi calculation (dots = dpi^2 x page area) has appeared as a numerical question.",
+  "mustKnow": "Total dots = dpi^2  width  height in inches. MICR reads magnetic ink characters (banking); OMR reads marks; OCR reads printed characters. A webcam and a light pen are input devices."
+ },
+ "C3": {
+  "code": "C3",
+  "name": "Memory: RAM, ROM, Cache; Units of Memory & Storage Capacity",
+  "weight": "23 questions (12.8% of Computer Application and Data Processing) · appeared in 8 of 9 papers · peak year 2020 (4)",
+  "pattern": "Memory hierarchy plus address arithmetic. Recurring: RAM vs ROM vs PROM/EPROM, volatile vs non-volatile, where the CPU looks first (cache), registers such as the program counter and accumulator, virtual memory, and computing either address lines or total disk capacity.",
+  "mustKnow": "Address lines = log2(number of locations); disk capacity = surfaces x tracks x sectors x bytes-per-sector; 1 GB = 2^30 bytes; ROM/EPROM/flash are non-volatile, DRAM/SRAM are volatile; the accumulator stores ALU results."
+ },
+ "C4": {
+  "code": "C4",
+  "name": "Number Systems & Binary Arithmetic",
+  "weight": "24 questions (13.3% of Computer Application and Data Processing) · appeared in 9 of 9 papers · peak year 2018 (6)",
+  "pattern": "Base conversion is guaranteed marks every year. The octal 6251 -> hexadecimal CA9 item was asked in both 2021 and 2023; 2's complement of -59 in an 8-bit word appeared in both 2022 and 2024. Also: weighted vs non-weighted codes, the maximum integer in an n-bit word, and normalised floating-point form.",
+  "mustKnow": "Octal -> hex via binary: group in 3s, regroup in 4s. 2's complement = 1's complement + 1. Max unsigned in n bits = 2^n - 1; max signed = 2^(n-1) - 1. BCD and 8421 are weighted; Gray and ASCII are not."
+ },
+ "C5": {
+  "code": "C5",
+  "name": "Software, Operating Systems, Packages & Utilities",
+  "weight": "24 questions (13.3% of Computer Application and Data Processing) · appeared in 8 of 9 papers · peak year 2022 (5)",
+  "pattern": "Operating-system concepts, broadly. Recurring: OS functions and goals, real-time vs embedded vs batch vs time-sharing, the kernel as the core of UNIX (asked in 2018 and again in 2023), the four deadlock conditions, process states, and page faults.",
+  "mustKnow": "Deadlock needs mutual exclusion, hold-and-wait, no pre-emption and circular wait — all four. Process states: new, ready, running, waiting, terminated. Firmware lives in ROM. Linux is open source; Windows CE is embedded."
+ },
+ "C6": {
+  "code": "C6",
+  "name": "Languages, Compiler, Assembler, Interpreter; Low & High Level",
+  "weight": "16 questions (8.9% of Computer Application and Data Processing) · appeared in 7 of 9 papers · peak year 2018 (4)",
+  "pattern": "Translators and language levels. The compiler-versus-interpreter distinction is asked in some form nearly every year: a compiler translates the whole program then runs it, an interpreter translates and executes line by line. Also: linker vs loader, the lexical analyser's output, and which errors are detectable.",
+  "mustKnow": "Compilers and interpreters detect syntax and semantic errors but NOT logical errors — a program with a logical error still runs. The lexical analyser outputs a stream of tokens. Assembly and machine language are low-level."
+ },
+ "C7": {
+  "code": "C7",
+  "name": "Networks: LAN, WAN, Internet, Intranet",
+  "weight": "29 questions (16.1% of Computer Application and Data Processing) · appeared in 8 of 9 papers · peak year 2019 (6)",
+  "pattern": "The biggest computer topic (29 items). Layer-mapping questions dominate: ICMP and ARP at the network layer, SMTP/FTP/HTTP at the application layer. ARP resolving an IP to a MAC address was asked in both 2021 and 2026. Also: topology failure behaviour, DNS, port numbers, transmission media, IEEE 802.11 and connecting devices.",
+  "mustKnow": "ARP: IP -> MAC. DNS: name -> IP. Ports: FTP 21, SMTP 25, HTTP 80, POP3 110, IMAP 143. In a star topology only the hub is a single point of failure; a ring breaks on any single node failure. Wi-Fi = IEEE 802.11."
+ },
+ "C8": {
+  "code": "C8",
+  "name": "Computer Security: Virus, Antivirus, Firewall, Spyware, Malware",
+  "weight": "15 questions (8.3% of Computer Application and Data Processing) · appeared in 7 of 9 papers · peak year 2026 (4)",
+  "pattern": "Threat taxonomy plus firewall concepts. Know precisely what separates a virus, a worm, a trojan and spyware — the discriminator is usually whether user action is needed to spread (a worm needs none). Phishing appears as a short scenario. Firewall terminology and packet filtering recur.",
+  "mustKnow": "A worm self-propagates with no user interaction; a virus needs a host and user action. A polymorphic virus rewrites its own code to evade detection. Non-repudiation stops a sender denying transmission. ISO 27001 is the information-security management standard."
+ },
+ "C9": {
+  "code": "C9",
+  "name": "Programming Basics: Algorithm, Flowchart, Control Structures, Arrays, Functions",
+  "weight": "16 questions (8.9% of Computer Application and Data Processing) · appeared in 7 of 9 papers · peak year 2018 (4)",
+  "pattern": "Programming fundamentals, tested conceptually. Recurring: debugging (breakpoints, the order of the debug steps), flowcharts, arrays and strings, subroutines and modularity, operator precedence and associativity, bitwise operators, stable sorting algorithms, and tracing a short loop.",
+  "mustKnow": "Stable sorts: bubble, insertion, merge. Quicksort and heapsort are not stable. Unary and assignment operators associate right-to-left. && and ! are logical, not bitwise; &, |, ^, >>, << are bitwise. Space complexity = memory required by an algorithm."
+ },
+ "C10": {
+  "code": "C10",
+  "name": "Data, Information, Database & DBMS; Frontend/Backend",
+  "weight": "11 questions (6.1% of Computer Application and Data Processing) · appeared in 5 of 9 papers · peak year 2025 (3)",
+  "pattern": "Databases plus file-format literacy. The hierarchical (tree) data model was asked in both 2021 and 2024. Also: DBMS advantages, SQL capabilities, ACID properties, client-server architecture, and classifying raster image, audio and multimedia formats.",
+  "mustKnow": "ACID = Atomicity, Consistency, Isolation, Durability (security is NOT one of them). Hierarchical model = tree; network model = graph. Raster: JPEG, GIF, PNG, BMP. Vector: SVG. Audio: WAV, MP3, WMA (TIFF and MPEG-video are not audio)."
+ }
+}

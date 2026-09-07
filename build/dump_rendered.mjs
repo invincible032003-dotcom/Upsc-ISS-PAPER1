@@ -22,12 +22,21 @@ const dump = await page.evaluate(() => {
   const box = document.createElement('div');
   document.body.appendChild(box);
   const plain = s => { box.innerHTML = R(s || ''); return box.textContent || ''; };
-  /* the same text with superscripts and subscripts removed: pypdf's default
-     extraction mode drops raised/lowered runs, so the ordered comparison in
-     verify_pdf.py has to be made against a like-for-like reference */
+  /* The same text with raised and lowered runs removed.  pypdf's default
+     extraction mode drops anything off the baseline, so the ordered
+     comparison in verify_pdf.py needs a like-for-like reference.  KaTeX
+     typesets scripts as positioned .msupsub boxes rather than <sup>/<sub>. */
   const base = s => {
     box.innerHTML = R(s || '');
-    box.querySelectorAll('sup, sub').forEach(n => n.remove());
+    box.querySelectorAll('sup, sub, .msupsub').forEach(n => n.remove());
+    return box.textContent || '';
+  };
+  /* prose only: every typeset formula removed.  A PDF text extractor places
+     the glyphs of a formula wherever the layout puts them, so only the prose
+     around them can be checked for document order. */
+  const prose = s => {
+    box.innerHTML = R(s || '');
+    box.querySelectorAll('.katex, .katex-display, .mq').forEach(n => n.remove());
     return box.textContent || '';
   };
   const out = {};
@@ -37,6 +46,7 @@ const dump = await page.evaluate(() => {
       sharedStem: plain(q.sharedStem),
       question: plain(q.question),
       questionBase: base(q.question),
+      questionProse: prose(q.question),
       options: (q.options || []).map(plain),
       optionsBase: (q.options || []).map(base),
       answer: q.correctAnswer,

@@ -1,392 +1,392 @@
 {
- "2018-Q21": {
-  "answer": 2,
-  "confidence": "high",
-  "type": "Conceptual",
-  "shortcut": "Weight has a true zero and meaningful ratios, so it is RATIO scale, not interval - statement 1 fails. Statements 2 and 3 are textbook-correct, so the answer is 2 and 3 only.",
-  "tips": [
-   "Scale ladder: nominal (labels) < ordinal (ranks) < interval (equal gaps, arbitrary zero) < ratio (true zero). Weight, length, income and counts are ratio; temperature in Celsius and calendar dates are interval.",
-   "The single discriminator for interval vs ratio is 'is zero meaningful?'. Zero weight means no weight, so weight is ratio.",
-   "Cross-sectional = many units at ONE time point; time series = one unit over MANY time points; panel = both. 'Each IIM in 2007' is many units, one year, so cross-sectional.",
-   "Barcodes, PIN codes, jersey numbers and Aadhaar numbers are all nominal even though they look numeric - arithmetic on them is meaningless."
-  ],
-  "solution": [
-   "Statement 1: the weight of a strawberry box is a physical measurement with an absolute zero point, and ratios such as 'twice as heavy' are meaningful. That is the definition of a RATIO scale, not an interval scale. FALSE.",
-   "Statement 2: the number of students admitted to each IIM in 2007 records many different units (the IIMs) at a single point in time. That is cross-sectional data. TRUE.",
-   "Statement 3: a barcode is only an identifying label; the numbers cannot be ordered or added meaningfully, so the measurement is on a nominal scale. TRUE.",
-   "Only statements 2 and 3 are correct, so option (c) is right."
-  ]
- },
- "2018-Q22": {
-  "answer": 3,
-  "confidence": "high",
-  "type": "Theoretical",
-  "shortcut": "Var(Y - aX) is a quadratic in a; minimising it is exactly least squares. The minimum is the residual variance of the regression of Y on X, which is Var(Y)(1 - rho^2).",
-  "tips": [
-   "Remember the identity: minimum residual variance = (1 - rho^2) x Var(Y). The factor (1 - rho^2) is the proportion of variance NOT explained; rho^2 is the proportion explained.",
-   "Dimensional check kills two options instantly: the answer must have the units of Var(Y). Options (a) and (b) are ratios of variances and are dimensionally wrong.",
-   "The minimising value is a = Cov(X,Y)/Var(X), which is precisely the regression coefficient b_(YX) - the question is least squares in disguise.",
-   "If rho = 0 the minimum must equal Var(Y) (X is useless); if rho = +-1 it must be 0. Only option (d) satisfies both limits."
-  ],
-  "solution": [
-   "Write g(a) = Var(Y - aX) = Var(Y) - 2a Cov(X,Y) + a^2 Var(X). This is an upward parabola in a.",
-   "Setting g'(a) = -2 Cov(X,Y) + 2a Var(X) = 0 gives the minimising value a* = Cov(X,Y)/Var(X).",
-   "Substituting back: g(a*) = Var(Y) - [Cov(X,Y)]^2/Var(X).",
-   "Since rho = Cov(X,Y)/(sd(X) sd(Y)), we have [Cov(X,Y)]^2 = rho^2 Var(X) Var(Y), so [Cov(X,Y)]^2/Var(X) = rho^2 Var(Y).",
-   "Therefore the minimum value is Var(Y) - rho^2 Var(Y) = (1 - rho^2) Var(Y).",
-   "Hence option (d) is correct."
-  ]
- },
- "2018-Q23": {
-  "answer": 1,
-  "confidence": "high",
-  "type": "Numerical",
-  "shortcut": "Use the empirical (median) form of Pearson's skewness: Sk = 3(Mean - Median)/SD. So -0.3 = 3(62 - 65)/SD = -9/SD, giving SD = 30.",
-  "tips": [
-   "Two forms of Pearson's coefficient: (Mean - Mode)/SD and 3(Mean - Median)/SD. When the MEDIAN is supplied, the factor 3 is compulsory - dropping it gives SD = 10, which is planted as option (a).",
-   "The sign works out automatically: mean below median gives a negative numerator and hence negative skewness, consistent with the given -0.3.",
-   "The relation comes from the empirical mode formula Mode = 3 Median - 2 Mean, which is worth memorising in its own right.",
-   "Sanity check the magnitude: |Mean - Median| = 3 and the coefficient is small (0.3), so the SD must be an order of magnitude larger than 3 - that alone points to 30."
-  ],
-  "solution": [
-   "Pearson's coefficient of skewness in its median form is Sk = 3(Mean - Median)/SD.",
-   "Substitute the given values: -0.3 = 3(62 - 65)/SD.",
-   "The numerator is 3 x (-3) = -9, so -0.3 = -9/SD.",
-   "Solving, SD = -9/(-0.3) = 30.",
-   "Hence the standard deviation is 30, option (b)."
-  ]
- },
- "2018-Q24": {
-  "answer": 1,
-  "confidence": "high",
-  "type": "Numerical",
-  "shortcut": "Yule's Q = (ad - bc)/(ad + bc) with a = 50, b = 10, c = 10, d = 30. So Q = (1500 - 100)/(1500 + 100) = 1400/1600 = 7/8.",
-  "tips": [
-   "Yule's coefficient of association Q = (ad - bc)/(ad + bc) always lies between -1 and +1; it is 0 exactly when ad = bc, i.e. under independence.",
-   "Set the 2x2 table out as a = both present, b and c = one present, d = both absent. Here the diagonal product ad = 1500 dominates the off-diagonal bc = 100, so the association must be strongly POSITIVE - that alone eliminates (c).",
-   "Do not confuse Yule's Q with the coefficient of colligation Y = (sqrt(ad) - sqrt(bc))/(sqrt(ad) + sqrt(bc)), which would give a different value here.",
-   "Sons of smokers smoking 50:10 while sons of non-smokers smoke 10:30 is a clear positive association - a quick common-sense check on the sign before computing."
-  ],
-  "solution": [
-   "Arrange the 2x2 contingency table: (AB) = 50 (both smoke), (A beta) = 10 (father smokes, son does not), (alpha B) = 10 (father does not, son does), (alpha beta) = 30 (neither smokes).",
-   "Yule's coefficient of association is Q = [(AB)(alpha beta) - (A beta)(alpha B)] / [(AB)(alpha beta) + (A beta)(alpha B)].",
-   "Diagonal product: (AB)(alpha beta) = 50 x 30 = 1500.",
-   "Off-diagonal product: (A beta)(alpha B) = 10 x 10 = 100.",
-   "Q = (1500 - 100)/(1500 + 100) = 1400/1600 = 7/8.",
-   "The value is positive and close to 1, indicating strong positive association. Option (b) is correct."
-  ]
- },
- "2018-Q25": {
-  "answer": 1,
-  "confidence": "high",
-  "type": "Definition",
-  "shortcut": "Statements 1 and 2 are the standard verbal definitions of positive and negative association. Statement 3 misdefines independence as a 'linear relationship' - independence means NO relationship at all. So 1 and 2 only.",
-  "tips": [
-   "Independence of attributes means (AB) = (A)(B)/N, i.e. the observed joint frequency equals the product of the marginals. Nothing about linearity is involved - linearity belongs to correlation of variables, not association of attributes.",
-   "The examiner's favourite trap in this chapter is importing correlation language (linear, positive, negative) into attribute theory. Read every option for that swap.",
-   "Association compares (AB) with (A)(B)/N: greater means positive association, smaller means negative association, equal means independence. Three cases, one formula.",
-   "Whenever one statement in a set is a definition that has been subtly reworded, that is almost always the false one - here statement 3."
-  ],
-  "solution": [
-   "Two attributes A and B are said to be INDEPENDENT when (AB) = (A)(B)/N, where N is the total frequency.",
-   "Statement 1: A and B are positively associated when the presence of A tends to be accompanied by the presence of B, i.e. (AB) > (A)(B)/N. This is the standard verbal definition. TRUE.",
-   "Statement 2: A and B are negatively associated (disassociated) when the presence of one tends to exclude the other, i.e. (AB) < (A)(B)/N. TRUE.",
-   "Statement 3: independence is defined by the frequency identity above, not by any 'linear relationship'. Linearity is a concept of correlation between quantitative variables, not of association between attributes. FALSE.",
-   "Only statements 1 and 2 are correct, so option (b) is right."
-  ]
- },
- "2018-Q26": {
-  "answer": 0,
-  "confidence": "high",
-  "type": "Numerical",
-  "shortcut": "Fix x and look at the y-part: f is proportional to e^(-y(1+x)), which is an Exponential with RATE (1+x). Its mean is the reciprocal, so E(Y|X=x) = 1/(1+x).",
-  "tips": [
-   "The regression of Y on X IS the conditional mean E(Y|X=x). Whenever the joint density factorises as g(x) e^(-y h(x)), the conditional law of Y is Exponential(h(x)) and the answer is 1/h(x) - one line, no integration.",
-   "Any multiplicative function of x alone (here x^2/3) is absorbed into the normalising constant of the conditional density and cannot appear in E(Y|X). That rules out options (b) and (d) at a glance.",
-   "Option (c) y = 1 + x inverts the relationship: it is the RATE, not the mean. Reciprocal errors are the standard trap in exponential conditionals.",
-   "Note that the printed joint density is not normalisable over the stated range (the x-integral of x^2/(1+x) diverges), but the conditional distribution of Y given X - and hence the answer - is unaffected."
-  ],
-  "solution": [
-   "The joint density is f(x,y) = (1/3) x^2 e^(-y(1+x)) for x >= 0, y >= 0.",
-   "For a fixed value X = x, the conditional density of Y is f(y|x) = f(x,y)/f_X(x), which is proportional to e^(-y(1+x)) for y >= 0.",
-   "Normalising, f(y|x) = (1 + x) e^(-y(1+x)), which is the Exponential density with rate parameter (1 + x).",
-   "The mean of an Exponential distribution with rate lambda is 1/lambda, so E(Y | X = x) = 1/(1 + x).",
-   "The regression of Y on X is the curve y = E(Y|X = x) = 1/(1 + x).",
-   "Hence option (a) is correct."
-  ]
- },
- "2018-Q27": {
-  "answer": 3,
-  "confidence": "high",
-  "type": "Theoretical",
-  "shortcut": "All three are standard properties of the bivariate normal: zero correlation gives independence, every linear combination is normal, and both regression lines are linear with constant (homoscedastic) conditional variance. Answer: all three.",
-  "tips": [
-   "'rho = 0 implies independence' is TRUE for the bivariate normal and FALSE in general - the examiner exploits this asymmetry constantly. Check whether normality is stated.",
-   "The conditional variance of Y given X is sigma_2^2(1 - rho^2), which does not depend on x. That constancy is exactly what homoscedasticity means.",
-   "The conditional mean is E(Y|X=x) = mu_2 + rho (sigma_2/sigma_1)(x - mu_1) - linear in x, which gives the linear regression property.",
-   "In a 1/2/3 item where every statement is a bookwork property of the same distribution, (d) 'all of them' is very often the key - but confirm the one you are least sure of, here statement 3."
-  ],
-  "solution": [
-   "Statement 1: for the bivariate normal, the joint density factorises into the product of the two marginal normal densities precisely when rho = 0. So independence holds if and only if rho = 0. TRUE. (Note this equivalence is special to the normal; in general rho = 0 does not imply independence.)",
-   "Statement 2: if (X,Y) is bivariate normal then aX + bY is univariate normal for all constants a, b - this is a defining property of the multivariate normal family. TRUE.",
-   "Statement 3: the conditional distribution of Y given X = x is N(mu_2 + rho (sigma_2/sigma_1)(x - mu_1), sigma_2^2(1 - rho^2)).",
-   "The conditional mean is linear in x, so the regression of Y on X is linear; the conditional variance sigma_2^2(1 - rho^2) is free of x, so the regression is homoscedastic. By symmetry the same holds for X on Y. TRUE.",
-   "All three statements are correct, so option (d) is right."
-  ]
- },
- "2018-Q28": {
-  "answer": 1,
-  "confidence": "high",
-  "type": "Conceptual",
-  "shortcut": "Correlation is invariant under a change of origin. Adding 3 to every Maths mark shifts the origin only, so r is unchanged at 0.65.",
-  "tips": [
-   "r is invariant under any change of origin and under a change of scale by a POSITIVE constant; multiplying by a negative constant flips only the sign, never the magnitude.",
-   "The sample size 60 is deliberately irrelevant here - the examiner adds it purely as a distraction.",
-   "Formally, Cov(X + c, Y) = Cov(X, Y) and Var(X + c) = Var(X), so every ingredient of r is unchanged.",
-   "Option (d) 'almost 1' punishes the belief that a systematic adjustment somehow strengthens the relationship - the scatter pattern is simply translated."
-  ],
-  "solution": [
-   "Let X be Maths marks and Y be Statistics marks, with r(X,Y) = 0.65.",
-   "The revised Maths marks are X' = X + 3, a pure change of origin.",
-   "Covariance is unaffected by a shift: Cov(X + 3, Y) = Cov(X, Y).",
-   "Variance is also unaffected: Var(X + 3) = Var(X), so sd(X') = sd(X).",
-   "Therefore r(X', Y) = Cov(X',Y)/(sd(X') sd(Y)) = Cov(X,Y)/(sd(X) sd(Y)) = r(X,Y) = 0.65.",
-   "Hence option (b) is correct."
-  ]
- },
- "2018-Q29": {
-  "answer": 1,
-  "confidence": "high",
-  "type": "Numerical",
-  "shortcut": "Put r12 = r13 = r23 = rho in R^2 = (r12^2 + r13^2 - 2 r12 r13 r23)/(1 - r23^2). Numerator = 2rho^2 - 2rho^3 = 2rho^2(1-rho); denominator = (1-rho)(1+rho). Cancel (1-rho) to get 2rho^2/(1+rho).",
-  "tips": [
-   "Memorise R^2_(1.23) = (r12^2 + r13^2 - 2 r12 r13 r23)/(1 - r23^2). Every multiple-correlation numerical in this paper reduces to it.",
-   "The cancellation of (1 - rho) is the whole trick; factor 1 - rho^2 as (1-rho)(1+rho) before simplifying rather than after.",
-   "Check the limits: rho = 0 must give R^2 = 0 (option (b) gives 0, correct) and rho = 1 must give R^2 = 1 (option (b) gives 2/2 = 1, correct). Option (c) fails the rho = 1 test, giving 1/2.",
-   "R^2 is a squared quantity, so a bare rho as in option (a) cannot be right on dimensional grounds."
-  ],
-  "solution": [
-   "The square of the multiple correlation of X1 on X2, X3 is R^2_(1.23) = (r12^2 + r13^2 - 2 r12 r13 r23)/(1 - r23^2).",
-   "All three zero-order correlations equal rho, so r12 = r13 = r23 = rho.",
-   "Numerator: rho^2 + rho^2 - 2 rho . rho . rho = 2rho^2 - 2rho^3 = 2rho^2 (1 - rho).",
-   "Denominator: 1 - rho^2 = (1 - rho)(1 + rho).",
-   "Cancelling the common factor (1 - rho) gives R^2_(1.23) = 2rho^2/(1 + rho).",
-   "Hence option (b) is correct."
-  ]
- },
- "2018-Q30": {
-  "answer": 0,
-  "confidence": "high",
-  "type": "Theoretical",
-  "shortcut": "Under rho = 0 the density of r is proportional to (1 - r^2)^((N-4)/2). Multiplying by (1-r^2)^(-1) lowers the exponent by one, so the expectation is a ratio of Beta functions that collapses to (N-3)/(N-4).",
-  "tips": [
-   "Null density to memorise: f(r) = (1 - r^2)^((N-4)/2) / B(1/2, (N-2)/2) on (-1, 1). Almost every 'distribution of r when rho = 0' item is solved by shifting its exponent.",
-   "The standard integral is: integral over (-1,1) of (1 - r^2)^(a-1) dr = B(1/2, a). Recognising the integrand as a Beta kernel converts the whole problem into Gamma-function algebra.",
-   "Use Gamma(z+1) = z Gamma(z) and Gamma(z + 3/2) = (z + 1/2) Gamma(z + 1/2) - after those two substitutions everything cancels except (N-3)/(N-4).",
-   "Sanity check with large N: the answer must tend to 1 because r tends to 0 and (1-r^2)^(-1) tends to 1. Only options (a) and (d) do that, and (d) ignores N entirely."
-  ],
-  "solution": [
-   "When the population correlation is zero, the density of the sample correlation coefficient based on N observations is f(r) = (1 - r^2)^((N-4)/2) / B(1/2, (N-2)/2), for -1 < r < 1.",
-   "Hence E[(1 - r^2)^(-1)] = [1/B(1/2, (N-2)/2)] times the integral over (-1,1) of (1 - r^2)^((N-6)/2) dr.",
-   "Using the standard result integral over (-1,1) of (1 - r^2)^(a-1) dr = B(1/2, a), with a - 1 = (N-6)/2 so that a = (N-4)/2, the integral equals B(1/2, (N-4)/2).",
-   "Therefore E[(1-r^2)^(-1)] = B(1/2, (N-4)/2) / B(1/2, (N-2)/2).",
-   "Writing B(1/2, a) = Gamma(1/2)Gamma(a)/Gamma(a + 1/2) and putting a1 = (N-4)/2, a2 = a1 + 1, the ratio becomes [Gamma(a1) Gamma(a1 + 3/2)] / [Gamma(a1 + 1/2) Gamma(a1 + 1)].",
-   "Using Gamma(a1 + 1) = a1 Gamma(a1) and Gamma(a1 + 3/2) = (a1 + 1/2) Gamma(a1 + 1/2), this equals (a1 + 1/2)/a1 = [(N-3)/2]/[(N-4)/2] = (N-3)/(N-4), option (a)."
-  ]
- },
- "2018-Q31": {
-  "answer": 2,
-  "confidence": "medium",
-  "type": "Theoretical",
-  "shortcut": "An exact linear relation makes the two residuals proportional. From a x1 + b x2 + c x3 = 0 we get x1 = -(b/a)x2 - (c/a)x3, so after removing x3 the residual of x1 is a NEGATIVE multiple of that of x2 (for a, b of the same sign), giving r12.3 = -1.",
-  "tips": [
-   "Exact linear dependence always forces a partial correlation of magnitude 1 - so the real question is only the sign, and options (a) and (d) can be struck out at once.",
-   "Sign rule: r12.3 = -sign(b/a). With the usual textbook convention that a, b, c are positive constants (as in the classic x1 + x2 + x3 = 0), the value is -1.",
-   "The formula r12.3 = (r12 - r13 r23)/sqrt((1 - r13^2)(1 - r23^2)) also gives +-1 here, but the residual argument reaches the sign far faster.",
-   "Partial correlation removes the linear effect of x3 from BOTH variables; what remains is the pure x1-x2 link, which is deterministic here."
-  ],
-  "solution": [
-   "The relation a x1 + b x2 + c x3 = 0 holds identically, so the three variables are exactly linearly dependent.",
-   "Solve for x1: x1 = -(b/a) x2 - (c/a) x3.",
-   "Regress each of x1 and x2 on x3 and take residuals. Because the relation above is exact, the residual of x1 after removing x3 equals -(b/a) times the residual of x2 after removing x3.",
-   "A residual pair related by an exact multiplicative constant has correlation +1 if the constant is positive and -1 if it is negative.",
-   "Here the constant is -(b/a), which is negative when a and b have the same sign - the standard convention in this classical result (e.g. the case x1 + x2 + x3 = 0).",
-   "Hence r12.3 = -1, option (c). (If a and b had opposite signs the value would be +1; the magnitude is always 1.)"
-  ]
- },
- "2018-Q32": {
-  "answer": 3,
-  "confidence": "high",
-  "type": "Numerical",
-  "shortcut": "U and V share X1 and X2. Cov(U,V) = Var(X1) + Var(X2) = 2 sigma^2, while Var(U) = Var(V) = 3 sigma^2. So r = 2 sigma^2/(3 sigma^2) = 2/3.",
-  "tips": [
-   "For sums of uncorrelated variables with a common variance, the correlation is simply (number of SHARED terms)/sqrt(count in U x count in V). Here 2/sqrt(3 x 3) = 2/3.",
-   "Uncorrelated cross terms vanish, so the covariance counts only the overlap - never expand all nine products.",
-   "sigma^2 cancels completely, which is why the answer is a pure number; if your working leaves a sigma you have slipped.",
-   "Extreme checks: no shared terms would give 0 and complete overlap would give 1, so a two-out-of-three overlap must land strictly between - eliminating (a) and (b)."
-  ],
-  "solution": [
-   "X1, X2, X3, X4 are uncorrelated, each with variance sigma^2, so all cross-covariances are 0.",
-   "Var(U) = Var(X1 + X2 + X3) = 3 sigma^2, and similarly Var(V) = Var(X1 + X2 + X4) = 3 sigma^2.",
-   "Cov(U, V) = Cov(X1 + X2 + X3, X1 + X2 + X4). Every cross term between distinct variables is 0, so only the shared variables contribute.",
-   "Cov(U, V) = Var(X1) + Var(X2) = sigma^2 + sigma^2 = 2 sigma^2.",
-   "Therefore r(U, V) = 2 sigma^2 / sqrt(3 sigma^2 . 3 sigma^2) = 2 sigma^2/(3 sigma^2) = 2/3.",
-   "Hence option (d) is correct."
-  ]
- },
- "2018-Q33": {
-  "answer": 1,
-  "confidence": "high",
-  "type": "Conceptual",
-  "shortcut": "For U[-3,3], mean = 0 and variance = (6)^2/12 = 3. By the CLT, sqrt(n) (Xbar - mu) converges to N(0, sigma^2) = N(0, 3). No division by sigma appears, so the variance stays 3.",
-  "tips": [
-   "Variance of U[a,b] is (b-a)^2/12. Here (3 - (-3))^2/12 = 36/12 = 3 - compute this before anything else.",
-   "Distinguish the two CLT forms: sqrt(n) Xbar / sigma tends to N(0,1) whereas sqrt(n) Xbar tends to N(0, sigma^2). The stem has no sigma in the denominator, so option (b) not (a).",
-   "The limit is NORMAL, never uniform - the CLT destroys the parent shape. Options (c) and (d) are eliminated on principle without any arithmetic.",
-   "The mean of U[-a,a] is 0 by symmetry, which is why the limiting mean is 0 and no centring constant is needed."
-  ],
-  "solution": [
-   "For the Uniform distribution on [-3, 3], the mean is mu = (-3 + 3)/2 = 0 and the variance is sigma^2 = (3 - (-3))^2/12 = 36/12 = 3.",
-   "The Central Limit Theorem states that sqrt(n)(Xbar - mu)/sigma converges in distribution to N(0, 1) as n grows.",
-   "Since mu = 0, this reads sqrt(n) Xbar / sigma tends to N(0,1).",
-   "Multiplying by the constant sigma, sqrt(n) Xbar converges in distribution to N(0, sigma^2) = N(0, 3).",
-   "Hence the large-sample distribution is N(0, 3), option (b)."
-  ]
- },
- "2018-Q34": {
-  "answer": 0,
-  "confidence": "high",
-  "type": "Numerical",
-  "shortcut": "SE = 2.1/sqrt(900) = 2.1/30 = 0.07. z = (0 - 0.1)/0.07 = -1.43. P(Z < -1.43) = 0.5 - 0.4236 = 0.0764.",
-  "tips": [
-   "sqrt(900) = 30 is the only arithmetic that matters; 2.1/30 = 0.07 makes the z-score a clean -1.43, which is exactly the value the examiner supplies.",
-   "The supplied figure P(0 < Z < 1.43) = 0.4236 is a CENTRAL area, not a tail. The left tail is 0.5 - 0.4236 = 0.0764 - subtracting from 0.5, never from 1.",
-   "Option (b) 0.6408 = 0.5 + 0.1408 and option (d) 0.7046 are built from misreading the table; option (c) 0.6074 is 0.5 + 0.1074. All assume the wrong tail.",
-   "Sanity check: the population mean 0.1 is positive and the sample is large, so a negative sample mean should be UNLIKELY - the answer must be well below 0.5, which only (a) is."
-  ],
-  "solution": [
-   "The population has mean mu = 0.1 and standard deviation sigma = 2.1; the sample size is n = 900.",
-   "The standard error of the sample mean is sigma/sqrt(n) = 2.1/30 = 0.07.",
-   "We need P(Xbar < 0). Standardising: z = (0 - 0.1)/0.07 = -1.4286, which rounds to -1.43.",
-   "P(Xbar < 0) = P(Z < -1.43) = P(Z > 1.43) by symmetry.",
-   "Using the supplied value P(0 < Z < 1.43) = 0.4236, we get P(Z > 1.43) = 0.5 - 0.4236 = 0.0764.",
-   "Hence option (a) is correct."
-  ]
- },
- "2018-Q35": {
-  "answer": 1,
-  "confidence": "high",
-  "type": "Numerical",
-  "shortcut": "Build t = Z/sqrt(chi^2_3/3). Here Z = (X1+X2)/sqrt(2) and chi^2_3 = X3^2+X4^2+X5^2, so t = sqrt(3)(X1+X2)/(sqrt(2) sqrt(sum)). Hence C = sqrt(3)/sqrt(2) = sqrt(3/2).",
-  "tips": [
-   "The t-statistic template is ALWAYS standard normal divided by sqrt(chi-square/its own d.f.). Identify the two pieces and their d.f. before touching the algebra.",
-   "X1 + X2 has variance 2, so it must be divided by sqrt(2) to become standard normal. Forgetting this gives sqrt(3) and no matching option.",
-   "The d.f. is 3 (three squared normals), so the divisor inside the square root is 3 - that is where the sqrt(3) in the numerator comes from.",
-   "sqrt(3/2) = sqrt(6)/2 = 1.2247 while sqrt(3)/2 = 0.866; option (a) is the trap for candidates who take the square root of 3 but not of 2."
-  ],
-  "solution": [
-   "X1, ..., X5 are independent N(0,1).",
-   "X1 + X2 ~ N(0, 2), so Z = (X1 + X2)/sqrt(2) ~ N(0, 1).",
-   "X3^2 + X4^2 + X5^2 ~ chi-square with 3 degrees of freedom, and it is independent of X1 + X2.",
-   "By definition, t = Z / sqrt(chi-square_3 / 3) follows Student's t with 3 d.f.",
-   "Substituting: t = [(X1+X2)/sqrt(2)] / sqrt((X3^2+X4^2+X5^2)/3) = sqrt(3)(X1+X2) / [sqrt(2) sqrt(X3^2+X4^2+X5^2)].",
-   "Comparing with C(X1+X2)/(X3^2+X4^2+X5^2)^(1/2) gives C = sqrt(3)/sqrt(2) = sqrt(3/2), option (b)."
-  ]
- },
- "2018-Q36": {
-  "answer": 2,
-  "confidence": "high",
-  "type": "Numerical",
-  "shortcut": "E(X) = n/(n-2) for X ~ F(m,n). Since 1/X ~ F(n,m), swapping the roles gives E(1/X) = m/(m-2). The product is mn/((m-2)(n-2)).",
-  "tips": [
-   "The reciprocal property 1/F(m,n) ~ F(n,m) is the key. Once you have it, E(1/X) needs no integration - just swap m and n in the mean formula.",
-   "Remember the mean of F(m,n) involves only the DENOMINATOR d.f.: E = n/(n-2), n > 2. Candidates who use m/(m-2) for E(X) land on option (b), the mirror-image trap.",
-   "The conditions m > 2 and n > 2 in the stem exist precisely so that both expectations are finite - they are a hint about which formula to use.",
-   "By Jensen's inequality E(X)E(1/X) >= 1 always. Option (c) gives mn/((m-2)(n-2)) > 1 for all admissible m, n, which is the only option guaranteed to satisfy this."
-  ],
-  "solution": [
-   "For X ~ F(m, n) with n > 2, the mean is E(X) = n/(n - 2).",
-   "A standard property of the F distribution is that 1/X ~ F(n, m), i.e. the degrees of freedom interchange.",
-   "Applying the mean formula to 1/X ~ F(n, m), whose denominator d.f. is now m, gives E(1/X) = m/(m - 2), valid since m > 2.",
-   "Multiplying: E(X) E(1/X) = [n/(n-2)] [m/(m-2)] = mn/((m-2)(n-2)).",
-   "Hence option (c) is correct."
-  ]
- },
- "2018-Q37": {
-  "answer": 1,
-  "confidence": "high",
-  "type": "Factual",
-  "shortcut": "Both the chi-square goodness-of-fit test and the Kolmogorov-Smirnov test compare an observed distribution with a completely specified theoretical one. K-S is the distribution-free analogue.",
-  "tips": [
-   "Sort the non-parametric tests by what they compare: goodness of fit to a specified distribution = chi-square and K-S (one sample); two independent samples = Mann-Whitney and median test; paired/matched data = Wilcoxon signed-rank and sign test; randomness = run test.",
-   "Chi-square needs GROUPED data with adequate expected frequencies; K-S works directly on the ungrouped empirical CDF and is therefore preferred for small samples and continuous data.",
-   "K-S uses the maximum absolute deviation D = sup |F_n(x) - F_0(x)| - remember it as a 'largest vertical gap between two CDFs' test.",
-   "Mann-Whitney (option a) and Wilcoxon (option c) are location-comparison tests, and the median test (option d) compares medians - none of them tests fit to a specified distribution."
-  ],
-  "solution": [
-   "The chi-square goodness-of-fit test compares observed frequencies with the frequencies expected under a fully specified theoretical distribution.",
-   "Among the listed non-parametric procedures, the Kolmogorov-Smirnov one-sample test performs the same task: it compares the empirical distribution function F_n(x) with a hypothesised F_0(x).",
-   "The K-S statistic is D = sup over x of |F_n(x) - F_0(x)|, the largest vertical distance between the two curves, and a large D leads to rejection of the hypothesised distribution.",
-   "The Mann-Whitney and Wilcoxon tests compare locations of samples, and the median test compares medians; none of them tests agreement with a specified distribution.",
-   "Hence the Kolmogorov-Smirnov test is the analogue of the chi-square goodness-of-fit test, option (b)."
-  ]
- },
- "2018-Q38": {
-  "answer": 2,
-  "confidence": "high",
-  "type": "Theoretical",
-  "shortcut": "Statement 1 reverses the relationship - the SQUARE of a standard normal is chi-square(1), not the other way round - so it is false. Statements 2 and 3 are standard results, giving 2 and 3 only.",
-  "tips": [
-   "Correct direction: Z ~ N(0,1) implies Z^2 ~ chi-square(1). The normal is not a special case of the chi-square; the chi-square family is built FROM normals.",
-   "Moment rule for t with n d.f.: E(t^k) exists only for k < n. The t with 1 d.f. is the Cauchy, which has no mean at all - a good anchor for remembering the rule.",
-   "t_n^2 ~ F(1, n) is worth memorising alongside F(m,n) = 1/F(n,m) and chi-square(n)/n as n grows tending to 1. These three identities cover most sampling-distribution items.",
-   "Where one statement asserts a containment between distribution families, check the DIRECTION of the containment - reversal is the single most common falsification device."
-  ],
-  "solution": [
-   "Statement 1: the chi-square with 1 degree of freedom is the distribution of Z^2 where Z ~ N(0,1). The normal itself is not a chi-square; the chi-square is non-negative and skewed while the normal is symmetric on the whole line. FALSE.",
-   "Statement 2: for Student's t with n degrees of freedom, the tail behaves like |t|^(-(n+1)), so E(|t|^k) is finite exactly when k < n. Hence all moments of order less than n exist. TRUE.",
-   "Statement 3: write t = Z/sqrt(V/n) with Z ~ N(0,1) and V ~ chi-square(n) independent. Then t^2 = Z^2/(V/n) = (Z^2/1)/(V/n), a ratio of independent chi-squares divided by their degrees of freedom, which is F(1, n). TRUE.",
-   "Only statements 2 and 3 are correct, so option (c) is right."
-  ]
- },
- "2018-Q39": {
-  "answer": 2,
-  "confidence": "high",
-  "type": "Numerical",
-  "shortcut": "min(X1,X2) = [(X1+X2) - |X1-X2|]/2. The first term has mean 0 and X1 - X2 ~ N(0, 2 sigma^2), so E|X1-X2| = sigma sqrt(2) . sqrt(2/pi) = 2 sigma/sqrt(pi). Hence E[X_(1)] = -sigma/sqrt(pi).",
-  "tips": [
-   "Identity worth memorising: min(a,b) = (a + b - |a - b|)/2 and max(a,b) = (a + b + |a - b|)/2. It converts order-statistic expectations into a mean-absolute-deviation computation.",
-   "For W ~ N(0, tau^2), E|W| = tau sqrt(2/pi). Here tau = sigma sqrt(2), so E|X1 - X2| = 2 sigma/sqrt(pi).",
-   "Sign check first: the minimum of two symmetric mean-zero variables must have a NEGATIVE expectation, which immediately eliminates options (a) and (b).",
-   "For a sample of size 2 from any symmetric distribution, E[X_(1)] = -E[X_(2)]; the two order statistics are mirror images about the mean."
-  ],
-  "solution": [
-   "Let X1, X2 be independent N(0, sigma^2) and let X_(1) = min(X1, X2).",
-   "Use the identity min(X1, X2) = [(X1 + X2) - |X1 - X2|]/2.",
-   "E(X1 + X2) = 0 since both means are 0.",
-   "X1 - X2 ~ N(0, 2 sigma^2), so with tau = sigma sqrt(2) and the half-normal mean formula E|W| = tau sqrt(2/pi), we get E|X1 - X2| = sigma sqrt(2) . sqrt(2/pi) = 2 sigma/sqrt(pi).",
-   "Therefore E[X_(1)] = [0 - 2 sigma/sqrt(pi)]/2 = -sigma/sqrt(pi).",
-   "Hence option (c) is correct."
-  ]
- },
- "2018-Q40": {
-  "answer": 0,
-  "confidence": "high",
-  "type": "Theoretical",
-  "shortcut": "For a U(0,1) sample the range R ~ Beta(n-1, 2), whose density is n(n-1) r^(n-2)(1-r) on (0,1). Recognise the Beta and read the answer off.",
-  "tips": [
-   "General range density: g(r) = n(n-1) times the integral over x of f(x) f(x+r) [F(x+r) - F(x)]^(n-2) dx. For U(0,1) the bracket is just r and the integral contributes the factor (1 - r).",
-   "Shape check: R ~ Beta(n-1, 2) means the exponents must be (n-1)-1 = n-2 on r and 2-1 = 1 on (1-r). Only option (a) has that pairing; option (b) has them swapped.",
-   "Normalisation test: the integral of n(n-1) r^(n-2)(1-r) over (0,1) is n(n-1) [1/(n-1) - 1/n] = 1. Option (b) also integrates to 1, so use the shape argument, not normalisation, to separate them.",
-   "Options (c) and (d) are densities of the MAXIMUM and of a related order statistic, not of the range - a classic substitution trap."
-  ],
-  "solution": [
-   "The X_i are i.i.d. Uniform(0,1), so f(x) = 1 on (0,1) and F(x) = x on (0,1).",
-   "The joint density of the smallest and largest order statistics is h(u, v) = n(n-1) f(u) f(v) [F(v) - F(u)]^(n-2) = n(n-1)(v - u)^(n-2) for 0 < u < v < 1.",
-   "Put R = V - U and integrate out U. For a fixed r in (0,1), U can range over (0, 1 - r).",
-   "g(r) = integral from 0 to 1-r of n(n-1) r^(n-2) du = n(n-1) r^(n-2) (1 - r), for 0 < r < 1.",
-   "This is the Beta(n-1, 2) density, and it integrates to n(n-1)[1/(n-1) - 1/n] = 1, confirming correctness.",
-   "Hence option (a) is correct."
-  ]
- }
+  "2018-Q21": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "Weight has a true zero and meaningful ratios, so it is RATIO scale, not interval - statement 1 fails. Statements 2 and 3 are textbook-correct, so the answer is 2 and 3 only.",
+    "tips": [
+      "Scale ladder: nominal (labels) < ordinal (ranks) < interval (equal gaps, arbitrary zero) < ratio (true zero). Weight, length, income and counts are ratio; temperature in Celsius and calendar dates are interval.",
+      "The single discriminator for interval vs ratio is 'is zero meaningful?'. Zero weight means no weight, so weight is ratio.",
+      "Cross-sectional = many units at ONE time point; time series = one unit over MANY time points; panel = both. 'Each IIM in $2007'$ is many units, one year, so cross-sectional.",
+      "Barcodes, PIN codes, jersey numbers and Aadhaar numbers are all nominal even though they look numeric - arithmetic on them is meaningless."
+    ],
+    "solution": [
+      "Statement 1: the weight of a strawberry box is a physical measurement with an absolute zero point, and ratios such as 'twice as heavy' are meaningful. That is the definition of a RATIO scale, not an interval scale. FALSE.",
+      "Statement 2: the number of students admitted to each IIM in 2007 records many different units (the IIMs) at a single point in time. That is cross-sectional data. TRUE.",
+      "Statement 3: a barcode is only an identifying label; the numbers cannot be ordered or added meaningfully, so the measurement is on a nominal scale. TRUE.",
+      "Only statements 2 and 3 are correct, so option (c) is right."
+    ]
+  },
+  "2018-Q22": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "$\\operatorname{Var}(Y - aX)$ is a quadratic in a; minimising it is exactly least squares. The minimum is the residual variance of the regression of Y on X, which is $\\operatorname{Var}(Y)(1 - \\rho^{2})$.",
+    "tips": [
+      "Remember the identity: minimum residual variance = $(1 - \\rho^{2}) x \\operatorname{Var}(Y)$. The factor $(1 - \\rho^{2})$ is the proportion of variance NOT explained; $\\rho^{2}$ is the proportion explained.",
+      "Dimensional check kills two options instantly: the answer must have the units of $\\operatorname{Var}(Y)$. Options (a) and (b) are ratios of variances and are dimensionally wrong.",
+      "The minimising value is $a = \\operatorname{Cov}(X,Y)/\\operatorname{Var}(X)$, which is precisely the regression coefficient $b_{YX}$ - the question is least squares in disguise.",
+      "If $\\rho = 0$ the minimum must equal $\\operatorname{Var}(Y)$ (X is useless); if $\\rho$ = +-1 it must be 0. Only option (d) satisfies both limits."
+    ],
+    "solution": [
+      "Write $g(a) = \\operatorname{Var}(Y - aX) = \\operatorname{Var}(Y) - 2a \\operatorname{Cov}(X,Y) + a^{2} \\operatorname{Var}(X)$. This is an upward parabola in a.",
+      "Setting $g'(a)$ = -$2 \\operatorname{Cov}(X,Y) + 2a \\operatorname{Var}(X) = 0$ gives the minimising value a* = $\\operatorname{Cov}(X,Y)/\\operatorname{Var}(X)$.",
+      "Substituting back: $g(a*) = \\operatorname{Var}(Y) - [\\operatorname{Cov}(X,Y)]^{2}/\\operatorname{Var}(X)$.",
+      "Since $\\rho = \\operatorname{Cov}(X,Y)/(sd(X) sd(Y))$, we have $[\\operatorname{Cov}(X,Y)]^{2} = \\rho^{2} \\operatorname{Var}(X) \\operatorname{Var}(Y)$, so $[\\operatorname{Cov}(X,Y)]^{2}/\\operatorname{Var}(X) = \\rho^{2} \\operatorname{Var}(Y)$.",
+      "Therefore the minimum value is $\\operatorname{Var}(Y) - \\rho^{2} \\operatorname{Var}(Y) = (1 - \\rho^{2}) \\operatorname{Var}(Y)$.",
+      "Hence option (d) is correct."
+    ]
+  },
+  "2018-Q23": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Use the empirical (median) form of Pearson's skewness: Sk = 3(Mean - Median)/SD. So -$0.3 = 3(62 - 65)$/SD = -9/SD, giving SD = 30.",
+    "tips": [
+      "Two forms of Pearson's coefficient: (Mean - Mode)/SD and 3(Mean - Median)/SD. When the MEDIAN is supplied, the factor 3 is compulsory - dropping it gives SD = 10, which is planted as option (a).",
+      "The sign works out automatically: mean below median gives a negative numerator and hence negative skewness, consistent with the given -0.3.",
+      "The relation comes from the empirical mode formula Mode = 3 Median - 2 Mean, which is worth memorising in its own right.",
+      "Sanity check the magnitude: |Mean - Median| = 3 and the coefficient is small $(0.3)$, so the SD must be an order of magnitude larger than 3 - that alone points to 30."
+    ],
+    "solution": [
+      "Pearson's coefficient of skewness in its median form is Sk = 3(Mean - Median)/SD.",
+      "Substitute the given values: -$0.3 = 3(62 - 65)$/SD.",
+      "The numerator is $3 x (-3)$ = -9, so -0.3 = -9/SD.",
+      "Solving, SD = -$9/(-0.3) = 30$.",
+      "Hence the standard deviation is 30, option (b)."
+    ]
+  },
+  "2018-Q24": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Yule's $Q = (ad - bc)/(ad + bc)$ with $a = 50, b = 10, c = 10, d = 30$. So $Q = (1500 - 100)/(1500 + 100) = 1400/1600 = 7/8$.",
+    "tips": [
+      "Yule's coefficient of association $Q = (ad - bc)/(ad + bc)$ always lies between -1 and +1; it is 0 exactly when ad = bc, i.e. under independence.",
+      "Set the 2x2 table out as a = both present, b and c = one present, d = both absent. Here the diagonal product ad = 1500 dominates the off-diagonal bc = 100, so the association must be strongly POSITIVE - that alone eliminates (c).",
+      "Do not confuse Yule's Q with the coefficient of colligation $Y = (\\sqrt{ad} - \\sqrt{bc})/(\\sqrt{ad} + \\sqrt{bc})$, which would give a different value here.",
+      "Sons of smokers smoking 50:10 while sons of non-smokers smoke 10:30 is a clear positive association - a quick common-sense check on the sign before computing."
+    ],
+    "solution": [
+      "Arrange the 2x2 contingency table: $(AB) = 50$ (both smoke), $(A \\beta) = 10$ (father smokes, son does not), $(\\alpha B) = 10$ (father does not, son does), $(\\alpha \\beta) = 30$ (neither smokes).",
+      "Yule's coefficient of association is $Q = [(AB)(\\alpha \\beta) - (A \\beta)(\\alpha B)] / [(AB)(\\alpha \\beta) + (A \\beta)(\\alpha B)]$.",
+      "Diagonal product: $(AB)(\\alpha \\beta) = 50 \\times 30 = 1500$.",
+      "Off-diagonal product: $(A \\beta)(\\alpha B) = 10 \\times 10 = 100$.",
+      "$Q = (1500 - 100)/(1500 + 100) = 1400/1600 = 7/8$.",
+      "The value is positive and close to 1, indicating strong positive association. Option (b) is correct."
+    ]
+  },
+  "2018-Q25": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Definition",
+    "shortcut": "Statements 1 and 2 are the standard verbal definitions of positive and negative association. Statement 3 misdefines independence as a 'linear relationship' - independence means NO relationship at all. So 1 and 2 only.",
+    "tips": [
+      "Independence of attributes means $(AB) = (A)(B)/N$, i.e. the observed joint frequency equals the product of the marginals. Nothing about linearity is involved - linearity belongs to correlation of variables, not association of attributes.",
+      "The examiner's favourite trap in this chapter is importing correlation language (linear, positive, negative) into attribute theory. Read every option for that swap.",
+      "Association compares (AB) with $(A)(B)/N$: greater means positive association, smaller means negative association, equal means independence. Three cases, one formula.",
+      "Whenever one statement in a set is a definition that has been subtly reworded, that is almost always the false one - here statement 3."
+    ],
+    "solution": [
+      "Two attributes A and B are said to be INDEPENDENT when $(AB) = (A)(B)/N$, where N is the total frequency.",
+      "Statement 1: A and B are positively associated when the presence of A tends to be accompanied by the presence of B, i.e. $(AB) > (A)(B)/N$. This is the standard verbal definition. TRUE.",
+      "Statement 2: A and B are negatively associated (disassociated) when the presence of one tends to exclude the other, i.e. $(AB) < (A)(B)/N$. TRUE.",
+      "Statement 3: independence is defined by the frequency identity above, not by any 'linear relationship'. Linearity is a concept of correlation between quantitative variables, not of association between attributes. FALSE.",
+      "Only statements 1 and 2 are correct, so option (b) is right."
+    ]
+  },
+  "2018-Q26": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Fix x and look at the y-part: f is proportional to $e^(-y(1+x))$, which is an Exponential with RATE $(1+x)$. Its mean is the reciprocal, so $\\operatorname{E}(Y\\mid X=x) = 1/(1+x)$.",
+    "tips": [
+      "The regression of Y on X IS the conditional mean $\\operatorname{E}(Y\\mid X=x)$. Whenever the joint density factorises as $g(x) e^(-y h(x))$, the conditional law of Y is Exponential(h(x)) and the answer is $1/h(x)$ - one line, no integration.",
+      "Any multiplicative function of x alone (here $x^{2}/3$) is absorbed into the normalising constant of the conditional density and cannot appear in $\\operatorname{E}(Y\\mid X)$. That rules out options (b) and (d) at a glance.",
+      "Option $(c) y = 1 + x$ inverts the relationship: it is the RATE, not the mean. Reciprocal errors are the standard trap in exponential conditionals.",
+      "Note that the printed joint density is not normalisable over the stated range (the $x-\\int x^{2}/(1+x)$ diverges), but the conditional distribution of Y given X - and hence the answer - is unaffected."
+    ],
+    "solution": [
+      "The joint density is $f(x,y) = (1/3) x^{2} e^(-y(1+x))$ for $x \\ge 0, y \\ge 0$.",
+      "For a fixed value $X = x$, the conditional density of Y is $f(y\\mid x) = f(x,y)/f_{X}(x)$, which is proportional to $e^(-y(1+x))$ for $y \\ge 0$.",
+      "Normalising, $f(y\\mid x) = (1 + x) e^(-y(1+x))$, which is the Exponential density with rate parameter $(1 + x)$.",
+      "The mean of an Exponential distribution with rate $\\lambda$ is $1/\\lambda$, so $\\operatorname{E}(Y \\mid X = x) = 1/(1 + x)$.",
+      "The regression of Y on X is the curve $y = \\operatorname{E}(Y\\mid X = x) = 1/(1 + x)$.",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2018-Q27": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "All three are standard properties of the bivariate normal: zero correlation gives independence, every linear combination is normal, and both regression lines are linear with constant (homoscedastic) conditional variance. Answer: all three.",
+    "tips": [
+      "'rho = 0 implies independence' is TRUE for the bivariate normal and FALSE in general - the examiner exploits this asymmetry constantly. Check whether normality is stated.",
+      "The conditional variance of Y given X is $\\sigma_{2}^{2}(1 - \\rho^{2})$, which does not depend on x. That constancy is exactly what homoscedasticity means.",
+      "The conditional mean is $\\operatorname{E}(Y\\mid X=x) = \\mu_{2} + \\rho (\\sigma_{2}/\\sigma_{1})(x - \\mu_{1})$ - linear in x, which gives the linear regression property.",
+      "In $a 1/2/3$ item where every statement is a bookwork property of the same distribution, (d) 'all of them' is very often the key - but confirm the one you are least sure of, here statement 3."
+    ],
+    "solution": [
+      "Statement 1: for the bivariate normal, the joint density factorises into the product of the two marginal normal densities precisely when $\\rho = 0$. So independence holds if and only if $\\rho = 0$. TRUE. (Note this equivalence is special to the normal; in general $\\rho = 0$ does not imply independence.)",
+      "Statement 2: if (X,Y) is bivariate normal then aX + bY is univariate normal for all constants a, b - this is a defining property of the multivariate normal family. TRUE.",
+      "Statement 3: the conditional distribution of Y given $X = x$ is $N(\\mu_{2} + \\rho (\\sigma_{2}/\\sigma_{1})(x - \\mu_{1}), \\sigma_{2}^{2}(1 - \\rho^{2}))$.",
+      "The conditional mean is linear in x, so the regression of Y on X is linear; the conditional variance $\\sigma_{2}^{2}(1 - \\rho^{2})$ is free of x, so the regression is homoscedastic. By symmetry the same holds for X on Y. TRUE.",
+      "All three statements are correct, so option (d) is right."
+    ]
+  },
+  "2018-Q28": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "Correlation is invariant under a change of origin. Adding 3 to every Maths mark shifts the origin only, so r is unchanged at 0.65.",
+    "tips": [
+      "r is invariant under any change of origin and under a change of scale by a POSITIVE constant; multiplying by a negative constant flips only the sign, never the magnitude.",
+      "The sample size 60 is deliberately irrelevant here - the examiner adds it purely as a distraction.",
+      "Formally, $\\operatorname{Cov}(X + c, Y) = \\operatorname{Cov}(X, Y)$ and $\\operatorname{Var}(X + c) = \\operatorname{Var}(X)$, so every ingredient of r is unchanged.",
+      "Option (d) 'almost 1' punishes the belief that a systematic adjustment somehow strengthens the relationship - the scatter pattern is simply translated."
+    ],
+    "solution": [
+      "Let X be Maths marks and Y be Statistics marks, with $r(X,Y) = 0.65$.",
+      "The revised Maths marks are $X' = X + 3, a$ pure change of origin.",
+      "Covariance is unaffected by a shift: $\\operatorname{Cov}(X + 3, Y) = \\operatorname{Cov}(X, Y)$.",
+      "Variance is also unaffected: $\\operatorname{Var}(X + 3) = \\operatorname{Var}(X)$, so sd(X') = sd(X).",
+      "Therefore $r(X', Y) = \\operatorname{Cov}(X',Y)/(sd(X') sd(Y)) = \\operatorname{Cov}(X,Y)/(sd(X) sd(Y)) = r(X,Y) = 0.65$.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2018-Q29": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Put $r_{12} = r_{13} = r_{23} = \\rho$ in $R^{2} = (r_{12}^{2} + r_{13}^{2} - 2 r_{12} r_{13} r_{23})/(1 - r_{23}^{2})$. Numerator = $2\\rho^{2} - 2\\rho^{3} = 2\\rho^{2}(1-\\rho)$; denominator = $(1-\\rho)(1+\\rho)$. Cancel $(1-\\rho)$ to get $2\\rho^{2}/(1+\\rho)$.",
+    "tips": [
+      "Memorise $R^{2}_{1.23} = (r_{12}^{2} + r_{13}^{2} - 2 r_{12} r_{13} r_{23})/(1 - r_{23}^{2})$. Every multiple-correlation numerical in this paper reduces to it.",
+      "The cancellation of $(1 - \\rho)$ is the whole trick; factor $1 - \\rho^{2}$ as $(1-\\rho)(1+\\rho)$ before simplifying rather than after.",
+      "Check the limits: $\\rho = 0$ must give $R^{2} = 0$ (option (b) gives 0, correct) and $\\rho = 1$ must give $R^{2} = 1$ (option (b) gives $2/2 = 1$, correct). Option (c) fails the $\\rho = 1$ test, giving $1/2$.",
+      "$R^{2}$ is a squared quantity, so a bare $\\rho$ as in option (a) cannot be right on dimensional grounds."
+    ],
+    "solution": [
+      "The square of the multiple correlation of X1 on X2, X3 is $R^{2}_{1.23} = (r_{12}^{2} + r_{13}^{2} - 2 r_{12} r_{13} r_{23})/(1 - r_{23}^{2})$.",
+      "All three zero-order correlations equal $\\rho$, so $r_{12} = r_{13} = r_{23} = \\rho$.",
+      "Numerator: $\\rho^{2} + \\rho^{2} - 2 \\rho$ . $\\rho$ . $\\rho = 2\\rho^{2} - 2\\rho^{3} = 2\\rho^{2} (1 - \\rho)$.",
+      "Denominator: $1 - \\rho^{2} = (1 - \\rho)(1 + \\rho)$.",
+      "Cancelling the common factor $(1 - \\rho)$ gives $R^{2}_{1.23} = 2\\rho^{2}/(1 + \\rho)$.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2018-Q30": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Under $\\rho = 0$ the density of r is proportional to $(1 - r^{2})^((N-4)/2)$. Multiplying by $(1-r^{2})^{-1}$ lowers the exponent by one, so the expectation is a ratio of Beta functions that collapses to $(N-3)/(N-4)$.",
+    "tips": [
+      "Null density to memorise: $f(r) = (1 - r^{2})^((N-4)/2) / B(1/2, (N-2)/2)$ on $(-1, 1)$. Almost every 'distribution of r when $\\rho = 0'$ item is solved by shifting its exponent.",
+      "The standard integral is: integral over $(-1,1)$ of $(1 - r^{2})^{a-1}$ dr = $B(1/2, a)$. Recognising the integrand as a Beta kernel converts the whole problem into $\\Gamma$-function algebra.",
+      "Use $\\Gamma(z+1) = z \\Gamma(z)$ and $\\Gamma(z + 3/2) = (z + 1/2) \\Gamma(z + 1/2)$ - after those two substitutions everything cancels except $(N-3)/(N-4)$.",
+      "Sanity check with large N: the answer must tend to 1 because r tends to 0 and $(1-r^{2})^{-1}$ tends to 1. Only options (a) and (d) do that, and (d) ignores N entirely."
+    ],
+    "solution": [
+      "When the population correlation is zero, the density of the sample correlation coefficient based on N observations is $f(r) = (1 - r^{2})^((N-4)/2) / B(1/2, (N-2)/2)$, for -$1 < r < 1$.",
+      "Hence $\\operatorname{E}[(1 - r^{2})^{-1}] = [1/B(1/2, (N-2)/2)]$ times the integral over $(-1,1)$ of $(1 - r^{2})^((N-6)/2)$ dr.",
+      "Using the standard result integral over $(-1,1)$ of $(1 - r^{2})^{a-1}$ dr = $B(1/2, a)$, with $a - 1 = (N-6)/2$ so that $a = (N-4)/2$, the integral equals $B(1/2, (N-4)/2)$.",
+      "Therefore $\\operatorname{E}[(1-r^{2})^{-1}] = B(1/2, (N-4)/2) / B(1/2, (N-2)/2)$.",
+      "Writing $B(1/2, a) = \\Gamma(1/2)\\Gamma(a)/\\Gamma(a + 1/2)$ and putting $a_{1} = (N-4)/2, a_{2} = a_{1} + 1$, the ratio becomes $[\\Gamma(a_{1}) \\Gamma(a_{1} + 3/2)] / [\\Gamma(a_{1} + 1/2) \\Gamma(a_{1} + 1)]$.",
+      "Using $\\Gamma(a_{1} + 1) = a_{1} \\Gamma(a_{1})$ and $\\Gamma(a_{1} + 3/2) = (a_{1} + 1/2) \\Gamma(a_{1} + 1/2)$, this equals $(a_{1} + 1/2)/a_{1} = [(N-3)/2]/[(N-4)/2] = (N-3)/(N-4)$, option (a)."
+    ]
+  },
+  "2018-Q31": {
+    "answer": 2,
+    "confidence": "medium",
+    "type": "Theoretical",
+    "shortcut": "An exact linear relation makes the two residuals proportional. From $a x_{1} + b x_{2} + c x_{3} = 0$ we get x1 = -$(b/a)x_{2} - (c/a)x_{3}$, so after removing x3 the residual of x1 is a NEGATIVE multiple of that of x2 (for a, b of the same sign), giving r12.3 = -1.",
+    "tips": [
+      "Exact linear dependence always forces a partial correlation of magnitude 1 - so the real question is only the sign, and options (a) and (d) can be struck out at once.",
+      "Sign rule: r12.3 = -sign($b/a$). With the usual textbook convention that a, b, c are positive constants (as in the classic $x_{1} + x_{2} + x_{3} = 0$), the value is -1.",
+      "The formula r12.$3 = (r_{12} - r_{13} r_{23})/sqrt((1 - r_{13}^{2})(1 - r_{23}^{2}))$ also gives +-1 here, but the residual argument reaches the sign far faster.",
+      "Partial correlation removes the linear effect of x3 from BOTH variables; what remains is the pure x1-x2 link, which is deterministic here."
+    ],
+    "solution": [
+      "The relation $a x_{1} + b x_{2} + c x_{3} = 0$ holds identically, so the three variables are exactly linearly dependent.",
+      "Solve for x1: x1 = -$(b/a) x_{2} - (c/a) x_{3}$.",
+      "Regress each of x1 and x2 on x3 and take residuals. Because the relation above is exact, the residual of x1 after removing x3 equals -$(b/a)$ times the residual of x2 after removing x3.",
+      "A residual pair related by an exact multiplicative constant has correlation +1 if the constant is positive and -1 if it is negative.",
+      "Here the constant is -$(b/a)$, which is negative when a and b have the same sign - the standard convention in this classical result (e.g. the case $x_{1} + x_{2} + x_{3} = 0$).",
+      "Hence r12.3 = -1, option (c). (If a and b had opposite signs the value would be +1; the magnitude is always 1.)"
+    ]
+  },
+  "2018-Q32": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "U and V share X1 and X2. $\\operatorname{Cov}(U,V) = \\operatorname{Var}(X_{1}) + \\operatorname{Var}(X_{2}) = 2 \\sigma^{2}$, while $\\operatorname{Var}(U) = \\operatorname{Var}(V) = 3 \\sigma^{2}$. So $r = 2 \\sigma^{2}/(3 \\sigma^{2}) = 2/3$.",
+    "tips": [
+      "For sums of uncorrelated variables with a common variance, the correlation is simply (number of SHARED terms)/sqrt(count in U x count in V). Here $2/\\sqrt{3 \\times 3} = 2/3$.",
+      "Uncorrelated cross terms vanish, so the covariance counts only the overlap - never expand all nine products.",
+      "$\\sigma^{2}$ cancels completely, which is why the answer is a pure number; if your working leaves $a \\sigma$ you have slipped.",
+      "Extreme checks: no shared terms would give 0 and complete overlap would give 1, so a two-out-of-three overlap must land strictly between - eliminating (a) and (b)."
+    ],
+    "solution": [
+      "X1, X2, X3, X4 are uncorrelated, each with variance $\\sigma^{2}$, so all cross-covariances are 0.",
+      "$\\operatorname{Var}(U) = \\operatorname{Var}(X_{1} + X_{2} + X_{3}) = 3 \\sigma^{2}$, and similarly $\\operatorname{Var}(V) = \\operatorname{Var}(X_{1} + X_{2} + X_{4}) = 3 \\sigma^{2}$.",
+      "$\\operatorname{Cov}(U, V) = \\operatorname{Cov}(X_{1} + X_{2} + X_{3}, X_{1} + X_{2} + X_{4})$. Every cross term between distinct variables is 0, so only the shared variables contribute.",
+      "$\\operatorname{Cov}(U, V) = \\operatorname{Var}(X_{1}) + \\operatorname{Var}(X_{2}) = \\sigma^{2} + \\sigma^{2} = 2 \\sigma^{2}$.",
+      "Therefore $r(U, V) = 2 \\sigma^{2} / sqrt$($3 \\sigma^{2}$ . $3 \\sigma^{2}$) = $2 \\sigma^{2}/(3 \\sigma^{2}) = 2/3$.",
+      "Hence option (d) is correct."
+    ]
+  },
+  "2018-Q33": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "For $U[-3,3]$, mean = 0 and variance = $(6)^{2}/12 = 3$. By the CLT, $\\sqrt{n} (\\bar{X} - \\mu)$ converges to $N(0, \\sigma^{2}) = N(0, 3)$. No division by $\\sigma$ appears, so the variance stays 3.",
+    "tips": [
+      "Variance of U[a,b] is $(b-a)^{2}/12$. Here $(3 - (-3))^{2}/12 = 36/12 = 3$ - compute this before anything else.",
+      "Distinguish the two CLT forms: $\\sqrt{n} \\bar{X} / \\sigma$ tends to $N(0,1)$ whereas $\\sqrt{n} \\bar{X}$ tends to $N(0, \\sigma^{2})$. The stem has no $\\sigma$ in the denominator, so option (b) not (a).",
+      "The limit is NORMAL, never uniform - the CLT destroys the parent shape. Options (c) and (d) are eliminated on principle without any arithmetic.",
+      "The mean of $U[-a,a]$ is 0 by symmetry, which is why the limiting mean is 0 and no centring constant is needed."
+    ],
+    "solution": [
+      "For the Uniform distribution on $[-3, 3]$, the mean is $\\mu = (-3 + 3)/2 = 0$ and the variance is $\\sigma^{2} = (3 - (-3))^{2}/12 = 36/12 = 3$.",
+      "The Central Limit Theorem states that $\\sqrt{n}(\\bar{X} - \\mu)/\\sigma$ converges in distribution to $N(0, 1)$ as n grows.",
+      "Since $\\mu = 0$, this reads $\\sqrt{n} \\bar{X} / \\sigma$ tends to $N(0,1)$.",
+      "Multiplying by the constant $\\sigma, \\sqrt{n} \\bar{X}$ converges in distribution to $N(0, \\sigma^{2}) = N(0, 3)$.",
+      "Hence the large-sample distribution is $N(0, 3)$, option (b)."
+    ]
+  },
+  "2018-Q34": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "$SE = 2.1/\\sqrt{900} = 2.1/30 = 0.07$. $z = (0 - 0.1)/0.07$ = -1.43. $\\operatorname{P}(Z < -1.43) = 0.5 - 0.4236 = 0.0764$.",
+    "tips": [
+      "$\\sqrt{900} = 30$ is the only arithmetic that matters; $2.1/30 = 0.07$ makes the z-score a clean -1.43, which is exactly the value the examiner supplies.",
+      "The supplied figure $\\operatorname{P}(0 < Z < 1.43) = 0.4236$ is a CENTRAL area, not a tail. The left tail is $0.5 - 0.4236 = 0.0764$ - subtracting from 0.5, never from 1.",
+      "Option $(b) 0.6408 = 0.5 + 0.1408$ and option (d) 0.7046 are built from misreading the table; option (c) 0.6074 is 0.5 + 0.1074. All assume the wrong tail.",
+      "Sanity check: the population mean 0.1 is positive and the sample is large, so a negative sample mean should be UNLIKELY - the answer must be well below 0.5, which only (a) is."
+    ],
+    "solution": [
+      "The population has mean $\\mu = 0.1$ and standard deviation $\\sigma = 2.1$; the sample size is $n = 900$.",
+      "The standard error of the sample mean is $\\sigma/\\sqrt{n} = 2.1/30 = 0.07$.",
+      "We need $\\operatorname{P}(\\bar{X} < 0)$. Standardising: $z = (0 - 0.1)/0.07$ = -1.4286, which rounds to -1.43.",
+      "$\\operatorname{P}(\\bar{X} < 0) = \\operatorname{P}(Z < -1.43) = \\operatorname{P}(Z > 1.43)$ by symmetry.",
+      "Using the supplied value $\\operatorname{P}(0 < Z < 1.43) = 0.4236$, we get $\\operatorname{P}(Z > 1.43) = 0.5 - 0.4236 = 0.0764$.",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2018-Q35": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Build $t = Z/\\sqrt{\\chi^{2}_{3}/3}$. Here $Z = (X_{1}+X_{2})/\\sqrt{2}$ and $\\chi^{2}_{3} = X_{3}^{2}+X_{4}^{2}+X_{5}^{2}$, so $t = \\sqrt{3}(X_{1}+X_{2})$/($\\sqrt{2} sqrt$(sum)). Hence $C = \\sqrt{3}/\\sqrt{2} = \\sqrt{3/2}$.",
+    "tips": [
+      "The t-statistic template is ALWAYS standard normal divided by sqrt($\\chi^{2}$/its own d.f.). Identify the two pieces and their d.f. before touching the algebra.",
+      "X1 + X2 has variance 2, so it must be divided by $\\sqrt{2}$ to become standard normal. Forgetting this gives $\\sqrt{3}$ and no matching option.",
+      "The d.f. is 3 (three squared normals), so the divisor inside the square root is 3 - that is where the $\\sqrt{3}$ in the numerator comes from.",
+      "$\\sqrt{3/2} = \\sqrt{6}/2 = 1.2247$ while $\\sqrt{3}/2 = 0.866$; option (a) is the trap for candidates who take the square root of 3 but not of 2."
+    ],
+    "solution": [
+      "X1, ..., X5 are independent $N(0,1)$.",
+      "$X_{1} + X_{2} \\sim N(0, 2)$, so $Z = (X_{1} + X_{2})/\\sqrt{2} \\sim N(0, 1)$.",
+      "$X_{3}^{2} + X_{4}^{2} + X_{5}^{2} \\sim \\chi^{2}$ with 3 degrees of freedom, and it is independent of X1 + X2.",
+      "By definition, $t = Z / sqrt$($\\chi$-square_3 / 3) follows Student's t with 3 d.f.",
+      "Substituting: $t = [(X_{1}+X_{2})/\\sqrt{2}] / sqrt((X_{3}^{2}+X_{4}^{2}+X_{5}^{2})/3) = \\sqrt{3}(X_{1}+X_{2}) / [\\sqrt{2} \\sqrt{X3^{2}+X_{4}^{2}+X_{5}^2}]$.",
+      "Comparing with $C(X_{1}+X_{2})/(X_{3}^{2}+X_{4}^{2}+X_{5}^{2})^{1/2}$ gives $C = \\sqrt{3}/\\sqrt{2} = \\sqrt{3/2}$, option (b)."
+    ]
+  },
+  "2018-Q36": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "$\\operatorname{E}(X) = n/(n-2)$ for $X \\sim F(m,n)$. Since $1/X \\sim F(n,m)$, swapping the roles gives $\\operatorname{E}(1/X) = m/(m-2)$. The product is mn/$((m-2)(n-2))$.",
+    "tips": [
+      "The reciprocal property $1/F(m,n) \\sim F(n,m)$ is the key. Once you have it, $\\operatorname{E}(1/X)$ needs no integration - just swap m and n in the mean formula.",
+      "Remember the mean of F(m,n) involves only the DENOMINATOR d.f.: $E = n/(n-2), n > 2$. Candidates who use $m/(m-2)$ for E(X) land on option (b), the mirror-image trap.",
+      "The conditions $m > 2$ and $n > 2$ in the stem exist precisely so that both expectations are finite - they are a hint about which formula to use.",
+      "By Jensen's inequality $\\operatorname{E}(X)\\operatorname{E}(1/X) \\ge 1$ always. Option (c) gives mn/$((m-2)(n-2)) > 1$ for all admissible m, n, which is the only option guaranteed to satisfy this."
+    ],
+    "solution": [
+      "For $X \\sim F(m, n)$ with $n > 2$, the mean is $\\operatorname{E}(X) = n/(n - 2)$.",
+      "A standard property of the F distribution is that $1/X \\sim F(n, m)$, i.e. the degrees of freedom interchange.",
+      "Applying the mean formula to $1/X \\sim F(n, m)$, whose denominator d.f. is now m, gives $\\operatorname{E}(1/X) = m/(m - 2)$, valid since $m > 2$.",
+      "Multiplying: $\\operatorname{E}(X) \\operatorname{E}(1/X) = [n/(n-2)] [m/(m-2)]$ = mn/$((m-2)(n-2))$.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2018-Q37": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "Both the $\\chi^{2}$ goodness-of-fit test and the Kolmogorov-Smirnov test compare an observed distribution with a completely specified theoretical one. K-S is the distribution-free analogue.",
+    "tips": [
+      "Sort the non-parametric tests by what they compare: goodness of fit to a specified distribution = $\\chi^{2}$ and K-S (one sample); two independent samples = Mann-Whitney and median test; paired/matched data = Wilcoxon signed-rank and sign test; randomness = run test.",
+      "$\\chi^{2}$ needs GROUPED data with adequate expected frequencies; K-S works directly on the ungrouped empirical CDF and is therefore preferred for small samples and continuous data.",
+      "K-S uses the maximum absolute deviation $D = \\sup \\mid F_{n}(x) - F_{0}(x)$| - remember it as a 'largest vertical gap between two CDFs' test.",
+      "Mann-Whitney (option a) and Wilcoxon (option c) are location-comparison tests, and the median test (option d) compares medians - none of them tests fit to a specified distribution."
+    ],
+    "solution": [
+      "The $\\chi^{2}$ goodness-of-fit test compares observed frequencies with the frequencies expected under a fully specified theoretical distribution.",
+      "Among the listed non-parametric procedures, the Kolmogorov-Smirnov one-sample test performs the same task: it compares the empirical distribution function $F_{n}(x)$ with a hypothesised $F_{0}(x)$.",
+      "The K-S statistic is $D = \\sup$ over x of |$F_{n}(x) - F_{0}(x)$|, the largest vertical distance between the two curves, and a large D leads to rejection of the hypothesised distribution.",
+      "The Mann-Whitney and Wilcoxon tests compare locations of samples, and the median test compares medians; none of them tests agreement with a specified distribution.",
+      "Hence the Kolmogorov-Smirnov test is the analogue of the $\\chi^{2}$ goodness-of-fit test, option (b)."
+    ]
+  },
+  "2018-Q38": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Statement 1 reverses the relationship - the SQUARE of a standard normal is $\\chi^{2}_{1}$, not the other way round - so it is false. Statements 2 and 3 are standard results, giving 2 and 3 only.",
+    "tips": [
+      "Correct direction: $Z \\sim N(0,1)$ implies $Z^{2} \\sim \\chi^{2}_{1}$. The normal is not a special case of the $\\chi^{2}$; the $\\chi^{2}$ family is built FROM normals.",
+      "Moment rule for t with n d.f.: $\\operatorname{E}(t^{k})$ exists only for $k < n$. The t with 1 d.f. is the Cauchy, which has no mean at all - a good anchor for remembering the rule.",
+      "$t_{n}^{2} \\sim F(1, n)$ is worth memorising alongside $F(m,n) = 1/F(n,m)$ and $\\chi^{2}_{n}/n$ as n grows tending to 1. These three identities cover most sampling-distribution items.",
+      "Where one statement asserts a containment between distribution families, check the DIRECTION of the containment - reversal is the single most common falsification device."
+    ],
+    "solution": [
+      "Statement 1: the $\\chi^{2}$ with 1 degree of freedom is the distribution of $Z^{2}$ where $Z \\sim N(0,1)$. The normal itself is not $a \\chi^{2}$; the $\\chi^{2}$ is non-negative and skewed while the normal is symmetric on the whole line. FALSE.",
+      "Statement 2: for Student's t with n degrees of freedom, the tail behaves like |t|^(-$(n+1)$), so $\\operatorname{E}(\\lvert t\\rvert ^{k})$ is finite exactly when $k < n$. Hence all moments of order less than n exist. TRUE.",
+      "Statement 3: write $t = Z/\\sqrt{V/n}$ with $Z \\sim N(0,1)$ and $V \\sim \\chi^{2}_{n}$ independent. Then $t^{2} = Z^{2}/(V/n) = (Z^{2}/1)/(V/n), a$ ratio of independent $\\chi$-squares divided by their degrees of freedom, which is $F(1, n)$. TRUE.",
+      "Only statements 2 and 3 are correct, so option (c) is right."
+    ]
+  },
+  "2018-Q39": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "$\\min(X_{1},X_{2}) = [(X_{1}+X_{2}) - \\lvert X_{1}-X_{2}\\rvert ]/2$. The first term has mean 0 and $X_{1} - X_{2} \\sim N(0, 2 \\sigma^{2})$, so $E\\mid X_{1}-X_{2}$| = $\\sigma \\sqrt{2}$ . $\\sqrt{2/pi} = 2 \\sigma/\\sqrt{pi}$. Hence $\\operatorname{E}[X_{1}]$ = -$\\sigma/\\sqrt{pi}$.",
+    "tips": [
+      "Identity worth memorising: $\\min(a,b) = (a + b - \\lvert a - b\\rvert )/2$ and $\\max(a,b) = (a + b + \\lvert a - b\\rvert )/2$. It converts order-statistic expectations into a mean-absolute-deviation computation.",
+      "For $W \\sim N(0, \\tau^{2}), E\\mid W$| = $\\tau \\sqrt{2/pi}$. Here $\\tau = \\sigma \\sqrt{2}$, so $E\\mid X_{1} - X_{2}$| = $2 \\sigma/\\sqrt{pi}$.",
+      "Sign check first: the minimum of two symmetric mean-zero variables must have a NEGATIVE expectation, which immediately eliminates options (a) and (b).",
+      "For a sample of size 2 from any symmetric distribution, $\\operatorname{E}[X_{1}]$ = -$\\operatorname{E}[X_{2}]$; the two order statistics are mirror images about the mean."
+    ],
+    "solution": [
+      "Let X1, X2 be independent $N(0, \\sigma^{2})$ and let $X_{1} = \\min(X_{1}, X_{2})$.",
+      "Use the identity $\\min(X_{1}, X_{2}) = [(X_{1} + X_{2}) - \\lvert X_{1} - X_{2}\\rvert ]/2$.",
+      "$\\operatorname{E}(X_{1} + X_{2}) = 0$ since both means are 0.",
+      "$X_{1} - X_{2} \\sim N(0, 2 \\sigma^{2})$, so with $\\tau = \\sigma \\sqrt{2}$ and the half-normal mean formula E|W| = $\\tau \\sqrt{2/pi}$, we get $E\\mid X_{1} - X_{2}$| = $\\sigma \\sqrt{2}$ . $\\sqrt{2/pi} = 2 \\sigma/\\sqrt{pi}$.",
+      "Therefore $\\operatorname{E}[X_{1}] = [0 - 2 \\sigma/\\sqrt{pi}]/2$ = -$\\sigma/\\sqrt{pi}$.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2018-Q40": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "For $a U(0,1)$ sample the range R ~ Beta(n-1, 2), whose density is $n(n-1) r^{n-2}(1-r)$ on $(0,1)$. Recognise the Beta and read the answer off.",
+    "tips": [
+      "General range density: $g(r) = n(n-1)$ times the $\\int f(x) f(x+r) [F(x+r) - F(x)]^{n-2}\\,dx$. For $U(0,1)$ the bracket is just r and the integral contributes the factor $(1 - r)$.",
+      "Shape check: R ~ Beta(n-1, 2) means the exponents must be $(n-1)-1 = n-2$ on r and $2-1 = 1$ on $(1-r)$. Only option (a) has that pairing; option (b) has them swapped.",
+      "Normalisation test: the $\\int n(n-1) r^{n-2}(1-r)$ over $(0,1)$ is $n(n-1) [1/(n-1) - 1/n] = 1$. Option (b) also integrates to 1, so use the shape argument, not normalisation, to separate them.",
+      "Options (c) and (d) are densities of the MAXIMUM and of a related order statistic, not of the range - a classic substitution trap."
+    ],
+    "solution": [
+      "The $X_{i}$ are i.i.d. Uniform(0,1), so $f(x) = 1$ on $(0,1)$ and $F(x) = x$ on $(0,1)$.",
+      "The joint density of the smallest and largest order statistics is $h(u, v) = n(n-1) f(u) f(v) [F(v) - F(u)]^{n-2} = n(n-1)(v - u)^{n-2}$ for $0 < u < v < 1$.",
+      "Put $R = V - U$ and integrate out U. For a fixed r in $(0,1), U$ can range over $(0, 1 - r)$.",
+      "$g(r) = \\int_{0}^{1-r} n(n-1) r^{n-2}\\,du = n(n-1) r^{n-2} (1 - r)$, for $0 < r < 1$.",
+      "This is the Beta(n-1, 2) density, and it integrates to $n(n-1)[1/(n-1) - 1/n] = 1$, confirming correctness.",
+      "Hence option (a) is correct."
+    ]
+  }
 }

@@ -22,9 +22,9 @@
     "answer": 1,
     "confidence": "high",
     "type": "Factual",
-    "shortcut": "802.11ad (WiGig) operates in the 60 GHz band with rates up to about 6.7 Gbps, far above 802.11a/g (54 Mbps) and 802.11b (11 Mbps). Answer (b).",
+    "shortcut": "802.11ad (WiGig) operates in the 60 GHz band with rates up to about 6.7 Gbps, far above $802.11a/g$ (54 Mbps) and 802.11b (11 Mbps). Answer (b).",
     "tips": [
-      "Data-rate ladder to memorise: 802.11b = 11 Mbps, 802.11a and 802.11g = 54 Mbps, 802.11n = 600 Mbps, 802.11ac = several Gbps, 802.11ad = about 6.7 Gbps.",
+      "Data-rate ladder to memorise: $802.11b = 11$ Mbps, 802.11a and $802.11g = 54$ Mbps, $802.11n = 600$ Mbps, 802.11ac = several Gbps, 802.11ad = about 6.7 Gbps.",
       "The two-letter suffixes (ac, ad, ax, be) are always the newer, faster generations; single-letter ones (a, b, g, n) are older.",
       "802.11ad uses the 60 GHz millimetre-wave band, which gives huge bandwidth but very short range - essentially in-room use.",
       "802.11a and 802.11g share the same 54 Mbps ceiling but differ in band (5 GHz versus 2.4 GHz), so neither can be 'the maximum'."
@@ -43,20 +43,20 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Repeated division of 45796 by 8 gives remainders 4, 4, 3, 1, 3, 1, i.e. 131344 - statement I checks out. Octal 365 is 011 110 101 in binary; regrouping in fours gives 1111 0101 = F5, so statement II checks out too. Answer (c).",
+    "shortcut": "Repeated division of 45796 by 8 gives remainders 4, 4, 3, 1, 3, 1, i.e. 131344 - statement I checks out. Octal 365 is 011 110 101 in binary; regrouping in fours gives $1111 0101 = F_{5}$, so statement II checks out too. Answer (c).",
     "tips": [
       "Decimal to octal: divide repeatedly by 8 and read the remainders bottom-up.",
       "Octal to hexadecimal always goes via binary: expand each octal digit to 3 bits, then regroup the bit string into blocks of 4 from the right.",
-      "Octal 365 = 3(64) + 6(8) + 5 = 245 in decimal, and 245 = 15(16) + 5 = F5 in hex - a fast independent check.",
-      "A leading zero (0F5) does not change the value; treat it as cosmetic, not as an error in the statement."
+      "Octal $365 = 3(64) + 6(8) + 5 = 245$ in decimal, and $245 = 15(16) + 5 = F_{5}$ in hex - a fast independent check.",
+      "A leading zero $(0F5)$ does not change the value; treat it as cosmetic, not as an error in the statement."
     ],
     "solution": [
       "Statement I: convert 45796 to octal by repeated division by 8.",
-      "45796 = 8(5724) + 4; 5724 = 8(715) + 4; 715 = 8(89) + 3; 89 = 8(11) + 1; 11 = 8(1) + 3; 1 = 8(0) + 1.",
-      "Reading the remainders from last to first gives 1 3 1 3 4 4 = 131344 (octal). Statement I is correct.",
-      "Statement II: expand octal 365 into binary, three bits per digit: 3 = 011, 6 = 110, 5 = 101, giving 011110101.",
-      "Regroup from the right in blocks of four: 0 1111 0101, i.e. 1111 0101 = F5 in hexadecimal (written 0F5 with a leading zero).",
-      "Check in decimal: octal 365 = 3(64) + 6(8) + 5 = 192 + 48 + 5 = 245, and 245 = 15(16) + 5 = F5. Statement II is correct.",
+      "$45796 = 8(5724) + 4$; $5724 = 8(715) + 4$; $715 = 8(89) + 3$; $89 = 8(11) + 1$; $11 = 8(1) + 3$; $1 = 8(0) + 1$.",
+      "Reading the remainders from last to first gives $1 3 1 3 4 4 = 131344$ (octal). Statement I is correct.",
+      "Statement II: expand octal 365 into binary, three bits per digit: $3 = 011, 6 = 110, 5 = 101$, giving 011110101.",
+      "Regroup from the right in blocks of four: 0 1111 0101, i.e. $1111 0101 = F_{5}$ in hexadecimal (written 0F5 with a leading zero).",
+      "Check in decimal: octal $365 = 3(64) + 6(8) + 5 = 192 + 48 + 5 = 245$, and $245 = 15(16) + 5 = F_{5}$. Statement II is correct.",
       "Both statements hold.",
       "Hence option (c) is correct."
     ]
@@ -108,7 +108,7 @@
       "Defining RISC features: fixed-length 32-bit instructions, load/store architecture, large uniform register file, few addressing modes, hardwired control, one instruction per cycle target.",
       "CISC (for example x86) uses variable-length instructions, from 1 byte to 15 bytes - the direct contrast that the question is testing.",
       "Fixed 32-bit width means the fetch stage always knows where the next instruction starts, which is exactly what enables clean pipelining.",
-      "Classic RISC families - MIPS, SPARC, early ARM, RISC-V's base RV32I - all use 32-bit instruction encodings."
+      "Classic RISC families - MIPS, SPARC, early ARM, RISC-$V's$ base RV32I - all use 32-bit instruction encodings."
     ],
     "solution": [
       "A reduced instruction set computer (RISC) is designed around a simple, regular instruction encoding to support efficient pipelining.",
@@ -141,7 +141,7 @@
     "answer": 0,
     "confidence": "high",
     "type": "Factual",
-    "shortcut": "ISO/IEC 27001 is the information security management standard. The others cover quality (9001), environment (14001) and occupational health and safety (45001). Answer (a).",
+    "shortcut": "ISO/IEC 27001 is the information security management standard. The others cover quality $(9001)$, environment $(14001)$ and occupational health and safety $(45001)$. Answer (a).",
     "tips": [
       "Memorise the four common management-system standards: 9001 quality, 14001 environment, 27001 information security, 45001 occupational health and safety.",
       "The 27000 series as a whole deals with information security; 27002 gives the control guidance and 27005 covers risk management.",
@@ -184,7 +184,7 @@
     "tips": [
       "The C language was created by Dennis Ritchie specifically to rewrite UNIX, so the two are historically inseparable.",
       "Rewriting UNIX in a high-level language is what made it portable across machine architectures - previously operating systems were written in assembly.",
-      "Chronology check: COBOL (1959) and FORTRAN (1957) are business and scientific languages, and Java (1995) postdates UNIX (1969) entirely.",
+      "Chronology check: COBOL $(1959)$ and FORTRAN $(1957)$ are business and scientific languages, and Java $(1995)$ postdates UNIX $(1969)$ entirely.",
       "Linux, the BSDs, macOS's Darwin core and Android's kernel are all descendants or reimplementations written predominantly in C."
     ],
     "solution": [
@@ -319,7 +319,7 @@
     "tips": [
       "'Fault' here does not mean an error: page faults are a normal, expected part of demand paging.",
       "Sequence on a fault: trap to the OS -> locate the page on disk -> find or free a frame (page replacement) -> read the page in -> update the page table -> restart the faulting instruction.",
-      "Effective access time = (1 - p) * memory access time + p * page fault service time, where p is the fault rate - the formula behind most numerical questions on this topic.",
+      "Effective access time = $(1 - p)$ * memory access time + p * page fault service time, where p is the fault rate - the formula behind most numerical questions on this topic.",
       "Options (a), (b) and (d) are deliberately garbled non-definitions; read them carefully and they do not describe any coherent mechanism."
     ],
     "solution": [
@@ -335,19 +335,19 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Dots per side: 1200 x 8 = 9600 and 1200 x 10 = 12000. Product = 9600 x 12000 = 115,200,000 = 115.2 million.",
+    "shortcut": "Dots per side: $1200 \\times 8 = 9600$ and $1200 \\times 10 = 12000$. Product = $9600 \\times 12000 = 115$,200,$000 = 115.2$ million.",
     "tips": [
       "Resolution is dots per linear inch, so it must be applied to EACH dimension - the total is dpi^2 times the area.",
-      "Shortcut: total = 1200^2 x (8 x 10) = 1,440,000 x 80 = 115,200,000. Squaring the dpi first is the fastest route.",
+      "Shortcut: total = $1200^{2} x (8 \\times 10) = 1$,440,$000 \\times 80 = 115$,200,000. Squaring the dpi first is the fastest route.",
       "Multiplying 1200 by the area 80 just once gives 96,000, which inflates to the distractor 96 million - that is exactly the error the option list is testing.",
       "Order-of-magnitude check: a 1200 dpi page has over 100 million dots, which is why high-resolution printing demands so much memory."
     ],
     "solution": [
       "The printer resolution is 1200 dots per inch in each direction.",
-      "Along the 8-inch side: 1200 x 8 = 9600 dots.",
-      "Along the 10-inch side: 1200 x 10 = 12000 dots.",
-      "Total dots = 9600 x 12000 = 115,200,000.",
-      "Equivalently, total = (1200)^2 x (8 x 10) = 1,440,000 x 80 = 115,200,000 = 115.2 million.",
+      "Along the 8-inch side: $1200 \\times 8 = 9600$ dots.",
+      "Along the 10-inch side: $1200 \\times 10 = 12000$ dots.",
+      "Total dots = $9600 \\times 12000 = 115$,200,000.",
+      "Equivalently, total = $(1200)^{2} x (8 \\times 10) = 1$,440,$000 \\times 80 = 115$,200,$000 = 115.2$ million.",
       "Hence option (c) is correct."
     ]
   },

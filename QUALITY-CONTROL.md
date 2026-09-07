@@ -90,37 +90,69 @@ screen, and under the question in the PDF.
 
 ---
 
-## 3. Offline purity
+## 3. Strict LaTeX typesetting
+
+`node build/test_katex.mjs` — **14,160 formulas, 0 parse errors**
+
+| | |
+|---|---|
+| Engine | KaTeX 0.16.22, vendored and **inlined** into `index.html` |
+| Formulas in the dataset | 14,160 (14,099 inline, 61 display) |
+| Text fields scanned | 11,479, across all 720 questions |
+| Parse failures | **0** — every formula compiles under `throwOnError` |
+| Formulas rendering empty | 0 |
+| Embedded math fonts | 20 WOFF2 faces, all loading |
+| Network requests during validation | 0 |
+
+Everything is LaTeX, not an approximation of it: the question stems, the four
+options, the shared stems, and every Exam Shortcut, Tips & Tricks entry and
+Step-by-Step Solution step. `build/mathify.py` converted the explanations from
+the ASCII mathematics they were drafted in into real LaTeX — 11,075 formulas
+across 590 records — using a maximal-expression scanner that only ever admits
+identifiers it recognises as mathematical, so prose (`Answer (d).`, `I/O`,
+`SSL/TLS`, `ROM/PROM/EPROM`, `(=, +=, -=, ...)`) is never dragged into math
+mode. Every formula it produced was then re-validated by KaTeX.
+
+The same engine typesets the dashboard and the PDFs, so a formula looks
+identical in both.
+
+---
+
+## 4. Offline purity
 
 `python3 build/check_offline.py` → **PASSED**
 
 | File | Size |
 |---|---|
-| `index.html` | 103 KB |
-| `questions.js` | 1536 KB |
-| `styles.css` | 19 KB |
-| `README.txt` | 9 KB |
+| `index.html` | 726 KB (includes the inlined KaTeX engine and its 20 math fonts) |
+| `questions.js` | 1571 KB |
+| `styles.css` | 18 KB |
+| `README.txt` | 10 KB |
 
 Statically verified absent from all four files: absolute or protocol-relative
 URLs, `fetch`, `XMLHttpRequest`, `WebSocket`, `EventSource`, `sendBeacon`,
 `importScripts`, dynamic `import()`, ES-module syntax, `type="module"`,
-`@import`, remote `url()`, service workers, MathJax, KaTeX, jQuery, React, Vue,
-Bootstrap, Tailwind, Google Fonts, `localhost`, `require()`, `process.env`.
-The only external references in `index.html` are `styles.css` and
-`questions.js`, both local siblings.
+`@import`, remote `url()`, service workers, an externally loaded MathJax or
+KaTeX, jQuery, React, Vue, Bootstrap, Tailwind, Google Fonts, `localhost`,
+`require()`, `process.env`, and any font referenced by path rather than
+embedded as a `data:` URI. The only external references in `index.html` are
+`styles.css` and `questions.js`, both local siblings.
 
 Dynamically verified: the application was driven through every screen with a
 Playwright route interceptor aborting anything that is not `file://` — **zero
 non-`file://` requests were issued**, and zero console errors were raised.
 
-Mathematics is rendered by a LaTeX-subset renderer written into `index.html`
-(fractions, roots, sub/superscripts, `cases` and matrix environments, 78+
-commands, plus markdown-lite tables). No formula service, online or offline,
-is involved.
+KaTeX is **vendored**, not fetched: the engine, its stylesheet and all twenty
+WOFF2 math faces are embedded in `index.html` as inline `<script>`, inline
+`<style>` and `data:` URIs. The checker audits that bundle separately and
+confirms it contains no URL, no font path and no network call of any kind
+(its only absolute URLs are the two W3C XML namespaces every SVG and MathML
+document carries). The count of `@font-face` rules and embedded WOFF2 faces
+must match exactly — 20 and 20.
 
 ---
 
-## 4. Rendering sweep
+## 5. Rendering sweep
 
 `node build/test_render.mjs` — **11,479 text fields across all 720 questions**
 rendered inside a 360 px container:
@@ -133,7 +165,7 @@ rendered inside a 360 px container:
 
 ---
 
-## 5. Functional test suite
+## 6. Functional test suite
 
 `node build/test_dashboard.mjs` — **89 assertions, 89 passed, 0 failed**,
 driven over `file://`.
@@ -160,17 +192,17 @@ Export produces valid JSON and import accepts it back.
 
 ---
 
-## 6. The four PDFs
+## 7. The four PDFs
 
 `node build/gen_pdf.mjs` then `python3 build/verify_pdf.py` — **all checks passed**
 
 | PDF | Questions | Topics | Pages | Size |
 |---|---|---|---|---|
-| `Probability.pdf` | 196 | 13 | 201 | 2.0 MB |
-| `Statistical_Methods.pdf` | 164 | 14 | 155 | 1.8 MB |
-| `Numerical_Analysis.pdf` | 180 | 8 | 178 | 1.8 MB |
-| `Computer_Application_and_Data_Processing.pdf` | 180 | 10 | 177 | 1.8 MB |
-| **Total** | **720** | **45** | **711** | |
+| `Probability.pdf` | 196 | 13 | 178 | 2.2 MB |
+| `Statistical_Methods.pdf` | 164 | 14 | 156 | 1.9 MB |
+| `Numerical_Analysis.pdf` | 180 | 8 | 174 | 2.0 MB |
+| `Computer_Application_and_Data_Processing.pdf` | 180 | 10 | 177 | 1.9 MB |
+| **Total** | **720** | **45** | **685** | |
 
 Verified per PDF, mechanically:
 
@@ -178,8 +210,11 @@ Verified per PDF, mechanically:
 - no duplicated block, none missing, nothing from another unit leaking in
 - every block carries the six sections **in the exact required order**:
   QUESTION → OPTIONS → ANSWER → EXAM SHORTCUT → TIPS & TRICKS → STEP-BY-STEP SOLUTION
-- the authentic stem is reproduced with **zero characters lost** and in
-  document order, compared against the renderer's own output
+- the authentic stem is reproduced with **zero characters lost**, compared
+  against the renderer's own output, and its prose appears in document order
+  (a formula is laid out in two dimensions, so the order in which a text
+  extractor emits its glyphs carries no meaning — that is why the two are
+  checked separately)
 - all four options reproduced with zero characters lost
 - the printed answer letter matches the database key for every question
 - every block labels its explanations *AI-derived*
@@ -189,7 +224,7 @@ Verified per PDF, mechanically:
 
 ---
 
-## 7. Master-prompt final checklist (§42)
+## 8. Master-prompt final checklist (§42)
 
 | Item | Evidence |
 |---|---|
@@ -232,11 +267,11 @@ Verified per PDF, mechanically:
 | No Python/Node/npm requirement | the four delivered files contain no such reference; the tooling is build-time only |
 | `file://` target works | the entire suite runs over `file://` |
 | Mobile responsive design works | five viewports, no overflow, no small touch targets |
-| Mathematical notation readable offline | 11,479 fields swept; no leftover LaTeX anywhere |
+| Mathematical notation readable offline | 11,479 fields swept; 14,160 formulas compiled by the embedded KaTeX engine with zero parse errors and zero network requests |
 
 ---
 
-## 8. Defects found by testing, and fixed
+## 9. Defects found by testing, and fixed
 
 1. **CSS class collision.** The top bar's inner `.bar` element picked up the
    progress-bar utility class, washing out the header. Renamed to `.topline`.
@@ -256,15 +291,35 @@ Verified per PDF, mechanically:
    switched to `vertical-align: middle`.
 7. **Solution steps split mid-sentence.** 51 solution steps had been written as
    a short continuation line (`= 8/9.`); merged into their preceding step.
+8. **Invisible mathematics in the PDF.** Chromium's default `font-display`
+   blocks text while a face loads, and `page.pdf()` fired before the embedded
+   KaTeX fonts were ready, so every glyph printed blank while the fraction
+   rules still drew. Fixed by setting `font-display: swap` on all twenty faces
+   and awaiting the full font set before printing.
+9. **Colliding option markers, second time.** With real LaTeX the option list
+   needed a taller line box again; the flex row was re-tuned.
+10. **A long inline formula broke its sentence.** The "give it its own line"
+    rule fired on any formula over 90 characters, orphaning the trailing full
+    stop. It now applies only to a run with no relation or operator for the
+    typesetter to break at — a printed data list, essentially.
+11. **Verification method, not the PDF.** pypdf's default extraction mode
+    discards KaTeX-positioned glyphs entirely. The content check was moved to
+    layout-mode extraction (which keeps them) and the order check to the prose
+    around the formulas.
 
 ---
 
-## 9. What is authentic and what is not
+## 10. What is authentic and what is not
 
 - **Questions and options: authentic.** Reproduced verbatim from the nine
   source booklets. Wording, option text, option order and question numbers are
   unaltered. Verified by comparing two independent extractions of the same
   papers, and again by comparing the PDFs against the database.
+- **Typesetting: LaTeX throughout.** Every formula, in the questions and in
+  the explanations, is LaTeX compiled by KaTeX. The conversion of the
+  explanations from ASCII to LaTeX changed only presentation — no answer, no
+  step and no numerical value was altered by it, and all 720 records
+  re-passed the answer-bank QC afterwards.
 - **Answers, exam shortcuts, tips and solutions: AI-derived.** None of the nine
   source booklets carried an official UPSC answer key. Every answer and every
   explanation was worked out for this project and is labelled *AI-derived

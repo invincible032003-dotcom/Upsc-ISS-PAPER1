@@ -1,358 +1,398 @@
 {
-"2021-Q41": {
-  "answer": 2, "confidence": "high", "type": "Conceptual",
-  "shortcut": "Divided differences are defined by dividing by the actual differences of the arguments, so they work for any distinct nodes - equally spaced or not.",
-  "tips": [
-    "Newton's FORWARD formula is the special case of the divided-difference formula when the nodes are equally spaced, not the other way round - so option (a) reverses the containment.",
-    "Option (b) is the exact opposite of the truth: uniform spacing is a permitted special case, not a prohibition.",
-    "Option (d) describes INVERSE interpolation, where x and f are deliberately interchanged; that is a separate technique, not a property of the formula itself.",
-    "For equally spaced nodes the link is f[x0,...,xn] = Delta^n y0/(n! h^n) - worth memorising as the bridge between the two families."
-  ],
-  "solution": [
-    "Newton's divided-difference formula is f(x) = f[x0] + (x-x0)f[x0,x1] + (x-x0)(x-x1)f[x0,x1,x2] + ...",
-    "Each divided difference is formed by dividing by the actual difference of the arguments, e.g. f[x0,x1] = (f(x1)-f(x0))/(x1-x0), so no assumption of equal spacing is made.",
-    "It therefore applies to arbitrary distinct nodes, uniformly spaced or not.",
-    "When the nodes happen to be equally spaced with step h, the formula reduces to Newton's forward difference formula via f[x0,...,xn] = Delta^n y0/(n! h^n) - so the forward formula is the special case, not the general one.",
-    "Interchanging the roles of argument and entry is the technique of inverse interpolation, a different procedure.",
-    "Hence the correct statement is that it applies whether or not the arguments are uniformly spaced, option (c)."
-  ]
-},
-"2021-Q42": {
-  "answer": 0, "confidence": "high", "type": "Numerical",
-  "shortcut": "k1 = 0.1, k2 = 0.11, k3 = 0.1105, k4 = 0.12105. Then y = 1 + (k1 + 2k2 + 2k3 + k4)/6 = 1 + 0.66205/6 = 1.1103.",
-  "tips": [
-    "RK4 recipe: k1 = h f(x0,y0); k2 = h f(x0+h/2, y0+k1/2); k3 = h f(x0+h/2, y0+k2/2); k4 = h f(x0+h, y0+k3); then y1 = y0 + (k1 + 2k2 + 2k3 + k4)/6.",
-    "Write the four k values in a column and keep five decimals - the options differ in the second decimal, so a single rounding slip is survivable but sloppiness is not.",
-    "The k values should be close to one another for a smooth problem (0.100, 0.110, 0.1105, 0.121 here); a wildly different k signals an arithmetic error.",
-    "Exact solution y = 2e^x - x - 1 gives y(0.1) = 1.110342, matching RK4 to six decimals - a striking illustration of fourth-order accuracy."
-  ],
-  "solution": [
-    "For dy/dx = f(x,y) = x + y with x0 = 0, y0 = 1 and h = 0.1:",
-    "k1 = h f(0, 1) = 0.1(0 + 1) = 0.1.",
-    "k2 = h f(0.05, 1.05) = 0.1(0.05 + 1.05) = 0.11.",
-    "k3 = h f(0.05, 1 + 0.055) = 0.1(0.05 + 1.055) = 0.1105.",
-    "k4 = h f(0.1, 1 + 0.1105) = 0.1(0.1 + 1.1105) = 0.12105.",
-    "y(0.1) = 1 + (0.1 + 0.22 + 0.221 + 0.12105)/6 = 1 + 0.66205/6 = 1.11034, i.e. 1.1103, option (a)."
-  ]
-},
-"2021-Q43": {
-  "answer": 2, "confidence": "high", "type": "Theoretical",
-  "shortcut": "Forward and backward differences of the same order are related by Delta^n y_k = nabla^n y_(k+n). With n = 3 and k = 2, Delta^3 y_2 = nabla^3 y_5.",
-  "tips": [
-    "Memorise Delta^n y_k = nabla^n y_(k+n): the same number sits in the difference table, read forward from y_k or backward from y_(k+n).",
-    "Both expand to y_5 - 3y_4 + 3y_3 - y_2; writing out the four terms once makes the identity obvious.",
-    "Index check: a third difference starting at index 2 must reach index 5, so any answer must involve y_5 - which immediately narrows the options.",
-    "Operator proof: Delta = E - 1 and nabla = 1 - E^(-1) = (E-1)E^(-1) = Delta E^(-1), so nabla^n = Delta^n E^(-n) and nabla^n y_(k+n) = Delta^n y_k."
-  ],
-  "solution": [
-    "Expand the forward difference: Delta^3 y_2 = y_5 - 3y_4 + 3y_3 - y_2.",
-    "Expand the backward difference: nabla^3 y_5 = y_5 - 3y_4 + 3y_3 - y_2.",
-    "The two expansions are identical, so Delta^3 y_2 = nabla^3 y_5.",
-    "In operator form, nabla = 1 - E^(-1) = (E - 1)E^(-1) = Delta E^(-1), hence nabla^3 = Delta^3 E^(-3) and nabla^3 y_5 = Delta^3 y_2.",
-    "Options (a), (b) and (d) equate a third difference with a function value or a lower-order difference, which cannot hold in general.",
-    "Hence option (c) is correct."
-  ]
-},
-"2021-Q44": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "Four data points give degree at most 3; the third divided difference f[0,1,2,5] = 1 is non-zero, so the degree is exactly 3.",
-  "tips": [
-    "n + 1 points determine a polynomial of degree at most n, so four points can never give degree 4 - option (a) is impossible on principle.",
-    "Compute the top divided difference to confirm the degree is not lower: a non-zero value means the leading coefficient is non-zero.",
-    "Divided-difference ladder here: 1, 9, 45; then 4, 9; then 1. The final 1 is the leading coefficient of the cubic.",
-    "Quick check: the data 2, 3, 12, 147 at 0, 1, 2, 5 fit f(x) = x^3 + ... - the rapid growth to 147 at x = 5 already suggests a cubic rather than a quadratic."
-  ],
-  "solution": [
-    "With four data points (0,2), (1,3), (2,12), (5,147), the interpolating polynomial has degree at most 3.",
-    "First divided differences: f[0,1] = (3-2)/1 = 1; f[1,2] = (12-3)/1 = 9; f[2,5] = (147-12)/3 = 45.",
-    "Second divided differences: f[0,1,2] = (9-1)/2 = 4; f[1,2,5] = (45-9)/4 = 9.",
-    "Third divided difference: f[0,1,2,5] = (9-4)/5 = 1.",
-    "Since this leading divided difference is non-zero, the polynomial genuinely has degree 3 and does not collapse to a quadratic.",
-    "Hence the degree is 3, option (b)."
-  ]
-},
-"2021-Q45": {
-  "answer": 1, "confidence": "high", "type": "Factual",
-  "shortcut": "Simpson's three-eighth rule fits a cubic over each group of THREE subintervals, so the total number of subintervals must be a multiple of 3.",
-  "tips": [
-    "Divisibility rules: trapezoidal any n, Simpson's 1/3 needs n even, Simpson's 3/8 needs n a multiple of 3, Weddle's needs n a multiple of 6.",
-    "The name encodes the answer: the '3' in three-eighth refers to the three strips consumed by each cubic arc.",
-    "The weight pattern 1, 3, 3, 1 (repeating with 2 at the joins) only closes correctly when the strips group into complete threes.",
-    "If n is not a multiple of 3, combine rules - for example apply the 3/8 rule to three strips and the 1/3 rule to the remaining even number."
-  ],
-  "solution": [
-    "Simpson's three-eighth rule is derived by replacing the integrand over each group of THREE consecutive subintervals by the cubic through the four corresponding points.",
-    "Each cubic arc therefore consumes exactly three subintervals.",
-    "For the whole interval to be covered by complete groups, the total number of subintervals n must be divisible by 3.",
-    "The composite weight pattern 1, 3, 3, 2, 3, 3, 2, ..., 3, 3, 1 closes correctly only under this condition.",
-    "Hence n must be a multiple of 3, option (b)."
-  ]
-},
-"2021-Q46": {
-  "answer": 3, "confidence": "high", "type": "Factual",
-  "shortcut": "All three are the standard selection rules: forward formula near the start, Bessel (a central formula) near the middle, Lagrange for unequal intervals.",
-  "tips": [
-    "Position map for equally spaced tables: Newton forward at the START, Newton backward at the END, Stirling near the MIDDLE for |p| < 0.25, Bessel near the middle for p around 0.5.",
-    "Bessel's formula uses the mean of two central lines and is most accurate when the interpolation point lies midway between two tabulated values.",
-    "Lagrange's formula makes no spacing assumption at all, which is exactly why it is the standard choice for unequal intervals.",
-    "When all three statements are textbook selection rules for different situations, 'all of them' is the natural key."
-  ],
-  "solution": [
-    "Statement 1: Newton's forward difference formula uses the leading differences at the top of the table, so it is accurate for interpolation near the BEGINNING of the table. TRUE.",
-    "Statement 2: Bessel's formula is a central-difference formula built on the mean of the two central lines, and it is most accurate when the interpolation point lies near the middle of the table, particularly near p = 0.5. TRUE.",
-    "Statement 3: Lagrange's formula is constructed from products of factors (x - x_i) and makes no assumption about spacing, so it is the standard method for unequally spaced arguments. TRUE.",
-    "All three statements correctly describe the standard use of each formula.",
-    "Hence option (d) is correct."
-  ]
-},
-"2021-Q47": {
-  "answer": 1, "confidence": "high", "type": "Factual",
-  "shortcut": "RK4 is a fourth-order method, meaning GLOBAL error O(h^4); the LOCAL truncation error is one power higher, O(h^5).",
-  "tips": [
-    "Local versus global: a method of order p has local truncation error O(h^(p+1)) and global error O(h^p). The one-power gap arises because errors accumulate over about 1/h steps.",
-    "The question says LOCAL, so the answer must carry h^5 - option (a)'s h^4 is the global error, the intended trap.",
-    "Comparison table: Euler is order 1 (local h^2), RK2 order 2 (local h^3), RK4 order 4 (local h^5).",
-    "Practical consequence: halving h reduces RK4's global error by a factor of about 16, which is why it remains the workhorse single-step method."
-  ],
-  "solution": [
-    "The classical fourth-order Runge-Kutta method matches the Taylor expansion of the solution through the h^4 term.",
-    "The first unmatched term is of order h^5, so the error committed in a SINGLE step - the local truncation error - is of the form e = c h^5 + O(h^6).",
-    "Accumulating this over the roughly (b-a)/h steps needed to traverse the interval gives a global error of order h^4, which is why RK4 is called a fourth-order method.",
-    "The question asks specifically for the LOCAL truncation error.",
-    "Hence e = c h^5 + O(h^6), option (b)."
-  ]
-},
-"2021-Q48": {
-  "answer": 2, "confidence": "high", "type": "Numerical",
-  "shortcut": "Second differences are constant at 2, so the polynomial is quadratic. Newton forward from x0 = -1 gives p^2 - 3p + 4 with p = x + 1, i.e. x^2 - x + 2.",
-  "tips": [
-    "Build the difference table first: values 4, 2, 2, 4 give first differences -2, 0, 2 and second differences 2, 2 - constant, so the degree is 2 and the third difference vanishes.",
-    "Faster route: test the options. At x = 0 the value must be 2, which options (a) and (c) satisfy; then x = 1 must give 2, which only (c) does.",
-    "The data are symmetric about x = 0.5, so the vertex of the parabola is at x = 0.5, consistent with x^2 - x + 2 whose vertex is at x = 1/2.",
-    "Leading coefficient check: the second difference is 2 = 2a h^2 with h = 1, so a = 1 - eliminating options (a) and (d), which have a = 2."
-  ],
-  "solution": [
-    "Tabulate: at x = -1, 0, 1, 2 the values are 4, 2, 2, 4 with h = 1.",
-    "First differences: -2, 0, 2. Second differences: 2, 2. Third difference: 0, so the data lie on a quadratic.",
-    "Newton's forward formula from x0 = -1 with p = (x + 1)/1: f = 4 + p(-2) + [p(p-1)/2](2) = 4 - 2p + p(p-1).",
-    "Simplifying: 4 - 2p + p^2 - p = p^2 - 3p + 4.",
-    "Substituting p = x + 1: (x+1)^2 - 3(x+1) + 4 = x^2 + 2x + 1 - 3x - 3 + 4 = x^2 - x + 2.",
-    "Check: at x = -1, 1 + 1 + 2 = 4; at x = 0, 2; at x = 1, 2; at x = 2, 4. All match. Option (c) is correct."
-  ]
-},
-"2021-Q49": {
-  "answer": 3, "confidence": "high", "type": "Numerical",
-  "shortcut": "For f(x) = 1/x the nth divided difference is (-1)^n/(product of the nodes). With n = 2 the sign is positive, giving 1/(abc).",
-  "tips": [
-    "Reciprocal rule: f[x0, x1, ..., xn] = (-1)^n/(x0 x1 ... xn) when f(x) = 1/x. One formula covers every order.",
-    "Order 2 is EVEN, so the sign is +. Compare with 2018 Q53, where order 3 gave the negative -1/(abcd).",
-    "Symmetry test: a divided difference must be symmetric in its arguments, which 1/(abc) is. Options (b) and (c) are symmetric too, so use the derivation, not just symmetry.",
-    "Derive the first step yourself: f[a,b] = (1/a - 1/b)/(a-b) = -1/(ab), then f[a,b,c] = (-1/(ab) + 1/(bc))/(a-c) = 1/(abc)."
-  ],
-  "solution": [
-    "First divided difference: f[a,b] = (1/a - 1/b)/(a - b) = [(b - a)/(ab)]/(a - b) = -1/(ab).",
-    "Similarly f[b,c] = -1/(bc).",
-    "Second divided difference: f[a,b,c] = (f[a,b] - f[b,c])/(a - c) = (-1/(ab) + 1/(bc))/(a - c).",
-    "Combine the numerator over the common denominator abc: (-c + a)/(abc) = (a - c)/(abc).",
-    "Dividing by (a - c) gives f[a,b,c] = 1/(abc).",
-    "This matches the general rule (-1)^n/(product of nodes) with n = 2. Option (d) is correct."
-  ]
-},
-"2021-Q50": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "y1 = 1 - x + x^2/2 and y2 = 1 - x + x^2 - x^3/6. At x = 0.2 that is 1 - 0.2 + 0.04 - 0.001333 = 0.8387.",
-  "tips": [
-    "Picard: y_(n+1)(x) = y(0) + integral from 0 to x of f(t, y_n(t)) dt. Each iteration raises the degree by one, so the SECOND approximation is a cubic.",
-    "Integrate carefully: f(t, y1) = t - (1 - t + t^2/2) = 2t - 1 - t^2/2, whose integral is x^2 - x - x^3/6.",
-    "Evaluate in one pass: 1 - 0.2 = 0.8, plus 0.04 gives 0.84, minus 0.008/6 = 0.00133 gives 0.83867.",
-    "The options differ in the third decimal, so keep x^3/6 = 0.001333 to five places rather than rounding early."
-  ],
-  "solution": [
-    "Picard's method for dy/dx = x - y with y(0) = 1 uses y_(n+1)(x) = 1 + integral from 0 to x of (t - y_n(t)) dt, starting from y0 = 1.",
-    "First approximation: y1 = 1 + integral from 0 to x of (t - 1) dt = 1 + x^2/2 - x.",
-    "Second approximation: the integrand is t - y1(t) = t - (1 - t + t^2/2) = 2t - 1 - t^2/2.",
-    "Integrating: the integral from 0 to x is x^2 - x - x^3/6, so y2 = 1 - x + x^2 - x^3/6.",
-    "At x = 0.2: 1 - 0.2 + 0.04 - (0.008)/6 = 0.84 - 0.001333 = 0.838667.",
-    "Hence y(0.2) is approximately 0.8387, option (b)."
-  ]
-},
-"2021-Q51": {
-  "answer": 2, "confidence": "high", "type": "Factual",
-  "shortcut": "A tree structure with one parent per child is the HIERARCHICAL data model.",
-  "tips": [
-    "Model shapes: hierarchical = tree (one parent, many children); network = graph (many parents allowed); relational = tables linked by keys.",
-    "The hierarchical model supports only one-to-many relationships; representing many-to-many requires the network model, which is the key distinction between options (a) and (c).",
-    "IBM's IMS is the classic hierarchical DBMS; CODASYL/IDMS is the classic network DBMS; almost all modern systems are relational.",
-    "Navigation in a hierarchical database always starts at the root and follows parent-child pointers - hence its speed for tree-shaped data and its rigidity otherwise."
-  ],
-  "solution": [
-    "In the hierarchical data model, records are organised as a tree: each child record has exactly one parent, and there is a single root.",
-    "Data files are therefore arranged in a tree structure and are navigated from the root downwards through parent-child links.",
-    "The network model generalises this to a graph in which a record may have several parents, so it is not a tree.",
-    "The relational model stores data in flat tables related by keys, with no inherent hierarchy at all.",
-    "Hence the tree-structured model is the hierarchical model, option (c)."
-  ]
-},
-"2021-Q52": {
-  "answer": 2, "confidence": "high", "type": "Conceptual",
-  "shortcut": "Statement 1 is false - the hub is a single point of failure. Statement 2 describes a DISADVANTAGE. Only statement 3, easy fault isolation, is a genuine advantage.",
-  "tips": [
-    "Star topology: every node connects to a central hub or switch. Advantages - easy fault isolation, simple to add or remove nodes, one failed link affects only that node. Disadvantages - hub is a single point of failure, more cable needed.",
-    "Read the question direction: it asks for ADVANTAGES, so a true statement that describes a drawback (statement 2) still does not qualify.",
-    "Statement 1 inverts the best-known weakness of the star: if the hub fails, the ENTIRE network goes down.",
-    "Contrast with bus topology (less cable, harder fault isolation) and ring topology (each node's failure can break the loop unless dual rings are used)."
-  ],
-  "solution": [
-    "In a star topology every node is connected by its own cable to a central hub or switch.",
-    "Statement 1: the hub is the single point through which all traffic passes, so if the hub fails the whole network fails. The claim that the network is unaffected is FALSE.",
-    "Statement 2: a star does require more cable than a bus, since each node needs its own dedicated link. This is a genuine property, but it is a DISADVANTAGE, not an advantage, so it does not answer the question.",
-    "Statement 3: because each node has a separate link to the hub, a fault can be traced to a single cable or port, and a failed link affects only that one node. Easy error detection and isolation is the principal ADVANTAGE of the star.",
-    "Only statement 3 is an advantage.",
-    "Hence option (c) is correct."
-  ]
-},
-"2021-Q53": {
-  "answer": 1, "confidence": "high", "type": "Factual",
-  "shortcut": "Python is platform-INDEPENDENT: the same source runs wherever the interpreter is available. The other three statements are all true of Python.",
-  "tips": [
-    "Interpreted languages are portable by construction - the interpreter absorbs the platform differences, so 'interpreted' and 'platform-dependent' sit awkwardly together.",
-    "Python's headline properties for exams: interpreted, high-level, dynamically typed, platform-independent, free and open source (PSF licence), with clean indentation-based syntax.",
-    "The question asks which is NOT correct, so scan for the one claim that contradicts the others rather than for the true statements.",
-    "Contrast with C, where an executable compiled for one platform will not run on another - that is genuine platform dependence."
-  ],
-  "solution": [
-    "Option (a): Python source code is executed by an interpreter rather than compiled to native machine code ahead of time. TRUE of Python.",
-    "Option (c): Python is well known for readable, indentation-based syntax that is close to pseudocode. TRUE.",
-    "Option (d): Python is distributed free under an open-source licence maintained by the Python Software Foundation. TRUE.",
-    "Option (b): because Python programs are run by an interpreter that is itself available on Windows, Linux, macOS and other systems, the same source code runs unchanged across platforms. Python is therefore platform-INDEPENDENT.",
-    "The statement that Python is platform-dependent is the incorrect one.",
-    "Hence option (b) is the answer."
-  ]
-},
-"2021-Q54": {
-  "answer": 1, "confidence": "high", "type": "Factual",
-  "shortcut": "IMAP (Internet Message Access Protocol) is the standard protocol for retrieving mail from a server; SMTP sends it.",
-  "tips": [
-    "Direction again: SMTP pushes mail OUT, POP3 and IMAP pull it IN. The word 'retrieve' selects the incoming pair.",
-    "IMAP versus POP3: IMAP leaves messages on the server and synchronises folders across devices; POP3 typically downloads and deletes. IMAP is the modern default.",
-    "FTP transfers files, HTML is a markup language (not a protocol at all), and TELNET provides remote terminal access - all out of category here.",
-    "Ports: IMAP 143 (993 with TLS), POP3 110 (995 with TLS), SMTP 25 (587 for submission)."
-  ],
-  "solution": [
-    "Retrieving email from a mail server to a client is done by a mail access protocol.",
-    "IMAP (Internet Message Access Protocol) is the standard protocol for this purpose; it allows the client to read, organise and search messages that remain stored on the server.",
-    "FTP is a file transfer protocol and is not used for mailbox access.",
-    "HTML is a markup language for describing web pages, not a network protocol.",
-    "TELNET provides a remote terminal login session.",
-    "Hence the protocol used to retrieve email is IMAP, option (b)."
-  ]
-},
-"2021-Q55": {
-  "answer": 1, "confidence": "high", "type": "Factual",
-  "shortcut": "MTOS, LynxOS and RTX are real-time operating systems; standard LINUX is a general-purpose OS.",
-  "tips": [
-    "A real-time OS guarantees BOUNDED response times; a general-purpose OS optimises average throughput and fairness instead. That distinction is the whole question.",
-    "Common RTOS names worth recognising: VxWorks, QNX, RTLinux, LynxOS, RTX, MTOS, FreeRTOS, pSOS.",
-    "Standard Linux is not an RTOS, although real-time VARIANTS exist (RTLinux, PREEMPT_RT) - the question refers to plain LINUX.",
-    "Hard real time means a missed deadline is a system failure (avionics, pacemakers); soft real time merely degrades quality (video streaming)."
-  ],
-  "solution": [
-    "A real-time operating system is designed to guarantee that tasks complete within strict, predictable time limits, using deterministic scheduling and bounded interrupt latency.",
-    "MTOS is a classic multitasking real-time executive.",
-    "LynxOS (Lynx) is a well-known hard real-time, POSIX-compatible RTOS used in embedded and avionics systems.",
-    "RTX is a real-time kernel widely used for embedded microcontroller applications.",
-    "LINUX in its standard form is a general-purpose, time-sharing operating system optimised for throughput and fairness rather than for guaranteed deadlines, although real-time variants exist.",
-    "Hence LINUX is not a real-time operating system, option (b)."
-  ]
-},
-"2021-Q56": {
-  "answer": 3, "confidence": "medium", "type": "Conceptual",
-  "shortcut": "Paging is the technique in which a virtual (logical) address is split into a page number and offset and translated through a page table into a physical frame address.",
-  "tips": [
-    "Address translation in paging: virtual address = page number + offset; the page table maps the page number to a frame number, and the offset passes through unchanged.",
-    "Segmentation also maps logical to physical addresses but does so by variable-length SEGMENTS with base and limit registers; paging with its fixed-size pages is the standard answer for virtual-address mapping.",
-    "Swapping moves whole processes between memory and disk and scheduling allocates CPU time - neither performs address translation, so options (b) and (c) are out of category.",
-    "The TLB (translation lookaside buffer) is the associative cache that speeds up this page-table lookup - a natural follow-up fact."
-  ],
-  "solution": [
-    "Under paging, the logical (virtual) address space of a process is divided into fixed-size pages and physical memory into frames of the same size.",
-    "A virtual address is interpreted as a page number plus an offset within the page.",
-    "The page number indexes the process's page table, which returns the physical frame number; concatenating the frame number with the unchanged offset gives the physical address.",
-    "This mapping is exactly the use of a virtual address to locate the physical address of data.",
-    "Swapping transfers entire processes between memory and backing store, and scheduling allocates processor time; neither performs address translation.",
-    "Hence the technique is paging, option (d)."
-  ]
-},
-"2021-Q57": {
-  "answer": 2, "confidence": "high", "type": "Conceptual",
-  "shortcut": "Linkers, operating systems and assemblers all serve the machine; a word processor serves the USER and is therefore application software.",
-  "tips": [
-    "Test by asking 'who is this for?'. System software manages the computer; application software performs a task for the user.",
-    "System software includes the OS, device drivers, and all translators and build tools - compilers, assemblers, linkers, loaders.",
-    "Application software includes word processors, spreadsheets, browsers, media players and database applications.",
-    "Utility software (antivirus, defragmenter) is a maintenance sub-category of system software - useful to keep as a third bucket."
-  ],
-  "solution": [
-    "System software manages and controls computer hardware and provides the platform on which application programs run.",
-    "A linker combines object modules into an executable - part of the program-development tool chain and hence system software.",
-    "An operating system manages processes, memory, files and devices - the central item of system software.",
-    "An assembler translates assembly language into machine code - again a translator and hence system software.",
-    "A word processor is used to create and edit documents for the user's own purposes, making it application software.",
-    "Hence the word processor is not system software, option (c)."
-  ]
-},
-"2021-Q58": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "AND can only clear bits, never set them, so the answer must be a subset of 101101 that keeps the 1s of 100101. Testing 100101 AND 101101 gives 100101 exactly.",
-  "tips": [
-    "Bitwise AND yields 1 only where BOTH operands are 1, so the result is always a 'subset' of each operand's 1-bits - the result 100101 must therefore be attainable from 101101 by clearing bits.",
-    "Compare 101101 with the target 100101: only the third bit from the left changes from 1 to 0, so the unknown must have 0 there and 1 wherever the target has 1.",
-    "The target itself always works when it is a subset of the given operand - check that shortcut first, and here it succeeds immediately.",
-    "Options (c) and (d) have 0 in the fourth position where the result needs a 1, so they fail before any full computation."
-  ],
-  "solution": [
-    "Write the given operand and the required result bit by bit: 101101 AND x = 100101.",
-    "Bitwise AND produces 1 only where both bits are 1, so wherever the result has a 1 the unknown x must also have a 1: positions 1, 4 and 6 (from the left).",
-    "Wherever the given operand has a 1 but the result has a 0 - position 3 - the unknown must have a 0.",
-    "Positions 2 and 5 are 0 in the given operand, so x is unconstrained there.",
-    "Testing option (b): 101101 AND 100101 = 100101, exactly the required result.",
-    "Option (a) gives 101101, and options (c) and (d) have 0 in position 4 so they cannot produce the required 1. Hence option (b)."
-  ]
-},
-"2021-Q59": {
-  "answer": 1, "confidence": "high", "type": "Factual",
-  "shortcut": "Printer, speaker and plotter all deliver information FROM the computer; a webcam captures images INTO it, so it is an input device.",
-  "tips": [
-    "Direction test: output devices convert machine data into human-usable form; input devices do the reverse. Apply it to each item in turn.",
-    "A plotter is simply a printer for line drawings and engineering diagrams - unfamiliar name, familiar category.",
-    "A webcam is the video analogue of a microphone: both capture the outside world and are inputs.",
-    "Devices that are BOTH include touchscreens, modems and network cards - worth remembering for 'which is both' variants of this question."
-  ],
-  "solution": [
-    "An output device presents processed data from the computer to the user; an input device supplies data to the computer.",
-    "Item 1, printer: produces hard copy of the computer's output. OUTPUT.",
-    "Item 2, speaker: converts digital audio signals into sound for the user. OUTPUT.",
-    "Item 3, plotter: draws vector graphics such as engineering drawings on paper. OUTPUT.",
-    "Item 4, webcam: captures live images and video and sends them into the computer. INPUT.",
-    "Hence items 1, 2 and 3 are output devices, option (b)."
-  ]
-},
-"2021-Q60": {
-  "answer": 3, "confidence": "high", "type": "Factual",
-  "shortcut": "JPEG, TIFF and GIF store a grid of pixels (raster). SVG stores mathematical shape descriptions and is a VECTOR format.",
-  "tips": [
-    "The acronym gives it away: SVG = Scalable Vector Graphics. 'Vector' is in the name.",
-    "Raster images are made of pixels and lose quality on enlargement; vector images are made of paths and scale without any loss - that is the practical distinction.",
-    "Raster formats to recognise: JPEG, PNG, GIF, TIFF, BMP. Vector formats: SVG, EPS, AI, and PDF for the vector parts of its content.",
-    "Photographs are naturally raster; logos, icons and diagrams are best kept as vectors, which is why SVG dominates on the web for those."
-  ],
-  "solution": [
-    "A raster (bitmap) image stores a rectangular grid of pixels, each with its own colour value; resolution is fixed and enlargement causes pixellation.",
-    "JPEG is a lossy raster format designed for photographs.",
-    "TIFF is a flexible, usually lossless raster format used in printing and archiving.",
-    "GIF is a raster format limited to 256 colours and supporting simple animation.",
-    "SVG stands for Scalable Vector Graphics: it describes images as mathematical paths, curves and shapes in XML, so it can be scaled to any size without loss of quality.",
-    "Hence SVG is not a raster image format, option (d)."
-  ]
-}
+  "2021-Q41": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "Divided differences are defined by dividing by the actual differences of the arguments, so they work for any distinct nodes - equally spaced or not.",
+    "tips": [
+      "Newton's FORWARD formula is the special case of the divided-difference formula when the nodes are equally spaced, not the other way round - so option (a) reverses the containment.",
+      "Option (b) is the exact opposite of the truth: uniform spacing is a permitted special case, not a prohibition.",
+      "Option (d) describes INVERSE interpolation, where x and f are deliberately interchanged; that is a separate technique, not a property of the formula itself.",
+      "For equally spaced nodes the link is $f[x_{0},...,xn] = \\Delta^{n} y_{0}/(n! h^{n})$ - worth memorising as the bridge between the two families."
+    ],
+    "solution": [
+      "Newton's divided-difference formula is $f(x) = f[x_{0}] + (x-x_{0})f[x_{0},x_{1}] + (x-x_{0})(x-x_{1})f[x_{0},x_{1},x_{2}]$ + ...",
+      "Each divided difference is formed by dividing by the actual difference of the arguments, e.g. $f[x_{0},x_{1}] = (f(x_{1})-f(x_{0}))/(x_{1}-x_{0})$, so no assumption of equal spacing is made.",
+      "It therefore applies to arbitrary distinct nodes, uniformly spaced or not.",
+      "When the nodes happen to be equally spaced with step h, the formula reduces to Newton's forward difference formula via $f[x_{0},...,xn] = \\Delta^{n} y_{0}/(n! h^{n})$ - so the forward formula is the special case, not the general one.",
+      "Interchanging the roles of argument and entry is the technique of inverse interpolation, a different procedure.",
+      "Hence the correct statement is that it applies whether or not the arguments are uniformly spaced, option (c)."
+    ]
+  },
+  "2021-Q42": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "$k_{1} = 0.1, k_{2} = 0.11, k_{3} = 0.1105, k_{4} = 0.12105$. Then $y = 1 + (k_{1} + 2k2 + 2k3 + k_{4})/6 = 1 + 0.66205/6 = 1.1103$.",
+    "tips": [
+      "RK4 recipe: $k_{1} = h f(x_{0},y_{0})$; $k_{2} = h f(x_{0}+h/2, y_{0}+k_{1}/2)$; $k_{3} = h f(x_{0}+h/2, y_{0}+k_{2}/2)$; $k_{4} = h f(x_{0}+h, y_{0}+k_{3})$; then $y_{1} = y_{0} + (k_{1} + 2k2 + 2k3 + k_{4})/6$.",
+      "Write the four k values in a column and keep five decimals - the options differ in the second decimal, so a single rounding slip is survivable but sloppiness is not.",
+      "The k values should be close to one another for a smooth problem (0.100, 0.110, 0.1105, 0.121 here); a wildly different k signals an arithmetic error.",
+      "Exact solution $y = 2e^{x} - x - 1$ gives $y(0.1) = 1.110342$, matching RK4 to six decimals - a striking illustration of fourth-order accuracy."
+    ],
+    "solution": [
+      "For $dy/dx = f(x,y) = x + y$ with $x_{0} = 0, y_{0} = 1$ and $h = 0.1$:",
+      "$k_{1} = h f(0, 1) = 0.1(0 + 1) = 0.1$.",
+      "$k_{2} = h f(0.05, 1.05) = 0.1(0.05 + 1.05) = 0.11$.",
+      "$k_{3} = h f(0.05, 1 + 0.055) = 0.1(0.05 + 1.055) = 0.1105$.",
+      "$k_{4} = h f(0.1, 1 + 0.1105) = 0.1(0.1 + 1.1105) = 0.12105$.",
+      "$y(0.1) = 1 + (0.1 + 0.22 + 0.221 + 0.12105)/6 = 1 + 0.66205/6 = 1.11034$, i.e. 1.1103, option (a)."
+    ]
+  },
+  "2021-Q43": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Forward and backward differences of the same order are related by $\\Delta^{n} y_{k}$ = nabla^n $y_{k+n}$. With $n = 3$ and $k = 2, \\Delta^{3} y_{2}$ = nabla^3 $y_{5}$.",
+    "tips": [
+      "Memorise $\\Delta^{n} y_{k}$ = nabla^n $y_{k+n}$: the same number sits in the difference table, read forward from $y_{k}$ or backward from $y_{k+n}$.",
+      "Both expand to $y_{5} - 3y_{4} + 3y_{3} - y_{2}$; writing out the four terms once makes the identity obvious.",
+      "Index check: a third difference starting at index 2 must reach index 5, so any answer must involve $y_{5}$ - which immediately narrows the options.",
+      "Operator proof: $\\Delta = E - 1$ and nabla = $1 - E^{-1} = (E-1)E^{-1} = \\Delta E^{-1}$, so nabla^n = $\\Delta^{n} E^{-n}$ and nabla^n $y_{k+n} = \\Delta^{n} y_{k}$."
+    ],
+    "solution": [
+      "Expand the forward difference: $\\Delta^{3} y_{2} = y_{5} - 3y_{4} + 3y_{3} - y_{2}$.",
+      "Expand the backward difference: nabla^3 $y_{5} = y_{5} - 3y_{4} + 3y_{3} - y_{2}$.",
+      "The two expansions are identical, so $\\Delta^{3} y_{2}$ = nabla^3 $y_{5}$.",
+      "In operator form, nabla = $1 - E^{-1} = (E - 1)E^{-1} = \\Delta E^{-1}$, hence nabla^3 = $\\Delta^{3} E^{-3}$ and nabla^3 $y_{5} = \\Delta^{3} y_{2}$.",
+      "Options (a), (b) and (d) equate a third difference with a function value or a lower-order difference, which cannot hold in general.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2021-Q44": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Four data points give degree at most 3; the third divided difference $f[0,1,2,5] = 1$ is non-zero, so the degree is exactly 3.",
+    "tips": [
+      "n + 1 points determine a polynomial of degree at most n, so four points can never give degree 4 - option (a) is impossible on principle.",
+      "Compute the top divided difference to confirm the degree is not lower: a non-zero value means the leading coefficient is non-zero.",
+      "Divided-difference ladder here: 1, 9, 45; then 4, 9; then 1. The final 1 is the leading coefficient of the cubic.",
+      "Quick check: the data 2, 3, 12, 147 at 0, 1, 2, 5 fit $f(x) = x^{3}$ + ... - the rapid growth to 147 at $x = 5$ already suggests a cubic rather than a quadratic."
+    ],
+    "solution": [
+      "With four data points $(0,2), (1,3), (2,12), (5,147)$, the interpolating polynomial has degree at most 3.",
+      "First divided differences: $f[0,1] = (3-2)/1 = 1$; $f[1,2] = (12-3)/1 = 9$; $f[2,5] = (147-12)/3 = 45$.",
+      "Second divided differences: $f[0,1,2] = (9-1)/2 = 4$; $f[1,2,5] = (45-9)/4 = 9$.",
+      "Third divided difference: $f[0,1,2,5] = (9-4)/5 = 1$.",
+      "Since this leading divided difference is non-zero, the polynomial genuinely has degree 3 and does not collapse to a quadratic.",
+      "Hence the degree is 3, option (b)."
+    ]
+  },
+  "2021-Q45": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "Simpson's three-eighth rule fits a cubic over each group of THREE subintervals, so the total number of subintervals must be a multiple of 3.",
+    "tips": [
+      "Divisibility rules: trapezoidal any n, Simpson's $1/3$ needs n even, Simpson's $3/8$ needs n a multiple of 3, Weddle's needs n a multiple of 6.",
+      "The name encodes the answer: the '3' in three-eighth refers to the three strips consumed by each cubic arc.",
+      "The weight pattern 1, 3, 3, 1 (repeating with 2 at the joins) only closes correctly when the strips group into complete threes.",
+      "If n is not a multiple of 3, combine rules - for example apply the $3/8$ rule to three strips and the $1/3$ rule to the remaining even number."
+    ],
+    "solution": [
+      "Simpson's three-eighth rule is derived by replacing the integrand over each group of THREE consecutive subintervals by the cubic through the four corresponding points.",
+      "Each cubic arc therefore consumes exactly three subintervals.",
+      "For the whole interval to be covered by complete groups, the total number of subintervals n must be divisible by 3.",
+      "The composite weight pattern 1, 3, 3, 2, 3, 3, 2, ..., 3, 3, 1 closes correctly only under this condition.",
+      "Hence n must be a multiple of 3, option (b)."
+    ]
+  },
+  "2021-Q46": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "All three are the standard selection rules: forward formula near the start, Bessel (a central formula) near the middle, Lagrange for unequal intervals.",
+    "tips": [
+      "Position map for equally spaced tables: Newton forward at the START, Newton backward at the END, Stirling near the MIDDLE for |p| < 0.25, Bessel near the middle for p around 0.5.",
+      "Bessel's formula uses the mean of two central lines and is most accurate when the interpolation point lies midway between two tabulated values.",
+      "Lagrange's formula makes no spacing assumption at all, which is exactly why it is the standard choice for unequal intervals.",
+      "When all three statements are textbook selection rules for different situations, 'all of them' is the natural key."
+    ],
+    "solution": [
+      "Statement 1: Newton's forward difference formula uses the leading differences at the top of the table, so it is accurate for interpolation near the BEGINNING of the table. TRUE.",
+      "Statement 2: Bessel's formula is a central-difference formula built on the mean of the two central lines, and it is most accurate when the interpolation point lies near the middle of the table, particularly near $p = 0.5$. TRUE.",
+      "Statement 3: Lagrange's formula is constructed from products of factors $(x - x_{i})$ and makes no assumption about spacing, so it is the standard method for unequally spaced arguments. TRUE.",
+      "All three statements correctly describe the standard use of each formula.",
+      "Hence option (d) is correct."
+    ]
+  },
+  "2021-Q47": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "RK4 is a fourth-order method, meaning GLOBAL error $O(h^{4})$; the LOCAL truncation error is one power higher, $O(h^{5})$.",
+    "tips": [
+      "Local versus global: a method of order p has local truncation error $O(h^{p+1})$ and global error $O(h^{p})$. The one-power gap arises because errors accumulate over about $1/h$ steps.",
+      "The question says LOCAL, so the answer must carry $h^{5}$ - option $(a)'s h^{4}$ is the global error, the intended trap.",
+      "Comparison table: Euler is order 1 (local $h^{2}$), RK2 order 2 (local $h^{3}$), RK4 order 4 (local $h^{5}$).",
+      "Practical consequence: halving h reduces RK4's global error by a factor of about 16, which is why it remains the workhorse single-step method."
+    ],
+    "solution": [
+      "The classical fourth-order Runge-Kutta method matches the Taylor expansion of the solution through the $h^{4}$ term.",
+      "The first unmatched term is of order $h^{5}$, so the error committed in a SINGLE step - the local truncation error - is of the form $e = c h^{5} + O(h^{6})$.",
+      "Accumulating this over the roughly $(b-a)/h$ steps needed to traverse the interval gives a global error of order $h^{4}$, which is why RK4 is called a fourth-order method.",
+      "The question asks specifically for the LOCAL truncation error.",
+      "Hence $e = c h^{5} + O(h^{6})$, option (b)."
+    ]
+  },
+  "2021-Q48": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Second differences are constant at 2, so the polynomial is quadratic. Newton forward from x0 = -1 gives $p^{2} - 3p + 4$ with $p = x + 1$, i.e. $x^{2} - x + 2$.",
+    "tips": [
+      "Build the difference table first: values 4, 2, 2, 4 give first differences -2, 0, 2 and second differences 2, 2 - constant, so the degree is 2 and the third difference vanishes.",
+      "Faster route: test the options. At $x = 0$ the value must be 2, which options (a) and (c) satisfy; then $x = 1$ must give 2, which only (c) does.",
+      "The data are symmetric about $x = 0.5$, so the vertex of the parabola is at $x = 0.5$, consistent with $x^{2} - x + 2$ whose vertex is at $x = 1/2$.",
+      "Leading coefficient check: the second difference is $2 = 2a h^{2}$ with $h = 1$, so $a = 1$ - eliminating options (a) and (d), which have $a = 2$."
+    ],
+    "solution": [
+      "Tabulate: at x = -1, 0, 1, 2 the values are 4, 2, 2, 4 with $h = 1$.",
+      "First differences: -2, 0, 2. Second differences: 2, 2. Third difference: 0, so the data lie on a quadratic.",
+      "Newton's forward formula from x0 = -1 with $p = (x + 1)/1$: $f = 4 + p(-2) + [p(p-1)/2](2) = 4 - 2p + p(p-1)$.",
+      "Simplifying: $4 - 2p + p^{2} - p = p^{2} - 3p + 4$.",
+      "Substituting $p = x + 1$: $(x+1)^{2} - 3(x+1) + 4 = x^{2} + 2x + 1 - 3x - 3 + 4 = x^{2} - x + 2$.",
+      "Check: at x = -$1, 1 + 1 + 2 = 4$; at $x = 0, 2$; at $x = 1, 2$; at $x = 2, 4$. All match. Option (c) is correct."
+    ]
+  },
+  "2021-Q49": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "For $f(x) = 1/x$ the nth divided difference is $(-1)^{n}$/(product of the nodes). With $n = 2$ the sign is positive, giving 1/(abc).",
+    "tips": [
+      "Reciprocal rule: $f[x_{0}, x_{1}, ..., xn] = (-1)^{n}$/(x0 x1 ... xn) when $f(x) = 1/x$. One formula covers every order.",
+      "Order 2 is EVEN, so the sign is +. Compare with 2018 Q53, where order 3 gave the negative -1/(abcd).",
+      "Symmetry test: a divided difference must be symmetric in its arguments, which 1/(abc) is. Options (b) and (c) are symmetric too, so use the derivation, not just symmetry.",
+      "Derive the first step yourself: $f[a,b] = (1/a - 1/b)/(a-b)$ = -$1/(ab)$, then $f[a,b,c] = (-1/(ab) + 1/(bc))/(a-c) = 1$/(abc)."
+    ],
+    "solution": [
+      "First divided difference: $f[a,b] = (1/a - 1/b)/(a - b) = [(b - a)/(ab)]/(a - b)$ = -$1/(ab)$.",
+      "Similarly f[b,c] = -$1/(bc)$.",
+      "Second divided difference: $f[a,b,c] = (f[a,b] - f[b,c])/(a - c) = (-1/(ab) + 1/(bc))/(a - c)$.",
+      "Combine the numerator over the common denominator abc: $(-c + a)$/(abc) = $(a - c)$/(abc).",
+      "Dividing by $(a - c)$ gives $f[a,b,c] = 1$/(abc).",
+      "This matches the general rule $(-1)^{n}$/(product of nodes) with $n = 2$. Option (d) is correct."
+    ]
+  },
+  "2021-Q50": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "$y_{1} = 1 - x + x^{2}/2$ and $y_{2} = 1 - x + x^{2} - x^{3}/6$. At $x = 0.2$ that is $1 - 0.2 + 0.04 - 0.001333 = 0.8387$.",
+    "tips": [
+      "Picard: $y_{n+1}(x) = y(0) + \\int_{0}^{x} f(t, y_{n}(t))\\,dt$. Each iteration raises the degree by one, so the SECOND approximation is a cubic.",
+      "Integrate carefully: $f(t, y_{1}) = t - (1 - t + t^{2}/2) = 2t - 1 - t^{2}/2$, whose integral is $x^{2} - x - x^{3}/6$.",
+      "Evaluate in one pass: $1 - 0.2 = 0.8$, plus 0.04 gives 0.84, minus $0.008/6 = 0.00133$ gives 0.83867.",
+      "The options differ in the third decimal, so keep $x^{3}/6 = 0.001333$ to five places rather than rounding early."
+    ],
+    "solution": [
+      "Picard's method for $dy/dx = x - y$ with $y(0) = 1$ uses $y_{n+1}(x) = 1 + \\int_{0}^{x} (t - y_{n}(t))\\,dt$, starting from $y_{0} = 1$.",
+      "First approximation: $y_{1} = 1 + \\int_{0}^{x} (t - 1)\\,dt = 1 + x^{2}/2 - x$.",
+      "Second approximation: the integrand is $t - y_{1}(t) = t - (1 - t + t^{2}/2) = 2t - 1 - t^{2}/2$.",
+      "Integrating: the integral from 0 to x is $x^{2} - x - x^{3}/6$, so $y_{2} = 1 - x + x^{2} - x^{3}/6$.",
+      "At $x = 0.2$: $1 - 0.2 + 0.04 - (0.008)/6 = 0.84 - 0.001333 = 0.838667$.",
+      "Hence $y(0.2)$ is approximately 0.8387, option (b)."
+    ]
+  },
+  "2021-Q51": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "A tree structure with one parent per child is the HIERARCHICAL data model.",
+    "tips": [
+      "Model shapes: hierarchical = tree (one parent, many children); network = graph (many parents allowed); relational = tables linked by keys.",
+      "The hierarchical model supports only one-to-many relationships; representing many-to-many requires the network model, which is the key distinction between options (a) and (c).",
+      "IBM's IMS is the classic hierarchical DBMS; CODASYL/IDMS is the classic network DBMS; almost all modern systems are relational.",
+      "Navigation in a hierarchical database always starts at the root and follows parent-child pointers - hence its speed for tree-shaped data and its rigidity otherwise."
+    ],
+    "solution": [
+      "In the hierarchical data model, records are organised as a tree: each child record has exactly one parent, and there is a single root.",
+      "Data files are therefore arranged in a tree structure and are navigated from the root downwards through parent-child links.",
+      "The network model generalises this to a graph in which a record may have several parents, so it is not a tree.",
+      "The relational model stores data in flat tables related by keys, with no inherent hierarchy at all.",
+      "Hence the tree-structured model is the hierarchical model, option (c)."
+    ]
+  },
+  "2021-Q52": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "Statement 1 is false - the hub is a single point of failure. Statement 2 describes a DISADVANTAGE. Only statement 3, easy fault isolation, is a genuine advantage.",
+    "tips": [
+      "Star topology: every node connects to a central hub or switch. Advantages - easy fault isolation, simple to add or remove nodes, one failed link affects only that node. Disadvantages - hub is a single point of failure, more cable needed.",
+      "Read the question direction: it asks for ADVANTAGES, so a true statement that describes a drawback (statement 2) still does not qualify.",
+      "Statement 1 inverts the best-known weakness of the star: if the hub fails, the ENTIRE network goes down.",
+      "Contrast with bus topology (less cable, harder fault isolation) and ring topology (each node's failure can break the loop unless dual rings are used)."
+    ],
+    "solution": [
+      "In a star topology every node is connected by its own cable to a central hub or switch.",
+      "Statement 1: the hub is the single point through which all traffic passes, so if the hub fails the whole network fails. The claim that the network is unaffected is FALSE.",
+      "Statement 2: a star does require more cable than a bus, since each node needs its own dedicated link. This is a genuine property, but it is a DISADVANTAGE, not an advantage, so it does not answer the question.",
+      "Statement 3: because each node has a separate link to the hub, a fault can be traced to a single cable or port, and a failed link affects only that one node. Easy error detection and isolation is the principal ADVANTAGE of the star.",
+      "Only statement 3 is an advantage.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2021-Q53": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "Python is platform-INDEPENDENT: the same source runs wherever the interpreter is available. The other three statements are all true of Python.",
+    "tips": [
+      "Interpreted languages are portable by construction - the interpreter absorbs the platform differences, so 'interpreted' and 'platform-dependent' sit awkwardly together.",
+      "Python's headline properties for exams: interpreted, high-level, dynamically typed, platform-independent, free and open source (PSF licence), with clean indentation-based syntax.",
+      "The question asks which is NOT correct, so scan for the one claim that contradicts the others rather than for the true statements.",
+      "Contrast with C, where an executable compiled for one platform will not run on another - that is genuine platform dependence."
+    ],
+    "solution": [
+      "Option (a): Python source code is executed by an interpreter rather than compiled to native machine code ahead of time. TRUE of Python.",
+      "Option (c): Python is well known for readable, indentation-based syntax that is close to pseudocode. TRUE.",
+      "Option (d): Python is distributed free under an open-source licence maintained by the Python Software Foundation. TRUE.",
+      "Option (b): because Python programs are run by an interpreter that is itself available on Windows, Linux, macOS and other systems, the same source code runs unchanged across platforms. Python is therefore platform-INDEPENDENT.",
+      "The statement that Python is platform-dependent is the incorrect one.",
+      "Hence option (b) is the answer."
+    ]
+  },
+  "2021-Q54": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "IMAP (Internet Message Access Protocol) is the standard protocol for retrieving mail from a server; SMTP sends it.",
+    "tips": [
+      "Direction again: SMTP pushes mail OUT, POP3 and IMAP pull it IN. The word 'retrieve' selects the incoming pair.",
+      "IMAP versus POP3: IMAP leaves messages on the server and synchronises folders across devices; POP3 typically downloads and deletes. IMAP is the modern default.",
+      "FTP transfers files, HTML is a markup language (not a protocol at all), and TELNET provides remote terminal access - all out of category here.",
+      "Ports: IMAP 143 (993 with TLS), POP3 110 (995 with TLS), SMTP 25 (587 for submission)."
+    ],
+    "solution": [
+      "Retrieving email from a mail server to a client is done by a mail access protocol.",
+      "IMAP (Internet Message Access Protocol) is the standard protocol for this purpose; it allows the client to read, organise and search messages that remain stored on the server.",
+      "FTP is a file transfer protocol and is not used for mailbox access.",
+      "HTML is a markup language for describing web pages, not a network protocol.",
+      "TELNET provides a remote terminal login session.",
+      "Hence the protocol used to retrieve email is IMAP, option (b)."
+    ]
+  },
+  "2021-Q55": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "MTOS, LynxOS and RTX are real-time operating systems; standard LINUX is a general-purpose OS.",
+    "tips": [
+      "A real-time OS guarantees BOUNDED response times; a general-purpose OS optimises average throughput and fairness instead. That distinction is the whole question.",
+      "Common RTOS names worth recognising: VxWorks, QNX, RTLinux, LynxOS, RTX, MTOS, FreeRTOS, pSOS.",
+      "Standard Linux is not an RTOS, although real-time VARIANTS exist (RTLinux, PREEMPT_RT) - the question refers to plain LINUX.",
+      "Hard real time means a missed deadline is a system failure (avionics, pacemakers); soft real time merely degrades quality (video streaming)."
+    ],
+    "solution": [
+      "A real-time operating system is designed to guarantee that tasks complete within strict, predictable time limits, using deterministic scheduling and bounded interrupt latency.",
+      "MTOS is a classic multitasking real-time executive.",
+      "LynxOS (Lynx) is a well-known hard real-time, POSIX-compatible RTOS used in embedded and avionics systems.",
+      "RTX is a real-time kernel widely used for embedded microcontroller applications.",
+      "LINUX in its standard form is a general-purpose, time-sharing operating system optimised for throughput and fairness rather than for guaranteed deadlines, although real-time variants exist.",
+      "Hence LINUX is not a real-time operating system, option (b)."
+    ]
+  },
+  "2021-Q56": {
+    "answer": 3,
+    "confidence": "medium",
+    "type": "Conceptual",
+    "shortcut": "Paging is the technique in which a virtual (logical) address is split into a page number and offset and translated through a page table into a physical frame address.",
+    "tips": [
+      "Address translation in paging: virtual address = page number + offset; the page table maps the page number to a frame number, and the offset passes through unchanged.",
+      "Segmentation also maps logical to physical addresses but does so by variable-length SEGMENTS with base and limit registers; paging with its fixed-size pages is the standard answer for virtual-address mapping.",
+      "Swapping moves whole processes between memory and disk and scheduling allocates CPU time - neither performs address translation, so options (b) and (c) are out of category.",
+      "The TLB (translation lookaside buffer) is the associative cache that speeds up this page-table lookup - a natural follow-up fact."
+    ],
+    "solution": [
+      "Under paging, the logical (virtual) address space of a process is divided into fixed-size pages and physical memory into frames of the same size.",
+      "A virtual address is interpreted as a page number plus an offset within the page.",
+      "The page number indexes the process's page table, which returns the physical frame number; concatenating the frame number with the unchanged offset gives the physical address.",
+      "This mapping is exactly the use of a virtual address to locate the physical address of data.",
+      "Swapping transfers entire processes between memory and backing store, and scheduling allocates processor time; neither performs address translation.",
+      "Hence the technique is paging, option (d)."
+    ]
+  },
+  "2021-Q57": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "Linkers, operating systems and assemblers all serve the machine; a word processor serves the USER and is therefore application software.",
+    "tips": [
+      "Test by asking 'who is this for?'. System software manages the computer; application software performs a task for the user.",
+      "System software includes the OS, device drivers, and all translators and build tools - compilers, assemblers, linkers, loaders.",
+      "Application software includes word processors, spreadsheets, browsers, media players and database applications.",
+      "Utility software (antivirus, defragmenter) is a maintenance sub-category of system software - useful to keep as a third bucket."
+    ],
+    "solution": [
+      "System software manages and controls computer hardware and provides the platform on which application programs run.",
+      "A linker combines object modules into an executable - part of the program-development tool chain and hence system software.",
+      "An operating system manages processes, memory, files and devices - the central item of system software.",
+      "An assembler translates assembly language into machine code - again a translator and hence system software.",
+      "A word processor is used to create and edit documents for the user's own purposes, making it application software.",
+      "Hence the word processor is not system software, option (c)."
+    ]
+  },
+  "2021-Q58": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "AND can only clear bits, never set them, so the answer must be a subset of 101101 that keeps the 1s of 100101. Testing 100101 AND 101101 gives 100101 exactly.",
+    "tips": [
+      "Bitwise AND yields 1 only where BOTH operands are 1, so the result is always a 'subset' of each operand's 1-bits - the result 100101 must therefore be attainable from 101101 by clearing bits.",
+      "Compare 101101 with the target 100101: only the third bit from the left changes from 1 to 0, so the unknown must have 0 there and 1 wherever the target has 1.",
+      "The target itself always works when it is a subset of the given operand - check that shortcut first, and here it succeeds immediately.",
+      "Options (c) and (d) have 0 in the fourth position where the result needs a 1, so they fail before any full computation."
+    ],
+    "solution": [
+      "Write the given operand and the required result bit by bit: 101101 AND $x = 100101$.",
+      "Bitwise AND produces 1 only where both bits are 1, so wherever the result has a 1 the unknown x must also have a 1: positions 1, 4 and 6 (from the left).",
+      "Wherever the given operand has a 1 but the result has a 0 - position 3 - the unknown must have a 0.",
+      "Positions 2 and 5 are 0 in the given operand, so x is unconstrained there.",
+      "Testing option (b): 101101 AND $100101 = 100101$, exactly the required result.",
+      "Option (a) gives 101101, and options (c) and (d) have 0 in position 4 so they cannot produce the required 1. Hence option (b)."
+    ]
+  },
+  "2021-Q59": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "Printer, speaker and plotter all deliver information FROM the computer; a webcam captures images INTO it, so it is an input device.",
+    "tips": [
+      "Direction test: output devices convert machine data into human-usable form; input devices do the reverse. Apply it to each item in turn.",
+      "A plotter is simply a printer for line drawings and engineering diagrams - unfamiliar name, familiar category.",
+      "A webcam is the video analogue of a microphone: both capture the outside world and are inputs.",
+      "Devices that are BOTH include touchscreens, modems and network cards - worth remembering for 'which is both' variants of this question."
+    ],
+    "solution": [
+      "An output device presents processed data from the computer to the user; an input device supplies data to the computer.",
+      "Item 1, printer: produces hard copy of the computer's output. OUTPUT.",
+      "Item 2, speaker: converts digital audio signals into sound for the user. OUTPUT.",
+      "Item 3, plotter: draws vector graphics such as engineering drawings on paper. OUTPUT.",
+      "Item 4, webcam: captures live images and video and sends them into the computer. INPUT.",
+      "Hence items 1, 2 and 3 are output devices, option (b)."
+    ]
+  },
+  "2021-Q60": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Factual",
+    "shortcut": "JPEG, TIFF and GIF store a grid of pixels (raster). SVG stores mathematical shape descriptions and is a VECTOR format.",
+    "tips": [
+      "The acronym gives it away: SVG = Scalable Vector Graphics. 'Vector' is in the name.",
+      "Raster images are made of pixels and lose quality on enlargement; vector images are made of paths and scale without any loss - that is the practical distinction.",
+      "Raster formats to recognise: JPEG, PNG, GIF, TIFF, BMP. Vector formats: SVG, EPS, AI, and PDF for the vector parts of its content.",
+      "Photographs are naturally raster; logos, icons and diagrams are best kept as vectors, which is why SVG dominates on the web for those."
+    ],
+    "solution": [
+      "A raster (bitmap) image stores a rectangular grid of pixels, each with its own colour value; resolution is fixed and enlargement causes pixellation.",
+      "JPEG is a lossy raster format designed for photographs.",
+      "TIFF is a flexible, usually lossless raster format used in printing and archiving.",
+      "GIF is a raster format limited to 256 colours and supporting simple animation.",
+      "SVG stands for Scalable Vector Graphics: it describes images as mathematical paths, curves and shapes in XML, so it can be scaled to any size without loss of quality.",
+      "Hence SVG is not a raster image format, option (d)."
+    ]
+  }
 }

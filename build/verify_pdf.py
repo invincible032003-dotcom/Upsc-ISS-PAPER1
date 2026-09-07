@@ -106,15 +106,15 @@ def missing_chars(src, blob):
 
 
 def prose_in_order(src, blob):
-    """Alphanumeric subsequence check: the text must appear in the right order.
+    """Letters-only subsequence check on the prose around the formulas.
 
-    Compared against the DEFAULT extraction mode, using a reference from which
-    superscripts and subscripts have been removed, because that mode drops
-    raised and lowered runs.  Everything on the baseline - including stacked
-    fractions - must still appear in document order.
+    Typeset mathematics is laid out in two dimensions, so the order in which
+    a text extractor emits its glyphs carries no meaning.  The prose, however,
+    must appear in document order, and missing_chars() separately proves that
+    no character of the mathematics was dropped.
     """
-    a = re.sub(r'[^a-z0-9]', '', norm(src))
-    b = re.sub(r'[^a-z0-9]', '', norm(blob))
+    a = re.sub(r'[^a-z]', '', norm(src))
+    b = re.sub(r'[^a-z]', '', norm(blob))
     if len(a) < 20:
         return 1.0
     i = 0
@@ -223,7 +223,10 @@ for fname, unit in PDFS:
         lb = lay_blocks.get(qid, blob)
 
         lost, need = missing_chars(rq['question'], lb)
-        order = prose_in_order(rq.get('questionBase', rq['question']), blob)
+        # order is checked on the PROSE only: a PDF text extractor places a
+        # formula's glyphs wherever the typesetter put them on the page, so
+        # their string order is not meaningful, but the prose around them is
+        order = prose_in_order(rq.get('questionProse', ''), lb)
         if lost or order < 1.0:
             bad_stem.append('%s (%d chars lost of %d, prose order %.0f%%)'
                             % (qid, lost, sum(need.values()), 100 * order))

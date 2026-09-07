@@ -99,29 +99,29 @@ TOTAL MERGED RECORDS           : 720
 
 -- Flagged source defects / caveats (13) ----------------------------
   2018-Q03 [Probability]
-      SOURCE DEFECT - stem and options are mutually inconsistent. As printed, the third branch (3-x)/3 on 2<x<=3 contributes 1/6, giving a total mass of 1/4 + 1/2 + 1/6 = 11/12, so the printed function is n
+      SOURCE DEFECT - stem and options are mutually inconsistent. As printed, the third branch $(3-x)/3$ on $2<x \le 3$ contributes $1/6$, giving a total mass of $1/4 + 1/2 + 1/6 = 11/12$, so the printed fu
   2019-Q22 [Statistical Methods]
       AI-derived key with a caveat. Statement 4 is unambiguously true and statements 2 and 3 are unambiguously false, which forces the key to (c) 'only 4' among the printed options. Statement 1, however, is
   2019-Q24 [Statistical Methods]
-      AI-derived key with a caveat. Statements 1, 2 and 3 are exactly true: the pooled test statistic is Z = 1.543, which is below Z(0.05) = 1.645 but above Z(0.10) = 1.28, and the expected recoveries under
+      AI-derived key with a caveat. Statements 1, 2 and 3 are exactly true: the pooled test statistic is $Z = 1.543$, which is below $Z(0.05) = 1.645$ but above $Z(0.10) = 1.28$, and the expected recoveries
   2019-Q32 [Probability]
-      SOURCE NOTE: sampling is without replacement, so the number of black balls is HYPERGEOMETRIC with exact variance r(m/N)(n/N)(N-r)/(N-1) where N = m+n, i.e. mnr(m+n-r)/[(m+n)^2 (m+n-1)]. Option (b) as 
+      SOURCE NOTE: sampling is without replacement, so the number of black balls is HYPERGEOMETRIC with exact variance $r(m/N)(n/N)(N-r)/(N-1)$ where $N = m+n$, i.e. mnr($m+n-r$)/$[(m+n)^{2} (m+n-1)]$. Opti
   2019-Q48 [Computer Application and Data Processing]
       SOURCE DEFECT - the four answer options for this item are absent from the source scan; the page break in the original booklet falls immediately after statement 3. The question stem is reproduced exact
   2021-Q33 [Statistical Methods]
       AI-derived key with a caveat. Statement 1 is unambiguously true (mean n, variance 2n). Statement 2 states the additive property WITHOUT the independence requirement; as printed it is false, since the 
   2021-Q40 [Statistical Methods]
-      AI-derived key with a caveat. The median is indeed 257.50 (mean of the 12th and 13th ordered values 253 and 262) and E(R) = 13 is correct for n1 = n2 = 12. However the printed standard deviation 1.396
+      AI-derived key with a caveat. The median is indeed 257.50 (mean of the 12th and 13th ordered values 253 and 262) and $\operatorname{E}(R) = 13$ is correct for $n_{1} = n_{2} = 12$. However the printed
   2022-Q12 [Statistical Methods]
-      SOURCE NOTE: as printed the expression E(T^2 Xbar^2) evaluates, using the independence of Xbar and T with T ~ chi-square(4), to E(T^2) E(Xbar^2) = 24 x 0.2 = 4.8, which is NOT among the four printed o
+      SOURCE NOTE: as printed the expression $\operatorname{E}(T^{2} \bar{X}^{2})$ evaluates, using the independence of $\bar{X}$ and T with $T \sim \chi^{2}_{4}$, to $\operatorname{E}(T^{2}) \operatorname{
   2022-Q68 [Numerical Analysis]
-      AI-derived key with a caveat. The third difference is Delta^3 = 10, which is non-zero, so the four points do NOT lie on a quadratic and statement 1 fails. Applying Newton-Gregory forward interpolation
+      AI-derived key with a caveat. The third difference is $\Delta^{3} = 10$, which is non-zero, so the four points do NOT lie on a quadratic and statement 1 fails. Applying Newton-Gregory forward interpol
   2024-Q55 [Computer Application and Data Processing]
       SOURCE NOTE: HTTP, FTP and SMTP are strictly APPLICATION-layer protocols of the TCP/IP model, not network-layer protocols (the network layer carries IP, ICMP and ARP). 'NMP' is not a standard TCP/IP p
   2026-Q10 [Probability]
-      The answer depends on the counting convention. Using the standard Indian-textbook convention in which both the geometric and the negative binomial count FAILURES (geometric mean q/p, negative binomial
+      The answer depends on the counting convention. Using the standard Indian-textbook convention in which both the geometric and the negative binomial count FAILURES (geometric mean $q/p$, negative binomi
   2026-Q43 [Numerical Analysis]
-      Statement II is order-sensitive. The determinant representation quoted in most textbooks uses two determinants of order (n+1) - a Vandermonde denominator and a numerator with its last column replaced 
+      Statement II is order-sensitive. The determinant representation quoted in most textbooks uses two determinants of order $(n+1) - a$ Vandermonde denominator and a numerator with its last column replace
   2026-Q73 [Computer Application and Data Processing]
       Textbook presentations of the absolute loading scheme split the four loader functions differently. In Dhamdhere's table, allocation and linking are done by the PROGRAMMER, relocation by the translator
 

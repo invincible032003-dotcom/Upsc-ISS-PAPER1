@@ -3,20 +3,20 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Anti-difference of a degree-2 polynomial is degree 3, so drop (a) at once. Only (b) and (d) are cubics with the right leading term test: Delta of x^3 gives 3x^2+3x+1, so you need the x-coefficient to come out as +1 after correction. Test (d): Delta(x^3-x^2+4x) = (3x^2+3x+1)-(2x+1)+4 = 3x^2+x+4. Match on the first try.",
+    "shortcut": "Anti-difference of a degree-2 polynomial is degree 3, so drop (a) at once. Only (b) and (d) are cubics with the right leading term test: $\\Delta$ of $x^{3}$ gives $3x^{2}+3x+1$, so you need the x-coefficient to come out as +1 after correction. Test (d): $\\Delta(x^{3}-x^{2}+4x) = (3x^{2}+3x+1)-(2x+1)+4 = 3x^{2}+x+4$. Match on the first try.",
     "tips": [
-      "Delta of a degree-n polynomial is degree n-1, so the answer must be one degree higher than the given first difference.",
-      "Memorise Delta x^3 = 3x^2+3x+1, Delta x^2 = 2x+1, Delta x = 1 (with h = 1). Everything else is bookkeeping.",
-      "The arbitrary constant lambda is present in every option, so it never discriminates - ignore it.",
-      "Faster alternative: express 3x^2+x+4 in factorial notation, 3x^(2)+4x^(1)+4x^(0) with x^(2)=x(x-1), then anti-difference term by term using Delta^-1 x^(n) = x^(n+1)/(n+1)."
+      "$\\Delta$ of a degree-n polynomial is degree n-1, so the answer must be one degree higher than the given first difference.",
+      "Memorise $\\Delta x^{3} = 3x^{2}+3x+1, \\Delta x^{2} = 2x+1, \\Delta x = 1$ (with $h = 1$). Everything else is bookkeeping.",
+      "The arbitrary constant $\\lambda$ is present in every option, so it never discriminates - ignore it.",
+      "Faster alternative: express $3x^{2}+x+4$ in factorial notation, $3x^{2}+4x^{1}+4x^{0}$ with $x^{2}=x(x-1)$, then anti-difference term by term using $\\Delta^{-1} x^{n} = x^{n+1}/(n+1)$."
     ],
     "solution": [
-      "We need F(x) with Delta F(x) = F(x+1) - F(x) = 3x^2 + x + 4, taking the interval of differencing h = 1.",
-      "Basic differences: Delta x^3 = (x+1)^3 - x^3 = 3x^2 + 3x + 1; Delta x^2 = (x+1)^2 - x^2 = 2x + 1; Delta x = 1.",
-      "Try F(x) = x^3 - x^2 + 4x + lambda (option d).",
-      "Delta F = (3x^2 + 3x + 1) - (2x + 1) + 4(1) = 3x^2 + 3x + 1 - 2x - 1 + 4 = 3x^2 + x + 4. This is exactly the required first difference.",
-      "Cross-check (b) F = 2x^3 + x^2 + lambda: Delta F = 2(3x^2+3x+1) + (2x+1) = 6x^2 + 8x + 3, which is wrong.",
-      "Cross-check (c) F = 2x^3 + x^2 + 8x + lambda: Delta F = 6x^2 + 8x + 3 + 8 = 6x^2 + 8x + 11, also wrong.",
+      "We need F(x) with $\\Delta F(x) = F(x+1) - F(x) = 3x^{2} + x + 4$, taking the interval of differencing $h = 1$.",
+      "Basic differences: $\\Delta x^{3} = (x+1)^{3} - x^{3} = 3x^{2} + 3x + 1$; $\\Delta x^{2} = (x+1)^{2} - x^{2} = 2x + 1$; $\\Delta x = 1$.",
+      "Try $F(x) = x^{3} - x^{2} + 4x + \\lambda$ (option d).",
+      "$\\Delta F = (3x^{2} + 3x + 1) - (2x + 1) + 4(1) = 3x^{2} + 3x + 1 - 2x - 1 + 4 = 3x^{2} + x + 4$. This is exactly the required first difference.",
+      "Cross-check $(b) F = 2x^{3} + x^{2} + \\lambda$: $\\Delta F = 2(3x^{2}+3x+1) + (2x+1) = 6x^{2} + 8x + 3$, which is wrong.",
+      "Cross-check $(c) F = 2x^{3} + x^{2} + 8x + \\lambda$: $\\Delta F = 6x^{2} + 8x + 3 + 8 = 6x^{2} + 8x + 11$, also wrong.",
       "Option (a) is a quadratic, whose first difference is linear, so it cannot equal a quadratic.",
       "Hence option (d) is correct."
     ]
@@ -25,18 +25,18 @@
     "answer": 0,
     "confidence": "high",
     "type": "Conceptual",
-    "shortcut": "The word 'forward' fixes the stencil: only points at or ahead of x_i may appear. Option (a) uses f_i, f_{i+1}, f_{i+2} - the only choice with no backward point and with coefficients 1, -2, 1 summing to zero. Pick (a) in five seconds.",
+    "shortcut": "The word 'forward' fixes the stencil: only points at or ahead of $x_{i}$ may appear. Option (a) uses $f_{i}, f_{i+1}, f_{i+2}$ - the only choice with no backward point and with coefficients 1, -2, 1 summing to zero. Pick (a) in five seconds.",
     "tips": [
-      "For any valid second-derivative formula the coefficients must sum to zero (it must annihilate constants); 1-2+1 = 0 passes, 1+2+1 = 4 fails, 1-2-1 = -2 fails.",
-      "Forward = points i, i+1, i+2. Backward = points i, i-1, i-2. Central = points i-1, i, i+1.",
-      "Derivation: f'' ~ Delta^2 f_i / h^2, and Delta^2 f_i = f_{i+2} - 2f_{i+1} + f_i.",
+      "For any valid second-derivative formula the coefficients must sum to zero (it must annihilate constants); $1-2+1 = 0$ passes, $1+2+1 = 4$ fails, $1-2-1$ = -2 fails.",
+      "Forward = points $i, i+1, i+2$. Backward = points $i, i-1, i-2$. Central = points $i-1, i, i+1$.",
+      "Derivation: $f'' \\sim \\Delta^{2} f_{i} / h^{2}$, and $\\Delta^{2} f_{i} = f_{i+2} - 2f_{i+1} + f_{i}$.",
       "Option (b) is the classic central-difference formula - a very common distractor when the question says 'forward'."
     ],
     "solution": [
-      "The forward difference operator is Delta f_i = f_{i+1} - f_i, so Delta^2 f_i = Delta(f_{i+1} - f_i) = (f_{i+2} - f_{i+1}) - (f_{i+1} - f_i) = f_{i+2} - 2f_{i+1} + f_i.",
-      "Using D = (1/h) log(1 + Delta), we get h^2 D^2 = (log(1+Delta))^2 = Delta^2 - Delta^3 + ... , so to leading order h^2 f''(x_i) = Delta^2 f_i + O(h^3).",
-      "Therefore f''(x_i) = (f_{i+2} - 2f_{i+1} + f_i)/h^2 with truncation error O(h).",
-      "Option (b) is the central difference formula (f_{i-1} - 2f_i + f_{i+1})/h^2 - correct as a formula but not a forward difference.",
+      "The forward difference operator is $\\Delta f_{i} = f_{i+1} - f_{i}$, so $\\Delta^{2} f_{i} = \\Delta(f_{i+1} - f_{i}) = (f_{i+2} - f_{i+1}) - (f_{i+1} - f_{i}) = f_{i+2} - 2f_{i+1} + f_{i}$.",
+      "Using $D = (1/h) \\log(1 + \\Delta)$, we get $h^{2} D^{2} = (\\log(1+\\Delta))^{2} = \\Delta^{2} - \\Delta^{3}$ + ... , so to leading order $h^{2} f''(x_{i}) = \\Delta^{2} f_{i} + O(h^{3})$.",
+      "Therefore $f''(x_{i}) = (f_{i+2} - 2f_{i+1} + f_{i})/h^{2}$ with truncation error O(h).",
+      "Option (b) is the central difference formula $(f_{i-1} - 2f_{i} + f_{i+1})/h^{2}$ - correct as a formula but not a forward difference.",
       "Option (c) has coefficients summing to 4, so it does not even vanish for constant f; option (d) has coefficients summing to -2 and is not a difference formula at all.",
       "Hence option (a) is correct."
     ]
@@ -45,18 +45,18 @@
     "answer": 2,
     "confidence": "high",
     "type": "Conceptual",
-    "shortcut": "Recognise f as the Lagrange interpolating polynomial on nodes a, b, c with values alpha, beta, gamma. Then f(b) = beta, and g is the inverse, so g(beta) = b. Answer (c) - no algebra needed.",
+    "shortcut": "Recognise f as the Lagrange interpolating polynomial on nodes a, b, c with values $\\alpha, \\beta, \\gamma$. Then $f(b) = \\beta$, and g is the inverse, so $g(\\beta) = b$. Answer (c) - no algebra needed.",
     "tips": [
-      "The Lagrange basis polynomial L_i satisfies L_i(x_j) = 1 if i = j and 0 otherwise; spotting this pattern converts the whole expression into 'f(a)=alpha, f(b)=beta, f(c)=gamma' instantly.",
+      "The Lagrange basis polynomial $L_{i}$ satisfies $L_{i}(x_{j}) = 1$ if $i = j$ and 0 otherwise; spotting this pattern converts the whole expression into 'f(a)=$\\alpha, f(b)=\\beta, f(c)=\\gamma'$ instantly.",
       "g is the inverse function, so g(y) answers 'which x gives this y' - this is exactly inverse interpolation.",
-      "The conditions a<b<c and alpha<beta<gamma are given only to guarantee f is invertible on the range, so the inverse is well defined and single-valued.",
+      "The conditions $a<b<c$ and $\\alpha<\\beta<\\gamma$ are given only to guarantee f is invertible on the range, so the inverse is well defined and single-valued.",
       "Options (a) and (d) return a y-value where an x-value is wanted - a units mismatch you can reject on sight."
     ],
     "solution": [
-      "Write f(x) = alpha*L_a(x) + beta*L_b(x) + gamma*L_c(x), where L_a(x) = (x-b)(x-c)/((a-b)(a-c)), L_b(x) = (x-a)(x-c)/((b-a)(b-c)), L_c(x) = (x-a)(x-b)/((c-a)(c-b)).",
-      "These are the Lagrange basis polynomials for the nodes a, b, c, so L_a(a) = 1, L_a(b) = L_a(c) = 0, and similarly for the others.",
-      "Substituting x = b: L_a(b) = 0, L_b(b) = (b-a)(b-c)/((b-a)(b-c)) = 1, L_c(b) = 0. Hence f(b) = beta.",
-      "By definition y = f(x) if and only if x = g(y). Taking x = b and y = beta gives g(beta) = b.",
+      "Write $f(x) = \\alpha \\cdot L_{a}(x) + \\beta \\cdot L_{b}(x) + \\gamma \\cdot L_{c}(x)$, where $L_{a}(x) = (x-b)(x-c)/((a-b)(a-c)), L_{b}(x) = (x-a)(x-c)/((b-a)(b-c)), L_{c}(x) = (x-a)(x-b)/((c-a)(c-b))$.",
+      "These are the Lagrange basis polynomials for the nodes a, b, c, so $L_{a}(a) = 1, L_{a}(b) = L_{a}(c) = 0$, and similarly for the others.",
+      "Substituting $x = b$: $L_{a}(b) = 0, L_{b}(b) = (b-a)(b-c)/((b-a)(b-c)) = 1, L_{c}(b) = 0$. Hence $f(b) = \\beta$.",
+      "By definition $y = f(x)$ if and only if $x = g(y)$. Taking $x = b$ and $y = \\beta$ gives $g(\\beta) = b$.",
       "Hence option (c) is correct."
     ]
   },
@@ -64,21 +64,21 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Compute the three nodes f(0)=0, f(1)=3, f(2)=42, so g interpolates (0,0), (3,1), (42,2). Since g(0)=0 the first Lagrange term dies; g(13) = 1*[13*(13-42)]/[3*(3-42)] + 2*[13*(13-3)]/[42*(42-3)] = 377/117 + 260/1638 = 29/9 + 10/63 = 213/63 = 71/21.",
+    "shortcut": "Compute the three nodes $f(0)=0, f(1)=3, f(2)=42$, so g interpolates $(0,0), (3,1), (42,2)$. Since $g(0)=0$ the first Lagrange term dies; $g(13) = 1*[13 \\cdot (13-42)]/[3 \\cdot (3-42)] + 2*[13 \\cdot (13-3)]/[42 \\cdot (42-3)] = 377/117 + 260/1638 = 29/9 + 10/63 = 213/63 = 71/21$.",
     "tips": [
       "Always evaluate the nodes first - here the abscissae of g are the values of f, not 0, 1, 2.",
       "A zero function value kills an entire Lagrange term, which halves the arithmetic; check for it before expanding.",
-      "Keep everything as fractions: 377/117 reduces by 13 to 29/9, and 260/1638 reduces by 26 to 10/63 - decimals here invite rounding errors between 71/20 and 71/21.",
-      "Sanity check: 13 lies between 3 and 42, so g(13) must lie between 1 and 2; 71/21 = 3.38 fails that test, which flags that the intended reading is plain Lagrange interpolation (extrapolating the fitted parabola), matching the printed key."
+      "Keep everything as fractions: $377/117$ reduces by 13 to $29/9$, and $260/1638$ reduces by 26 to $10/63$ - decimals here invite rounding errors between $71/20$ and $71/21$.",
+      "Sanity check: 13 lies between 3 and 42, so $g(13)$ must lie between 1 and 2; $71/21 = 3.38$ fails that test, which flags that the intended reading is plain Lagrange interpolation (extrapolating the fitted parabola), matching the printed key."
     ],
     "solution": [
-      "First find the interpolation nodes. f(x) = x + x^3 + x^5 gives f(0) = 0, f(1) = 1 + 1 + 1 = 3, f(2) = 2 + 8 + 32 = 42.",
-      "So the quadratic g satisfies g(0) = 0, g(3) = 1, g(42) = 2.",
-      "Lagrange form: g(x) = 0*L_0(x) + 1*L_1(x) + 2*L_2(x), where L_1(x) = (x-0)(x-42)/((3-0)(3-42)) and L_2(x) = (x-0)(x-3)/((42-0)(42-3)).",
-      "The L_0 term vanishes because g(0) = 0.",
-      "L_1(13) = 13*(13-42)/(3*(-39)) = 13*(-29)/(-117) = 377/117 = 29/9 (dividing numerator and denominator by 13).",
-      "L_2(13) = 13*(13-3)/(42*39) = 130/1638 = 5/63 (dividing by 26).",
-      "g(13) = 1*(29/9) + 2*(5/63) = 29/9 + 10/63 = 203/63 + 10/63 = 213/63 = 71/21.",
+      "First find the interpolation nodes. $f(x) = x + x^{3} + x^{5}$ gives $f(0) = 0, f(1) = 1 + 1 + 1 = 3, f(2) = 2 + 8 + 32 = 42$.",
+      "So the quadratic g satisfies $g(0) = 0, g(3) = 1, g(42) = 2$.",
+      "Lagrange form: $g(x) = 0 \\cdot L_{0}(x) + 1 \\cdot L_{1}(x) + 2 \\cdot L_{2}(x)$, where $L_{1}(x) = (x-0)(x-42)/((3-0)(3-42))$ and $L_{2}(x) = (x-0)(x-3)/((42-0)(42-3))$.",
+      "The $L_{0}$ term vanishes because $g(0) = 0$.",
+      "$L_{1}(13) = 13 \\cdot (13-42)/(3 \\cdot (-39)) = 13 \\cdot (-29)/(-117) = 377/117 = 29/9$ (dividing numerator and denominator by 13).",
+      "$L_{2}(13) = 13 \\cdot (13-3)/(42 \\cdot 39) = 130/1638 = 5/63$ (dividing by 26).",
+      "$g(13) = 1 \\cdot (29/9) + 2 \\cdot (5/63) = 29/9 + 10/63 = 203/63 + 10/63 = 213/63 = 71/21$.",
       "Hence option (b) is correct."
     ]
   },
@@ -86,18 +86,18 @@
     "answer": 1,
     "confidence": "high",
     "type": "Conceptual",
-    "shortcut": "Picard's iterate is y_n(x) = y_0 + integral from x_0 to x of f(t, y_{n-1}(t)) dt. At x = x_0 the integral is zero, so every iterate equals the initial value. Here x_0 = 1 and y(1) = 2, so y_4(1) = 2 without computing a single integral.",
+    "shortcut": "Picard's iterate is $y_{n}(x) = y_{0} + \\int_{x_0}^{x} f(t, y_{n-1}(t))\\,dt$. At $x = x_{0}$ the integral is zero, so every iterate equals the initial value. Here $x_{0} = 1$ and $y(1) = 2$, so $y_{4}(1) = 2$ without computing a single integral.",
     "tips": [
       "Every Picard iterate reproduces the initial condition exactly - this is what makes the scheme consistent, and it is a favourite one-line trap.",
       "The same idea works for Taylor-series and Runge-Kutta starts: at the initial abscissa the numerical value is the exact initial value.",
-      "Do not be intimidated by the nonlinear right-hand side 1 + x^2 + y^2 (a Riccati equation with no elementary closed form) - it is irrelevant at x = 1.",
-      "If asked for y_4 at some other point, you would iterate y_n(x) = 2 + integral from 1 to x of (1 + t^2 + y_{n-1}(t)^2) dt starting with y_0(x) = 2."
+      "Do not be intimidated by the nonlinear right-hand side $1 + x^{2} + y^{2}$ (a Riccati equation with no elementary closed form) - it is irrelevant at $x = 1$.",
+      "If asked for $y_{4}$ at some other point, you would iterate $y_{n}(x) = 2 + \\int_{1}^{x} (1 + t^{2} + y_{n-1}(t)^{2})\\,dt$ starting with $y_{0}(x) = 2$."
     ],
     "solution": [
-      "Picard's method of successive approximations for dy/dx = f(x,y) with y(x_0) = y_0 defines y_n(x) = y_0 + integral from x_0 to x of f(t, y_{n-1}(t)) dt.",
-      "Here x_0 = 1, y_0 = 2 and f(x,y) = 1 + x^2 + y^2.",
-      "For every n >= 1, setting x = x_0 = 1 makes the integral run from 1 to 1, which is zero.",
-      "Therefore y_n(1) = y_0 + 0 = 2 for all n, and in particular y_4(1) = 2.",
+      "Picard's method of successive approximations for $dy/dx = f(x,y)$ with $y(x_{0}) = y_{0}$ defines $y_{n}(x) = y_{0} + \\int_{x_0}^{x} f(t, y_{n-1}(t))\\,dt$.",
+      "Here $x_{0} = 1, y_{0} = 2$ and $f(x,y) = 1 + x^{2} + y^{2}$.",
+      "For every $n \\ge 1$, setting $x = x_{0} = 1$ makes the integral run from 1 to 1, which is zero.",
+      "Therefore $y_{n}(1) = y_{0} + 0 = 2$ for all n, and in particular $y_{4}(1) = 2$.",
       "Hence option (b) is correct."
     ]
   },
@@ -105,19 +105,19 @@
     "answer": 0,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "Write everything in E: Delta = E - 1, nabla = 1 - E^{-1}. Then Delta - nabla = E - 2 + E^{-1} and Delta*nabla = (E-1)(1-E^{-1}) = E - 2 + E^{-1}. Identical, so I holds; II is its negative and fails; Delta + nabla = E - E^{-1} kills III and IV. Answer (a).",
+    "shortcut": "Write everything in E: $\\Delta = E - 1$, nabla = $1 - E^{-1}$. Then $\\Delta$ - nabla = $E - 2 + E^{-1}$ and $\\Delta$*nabla = $(E-1)(1-E^{-1}) = E - 2 + E^{-1}$. Identical, so I holds; II is its negative and fails; $\\Delta$ + nabla = $E - E^{-1}$ kills III and IV. Answer (a).",
     "tips": [
       "Reduce every operator identity to the shift operator E - it turns operator algebra into ordinary algebra.",
-      "Delta and nabla commute (both are polynomials in E), so Delta*nabla = nabla*Delta; statements I and II cannot both be true since their left sides are negatives of each other.",
-      "Useful companion identities: Delta*nabla = delta^2, Delta = E*nabla, nabla = E^{-1}*Delta, and Delta - nabla = delta^2 as well.",
-      "Statement IV as printed reads Delta + nabla = -Delta*Delta, which is dimensionally hopeless - reject it immediately."
+      "$\\Delta$ and nabla commute (both are polynomials in E), so $\\Delta$*nabla = nabla*$\\Delta$; statements I and II cannot both be true since their left sides are negatives of each other.",
+      "Useful companion identities: $\\Delta$*nabla = $\\delta^{2}, \\Delta = E$*nabla, nabla = $E^{-1}*\\Delta$, and $\\Delta$ - nabla = $\\delta^{2}$ as well.",
+      "Statement IV as printed reads $\\Delta$ + nabla = -$\\Delta*\\Delta$, which is dimensionally hopeless - reject it immediately."
     ],
     "solution": [
-      "Using the shift operator E with E f(x) = f(x+h): Delta = E - 1 and nabla = 1 - E^{-1}.",
-      "Statement I: Delta - nabla = (E - 1) - (1 - E^{-1}) = E - 2 + E^{-1}. Also Delta*nabla = (E - 1)(1 - E^{-1}) = E - 1 - 1 + E^{-1} = E - 2 + E^{-1}. The two agree, so I is correct.",
-      "Statement II: nabla - Delta = -(E - 2 + E^{-1}), while nabla*Delta = Delta*nabla = E - 2 + E^{-1} (the operators commute). These are negatives of each other and are not equal (except on the trivial zero function), so II is incorrect.",
-      "Statement III: Delta + nabla = (E - 1) + (1 - E^{-1}) = E - E^{-1}, which is not equal to Delta*nabla = E - 2 + E^{-1}. So III is incorrect.",
-      "Statement IV: Delta + nabla = E - E^{-1} is certainly not -Delta^2 = -(E-1)^2 = -(E^2 - 2E + 1). So IV is incorrect.",
+      "Using the shift operator E with $E f(x) = f(x+h)$: $\\Delta = E - 1$ and nabla = $1 - E^{-1}$.",
+      "Statement I: $\\Delta$ - nabla = $(E - 1) - (1 - E^{-1}) = E - 2 + E^{-1}$. Also $\\Delta$*nabla = $(E - 1)(1 - E^{-1}) = E - 1 - 1 + E^{-1} = E - 2 + E^{-1}$. The two agree, so I is correct.",
+      "Statement II: nabla - $\\Delta$ = -$(E - 2 + E^{-1})$, while nabla*$\\Delta = \\Delta$*nabla = $E - 2 + E^{-1}$ (the operators commute). These are negatives of each other and are not equal (except on the trivial zero function), so II is incorrect.",
+      "Statement III: $\\Delta$ + nabla = $(E - 1) + (1 - E^{-1}) = E - E^{-1}$, which is not equal to $\\Delta$*nabla = $E - 2 + E^{-1}$. So III is incorrect.",
+      "Statement IV: $\\Delta$ + nabla = $E - E^{-1}$ is certainly not -$\\Delta^{2}$ = -$(E-1)^{2}$ = -$(E^{2} - 2E + 1)$. So IV is incorrect.",
       "Only statement I holds. Hence option (a) is correct."
     ]
   },
@@ -125,19 +125,19 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Delta^n applied to x^n with h = 1 gives the constant n!, so Delta^100 x^100 = 100!. Dividing by E means applying E^{-1}, and shifting a constant leaves it unchanged. Answer 100!, option (a).",
+    "shortcut": "$\\Delta^{n}$ applied to $x^{n}$ with $h = 1$ gives the constant n!, so $\\Delta^{100} x^{100} = 100$!. Dividing by E means applying $E^{-1}$, and shifting a constant leaves it unchanged. Answer $100!$, option (a).",
     "tips": [
-      "Key fact: for a monic degree-n polynomial and h = 1, Delta^n gives exactly n! and Delta^{n+1} gives 0.",
-      "Operators that are polynomials in E commute, so Delta^100/E may be read as E^{-1}Delta^100 or Delta^100 E^{-1} - both give the same result.",
-      "A shift never changes a constant: E^{-1}(c) = c. That is why the answer is clean rather than 100! - 99!.",
-      "Distractors like 100! - 99! are built by wrongly treating E^{-1} as though it subtracted a lower factorial; check by testing the identity on a small case such as Delta^2/E applied to x^2, which gives 2! = 2."
+      "Key fact: for a monic degree-n polynomial and $h = 1, \\Delta^{n}$ gives exactly n! and $\\Delta^{n+1}$ gives 0.",
+      "Operators that are polynomials in E commute, so $\\Delta^{100}/E$ may be read as $E^{-1}\\Delta^{100}$ or $\\Delta^{100} E^{-1}$ - both give the same result.",
+      "A shift never changes a constant: $E^{-1}(c) = c$. That is why the answer is clean rather than $100! - 99$!.",
+      "Distractors like $100! - 99!$ are built by wrongly treating $E^{-1}$ as though it subtracted a lower factorial; check by testing the identity on a small case such as $\\Delta^{2}/E$ applied to $x^{2}$, which gives $2! = 2$."
     ],
     "solution": [
-      "Take the interval of differencing h = 1.",
-      "For a polynomial of degree n with leading coefficient 1, the n-th forward difference is the constant n! * h^n. With n = 100 and h = 1, Delta^100 (x^100) = 100!.",
-      "The expression Delta^100/E means the operator E^{-1} composed with Delta^100 (all these operators are polynomials in E, hence commute).",
-      "Applying E^{-1} to the constant 100! gives E^{-1}(100!) = 100!, since shifting the argument of a constant function changes nothing.",
-      "Equivalently, computing in the other order: E^{-1}(x^100) = (x-1)^100, and Delta^100 of the monic degree-100 polynomial (x-1)^100 is again 100!.",
+      "Take the interval of differencing $h = 1$.",
+      "For a polynomial of degree n with leading coefficient 1, the n-th forward difference is the constant $n! * h^{n}$. With $n = 100$ and $h = 1, \\Delta^{100} (x^{100}) = 100$!.",
+      "The expression $\\Delta^{100}/E$ means the operator $E^{-1}$ composed with $\\Delta^{100}$ (all these operators are polynomials in E, hence commute).",
+      "Applying $E^{-1}$ to the constant $100!$ gives $E^{-1}(100!) = 100!$, since shifting the argument of a constant function changes nothing.",
+      "Equivalently, computing in the other order: $E^{-1}(x^{100}) = (x-1)^{100}$, and $\\Delta^{100}$ of the monic degree-100 polynomial $(x-1)^{100}$ is again 100!.",
       "Hence option (a) is correct."
     ]
   },
@@ -145,20 +145,20 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Central second difference at 6.3 uses its two neighbours: (f(6.4) - 2f(6.3) + f(6.2))/h^2 with h = 0.1. Numerator = -0.2596 + 0.4844 - 0.2223 = 0.0025; divide by 0.01 to get 0.25. Option (b).",
+    "shortcut": "Central second difference at 6.3 uses its two neighbours: $(f(6.4) - 2f(6.3) + f(6.2))/h^{2}$ with $h = 0.1$. Numerator = -$0.2596 + 0.4844 - 0.2223 = 0.0025$; divide by 0.01 to get 0.25. Option (b).",
     "tips": [
-      "The O(h^2) accuracy tag is the signature of the central difference formula - it tells you which stencil to use.",
-      "Divide by h^2 = 0.01, i.e. multiply by 100; forgetting this is the single most common slip and would give 0.0025.",
-      "Add the two outer values first (-0.2596 - 0.2223 = -0.4819), then subtract 2*(-0.2422) = -0.4844: 0.4844 - 0.4819 = 0.0025. Small differences of nearly equal numbers demand all four decimal places.",
+      "The $O(h^{2})$ accuracy tag is the signature of the central difference formula - it tells you which stencil to use.",
+      "Divide by $h^{2} = 0.01$, i.e. multiply by 100; forgetting this is the single most common slip and would give 0.0025.",
+      "Add the two outer values first $(-0.2596 - 0.2223 = -0.4819)$, then subtract $2 \\cdot (-0.2422)$ = -0.4844: $0.4844 - 0.4819 = 0.0025$. Small differences of nearly equal numbers demand all four decimal places.",
       "The node 6.1 is deliberately supplied as a distractor; the central formula at 6.3 does not use it."
     ],
     "solution": [
-      "The data are equally spaced with h = 0.1, and 6.3 is an interior node with neighbours 6.2 and 6.4.",
-      "Central difference second derivative formula, accurate to O(h^2): f''(x) = (f(x+h) - 2f(x) + f(x-h))/h^2.",
-      "Substituting: f''(6.3) = (f(6.4) - 2 f(6.3) + f(6.2))/(0.1)^2.",
-      "Numerator = (-0.2596) - 2(-0.2422) + (-0.2223) = -0.2596 + 0.4844 - 0.2223 = 0.0025.",
+      "The data are equally spaced with $h = 0.1$, and 6.3 is an interior node with neighbours 6.2 and 6.4.",
+      "Central difference second derivative formula, accurate to $O(h^{2})$: $f''(x) = (f(x+h) - 2f(x) + f(x-h))/h^{2}$.",
+      "Substituting: $f''(6.3) = (f(6.4) - 2 f(6.3) + f(6.2))/(0.1)^{2}$.",
+      "Numerator = $(-0.2596) - 2(-0.2422) + (-0.2223)$ = -$0.2596 + 0.4844 - 0.2223 = 0.0025$.",
       "Denominator = 0.01.",
-      "f''(6.3) = 0.0025/0.01 = 0.25.",
+      "$f''(6.3) = 0.0025/0.01 = 0.25$.",
       "Hence option (b) is correct."
     ]
   },
@@ -166,22 +166,22 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Three free parameters (alpha, beta, x_1) means exactness up to degree 2. Force f = 1, x, x^2: alpha + beta = 1, beta*x_1 = 1/2, beta*x_1^2 = 1/3. Dividing gives x_1 = 2/3, then beta = 3/4, alpha = 1/4. So the integral of x^3 is (3/4)(2/3)^3 = 2/9.",
+    "shortcut": "Three free parameters $(\\alpha, \\beta, x_{1})$ means exactness up to degree 2. Force $f = 1, x, x^{2}$: $\\alpha + \\beta = 1, \\beta \\cdot x_{1} = 1/2, \\beta \\cdot x_{1}^{2} = 1/3$. Dividing gives $x_{1} = 2/3$, then $\\beta = 3/4, \\alpha = 1/4$. So the $\\int x^{3}$ is $(3/4)(2/3)^{3} = 2/9$.",
     "tips": [
       "Count the unknowns: an n-parameter rule can be made exact for polynomials of degree n-1, so three unknowns give exactness through degree 2.",
-      "Set up the moment equations with the monomials 1, x, x^2 - always the fastest route for 'as high a degree as possible' problems.",
-      "Divide the x^2 equation by the x equation to eliminate beta and get the node x_1 in one step.",
-      "Cross-check the error: the exact value of the integral is 1/4, while the rule gives 2/9 = 0.222, so the rule is not exact for cubics - consistent with degree of precision 2. The distractor 1/4 is exactly the exact value, which is not what was asked."
+      "Set up the moment equations with the monomials $1, x, x^{2}$ - always the fastest route for 'as high a degree as possible' problems.",
+      "Divide the $x^{2}$ equation by the x equation to eliminate $\\beta$ and get the node $x_{1}$ in one step.",
+      "Cross-check the error: the exact value of the integral is $1/4$, while the rule gives $2/9 = 0.222$, so the rule is not exact for cubics - consistent with degree of precision 2. The distractor $1/4$ is exactly the exact value, which is not what was asked."
     ],
     "solution": [
-      "The rule integral from 0 to 1 of f(x) dx = alpha f(0) + beta f(x_1) has three free parameters alpha, beta, x_1, so we can impose exactness for f = 1, x, x^2.",
-      "f = 1: alpha + beta = integral from 0 to 1 of 1 dx = 1.",
-      "f = x: alpha*0 + beta*x_1 = integral from 0 to 1 of x dx = 1/2, so beta*x_1 = 1/2.",
-      "f = x^2: beta*x_1^2 = integral from 0 to 1 of x^2 dx = 1/3.",
-      "Dividing the third equation by the second: x_1 = (1/3)/(1/2) = 2/3.",
-      "Then beta = (1/2)/x_1 = (1/2)/(2/3) = 3/4, and alpha = 1 - 3/4 = 1/4.",
-      "The rule is integral from 0 to 1 of f = (1/4) f(0) + (3/4) f(2/3).",
-      "Apply it to f(x) = x^3: (1/4)(0) + (3/4)(2/3)^3 = (3/4)(8/27) = 24/108 = 2/9.",
+      "The rule $\\int_{0}^{1} f(x)\\,dx = \\alpha f(0) + \\beta f(x_{1})$ has three free parameters $\\alpha, \\beta, x_{1}$, so we can impose exactness for $f = 1, x, x^{2}$.",
+      "$f = 1$: $\\alpha + \\beta = \\int_{0}^{1} 1\\,dx = 1$.",
+      "$f = x$: $\\alpha \\cdot 0 + \\beta \\cdot x_{1} = \\int_{0}^{1} x\\,dx = 1/2$, so $\\beta \\cdot x_{1} = 1/2$.",
+      "$f = x^{2}$: $\\beta \\cdot x_{1}^{2} = \\int_{0}^{1} x^{2}\\,dx = 1/3$.",
+      "Dividing the third equation by the second: $x_{1} = (1/3)/(1/2) = 2/3$.",
+      "Then $\\beta = (1/2)/x_{1} = (1/2)/(2/3) = 3/4$, and $\\alpha = 1 - 3/4 = 1/4$.",
+      "The rule is $\\int_{0}^{1} f = (1/4) f(0) + (3/4) f(2/3)$.",
+      "Apply it to $f(x) = x^{3}$: $(1/4)(0) + (3/4)(2/3)^{3} = (3/4)(8/27) = 24/108 = 2/9$.",
       "Hence option (d) is correct."
     ]
   },
@@ -189,21 +189,21 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Lagrange weights at x = 2 for nodes 0, 1, 4, 5 come out as -0.3, 1, 0.5, -0.2 (they must sum to 1 - a fast check). Then f(2) = 8(-0.3) + 11(1) + 68(0.5) + 120(-0.2) = -2.4 + 11 + 34 - 24 = 18.6.",
+    "shortcut": "Lagrange weights at $x = 2$ for nodes 0, 1, 4, 5 come out as -0.3, 1, 0.5, -0.2 (they must sum to 1 - a fast check). Then $f(2) = 8(-0.3) + 11(1) + 68(0.5) + 120(-0.2)$ = -$2.4 + 11 + 34 - 24 = 18.6$.",
     "tips": [
       "The Lagrange weights always sum to 1; computing all four and checking the sum catches sign errors before you multiply by the data.",
-      "Nodes are unequally spaced (0, 1, 4, 5), so Newton's forward formula does not apply - use Lagrange or divided differences.",
-      "Divided-difference alternative: f[0,1] = 3, f[1,4] = 19, f[4,5] = 52, f[0,1,4] = 4, f[1,4,5] = 8.25, f[0,1,4,5] = 0.85; then Newton's divided difference form at x = 2 gives 8 + 3(2) + 4(2)(1) + 0.85(2)(1)(-2) = 8 + 6 + 8 - 3.4 = 18.6.",
-      "Keep the weights as exact decimals (-0.3, 1, 0.5, -0.2); rounding early is what separates 18.6 from the neighbouring distractors."
+      "Nodes are unequally spaced $(0, 1, 4, 5)$, so Newton's forward formula does not apply - use Lagrange or divided differences.",
+      "Divided-difference alternative: $f[0,1] = 3, f[1,4] = 19, f[4,5] = 52, f[0,1,4] = 4, f[1,4,5] = 8.25, f[0,1,4,5] = 0.85$; then Newton's divided difference form at $x = 2$ gives $8 + 3(2) + 4(2)(1) + 0.85(2)(1)(-2) = 8 + 6 + 8 - 3.4 = 18.6$.",
+      "Keep the weights as exact decimals $(-0.3, 1, 0.5, -0.2)$; rounding early is what separates 18.6 from the neighbouring distractors."
     ],
     "solution": [
-      "Nodes x = 0, 1, 4, 5 with f = 8, 11, 68, 120; interpolate at x = 2 using Lagrange's formula for unequal intervals.",
-      "L_0(2) = (2-1)(2-4)(2-5)/[(0-1)(0-4)(0-5)] = (1)(-2)(-3)/[(-1)(-4)(-5)] = 6/(-20) = -0.3.",
-      "L_1(2) = (2-0)(2-4)(2-5)/[(1-0)(1-4)(1-5)] = (2)(-2)(-3)/[(1)(-3)(-4)] = 12/12 = 1.",
-      "L_2(2) = (2-0)(2-1)(2-5)/[(4-0)(4-1)(4-5)] = (2)(1)(-3)/[(4)(3)(-1)] = -6/-12 = 0.5.",
-      "L_3(2) = (2-0)(2-1)(2-4)/[(5-0)(5-1)(5-4)] = (2)(1)(-2)/[(5)(4)(1)] = -4/20 = -0.2.",
-      "Check: -0.3 + 1 + 0.5 - 0.2 = 1, as required.",
-      "f(2) = 8(-0.3) + 11(1) + 68(0.5) + 120(-0.2) = -2.4 + 11 + 34 - 24 = 18.6.",
+      "Nodes $x = 0, 1, 4, 5$ with $f = 8, 11, 68, 120$; interpolate at $x = 2$ using Lagrange's formula for unequal intervals.",
+      "$L_{0}(2) = (2-1)(2-4)(2-5)/[(0-1)(0-4)(0-5)] = (1)(-2)(-3)/[(-1)(-4)(-5)] = 6/(-20)$ = -0.3.",
+      "$L_{1}(2) = (2-0)(2-4)(2-5)/[(1-0)(1-4)(1-5)] = (2)(-2)(-3)/[(1)(-3)(-4)] = 12/12 = 1$.",
+      "$L_{2}(2) = (2-0)(2-1)(2-5)/[(4-0)(4-1)(4-5)] = (2)(1)(-3)/[(4)(3)(-1)]$ = -6/-$12 = 0.5$.",
+      "$L_{3}(2) = (2-0)(2-1)(2-4)/[(5-0)(5-1)(5-4)] = (2)(1)(-2)/[(5)(4)(1)]$ = -$4/20$ = -0.2.",
+      "Check: -$0.3 + 1 + 0.5 - 0.2 = 1$, as required.",
+      "$f(2) = 8(-0.3) + 11(1) + 68(0.5) + 120(-0.2)$ = -$2.4 + 11 + 34 - 24 = 18.6$.",
       "Hence option (c) is correct."
     ]
   },
@@ -253,7 +253,7 @@
     "shortcut": "All three statements are standard textbook properties of virtual reality - it is multimedia-based, interactive within a simulated environment, and multi-sensory. Answer (d).",
     "tips": [
       "In UPSC computer-awareness sets, when every listed statement is a benign textbook property, 'all of the above' is usually right; look for a statement that is factually wrong before rejecting it.",
-      "VR is defined by three I's: Immersion, Interaction, Imagination - which map onto statements III, II and I respectively.",
+      "VR is defined by three $I's$: Immersion, Interaction, Imagination - which map onto statements III, II and I respectively.",
       "VR uses multimedia elements (3-D graphics, audio, animation, sometimes haptics) as its building blocks, so statement I is true by construction.",
       "Contrast with augmented reality, which overlays computer-generated content on the real world rather than replacing it."
     ],
@@ -350,7 +350,7 @@
     "shortcut": "A packet filter inspects each IP packet's header against rules and permits or denies it. Option (b) blocks everything (useless), (a) needs user identity which headers do not carry, and (d) needs payload/signature scanning. Only (c) survives.",
     "tips": [
       "Packet filters work on header fields only: source and destination IP, source and destination port, protocol and flags. Anything requiring user identity or payload content is outside their scope.",
-      "Firewall hierarchy: packet filter (stateless, layer 3/4) -> stateful inspection -> application/proxy gateway (layer 7) -> next-generation firewall with deep packet inspection.",
+      "Firewall hierarchy: packet filter (stateless, layer $3/4$) -> stateful inspection -> application/proxy gateway (layer 7) -> next-generation firewall with deep packet inspection.",
       "Virus detection needs signature or heuristic scanning of the payload - that is antivirus or an application-layer gateway, not a packet filter, so (d) is wrong.",
       "Beware absolutes: an option saying a device blocks 'all' or 'any kind of' something is usually a distractor."
     ],
@@ -369,9 +369,9 @@
     "type": "Factual",
     "shortcut": "Wi-Fi = IEEE 802.11. Direct recall, option (d).",
     "tips": [
-      "Memorise the IEEE 802 family: 802.3 Ethernet, 802.5 Token Ring, 802.11 Wireless LAN (Wi-Fi), 802.15 Bluetooth/WPAN, 802.16 WiMAX.",
+      "Memorise the IEEE 802 family: 802.3 Ethernet, 802.5 Token Ring, 802.11 Wireless LAN $(Wi-Fi), 802.15$ Bluetooth/WPAN, 802.16 WiMAX.",
       "802.1 covers bridging and network management, 802.9 was integrated voice/data (isoEthernet, now withdrawn) - both are pure distractors here.",
-      "Wi-Fi generations: 802.11b/a/g/n (Wi-Fi 4)/ac (Wi-Fi 5)/ax (Wi-Fi 6)/be (Wi-Fi 7).",
+      "Wi-Fi generations: $802.11b/a/g/n (Wi-Fi 4)/ac (Wi-Fi 5)/ax (Wi-Fi 6)$/be $(Wi-Fi 7)$.",
       "'Wi-Fi' is a trademark of the Wi-Fi Alliance certifying interoperable 802.11 equipment; it is not itself a standard number."
     ],
     "solution": [

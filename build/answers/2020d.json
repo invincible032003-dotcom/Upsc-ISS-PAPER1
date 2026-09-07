@@ -1,361 +1,401 @@
 {
-"2020-Q61": {
-  "answer": 2, "confidence": "high", "type": "Conceptual",
-  "shortcut": "Newton's divided-difference form is built term by term, so a new data point simply appends ONE extra term; every earlier coefficient stays valid.",
-  "tips": [
-    "Newton's form is 'incremental': f(x) = f[x0] + (x-x0)f[x0,x1] + (x-x0)(x-x1)f[x0,x1,x2] + ... Adding a node adds one more product term and one more divided difference.",
-    "Lagrange's form must be rebuilt completely because EVERY basis polynomial contains every node in its numerator and denominator.",
-    "Newton's forward formula requires equally spaced nodes, so an arbitrary new point usually cannot be accommodated at all.",
-    "Practical consequence: Newton's divided differences are preferred when data arrive sequentially or when you want to monitor convergence by adding points one at a time."
-  ],
-  "solution": [
-    "Newton's divided-difference interpolation polynomial has the form f(x) = f[x0] + (x-x0)f[x0,x1] + (x-x0)(x-x1)f[x0,x1,x2] + ...",
-    "Each coefficient depends only on the nodes already used, so inserting a new node x_(n+1) merely appends one further term (x-x0)(x-x1)...(x-x_n) f[x0,...,x_(n+1)].",
-    "All previously computed divided differences remain valid and are reused.",
-    "Lagrange's formula, by contrast, defines each basis polynomial as a product over ALL nodes, so adding one node changes every basis polynomial and the whole computation must be repeated.",
-    "Newton's forward formula additionally requires equally spaced arguments, so an arbitrary new value cannot generally be inserted.",
-    "Hence Newton's divided difference formula is the method that accommodates a new value, option (c)."
-  ]
-},
-"2020-Q62": {
-  "answer": 0, "confidence": "high", "type": "Conceptual",
-  "shortcut": "The integrand 1 + x is LINEAR, and the trapezoidal rule is already exact for linear functions - so it gives the exact answer with the least work.",
-  "tips": [
-    "Match the rule to the degree: trapezoidal is exact for degree 1, Simpson's 1/3 for degree 3, Simpson's 3/8 for degree 3, Weddle's for degree 5.",
-    "'Best' in numerical work means adequate accuracy for the least effort. Since all four rules would be exact here, the simplest one wins.",
-    "The trapezoidal rule needs only two ordinates; Simpson's 3/8 needs four and Weddle's needs seven - a large amount of extra work for no extra accuracy.",
-    "Geometric check: the region under y = 1 + x from 0 to 1 is a trapezium of area (1 + 2)/2 = 1.5, exactly what the rule returns."
-  ],
-  "solution": [
-    "The integrand is f(x) = 1 + x, a polynomial of degree 1.",
-    "The trapezoidal rule replaces the curve by a straight line joining the endpoints; since the integrand IS a straight line, the replacement introduces no error.",
-    "Indeed the trapezoidal estimate with a single strip is (1/2)[f(0) + f(1)] = (1/2)(1 + 2) = 1.5, which is exactly the true value of the integral.",
-    "Simpson's rules and Weddle's rule would also give the exact answer, but they require 3, 4 and 7 ordinates respectively - more computation for no gain.",
-    "The best method is therefore the simplest one that is exact here.",
-    "Hence the trapezoidal rule, option (a)."
-  ]
-},
-"2020-Q63": {
-  "answer": 1, "confidence": "high", "type": "Conceptual",
-  "shortcut": "delta^2 y_n = y_(n+1) - 2y_n + y_(n-1). With n = 5 that is y6 - 2y5 + y4.",
-  "tips": [
-    "delta y_n = y_(n+1/2) - y_(n-1/2), so applying it twice at an integer index gives the symmetric three-point formula y_(n+1) - 2y_n + y_(n-1).",
-    "The coefficients 1, -2, 1 are the same as for Delta^2 and nabla^2; only the INDEXING differs - the central form is symmetric about y_n.",
-    "This is exactly the second-difference stencil used to approximate f''(x) by [f(x+h) - 2f(x) + f(x-h)]/h^2.",
-    "The coefficients of any pure difference operator must sum to zero (a constant has zero second difference): 1 - 2 + 1 = 0. Options (a) and (c) fail this test instantly."
-  ],
-  "solution": [
-    "The central difference operator is defined by delta y_n = y_(n + 1/2) - y_(n - 1/2).",
-    "Applying it twice: delta^2 y_n = delta(y_(n+1/2)) - delta(y_(n-1/2)) = (y_(n+1) - y_n) - (y_n - y_(n-1)).",
-    "Simplifying: delta^2 y_n = y_(n+1) - 2y_n + y_(n-1).",
-    "Setting n = 5 gives delta^2 y_5 = y_6 - 2 y_5 + y_4.",
-    "Check: the coefficients 1, -2, 1 sum to zero, as they must for a second difference to annihilate constants.",
-    "Hence option (b) is correct."
-  ]
-},
-"2020-Q64": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "With h = 0.1 the Euler iterates are 0, 0, 0.01, 0.031, 0.0641, 0.11051 - so y(0.5) is about 0.1105, which lies in (0.1, 0.2).",
-  "tips": [
-    "Euler: y_(n+1) = y_n + h(x_n + y_n). Tabulate x_n and y_n side by side and work down; five short lines are quicker than any shortcut.",
-    "The first step gives zero because both x and y vanish at the start - the solution only begins to move on the second step.",
-    "The exact solution is y = e^x - x - 1, so y(0.5) = 0.1487. Euler's 0.1105 is the expected underestimate for a convex solution, and both lie in the same interval.",
-    "Keep four decimals throughout: rounding to two decimals early can push the running total across an interval boundary."
-  ],
-  "solution": [
-    "Euler's method for dy/dx = x + y with y(0) = 0 and h = 0.1 is y_(n+1) = y_n + 0.1(x_n + y_n).",
-    "Step 1: at (0, 0), slope 0, so y(0.1) = 0 + 0.1(0) = 0.",
-    "Step 2: at (0.1, 0), slope 0.1, so y(0.2) = 0 + 0.1(0.1) = 0.01.",
-    "Step 3: at (0.2, 0.01), slope 0.21, so y(0.3) = 0.01 + 0.021 = 0.031.",
-    "Step 4: at (0.3, 0.031), slope 0.331, so y(0.4) = 0.031 + 0.0331 = 0.0641. Step 5: at (0.4, 0.0641), slope 0.4641, so y(0.5) = 0.0641 + 0.04641 = 0.11051.",
-    "Since 0.1 < 0.11051 < 0.2, the estimate lies in (0.1, 0.2), option (b)."
-  ]
-},
-"2020-Q65": {
-  "answer": 3, "confidence": "high", "type": "Theoretical",
-  "shortcut": "Symmetry, the constancy of the nth divided difference of a degree-n polynomial, and linearity are the three standard properties of divided differences - all correct.",
-  "tips": [
-    "Symmetry: f[x0, x1, ..., xn] is unchanged by any permutation of its arguments, because it equals a symmetric sum of f(xi) divided by products of node differences.",
-    "Constancy: the nth divided difference of a degree-n polynomial is its LEADING COEFFICIENT, and the (n+1)th is zero.",
-    "Linearity: f[.] + g[.] = (f+g)[.] and (cf)[.] = c f[.], which is what allows term-by-term treatment of polynomials.",
-    "When three bookwork properties of the same object are listed and each is standard, 'all of them' is almost always the key."
-  ],
-  "solution": [
-    "Statement 1: the divided difference f[x0, x1, ..., xn] can be written as a sum of f(xi) divided by products of differences of the nodes, an expression unchanged by permuting the arguments. Divided differences are therefore symmetric. TRUE.",
-    "Statement 2: in Newton's form the coefficient of the highest-degree term is the top divided difference, so for a polynomial of degree n the nth divided difference equals its leading coefficient - a constant independent of the nodes. TRUE.",
-    "Statement 3: the divided difference is built from linear operations on the function values, so f[.] + g[.] = (f + g)[.] and (cf)[.] = c f[.]. The operator is linear. TRUE.",
-    "All three statements are standard properties.",
-    "Hence option (d) is correct."
-  ]
-},
-"2020-Q66": {
-  "answer": 0, "confidence": "high", "type": "Theoretical",
-  "shortcut": "mu delta = (E^(1/2)+E^(-1/2))/2 x (E^(1/2)-E^(-1/2)) = (E - E^(-1))/2. Since Delta = E - 1 and nabla = 1 - E^(-1), their sum is E - E^(-1), so mu delta = (Delta + nabla)/2.",
-  "tips": [
-    "Convert everything to E: Delta = E - 1, nabla = 1 - E^(-1), delta = E^(1/2) - E^(-1/2), mu = (E^(1/2) + E^(-1/2))/2. Every identity in this chapter falls out of these four.",
-    "mu delta is a difference of squares, which is why it collapses so cleanly to (E - E^(-1))/2.",
-    "Note Delta + nabla = (E - 1) + (1 - E^(-1)) = E - E^(-1) - the constants cancel, which is the crux of the identity.",
-    "Companion result: Delta - nabla = E - 2 + E^(-1) = delta^2, worth memorising alongside this one."
-  ],
-  "solution": [
-    "Write the operators in terms of the shift operator E: mu = (E^(1/2) + E^(-1/2))/2 and delta = E^(1/2) - E^(-1/2).",
-    "Their product is mu delta = (1/2)(E^(1/2) + E^(-1/2))(E^(1/2) - E^(-1/2)) = (1/2)(E - E^(-1)).",
-    "Also Delta = E - 1 and nabla = 1 - E^(-1).",
-    "Adding these: Delta + nabla = (E - 1) + (1 - E^(-1)) = E - E^(-1).",
-    "Therefore mu delta = (1/2)(Delta + nabla).",
-    "Hence option (a) is correct."
-  ]
-},
-"2020-Q67": {
-  "answer": 0, "confidence": "high", "type": "Numerical",
-  "shortcut": "On 5^x the operator E acts as multiplication by 5, so E^2 - 9E + 18 becomes 25 - 45 + 18 = -2. Hence the inverse operator gives 12(5^x)/(-2) = -6 (5^x).",
-  "tips": [
-    "Key substitution rule: E(a^x) = a^(x+1) = a . a^x, so any polynomial in E acting on a^x is just that polynomial EVALUATED at a.",
-    "Evaluate the quadratic at a = 5: 25 - 45 + 18 = -2. The sign is negative, which is exactly what distinguishes option (a) from option (b).",
-    "The inverse operator 1/phi(E) simply divides by the same number, so the answer is 12/(-2) = -6 times 5^x.",
-    "This is the discrete analogue of the particular-integral rule 1/phi(D) e^(ax) = e^(ax)/phi(a) from differential equations - same technique, shift operator instead of D."
-  ],
-  "solution": [
-    "For the exponential function 5^x with interval of differencing 1, E(5^x) = 5^(x+1) = 5 . 5^x, so E acts as multiplication by 5.",
-    "Consequently, for any polynomial phi, phi(E) 5^x = phi(5) 5^x.",
-    "Here phi(E) = E^2 - 9E + 18, so phi(5) = 25 - 45 + 18 = -2.",
-    "Therefore (E^2 - 9E + 18)(5^x) = -2 (5^x).",
-    "Applying the inverse operator to 12 x 5^x: [1/(E^2 - 9E + 18)](12 . 5^x) = 12 . 5^x/(-2) = -6 . 5^x.",
-    "Hence option (a) is correct."
-  ]
-},
-"2020-Q68": {
-  "answer": 0, "confidence": "medium", "type": "Numerical",
-  "shortcut": "For a linear argument the factorial function steps down by the coefficient: (3x+8)^(4) = (3x+8)(3x+5)(3x+2)(3x-1). At x = 2 this is 14 x 11 x 8 x 5 = 6160.",
-  "tips": [
-    "Generalised factorial: (ax+b)^(n) = (ax+b)(ax+b-a)(ax+b-2a)...(ax+b-(n-1)a) when h = 1. The step is a, NOT 1, because that is what makes Delta(ax+b)^(n) = na(ax+b)^(n-1) hold.",
-    "Verify the convention by the difference rule: only the step-a version has a clean forward difference, which is the whole purpose of factorial notation.",
-    "The distractors are built from wrong steps: step 1 gives 14 x 13 x 12 x 11 = 24024 and step 2 gives 14 x 12 x 10 x 8 = 13440. Identify the step before multiplying.",
-    "Compute in pairs: (14 x 11) = 154 and (8 x 5) = 40, then 154 x 40 = 6160 - much safer than a four-way chain."
-  ],
-  "solution": [
-    "With interval of differencing h = 1, the generalised factorial function of a linear argument is (ax+b)^(n) = (ax+b)(ax+b-a)(ax+b-2a)...(ax+b-(n-1)a).",
-    "This is the definition that yields the standard difference rule Delta[(ax+b)^(n)] = n a (ax+b)^(n-1).",
-    "Here a = 3, b = 8 and n = 4, so (3x+8)^(4) = (3x+8)(3x+5)(3x+2)(3x-1).",
-    "At x = 2: 3(2) + 8 = 14, and the successive factors are 14, 11, 8 and 5.",
-    "Multiplying: (14)(11) = 154 and (8)(5) = 40, so the product is 154 x 40 = 6160.",
-    "Hence option (a) is correct."
-  ]
-},
-"2020-Q69": {
-  "answer": 2, "confidence": "high", "type": "Numerical",
-  "shortcut": "Apply Lagrange's formula with the roles of x and f interchanged (inverse interpolation) at f = 15: the weights 0.25, -1, 1.5, 0.25 applied to x = 1, 6, 9, 11 give 10.5.",
-  "tips": [
-    "Inverse interpolation: treat f as the independent variable and x as the dependent one, then use ordinary Lagrange. No iteration is needed when the f-values are distinct.",
-    "The Lagrange weights must sum to 1: 0.25 - 1 + 1.5 + 0.25 = 1. Use that as an instant check before multiplying by the x-values.",
-    "Negative weights are normal and expected here because f = 15 lies outside the middle of the f-range; do not discard them.",
-    "Plausibility: f = 15 lies between f(9) = 14 and f(11) = 16, so x must lie between 9 and 11 - and 10.5 does."
-  ],
-  "solution": [
-    "We need the value of x at which f(x) = 15, so we interpolate x as a function of f using the pairs (12,1), (13,6), (14,9), (16,11).",
-    "Lagrange weight for f = 12: (15-13)(15-14)(15-16)/[(12-13)(12-14)(12-16)] = (2)(1)(-1)/[(-1)(-2)(-4)] = -2/-8 = 0.25.",
-    "Weight for f = 13: (15-12)(15-14)(15-16)/[(13-12)(13-14)(13-16)] = (3)(1)(-1)/[(1)(-1)(-3)] = -3/3 = -1.",
-    "Weight for f = 14: (15-12)(15-13)(15-16)/[(14-12)(14-13)(14-16)] = (3)(2)(-1)/[(2)(1)(-2)] = -6/-4 = 1.5. Weight for f = 16: (3)(2)(1)/[(4)(3)(2)] = 6/24 = 0.25. (Sum = 1, as required.)",
-    "x = 1(0.25) + 6(-1) + 9(1.5) + 11(0.25) = 0.25 - 6 + 13.5 + 2.75 = 10.5.",
-    "Hence x is approximately 10.5, option (c)."
-  ]
-},
-"2020-Q70": {
-  "answer": 3, "confidence": "high", "type": "Numerical",
-  "shortcut": "Try F = ax^3 + bx^2 + cx + d. Then Delta F = 3a x^2 + (3a+2b)x + (a+b+c). Matching 9, 11, 5 gives a = 3, b = 1, c = 1, so F = 3x^3 + x^2 + x + c.",
-  "tips": [
-    "Since the first difference is quadratic, F must be CUBIC - that alone eliminates nothing here, so proceed by matching coefficients.",
-    "Expand once and reuse: Delta x^3 = 3x^2 + 3x + 1, Delta x^2 = 2x + 1, Delta x = 1. Memorise this short table.",
-    "Match from the highest power downwards: 3a = 9 gives a = 3, then 3a + 2b = 11 gives b = 1, then a + b + c = 5 gives c = 1.",
-    "Verify by testing at x = 0: Delta F(0) = F(1) - F(0) = (3 + 1 + 1) - 0 = 5, which matches 9(0)^2 + 11(0) + 5 = 5."
-  ],
-  "solution": [
-    "Let F(x) = a x^3 + b x^2 + c x + d and take h = 1.",
-    "Delta x^3 = (x+1)^3 - x^3 = 3x^2 + 3x + 1; Delta x^2 = 2x + 1; Delta x = 1; Delta d = 0.",
-    "So Delta F = a(3x^2 + 3x + 1) + b(2x + 1) + c = 3a x^2 + (3a + 2b) x + (a + b + c).",
-    "Matching with 9x^2 + 11x + 5: 3a = 9 gives a = 3; 3a + 2b = 11 gives 9 + 2b = 11, so b = 1; a + b + c = 5 gives 3 + 1 + c = 5, so c = 1.",
-    "The constant d is arbitrary, giving F(x) = 3x^3 + x^2 + x + c.",
-    "Hence option (d) is correct."
-  ]
-},
-"2020-Q71": {
-  "answer": 2, "confidence": "high", "type": "Numerical",
-  "shortcut": "Substitution beats construction here: x^3 - 9x^2 + 17x + 6 gives 3, 12, 15 and -21 at x = 3, 2, 1 and -1 respectively. Test the options rather than building the polynomial.",
-  "tips": [
-    "With four options and four data points, VERIFYING is far faster than constructing - start with the easiest node, x = 1, where each option reduces to the sum of its coefficients.",
-    "At x = 1 the required value is 15: option (c) gives 1 - 9 + 17 + 6 = 15, while option (b) gives 1 + 2 - 5 - 27 = -29 and option (d) gives 15 too, so a second node is needed.",
-    "Use x = -1 to separate the survivors: option (c) gives -1 - 9 - 17 + 6 = -21 (correct) whereas option (d) gives -1 + 2 + 5 + 17 = 23.",
-    "Option (a) has no constant term and would give 0 at x = 0, and its leading coefficient 27 is implausible for data of this size."
-  ],
-  "solution": [
-    "Four data points determine a unique polynomial of degree at most 3, so we test the cubic options against all four values.",
-    "Option (c) is p(x) = x^3 - 9x^2 + 17x + 6.",
-    "At x = 3: 27 - 81 + 51 + 6 = 3, matching the required value 3.",
-    "At x = 2: 8 - 36 + 34 + 6 = 12, matching 12.",
-    "At x = 1: 1 - 9 + 17 + 6 = 15, matching 15. At x = -1: -1 - 9 - 17 + 6 = -21, matching -21.",
-    "All four conditions are satisfied, and the interpolating polynomial is unique, so option (c) is correct."
-  ]
-},
-"2020-Q72": {
-  "answer": 3, "confidence": "high", "type": "Numerical",
-  "shortcut": "Newton's divided-difference form at x = 8: 48 + (4)(52) + (4)(3)(15) + (4)(3)(1)(1) = 48 + 208 + 180 + 12 = 448.",
-  "tips": [
-    "Newton's form: f(x) = f[x0] + (x-x0)f[x0,x1] + (x-x0)(x-x1)f[x0,x1,x2] + (x-x0)(x-x1)(x-x2)f[x0,x1,x2,x3]. The nodes enter in the order 4, 5, 7, 10.",
-    "Build the products cumulatively: (8-4) = 4, then x(8-5) = 12, then x(8-7) = 12. Each new factor multiplies the previous product.",
-    "Note that the LAST node 10 never appears in the products - with four divided differences only three factors are needed.",
-    "Running total: 48, 256, 436, 448. Keeping a running sum makes an arithmetic slip easy to spot."
-  ],
-  "solution": [
-    "Newton's divided-difference interpolation with nodes 4, 5, 7, 10 is f(x) = f[4] + (x-4) f[4,5] + (x-4)(x-5) f[4,5,7] + (x-4)(x-5)(x-7) f[4,5,7,10].",
-    "At x = 8 the products are (8-4) = 4, (8-4)(8-5) = 4 x 3 = 12, and (8-4)(8-5)(8-7) = 12 x 1 = 12.",
-    "First term: 48. Second term: 4 x 52 = 208.",
-    "Third term: 12 x 15 = 180. Fourth term: 12 x 1 = 12.",
-    "Adding: 48 + 208 + 180 + 12 = 448.",
-    "Hence f(8) = 448, option (d)."
-  ]
-},
-"2020-Q73": {
-  "answer": 3, "confidence": "high", "type": "Conceptual",
-  "shortcut": "Simpson's one-third rule is exact for polynomials up to degree 3. The integrand x^2 is quadratic, so the numerical value equals the exact one and |A - B| = 0.",
-  "tips": [
-    "Exactness degrees: trapezoidal 1, Simpson's 1/3 and 3/8 both 3, Weddle's 5. Compare the integrand's degree with these before computing anything.",
-    "Simpson's 1/3 fits parabolas yet is exact for CUBICS too - the odd-degree error term cancels by symmetry. That bonus degree is a favourite examiner point.",
-    "The error term is -(b-a)h^4 f''''(xi)/180; for f(x) = x^2 the fourth derivative is identically zero, so the error is exactly zero.",
-    "Verify if you wish: the exact value is 1000/3 = 333.33, and Simpson's rule with h = 1 returns the same - but the exactness argument settles it in five seconds."
-  ],
-  "solution": [
-    "Simpson's one-third rule is derived by fitting a parabola through each consecutive triple of points, so it integrates any quadratic exactly.",
-    "Its error term is -(b - a) h^4 f''''(xi)/180, which involves the FOURTH derivative of the integrand.",
-    "Here f(x) = x^2, so f''''(x) = 0 identically and the error term vanishes.",
-    "Therefore the Simpson estimate B equals the exact value A = the integral of x^2 from 0 to 10 = 1000/3.",
-    "Hence |A - B| = 0.",
-    "Option (d) is correct."
-  ]
-},
-"2020-Q74": {
-  "answer": 1, "confidence": "high", "type": "Conceptual",
-  "shortcut": "First differences are -73, -93, -103 - not constant, so f is not of degree below 2 and statement 1 fails. Statement 2 correctly assigns the forward formula to x = 10 (near the table's start) and the backward formula to x = 60 (near its end).",
-  "tips": [
-    "Degree test: constant FIRST differences mean degree 1, constant SECOND differences mean degree 2. Here the first differences vary by 20 and 10, so the degree is at least 3.",
-    "Extrapolation convention: use Newton-Gregory FORWARD near the beginning of the table (p negative for x below x0) and BACKWARD near the end. Statement 2 states exactly this.",
-    "Both requested points lie outside the tabulated range, so this is extrapolation rather than interpolation - legitimate but less accurate, which is why the formulas are chosen by proximity.",
-    "Compute the difference table before reading the statements; it answers statement 1 immediately and costs only three subtractions."
-  ],
-  "solution": [
-    "The tabulated values at x = 20, 30, 40, 50 are 512, 439, 346, 243, equally spaced with h = 10.",
-    "First differences: 439 - 512 = -73; 346 - 439 = -93; 243 - 346 = -103. These are not constant.",
-    "Second differences: -93 + 73 = -20 and -103 + 93 = 10, also not constant, so the data require a polynomial of degree at least 3.",
-    "Statement 1 claims a polynomial of degree n < 2 (linear or constant) suffices, which contradicts the non-constant first differences. FALSE.",
-    "Statement 2: x = 10 lies just before the start of the table, where Newton-Gregory's FORWARD formula (with a negative p) is the appropriate extrapolation; x = 60 lies just beyond the end, where the BACKWARD formula is appropriate. TRUE.",
-    "Only statement 2 is correct, option (b)."
-  ]
-},
-"2020-Q75": {
-  "answer": 2, "confidence": "high", "type": "Theoretical",
-  "shortcut": "Delta - E = (E - 1) - E = -I, which is NOT equal to I. So the inequality in option (c) is the true statement; the other three assert inequalities that are actually equalities.",
-  "tips": [
-    "Convert each option to E-form: Delta nabla = nabla Delta = delta^2, Delta E = E Delta = E^2 - E, E - Delta = I, and Delta - E = -I.",
-    "All four options are phrased as 'not equal' claims, so you are hunting for the one pair that genuinely differs - read the direction of the subtraction carefully.",
-    "The trap is the near-identical pair (c) and (d): E - Delta = I is true, so (d)'s 'not equal' is false, while Delta - E = -I makes (c)'s 'not equal' true.",
-    "All these operators are polynomials in E, and polynomials in a single operator always commute - which is why options (a) and (b) can be dismissed on principle."
-  ],
-  "solution": [
-    "All the operators here are functions of the shift operator E: Delta = E - 1 and nabla = 1 - E^(-1).",
-    "Option (a): Delta nabla = (E-1)(1 - E^(-1)) = E - 2 + E^(-1) = nabla Delta, since polynomials in E commute. So Delta nabla = nabla Delta and the claimed inequality is FALSE.",
-    "Option (b): Delta E = (E-1)E = E^2 - E and E Delta = E(E-1) = E^2 - E, so they are equal and the claimed inequality is FALSE.",
-    "Option (d): E - Delta = E - (E - 1) = 1 = I, so E - Delta does equal I and the claimed inequality is FALSE.",
-    "Option (c): Delta - E = (E - 1) - E = -1 = -I, which is not equal to I. The claimed inequality is TRUE.",
-    "Hence option (c) is correct."
-  ]
-},
-"2020-Q76": {
-  "answer": 3, "confidence": "high", "type": "Numerical",
-  "shortcut": "Simpson's 1/3 is exact for quadratics, so the answer equals the exact integral: [x^3 + 25x] from 0 to 1 = 26.",
-  "tips": [
-    "Recognise exactness first: the integrand 3x^2 + 25 is quadratic and Simpson's 1/3 is exact up to degree 3, so no arithmetic is strictly necessary.",
-    "If you do compute: h = 1/4 gives n = 4 (even, as required), ordinates 25, 25.1875, 25.75, 26.6875, 28 and weighted sum 312, so (h/3)(312) = (1/12)(312) = 26.",
-    "The weight pattern for n = 4 is 1, 4, 2, 4, 1 - check it sums to 12 = 3n/... simply confirm 1+4+2+4+1 = 12, matching 3/h times the interval length.",
-    "Options (b) and (c) are the trapezoidal and mid-point style approximations; recognising exactness protects you from choosing an 'approximate-looking' answer."
-  ],
-  "solution": [
-    "With h = 1/4 on [0,1] there are n = 4 subintervals, an even number, so Simpson's one-third rule applies.",
-    "Ordinates: f(0) = 25, f(0.25) = 3(0.0625) + 25 = 25.1875, f(0.5) = 3(0.25) + 25 = 25.75, f(0.75) = 3(0.5625) + 25 = 26.6875, f(1) = 28.",
-    "Simpson's rule: I = (h/3)[f0 + 4f1 + 2f2 + 4f3 + f4].",
-    "Weighted sum: 25 + 4(25.1875) + 2(25.75) + 4(26.6875) + 28 = 25 + 100.75 + 51.5 + 106.75 + 28 = 312.",
-    "I = (0.25/3)(312) = 312/12 = 26.",
-    "This matches the exact value [x^3 + 25x] from 0 to 1 = 1 + 25 = 26, as it must since Simpson's rule is exact for quadratics. Option (d) is correct."
-  ]
-},
-"2020-Q77": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "Force exactness for f = 1: the integral is 2 and the formula gives (1/2)(1 + c), so c = 3. That choice then also integrates x and x^2 exactly.",
-  "tips": [
-    "Method of undetermined coefficients: impose exactness on 1, x, x^2, ... in order. With one unknown, the constant function alone determines it; the remaining checks confirm the ORDER achieved.",
-    "Check f = x: (1/2)[-1 + 3(1/3)] = 0, matching the exact 0. Check f = x^2: (1/2)[1 + 3(1/9)] = 2/3, matching the exact 2/3. So the rule is exact up to degree 2.",
-    "The node 1/3 is not arbitrary - it is exactly the position that, paired with -1, makes a two-point rule reach degree 2 (a Radau-type quadrature).",
-    "Test f = x^3: (1/2)[-1 + 3(1/27)] = -4/9 while the exact value is 0, so degree 2 is the highest order attained - confirming that c = 3 is optimal, not merely adequate."
-  ],
-  "solution": [
-    "Require the rule Q(f) = (1/2)[f(-1) + c f(1/3)] to reproduce the integral of f from -1 to 1 for polynomials of as high a degree as possible.",
-    "Take f(x) = 1: the exact integral is 2, and Q(1) = (1/2)(1 + c). Setting (1/2)(1 + c) = 2 gives c = 3.",
-    "Verify with f(x) = x: exact integral 0; Q(x) = (1/2)[-1 + 3(1/3)] = (1/2)(0) = 0. Exact.",
-    "Verify with f(x) = x^2: exact integral 2/3; Q(x^2) = (1/2)[1 + 3(1/9)] = (1/2)(4/3) = 2/3. Exact.",
-    "With f(x) = x^3: exact integral 0 but Q(x^3) = (1/2)[-1 + 3/27] = -4/9, so degree 2 is the highest order achieved.",
-    "Hence c = 3 gives the highest possible order, option (b)."
-  ]
-},
-"2020-Q78": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "Divided differences: f[1,3] = 13, f[3,4] = 37, f[1,3,4] = 8. Newton's form gives 1 + 13(x-1) + 8(x-1)(x-3) = 8x^2 - 19x + 12.",
-  "tips": [
-    "Build the divided-difference table first: 26/2 = 13 and 37/1 = 37, then (37 - 13)/(4 - 1) = 8. Three divisions and the polynomial is determined.",
-    "Expand carefully: 8(x-1)(x-3) = 8x^2 - 32x + 24, and adding 13x - 12 gives 8x^2 - 19x + 12.",
-    "Faster still: test the options at x = 1, where the value must be 1. Option (b) gives 8 - 19 + 12 = 1, while option (a) gives 15 - a quick discriminator.",
-    "Note the underlying data are cubes (1, 27, 64 at 1, 3, 4), so the quadratic interpolant is only an approximation to x^3 - a nice reminder that interpolation reproduces the DATA, not the generating function."
-  ],
-  "solution": [
-    "The data are (1, 1), (3, 27), (4, 64).",
-    "First divided differences: f[1,3] = (27 - 1)/(3 - 1) = 13 and f[3,4] = (64 - 27)/(4 - 3) = 37.",
-    "Second divided difference: f[1,3,4] = (37 - 13)/(4 - 1) = 24/3 = 8.",
-    "Newton's form: p(x) = f[1] + (x-1)f[1,3] + (x-1)(x-3)f[1,3,4] = 1 + 13(x-1) + 8(x-1)(x-3).",
-    "Expanding: 1 + 13x - 13 + 8(x^2 - 4x + 3) = 13x - 12 + 8x^2 - 32x + 24 = 8x^2 - 19x + 12.",
-    "Check: p(1) = 1, p(3) = 72 - 57 + 12 = 27, p(4) = 128 - 76 + 12 = 64. Option (b) is correct."
-  ]
-},
-"2020-Q79": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "With h = 0.5 and n = 6, Simpson's 1/3 gives (0.5/3)[2 + 4(2.4) + 2(2.7) + 4(2.8) + 2(3) + 4(2.6) + 2.1] = (1/6)(46.7) = 7.783.",
-  "tips": [
-    "Composite Simpson 1/3 weights: 1, 4, 2, 4, 2, 4, 1 - odd-indexed ordinates get 4 and even-indexed interior ones get 2. Check n is even before starting (here n = 6).",
-    "Group the weighted terms: the 4-weighted ordinates are 2.4 + 2.8 + 2.6 = 7.8 giving 31.2, and the 2-weighted are 2.7 + 3 = 5.7 giving 11.4; ends contribute 4.1. Total 46.7.",
-    "h/3 = 0.5/3 = 1/6, so the final division is by 6: 46.7/6 = 7.7833.",
-    "The options differ in the second decimal, so carry the weighted sum exactly (46.7) and divide once at the end rather than rounding intermediate products."
-  ],
-  "solution": [
-    "The abscissae run from x = 1 to x = 4 in steps of h = 0.5, giving n = 6 subintervals - an even number, so Simpson's one-third rule applies.",
-    "Ordinates: y0 = 2, y1 = 2.4, y2 = 2.7, y3 = 2.8, y4 = 3, y5 = 2.6, y6 = 2.1.",
-    "Composite rule: Area = (h/3)[y0 + 4(y1 + y3 + y5) + 2(y2 + y4) + y6].",
-    "Odd-indexed sum: 2.4 + 2.8 + 2.6 = 7.8, contributing 4(7.8) = 31.2. Even-indexed interior sum: 2.7 + 3 = 5.7, contributing 2(5.7) = 11.4. End ordinates: 2 + 2.1 = 4.1.",
-    "Total weighted sum = 31.2 + 11.4 + 4.1 = 46.7.",
-    "Area = (0.5/3)(46.7) = 46.7/6 = 7.783, i.e. 7.78. Option (b) is correct."
-  ]
-},
-"2020-Q80": {
-  "answer": 1, "confidence": "high", "type": "Numerical",
-  "shortcut": "Delta^2 + Delta - 6 = (E-1)^2 + (E-1) - 6 = E^2 - E - 6 = (E-3)(E+2). The factor (E-3) annihilates 3^x and (E+2) annihilates (-2)^x, so the result is 0.",
-  "tips": [
-    "Always convert the operator polynomial to E first: substituting Delta = E - 1 turns Delta^2 + Delta - 6 into the far friendlier E^2 - E - 6.",
-    "Factorise and read off the roots: (E-3)(E+2) has roots 3 and -2, which are exactly the bases appearing in y. That match is the whole design of the question.",
-    "Annihilator rule: (E - a) kills a^x, since E(a^x) = a^(x+1) = a . a^x. Each factor removes one term of y.",
-    "This is the discrete analogue of solving a linear differential equation whose auxiliary roots are 3 and -2 - the given y is precisely the general solution of the difference equation."
-  ],
-  "solution": [
-    "With interval h = 1, Delta = E - 1, so Delta^2 + Delta - 6 = (E-1)^2 + (E-1) - 6.",
-    "Expanding: (E^2 - 2E + 1) + (E - 1) - 6 = E^2 - E - 6.",
-    "Factorising: E^2 - E - 6 = (E - 3)(E + 2).",
-    "Apply to the first term: (E - 3)(a 3^x) = a 3^(x+1) - 3a 3^x = 0, so the factor (E-3) annihilates a 3^x.",
-    "Apply to the second term: (E + 2)(b(-2)^x) = b(-2)^(x+1) + 2b(-2)^x = -2b(-2)^x + 2b(-2)^x = 0, so (E+2) annihilates b(-2)^x.",
-    "Since the two factors commute, the product annihilates the whole of y, giving 0. Option (b) is correct."
-  ]
-}
+  "2020-Q61": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "Newton's divided-difference form is built term by term, so a new data point simply appends ONE extra term; every earlier coefficient stays valid.",
+    "tips": [
+      "Newton's form is 'incremental': $f(x) = f[x_{0}] + (x-x_{0})f[x_{0},x_{1}] + (x-x_{0})(x-x_{1})f[x_{0},x_{1},x_{2}]$ + ... Adding a node adds one more product term and one more divided difference.",
+      "Lagrange's form must be rebuilt completely because EVERY basis polynomial contains every node in its numerator and denominator.",
+      "Newton's forward formula requires equally spaced nodes, so an arbitrary new point usually cannot be accommodated at all.",
+      "Practical consequence: Newton's divided differences are preferred when data arrive sequentially or when you want to monitor convergence by adding points one at a time."
+    ],
+    "solution": [
+      "Newton's divided-difference interpolation polynomial has the form $f(x) = f[x_{0}] + (x-x_{0})f[x_{0},x_{1}] + (x-x_{0})(x-x_{1})f[x_{0},x_{1},x_{2}]$ + ...",
+      "Each coefficient depends only on the nodes already used, so inserting a new node $x_{n+1}$ merely appends one further term $(x-x_{0})(x-x_{1})$...$(x-x_{n}) f[x_{0},...,x_{n+1}]$.",
+      "All previously computed divided differences remain valid and are reused.",
+      "Lagrange's formula, by contrast, defines each basis polynomial as a product over ALL nodes, so adding one node changes every basis polynomial and the whole computation must be repeated.",
+      "Newton's forward formula additionally requires equally spaced arguments, so an arbitrary new value cannot generally be inserted.",
+      "Hence Newton's divided difference formula is the method that accommodates a new value, option (c)."
+    ]
+  },
+  "2020-Q62": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "The integrand 1 + x is LINEAR, and the trapezoidal rule is already exact for linear functions - so it gives the exact answer with the least work.",
+    "tips": [
+      "Match the rule to the degree: trapezoidal is exact for degree 1, Simpson's $1/3$ for degree 3, Simpson's $3/8$ for degree 3, Weddle's for degree 5.",
+      "'Best' in numerical work means adequate accuracy for the least effort. Since all four rules would be exact here, the simplest one wins.",
+      "The trapezoidal rule needs only two ordinates; Simpson's $3/8$ needs four and Weddle's needs seven - a large amount of extra work for no extra accuracy.",
+      "Geometric check: the region under $y = 1 + x$ from 0 to 1 is a trapezium of area $(1 + 2)/2 = 1.5$, exactly what the rule returns."
+    ],
+    "solution": [
+      "The integrand is $f(x) = 1 + x, a$ polynomial of degree 1.",
+      "The trapezoidal rule replaces the curve by a straight line joining the endpoints; since the integrand IS a straight line, the replacement introduces no error.",
+      "Indeed the trapezoidal estimate with a single strip is $(1/2)[f(0) + f(1)] = (1/2)(1 + 2) = 1.5$, which is exactly the true value of the integral.",
+      "Simpson's rules and Weddle's rule would also give the exact answer, but they require 3, 4 and 7 ordinates respectively - more computation for no gain.",
+      "The best method is therefore the simplest one that is exact here.",
+      "Hence the trapezoidal rule, option (a)."
+    ]
+  },
+  "2020-Q63": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "$\\delta^{2} y_{n} = y_{n+1} - 2y_{n} + y_{n-1}$. With $n = 5$ that is $y_{6} - 2y5 + y_{4}$.",
+    "tips": [
+      "$\\delta y_{n} = y_{n+1/2} - y_{n-1/2}$, so applying it twice at an integer index gives the symmetric three-point formula $y_{n+1} - 2y_{n} + y_{n-1}$.",
+      "The coefficients 1, -2, 1 are the same as for $\\Delta^{2}$ and nabla^2; only the INDEXING differs - the central form is symmetric about $y_{n}$.",
+      "This is exactly the second-difference stencil used to approximate $f''(x)$ by $[f(x+h) - 2f(x) + f(x-h)]/h^{2}$.",
+      "The coefficients of any pure difference operator must sum to zero (a constant has zero second difference): $1 - 2 + 1 = 0$. Options (a) and (c) fail this test instantly."
+    ],
+    "solution": [
+      "The central difference operator is defined by $\\delta y_{n} = y_{n + 1/2} - y_{n - 1/2}$.",
+      "Applying it twice: $\\delta^{2} y_{n} = \\delta(y_{n+1/2}) - \\delta(y_{n-1/2}) = (y_{n+1} - y_{n}) - (y_{n} - y_{n-1})$.",
+      "Simplifying: $\\delta^{2} y_{n} = y_{n+1} - 2y_{n} + y_{n-1}$.",
+      "Setting $n = 5$ gives $\\delta^{2} y_{5} = y_{6} - 2 y_{5} + y_{4}$.",
+      "Check: the coefficients 1, -2, 1 sum to zero, as they must for a second difference to annihilate constants.",
+      "Hence option (b) is correct."
+    ]
+  },
+  "2020-Q64": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "With $h = 0.1$ the Euler iterates are 0, 0, 0.01, 0.031, 0.0641, 0.11051 - so $y(0.5)$ is about 0.1105, which lies in $(0.1, 0.2)$.",
+    "tips": [
+      "Euler: $y_{n+1} = y_{n} + h(x_{n} + y_{n})$. Tabulate $x_{n}$ and $y_{n}$ side by side and work down; five short lines are quicker than any shortcut.",
+      "The first step gives zero because both x and y vanish at the start - the solution only begins to move on the second step.",
+      "The exact solution is $y = e^{x} - x - 1$, so $y(0.5) = 0.1487$. Euler's 0.1105 is the expected underestimate for a convex solution, and both lie in the same interval.",
+      "Keep four decimals throughout: rounding to two decimals early can push the running total across an interval boundary."
+    ],
+    "solution": [
+      "Euler's method for $dy/dx = x + y$ with $y(0) = 0$ and $h = 0.1$ is $y_{n+1} = y_{n} + 0.1(x_{n} + y_{n})$.",
+      "Step 1: at $(0, 0)$, slope 0, so $y(0.1) = 0 + 0.1(0) = 0$.",
+      "Step 2: at $(0.1, 0)$, slope 0.1, so $y(0.2) = 0 + 0.1(0.1) = 0.01$.",
+      "Step 3: at $(0.2, 0.01)$, slope 0.21, so $y(0.3) = 0.01 + 0.021 = 0.031$.",
+      "Step 4: at $(0.3, 0.031)$, slope 0.331, so $y(0.4) = 0.031 + 0.0331 = 0.0641$. Step 5: at $(0.4, 0.0641)$, slope 0.4641, so $y(0.5) = 0.0641 + 0.04641 = 0.11051$.",
+      "Since $0.1 < 0.11051 < 0.2$, the estimate lies in $(0.1, 0.2)$, option (b)."
+    ]
+  },
+  "2020-Q65": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "Symmetry, the constancy of the nth divided difference of a degree-n polynomial, and linearity are the three standard properties of divided differences - all correct.",
+    "tips": [
+      "Symmetry: $f[x_{0}, x_{1}, ..., xn]$ is unchanged by any permutation of its arguments, because it equals a symmetric sum of f(xi) divided by products of node differences.",
+      "Constancy: the nth divided difference of a degree-n polynomial is its LEADING COEFFICIENT, and the $(n+1)$th is zero.",
+      "Linearity: f[.] + g[.] = $(f+g)$[.] and (cf)[.] = c f[.], which is what allows term-by-term treatment of polynomials.",
+      "When three bookwork properties of the same object are listed and each is standard, 'all of them' is almost always the key."
+    ],
+    "solution": [
+      "Statement 1: the divided difference $f[x_{0}, x_{1}, ..., xn]$ can be written as a sum of f(xi) divided by products of differences of the nodes, an expression unchanged by permuting the arguments. Divided differences are therefore symmetric. TRUE.",
+      "Statement 2: in Newton's form the coefficient of the highest-degree term is the top divided difference, so for a polynomial of degree n the nth divided difference equals its leading coefficient - a constant independent of the nodes. TRUE.",
+      "Statement 3: the divided difference is built from linear operations on the function values, so f[.] + g[.] = $(f + g)$[.] and (cf)[.] = c f[.]. The operator is linear. TRUE.",
+      "All three statements are standard properties.",
+      "Hence option (d) is correct."
+    ]
+  },
+  "2020-Q66": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "$\\mu \\delta = (E^{1/2}+E^{-1/2})/2 x (E^{1/2}-E^{-1/2}) = (E - E^{-1})/2$. Since $\\Delta = E - 1$ and nabla = $1 - E^{-1}$, their sum is $E - E^{-1}$, so $\\mu \\delta$ = ($\\Delta$ + nabla)/2.",
+    "tips": [
+      "Convert everything to E: $\\Delta = E - 1$, nabla = $1 - E^{-1}, \\delta = E^{1/2} - E^{-1/2}, \\mu = (E^{1/2} + E^{-1/2})/2$. Every identity in this chapter falls out of these four.",
+      "$\\mu \\delta$ is a difference of squares, which is why it collapses so cleanly to $(E - E^{-1})/2$.",
+      "Note $\\Delta$ + nabla = $(E - 1) + (1 - E^{-1}) = E - E^{-1}$ - the constants cancel, which is the crux of the identity.",
+      "Companion result: $\\Delta$ - nabla = $E - 2 + E^{-1} = \\delta^{2}$, worth memorising alongside this one."
+    ],
+    "solution": [
+      "Write the operators in terms of the shift operator E: $\\mu = (E^{1/2} + E^{-1/2})/2$ and $\\delta = E^{1/2} - E^{-1/2}$.",
+      "Their product is $\\mu \\delta = (1/2)(E^{1/2} + E^{-1/2})(E^{1/2} - E^{-1/2}) = (1/2)(E - E^{-1})$.",
+      "Also $\\Delta = E - 1$ and nabla = $1 - E^{-1}$.",
+      "Adding these: $\\Delta$ + nabla = $(E - 1) + (1 - E^{-1}) = E - E^{-1}$.",
+      "Therefore $\\mu \\delta = (1/2)$($\\Delta$ + nabla).",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2020-Q67": {
+    "answer": 0,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "On $5^{x}$ the operator E acts as multiplication by 5, so $E^{2} - 9E + 18$ becomes $25 - 45 + 18$ = -2. Hence the inverse operator gives $12(5^{x})/(-2)$ = -$6 (5^{x})$.",
+    "tips": [
+      "Key substitution rule: $\\operatorname{E}(a^{x}) = a^{x+1} = a$ . $a^{x}$, so any polynomial in E acting on $a^{x}$ is just that polynomial EVALUATED at a.",
+      "Evaluate the quadratic at $a = 5$: $25 - 45 + 18$ = -2. The sign is negative, which is exactly what distinguishes option (a) from option (b).",
+      "The inverse operator $1/\\phi(E)$ simply divides by the same number, so the answer is $12/(-2)$ = -6 times $5^{x}$.",
+      "This is the discrete analogue of the particular-integral rule $1/\\phi(D) e^{ax} = e^{ax}/\\phi(a)$ from differential equations - same technique, shift operator instead of D."
+    ],
+    "solution": [
+      "For the exponential function $5^{x}$ with interval of differencing $1, \\operatorname{E}(5^{x}) = 5^{x+1} = 5$ . $5^{x}$, so E acts as multiplication by 5.",
+      "Consequently, for any polynomial $\\phi, \\phi(E) 5^{x} = \\phi(5) 5^{x}$.",
+      "Here $\\phi(E) = E^{2} - 9E + 18$, so $\\phi(5) = 25 - 45 + 18$ = -2.",
+      "Therefore $(E^{2} - 9E + 18)(5^{x})$ = -$2 (5^{x})$.",
+      "Applying the inverse operator to $12 \\times 5^{x}$: $[1/(E^{2} - 9E + 18)]$(12 . $5^{x}$) = 12 . $5^{x}/(-2)$ = -6 . $5^{x}$.",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2020-Q68": {
+    "answer": 0,
+    "confidence": "medium",
+    "type": "Numerical",
+    "shortcut": "For a linear argument the factorial function steps down by the coefficient: $(3x+8)^{4} = (3x+8)(3x+5)(3x+2)(3x-1)$. At $x = 2$ this is $14 \\times 11 \\times 8 \\times 5 = 6160$.",
+    "tips": [
+      "Generalised factorial: $(ax+b)^{n} = (ax+b)(ax+b-a)(ax+b-2a)$...$(ax+b-(n-1)a)$ when $h = 1$. The step is a, NOT 1, because that is what makes $\\Delta(ax+b)^{n}$ = na(ax+b)^(n-1) hold.",
+      "Verify the convention by the difference rule: only the step-a version has a clean forward difference, which is the whole purpose of factorial notation.",
+      "The distractors are built from wrong steps: step 1 gives $14 \\times 13 \\times 12 \\times 11 = 24024$ and step 2 gives $14 \\times 12 \\times 10 \\times 8 = 13440$. Identify the step before multiplying.",
+      "Compute in pairs: $(14 \\times 11) = 154$ and $(8 \\times 5) = 40$, then $154 \\times 40 = 6160$ - much safer than a four-way chain."
+    ],
+    "solution": [
+      "With interval of differencing $h = 1$, the generalised factorial function of a linear argument is $(ax+b)^{n} = (ax+b)(ax+b-a)(ax+b-2a)$...$(ax+b-(n-1)a)$.",
+      "This is the definition that yields the standard difference rule $\\Delta[(ax+b)^{n}] = n a (ax+b)^{n-1}$.",
+      "Here $a = 3, b = 8$ and $n = 4$, so $(3x+8)^{4} = (3x+8)(3x+5)(3x+2)(3x-1)$.",
+      "At $x = 2$: $3(2) + 8 = 14$, and the successive factors are 14, 11, 8 and 5.",
+      "Multiplying: $(14)(11) = 154$ and $(8)(5) = 40$, so the product is $154 \\times 40 = 6160$.",
+      "Hence option (a) is correct."
+    ]
+  },
+  "2020-Q69": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Apply Lagrange's formula with the roles of x and f interchanged (inverse interpolation) at $f = 15$: the weights 0.25, -1, 1.5, 0.25 applied to $x = 1, 6, 9, 11$ give 10.5.",
+    "tips": [
+      "Inverse interpolation: treat f as the independent variable and x as the dependent one, then use ordinary Lagrange. No iteration is needed when the f-values are distinct.",
+      "The Lagrange weights must sum to 1: $0.25 - 1 + 1.5 + 0.25 = 1$. Use that as an instant check before multiplying by the x-values.",
+      "Negative weights are normal and expected here because $f = 15$ lies outside the middle of the f-range; do not discard them.",
+      "Plausibility: $f = 15$ lies between $f(9) = 14$ and $f(11) = 16$, so x must lie between 9 and 11 - and 10.5 does."
+    ],
+    "solution": [
+      "We need the value of x at which $f(x) = 15$, so we interpolate x as a function of f using the pairs $(12,1), (13,6), (14,9), (16,11)$.",
+      "Lagrange weight for $f = 12$: $(15-13)(15-14)(15-16)/[(12-13)(12-14)(12-16)] = (2)(1)(-1)/[(-1)(-2)(-4)]$ = -2/-$8 = 0.25$.",
+      "Weight for $f = 13$: $(15-12)(15-14)(15-16)/[(13-12)(13-14)(13-16)] = (3)(1)(-1)/[(1)(-1)(-3)]$ = -$3/3$ = -1.",
+      "Weight for $f = 14$: $(15-12)(15-13)(15-16)/[(14-12)(14-13)(14-16)] = (3)(2)(-1)/[(2)(1)(-2)]$ = -6/-$4 = 1.5$. Weight for $f = 16$: $(3)(2)(1)/[(4)(3)(2)] = 6/24 = 0.25$. (Sum = 1, as required.)",
+      "$x = 1(0.25) + 6(-1) + 9(1.5) + 11(0.25) = 0.25 - 6 + 13.5 + 2.75 = 10.5$.",
+      "Hence x is approximately 10.5, option (c)."
+    ]
+  },
+  "2020-Q70": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Try F = ax^3 + bx^2 + cx + d. Then $\\Delta F = 3a x^{2} + (3a+2b)x + (a+b+c)$. Matching 9, 11, 5 gives $a = 3, b = 1, c = 1$, so $F = 3x^{3} + x^{2} + x + c$.",
+    "tips": [
+      "Since the first difference is quadratic, F must be CUBIC - that alone eliminates nothing here, so proceed by matching coefficients.",
+      "Expand once and reuse: $\\Delta x^{3} = 3x^{2} + 3x + 1, \\Delta x^{2} = 2x + 1, \\Delta x = 1$. Memorise this short table.",
+      "Match from the highest power downwards: $3a = 9$ gives $a = 3$, then $3a + 2b = 11$ gives $b = 1$, then $a + b + c = 5$ gives $c = 1$.",
+      "Verify by testing at $x = 0$: $\\Delta F(0) = F(1) - F(0) = (3 + 1 + 1) - 0 = 5$, which matches $9(0)^{2} + 11(0) + 5 = 5$."
+    ],
+    "solution": [
+      "Let $F(x) = a x^{3} + b x^{2} + c x + d$ and take $h = 1$.",
+      "$\\Delta x^{3} = (x+1)^{3} - x^{3} = 3x^{2} + 3x + 1$; $\\Delta x^{2} = 2x + 1$; $\\Delta x = 1$; $\\Delta d = 0$.",
+      "So $\\Delta F = a(3x^{2} + 3x + 1) + b(2x + 1) + c = 3a x^{2} + (3a + 2b) x + (a + b + c)$.",
+      "Matching with $9x^{2} + 11x + 5$: $3a = 9$ gives $a = 3$; $3a + 2b = 11$ gives $9 + 2b = 11$, so $b = 1$; $a + b + c = 5$ gives $3 + 1 + c = 5$, so $c = 1$.",
+      "The constant d is arbitrary, giving $F(x) = 3x^{3} + x^{2} + x + c$.",
+      "Hence option (d) is correct."
+    ]
+  },
+  "2020-Q71": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Substitution beats construction here: $x^{3} - 9x^{2} + 17x + 6$ gives 3, 12, 15 and -21 at $x = 3, 2, 1$ and -1 respectively. Test the options rather than building the polynomial.",
+    "tips": [
+      "With four options and four data points, VERIFYING is far faster than constructing - start with the easiest node, $x = 1$, where each option reduces to the sum of its coefficients.",
+      "At $x = 1$ the required value is 15: option (c) gives $1 - 9 + 17 + 6 = 15$, while option (b) gives $1 + 2 - 5 - 27$ = -29 and option (d) gives 15 too, so a second node is needed.",
+      "Use x = -1 to separate the survivors: option (c) gives -$1 - 9 - 17 + 6$ = -21 (correct) whereas option (d) gives -$1 + 2 + 5 + 17 = 23$.",
+      "Option (a) has no constant term and would give 0 at $x = 0$, and its leading coefficient 27 is implausible for data of this size."
+    ],
+    "solution": [
+      "Four data points determine a unique polynomial of degree at most 3, so we test the cubic options against all four values.",
+      "Option (c) is $p(x) = x^{3} - 9x^{2} + 17x + 6$.",
+      "At $x = 3$: $27 - 81 + 51 + 6 = 3$, matching the required value 3.",
+      "At $x = 2$: $8 - 36 + 34 + 6 = 12$, matching 12.",
+      "At $x = 1$: $1 - 9 + 17 + 6 = 15$, matching 15. At x = -1: -$1 - 9 - 17 + 6$ = -21, matching -21.",
+      "All four conditions are satisfied, and the interpolating polynomial is unique, so option (c) is correct."
+    ]
+  },
+  "2020-Q72": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Newton's divided-difference form at $x = 8$: $48 + (4)(52) + (4)(3)(15) + (4)(3)(1)(1) = 48 + 208 + 180 + 12 = 448$.",
+    "tips": [
+      "Newton's form: $f(x) = f[x_{0}] + (x-x_{0})f[x_{0},x_{1}] + (x-x_{0})(x-x_{1})f[x_{0},x_{1},x_{2}] + (x-x_{0})(x-x_{1})(x-x_{2})f[x_{0},x_{1},x_{2},x_{3}]$. The nodes enter in the order 4, 5, 7, 10.",
+      "Build the products cumulatively: $(8-4) = 4$, then $x(8-5) = 12$, then $x(8-7) = 12$. Each new factor multiplies the previous product.",
+      "Note that the LAST node 10 never appears in the products - with four divided differences only three factors are needed.",
+      "Running total: 48, 256, 436, 448. Keeping a running sum makes an arithmetic slip easy to spot."
+    ],
+    "solution": [
+      "Newton's divided-difference interpolation with nodes 4, 5, 7, 10 is $f(x) = f[4] + (x-4) f[4,5] + (x-4)(x-5) f[4,5,7] + (x-4)(x-5)(x-7) f[4,5,7,10]$.",
+      "At $x = 8$ the products are $(8-4) = 4, (8-4)(8-5) = 4 \\times 3 = 12$, and $(8-4)(8-5)(8-7) = 12 \\times 1 = 12$.",
+      "First term: 48. Second term: $4 \\times 52 = 208$.",
+      "Third term: $12 \\times 15 = 180$. Fourth term: $12 \\times 1 = 12$.",
+      "Adding: $48 + 208 + 180 + 12 = 448$.",
+      "Hence $f(8) = 448$, option (d)."
+    ]
+  },
+  "2020-Q73": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "Simpson's one-third rule is exact for polynomials up to degree 3. The integrand $x^{2}$ is quadratic, so the numerical value equals the exact one and |A - B| = 0.",
+    "tips": [
+      "Exactness degrees: trapezoidal 1, Simpson's $1/3$ and $3/8$ both 3, Weddle's 5. Compare the integrand's degree with these before computing anything.",
+      "Simpson's $1/3$ fits parabolas yet is exact for CUBICS too - the odd-degree error term cancels by symmetry. That bonus degree is a favourite examiner point.",
+      "The error term is -$(b-a)h^{4} f''''(\\xi)/180$; for $f(x) = x^{2}$ the fourth derivative is identically zero, so the error is exactly zero.",
+      "Verify if you wish: the exact value is $1000/3 = 333.33$, and Simpson's rule with $h = 1$ returns the same - but the exactness argument settles it in five seconds."
+    ],
+    "solution": [
+      "Simpson's one-third rule is derived by fitting a parabola through each consecutive triple of points, so it integrates any quadratic exactly.",
+      "Its error term is -$(b - a) h^{4} f''''(\\xi)/180$, which involves the FOURTH derivative of the integrand.",
+      "Here $f(x) = x^{2}$, so $f''''(x) = 0$ identically and the error term vanishes.",
+      "Therefore the Simpson estimate B equals the exact value A = the $\\int x^{2}$ from 0 to $10 = 1000/3$.",
+      "Hence |A - B| = 0.",
+      "Option (d) is correct."
+    ]
+  },
+  "2020-Q74": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Conceptual",
+    "shortcut": "First differences are -73, -93, -103 - not constant, so f is not of degree below 2 and statement 1 fails. Statement 2 correctly assigns the forward formula to $x = 10$ (near the table's start) and the backward formula to $x = 60$ (near its end).",
+    "tips": [
+      "Degree test: constant FIRST differences mean degree 1, constant SECOND differences mean degree 2. Here the first differences vary by 20 and 10, so the degree is at least 3.",
+      "Extrapolation convention: use Newton-Gregory FORWARD near the beginning of the table (p negative for x below x0) and BACKWARD near the end. Statement 2 states exactly this.",
+      "Both requested points lie outside the tabulated range, so this is extrapolation rather than interpolation - legitimate but less accurate, which is why the formulas are chosen by proximity.",
+      "Compute the difference table before reading the statements; it answers statement 1 immediately and costs only three subtractions."
+    ],
+    "solution": [
+      "The tabulated values at $x = 20, 30, 40, 50$ are 512, 439, 346, 243, equally spaced with $h = 10$.",
+      "First differences: 439 - 512 = -73; 346 - 439 = -93; 243 - 346 = -103. These are not constant.",
+      "Second differences: -93 + 73 = -20 and -$103 + 93 = 10$, also not constant, so the data require a polynomial of degree at least 3.",
+      "Statement 1 claims a polynomial of degree $n < 2$ (linear or constant) suffices, which contradicts the non-constant first differences. FALSE.",
+      "Statement 2: $x = 10$ lies just before the start of the table, where Newton-Gregory's FORWARD formula (with a negative p) is the appropriate extrapolation; $x = 60$ lies just beyond the end, where the BACKWARD formula is appropriate. TRUE.",
+      "Only statement 2 is correct, option (b)."
+    ]
+  },
+  "2020-Q75": {
+    "answer": 2,
+    "confidence": "high",
+    "type": "Theoretical",
+    "shortcut": "$\\Delta - E = (E - 1) - E$ = -I, which is NOT equal to I. So the inequality in option (c) is the true statement; the other three assert inequalities that are actually equalities.",
+    "tips": [
+      "Convert each option to E-form: $\\Delta$ nabla = nabla $\\Delta = \\delta^{2}, \\Delta E = E \\Delta = E^{2} - E, E - \\Delta = I$, and $\\Delta - E$ = -I.",
+      "All four options are phrased as 'not equal' claims, so you are hunting for the one pair that genuinely differs - read the direction of the subtraction carefully.",
+      "The trap is the near-identical pair (c) and (d): $E - \\Delta = I$ is true, so $(d)'s$ 'not equal' is false, while $\\Delta - E$ = -I makes $(c)'s$ 'not equal' true.",
+      "All these operators are polynomials in E, and polynomials in a single operator always commute - which is why options (a) and (b) can be dismissed on principle."
+    ],
+    "solution": [
+      "All the operators here are functions of the shift operator E: $\\Delta = E - 1$ and nabla = $1 - E^{-1}$.",
+      "Option (a): $\\Delta$ nabla = $(E-1)(1 - E^{-1}) = E - 2 + E^{-1}$ = nabla $\\Delta$, since polynomials in E commute. So $\\Delta$ nabla = nabla $\\Delta$ and the claimed inequality is FALSE.",
+      "Option (b): $\\Delta E = (E-1)E = E^{2} - E$ and $E \\Delta = \\operatorname{E}(E-1) = E^{2} - E$, so they are equal and the claimed inequality is FALSE.",
+      "Option (d): $E - \\Delta = E - (E - 1) = 1 = I$, so $E - \\Delta$ does equal I and the claimed inequality is FALSE.",
+      "Option (c): $\\Delta - E = (E - 1) - E$ = -1 = -I, which is not equal to I. The claimed inequality is TRUE.",
+      "Hence option (c) is correct."
+    ]
+  },
+  "2020-Q76": {
+    "answer": 3,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Simpson's $1/3$ is exact for quadratics, so the answer equals the exact integral: $[x^{3} + 25x]$ from 0 to $1 = 26$.",
+    "tips": [
+      "Recognise exactness first: the integrand $3x^{2} + 25$ is quadratic and Simpson's $1/3$ is exact up to degree 3, so no arithmetic is strictly necessary.",
+      "If you do compute: $h = 1/4$ gives $n = 4$ (even, as required), ordinates 25, 25.1875, 25.75, 26.6875, 28 and weighted sum 312, so $(h/3)(312) = (1/12)(312) = 26$.",
+      "The weight pattern for $n = 4$ is 1, 4, 2, 4, 1 - check it sums to $12 = 3n$/... simply confirm $1+4+2+4+1 = 12$, matching $3/h$ times the interval length.",
+      "Options (b) and (c) are the trapezoidal and mid-point style approximations; recognising exactness protects you from choosing an 'approximate-looking' answer."
+    ],
+    "solution": [
+      "With $h = 1/4$ on $[0,1]$ there are $n = 4$ subintervals, an even number, so Simpson's one-third rule applies.",
+      "Ordinates: $f(0) = 25, f(0.25) = 3(0.0625) + 25 = 25.1875, f(0.5) = 3(0.25) + 25 = 25.75, f(0.75) = 3(0.5625) + 25 = 26.6875, f(1) = 28$.",
+      "Simpson's rule: $I = (h/3)[f_{0} + 4f1 + 2f2 + 4f3 + f_{4}]$.",
+      "Weighted sum: $25 + 4(25.1875) + 2(25.75) + 4(26.6875) + 28 = 25 + 100.75 + 51.5 + 106.75 + 28 = 312$.",
+      "$I = (0.25/3)(312) = 312/12 = 26$.",
+      "This matches the exact value $[x^{3} + 25x]$ from 0 to $1 = 1 + 25 = 26$, as it must since Simpson's rule is exact for quadratics. Option (d) is correct."
+    ]
+  },
+  "2020-Q77": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Force exactness for $f = 1$: the integral is 2 and the formula gives $(1/2)(1 + c)$, so $c = 3$. That choice then also integrates x and $x^{2}$ exactly.",
+    "tips": [
+      "Method of undetermined coefficients: impose exactness on $1, x, x^{2}$, ... in order. With one unknown, the constant function alone determines it; the remaining checks confirm the ORDER achieved.",
+      "Check $f = x$: $(1/2)[-1 + 3(1/3)] = 0$, matching the exact 0. Check $f = x^{2}$: $(1/2)[1 + 3(1/9)] = 2/3$, matching the exact $2/3$. So the rule is exact up to degree 2.",
+      "The node $1/3$ is not arbitrary - it is exactly the position that, paired with -1, makes a two-point rule reach degree 2 (a Radau-type quadrature).",
+      "Test $f = x^{3}$: $(1/2)[-1 + 3(1/27)]$ = -$4/9$ while the exact value is 0, so degree 2 is the highest order attained - confirming that $c = 3$ is optimal, not merely adequate."
+    ],
+    "solution": [
+      "Require the rule $Q(f) = (1/2)[f(-1) + c f(1/3)]$ to reproduce the $\\int f$ from -1 to 1 for polynomials of as high a degree as possible.",
+      "Take $f(x) = 1$: the exact integral is 2, and $Q(1) = (1/2)(1 + c)$. Setting $(1/2)(1 + c) = 2$ gives $c = 3$.",
+      "Verify with $f(x) = x$: exact integral 0; $Q(x) = (1/2)[-1 + 3(1/3)] = (1/2)(0) = 0$. Exact.",
+      "Verify with $f(x) = x^{2}$: exact integral $2/3$; $Q(x^{2}) = (1/2)[1 + 3(1/9)] = (1/2)(4/3) = 2/3$. Exact.",
+      "With $f(x) = x^{3}$: exact integral 0 but $Q(x^{3}) = (1/2)[-1 + 3/27]$ = -$4/9$, so degree 2 is the highest order achieved.",
+      "Hence $c = 3$ gives the highest possible order, option (b)."
+    ]
+  },
+  "2020-Q78": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "Divided differences: $f[1,3] = 13, f[3,4] = 37, f[1,3,4] = 8$. Newton's form gives $1 + 13(x-1) + 8(x-1)(x-3) = 8x^{2} - 19x + 12$.",
+    "tips": [
+      "Build the divided-difference table first: $26/2 = 13$ and $37/1 = 37$, then $(37 - 13)/(4 - 1) = 8$. Three divisions and the polynomial is determined.",
+      "Expand carefully: $8(x-1)(x-3) = 8x^{2} - 32x + 24$, and adding 13x - 12 gives $8x^{2} - 19x + 12$.",
+      "Faster still: test the options at $x = 1$, where the value must be 1. Option (b) gives $8 - 19 + 12 = 1$, while option (a) gives 15 - a quick discriminator.",
+      "Note the underlying data are cubes $(1, 27, 64 at 1, 3, 4)$, so the quadratic interpolant is only an approximation to $x^{3} - a$ nice reminder that interpolation reproduces the DATA, not the generating function."
+    ],
+    "solution": [
+      "The data are $(1, 1), (3, 27), (4, 64)$.",
+      "First divided differences: $f[1,3] = (27 - 1)/(3 - 1) = 13$ and $f[3,4] = (64 - 27)/(4 - 3) = 37$.",
+      "Second divided difference: $f[1,3,4] = (37 - 13)/(4 - 1) = 24/3 = 8$.",
+      "Newton's form: $p(x) = f[1] + (x-1)f[1,3] + (x-1)(x-3)f[1,3,4] = 1 + 13(x-1) + 8(x-1)(x-3)$.",
+      "Expanding: $1 + 13x - 13 + 8(x^{2} - 4x + 3) = 13x - 12 + 8x^{2} - 32x + 24 = 8x^{2} - 19x + 12$.",
+      "Check: $p(1) = 1, p(3) = 72 - 57 + 12 = 27, p(4) = 128 - 76 + 12 = 64$. Option (b) is correct."
+    ]
+  },
+  "2020-Q79": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "With $h = 0.5$ and $n = 6$, Simpson's $1/3$ gives $(0.5/3)[2 + 4(2.4) + 2(2.7) + 4(2.8) + 2(3) + 4(2.6) + 2.1] = (1/6)(46.7) = 7.783$.",
+    "tips": [
+      "Composite Simpson $1/3$ weights: 1, 4, 2, 4, 2, 4, 1 - odd-indexed ordinates get 4 and even-indexed interior ones get 2. Check n is even before starting (here $n = 6$).",
+      "Group the weighted terms: the 4-weighted ordinates are $2.4 + 2.8 + 2.6 = 7.8$ giving 31.2, and the 2-weighted are $2.7 + 3 = 5.7$ giving 11.4; ends contribute 4.1. Total 46.7.",
+      "$h/3 = 0.5/3 = 1/6$, so the final division is by 6: $46.7/6 = 7.7833$.",
+      "The options differ in the second decimal, so carry the weighted sum exactly $(46.7)$ and divide once at the end rather than rounding intermediate products."
+    ],
+    "solution": [
+      "The abscissae run from $x = 1$ to $x = 4$ in steps of $h = 0.5$, giving $n = 6$ subintervals - an even number, so Simpson's one-third rule applies.",
+      "Ordinates: $y_{0} = 2, y_{1} = 2.4, y_{2} = 2.7, y_{3} = 2.8, y_{4} = 3, y_{5} = 2.6, y_{6} = 2.1$.",
+      "Composite rule: Area = $(h/3)[y_{0} + 4(y_{1} + y_{3} + y_{5}) + 2(y_{2} + y_{4}) + y_{6}]$.",
+      "Odd-indexed sum: $2.4 + 2.8 + 2.6 = 7.8$, contributing $4(7.8) = 31.2$. Even-indexed interior sum: $2.7 + 3 = 5.7$, contributing $2(5.7) = 11.4$. End ordinates: $2 + 2.1 = 4.1$.",
+      "Total weighted sum = $31.2 + 11.4 + 4.1 = 46.7$.",
+      "Area = $(0.5/3)(46.7) = 46.7/6 = 7.783$, i.e. 7.78. Option (b) is correct."
+    ]
+  },
+  "2020-Q80": {
+    "answer": 1,
+    "confidence": "high",
+    "type": "Numerical",
+    "shortcut": "$\\Delta^{2} + \\Delta - 6 = (E-1)^{2} + (E-1) - 6 = E^{2} - E - 6 = (E-3)(E+2)$. The factor $(E-3)$ annihilates $3^{x}$ and $(E+2)$ annihilates $(-2)^{x}$, so the result is 0.",
+    "tips": [
+      "Always convert the operator polynomial to E first: substituting $\\Delta = E - 1$ turns $\\Delta^{2} + \\Delta - 6$ into the far friendlier $E^{2} - E - 6$.",
+      "Factorise and read off the roots: $(E-3)(E+2)$ has roots 3 and -2, which are exactly the bases appearing in y. That match is the whole design of the question.",
+      "Annihilator rule: $(E - a)$ kills $a^{x}$, since $\\operatorname{E}(a^{x}) = a^{x+1} = a$ . $a^{x}$. Each factor removes one term of y.",
+      "This is the discrete analogue of solving a linear differential equation whose auxiliary roots are 3 and -2 - the given y is precisely the general solution of the difference equation."
+    ],
+    "solution": [
+      "With interval $h = 1, \\Delta = E - 1$, so $\\Delta^{2} + \\Delta - 6 = (E-1)^{2} + (E-1) - 6$.",
+      "Expanding: $(E^{2} - 2E + 1) + (E - 1) - 6 = E^{2} - E - 6$.",
+      "Factorising: $E^{2} - E - 6 = (E - 3)(E + 2)$.",
+      "Apply to the first term: $(E - 3)(a 3^{x}) = a 3^{x+1} - 3a 3^{x} = 0$, so the factor $(E-3)$ annihilates $a 3^{x}$.",
+      "Apply to the second term: $(E + 2)(b(-2)^{x}) = b(-2)^{x+1} + 2b(-2)^{x}$ = -$2b(-2)^{x} + 2b(-2)^{x} = 0$, so $(E+2)$ annihilates $b(-2)^{x}$.",
+      "Since the two factors commute, the product annihilates the whole of y, giving 0. Option (b) is correct."
+    ]
+  }
 }

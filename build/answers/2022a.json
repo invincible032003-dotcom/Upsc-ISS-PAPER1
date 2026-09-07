@@ -3,19 +3,19 @@
     "answer": 1,
     "confidence": "high",
     "type": "Conceptual",
-    "shortcut": "X1+X2+X3 ~ B(3,1/3), and 3 - X4 ~ B(3,1/3) because reflecting a B(3,2/3) swaps p and q. Two independent B(3,1/3) variables add to B(6,1/3).",
+    "shortcut": "$X_{1}+X_{2}+X_{3} \\sim B(3,1/3)$, and $3 - X_{4} \\sim B(3,1/3)$ because reflecting $a B(3,2/3)$ swaps p and q. Two independent $B(3,1/3)$ variables add to $B(6,1/3)$.",
     "tips": [
-      "Reflection rule: if X ~ B(n,p) then n - X ~ B(n, 1-p). Spotting this converts the awkward '3 - X4' into a friendly binomial.",
-      "Additive property: independent B(m,p) + B(n,p) = B(m+n,p) - but ONLY when p is common, which is exactly what the reflection arranges here.",
-      "Check the mean: 3(1/3) + (3 - 3(2/3)) = 1 + 1 = 2, and B(6,1/3) has mean 2. A quick confirmation.",
-      "Option (c) B(6,2/3) is the trap for candidates who forget to reflect X4 and simply add the two success probabilities."
+      "Reflection rule: if $X \\sim B(n,p)$ then $n - X \\sim B(n, 1-p)$. Spotting this converts the awkward '3 - $X_{4}'$ into a friendly binomial.",
+      "Additive property: independent $B(m,p) + B(n,p) = B(m+n,p)$ - but ONLY when p is common, which is exactly what the reflection arranges here.",
+      "Check the mean: $3(1/3) + (3 - 3(2/3)) = 1 + 1 = 2$, and $B(6,1/3)$ has mean 2. A quick confirmation.",
+      "Option $(c) B(6,2/3)$ is the trap for candidates who forget to reflect X4 and simply add the two success probabilities."
     ],
     "solution": [
-      "X1, X2, X3 are i.i.d. Bernoulli(1/3), so their sum S = X1 + X2 + X3 ~ Binomial(3, 1/3).",
-      "X4 ~ Binomial(3, 2/3). If X ~ B(n, p) then n - X ~ B(n, 1 - p), since counting failures instead of successes swaps p and q.",
-      "Hence 3 - X4 ~ Binomial(3, 1/3).",
-      "S and 3 - X4 are independent (they involve disjoint sets of the original variables) and share the same success probability 1/3.",
-      "By the additive property of the binomial, their sum is Binomial(3 + 3, 1/3) = Binomial(6, 1/3).",
+      "X1, X2, X3 are i.i.d. Bernoulli($1/3$), so their sum $S = X_{1} + X_{2} + X_{3}$ ~ Binomial($3, 1/3$).",
+      "X4 ~ Binomial($3, 2/3$). If $X \\sim B(n, p)$ then $n - X \\sim B(n, 1 - p)$, since counting failures instead of successes swaps p and q.",
+      "Hence 3 - X4 ~ Binomial($3, 1/3$).",
+      "S and 3 - X4 are independent (they involve disjoint sets of the original variables) and share the same success probability $1/3$.",
+      "By the additive property of the binomial, their sum is Binomial($3 + 3, 1/3$) = Binomial($6, 1/3$).",
       "Option (b) is correct."
     ]
   },
@@ -23,78 +23,78 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The selection probabilities are 1/2, 1/4, 1/4 for A, B, C. For a multinomial, Cov(Y,Z) = -n p_B p_C = -10(1/4)(1/4) = -5/8.",
+    "shortcut": "The selection probabilities are $1/2, 1/4, 1/4$ for A, B, C. For a multinomial, $\\operatorname{Cov}(Y,Z)$ = -$n p_{B} p_{C}$ = -$10(1/4)(1/4)$ = -$5/8$.",
     "tips": [
-      "Multinomial covariance: Cov(X_i, X_j) = -n p_i p_j for i not equal to j, always NEGATIVE because the counts must sum to n.",
-      "Set the weights first: A is twice as likely as each of B and C, so the weights are 2 : 1 : 1 and the probabilities are 1/2, 1/4, 1/4.",
+      "Multinomial covariance: $\\operatorname{Cov}(X_{i}, X_{j})$ = -$n p_{i} p_{j}$ for i not equal to j, always NEGATIVE because the counts must sum to n.",
+      "Set the weights first: A is twice as likely as each of B and C, so the weights are 2 : 1 : 1 and the probabilities are $1/2, 1/4, 1/4$.",
       "The sign alone eliminates options (c) and (d): more from B necessarily means fewer from C, so the covariance must be negative.",
-      "Companion formulas: E(X_i) = n p_i and Var(X_i) = n p_i (1 - p_i) - the whole multinomial toolkit is three lines long."
+      "Companion formulas: $\\operatorname{E}(X_{i}) = n p_{i}$ and $\\operatorname{Var}(X_{i}) = n p_{i} (1 - p_{i})$ - the whole multinomial toolkit is three lines long."
     ],
     "solution": [
-      "Let the selection probability of a candidate from B be k. A candidate from A is twice as likely, so p_A = 2k, and C matches B, so p_C = k.",
-      "Since the probabilities sum to 1: 2k + k + k = 4k = 1, giving k = 1/4.",
-      "Hence p_A = 1/2, p_B = 1/4, p_C = 1/4.",
-      "With 10 independent selections, (X, Y, Z) follows a multinomial distribution with n = 10 and these probabilities.",
-      "For the multinomial, Cov(Y, Z) = -n p_B p_C = -10 (1/4)(1/4) = -10/16 = -5/8, option (b)."
+      "Let the selection probability of a candidate from B be k. A candidate from A is twice as likely, so $p_{A} = 2k$, and C matches B, so $p_{C} = k$.",
+      "Since the probabilities sum to 1: $2k + k + k = 4k = 1$, giving $k = 1/4$.",
+      "Hence $p_{A} = 1/2, p_{B} = 1/4, p_{C} = 1/4$.",
+      "With 10 independent selections, (X, Y, Z) follows a multinomial distribution with $n = 10$ and these probabilities.",
+      "For the multinomial, $\\operatorname{Cov}(Y, Z)$ = -$n p_{B} p_{C}$ = -$10 (1/4)(1/4)$ = -$10/16$ = -$5/8$, option (b)."
     ]
   },
   "2022-Q3": {
     "answer": 0,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "E(X_i/i) = -1/4, so E(Y_n) = -n^(1-alpha)/4, which tends to 0 only if alpha > 1. The variance term needs only alpha > 1/2, so the binding condition is alpha > 1.",
+    "shortcut": "$\\operatorname{E}(X_{i}/i)$ = -$1/4$, so $\\operatorname{E}(Y_{n})$ = -$n^{1-\\alpha}/4$, which tends to 0 only if $\\alpha > 1$. The variance term needs only $\\alpha > 1/2$, so the binding condition is $\\alpha > 1$.",
     "tips": [
-      "Check the MEAN and the VARIANCE separately: convergence in probability to 0 needs both E(Y_n) -> 0 and Var(Y_n) -> 0. The stricter condition wins.",
-      "The four values -3n/2, -n, n/2, n do NOT average to zero: their mean is -n/4, so each X_i/i contributes a constant -1/4 to the sum. That non-zero drift is the crux.",
-      "The drift term is n times (-1/4) divided by n^alpha, i.e. of order n^(1-alpha) - it vanishes only for alpha > 1, and equals -1/4 at alpha = 1, which is why option (b) fails.",
-      "Var(X_i/i) = 17/16 is free of i, so Var(Y_n) = 17n/(16 n^(2 alpha)) = O(n^(1-2 alpha)), requiring only alpha > 1/2 - the weaker requirement."
+      "Check the MEAN and the VARIANCE separately: convergence in probability to 0 needs both $\\operatorname{E}(Y_{n}) \\to 0$ and $\\operatorname{Var}(Y_{n}) \\to 0$. The stricter condition wins.",
+      "The four values -$3n/2$, -$n, n/2, n$ do NOT average to zero: their mean is -$n/4$, so each $X_{i}/i$ contributes a constant -$1/4$ to the sum. That non-zero drift is the crux.",
+      "The drift term is n times $(-1/4)$ divided by $n^{\\alpha}$, i.e. of order $n^{1-\\alpha}$ - it vanishes only for $\\alpha > 1$, and equals -$1/4$ at $\\alpha = 1$, which is why option (b) fails.",
+      "$\\operatorname{Var}(X_{i}/i) = 17/16$ is free of i, so $\\operatorname{Var}(Y_{n}) = 17n/(16 n^{2 \\alpha}) = O(n^{1-2 \\alpha})$, requiring only $\\alpha > 1/2$ - the weaker requirement."
     ],
     "solution": [
-      "For each n, X_n takes the values -3n/2, -n, n/2, n with probability 1/4 each.",
-      "E(X_n) = (1/4)(-3n/2 - n + n/2 + n) = (1/4)(-n) = -n/4, so E(X_i/i) = -1/4 for every i.",
-      "E(X_n^2) = (1/4)(9n^2/4 + n^2 + n^2/4 + n^2) = 9n^2/8, so Var(X_n) = 9n^2/8 - n^2/16 = 17n^2/16 and Var(X_i/i) = 17/16.",
-      "Therefore E(Y_n) = (1/n^alpha) . n . (-1/4) = -n^(1-alpha)/4, and Var(Y_n) = (1/n^(2 alpha)) . n . (17/16) = 17 n^(1-2 alpha)/16.",
-      "Var(Y_n) tends to 0 whenever alpha > 1/2, but E(Y_n) tends to 0 only when 1 - alpha < 0, i.e. alpha > 1 (at alpha = 1 the mean is the constant -1/4).",
-      "Both conditions hold precisely when alpha > 1, option (a)."
+      "For each $n, X_{n}$ takes the values -$3n/2$, -$n, n/2, n$ with probability $1/4$ each.",
+      "$\\operatorname{E}(X_{n}) = (1/4)(-3n/2 - n + n/2 + n) = (1/4)(-n)$ = -$n/4$, so $\\operatorname{E}(X_{i}/i)$ = -$1/4$ for every i.",
+      "$\\operatorname{E}(X_{n}^{2}) = (1/4)(9n^{2}/4 + n^{2} + n^{2}/4 + n^{2}) = 9n^{2}/8$, so $\\operatorname{Var}(X_{n}) = 9n^{2}/8 - n^{2}/16 = 17n^{2}/16$ and $\\operatorname{Var}(X_{i}/i) = 17/16$.",
+      "Therefore $\\operatorname{E}(Y_{n}) = (1/n^{\\alpha})$ . n . $(-1/4)$ = -$n^{1-\\alpha}/4$, and $\\operatorname{Var}(Y_{n}) = (1/n^{2 \\alpha})$ . n . $(17/16) = 17 n^{1-2 \\alpha}/16$.",
+      "$\\operatorname{Var}(Y_{n})$ tends to 0 whenever $\\alpha > 1/2$, but $\\operatorname{E}(Y_{n})$ tends to 0 only when $1 - \\alpha < 0$, i.e. $\\alpha > 1$ (at $\\alpha = 1$ the mean is the constant -$1/4$).",
+      "Both conditions hold precisely when $\\alpha > 1$, option (a)."
     ]
   },
   "2022-Q4": {
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Multinomial: 6!/(3!2!1!) x (0.5)^3 (0.3)^2 (0.2) = 60 x 0.125 x 0.09 x 0.2 = 0.135 = 27/200.",
+    "shortcut": "Multinomial: 6!/$(3!2!1!) x (0.5)^{3} (0.3)^{2} (0.2) = 60 \\times 0.125 \\times 0.09 \\times 0.2 = 0.135 = 27/200$.",
     "tips": [
-      "Multinomial probability = [n!/(n1! n2! n3!)] p1^n1 p2^n2 p3^n3. Compute the multinomial coefficient first: 720/(6 x 2 x 1) = 60.",
+      "Multinomial probability = $[n!/(n_{1}! n_{2}! n_{3}!)] p_{1}^{n1} p_{2}^{n2} p_{3}^{n3}$. Compute the multinomial coefficient first: $720/(6 \\times 2 \\times 1) = 60$.",
       "'No one reads more than one paper' is the phrase that makes the three categories mutually exclusive and exhaustive, hence multinomial rather than independent binomials.",
-      "Keep it as a fraction: 60 x (1/8)(9/100)(1/5) = 60 x 9/4000 = 540/4000 = 27/200. Fractions avoid decimal drift.",
-      "Option (c) 27/100 is exactly double the answer - the trap for candidates who drop a factor of 2 somewhere in the coefficient."
+      "Keep it as a fraction: $60 x (1/8)(9/100)(1/5) = 60 \\times 9/4000 = 540/4000 = 27/200$. Fractions avoid decimal drift.",
+      "Option $(c) 27/100$ is exactly double the answer - the trap for candidates who drop a factor of 2 somewhere in the coefficient."
     ],
     "solution": [
       "Each reader independently reads A, B or C with probabilities 0.5, 0.3 and 0.2, and these are mutually exclusive since no one reads more than one paper.",
-      "For 6 randomly chosen readers, the counts follow a multinomial distribution with n = 6.",
-      "P(3 read A, 2 read B, 1 reads C) = [6!/(3! 2! 1!)] (0.5)^3 (0.3)^2 (0.2)^1.",
-      "The multinomial coefficient is 720/(6 x 2 x 1) = 60.",
-      "The probability factor is (0.125)(0.09)(0.2) = 0.00225.",
-      "So the probability is 60 x 0.00225 = 0.135 = 27/200, option (d)."
+      "For 6 randomly chosen readers, the counts follow a multinomial distribution with $n = 6$.",
+      "$\\operatorname{P}\\!\\left(\\text{3 read A, 2 read B, 1 reads C}\\right) = [6!/(3! 2! 1!)] (0.5)^{3} (0.3)^{2} (0.2)^{1}$.",
+      "The multinomial coefficient is $720/(6 \\times 2 \\times 1) = 60$.",
+      "The probability factor is $(0.125)(0.09)(0.2) = 0.00225$.",
+      "So the probability is $60 \\times 0.00225 = 0.135 = 27/200$, option (d)."
     ]
   },
   "2022-Q5": {
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "P(X=1) = P(X=2) gives e^(-L)L = e^(-L)L^2/2, so L = 2. For the Poisson, variance = mean = 2.",
+    "shortcut": "$\\operatorname{P}(X=1) = \\operatorname{P}(X=2)$ gives $e^{-L}L = e^{-L}L^{2}/2$, so $L = 2$. For the Poisson, variance = mean = 2.",
     "tips": [
-      "Take the RATIO of consecutive Poisson probabilities: P(X=k+1)/P(X=k) = lambda/(k+1). Setting it to 1 with k = 1 gives lambda = 2 immediately.",
-      "For the Poisson, mean = variance = lambda, so once lambda is found the answer needs no further work.",
-      "The exponential factor e^(-lambda) cancels on both sides - never expand it.",
-      "General fact worth carrying: P(X = k) = P(X = k+1) exactly when lambda = k + 1, so equal consecutive probabilities pinpoint lambda at once."
+      "Take the RATIO of consecutive Poisson probabilities: $\\operatorname{P}(X=k+1)/\\operatorname{P}(X=k) = \\lambda/(k+1)$. Setting it to 1 with $k = 1$ gives $\\lambda = 2$ immediately.",
+      "For the Poisson, mean = variance = $\\lambda$, so once $\\lambda$ is found the answer needs no further work.",
+      "The exponential factor $e^{-\\lambda}$ cancels on both sides - never expand it.",
+      "General fact worth carrying: $\\operatorname{P}(X = k) = \\operatorname{P}(X = k+1)$ exactly when $\\lambda = k + 1$, so equal consecutive probabilities pinpoint $\\lambda$ at once."
     ],
     "solution": [
-      "For a Poisson variable with parameter lambda, P(X = k) = e^(-lambda) lambda^k/k!.",
-      "The condition P(X = 1) = P(X = 2) gives e^(-lambda) lambda = e^(-lambda) lambda^2/2.",
-      "Cancelling e^(-lambda) and one factor of lambda (which is non-zero): 1 = lambda/2.",
-      "Hence lambda = 2.",
-      "For the Poisson distribution the variance equals the mean, so V(X) = lambda = 2.",
+      "For a Poisson variable with parameter $\\lambda, \\operatorname{P}(X = k) = e^{-\\lambda} \\lambda^{k}/k$!.",
+      "The condition $\\operatorname{P}(X = 1) = \\operatorname{P}(X = 2)$ gives $e^{-\\lambda} \\lambda = e^{-\\lambda} \\lambda^{2}/2$.",
+      "Cancelling $e^{-\\lambda}$ and one factor of $\\lambda$ (which is non-zero): $1 = \\lambda/2$.",
+      "Hence $\\lambda = 2$.",
+      "For the Poisson distribution the variance equals the mean, so $\\operatorname{V}(X) = \\lambda = 2$.",
       "Option (c) is correct."
     ]
   },
@@ -102,17 +102,17 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "With p = 1/3 the masses are 8/27, 12/27, 6/27, 1/27 and (X-1)^3 takes the values -1, 0, 1, 8. So E = (-8 + 0 + 6 + 8)/27 = 6/27 = 2/9.",
+    "shortcut": "With $p = 1/3$ the masses are $8/27, 12/27, 6/27, 1/27$ and $(X-1)^{3}$ takes the values -1, 0, 1, 8. So $E = (-8 + 0 + 6 + 8)/27 = 6/27 = 2/9$.",
     "tips": [
-      "Tabulate the function values before weighting: (X-1)^3 = -1, 0, 1, 8 for X = 0, 1, 2, 3. The cube makes the last value dominate.",
-      "Keep everything over 27: the numerator is -1(8) + 0(12) + 1(6) + 8(1) = 6, so the answer is 6/27 = 2/9 with no decimals.",
-      "The X = 1 term contributes nothing, which removes the largest probability from the calculation - a useful simplification to notice early.",
-      "Alternative route: expand E[(X-1)^3] = E(X^3) - 3E(X^2) + 3E(X) - 1 using E(X) = 1, E(X^2) = 5/3, E(X^3) = 3 - but direct summation is faster here."
+      "Tabulate the function values before weighting: $(X-1)^{3}$ = -1, 0, 1, 8 for $X = 0, 1, 2, 3$. The cube makes the last value dominate.",
+      "Keep everything over 27: the numerator is -$1(8) + 0(12) + 1(6) + 8(1) = 6$, so the answer is $6/27 = 2/9$ with no decimals.",
+      "The $X = 1$ term contributes nothing, which removes the largest probability from the calculation - a useful simplification to notice early.",
+      "Alternative route: expand $\\operatorname{E}[(X-1)^{3}] = \\operatorname{E}(X^{3}) - 3\\operatorname{E}(X^{2}) + 3\\operatorname{E}(X) - 1$ using $\\operatorname{E}(X) = 1, \\operatorname{E}(X^{2}) = 5/3, \\operatorname{E}(X^{3}) = 3$ - but direct summation is faster here."
     ],
     "solution": [
-      "X ~ Binomial(3, 1/3), so P(X=0) = (2/3)^3 = 8/27, P(X=1) = 3(1/3)(2/3)^2 = 12/27, P(X=2) = 3(1/3)^2(2/3) = 6/27, P(X=3) = (1/3)^3 = 1/27.",
-      "The function values are (X-1)^3 = (-1)^3 = -1, 0^3 = 0, 1^3 = 1 and 2^3 = 8 for X = 0, 1, 2, 3.",
-      "E[(X-1)^3] = (-1)(8/27) + 0(12/27) + 1(6/27) + 8(1/27) = (-8 + 0 + 6 + 8)/27 = 6/27 = 2/9.",
+      "X ~ Binomial($3, 1/3$), so $\\operatorname{P}(X=0) = (2/3)^{3} = 8/27, \\operatorname{P}(X=1) = 3(1/3)(2/3)^{2} = 12/27, \\operatorname{P}(X=2) = 3(1/3)^{2}(2/3) = 6/27, \\operatorname{P}(X=3) = (1/3)^{3} = 1/27$.",
+      "The function values are $(X-1)^{3} = (-1)^{3}$ = -$1, 0^{3} = 0, 1^{3} = 1$ and $2^{3} = 8$ for $X = 0, 1, 2, 3$.",
+      "$\\operatorname{E}[(X-1)^{3}] = (-1)(8/27) + 0(12/27) + 1(6/27) + 8(1/27) = (-8 + 0 + 6 + 8)/27 = 6/27 = 2/9$.",
       "Option (b) is correct."
     ]
   },
@@ -120,19 +120,19 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "X - Y is an integer, so X - Y <= 0.5 is the same as X <= Y. The qualifying cells are (1,1), (1,2), (2,2) with masses 2/21, 3/21, 4/21, totalling 9/21 = 3/7.",
+    "shortcut": "X - Y is an integer, so $X - Y \\le 0.5$ is the same as $X \\le Y$. The qualifying cells are $(1,1), (1,2), (2,2)$ with masses $2/21, 3/21, 4/21$, totalling $9/21 = 3/7$.",
     "tips": [
-      "Convert a fractional bound on a DISCRETE difference into an integer one: X - Y <= 0.5 means X - Y <= 0, i.e. X <= Y. This removes all ambiguity.",
+      "Convert a fractional bound on a DISCRETE difference into an integer one: $X - Y \\le 0.5$ means $X - Y \\le 0$, i.e. $X \\le Y$. This removes all ambiguity.",
       "List the qualifying (x,y) pairs explicitly rather than summing blindly - with only six cells the enumeration is quick and safe.",
-      "Verify the pmf first: the six masses (x+y)/21 are 2, 3, 3, 4, 4, 5 over 21, which sum to 21/21 = 1.",
-      "Option (d) 17/21 is the complement of the wrong event (X >= Y or similar) - always double-check which inequality you are summing over."
+      "Verify the pmf first: the six masses $(x+y)/21$ are 2, 3, 3, 4, 4, 5 over 21, which sum to $21/21 = 1$.",
+      "Option $(d) 17/21$ is the complement of the wrong event ($X \\ge Y$ or similar) - always double-check which inequality you are summing over."
     ],
     "solution": [
-      "The joint pmf is p(x,y) = (x+y)/21 for x = 1,2,3 and y = 1,2. The six masses are 2/21, 3/21, 3/21, 4/21, 4/21, 5/21, summing to 1.",
-      "Since X and Y take integer values, X - Y is an integer, so the event X - Y <= 0.5 is identical to X - Y <= 0, i.e. X <= Y.",
-      "The pairs with x <= y are (1,1), (1,2) and (2,2).",
-      "Their probabilities are p(1,1) = 2/21, p(1,2) = 3/21 and p(2,2) = 4/21.",
-      "Adding: (2 + 3 + 4)/21 = 9/21 = 3/7.",
+      "The joint pmf is $p(x,y) = (x+y)/21$ for $x = 1$,2,3 and $y = 1$,2. The six masses are $2/21, 3/21, 3/21, 4/21, 4/21, 5/21$, summing to 1.",
+      "Since X and Y take integer values, X - Y is an integer, so the event $X - Y \\le 0.5$ is identical to $X - Y \\le 0$, i.e. $X \\le Y$.",
+      "The pairs with $x \\le y$ are $(1,1), (1,2)$ and $(2,2)$.",
+      "Their probabilities are $p(1,1) = 2/21, p(1,2) = 3/21$ and $p(2,2) = 4/21$.",
+      "Adding: $(2 + 3 + 4)/21 = 9/21 = 3/7$.",
       "Option (c) is correct."
     ]
   },
@@ -140,39 +140,39 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Choose the first batch of 2n from 4n people in C(4n,2n) ways; the favourable choices take n boys from 2n and n girls from 2n, giving [C(2n,n)]^2. Hence the probability is [C(2n,n)]^2/C(4n,2n).",
+    "shortcut": "Choose the first batch of 2n from 4n people in $\\binom{4n}{2n}$ ways; the favourable choices take n boys from 2n and n girls from 2n, giving $[\\binom{2n}{n}]^{2}$. Hence the probability is $[\\binom{2n}{n}]^{2}/\\binom{4n}{2n}$.",
     "tips": [
       "Count only the FIRST batch - the second is then determined, so there is no need to divide by 2 or to count both batches.",
-      "Favourable count factorises because the boys and the girls are chosen independently: C(2n,n) ways for each.",
-      "Sanity check at n = 1: 2 boys and 2 girls split into pairs gives [C(2,1)]^2/C(4,2) = 4/6 = 2/3, which matches direct enumeration.",
-      "Note that if each batch has n boys, it automatically has 2n - n = n girls, so one condition suffices - this is why the numerator is a simple product."
+      "Favourable count factorises because the boys and the girls are chosen independently: $\\binom{2n}{n}$ ways for each.",
+      "Sanity check at $n = 1$: 2 boys and 2 girls split into pairs gives $[\\binom{2}{1}]^{2}/\\binom{4}{2} = 4/6 = 2/3$, which matches direct enumeration.",
+      "Note that if each batch has n boys, it automatically has $2n - n = n$ girls, so one condition suffices - this is why the numerator is a simple product."
     ],
     "solution": [
       "There are 2n boys and 2n girls, i.e. 4n people, to be divided at random into two batches of 2n each.",
       "It suffices to count the ways of choosing the first batch, since the second batch is then determined.",
-      "Total number of equally likely first batches: C(4n, 2n).",
-      "For the batch to be equally divided it must contain n boys and n girls. The boys can be chosen in C(2n, n) ways and the girls in C(2n, n) ways, independently.",
-      "So the number of favourable choices is [C(2n,n)]^2, and if the first batch has n boys and n girls then so does the second.",
-      "The probability is [C(2n,n)]^2/C(4n,2n), option (b)."
+      "Total number of equally likely first batches: $\\binom{4n}{2n}$.",
+      "For the batch to be equally divided it must contain n boys and n girls. The boys can be chosen in $\\binom{2n}{n}$ ways and the girls in $\\binom{2n}{n}$ ways, independently.",
+      "So the number of favourable choices is $[\\binom{2n}{n}]^{2}$, and if the first batch has n boys and n girls then so does the second.",
+      "The probability is $[\\binom{2n}{n}]^{2}/\\binom{4n}{2n}$, option (b)."
     ]
   },
   "2022-Q9": {
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "For fixed x the y-part is proportional to y e^(-y/(1+x)), a Gamma with shape 2 and scale (1+x), whose mean is 2(1+x). At x = 10 this is 22.",
+    "shortcut": "For fixed x the y-part is proportional to $y e^(-y/(1+x)), a \\Gamma$ with shape 2 and scale $(1+x)$, whose mean is $2(1+x)$. At $x = 10$ this is 22.",
     "tips": [
-      "Read the conditional law off the y-dependence: y^(a-1) e^(-y/b) is Gamma(shape a, scale b), so here a = 2 and b = 1 + x.",
-      "Gamma mean = shape x scale = 2(1 + x). Any function of x alone in the density (here 1/(1+x)^4) is absorbed into the normalising constant and cannot affect the conditional mean.",
-      "The power of y is 1, so the shape is 2, not 1 - mistaking it for an exponential gives (1+x) = 11 and misses every option.",
+      "Read the conditional law off the y-dependence: $y^{a-1} e^{-y/b}$ is $\\Gamma$(shape a, scale b), so here $a = 2$ and $b = 1 + x$.",
+      "$\\Gamma$ mean = shape x scale = $2(1 + x)$. Any function of x alone in the density (here $1/(1+x)^{4}$) is absorbed into the normalising constant and cannot affect the conditional mean.",
+      "The power of y is 1, so the shape is 2, not 1 - mistaking it for an exponential gives $(1+x) = 11$ and misses every option.",
       "This is the same structural trick as 2018 Q26: identify the conditional family from the y-kernel and read off its mean."
     ],
     "solution": [
-      "The joint density is f(x,y) = y (1+x)^(-4) exp(-y/(1+x)) for x, y >= 0.",
-      "For a fixed value X = x, the conditional density of Y is proportional to y exp(-y/(1+x)).",
-      "This is the kernel of a Gamma distribution with shape parameter 2 and scale parameter (1 + x); normalising gives f(y|x) = y e^(-y/(1+x))/(1+x)^2.",
-      "The mean of a Gamma(shape a, scale b) variable is ab, so E(Y | X = x) = 2(1 + x).",
-      "At x = 10: E(Y | X = 10) = 2(11) = 22.",
+      "The joint density is $f(x,y) = y (1+x)^{-4} \\exp(-y/(1+x))$ for $x, y \\ge 0$.",
+      "For a fixed value $X = x$, the conditional density of Y is proportional to $y \\exp(-y/(1+x))$.",
+      "This is the kernel of $a \\Gamma$ distribution with shape parameter 2 and scale parameter $(1 + x)$; normalising gives $f(y\\mid x) = y e^(-y/(1+x))/(1+x)^{2}$.",
+      "The mean of $a \\Gamma$(shape a, scale b) variable is ab, so $\\operatorname{E}(Y \\mid X = x) = 2(1 + x)$.",
+      "At $x = 10$: $\\operatorname{E}(Y \\mid X = 10) = 2(11) = 22$.",
       "Option (a) is correct."
     ]
   },
@@ -180,19 +180,19 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The regression of Y on X is the conditional mean, which from the previous part is E(Y|X=x) = 2(1+x) = 2x + 2.",
+    "shortcut": "The regression of Y on X is the conditional mean, which from the previous part is $\\operatorname{E}(Y\\mid X=x) = 2(1+x) = 2x + 2$.",
     "tips": [
-      "Regression of Y on X IS the conditional expectation E(Y|X = x) - no least-squares computation is needed once the conditional law is known.",
+      "Regression of Y on X IS the conditional expectation $\\operatorname{E}(Y\\mid X = x)$ - no least-squares computation is needed once the conditional law is known.",
       "The line here happens to be exactly linear, which is why the answer is a clean straight line rather than a curve.",
       "Reuse the previous part: shared-stem items are designed so that the conditional mean found there is the regression asked for here.",
-      "Check against the earlier value: at x = 10 the line gives 22, matching E(Y|X=10) exactly."
+      "Check against the earlier value: at $x = 10$ the line gives 22, matching $\\operatorname{E}(Y\\mid X=10)$ exactly."
     ],
     "solution": [
-      "The regression curve of Y on X is by definition the graph of E(Y | X = x) against x.",
-      "From the joint density, the conditional distribution of Y given X = x is Gamma with shape 2 and scale (1 + x).",
-      "Hence E(Y | X = x) = 2(1 + x).",
-      "Expanding: E(Y | X = x) = 2x + 2.",
-      "The regression is therefore the straight line Y = 2X + 2, consistent with the value 22 obtained at x = 10.",
+      "The regression curve of Y on X is by definition the graph of $\\operatorname{E}(Y \\mid X = x)$ against x.",
+      "From the joint density, the conditional distribution of Y given $X = x$ is $\\Gamma$ with shape 2 and scale $(1 + x)$.",
+      "Hence $\\operatorname{E}(Y \\mid X = x) = 2(1 + x)$.",
+      "Expanding: $\\operatorname{E}(Y \\mid X = x) = 2x + 2$.",
+      "The regression is therefore the straight line $Y = 2X + 2$, consistent with the value 22 obtained at $x = 10$.",
       "Option (a) is correct."
     ]
   },
@@ -200,19 +200,19 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The data satisfy Y = (X-3)^2 exactly - a symmetric parabola about x = 3. The deviation products cancel in pairs, so the covariance and hence r are 0.",
+    "shortcut": "The data satisfy $Y = (X-3)^{2}$ exactly - a symmetric parabola about $x = 3$. The deviation products cancel in pairs, so the covariance and hence r are 0.",
     "tips": [
-      "Recognise the pattern first: 4, 1, 0, 1, 4 is (X-3)^2, symmetric about the mean of X. Symmetry forces zero LINEAR correlation.",
+      "Recognise the pattern first: 4, 1, 0, 1, 4 is $(X-3)^{2}$, symmetric about the mean of X. Symmetry forces zero LINEAR correlation.",
       "Deviations of X are -2, -1, 0, 1, 2 and of Y are 2, -1, -2, -1, 2; the products -4, 1, 0, -1, 4 sum to 0.",
-      "This is the standard illustration that r = 0 does NOT mean no relationship - here the relationship is perfect but quadratic.",
+      "This is the standard illustration that $r = 0$ does NOT mean no relationship - here the relationship is perfect but quadratic.",
       "Option (d) 1 punishes candidates who see an exact functional relationship and assume perfect correlation; r measures linearity only."
     ],
     "solution": [
-      "The data are (1,4), (2,1), (3,0), (4,1), (5,4). Note that Y = (X - 3)^2 exactly.",
-      "Mean of X: (1+2+3+4+5)/5 = 3. Mean of Y: (4+1+0+1+4)/5 = 2.",
+      "The data are $(1,4), (2,1), (3,0), (4,1), (5,4)$. Note that $Y = (X - 3)^{2}$ exactly.",
+      "Mean of X: $(1+2+3+4+5)/5 = 3$. Mean of Y: $(4+1+0+1+4)/5 = 2$.",
       "Deviations of X: -2, -1, 0, 1, 2. Deviations of Y: 2, -1, -2, -1, 2.",
-      "Products of deviations: (-2)(2) = -4, (-1)(-1) = 1, (0)(-2) = 0, (1)(-1) = -1, (2)(2) = 4.",
-      "Their sum is -4 + 1 + 0 - 1 + 4 = 0, so the covariance is 0 and hence r = 0.",
+      "Products of deviations: $(-2)(2)$ = -$4, (-1)(-1) = 1, (0)(-2) = 0, (1)(-1)$ = -$1, (2)(2) = 4$.",
+      "Their sum is -$4 + 1 + 0 - 1 + 4 = 0$, so the covariance is 0 and hence $r = 0$.",
       "The variables are perfectly related but the relationship is quadratic, not linear. Option (a) is correct."
     ]
   },
@@ -220,20 +220,20 @@
     "answer": 2,
     "confidence": "medium",
     "type": "Numerical",
-    "issue": "SOURCE NOTE: as printed the expression E(T^2 Xbar^2) evaluates, using the independence of Xbar and T with T ~ chi-square(4), to E(T^2) E(Xbar^2) = 24 x 0.2 = 4.8, which is NOT among the four printed options (the identical item in the 2019 paper, Q25, did list 4.8 and that is its answer). The only option consistent with these same quantities is 24.2 = E(T^2) + E(Xbar^2), i.e. the reading E(T^2 + Xbar^2); the option set (4.0 = E(T), 4.2 = E(T) + E(Xbar^2), 24.2, 25.2) is clearly built around sums. The stem is preserved verbatim and (c) is selected as the only internally consistent key.",
-    "shortcut": "Xbar and T are independent with T ~ chi-square(4) and Xbar ~ N(0, 1/5). So E(T^2) = 2(4) + 4^2 = 24 and E(Xbar^2) = 1/5 = 0.2, giving 24.2 for the sum.",
+    "issue": "SOURCE NOTE: as printed the expression $\\operatorname{E}(T^{2} \\bar{X}^{2})$ evaluates, using the independence of $\\bar{X}$ and T with $T \\sim \\chi^{2}_{4}$, to $\\operatorname{E}(T^{2}) \\operatorname{E}(\\bar{X}^{2}) = 24 \\times 0.2 = 4.8$, which is NOT among the four printed options (the identical item in the 2019 paper, Q25, did list 4.8 and that is its answer). The only option consistent with these same quantities is $24.2 = \\operatorname{E}(T^{2}) + \\operatorname{E}(\\bar{X}^{2})$, i.e. the reading $\\operatorname{E}(T^{2} + \\bar{X}^{2})$; the option set $(4.0 = \\operatorname{E}(T), 4.2 = \\operatorname{E}(T) + \\operatorname{E}(\\bar{X}^{2}), 24.2, 25.2)$ is clearly built around sums. The stem is preserved verbatim and (c) is selected as the only internally consistent key.",
+    "shortcut": "$\\bar{X}$ and T are independent with $T \\sim \\chi^{2}_{4}$ and $\\bar{X} \\sim N(0, 1/5)$. So $\\operatorname{E}(T^{2}) = 2(4) + 4^{2} = 24$ and $\\operatorname{E}(\\bar{X}^{2}) = 1/5 = 0.2$, giving 24.2 for the sum.",
     "tips": [
-      "In normal sampling Xbar and the corrected sum of squares are INDEPENDENT, and T = sum (X_i - Xbar)^2 ~ chi-square(n-1) - here 4 degrees of freedom, not 5.",
-      "For chi-square with v d.f.: E = v, Var = 2v, so E(T^2) = 2v + v^2 = 8 + 16 = 24.",
-      "E(Xbar^2) = Var(Xbar) = sigma^2/n = 1/5 = 0.2, since E(Xbar) = 0.",
+      "In normal sampling $\\bar{X}$ and the corrected sum of squares are INDEPENDENT, and T = sum $(X_{i} - \\bar{X})^{2} \\sim \\chi^{2}_{n-1}$ - here 4 degrees of freedom, not 5.",
+      "For $\\chi^{2}$ with v d.f.: $E = v, Var = 2v$, so $\\operatorname{E}(T^{2}) = 2v + v^{2} = 8 + 16 = 24$.",
+      "$\\operatorname{E}(\\bar{X}^{2}) = Var$($\\bar{X}$) = $\\sigma^{2}/n = 1/5 = 0.2$, since E($\\bar{X}$) = 0.",
       "The four options are 4.0, 4.2, 24.2 and 25.2 - all built from the two quantities 4, 24, 0.2 and 1, which is a strong hint that the intended expression is a sum rather than a product."
     ],
     "solution": [
-      "For a sample of size 5 from N(0,1), Xbar and T = sum (X_i - Xbar)^2 are independent, with T ~ chi-square with 4 degrees of freedom and Xbar ~ N(0, 1/5).",
-      "For chi-square with 4 d.f.: E(T) = 4 and Var(T) = 8, so E(T^2) = Var(T) + [E(T)]^2 = 8 + 16 = 24.",
-      "Since E(Xbar) = 0, E(Xbar^2) = Var(Xbar) = 1/5 = 0.2.",
-      "The product reading gives E(T^2 Xbar^2) = E(T^2) E(Xbar^2) = 24 x 0.2 = 4.8, which does not appear among the options.",
-      "The sum reading gives E(T^2) + E(Xbar^2) = 24 + 0.2 = 24.2, which is option (c) and is the only choice these quantities can produce.",
+      "For a sample of size 5 from $N(0,1), \\bar{X}$ and T = sum $(X_{i} - \\bar{X})^{2}$ are independent, with $T \\sim \\chi^{2}$ with 4 degrees of freedom and $\\bar{X} \\sim N(0, 1/5)$.",
+      "For $\\chi^{2}$ with 4 d.f.: $\\operatorname{E}(T) = 4$ and $\\operatorname{Var}(T) = 8$, so $\\operatorname{E}(T^{2}) = \\operatorname{Var}(T) + [\\operatorname{E}(T)]^{2} = 8 + 16 = 24$.",
+      "Since E($\\bar{X}$) = $0, \\operatorname{E}(\\bar{X}^{2}) = Var$($\\bar{X}$) = $1/5 = 0.2$.",
+      "The product reading gives $\\operatorname{E}(T^{2} \\bar{X}^{2}) = \\operatorname{E}(T^{2}) \\operatorname{E}(\\bar{X}^{2}) = 24 \\times 0.2 = 4.8$, which does not appear among the options.",
+      "The sum reading gives $\\operatorname{E}(T^{2}) + \\operatorname{E}(\\bar{X}^{2}) = 24 + 0.2 = 24.2$, which is option (c) and is the only choice these quantities can produce.",
       "Hence (c) is selected, with the discrepancy flagged rather than the stem altered."
     ]
   },
@@ -241,79 +241,79 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "X + Y is normal with mean 30 and variance 100 + 100 + 2(0.5)(100) = 300. Then E(e^W) = exp(mean + variance/2) = exp(30 + 150) = e^180.",
+    "shortcut": "X + Y is normal with mean 30 and variance $100 + 100 + 2(0.5)(100) = 300$. Then $\\operatorname{E}(e^{W}) = \\exp$(mean + variance/2) = $\\exp(30 + 150) = e^{180}$.",
     "tips": [
-      "The parameters in BVN(mu1, mu2, sigma1^2, sigma2^2, rho) are VARIANCES here, both 100, so each standard deviation is 10.",
-      "Var(X+Y) = sigma1^2 + sigma2^2 + 2 rho sigma1 sigma2 = 100 + 100 + 2(0.5)(10)(10) = 300. Forgetting the covariance term gives 200 and the wrong answer.",
-      "E(e^W) for W ~ N(m, v) is exp(m + v/2) - the MGF at t = 1. The halving of the variance is the step most often dropped.",
-      "Arithmetic: 30 + 300/2 = 30 + 150 = 180. Option (a) e^150 comes from forgetting the mean; option (d) e^220 from using v rather than v/2 with the wrong variance."
+      "The parameters in BVN($\\mu1, \\mu2, \\sigma1^{2}, \\sigma2^{2}, \\rho$) are VARIANCES here, both 100, so each standard deviation is 10.",
+      "$\\operatorname{Var}(X+Y) = \\sigma1^{2} + \\sigma2^{2} + 2 \\rho \\sigma1 \\sigma2 = 100 + 100 + 2(0.5)(10)(10) = 300$. Forgetting the covariance term gives 200 and the wrong answer.",
+      "$\\operatorname{E}(e^{W})$ for $W \\sim N(m, v)$ is $\\exp(m + v/2)$ - the MGF at $t = 1$. The halving of the variance is the step most often dropped.",
+      "Arithmetic: $30 + 300/2 = 30 + 150 = 180$. Option $(a) e^{150}$ comes from forgetting the mean; option $(d) e^{220}$ from using v rather than $v/2$ with the wrong variance."
     ],
     "solution": [
-      "(X,Y) ~ BVN(10, 20, 100, 100, 0.5), so E(X) = 10, E(Y) = 20, Var(X) = Var(Y) = 100 and rho = 0.5, giving sigma_X = sigma_Y = 10.",
-      "Any linear combination of a bivariate normal pair is normal, so W = X + Y is normal.",
-      "E(W) = 10 + 20 = 30.",
-      "Var(W) = Var(X) + Var(Y) + 2 Cov(X,Y) = 100 + 100 + 2(0.5)(10)(10) = 200 + 100 = 300.",
-      "For W ~ N(m, v), E(e^W) = exp(m + v/2) = exp(30 + 150).",
-      "Hence E(e^(X+Y)) = e^180, option (b)."
+      "(X,Y) ~ BVN(10, 20, 100, 100, 0.5), so $\\operatorname{E}(X) = 10, \\operatorname{E}(Y) = 20, \\operatorname{Var}(X) = \\operatorname{Var}(Y) = 100$ and $\\rho = 0.5$, giving $\\sigma_{X} = \\sigma_{Y} = 10$.",
+      "Any linear combination of a bivariate normal pair is normal, so $W = X + Y$ is normal.",
+      "$\\operatorname{E}(W) = 10 + 20 = 30$.",
+      "$\\operatorname{Var}(W) = \\operatorname{Var}(X) + \\operatorname{Var}(Y) + 2 \\operatorname{Cov}(X,Y) = 100 + 100 + 2(0.5)(10)(10) = 200 + 100 = 300$.",
+      "For $W \\sim N(m, v), \\operatorname{E}(e^{W}) = \\exp(m + v/2) = \\exp(30 + 150)$.",
+      "Hence $\\operatorname{E}(e^{X+Y}) = e^{180}$, option (b)."
     ]
   },
   "2022-Q14": {
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "xbar = 6, ybar = 11, Sxy = 300 - 264 = 36, Syy = 572 - 484 = 88. So b_XY = 36/88 = 0.4091 and X = 6 + 0.4091(10 - 11) = 5.59.",
+    "shortcut": "$\\bar{x} = 6, \\bar{y} = 11$, Sxy = $300 - 264 = 36$, Syy = $572 - 484 = 88$. So $b_{XY} = 36/88 = 0.4091$ and $X = 6 + 0.4091(10 - 11) = 5.59$.",
     "tips": [
       "Predicting X from Y needs the regression of X ON Y, whose coefficient is Sxy/Syy - dividing by Sxx instead is the classic reversal error.",
-      "Corrected sums: Sxy = sum xy - n xbar ybar and Syy = sum y^2 - n ybar^2. Compute the means first (6 and 11) and the rest is arithmetic.",
-      "Y = 10 lies just BELOW ybar = 11 and the relationship is positive, so the predicted X must lie just below xbar = 6 - which immediately identifies 5.59.",
-      "sum x^2 = 164 is not needed for this prediction; it would be required only for the regression of Y on X or for r."
+      "Corrected sums: Sxy = sum xy - $n \\bar{x} \\bar{y}$ and Syy = sum $y^{2} - n \\bar{y}$^2. Compute the means first (6 and 11) and the rest is arithmetic.",
+      "$Y = 10$ lies just BELOW $\\bar{y} = 11$ and the relationship is positive, so the predicted X must lie just below $\\bar{x} = 6$ - which immediately identifies 5.59.",
+      "sum $x^{2} = 164$ is not needed for this prediction; it would be required only for the regression of Y on X or for r."
     ],
     "solution": [
-      "With n = 4: xbar = 24/4 = 6 and ybar = 44/4 = 11.",
-      "Corrected sum of products: Sxy = sum xy - n xbar ybar = 300 - 4(6)(11) = 300 - 264 = 36.",
-      "Corrected sum of squares for Y: Syy = sum y^2 - n ybar^2 = 572 - 4(121) = 572 - 484 = 88.",
-      "Regression coefficient of X on Y: b_XY = Sxy/Syy = 36/88 = 0.40909.",
-      "The regression line is X = xbar + b_XY (Y - ybar) = 6 + 0.40909(Y - 11).",
-      "At Y = 10: X = 6 + 0.40909(-1) = 5.591, i.e. 5.59, option (d)."
+      "With $n = 4$: $\\bar{x} = 24/4 = 6$ and $\\bar{y} = 44/4 = 11$.",
+      "Corrected sum of products: Sxy = sum xy - $n \\bar{x} \\bar{y} = 300 - 4(6)(11) = 300 - 264 = 36$.",
+      "Corrected sum of squares for Y: Syy = sum $y^{2} - n \\bar{y}$^2 = $572 - 4(121) = 572 - 484 = 88$.",
+      "Regression coefficient of X on Y: $b_{XY}$ = Sxy/Syy = $36/88 = 0.40909$.",
+      "The regression line is $X = \\bar{x} + b_{XY} (Y - \\bar{y}) = 6 + 0.40909(Y - 11)$.",
+      "At $Y = 10$: $X = 6 + 0.40909(-1) = 5.591$, i.e. 5.59, option (d)."
     ]
   },
   "2022-Q15": {
     "answer": 3,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "For a standard bivariate normal pair, E(X1^2 X2^2) = 1 + 2 rho^2 - a standard fourth-moment result.",
+    "shortcut": "For a standard bivariate normal pair, $\\operatorname{E}(X_{1}^{2} X_{2}^{2}) = 1 + 2 \\rho^{2} - a$ standard fourth-moment result.",
     "tips": [
-      "Isserlis (Wick) theorem for zero-mean joint normals: E(X1 X2 X3 X4) = E(X1X2)E(X3X4) + E(X1X3)E(X2X4) + E(X1X4)E(X2X3). With the pairs (X1,X1,X2,X2) this gives 1 + rho^2 + rho^2.",
-      "Check rho = 0: independence gives E(X1^2)E(X2^2) = 1, and the formula returns 1. Only options (a) and (d) even approach this, and (a) gives 1/2.",
-      "Check rho = 1: X1 = X2 so the answer is E(X^4) = 3, and 2(1) + 1 = 3. Option (d) passes both limits.",
-      "Conditional route: E(X1^2 X2^2) = E[X1^2 E(X2^2|X1)] with E(X2^2|X1) = (1 - rho^2) + rho^2 X1^2, giving (1-rho^2) + 3 rho^2 = 1 + 2 rho^2."
+      "Isserlis (Wick) theorem for zero-mean joint normals: $\\operatorname{E}(X_{1} X_{2} X_{3} X_{4}) = \\operatorname{E}(X1X2)\\operatorname{E}(X3X4) + \\operatorname{E}(X1X3)\\operatorname{E}(X2X4) + \\operatorname{E}(X1X4)\\operatorname{E}(X2X3)$. With the pairs $(X_{1},X_{1},X_{2},X_{2})$ this gives $1 + \\rho^{2} + \\rho^{2}$.",
+      "Check $\\rho = 0$: independence gives $\\operatorname{E}(X_{1}^{2})\\operatorname{E}(X_{2}^{2}) = 1$, and the formula returns 1. Only options (a) and (d) even approach this, and (a) gives $1/2$.",
+      "Check $\\rho = 1$: $X_{1} = X_{2}$ so the answer is $\\operatorname{E}(X^{4}) = 3$, and $2(1) + 1 = 3$. Option (d) passes both limits.",
+      "Conditional route: $\\operatorname{E}(X_{1}^{2} X_{2}^{2}) = \\operatorname{E}[X_{1}^{2} \\operatorname{E}(X_{2}^{2}\\mid X_{1})]$ with $\\operatorname{E}(X_{2}^{2}\\mid X_{1}) = (1 - \\rho^{2}) + \\rho^{2} X_{1}^{2}$, giving $(1-\\rho^{2}) + 3 \\rho^{2} = 1 + 2 \\rho^{2}$."
     ],
     "solution": [
-      "(X1, X2) is standard bivariate normal with correlation rho, so E(X1) = E(X2) = 0, Var = 1 each and E(X1 X2) = rho.",
-      "Conditionally, X2 given X1 = x is N(rho x, 1 - rho^2), so E(X2^2 | X1 = x) = (1 - rho^2) + rho^2 x^2.",
-      "Hence E(X1^2 X2^2) = E[X1^2 ((1 - rho^2) + rho^2 X1^2)] = (1 - rho^2) E(X1^2) + rho^2 E(X1^4).",
-      "For a standard normal, E(X1^2) = 1 and E(X1^4) = 3.",
-      "So E(X1^2 X2^2) = (1 - rho^2) + 3 rho^2 = 1 + 2 rho^2.",
-      "Checks: rho = 0 gives 1 and rho = 1 gives 3, both correct. Option (d)."
+      "$(X_{1}, X_{2})$ is standard bivariate normal with correlation $\\rho$, so $\\operatorname{E}(X_{1}) = \\operatorname{E}(X_{2}) = 0, Var = 1$ each and $\\operatorname{E}(X_{1} X_{2}) = \\rho$.",
+      "Conditionally, X2 given $X_{1} = x$ is $N(\\rho x, 1 - \\rho^{2})$, so $\\operatorname{E}(X_{2}^{2} \\mid X_{1} = x) = (1 - \\rho^{2}) + \\rho^{2} x^{2}$.",
+      "Hence $\\operatorname{E}(X_{1}^{2} X_{2}^{2}) = \\operatorname{E}[X_{1}^{2} ((1 - \\rho^{2}) + \\rho^{2} X_{1}^{2})] = (1 - \\rho^{2}) \\operatorname{E}(X_{1}^{2}) + \\rho^{2} \\operatorname{E}(X_{1}^{4})$.",
+      "For a standard normal, $\\operatorname{E}(X_{1}^{2}) = 1$ and $\\operatorname{E}(X_{1}^{4}) = 3$.",
+      "So $\\operatorname{E}(X_{1}^{2} X_{2}^{2}) = (1 - \\rho^{2}) + 3 \\rho^{2} = 1 + 2 \\rho^{2}$.",
+      "Checks: $\\rho = 0$ gives 1 and $\\rho = 1$ gives 3, both correct. Option (d)."
     ]
   },
   "2022-Q16": {
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "R^2 = 2r^2/(1+r), so 1 - R^2 = (1 + r - 2r^2)/(1+r). Factorising the numerator as (1-r)(1+2r) gives (1-r)(1+2r)/(1+r).",
+    "shortcut": "$R^{2} = 2r^{2}/(1+r)$, so $1 - R^{2} = (1 + r - 2r^{2})/(1+r)$. Factorising the numerator as $(1-r)(1+2r)$ gives $(1-r)(1+2r)/(1+r)$.",
     "tips": [
-      "Start from the known result R^2_(1.23) = 2r^2/(1 + r) for equal pairwise correlations, then subtract from 1 over the common denominator.",
-      "Factorise -2r^2 + r + 1 carefully: it equals -(2r + 1)(r - 1) = (1 - r)(1 + 2r). Getting this factorisation right is the whole question.",
-      "Options (c) and (d) have (1 - r) in the denominator, which would cancel with the numerator's (1 - r) and leave no r-dependence of the right form - a structural giveaway.",
-      "Check r = 0: 1 - R^2 must be 1, and (1)(1)/(1) = 1. Check r = 1: R^2 = 1 so 1 - R^2 = 0, and (0)(3)/(2) = 0. Only option (b) passes both."
+      "Start from the known result $R^{2}_{1.23} = 2r^{2}/(1 + r)$ for equal pairwise correlations, then subtract from 1 over the common denominator.",
+      "Factorise -$2r^{2} + r + 1$ carefully: it equals -$(2r + 1)(r - 1) = (1 - r)(1 + 2r)$. Getting this factorisation right is the whole question.",
+      "Options (c) and (d) have $(1 - r)$ in the denominator, which would cancel with the numerator's $(1 - r)$ and leave no r-dependence of the right form - a structural giveaway.",
+      "Check $r = 0$: $1 - R^{2}$ must be 1, and $(1)(1)/(1) = 1$. Check $r = 1$: $R^{2} = 1$ so $1 - R^{2} = 0$, and $(0)(3)/(2) = 0$. Only option (b) passes both."
     ],
     "solution": [
-      "For a trivariate distribution with all pairwise correlations equal to r, R^2_(1.23) = (r^2 + r^2 - 2r^3)/(1 - r^2) = 2r^2(1-r)/[(1-r)(1+r)] = 2r^2/(1 + r).",
-      "Therefore 1 - R^2_(1.23) = 1 - 2r^2/(1 + r) = [(1 + r) - 2r^2]/(1 + r).",
-      "Factorise the numerator: -2r^2 + r + 1 = -(2r^2 - r - 1) = -(2r + 1)(r - 1) = (1 - r)(1 + 2r).",
-      "Hence 1 - R^2_(1.23) = (1 - r)(1 + 2r)/(1 + r).",
-      "Checks: at r = 0 the value is 1 and at r = 1 it is 0, both as required.",
+      "For a trivariate distribution with all pairwise correlations equal to $r, R^{2}_{1.23} = (r^{2} + r^{2} - 2r^{3})/(1 - r^{2}) = 2r^{2}(1-r)/[(1-r)(1+r)] = 2r^{2}/(1 + r)$.",
+      "Therefore $1 - R^{2}_{1.23} = 1 - 2r^{2}/(1 + r) = [(1 + r) - 2r^{2}]/(1 + r)$.",
+      "Factorise the numerator: -$2r^{2} + r + 1$ = -$(2r^{2} - r - 1)$ = -$(2r + 1)(r - 1) = (1 - r)(1 + 2r)$.",
+      "Hence $1 - R^{2}_{1.23} = (1 - r)(1 + 2r)/(1 + r)$.",
+      "Checks: at $r = 0$ the value is 1 and at $r = 1$ it is 0, both as required.",
       "Option (b) is correct."
     ]
   },
@@ -321,19 +321,19 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Substituting u = y^2 turns the y-integral into a Gamma integral equal to 2^(f/2) Gamma(f/2); completing the square in x gives sqrt(2 pi) e^(mu^2/2). Multiplying: Gamma(f/2) 2^((f+1)/2) sqrt(pi) e^(mu^2/2).",
+    "shortcut": "Substituting $u = y^{2}$ turns the y-integral into $a \\Gamma$ integral equal to $2^{f/2} \\Gamma(f/2)$; completing the square in x gives $\\sqrt{2 pi} e^{\\mu^{2}/2}$. Multiplying: $\\Gamma(f/2) 2^((f+1)/2) \\sqrt{pi} e^{\\mu^{2}/2}$.",
     "tips": [
-      "Read the differential carefully: it is d(y^2), not dy. Setting u = y^2 makes the y-part a standard Gamma integral with no Jacobian fuss.",
-      "The y-integral becomes the integral of u^(f/2 - 1) e^(-u/2) du = 2^(f/2) Gamma(f/2) - the Gamma(shape f/2, scale 2) normalising constant, i.e. exactly the chi-square with f d.f.",
-      "Complete the square in the exponent: -x^2/2 + mu x = -(x - mu)^2/2 + mu^2/2, so the x-integral is sqrt(2 pi) e^(+mu^2/2). The sign of mu^2/2 is POSITIVE, which separates options (b) and (d).",
-      "Combining 2^(f/2) with the sqrt(2) from sqrt(2 pi) gives 2^((f+1)/2) sqrt(pi) - track the powers of 2 to the end."
+      "Read the differential carefully: it is $d(y^{2})$, not dy. Setting $u = y^{2}$ makes the y-part a standard $\\Gamma$ integral with no Jacobian fuss.",
+      "The y-integral becomes the $\\int u^{f/2 - 1} e^{-u/2}\\,du = 2^{f/2} \\Gamma(f/2)$ - the $\\Gamma$(shape $f/2$, scale 2) normalising constant, i.e. exactly the $\\chi^{2}$ with f d.f.",
+      "Complete the square in the exponent: -$x^{2}/2 + \\mu x$ = -$(x - \\mu)^{2}/2 + \\mu^{2}/2$, so the x-integral is $\\sqrt{2 pi} e^{+\\mu^{2}/2}$. The sign of $\\mu^{2}/2$ is POSITIVE, which separates options (b) and (d).",
+      "Combining $2^{f/2}$ with the $\\sqrt{2}$ from $\\sqrt{2 pi}$ gives $2^((f+1)/2) \\sqrt{pi}$ - track the powers of 2 to the end."
     ],
     "solution": [
-      "Handle the y-integral first, noting that the differential is d(y^2). Put u = y^2, so the integrand y^(f-2) e^(-y^2/2) becomes u^((f-2)/2) e^(-u/2).",
-      "The integral from 0 to infinity of u^(f/2 - 1) e^(-u/2) du is the Gamma(shape f/2, scale 2) normalising constant, namely 2^(f/2) Gamma(f/2).",
-      "For the x-integral, complete the square: -x^2/2 + mu x = -(x - mu)^2/2 + mu^2/2.",
-      "So the integral over x is e^(mu^2/2) times the integral of e^(-(x-mu)^2/2) dx = e^(mu^2/2) sqrt(2 pi).",
-      "Multiplying the two parts: 2^(f/2) Gamma(f/2) . sqrt(2 pi) e^(mu^2/2) = Gamma(f/2) 2^((f+1)/2) sqrt(pi) e^(mu^2/2).",
+      "Handle the y-integral first, noting that the differential is $d(y^{2})$. Put $u = y^{2}$, so the integrand $y^{f-2} e^{-y^{2}/2}$ becomes $u^((f-2)/2) e^{-u/2}$.",
+      "The $\\int_{0}^{\\infty} u^{f/2 - 1} e^{-u/2}\\,du$ is the $\\Gamma$(shape $f/2$, scale 2) normalising constant, namely $2^{f/2} \\Gamma(f/2)$.",
+      "For the x-integral, complete the square: -$x^{2}/2 + \\mu x$ = -$(x - \\mu)^{2}/2 + \\mu^{2}/2$.",
+      "So the integral over x is $e^{\\mu^{2}/2}$ times the $\\int e^(-(x-\\mu)^{2}/2)\\,dx = e^{\\mu^{2}/2} \\sqrt{2 pi}$.",
+      "Multiplying the two parts: $2^{f/2} \\Gamma(f/2)$ . $\\sqrt{2 pi} e^{\\mu^{2}/2} = \\Gamma(f/2) 2^((f+1)/2) \\sqrt{pi} e^{\\mu^{2}/2}$.",
       "Hence option (b) is correct."
     ]
   },
@@ -341,19 +341,19 @@
     "answer": 3,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "Cov(X+Y, X-Y) = Var(X) - Var(Y) = 0, and joint normality upgrades that to independence. The variances 1 + 1 +- 2rho give 2(1+rho) and 2(1-rho). All three statements hold.",
+    "shortcut": "$\\operatorname{Cov}(X+Y, X-Y) = \\operatorname{Var}(X) - \\operatorname{Var}(Y) = 0$, and joint normality upgrades that to independence. The variances 1 + 1 +- $2\\rho$ give $2(1+\\rho)$ and $2(1-\\rho)$. All three statements hold.",
     "tips": [
-      "For jointly normal variables with EQUAL variances, the sum and difference are always independent - the covariance is Var(X) - Var(Y) = 0 and normality does the rest.",
-      "Var(X +- Y) = Var(X) + Var(Y) +- 2 Cov(X,Y) = 2 +- 2rho = 2(1 +- rho). Both statements 2 and 3 come from this one line.",
+      "For jointly normal variables with EQUAL variances, the sum and difference are always independent - the covariance is $\\operatorname{Var}(X) - \\operatorname{Var}(Y) = 0$ and normality does the rest.",
+      "$\\operatorname{Var}(X +- Y) = \\operatorname{Var}(X) + \\operatorname{Var}(Y)$ +- $2 \\operatorname{Cov}(X,Y) = 2$ +- $2\\rho = 2(1 +- \\rho)$. Both statements 2 and 3 come from this one line.",
       "Zero covariance implies independence ONLY under joint normality - here it is given, which is what makes statement 1 true.",
-      "Sanity check at rho = 1: X = Y, so X - Y is degenerate with variance 2(1-1) = 0, exactly as statement 3 predicts."
+      "Sanity check at $\\rho = 1$: $X = Y$, so X - Y is degenerate with variance $2(1-1) = 0$, exactly as statement 3 predicts."
     ],
     "solution": [
-      "(X,Y) ~ BVN(0,0,1,1,rho), so Var(X) = Var(Y) = 1 and Cov(X,Y) = rho.",
-      "Statement 2: X + Y is a linear combination of jointly normal variables, hence normal, with mean 0 and Var(X+Y) = 1 + 1 + 2rho = 2(1 + rho). TRUE.",
-      "Statement 3: similarly X - Y is normal with mean 0 and Var(X-Y) = 1 + 1 - 2rho = 2(1 - rho). TRUE.",
-      "Statement 1: Cov(X+Y, X-Y) = Var(X) - Var(Y) + Cov(Y,X) - Cov(X,Y) = 1 - 1 = 0.",
-      "Since (X+Y, X-Y) is a linear transformation of a bivariate normal pair it is itself bivariate normal, and for jointly normal variables zero covariance implies independence. TRUE.",
+      "(X,Y) ~ BVN(0,0,1,1,$\\rho$), so $\\operatorname{Var}(X) = \\operatorname{Var}(Y) = 1$ and $\\operatorname{Cov}(X,Y) = \\rho$.",
+      "Statement 2: X + Y is a linear combination of jointly normal variables, hence normal, with mean 0 and $\\operatorname{Var}(X+Y) = 1 + 1 + 2\\rho = 2(1 + \\rho)$. TRUE.",
+      "Statement 3: similarly X - Y is normal with mean 0 and $\\operatorname{Var}(X-Y) = 1 + 1 - 2\\rho = 2(1 - \\rho)$. TRUE.",
+      "Statement 1: $\\operatorname{Cov}(X+Y, X-Y) = \\operatorname{Var}(X) - \\operatorname{Var}(Y) + \\operatorname{Cov}(Y,X) - \\operatorname{Cov}(X,Y) = 1 - 1 = 0$.",
+      "Since $(X+Y, X-Y)$ is a linear transformation of a bivariate normal pair it is itself bivariate normal, and for jointly normal variables zero covariance implies independence. TRUE.",
       "All three statements are correct, option (d)."
     ]
   },
@@ -361,19 +361,19 @@
     "answer": 1,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "Under rho = 0 the density of r is proportional to (1-r^2)^((n-4)/2). Substituting t = r^2 gives the Beta(1/2, (n-2)/2) density.",
+    "shortcut": "Under $\\rho = 0$ the density of r is proportional to $(1-r^{2})^((n-4)/2)$. Substituting $t = r^{2}$ gives the Beta($1/2, (n-2)/2$) density.",
     "tips": [
-      "Null density of r: f(r) = (1 - r^2)^((n-4)/2)/B(1/2, (n-2)/2) on (-1,1). Recognising the Beta constant already reveals the parameters of r^2.",
-      "The change of variable t = r^2 contributes a factor t^(-1/2) from dr/dt, which is what produces the first Beta parameter 1/2.",
-      "Consistency check with the F link: r^2/(1-r^2) x (n-2) ~ F(1, n-2), and a Beta(1/2, (n-2)/2) variable transformed that way is exactly F(1, n-2).",
-      "The two Beta parameters must sum to (n-1)/2 here; option (b) gives 1/2 + (n-2)/2 = (n-1)/2, while the others do not fit the standard theory."
+      "Null density of r: $f(r) = (1 - r^{2})^((n-4)/2)/B(1/2, (n-2)/2)$ on $(-1,1)$. Recognising the Beta constant already reveals the parameters of $r^{2}$.",
+      "The change of variable $t = r^{2}$ contributes a factor $t^{-1/2}$ from dr/dt, which is what produces the first Beta parameter $1/2$.",
+      "Consistency check with the F link: $r^{2}/(1-r^{2}) x (n-2) \\sim F(1, n-2)$, and a Beta($1/2, (n-2)/2$) variable transformed that way is exactly $F(1, n-2)$.",
+      "The two Beta parameters must sum to $(n-1)/2$ here; option (b) gives $1/2 + (n-2)/2 = (n-1)/2$, while the others do not fit the standard theory."
     ],
     "solution": [
-      "When the population correlation is zero, the sample correlation coefficient based on n observations has density f(r) = (1 - r^2)^((n-4)/2)/B(1/2, (n-2)/2) on (-1, 1).",
-      "Let T = r^2. For 0 < t < 1, the two values r = +-sqrt(t) both map to t, and |dr/dt| = 1/(2 sqrt t) for each.",
-      "Hence the density of T is g(t) = 2 . f(sqrt t) . 1/(2 sqrt t) = t^(-1/2) (1 - t)^((n-4)/2)/B(1/2, (n-2)/2).",
-      "Comparing with the Beta density t^(a-1)(1-t)^(b-1)/B(a,b): a - 1 = -1/2 gives a = 1/2, and b - 1 = (n-4)/2 gives b = (n-2)/2.",
-      "So r^2 ~ Beta(1/2, (n-2)/2). This is consistent with the standard result that (n-2) r^2/(1 - r^2) ~ F(1, n-2).",
+      "When the population correlation is zero, the sample correlation coefficient based on n observations has density $f(r) = (1 - r^{2})^((n-4)/2)/B(1/2, (n-2)/2)$ on $(-1, 1)$.",
+      "Let $T = r^{2}$. For $0 < t < 1$, the two values r = +-sqrt(t) both map to t, and |dr/dt| = $1/(2 sqrt t)$ for each.",
+      "Hence the density of T is $g(t) = 2$ . f(sqrt t) . $1/(2 sqrt t) = t^{-1/2} (1 - t)^((n-4)/2)/B(1/2, (n-2)/2)$.",
+      "Comparing with the Beta density $t^{a-1}(1-t)^{b-1}/B(a,b)$: a - 1 = -$1/2$ gives $a = 1/2$, and $b - 1 = (n-4)/2$ gives $b = (n-2)/2$.",
+      "So $r^{2}$ ~ Beta($1/2, (n-2)/2$). This is consistent with the standard result that $(n-2) r^{2}/(1 - r^{2}) \\sim F(1, n-2)$.",
       "Option (b) is correct."
     ]
   },
@@ -381,19 +381,19 @@
     "answer": 2,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "R_(1.23) = 0 forces r12 = r13 = 0 (the numerator is a positive definite form), so statement 1 holds. Statement 3 is the identity 1 - R^2 = (1-r12^2)(1-r13.2^2) with R = 0. Statement 2 imposes nothing on r23 and is false.",
+    "shortcut": "$R_{1.23} = 0$ forces $r_{12} = r_{13} = 0$ (the numerator is a positive definite form), so statement 1 holds. Statement 3 is the identity $1 - R^{2} = (1-r_{12}^{2})(1-r_{13}.2^{2})$ with $R = 0$. Statement 2 imposes nothing on r23 and is false.",
     "tips": [
-      "The numerator of R^2 is r12^2 + r13^2 - 2 r12 r13 r23, a positive definite quadratic form in (r12, r13) whenever |r23| < 1, so it vanishes only when both are zero.",
-      "Key identity to memorise: 1 - R^2_(1.23) = (1 - r12^2)(1 - r13.2^2). Setting R = 0 gives statement 3 immediately.",
-      "R_(1.23) says nothing about the relationship BETWEEN the predictors, so r23 is entirely unconstrained - statement 2 must be false.",
-      "Interpretation: R_(1.23) = 0 means X2 and X3 together explain none of the variation in X1, which requires X1 to be uncorrelated with each of them separately."
+      "The numerator of $R^{2}$ is $r_{12}^{2} + r_{13}^{2} - 2 r_{12} r_{13} r_{23}, a$ positive definite quadratic form in $(r_{12}, r_{13})$ whenever |r23| < 1, so it vanishes only when both are zero.",
+      "Key identity to memorise: $1 - R^{2}_{1.23} = (1 - r_{12}^{2})(1 - r_{13}.2^{2})$. Setting $R = 0$ gives statement 3 immediately.",
+      "$R_{1.23}$ says nothing about the relationship BETWEEN the predictors, so r23 is entirely unconstrained - statement 2 must be false.",
+      "Interpretation: $R_{1.23} = 0$ means X2 and X3 together explain none of the variation in X1, which requires X1 to be uncorrelated with each of them separately."
     ],
     "solution": [
-      "R^2_(1.23) = (r12^2 + r13^2 - 2 r12 r13 r23)/(1 - r23^2).",
-      "For |r23| < 1 the numerator is a positive definite quadratic form in r12 and r13 (its discriminant 4r23^2 - 4 is negative), so it vanishes only when r12 = r13 = 0.",
-      "Statement 1: R_(1.23) = 0 therefore forces X1 to be uncorrelated with both X2 and X3. TRUE.",
+      "$R^{2}_{1.23} = (r_{12}^{2} + r_{13}^{2} - 2 r_{12} r_{13} r_{23})/(1 - r_{23}^{2})$.",
+      "For |r23| < 1 the numerator is a positive definite quadratic form in r12 and r13 (its discriminant $4r23^{2} - 4$ is negative), so it vanishes only when $r_{12} = r_{13} = 0$.",
+      "Statement 1: $R_{1.23} = 0$ therefore forces X1 to be uncorrelated with both X2 and X3. TRUE.",
       "Statement 2: nothing in the condition restricts r23, the correlation between the two predictors, which may take any admissible value. FALSE.",
-      "Statement 3: the standard identity is 1 - R^2_(1.23) = (1 - r12^2)(1 - r13.2^2). With R_(1.23) = 0 the left side is 1, so the product equals 1. TRUE. (Directly: r12 = 0 and r13.2 = 0, so the product is 1 x 1.)",
+      "Statement 3: the standard identity is $1 - R^{2}_{1.23} = (1 - r_{12}^{2})(1 - r_{13}.2^{2})$. With $R_{1.23} = 0$ the left side is 1, so the product equals 1. TRUE. (Directly: $r_{12} = 0$ and r13.$2 = 0$, so the product is 1 x 1.)",
       "Statements 1 and 3 are correct, option (c)."
     ]
   }

@@ -124,32 +124,17 @@ ol.steps > li { margin-bottom: 1.2mm; }
            padding: 2.5mm 3mm; font-size: 9pt; color: #6b4a12; margin: 0 0 2.5mm; }
 .srcnote b { color: #8a6100; }
 
-/* ---- maths (classes produced by the app's renderer) ---- */
-.mq { font-family: "DejaVu Serif", "Liberation Serif", "Times New Roman", serif; }
-.mq-block { display: block; text-align: center; margin: 1.5mm 0; }
-.mq i.v { font-style: italic; }
-.mq .op { font-style: normal; padding: 0 .1em; }
-.mq sup, .mq sub { font-size: .72em; line-height: 0; position: relative; }
-.mq sup { top: -.48em; }
-.mq sub { bottom: -.22em; }
-.mfrac { display: inline-flex; flex-direction: column; vertical-align: middle;
-         text-align: center; margin: 0 .18em; line-height: 1.18; }
-.mfrac > .n { display: block; padding: 0 .25em; border-bottom: .5pt solid currentColor; font-size: .92em; }
-.mfrac > .d { display: block; padding: 0 .25em; font-size: .92em; }
-.mbinom { display: inline-flex; flex-direction: column; vertical-align: middle;
-          text-align: center; margin: 0 .1em; line-height: 1.1; font-size: .92em; }
-.mroot { display: inline-block; }
-.mroot > .bod { border-top: .5pt solid currentColor; padding: 0 .18em 0 .1em; }
-.mover { display: inline-block; border-top: .5pt solid currentColor; padding-top: .3pt; }
-.mcases { display: inline-flex; align-items: center; vertical-align: middle; }
-.mcases > .brace { font-size: 2.1em; line-height: .8; margin-right: .12em; font-weight: 300; }
-.mcases table, .mmat table { border-collapse: collapse; }
-.mcases td { padding: .2mm 2mm .2mm 0; text-align: left; vertical-align: middle; }
-.mmat { display: inline-flex; align-items: center; vertical-align: middle; }
-.mmat > .b { font-size: 1.9em; line-height: .85; font-weight: 300; }
-.mmat td { padding: .2mm 1.6mm; text-align: center; }
-.mbig { font-size: 1.3em; line-height: 1; vertical-align: -.14em; }
-.msp { display: inline-block; width: .45em; }
+/* ---- maths: typeset by the KaTeX bundle inlined in index.html ---- */
+.mq { display: inline-block; max-width: 100%; }
+.mq-long { display: block; max-width: 100%; overflow: hidden; margin: 1mm 0; }
+.mq-block { display: block; text-align: center; margin: 2mm 0; }
+.mq-block .katex-display { margin: 0; }
+.katex { font-size: 1.04em; }
+.katex-display { overflow: visible; }
+.katex .base { white-space: nowrap; }
+.math-fallback { font-family: "DejaVu Sans Mono", monospace; font-size: .9em;
+                 background: #fdf6ec; border: .5pt solid #e0c68a; padding: 0 1mm; }
+.katex-error { color: #ab2020; }
 table.qtbl { border-collapse: collapse; margin: 1.5mm 0; font-size: 9.2pt; }
 table.qtbl th, table.qtbl td { border: .5pt solid #b6c4d6; padding: .8mm 2.2mm; text-align: center; }
 table.qtbl th { background: #eef1f6; font-weight: 700; }
@@ -357,7 +342,11 @@ for (const spec of UNITS) {
     h += '</div>';
 
     document.title = unit + ' — UPSC ISS Statistics Paper-I PYQs 2018–2026';
-    document.head.querySelectorAll('link,style').forEach(n => n.remove());
+    /* keep the inlined KaTeX stylesheet (and its embedded WOFF2 faces);
+       drop everything else so the print stylesheet governs the page */
+    document.head.querySelectorAll('link,style').forEach(n => {
+      if (n.id !== 'katex-css') n.remove();
+    });
     const st = document.createElement('style');
     st.textContent = css;
     document.head.appendChild(st);
@@ -372,6 +361,17 @@ for (const spec of UNITS) {
       perYear: perYear
     };
   }, { unit: spec.unit, css: PRINT_CSS });
+
+  /* The KaTeX faces are embedded as data: URIs but still load asynchronously.
+     Printing before they are ready leaves every glyph invisible, so wait for
+     the whole font set explicitly. */
+  await page.evaluate(async () => {
+    const faces = [];
+    document.fonts.forEach(f => faces.push(f));
+    await Promise.all(faces.map(f => f.load().catch(() => null)));
+    await document.fonts.ready;
+  });
+  await page.waitForTimeout(400);
 
   const out = path.join(ROOT, spec.file);
   await page.pdf({

@@ -3,39 +3,39 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Work with the complement: the two corner triangles x+y <= 0.5 and x+y >= 1.5 each have area (0.5)^2/2 = 0.125, so the answer is 1 - 0.25 = 0.75.",
+    "shortcut": "Work with the complement: the two corner triangles $x+y \\le 0.5$ and $x+y \\ge 1.5$ each have area $(0.5)^{2}/2 = 0.125$, so the answer is $1 - 0.25 = 0.75$.",
     "tips": [
-      "Geometric probability on the unit square = favourable AREA, since the total area is 1. Sketch the two lines x + y = 0.5 and x + y = 1.5.",
+      "Geometric probability on the unit square = favourable AREA, since the total area is 1. Sketch the two lines $x + y = 0.5$ and $x + y = 1.5$.",
       "The excluded regions are right triangles at opposite corners with legs 0.5, so each has area 0.125 - far quicker than integrating the band itself.",
-      "Symmetry check: the band is symmetric about the centre (0.5, 0.5), so the two excluded triangles must be congruent - a useful confirmation.",
-      "General rule: for the unit square, P(x + y <= c) = c^2/2 for 0 <= c <= 1, which gives 0.125 at c = 0.5 immediately."
+      "Symmetry check: the band is symmetric about the centre $(0.5, 0.5)$, so the two excluded triangles must be congruent - a useful confirmation.",
+      "General rule: for the unit square, $\\operatorname{P}(x + y \\le c) = c^{2}/2$ for $0 \\le c \\le 1$, which gives 0.125 at $c = 0.5$ immediately."
     ],
     "solution": [
       "The sample space is the unit square with area 1, so probabilities equal areas.",
-      "The event 0.5 < x + y < 1.5 excludes two regions: the triangle below the line x + y = 0.5 and the triangle above the line x + y = 1.5.",
-      "The lower triangle has vertices (0,0), (0.5,0) and (0,0.5), so its area is (1/2)(0.5)(0.5) = 0.125.",
-      "By symmetry the upper triangle, with vertices (1,0.5), (1,1) and (0.5,1), also has area 0.125.",
-      "The excluded area is 0.125 + 0.125 = 0.25.",
-      "Hence the required probability is 1 - 0.25 = 0.75, option (d)."
+      "The event $0.5 < x + y < 1.5$ excludes two regions: the triangle below the line $x + y = 0.5$ and the triangle above the line $x + y = 1.5$.",
+      "The lower triangle has vertices $(0,0), (0.5,0)$ and $(0,0.5)$, so its area is $(1/2)(0.5)(0.5) = 0.125$.",
+      "By symmetry the upper triangle, with vertices $(1,0.5), (1,1)$ and $(0.5,1)$, also has area 0.125.",
+      "The excluded area is $0.125 + 0.125 = 0.25$.",
+      "Hence the required probability is $1 - 0.25 = 0.75$, option (d)."
     ]
   },
   "2024-Q22": {
     "answer": 1,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "P(-ln X > t) = P(X < e^(-t)) = e^(-t) for X uniform on (0,1), which is the survival function of the negative exponential with mean 1.",
+    "shortcut": "$\\operatorname{P}(-\\ln X > t) = \\operatorname{P}(X < e^{-t}) = e^{-t}$ for X uniform on $(0,1)$, which is the survival function of the negative exponential with mean 1.",
     "tips": [
       "Use the survival function for a monotone transformation: it avoids Jacobians and gives the answer in one line.",
-      "Exp(1) is also Gamma(1,1), so option (a) is not strictly false - but 'negative exponential' is the precise and standard description asked for.",
+      "Exp(1) is also $\\Gamma(1,1)$, so option (a) is not strictly false - but 'negative exponential' is the precise and standard description asked for.",
       "This is the inverse-transform method for simulating exponential variates, so the identification is worth knowing cold.",
-      "The half-normal arises from |N(0,1)|, an entirely different construction with no logarithm involved."
+      "The half-normal arises from |$N(0,1)$|, an entirely different construction with no logarithm involved."
     ],
     "solution": [
-      "Let X ~ U(0,1) and set W = -ln X, which takes values in (0, infinity).",
-      "For t > 0, P(W > t) = P(-ln X > t) = P(ln X < -t) = P(X < e^(-t)).",
-      "Since X is uniform on (0,1), this probability is simply e^(-t).",
-      "The survival function e^(-t) identifies the negative exponential distribution with parameter 1, whose density is e^(-w) for w > 0.",
-      "(Equivalently this is Gamma(1,1), but the exponential is the exact and standard description.)",
+      "Let $X \\sim U(0,1)$ and set W = -$\\ln X$, which takes values in $(0, \\infty)$.",
+      "For $t > 0, \\operatorname{P}(W > t) = \\operatorname{P}(-\\ln X > t) = \\operatorname{P}(\\ln X < -t) = \\operatorname{P}(X < e^{-t})$.",
+      "Since X is uniform on $(0,1)$, this probability is simply $e^{-t}$.",
+      "The survival function $e^{-t}$ identifies the negative exponential distribution with parameter 1, whose density is $e^{-w}$ for $w > 0$.",
+      "(Equivalently this is $\\Gamma(1,1)$, but the exponential is the exact and standard description.)",
       "Option (b) is correct."
     ]
   },
@@ -43,19 +43,19 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Condition on Z = z: X + Yz is N(0, 1 + z^2), so dividing by sqrt(1+z^2) gives a standard normal for EVERY z. Hence the ratio is N(0,1) with characteristic function e^(-t^2/2).",
+    "shortcut": "Condition on $Z = z$: X + Yz is $N(0, 1 + z^{2})$, so dividing by $\\sqrt{1+z^2}$ gives a standard normal for EVERY z. Hence the ratio is $N(0,1)$ with characteristic function $e^{-t^{2}/2}$.",
     "tips": [
       "Condition on the awkward variable Z first - the conditional law turns out to be free of z, which is the whole design of the question.",
-      "Var(X + Yz) = 1 + z^2 exactly matches the square of the divisor, so the standardisation is exact rather than approximate.",
+      "$\\operatorname{Var}(X + Yz) = 1 + z^{2}$ exactly matches the square of the divisor, so the standardisation is exact rather than approximate.",
       "When a conditional distribution does not depend on the conditioning variable, the unconditional distribution is the same - no averaging is needed.",
-      "The characteristic function of N(0,1) is e^(-t^2/2); options (c) and (d) are Laplace-type and cannot arise from a normal."
+      "The characteristic function of $N(0,1)$ is $e^{-t^{2}/2}$; options (c) and (d) are Laplace-type and cannot arise from a normal."
     ],
     "solution": [
-      "Condition on Z = z. Given this, X and Y are still independent N(0,1), so X + Yz is normal with mean 0 and variance 1 + z^2.",
-      "Dividing by the constant sqrt(1 + z^2) gives (X + Yz)/sqrt(1+z^2) ~ N(0,1).",
+      "Condition on $Z = z$. Given this, X and Y are still independent $N(0,1)$, so X + Yz is normal with mean 0 and variance $1 + z^{2}$.",
+      "Dividing by the constant $\\sqrt{1 + z^2}$ gives $(X + Yz)/\\sqrt{1+z^2} \\sim N(0,1)$.",
       "This conditional distribution is the same for every value of z, so it does not depend on Z at all.",
-      "Hence the unconditional distribution of (X + YZ)/sqrt(1 + Z^2) is also N(0,1).",
-      "The characteristic function of a standard normal variable is E(e^(itW)) = e^(-t^2/2).",
+      "Hence the unconditional distribution of $(X + YZ)/\\sqrt{1 + Z^2}$ is also $N(0,1)$.",
+      "The characteristic function of a standard normal variable is E(e^(itW)) = $e^{-t^{2}/2}$.",
       "Option (a) is correct."
     ]
   },
@@ -63,19 +63,19 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Multiplying a standard normal by a symmetric random sign leaves it standard normal, so XY ~ N(0,1) and 2XY ~ N(0,4), with characteristic function e^(-4t^2/2) = e^(-2t^2).",
+    "shortcut": "Multiplying a standard normal by a symmetric random sign leaves it standard normal, so XY ~ $N(0,1)$ and 2XY ~ $N(0,4)$, with characteristic function $e^{-4t^{2}/2} = e^{-2t^2}$.",
     "tips": [
       "Random sign trick: if Y is symmetric about 0 and X = +-1 independently, then XY has the SAME distribution as Y. Condition on X to see it.",
-      "Var(2XY) = 4 Var(XY) = 4, so the characteristic function exponent is -sigma^2 t^2/2 = -2t^2.",
-      "Do not halve twice: the formula is e^(-sigma^2 t^2/2) with sigma^2 = 4, giving -2t^2, not -t^2.",
+      "$\\operatorname{Var}(2XY) = 4 \\operatorname{Var}(XY) = 4$, so the characteristic function exponent is -$\\sigma^{2} t^{2}/2$ = -$2t^{2}$.",
+      "Do not halve twice: the formula is $e^{-\\sigma^{2} t^{2}/2}$ with $\\sigma^{2} = 4$, giving -$2t^{2}$, not -$t^{2}$.",
       "Options (c) and (d) are Laplace/Cauchy-type functions and cannot be the characteristic function of a normal variable."
     ],
     "solution": [
-      "X takes the values +1 and -1 with probability 1/2 each, independently of Y ~ N(0,1).",
-      "Condition on X: given X = +1, XY = Y ~ N(0,1); given X = -1, XY = -Y, which is also N(0,1) by the symmetry of the normal.",
-      "Since the conditional distribution is N(0,1) in both cases, XY ~ N(0,1) unconditionally.",
-      "Therefore 2XY ~ N(0, 4).",
-      "The characteristic function of N(0, sigma^2) is e^(-sigma^2 t^2/2), which with sigma^2 = 4 gives e^(-2t^2).",
+      "X takes the values +1 and -1 with probability $1/2$ each, independently of $Y \\sim N(0,1)$.",
+      "Condition on X: given X = +1, XY = $Y \\sim N(0,1)$; given X = -1, XY = -Y, which is also $N(0,1)$ by the symmetry of the normal.",
+      "Since the conditional distribution is $N(0,1)$ in both cases, XY ~ $N(0,1)$ unconditionally.",
+      "Therefore 2XY ~ $N(0, 4)$.",
+      "The characteristic function of $N(0, \\sigma^{2})$ is $e^{-\\sigma^{2} t^{2}/2}$, which with $\\sigma^{2} = 4$ gives $e^{-2t^2}$.",
       "Option (b) is correct."
     ]
   },
@@ -83,118 +83,118 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Condition on X2 = z: X1 X2 ~ N(0, z^2) with characteristic function e^(-t^2 z^2/2). Averaging over Z^2 ~ chi-square(1) gives the MGF at -t^2/2, namely (1 + t^2)^(-1/2).",
+    "shortcut": "Condition on $X_{2} = z$: $X_{1} X_{2} \\sim N(0, z^{2})$ with characteristic function $e^{-t^{2} z^{2}/2}$. Averaging over $Z^{2} \\sim \\chi^{2}_{1}$ gives the MGF at -$t^{2}/2$, namely $(1 + t^{2})^{-1/2}$.",
     "tips": [
-      "Condition and then average: E[e^(-t^2 Z^2/2)] is the chi-square(1) moment generating function evaluated at the NEGATIVE argument -t^2/2.",
-      "chi-square(1) MGF is (1 - 2s)^(-1/2); with s = -t^2/2 the bracket becomes 1 + t^2 and the exponent -1/2.",
+      "Condition and then average: $\\operatorname{E}[e^{-t^{2} Z^{2}/2}]$ is the $\\chi^{2}_{1}$ moment generating function evaluated at the NEGATIVE argument -$t^{2}/2$.",
+      "$\\chi^{2}_{1}$ MGF is $(1 - 2s)^{-1/2}$; with s = -$t^{2}/2$ the bracket becomes $1 + t^{2}$ and the exponent -$1/2$.",
       "The product of two independent standard normals has heavier tails than a normal but lighter than a Cauchy - a square-root singularity is exactly right.",
-      "Option (b) 1/(1+t^2) is the Laplace characteristic function, which would correspond to the product being a difference of exponentials - close, but the exponent is wrong."
+      "Option $(b) 1/(1+t^{2})$ is the Laplace characteristic function, which would correspond to the product being a difference of exponentials - close, but the exponent is wrong."
     ],
     "solution": [
-      "Condition on X2 = z. Given this, X1 z is normal with mean 0 and variance z^2, so its characteristic function is e^(-t^2 z^2/2).",
-      "Averaging over the distribution of X2 gives phi(t) = E[e^(-t^2 X2^2/2)].",
-      "Now X2^2 ~ chi-square with 1 degree of freedom, whose moment generating function is M(s) = (1 - 2s)^(-1/2).",
-      "The required expectation is M(s) evaluated at s = -t^2/2.",
-      "So phi(t) = (1 - 2(-t^2/2))^(-1/2) = (1 + t^2)^(-1/2).",
-      "Hence the characteristic function is 1/sqrt(1 + t^2), option (c)."
+      "Condition on $X_{2} = z$. Given this, X1 z is normal with mean 0 and variance $z^{2}$, so its characteristic function is $e^{-t^{2} z^{2}/2}$.",
+      "Averaging over the distribution of X2 gives $\\phi(t) = \\operatorname{E}[e^{-t^{2} X_{2}^{2}/2}]$.",
+      "Now $X_{2}^{2} \\sim \\chi^{2}$ with 1 degree of freedom, whose moment generating function is $M(s) = (1 - 2s)^{-1/2}$.",
+      "The required expectation is M(s) evaluated at s = -$t^{2}/2$.",
+      "So $\\phi(t) = (1 - 2(-t^{2}/2))^{-1/2} = (1 + t^{2})^{-1/2}$.",
+      "Hence the characteristic function is $1/\\sqrt{1 + t^2}$, option (c)."
     ]
   },
   "2024-Q26": {
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Differentiate V(t) = U(log U(t)) by the chain rule: V'(t) = U'(log U(t)) . U'(t)/U(t). At t = 0, U(0) = 1 so V'(0) = U'(0)^2 = 4.",
+    "shortcut": "Differentiate $\\operatorname{V}(t) = U(\\log U(t))$ by the chain rule: $V'(t) = U'(\\log U(t))$ . $U'(t)/U(t)$. At $t = 0, U(0) = 1$ so $V'(0) = U'(0)^{2} = 4$.",
     "tips": [
-      "Every MGF satisfies U(0) = 1, so log U(0) = 0 - that is the fact that makes the composite collapse at t = 0.",
-      "Chain rule in two layers: the derivative of log U(t) is U'(t)/U(t), which at t = 0 equals U'(0)/1 = E(X).",
-      "The result is E(Y) = [E(X)]^2 = 4, so the composition SQUARES the mean - a neat structural observation.",
+      "Every MGF satisfies $U(0) = 1$, so $\\log U(0) = 0$ - that is the fact that makes the composite collapse at $t = 0$.",
+      "Chain rule in two layers: the derivative of $\\log U(t)$ is $U'(t)/U(t)$, which at $t = 0$ equals $U'(0)/1 = \\operatorname{E}(X)$.",
+      "The result is $\\operatorname{E}(Y) = [\\operatorname{E}(X)]^{2} = 4$, so the composition SQUARES the mean - a neat structural observation.",
       "Option (b) 2 is the trap for candidates who evaluate only the outer derivative and forget the inner factor."
     ],
     "solution": [
-      "U and V are the moment generating functions of X and Y, so E(X) = U'(0) = 2 and E(Y) = V'(0).",
-      "Every moment generating function satisfies U(0) = E(e^0) = 1.",
-      "Differentiating V(t) = U(log U(t)) by the chain rule: V'(t) = U'(log U(t)) . d/dt[log U(t)] = U'(log U(t)) . U'(t)/U(t).",
-      "At t = 0: log U(0) = log 1 = 0, and U(0) = 1.",
-      "So V'(0) = U'(0) . U'(0)/1 = [U'(0)]^2 = 2^2.",
-      "Hence E(Y) = 4, option (c)."
+      "U and V are the moment generating functions of X and Y, so $\\operatorname{E}(X) = U'(0) = 2$ and $\\operatorname{E}(Y) = V'(0)$.",
+      "Every moment generating function satisfies $U(0) = \\operatorname{E}(e^{0}) = 1$.",
+      "Differentiating $\\operatorname{V}(t) = U(\\log U(t))$ by the chain rule: $V'(t) = U'(\\log U(t))$ . $d/dt[\\log U(t)] = U'(\\log U(t))$ . $U'(t)/U(t)$.",
+      "At $t = 0$: $\\log U(0) = \\log 1 = 0$, and $U(0) = 1$.",
+      "So $V'(0) = U'(0)$ . $U'(0)/1 = [U'(0)]^{2} = 2^{2}$.",
+      "Hence $\\operatorname{E}(Y) = 4$, option (c)."
     ]
   },
   "2024-Q27": {
     "answer": 1,
     "confidence": "high",
     "type": "Conceptual",
-    "shortcut": "If the first win comes on trial N, the gambler has lost the first N - 1 trials and won the Nth, so the net is +1 - (N-1) = 2 - N.",
+    "shortcut": "If the first win comes on trial N, the gambler has lost the first N - 1 trials and won the Nth, so the net is +$1 - (N-1) = 2 - N$.",
     "tips": [
-      "Count the outcomes: N - 1 losses at -1 each and one win at +1. Net = 1 - (N - 1) = 2 - N.",
-      "Check small cases: N = 1 gives +1 (win at once) and N = 2 gives 0 (one loss then one win). The formula 2 - N reproduces both.",
+      "Count the outcomes: N - 1 losses at -1 each and one win at +1. Net = $1 - (N - 1) = 2 - N$.",
+      "Check small cases: $N = 1$ gives +1 (win at once) and $N = 2$ gives 0 (one loss then one win). The formula 2 - N reproduces both.",
       "The winnings are a LINEAR function of N and can be negative, so options (a), (c) and (d) - which are ratios or always positive - are structurally wrong.",
       "Note the strategy guarantees stopping with probability 1, but the net winnings are unbounded below - the basis of the next part."
     ],
     "solution": [
-      "Each gamble results in a gain of +1 with probability 1/2 or a loss of 1 with probability 1/2, and the gambler stops immediately after his first win.",
+      "Each gamble results in a gain of +1 with probability $1/2$ or a loss of 1 with probability $1/2$, and the gambler stops immediately after his first win.",
       "If the first win occurs on trial N, then trials 1 through N - 1 were all losses and trial N was a win.",
-      "Total from the losses: -(N - 1).",
+      "Total from the losses: -$(N - 1)$.",
       "Total from the win: +1.",
-      "Net winnings W = 1 - (N - 1) = 2 - N.",
-      "Check: N = 1 gives W = +1 and N = 2 gives W = 0. Option (b) is correct."
+      "Net winnings $W = 1 - (N - 1) = 2 - N$.",
+      "Check: $N = 1$ gives W = +1 and $N = 2$ gives $W = 0$. Option (b) is correct."
     ]
   },
   "2024-Q28": {
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "W = 2 - N is negative exactly when N >= 3, and P(N >= 3) = 1 - 1/2 - 1/4 = 1/4.",
+    "shortcut": "$W = 2 - N$ is negative exactly when $N \\ge 3$, and $\\operatorname{P}(N \\ge 3) = 1 - 1/2 - 1/4 = 1/4$.",
     "tips": [
-      "Translate the event first: W < 0 means 2 - N < 0, i.e. N > 2, i.e. N >= 3 since N is an integer.",
-      "N is geometric with p = 1/2, so P(N = n) = (1/2)^n and P(N >= 3) = (1/2)^2 = 1/4 by the tail formula P(N >= k) = q^(k-1).",
-      "The boundary case N = 2 gives W = 0, which is NOT negative - excluding it correctly is the crux of the item.",
-      "Sanity check: P(W > 0) = P(N = 1) = 1/2 and P(W = 0) = P(N = 2) = 1/4, so the three probabilities sum to 1."
+      "Translate the event first: $W < 0$ means $2 - N < 0$, i.e. $N > 2$, i.e. $N \\ge 3$ since N is an integer.",
+      "N is geometric with $p = 1/2$, so $\\operatorname{P}(N = n) = (1/2)^{n}$ and $\\operatorname{P}(N \\ge 3) = (1/2)^{2} = 1/4$ by the tail formula $\\operatorname{P}(N \\ge k) = q^{k-1}$.",
+      "The boundary case $N = 2$ gives $W = 0$, which is NOT negative - excluding it correctly is the crux of the item.",
+      "Sanity check: $\\operatorname{P}(W > 0) = \\operatorname{P}(N = 1) = 1/2$ and $\\operatorname{P}(W = 0) = \\operatorname{P}(N = 2) = 1/4$, so the three probabilities sum to 1."
     ],
     "solution": [
-      "From the previous part, W = 2 - N where N is the trial of the first win.",
-      "W < 0 requires 2 - N < 0, that is N > 2; since N is a positive integer this means N >= 3.",
-      "N follows a geometric distribution on {1, 2, 3, ...} with success probability 1/2, so P(N = n) = (1/2)^n.",
-      "P(N >= 3) = 1 - P(N = 1) - P(N = 2) = 1 - 1/2 - 1/4 = 1/4.",
-      "Equivalently, P(N >= 3) = (1/2)^2 = 1/4, the probability that the first two trials are both losses.",
-      "Hence P(W < 0) = 1/4, option (b)."
+      "From the previous part, $W = 2 - N$ where N is the trial of the first win.",
+      "$W < 0$ requires $2 - N < 0$, that is $N > 2$; since N is a positive integer this means $N \\ge 3$.",
+      "N follows a geometric distribution on {1, 2, 3, ...} with success probability $1/2$, so $\\operatorname{P}(N = n) = (1/2)^{n}$.",
+      "$\\operatorname{P}(N \\ge 3) = 1 - \\operatorname{P}(N = 1) - \\operatorname{P}(N = 2) = 1 - 1/2 - 1/4 = 1/4$.",
+      "Equivalently, $\\operatorname{P}(N \\ge 3) = (1/2)^{2} = 1/4$, the probability that the first two trials are both losses.",
+      "Hence $\\operatorname{P}(W < 0) = 1/4$, option (b)."
     ]
   },
   "2024-Q29": {
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "After the first roll, each subsequent roll differs from its predecessor with probability 5/6 and matches with probability 1/6. So P(X = n) = (5/6)^(n-2)(1/6), and P(X = 10) = 5^8/6^9.",
+    "shortcut": "After the first roll, each subsequent roll differs from its predecessor with probability $5/6$ and matches with probability $1/6$. So $\\operatorname{P}(X = n) = (5/6)^{n-2}(1/6)$, and $\\operatorname{P}(X = 10) = 5^{8}/6^{9}$.",
     "tips": [
-      "The first roll is free - it can be anything. From the second roll onwards each comparison is a Bernoulli trial with match probability 1/6.",
-      "For X = n we need n - 2 consecutive 'different' outcomes followed by one 'same', giving (5/6)^(n-2)(1/6).",
-      "Combine the powers: (5/6)^8 (1/6) = 5^8/6^8 x 1/6 = 5^8/6^9 - watch that the denominator exponent is one MORE than the numerator's.",
-      "Check the smallest case: P(X = 2) = (5/6)^0 (1/6) = 1/6, which is obviously right - the second roll simply matches the first."
+      "The first roll is free - it can be anything. From the second roll onwards each comparison is a Bernoulli trial with match probability $1/6$.",
+      "For $X = n$ we need n - 2 consecutive 'different' outcomes followed by one 'same', giving $(5/6)^{n-2}(1/6)$.",
+      "Combine the powers: $(5/6)^{8} (1/6) = 5^{8}/6^{8} x 1/6 = 5^{8}/6^{9}$ - watch that the denominator exponent is one MORE than the numerator's.",
+      "Check the smallest case: $\\operatorname{P}(X = 2) = (5/6)^{0} (1/6) = 1/6$, which is obviously right - the second roll simply matches the first."
     ],
     "solution": [
-      "The first roll can show any face, so it imposes no condition. From the second roll onwards, each roll either matches its immediate predecessor (probability 1/6) or differs from it (probability 5/6), independently.",
-      "The event X = n means that rolls 2, 3, ..., n-1 each DIFFER from the preceding roll, and roll n MATCHES roll n-1.",
+      "The first roll can show any face, so it imposes no condition. From the second roll onwards, each roll either matches its immediate predecessor (probability $1/6$) or differs from it (probability $5/6$), independently.",
+      "The event $X = n$ means that rolls 2, 3, ..., n-1 each DIFFER from the preceding roll, and roll n MATCHES roll n-1.",
       "That is n - 2 'different' outcomes followed by one 'same'.",
-      "Hence P(X = n) = (5/6)^(n-2) (1/6) for n = 2, 3, 4, ...",
-      "For n = 10: P(X = 10) = (5/6)^8 (1/6) = 5^8/6^8 x 1/6 = 5^8/6^9, option (a)."
+      "Hence $\\operatorname{P}(X = n) = (5/6)^{n-2} (1/6)$ for $n = 2, 3, 4$, ...",
+      "For $n = 10$: $\\operatorname{P}(X = 10) = (5/6)^{8} (1/6) = 5^{8}/6^{8} x 1/6 = 5^{8}/6^{9}$, option (a)."
     ]
   },
   "2024-Q30": {
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "X - 1 is geometric on {1,2,...} with success probability 1/6, so E(X - 1) = 6 and E(X) = 7.",
+    "shortcut": "X - 1 is geometric on {1,2,...} with success probability $1/6$, so $\\operatorname{E}(X - 1) = 6$ and $\\operatorname{E}(X) = 7$.",
     "tips": [
-      "Shift to a standard family: X - 1 counts the comparisons made from the second roll onwards, each succeeding with probability 1/6.",
-      "Geometric mean on {1,2,...} is 1/p = 6, so add back the free first roll to get 7.",
-      "Direct check with the pmf: E(X) = sum over n >= 2 of n(5/6)^(n-2)(1/6), which evaluates to 7.",
+      "Shift to a standard family: X - 1 counts the comparisons made from the second roll onwards, each succeeding with probability $1/6$.",
+      "Geometric mean on {1,2,...} is $1/p = 6$, so add back the free first roll to get 7.",
+      "Direct check with the pmf: $\\operatorname{E}(X) = \\sum n(5/6)^{n-2}(1/6)$, which evaluates to 7.",
       "Intuition: you expect to wait 6 comparisons for a repeat, plus the initial roll - so 7 rolls in all."
     ],
     "solution": [
-      "From the previous part, P(X = n) = (5/6)^(n-2)(1/6) for n = 2, 3, 4, ...",
-      "Set Y = X - 1, so P(Y = k) = (5/6)^(k-1)(1/6) for k = 1, 2, 3, ...",
-      "This is the geometric distribution on the positive integers with success probability p = 1/6.",
-      "Its mean is E(Y) = 1/p = 6.",
-      "Therefore E(X) = E(Y) + 1 = 6 + 1 = 7.",
+      "From the previous part, $\\operatorname{P}(X = n) = (5/6)^{n-2}(1/6)$ for $n = 2, 3, 4$, ...",
+      "Set $Y = X - 1$, so $\\operatorname{P}(Y = k) = (5/6)^{k-1}(1/6)$ for $k = 1, 2, 3$, ...",
+      "This is the geometric distribution on the positive integers with success probability $p = 1/6$.",
+      "Its mean is $\\operatorname{E}(Y) = 1/p = 6$.",
+      "Therefore $\\operatorname{E}(X) = \\operatorname{E}(Y) + 1 = 6 + 1 = 7$.",
       "Option (b) is correct."
     ]
   },
@@ -202,19 +202,19 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "P(A|B) + P(B|A) = P(AB)[1/P(B) + 1/P(A)] = P(AB)(5 + 3) = 2/3, so P(AB) = 1/12. Then P(A' u B') = 1 - 1/12 = 11/12 and 12 times that is 11.",
+    "shortcut": "$\\operatorname{P}(A\\mid B) + \\operatorname{P}(B\\mid A) = \\operatorname{P}(AB)[1/\\operatorname{P}(B) + 1/\\operatorname{P}(A)] = \\operatorname{P}(AB)(5 + 3) = 2/3$, so $\\operatorname{P}(AB) = 1/12$. Then $\\operatorname{P}(A' \\cup B') = 1 - 1/12 = 11/12$ and 12 times that is 11.",
     "tips": [
-      "Factor out the intersection: P(A|B) + P(B|A) = P(AB)/P(B) + P(AB)/P(A) = P(AB)[1/P(A) + 1/P(B)]. One line and the unknown is isolated.",
-      "1/P(A) + 1/P(B) = 3 + 5 = 8, so P(AB) = (2/3)/8 = 1/12 immediately.",
-      "De Morgan: A' u B' is the complement of A n B, so P(A' u B') = 1 - P(A n B). Recognising this avoids computing a union directly.",
+      "Factor out the intersection: $\\operatorname{P}(A\\mid B) + \\operatorname{P}(B\\mid A) = \\operatorname{P}(AB)/\\operatorname{P}(B) + \\operatorname{P}(AB)/\\operatorname{P}(A) = \\operatorname{P}(AB)[1/\\operatorname{P}(A) + 1/\\operatorname{P}(B)]$. One line and the unknown is isolated.",
+      "$1/\\operatorname{P}(A) + 1/\\operatorname{P}(B) = 3 + 5 = 8$, so $\\operatorname{P}(AB) = (2/3)/8 = 1/12$ immediately.",
+      "De Morgan: $A' \\cup B'$ is the complement of A n B, so $\\operatorname{P}(A' \\cup B') = 1 - \\operatorname{P}(A \\cap B)$. Recognising this avoids computing a union directly.",
       "The factor 12 in the question exists to clear the denominator, which is a strong hint that P(AB) will turn out to be a twelfth."
     ],
     "solution": [
-      "By definition P(A|B) = P(A n B)/P(B) and P(B|A) = P(A n B)/P(A).",
-      "Adding: P(A|B) + P(B|A) = P(A n B)[1/P(B) + 1/P(A)] = P(A n B)[5 + 3] = 8 P(A n B).",
-      "Setting this equal to 2/3 gives P(A n B) = (2/3)/8 = 1/12.",
-      "By De Morgan's law, A' u B' = (A n B)', so P(A' u B') = 1 - P(A n B) = 1 - 1/12 = 11/12.",
-      "Therefore 12 P(A' u B') = 12 x 11/12 = 11.",
+      "By definition $\\operatorname{P}(A\\mid B) = \\operatorname{P}(A \\cap B)/\\operatorname{P}(B)$ and $\\operatorname{P}(B\\mid A) = \\operatorname{P}(A \\cap B)/\\operatorname{P}(A)$.",
+      "Adding: $\\operatorname{P}(A\\mid B) + \\operatorname{P}(B\\mid A) = \\operatorname{P}(A \\cap B)[1/\\operatorname{P}(B) + 1/\\operatorname{P}(A)] = \\operatorname{P}(A \\cap B)[5 + 3] = 8 \\operatorname{P}(A \\cap B)$.",
+      "Setting this equal to $2/3$ gives $\\operatorname{P}(A \\cap B) = (2/3)/8 = 1/12$.",
+      "By De Morgan's law, $A' \\cup B' = (A \\cap B)'$, so $\\operatorname{P}(A' \\cup B') = 1 - \\operatorname{P}(A \\cap B) = 1 - 1/12 = 11/12$.",
+      "Therefore $12 \\operatorname{P}(A' \\cup B') = 12 \\times 11/12 = 11$.",
       "Option (b) is correct."
     ]
   },
@@ -222,19 +222,19 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The density factorises as (2x e^(-x^2))(2y e^(-y^2)) once c = 4, so X and Y are i.i.d. Rayleigh, X^2 and Y^2 are i.i.d. Exp(1), and P(X^2 > 2Y^2) = E(e^(-2V)) = 1/3. All three statements hold.",
+    "shortcut": "The density factorises as $(2x e^{-x^2})(2y e^{-y^2})$ once $c = 4$, so X and Y are i.i.d. Rayleigh, $X^{2}$ and $Y^{2}$ are i.i.d. Exp(1), and $\\operatorname{P}(X^{2} > 2Y^{2}) = \\operatorname{E}(e^{-2V}) = 1/3$. All three statements hold.",
     "tips": [
-      "Normalisation: the integral of x e^(-x^2) over (0, infinity) is 1/2, so c(1/2)^2 = 1 gives c = 4 at once.",
-      "Once c = 4 the density splits into a product of identical factors, which settles independence (statement III) with no extra work.",
-      "Transform to squares: P(X^2 > t) = P(X > sqrt t) = e^(-t), so X^2 ~ Exp(1) - this turns statement II into a simple exponential comparison.",
-      "P(U > 2V) for i.i.d. Exp(1) is E[e^(-2V)] = the integral of e^(-3v) dv = 1/3 - the general form is 1/(1+k) for P(U > kV)."
+      "Normalisation: the $\\int x e^{-x^2}$ over $(0, \\infty)$ is $1/2$, so $c(1/2)^{2} = 1$ gives $c = 4$ at once.",
+      "Once $c = 4$ the density splits into a product of identical factors, which settles independence (statement III) with no extra work.",
+      "Transform to squares: $\\operatorname{P}(X^{2} > t) = \\operatorname{P}\\!\\left(\\text{X > sqrt t}\\right) = e^{-t}$, so $X^{2}$ ~ Exp(1) - this turns statement II into a simple exponential comparison.",
+      "$\\operatorname{P}(U > 2V)$ for i.i.d. Exp(1) is $\\operatorname{E}[e^{-2V}]$ = the $\\int e^{-3v}\\,dv = 1/3$ - the general form is $1/(1+k)$ for $\\operatorname{P}(U > kV)$."
     ],
     "solution": [
-      "Statement I: the double integral of cxy e^(-(x^2+y^2)) over x, y > 0 factorises as c times [the integral of x e^(-x^2) dx]^2 = c(1/2)^2 = c/4. Setting this equal to 1 gives c = 4. TRUE.",
-      "Statement III: with c = 4 the density is 4xy e^(-x^2) e^(-y^2) = (2x e^(-x^2))(2y e^(-y^2)), a product of a function of x alone and a function of y alone, so X and Y are independent (each Rayleigh). TRUE.",
-      "For statement II, note P(X > a) = the integral from a to infinity of 2x e^(-x^2) dx = e^(-a^2), so P(X^2 > t) = e^(-t): X^2 ~ Exponential(1), and likewise Y^2.",
-      "Write U = X^2 and V = Y^2, independent Exp(1). Then P(X^2 > 2Y^2) = P(U > 2V) = E[P(U > 2V | V)] = E[e^(-2V)].",
-      "E[e^(-2V)] = the integral from 0 to infinity of e^(-2v) e^(-v) dv = the integral of e^(-3v) dv = 1/3. TRUE.",
+      "Statement I: the double $\\int$ cxy $e^(-(x^{2}+y^{2}))$ over $x, y > 0$ factorises as c times [the $\\int x e^{-x^2}\\,dx$]^2 = $c(1/2)^{2} = c/4$. Setting this equal to 1 gives $c = 4$. TRUE.",
+      "Statement III: with $c = 4$ the density is 4xy $e^{-x^2} e^{-y^2} = (2x e^{-x^2})(2y e^{-y^2}), a$ product of a function of x alone and a function of y alone, so X and Y are independent (each Rayleigh). TRUE.",
+      "For statement II, note $\\operatorname{P}(X > a)$ = the $\\int_{a}^{\\infty} 2x e^{-x^2}\\,dx = e^{-a^2}$, so $\\operatorname{P}(X^{2} > t) = e^{-t}$: $X^{2}$ ~ Exponential(1), and likewise $Y^{2}$.",
+      "Write $U = X^{2}$ and $V = Y^{2}$, independent Exp(1). Then $\\operatorname{P}(X^{2} > 2Y^{2}) = \\operatorname{P}(U > 2V) = \\operatorname{E}[\\operatorname{P}(U > 2V \\mid V)] = \\operatorname{E}[e^{-2V}]$.",
+      "$\\operatorname{E}[e^{-2V}]$ = the $\\int_{0}^{\\infty} e^{-2v} e^{-v}\\,dv$ = the $\\int e^{-3v}\\,dv = 1/3$. TRUE.",
       "All three statements are correct, option (d)."
     ]
   },
@@ -242,19 +242,19 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Summing over x for fixed y gives P(Y = y) = e^(-2) 2^y/y!, i.e. Poisson(2) - not 1/2, so statement I fails. Conditionally X | Y = y ~ Binomial(y, 1/2), so E(X) = E(Y)/2 = 1 and statement II holds.",
+    "shortcut": "Summing over x for fixed y gives $\\operatorname{P}(Y = y) = e^{-2} 2^{y}/y!$, i.e. Poisson(2) - not $1/2$, so statement I fails. Conditionally $X \\mid Y = y$ ~ Binomial($y, 1/2$), so $\\operatorname{E}(X) = \\operatorname{E}(Y)/2 = 1$ and statement II holds.",
     "tips": [
-      "Multiply and divide by y!: e^(-2)/(x!(y-x)!) = [e^(-2)/y!] C(y,x), and the binomial coefficients sum to 2^y.",
-      "That immediately gives the marginal P(Y = y) = e^(-2) 2^y/y!, which is Poisson with parameter 2 - so 'parameter 1/2' is wrong.",
-      "The same manipulation shows P(X = x | Y = y) = C(y,x)/2^y = Binomial(y, 1/2), whence E(X|Y) = Y/2.",
-      "Tower property: E(X) = E(Y)/2 = 2/2 = 1. Statement II is confirmed without touching the joint sum again."
+      "Multiply and divide by y!: $e^{-2}/(x!(y-x)!) = [e^{-2}/y!] \\binom{y}{x}$, and the binomial coefficients sum to $2^{y}$.",
+      "That immediately gives the marginal $\\operatorname{P}(Y = y) = e^{-2} 2^{y}/y!$, which is Poisson with parameter 2 - so 'parameter $1/2'$ is wrong.",
+      "The same manipulation shows $\\operatorname{P}(X = x \\mid Y = y) = \\binom{y}{x}/2^{y}$ = Binomial($y, 1/2$), whence $\\operatorname{E}(X\\mid Y) = Y/2$.",
+      "Tower property: $\\operatorname{E}(X) = \\operatorname{E}(Y)/2 = 2/2 = 1$. Statement II is confirmed without touching the joint sum again."
     ],
     "solution": [
-      "Write the joint pmf as P(X=x, Y=y) = e^(-2)/(x!(y-x)!) = [e^(-2)/y!] . y!/(x!(y-x)!) = [e^(-2)/y!] C(y,x).",
-      "Summing over x = 0, 1, ..., y and using the binomial identity sum C(y,x) = 2^y gives P(Y = y) = e^(-2) 2^y/y!.",
-      "This is the Poisson distribution with parameter 2, not 1/2. Statement I is FALSE.",
-      "Dividing the joint pmf by this marginal gives P(X = x | Y = y) = C(y,x)/2^y, i.e. X | Y = y ~ Binomial(y, 1/2).",
-      "Hence E(X | Y) = Y/2, and by the tower property E(X) = E(Y)/2 = 2/2 = 1. Statement II is TRUE.",
+      "Write the joint pmf as $\\operatorname{P}(X=x, Y=y) = e^{-2}/(x!(y-x)!) = [e^{-2}/y!]$ . y!/$(x!(y-x)!) = [e^{-2}/y!] \\binom{y}{x}$.",
+      "Summing over $x = 0, 1$, ..., y and using the binomial identity sum $\\binom{y}{x} = 2^{y}$ gives $\\operatorname{P}(Y = y) = e^{-2} 2^{y}/y$!.",
+      "This is the Poisson distribution with parameter 2, not $1/2$. Statement I is FALSE.",
+      "Dividing the joint pmf by this marginal gives $\\operatorname{P}(X = x \\mid Y = y) = \\binom{y}{x}/2^{y}$, i.e. $X \\mid Y = y$ ~ Binomial($y, 1/2$).",
+      "Hence $\\operatorname{E}(X \\mid Y) = Y/2$, and by the tower property $\\operatorname{E}(X) = \\operatorname{E}(Y)/2 = 2/2 = 1$. Statement II is TRUE.",
       "Only statement II is correct, option (b)."
     ]
   },
@@ -262,19 +262,19 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "P(X even) = 1/4 + 1/16 + ... = 1/3, so P(Y = 1) = 1/3 (not 2/3) and statement I fails. Then E(Y) = -2/3 + 1/3 = -1/3 and Var(Y) = 1 - 1/9 = 8/9, so II and III hold.",
+    "shortcut": "$\\operatorname{P}\\!\\left(X\\ \\text{even}\\right) = 1/4 + 1/16$ + ... = $1/3$, so $\\operatorname{P}(Y = 1) = 1/3$ (not $2/3$) and statement I fails. Then E(Y) = -$2/3 + 1/3$ = -$1/3$ and $\\operatorname{Var}(Y) = 1 - 1/9 = 8/9$, so II and III hold.",
     "tips": [
-      "Sum the even terms as a geometric series with first term 1/4 and ratio 1/4: total (1/4)/(1 - 1/4) = 1/3.",
-      "The odd terms then account for 2/3, so the distribution is weighted towards ODD X - and Y = -1 on odd X, which is why E(Y) is negative.",
-      "Statement I attaches 2/3 to Y = +1 when it belongs to Y = -1 - a straight swap, and the only error in the set.",
-      "Since Y^2 = 1 always, E(Y^2) = 1 and Var(Y) = 1 - (E Y)^2 = 1 - 1/9 = 8/9 with no further computation."
+      "Sum the even terms as a geometric series with first term $1/4$ and ratio $1/4$: total $(1/4)/(1 - 1/4) = 1/3$.",
+      "The odd terms then account for $2/3$, so the distribution is weighted towards ODD X - and Y = -1 on odd X, which is why E(Y) is negative.",
+      "Statement I attaches $2/3$ to Y = +1 when it belongs to Y = -1 - a straight swap, and the only error in the set.",
+      "Since $Y^{2} = 1$ always, $\\operatorname{E}(Y^{2}) = 1$ and $\\operatorname{Var}(Y) = 1 - (E Y)^{2} = 1 - 1/9 = 8/9$ with no further computation."
     ],
     "solution": [
-      "X has P(X = n) = 2^(-n) for n = 1, 2, 3, ..., which sums to 1.",
-      "P(X even) = 2^(-2) + 2^(-4) + 2^(-6) + ... = (1/4)/(1 - 1/4) = 1/3, so P(X odd) = 2/3.",
-      "Statement I: Y = +1 when X is even, so P(Y = 1) = 1/3, not 2/3. FALSE.",
-      "Statement II: E(Y) = (-1)(2/3) + (1)(1/3) = -1/3. TRUE.",
-      "Statement III: since Y takes only the values -1 and +1, Y^2 = 1 and E(Y^2) = 1, so V(Y) = 1 - (1/3)^2 = 1 - 1/9 = 8/9. TRUE.",
+      "X has $\\operatorname{P}(X = n) = 2^{-n}$ for $n = 1, 2, 3$, ..., which sums to 1.",
+      "$\\operatorname{P}\\!\\left(X\\ \\text{even}\\right) = 2^{-2} + 2^{-4} + 2^{-6}$ + ... = $(1/4)/(1 - 1/4) = 1/3$, so $\\operatorname{P}\\!\\left(X\\ \\text{odd}\\right) = 2/3$.",
+      "Statement I: Y = +1 when X is even, so $\\operatorname{P}(Y = 1) = 1/3$, not $2/3$. FALSE.",
+      "Statement II: $\\operatorname{E}(Y) = (-1)(2/3) + (1)(1/3)$ = -$1/3$. TRUE.",
+      "Statement III: since Y takes only the values -1 and +$1, Y^{2} = 1$ and $\\operatorname{E}(Y^{2}) = 1$, so $\\operatorname{V}(Y) = 1 - (1/3)^{2} = 1 - 1/9 = 8/9$. TRUE.",
       "Only statements II and III are correct, option (b)."
     ]
   },
@@ -282,38 +282,38 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Summing the geometric series over x gives P(Y = y) = (1/2)^(y+1), a geometric distribution with p = 1/2 on {0,1,2,...}, whose variance is q/p^2 = 2, not 1. So statement I holds and II fails.",
+    "shortcut": "Summing the geometric series over x gives $\\operatorname{P}(Y = y) = (1/2)^{y+1}, a$ geometric distribution with $p = 1/2$ on {0,1,2,...}, whose variance is $q/p^{2} = 2$, not 1. So statement I holds and II fails.",
     "tips": [
-      "For fixed y the x-part is a geometric series with ratio r = (2y+1)/(2y+2), so its sum is 1/(1-r) = 2y + 2 - the (y+1) in the denominator is placed to cancel with it.",
-      "After cancelling, P(Y = y) = (2y+2)/[2^(y+2)(y+1)] = 2/2^(y+2) = (1/2)^(y+1) - a clean geometric law.",
-      "Geometric on {0,1,2,...} with parameter p: mean q/p and variance q/p^2. With p = 1/2 these are 1 and 2 respectively.",
-      "Statement II quotes the MEAN (1) as the variance - the classic swap, and the only error in the pair."
+      "For fixed y the x-part is a geometric series with ratio $r = (2y+1)/(2y+2)$, so its sum is $1/(1-r) = 2y + 2$ - the $(y+1)$ in the denominator is placed to cancel with it.",
+      "After cancelling, $\\operatorname{P}(Y = y) = (2y+2)/[2^{y+2}(y+1)] = 2/2^{y+2} = (1/2)^{y+1} - a$ clean geometric law.",
+      "Geometric on {0,1,2,...} with parameter p: mean $q/p$ and variance $q/p^{2}$. With $p = 1/2$ these are 1 and 2 respectively.",
+      "Statement II quotes the MEAN $(1)$ as the variance - the classic swap, and the only error in the pair."
     ],
     "solution": [
-      "Fix y and sum the joint pmf over x = 0, 1, 2, ... The x-dependence is r^x with r = (2y+1)/(2y+2), and 0 < r < 1.",
-      "The geometric series sums to 1/(1 - r) = 1/[1 - (2y+1)/(2y+2)] = 2y + 2.",
-      "Hence P(Y = y) = [1/(2^(y+2)(y+1))](2y + 2) = 2(y+1)/[2^(y+2)(y+1)] = 2/2^(y+2) = (1/2)^(y+1).",
-      "This is the geometric distribution on {0, 1, 2, ...} with success probability p = 1/2, so statement I is TRUE.",
-      "For that distribution, mean = q/p = 1 and variance = q/p^2 = (1/2)/(1/4) = 2.",
-      "Statement II claims Var(Y) = 1, which is in fact the mean. FALSE. Only statement I is correct, option (a)."
+      "Fix y and sum the joint pmf over $x = 0, 1, 2$, ... The x-dependence is $r^{x}$ with $r = (2y+1)/(2y+2)$, and $0 < r < 1$.",
+      "The geometric series sums to $1/(1 - r) = 1/[1 - (2y+1)/(2y+2)] = 2y + 2$.",
+      "Hence $\\operatorname{P}(Y = y) = [1/(2^{y+2}(y+1))](2y + 2) = 2(y+1)/[2^{y+2}(y+1)] = 2/2^{y+2} = (1/2)^{y+1}$.",
+      "This is the geometric distribution on {0, 1, 2, ...} with success probability $p = 1/2$, so statement I is TRUE.",
+      "For that distribution, mean = $q/p = 1$ and variance = $q/p^{2} = (1/2)/(1/4) = 2$.",
+      "Statement II claims $\\operatorname{Var}(Y) = 1$, which is in fact the mean. FALSE. Only statement I is correct, option (a)."
     ]
   },
   "2024-Q36": {
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "With s1 = 6, s2 = 4 and rho = 1/2: E(Y|X=7) = 0 + (1/2)(4/6)(6) = 2; Cov(X+Y, Y-X) = Var Y - Var X = 16 - 36 = -20; V(X|Y=1) = 36(1 - 1/4) = 27. All three hold.",
+    "shortcut": "With $s_{1} = 6, s_{2} = 4$ and $\\rho = 1/2$: $\\operatorname{E}(Y\\mid X=7) = 0 + (1/2)(4/6)(6) = 2$; $\\operatorname{Cov}(X+Y, Y-X) = Var Y - Var X = 16 - 36$ = -20; $\\operatorname{V}(X\\mid Y=1) = 36(1 - 1/4) = 27$. All three hold.",
     "tips": [
-      "Take square roots of the variances first: 36 and 16 give s1 = 6 and s2 = 4, so the regression coefficient rho s2/s1 = (1/2)(2/3) = 1/3.",
-      "Cov(X+Y, Y-X) expands to Cov(X,Y) - Var(X) + Var(Y) - Cov(Y,X) = Var(Y) - Var(X); the covariance terms cancel, so rho never enters.",
-      "Conditional variance is sigma^2(1 - rho^2) and does NOT depend on the conditioning value - the '1' in V(X|Y=1) is a distractor.",
-      "Check statement I: x = 7 is one standard deviation... in fact 6 units above mu1 = 1, and (1/3)(6) = 2, matching the stated value."
+      "Take square roots of the variances first: 36 and 16 give $s_{1} = 6$ and $s_{2} = 4$, so the regression coefficient $\\rho s_{2}/s_{1} = (1/2)(2/3) = 1/3$.",
+      "$\\operatorname{Cov}(X+Y, Y-X)$ expands to $\\operatorname{Cov}(X,Y) - \\operatorname{Var}(X) + \\operatorname{Var}(Y) - \\operatorname{Cov}(Y,X) = \\operatorname{Var}(Y) - \\operatorname{Var}(X)$; the covariance terms cancel, so $\\rho$ never enters.",
+      "Conditional variance is $\\sigma^{2}(1 - \\rho^{2})$ and does NOT depend on the conditioning value - the '1' in $\\operatorname{V}(X\\mid Y=1)$ is a distractor.",
+      "Check statement I: $x = 7$ is one standard deviation... in fact 6 units above $\\mu1 = 1$, and $(1/3)(6) = 2$, matching the stated value."
     ],
     "solution": [
-      "The parameters are mu1 = 1, mu2 = 0, sigma1^2 = 36, sigma2^2 = 16 and rho = 1/2, so sigma1 = 6, sigma2 = 4 and Cov(X,Y) = rho sigma1 sigma2 = (1/2)(6)(4) = 12.",
-      "Statement I: E(Y | X = x) = mu2 + rho (sigma2/sigma1)(x - mu1) = 0 + (1/2)(4/6)(7 - 1) = (1/3)(6) = 2. TRUE.",
-      "Statement II: Cov(X+Y, Y-X) = Cov(X,Y) - Cov(X,X) + Cov(Y,Y) - Cov(Y,X) = Var(Y) - Var(X) = 16 - 36 = -20. TRUE.",
-      "Statement III: V(X | Y = y) = sigma1^2 (1 - rho^2) = 36(1 - 1/4) = 36(3/4) = 27, independent of the value of y. TRUE.",
+      "The parameters are $\\mu1 = 1, \\mu2 = 0, \\sigma1^{2} = 36, \\sigma2^{2} = 16$ and $\\rho = 1/2$, so $\\sigma1 = 6, \\sigma2 = 4$ and $\\operatorname{Cov}(X,Y) = \\rho \\sigma1 \\sigma2 = (1/2)(6)(4) = 12$.",
+      "Statement I: $\\operatorname{E}(Y \\mid X = x) = \\mu2 + \\rho (\\sigma2/\\sigma1)(x - \\mu1) = 0 + (1/2)(4/6)(7 - 1) = (1/3)(6) = 2$. TRUE.",
+      "Statement II: $\\operatorname{Cov}(X+Y, Y-X) = \\operatorname{Cov}(X,Y) - \\operatorname{Cov}(X,X) + \\operatorname{Cov}(Y,Y) - \\operatorname{Cov}(Y,X) = \\operatorname{Var}(Y) - \\operatorname{Var}(X) = 16 - 36$ = -20. TRUE.",
+      "Statement III: $\\operatorname{V}(X \\mid Y = y) = \\sigma1^{2} (1 - \\rho^{2}) = 36(1 - 1/4) = 36(3/4) = 27$, independent of the value of y. TRUE.",
       "All three statements are correct.",
       "Option (d) is correct."
     ]
@@ -322,38 +322,38 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "X ~ B(3, 1/4) and Y ~ Poisson(2). P(X+Y < 2) = P(0,0) + P(0,1) + P(1,0) = (27/64)e^(-2) + (27/64)(2e^(-2)) + (27/64)e^(-2) = (27/16)e^(-2).",
+    "shortcut": "$X \\sim B(3, 1/4)$ and Y ~ Poisson(2). $\\operatorname{P}(X+Y < 2) = \\operatorname{P}(0,0) + \\operatorname{P}(0,1) + \\operatorname{P}(1,0) = (27/64)e^{-2} + (27/64)(2e^{-2}) + (27/64)e^{-2} = (27/16)e^{-2}$.",
     "tips": [
-      "Identify the distributions from the MGFs: (q + p e^t)^n is Binomial(n,p) and e^(lambda(e^t - 1)) is Poisson(lambda). Here n = 3, p = 1/4 and lambda = 2.",
-      "X + Y < 2 means the sum is 0 or 1, so only three (x,y) combinations arise - enumerate them rather than seeking a closed form.",
-      "Both P(X=0) and P(X=1) equal 27/64 for B(3,1/4), which is a pleasant coincidence: (3/4)^3 = 27/64 and 3(1/4)(9/16) = 27/64.",
-      "Factor 27/64 out of all three terms: (27/64)(1 + 2 + 1)e^(-2) = (27/64)(4)e^(-2) = (27/16)e^(-2)."
+      "Identify the distributions from the MGFs: $(q + p e^{t})^{n}$ is Binomial(n,p) and $e^(\\lambda(e^{t} - 1))$ is Poisson($\\lambda$). Here $n = 3, p = 1/4$ and $\\lambda = 2$.",
+      "$X + Y < 2$ means the sum is 0 or 1, so only three (x,y) combinations arise - enumerate them rather than seeking a closed form.",
+      "Both $\\operatorname{P}(X=0)$ and $\\operatorname{P}(X=1)$ equal $27/64$ for $B(3,1/4)$, which is a pleasant coincidence: $(3/4)^{3} = 27/64$ and $3(1/4)(9/16) = 27/64$.",
+      "Factor $27/64$ out of all three terms: $(27/64)(1 + 2 + 1)e^{-2} = (27/64)(4)e^{-2} = (27/16)e^{-2}$."
     ],
     "solution": [
-      "M_X(t) = (3/4 + (1/4)e^t)^3 is the MGF of a Binomial(3, 1/4) variable, and M_Y(t) = e^(2(e^t - 1)) is the MGF of a Poisson(2) variable; X and Y are independent.",
-      "P(X + Y < 2) = P(X + Y = 0) + P(X + Y = 1).",
-      "P(X=0) = (3/4)^3 = 27/64 and P(X=1) = 3(1/4)(3/4)^2 = 27/64; P(Y=0) = e^(-2) and P(Y=1) = 2e^(-2).",
-      "P(X+Y = 0) = P(X=0)P(Y=0) = (27/64)e^(-2).",
-      "P(X+Y = 1) = P(X=0)P(Y=1) + P(X=1)P(Y=0) = (27/64)(2e^(-2)) + (27/64)e^(-2) = (81/64)e^(-2).",
-      "Total = (27/64 + 81/64)e^(-2) = (108/64)e^(-2) = (27/16)e^(-2), option (b)."
+      "$M_{X}(t) = (3/4 + (1/4)e^{t})^{3}$ is the MGF of a Binomial($3, 1/4$) variable, and $M_{Y}(t) = e^(2(e^{t} - 1))$ is the MGF of a Poisson(2) variable; X and Y are independent.",
+      "$\\operatorname{P}(X + Y < 2) = \\operatorname{P}(X + Y = 0) + \\operatorname{P}(X + Y = 1)$.",
+      "$\\operatorname{P}(X=0) = (3/4)^{3} = 27/64$ and $\\operatorname{P}(X=1) = 3(1/4)(3/4)^{2} = 27/64$; $\\operatorname{P}(Y=0) = e^{-2}$ and $\\operatorname{P}(Y=1) = 2e^{-2}$.",
+      "$\\operatorname{P}(X+Y = 0) = \\operatorname{P}(X=0)\\operatorname{P}(Y=0) = (27/64)e^{-2}$.",
+      "$\\operatorname{P}(X+Y = 1) = \\operatorname{P}(X=0)\\operatorname{P}(Y=1) + \\operatorname{P}(X=1)\\operatorname{P}(Y=0) = (27/64)(2e^{-2}) + (27/64)e^{-2} = (81/64)e^{-2}$.",
+      "Total = $(27/64 + 81/64)e^{-2} = (108/64)e^{-2} = (27/16)e^{-2}$, option (b)."
     ]
   },
   "2024-Q38": {
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Xbar has mean theta and variance theta^2/10, and the interval (0, 2theta) is theta +- theta. Chebyshev gives at least 1 - (theta^2/10)/theta^2 = 0.9.",
+    "shortcut": "$\\bar{X}$ has mean $\\theta$ and variance $\\theta^{2}/10$, and the interval $(0, 2\\theta)$ is $\\theta$ +- $\\theta$. Chebyshev gives at least $1 - (\\theta^{2}/10)/\\theta^{2} = 0.9$.",
     "tips": [
       "The words 'lower bound to the probability' signal Chebyshev - no distributional detail beyond mean and variance is needed.",
-      "For exponential with mean theta the variance is theta^2, so Var(Xbar) = theta^2/n = theta^2/10.",
-      "The interval (0, 2theta) is exactly symmetric about the mean theta with half-width theta, so k sigma = theta with sigma = theta/sqrt(10), giving k = sqrt(10) and the bound 1 - 1/10.",
-      "theta cancels completely, which is why the answer is a pure number - a good check that the set-up is right."
+      "For exponential with mean $\\theta$ the variance is $\\theta^{2}$, so $Var$($\\bar{X}$) = $\\theta^{2}/n = \\theta^{2}/10$.",
+      "The interval $(0, 2\\theta)$ is exactly symmetric about the mean $\\theta$ with half-width $\\theta$, so $k \\sigma = \\theta$ with $\\sigma = \\theta/\\sqrt{10}$, giving $k = \\sqrt{10}$ and the bound $1 - 1/10$.",
+      "$\\theta$ cancels completely, which is why the answer is a pure number - a good check that the set-up is right."
     ],
     "solution": [
-      "For an exponential distribution with mean theta, the variance is also theta^2.",
-      "The sample mean of 10 observations has E(Xbar) = theta and Var(Xbar) = theta^2/10.",
-      "The event 0 < Xbar < 2theta is |Xbar - theta| < theta, an interval symmetric about the mean with half-width theta.",
-      "Chebyshev's inequality gives P(|Xbar - theta| < e) >= 1 - Var(Xbar)/e^2 with e = theta = 1 - (theta^2/10)/theta^2 = 1 - 1/10 = 0.9.",
+      "For an exponential distribution with mean $\\theta$, the variance is also $\\theta^{2}$.",
+      "The sample mean of 10 observations has E($\\bar{X}$) = $\\theta$ and $Var$($\\bar{X}$) = $\\theta^{2}/10$.",
+      "The event $0 < \\bar{X} < 2\\theta$ is |$\\bar{X} - \\theta$| < $\\theta$, an interval symmetric about the mean with half-width $\\theta$.",
+      "Chebyshev's inequality gives $\\operatorname{P}(\\lvert \\bar{X} - \\theta\\rvert < e) \\ge 1 - Var$($\\bar{X}$)/$e^{2}$ with $e = \\theta = 1 - (\\theta^{2}/10)/\\theta^{2} = 1 - 1/10 = 0.9$.",
       "Hence the lower bound is 0.9, option (d)."
     ]
   },
@@ -361,19 +361,19 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "For X ~ U(0,1) and Y = X^2, x = sqrt(y) and dx/dy = 1/(2 sqrt y), so f_Y(y) = 1 . 1/(2 sqrt y) on (0,1).",
+    "shortcut": "For $X \\sim U(0,1)$ and $Y = X^{2}, x = \\sqrt{y}$ and $dx/dy = 1/(2 sqrt y)$, so $f_{Y}(y) = 1$ . $1/(2 sqrt y)$ on $(0,1)$.",
     "tips": [
-      "One-to-one on (0,1): the square is increasing there, so no doubling is needed - just invert and multiply by the Jacobian.",
-      "|dx/dy| = 1/(2 sqrt y) is the whole content of the transformation, since f_X = 1 contributes nothing.",
-      "Validity check: the integral of 1/(2 sqrt y) over (0,1) is [sqrt y] from 0 to 1 = 1. Options (a), (b) and (d) integrate to 2/3, 1/3 and 1/2, so all are invalid.",
-      "The density blows up at y = 0, which is correct: squaring crowds the small values of X towards 0."
+      "One-to-one on $(0,1)$: the square is increasing there, so no doubling is needed - just invert and multiply by the Jacobian.",
+      "|$dx/dy$| = $1/(2 sqrt y)$ is the whole content of the transformation, since $f_{X} = 1$ contributes nothing.",
+      "Validity check: the $\\int 1/(2 sqrt y)$ over $(0,1)$ is [sqrt y] from 0 to $1 = 1$. Options (a), (b) and (d) integrate to $2/3, 1/3$ and $1/2$, so all are invalid.",
+      "The density blows up at $y = 0$, which is correct: squaring crowds the small values of X towards 0."
     ],
     "solution": [
-      "X has density f(x) = 1 on (0,1), and Y = X^2 maps (0,1) one-to-one onto (0,1) increasingly.",
-      "Inverting, x = sqrt(y) for 0 < y < 1.",
-      "The Jacobian is dx/dy = 1/(2 sqrt(y)).",
-      "By the change-of-variable formula, f_Y(y) = f_X(sqrt y) |dx/dy| = 1 . 1/(2 sqrt y).",
-      "So f_Y(y) = 1/(2 sqrt y) for 0 < y < 1, whose integral is [sqrt y] from 0 to 1 = 1, confirming it is a valid density.",
+      "X has density $f(x) = 1$ on $(0,1)$, and $Y = X^{2}$ maps $(0,1)$ one-to-one onto $(0,1)$ increasingly.",
+      "Inverting, $x = \\sqrt{y}$ for $0 < y < 1$.",
+      "The Jacobian is $dx/dy = 1/(2 \\sqrt{y})$.",
+      "By the change-of-variable formula, $f_{Y}(y) = f_{X}(sqrt y) \\mid dx/dy$| = 1 . $1/(2 sqrt y)$.",
+      "So $f_{Y}(y) = 1/(2 sqrt y)$ for $0 < y < 1$, whose integral is [sqrt y] from 0 to $1 = 1$, confirming it is a valid density.",
       "Option (c) is correct."
     ]
   },
@@ -381,20 +381,20 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "M(t) = lambda/(lambda - t) = (1 - t/lambda)^(-1) is the exponential MGF with rate lambda, whose mean is 1/lambda and variance 1/lambda^2.",
+    "shortcut": "$M(t) = \\lambda/(\\lambda - t) = (1 - t/\\lambda)^{-1}$ is the exponential MGF with rate $\\lambda$, whose mean is $1/\\lambda$ and variance $1/\\lambda^{2}$.",
     "tips": [
-      "Recognise the family: lambda/(lambda - t) for t < lambda is the exponential MGF. The condition t < lambda in the stem is the giveaway.",
-      "Exponential with RATE lambda has mean 1/lambda and variance 1/lambda^2 - reciprocals, not lambda itself. Option (c) inverts this.",
-      "If you prefer to differentiate: M'(t) = lambda/(lambda-t)^2 gives M'(0) = 1/lambda, and M''(t) = 2 lambda/(lambda-t)^3 gives M''(0) = 2/lambda^2, so Var = 2/lambda^2 - 1/lambda^2 = 1/lambda^2.",
-      "Option (a) leaves t in the answer, which is impossible - moments are numbers, obtained by evaluating derivatives AT t = 0."
+      "Recognise the family: $\\lambda/(\\lambda - t)$ for $t < \\lambda$ is the exponential MGF. The condition $t < \\lambda$ in the stem is the giveaway.",
+      "Exponential with RATE $\\lambda$ has mean $1/\\lambda$ and variance $1/\\lambda^{2}$ - reciprocals, not $\\lambda$ itself. Option (c) inverts this.",
+      "If you prefer to differentiate: $M'(t) = \\lambda/(\\lambda-t)^{2}$ gives $M'(0) = 1/\\lambda$, and $M''(t) = 2 \\lambda/(\\lambda-t)^{3}$ gives $M''(0) = 2/\\lambda^{2}$, so $Var = 2/\\lambda^{2} - 1/\\lambda^{2} = 1/\\lambda^{2}$.",
+      "Option (a) leaves t in the answer, which is impossible - moments are numbers, obtained by evaluating derivatives AT $t = 0$."
     ],
     "solution": [
-      "The moment generating function M(t) = lambda/(lambda - t), valid for t < lambda, can be written as (1 - t/lambda)^(-1).",
-      "This is the moment generating function of an exponential distribution with rate parameter lambda.",
-      "Differentiating: M'(t) = lambda/(lambda - t)^2, so E(X) = M'(0) = lambda/lambda^2 = 1/lambda.",
-      "Differentiating again: M''(t) = 2 lambda/(lambda - t)^3, so E(X^2) = M''(0) = 2 lambda/lambda^3 = 2/lambda^2.",
-      "Hence Var(X) = 2/lambda^2 - (1/lambda)^2 = 1/lambda^2.",
-      "The mean and variance are 1/lambda and 1/lambda^2, option (b)."
+      "The moment generating function $M(t) = \\lambda/(\\lambda - t)$, valid for $t < \\lambda$, can be written as $(1 - t/\\lambda)^{-1}$.",
+      "This is the moment generating function of an exponential distribution with rate parameter $\\lambda$.",
+      "Differentiating: $M'(t) = \\lambda/(\\lambda - t)^{2}$, so $\\operatorname{E}(X) = M'(0) = \\lambda/\\lambda^{2} = 1/\\lambda$.",
+      "Differentiating again: $M''(t) = 2 \\lambda/(\\lambda - t)^{3}$, so $\\operatorname{E}(X^{2}) = M''(0) = 2 \\lambda/\\lambda^{3} = 2/\\lambda^{2}$.",
+      "Hence $\\operatorname{Var}(X) = 2/\\lambda^{2} - (1/\\lambda)^{2} = 1/\\lambda^{2}$.",
+      "The mean and variance are $1/\\lambda$ and $1/\\lambda^{2}$, option (b)."
     ]
   }
 }

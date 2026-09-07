@@ -378,36 +378,38 @@ dialog, .modal-back {
   max-height: 88vh; overflow-y: auto;
 }
 
-/* ------------------------------------------------------- math-lite output */
-.mq { font-family: var(--font-math); white-space: normal; }
-.mq-block { display: block; text-align: center; margin: 8px 0; overflow-x: auto; }
-.mq i.v { font-style: italic; }
-.mq .op { font-style: normal; padding: 0 .12em; }
-.mq sup, .mq sub { font-size: .72em; line-height: 0; position: relative; }
-.mq sup { top: -.48em; }
-.mq sub { bottom: -.22em; }
-.mfrac {
-  display: inline-flex; flex-direction: column; vertical-align: middle;
-  text-align: center; margin: 0 .18em; line-height: 1.18;
+/* --------------------------------------------------- KaTeX integration */
+/* KaTeX's own stylesheet is inlined in index.html; these rules only govern
+   how a formula sits inside the surrounding prose. */
+/* Any block that can hold a formula scrolls internally rather than widening
+   the page: some printed items (long ordered data lists) have no relation or
+   operator for the typesetter to break at. */
+.qtext, .shared, .opt .v, .pane > .bd, .list > li > .small, .answer,
+.card > .small, td, th { overflow-x: auto; overflow-y: hidden; }
+.mq { display: inline-block; max-width: 100%; }
+.mq-long {
+  display: block; max-width: 100%;
+  overflow-x: auto; overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 2px 0; margin: 2px 0;
 }
-.mfrac > .n { display: block; padding: 0 .25em; border-bottom: 1px solid currentColor; font-size: .92em; }
-.mfrac > .d { display: block; padding: 0 .25em; font-size: .92em; }
-.mbinom { display: inline-flex; flex-direction: column; vertical-align: middle;
-          text-align: center; margin: 0 .1em; line-height: 1.1; font-size: .92em; }
-.mroot { display: inline-block; }
-.mroot > .rad { }
-.mroot > .bod { border-top: 1px solid currentColor; padding: 0 .18em 0 .1em; }
-.mover { display: inline-block; border-top: 1px solid currentColor; padding-top: 1px; }
-.mcases { display: inline-flex; align-items: center; vertical-align: middle; }
-.mcases > .brace { font-size: 2.1em; line-height: .8; margin-right: .12em; font-weight: 300; }
-.mcases table { border-collapse: collapse; }
-.mcases td { padding: 1px 8px 1px 0; text-align: left; vertical-align: middle; }
-.mmat { display: inline-flex; align-items: center; vertical-align: middle; }
-.mmat > .b { font-size: 1.9em; line-height: .85; font-weight: 300; }
-.mmat table { border-collapse: collapse; }
-.mmat td { padding: 1px 7px; text-align: center; }
-.mbig { font-size: 1.35em; line-height: 1; vertical-align: -.16em; }
-.msp { display: inline-block; width: .45em; }
+.mq-block {
+  display: block; text-align: center; margin: 10px 0;
+  overflow-x: auto; overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+.katex { font-size: 1.06em; }
+.mq-block .katex-display { margin: 0; }
+.mq-block .katex-display > .katex { white-space: normal; }
+/* long inline formulas must be able to scroll rather than widen the page */
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
+.katex .mord.text, .katex .mop.text { font-family: inherit; }
+.math-fallback {
+  font-family: var(--font-mono); font-size: .9em;
+  background: var(--warn-bg); color: var(--warn);
+  border: 1px solid var(--warn-line); border-radius: 3px; padding: 0 4px;
+}
+.katex-error { color: var(--bad); }
 
 /* markdown-lite tables inside question stems */
 table.qtbl { border-collapse: collapse; margin: 9px 0; font-size: .9rem; min-width: 220px; }

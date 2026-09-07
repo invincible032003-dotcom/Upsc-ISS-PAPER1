@@ -3,19 +3,19 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Expanding the determinant along the top row gives -3f(1) + 4f(2) - f(5) = 60, while f[1,2,5] = (3f(1) - 4f(2) + f(5))/12 = -60/12 = -5.",
+    "shortcut": "Expanding the determinant along the top row gives -$3f(1) + 4f(2) - f(5) = 60$, while $f[1,2,5] = (3f(1) - 4f(2) + f(5))/12$ = -$60/12$ = -5.",
     "tips": [
-      "Write the second divided difference in its symmetric Lagrange form: f[a,b,c] = f(a)/((a-b)(a-c)) + f(b)/((b-a)(b-c)) + f(c)/((c-a)(c-b)). Here the denominators are 4, -3 and 12.",
-      "Put the three terms over the common denominator 12: f[1,2,5] = (3f(1) - 4f(2) + f(5))/12 - exactly the negative of the determinant expansion.",
-      "The Vandermonde-style determinant with rows (f-values), (x-values), (1s) is a standard disguised way of presenting divided differences; recognising it saves all the algebra.",
-      "Sign care: the determinant expansion gives -3f(1) + 4f(2) - f(5), which is MINUS the numerator of the divided difference - the single place this question can go wrong."
+      "Write the second divided difference in its symmetric Lagrange form: $f[a,b,c] = f(a)/((a-b)(a-c)) + f(b)/((b-a)(b-c)) + f(c)/((c-a)(c-b))$. Here the denominators are 4, -3 and 12.",
+      "Put the three terms over the common denominator 12: $f[1,2,5] = (3f(1) - 4f(2) + f(5))/12$ - exactly the negative of the determinant expansion.",
+      "The Vandermonde-style determinant with rows (f-values), (x-values), $(1s)$ is a standard disguised way of presenting divided differences; recognising it saves all the algebra.",
+      "Sign care: the determinant expansion gives -$3f(1) + 4f(2) - f(5)$, which is MINUS the numerator of the divided difference - the single place this question can go wrong."
     ],
     "solution": [
-      "The second divided difference over nodes 1, 2, 5 is f[1,2,5] = f(1)/((1-2)(1-5)) + f(2)/((2-1)(2-5)) + f(5)/((5-1)(5-2)).",
-      "The denominators are (-1)(-4) = 4, (1)(-3) = -3 and (4)(3) = 12, so f[1,2,5] = f(1)/4 - f(2)/3 + f(5)/12 = (3f(1) - 4f(2) + f(5))/12.",
-      "Expand the determinant along its first row: det A = f(1)(2 - 5) - f(2)(1 - 5) + f(5)(1 - 2) = -3f(1) + 4f(2) - f(5).",
-      "We are told this equals 60, so 3f(1) - 4f(2) + f(5) = -60.",
-      "Therefore f[1,2,5] = -60/12 = -5.",
+      "The second divided difference over nodes 1, 2, 5 is $f[1,2,5] = f(1)/((1-2)(1-5)) + f(2)/((2-1)(2-5)) + f(5)/((5-1)(5-2))$.",
+      "The denominators are $(-1)(-4) = 4, (1)(-3)$ = -3 and $(4)(3) = 12$, so $f[1,2,5] = f(1)/4 - f(2)/3 + f(5)/12 = (3f(1) - 4f(2) + f(5))/12$.",
+      "Expand the determinant along its first row: $\\det A = f(1)(2 - 5) - f(2)(1 - 5) + f(5)(1 - 2)$ = -$3f(1) + 4f(2) - f(5)$.",
+      "We are told this equals 60, so $3f(1) - 4f(2) + f(5)$ = -60.",
+      "Therefore $f[1,2,5]$ = -$60/12$ = -5.",
       "Option (a) is correct."
     ]
   },
@@ -23,19 +23,19 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Second differences are constant at 2, so the first difference one step before -5 is -7. Hence f(100) = f(110) + 7 = 8 + 7 = 15.",
+    "shortcut": "Second differences are constant at 2, so the first difference one step before -5 is -7. Hence $f(100) = f(110) + 7 = 8 + 7 = 15$.",
     "tips": [
       "For backward extrapolation of a quadratic, just extend the difference table LEFTWARDS: keep the second difference constant and work back one first difference.",
       "First differences here are -5, -3, -1, 1 - an arithmetic progression with common difference 2, so the entry before -5 must be -7.",
-      "f(110) - f(100) = -7 means f(100) = 8 + 7 = 15. Watch the sign: the function is DECREASING over the table, so it must be larger at x = 100.",
-      "Verify by fitting: with x = (t - 130)/10 the data are 8, 3, 0, -1, 0 at x = -2,-1,0,1,2, i.e. f = x^2 - 2x... checking t = 100 gives x = -3 and f = 9 + 6 = 15."
+      "$f(110) - f(100)$ = -7 means $f(100) = 8 + 7 = 15$. Watch the sign: the function is DECREASING over the table, so it must be larger at $x = 100$.",
+      "Verify by fitting: with $x = (t - 130)/10$ the data are 8, 3, 0, -1, 0 at x = -2,-1,0,1,2, i.e. $f = x^{2} - 2x$... checking $t = 100$ gives x = -3 and $f = 9 + 6 = 15$."
     ],
     "solution": [
-      "The tabulated values at x = 110, 120, 130, 140, 150 are 8, 3, 0, -1, 0 with h = 10.",
+      "The tabulated values at $x = 110, 120, 130, 140, 150$ are 8, 3, 0, -1, 0 with $h = 10$.",
       "First differences: -5, -3, -1, 1. Second differences: 2, 2, 2 - constant, confirming a quadratic.",
-      "To extrapolate to x = 100 we extend the table backwards by one step, keeping the second difference equal to 2.",
-      "The first difference immediately preceding -5 must therefore be -5 - 2 = -7, i.e. f(110) - f(100) = -7.",
-      "Hence f(100) = f(110) + 7 = 8 + 7 = 15.",
+      "To extrapolate to $x = 100$ we extend the table backwards by one step, keeping the second difference equal to 2.",
+      "The first difference immediately preceding -5 must therefore be -5 - 2 = -7, i.e. $f(110) - f(100)$ = -7.",
+      "Hence $f(100) = f(110) + 7 = 8 + 7 = 15$.",
       "Option (c) is correct."
     ]
   },
@@ -43,17 +43,17 @@
     "answer": 1,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "Statement 1 misstates the 3/8 rule - it fits a cubic over each group of THREE subintervals, not over each single subinterval. Statement 2 is correct: the trapezoidal rule places no divisibility condition on n.",
+    "shortcut": "Statement 1 misstates the $3/8$ rule - it fits a cubic over each group of THREE subintervals, not over each single subinterval. Statement 2 is correct: the trapezoidal rule places no divisibility condition on n.",
     "tips": [
-      "Count the strips per arc: trapezoidal uses 1 strip per line, Simpson's 1/3 uses 2 strips per parabola, Simpson's 3/8 uses 3 strips per cubic.",
+      "Count the strips per arc: trapezoidal uses 1 strip per line, Simpson's $1/3$ uses 2 strips per parabola, Simpson's $3/8$ uses 3 strips per cubic.",
       "A cubic is determined by FOUR points, which span three subintervals - that arithmetic alone exposes the error in statement 1.",
       "The trapezoidal rule is the only one of the family with no divisibility requirement, which is precisely what statement 2 asserts.",
       "Read such statements for the exact interval described; the examiner's alteration is often a single word ('each sub-interval' rather than 'each group of three')."
     ],
     "solution": [
       "Statement 1: Simpson's three-eighth rule is obtained by replacing the integrand by the cubic through FOUR consecutive tabulated points, which span THREE subintervals.",
-      "The statement instead asserts that a cubic is assumed on each single subinterval [x0 + (i-1)h, x0 + ih], which is not how the rule is constructed. FALSE.",
-      "Statement 2: the trapezoidal rule approximates the curve by a straight line on each subinterval, and the composite formula T = h[(f0 + fn)/2 + f1 + ... + f(n-1)] closes correctly for ANY number of equal subintervals.",
+      "The statement instead asserts that a cubic is assumed on each single subinterval $[x_{0} + (i-1)h, x_{0} + ih]$, which is not how the rule is constructed. FALSE.",
+      "Statement 2: the trapezoidal rule approximates the curve by a straight line on each subinterval, and the composite formula $T = h$[$(f_{0} + fn)/2 + f_{1}$ + ... + $f(n-1)$] closes correctly for ANY number of equal subintervals.",
       "Unlike Simpson's rules, it imposes no requirement that n be even or a multiple of 3. TRUE.",
       "Only statement 2 is correct.",
       "Hence option (b) is correct."
@@ -63,19 +63,19 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Newton forward from x0 = 40 with h = 20 and p = 1.5 gives f(70) = 250 + 180 - 7.5 + 0.625 + 0.469 = 423.6. Subtracting f(60) = 370 leaves about 54 students.",
+    "shortcut": "Newton forward from $x_{0} = 40$ with $h = 20$ and $p = 1.5$ gives $f(70) = 250 + 180 - 7.5 + 0.625 + 0.469 = 423.6$. Subtracting $f(60) = 370$ leaves about 54 students.",
     "tips": [
-      "The table is CUMULATIVE ('marks below'), so the number between 60 and 70 is f(70) - f(60) - never interpolate the frequencies themselves.",
-      "Difference table: 120, 100, 70, 50; then -20, -30, -20; then -10, 10; then 20. Compute it in full, since p = 1.5 keeps all four terms alive.",
+      "The table is CUMULATIVE ('marks below'), so the number between 60 and 70 is $f(70) - f(60)$ - never interpolate the frequencies themselves.",
+      "Difference table: 120, 100, 70, 50; then -20, -30, -20; then -10, 10; then 20. Compute it in full, since $p = 1.5$ keeps all four terms alive.",
       "The factorial coefficients change sign after the second term because p - 2 = -0.5 and p - 3 = -1.5 are negative - track the signs carefully.",
-      "f(60) = 370 is read directly from the table, so only f(70) needs interpolating. The answer 53.6 rounds to 54 students."
+      "$f(60) = 370$ is read directly from the table, so only $f(70)$ needs interpolating. The answer 53.6 rounds to 54 students."
     ],
     "solution": [
-      "Take x0 = 40 with h = 20 and cumulative values y = 250, 370, 470, 540, 590.",
-      "Differences: Delta = 120, 100, 70, 50; Delta^2 = -20, -30, -20; Delta^3 = -10, 10; Delta^4 = 20.",
-      "For x = 70, p = (70 - 40)/20 = 1.5.",
-      "Newton's forward formula: f(70) = 250 + 1.5(120) + [1.5(0.5)/2](-20) + [1.5(0.5)(-0.5)/6](-10) + [1.5(0.5)(-0.5)(-1.5)/24](20) = 250 + 180 - 7.5 + 0.625 + 0.469 = 423.59.",
-      "Students scoring between 60 and 70 = f(70) - f(60) = 423.59 - 370 = 53.59, i.e. about 54. Option (a) is correct."
+      "Take $x_{0} = 40$ with $h = 20$ and cumulative values $y = 250, 370, 470, 540, 590$.",
+      "Differences: $\\Delta = 120, 100, 70, 50$; $\\Delta^{2}$ = -20, -30, -20; $\\Delta^{3}$ = -10, 10; $\\Delta^{4} = 20$.",
+      "For $x = 70, p = (70 - 40)/20 = 1.5$.",
+      "Newton's forward formula: $f(70) = 250 + 1.5(120) + [1.5(0.5)/2](-20) + [1.5(0.5)(-0.5)/6](-10) + [1.5(0.5)(-0.5)(-1.5)/24](20) = 250 + 180 - 7.5 + 0.625 + 0.469 = 423.59$.",
+      "Students scoring between 60 and $70 = f(70) - f(60) = 423.59 - 370 = 53.59$, i.e. about 54. Option (a) is correct."
     ]
   },
   "2021-Q65": {
@@ -87,13 +87,13 @@
       "Only the Newton-Gregory forward and backward formulas require equal spacing; Lagrange and divided differences never do.",
       "The two methods give the SAME interpolating polynomial - they are different algebraic arrangements of the unique polynomial through the given points.",
       "Divided differences are preferred in practice because new points can be added incrementally; Lagrange is preferred for theoretical work and error analysis.",
-      "x = 2.9 lies inside the data range 1 to 5, so this is genuine interpolation, and both methods are accurate there."
+      "$x = 2.9$ lies inside the data range 1 to 5, so this is genuine interpolation, and both methods are accurate there."
     ],
     "solution": [
-      "The tabulated arguments are x = 1, 2, 3, 5, which are NOT equally spaced (the last gap is 2 while the others are 1).",
-      "Lagrange's interpolation formula constructs the interpolating polynomial as a weighted sum of the function values with weights built from products of (x - x_i), and it makes no assumption about spacing. Applicable.",
+      "The tabulated arguments are $x = 1, 2, 3, 5$, which are NOT equally spaced (the last gap is 2 while the others are 1).",
+      "Lagrange's interpolation formula constructs the interpolating polynomial as a weighted sum of the function values with weights built from products of $(x - x_{i})$, and it makes no assumption about spacing. Applicable.",
       "Newton's divided difference formula divides by the actual differences of the arguments and is likewise valid for arbitrary distinct nodes. Applicable.",
-      "Both formulas produce the same unique polynomial of degree at most 3 through the four points, so either may be used to estimate f(2.9).",
+      "Both formulas produce the same unique polynomial of degree at most 3 through the four points, so either may be used to estimate $f(2.9)$.",
       "Only the Newton-Gregory forward and backward formulas, which are not offered here, would require equal spacing.",
       "Hence both methods can be used, option (c)."
     ]
@@ -102,19 +102,19 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Divided differences: f[1,2] = 15, f[2,4] = 120, f[1,2,4] = 35. Then f(3) = 2 + 2(15) + 2(1)(35) = 2 + 30 + 70 = 102.",
+    "shortcut": "Divided differences: $f[1,2] = 15, f[2,4] = 120, f[1,2,4] = 35$. Then $f(3) = 2 + 2(15) + 2(1)(35) = 2 + 30 + 70 = 102$.",
     "tips": [
-      "Newton's form: f(x) = f[1] + (x-1)f[1,2] + (x-1)(x-2)f[1,2,4]. Build the products (3-1) = 2 and (3-1)(3-2) = 2 before substituting.",
-      "Note the unequal spacing: f[2,4] divides by 4 - 2 = 2, not by 1. Forgetting the actual gap is the classic error here.",
-      "The data are 2, 17, 257 at 1, 2, 4 - close to 4^x - 2 or similar rapid growth, so a value near 100 at x = 3 is plausible while option (c) 165 and (d) 182 are too large for a quadratic fit.",
+      "Newton's form: $f(x) = f[1] + (x-1)f[1,2] + (x-1)(x-2)f[1,2,4]$. Build the products $(3-1) = 2$ and $(3-1)(3-2) = 2$ before substituting.",
+      "Note the unequal spacing: $f[2,4]$ divides by $4 - 2 = 2$, not by 1. Forgetting the actual gap is the classic error here.",
+      "The data are 2, 17, 257 at 1, 2, 4 - close to $4^{x} - 2$ or similar rapid growth, so a value near 100 at $x = 3$ is plausible while option (c) 165 and (d) 182 are too large for a quadratic fit.",
       "Only three points are given, so the interpolant is a QUADRATIC; do not attempt a cubic term."
     ],
     "solution": [
-      "The data are (1,2), (2,17), (4,257).",
-      "First divided differences: f[1,2] = (17 - 2)/(2 - 1) = 15 and f[2,4] = (257 - 17)/(4 - 2) = 240/2 = 120.",
-      "Second divided difference: f[1,2,4] = (120 - 15)/(4 - 1) = 105/3 = 35.",
-      "Newton's divided difference formula: f(x) = 2 + (x - 1)(15) + (x - 1)(x - 2)(35).",
-      "At x = 3: f(3) = 2 + (2)(15) + (2)(1)(35) = 2 + 30 + 70 = 102.",
+      "The data are $(1,2), (2,17), (4,257)$.",
+      "First divided differences: $f[1,2] = (17 - 2)/(2 - 1) = 15$ and $f[2,4] = (257 - 17)/(4 - 2) = 240/2 = 120$.",
+      "Second divided difference: $f[1,2,4] = (120 - 15)/(4 - 1) = 105/3 = 35$.",
+      "Newton's divided difference formula: $f(x) = 2 + (x - 1)(15) + (x - 1)(x - 2)(35)$.",
+      "At $x = 3$: $f(3) = 2 + (2)(15) + (2)(1)(35) = 2 + 30 + 70 = 102$.",
       "Option (b) is correct."
     ]
   },
@@ -122,18 +122,18 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Delta^2 x^3 = 6x + 6 with h = 1, and dividing by E means shifting back one step: 6(x-1) + 6 = 6x.",
+    "shortcut": "$\\Delta^{2} x^{3} = 6x + 6$ with $h = 1$, and dividing by E means shifting back one step: $6(x-1) + 6 = 6x$.",
     "tips": [
-      "1/E = E^(-1) is the BACKWARD shift: it replaces x by x - 1. Treating it as a division rather than a shift is the main trap.",
-      "Compute in two clean stages: Delta x^3 = 3x^2 + 3x + 1, then Delta^2 x^3 = 6x + 6.",
-      "Alternative route: Delta^2/E = Delta^2 E^(-1) = Delta . (Delta E^(-1)) = Delta . nabla, and Delta nabla x^3 = 6x follows the same way.",
-      "Sanity check at x = 1: Delta^2 x^3 at x = 0 is 6(0) + 6 = 6, and shifting to x = 1 gives 6 - matching 6x at x = 1."
+      "$1/E = E^{-1}$ is the BACKWARD shift: it replaces x by x - 1. Treating it as a division rather than a shift is the main trap.",
+      "Compute in two clean stages: $\\Delta x^{3} = 3x^{2} + 3x + 1$, then $\\Delta^{2} x^{3} = 6x + 6$.",
+      "Alternative route: $\\Delta^{2}/E = \\Delta^{2} E^{-1} = \\Delta$ . $(\\Delta E^{-1}) = \\Delta$ . nabla, and $\\Delta$ nabla $x^{3} = 6x$ follows the same way.",
+      "Sanity check at $x = 1$: $\\Delta^{2} x^{3}$ at $x = 0$ is $6(0) + 6 = 6$, and shifting to $x = 1$ gives 6 - matching 6x at $x = 1$."
     ],
     "solution": [
-      "With h = 1, Delta x^3 = (x+1)^3 - x^3 = 3x^2 + 3x + 1.",
-      "Applying Delta again: Delta^2 x^3 = 3[(x+1)^2 - x^2] + 3[(x+1) - x] = 3(2x + 1) + 3 = 6x + 6.",
-      "The operator 1/E is E^(-1), the backward shift that replaces x by x - 1.",
-      "So (Delta^2/E)(x^3) = E^(-1)(6x + 6) = 6(x - 1) + 6 = 6x - 6 + 6 = 6x.",
+      "With $h = 1, \\Delta x^{3} = (x+1)^{3} - x^{3} = 3x^{2} + 3x + 1$.",
+      "Applying $\\Delta$ again: $\\Delta^{2} x^{3} = 3[(x+1)^{2} - x^{2}] + 3[(x+1) - x] = 3(2x + 1) + 3 = 6x + 6$.",
+      "The operator $1/E$ is $E^{-1}$, the backward shift that replaces x by x - 1.",
+      "So $(\\Delta^{2}/E)(x^{3}) = E^{-1}(6x + 6) = 6(x - 1) + 6 = 6x - 6 + 6 = 6x$.",
       "Option (a) is correct."
     ]
   },
@@ -141,19 +141,19 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Euler with h = 0.1 gives y1 = 0, y2 = 0.001, y3 = 0.0050, y4 = 0.0140.",
+    "shortcut": "Euler with $h = 0.1$ gives $y_{1} = 0, y_{2} = 0.001, y_{3} = 0.0050, y_{4} = 0.0140$.",
     "tips": [
-      "Euler: y_(n+1) = y_n + h(x_n^2 + y_n^2). The y^2 term is negligible here because y stays tiny, so each step is essentially 0.1 x_n^2.",
-      "Running the x^2 contributions: 0, 0.001, 0.004, 0.009 - their cumulative sum 0.014 is the answer to three decimals.",
-      "Four steps are needed to reach x = 0.4; stopping at y3 = 0.005 lands on option (b), the planted 'one step short' trap.",
-      "Keep four decimals: the y^2 contributions (about 2.5 x 10^-5 at the last step) are genuinely negligible but should be acknowledged rather than assumed."
+      "Euler: $y_{n+1} = y_{n} + h(x_{n}^{2} + y_{n}^{2})$. The $y^{2}$ term is negligible here because y stays tiny, so each step is essentially $0.1 x_{n}^{2}$.",
+      "Running the $x^{2}$ contributions: 0, 0.001, 0.004, 0.009 - their cumulative sum 0.014 is the answer to three decimals.",
+      "Four steps are needed to reach $x = 0.4$; stopping at $y_{3} = 0.005$ lands on option (b), the planted 'one step short' trap.",
+      "Keep four decimals: the $y^{2}$ contributions (about $2.5 \\times 10^{-5}$ at the last step) are genuinely negligible but should be acknowledged rather than assumed."
     ],
     "solution": [
-      "Euler's method for dy/dx = x^2 + y^2 with y(0) = 0 and h = 0.1 is y_(n+1) = y_n + 0.1(x_n^2 + y_n^2).",
-      "Step 1 at (0, 0): slope 0, so y(0.1) = 0.",
-      "Step 2 at (0.1, 0): slope 0.01, so y(0.2) = 0 + 0.001 = 0.001.",
-      "Step 3 at (0.2, 0.001): slope 0.04 + 0.000001 = 0.040001, so y(0.3) = 0.001 + 0.0040001 = 0.0050001.",
-      "Step 4 at (0.3, 0.0050001): slope 0.09 + 0.000025 = 0.090025, so y(0.4) = 0.0050001 + 0.0090025 = 0.0140026.",
+      "Euler's method for $dy/dx = x^{2} + y^{2}$ with $y(0) = 0$ and $h = 0.1$ is $y_{n+1} = y_{n} + 0.1(x_{n}^{2} + y_{n}^{2})$.",
+      "Step 1 at $(0, 0)$: slope 0, so $y(0.1) = 0$.",
+      "Step 2 at $(0.1, 0)$: slope 0.01, so $y(0.2) = 0 + 0.001 = 0.001$.",
+      "Step 3 at $(0.2, 0.001)$: slope $0.04 + 0.000001 = 0.040001$, so $y(0.3) = 0.001 + 0.0040001 = 0.0050001$.",
+      "Step 4 at $(0.3, 0.0050001)$: slope $0.09 + 0.000025 = 0.090025$, so $y(0.4) = 0.0050001 + 0.0090025 = 0.0140026$.",
       "Hence y4 is approximately 0.014, option (d)."
     ]
   },
@@ -161,39 +161,39 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The divided-difference table terminates: all third divided differences equal 1 and the fourth are 0, so f is the cubic 1 + 13x - 6x(x-1) + x(x-1)(x-2). At x = 3 this gives 1 + 39 - 36 + 6 = 10.",
+    "shortcut": "The divided-difference table terminates: all third divided differences equal 1 and the fourth are 0, so f is the cubic $1 + 13x - 6x(x-1) + x(x-1)(x-2)$. At $x = 3$ this gives $1 + 39 - 36 + 6 = 10$.",
     "tips": [
       "Build the whole divided-difference table before interpolating - spotting that the third differences are constant (all 1) tells you the data are exactly cubic and truncates the work.",
-      "Leading diagonal: f[0] = 1, f[0,1] = 13, f[0,1,2] = -6, f[0,1,2,4] = 1. These four numbers are all the Newton form needs.",
-      "Mind the unequal gaps: f[2,4] divides by 2 and f[1,2,4] divides by 3. Using 1 throughout is the standard error.",
-      "Evaluate the products at x = 3 first: (3-0) = 3, (3-0)(3-1) = 6, (3-0)(3-1)(3-2) = 6, then multiply by 13, -6 and 1 respectively."
+      "Leading diagonal: $f[0] = 1, f[0,1] = 13, f[0,1,2]$ = -$6, f[0,1,2,4] = 1$. These four numbers are all the Newton form needs.",
+      "Mind the unequal gaps: $f[2,4]$ divides by 2 and $f[1,2,4]$ divides by 3. Using 1 throughout is the standard error.",
+      "Evaluate the products at $x = 3$ first: $(3-0) = 3, (3-0)(3-1) = 6, (3-0)(3-1)(3-2) = 6$, then multiply by 13, -6 and 1 respectively."
     ],
     "solution": [
-      "Data: (0,1), (1,14), (2,15), (4,5), (5,6), (6,19).",
-      "First divided differences: 13, 1, -5, 1, 13. Second: (1-13)/2 = -6, (-5-1)/3 = -2, (1+5)/3 = 2, (13-1)/2 = 6.",
-      "Third: (-2+6)/4 = 1, (2+2)/4 = 1, (6-2)/4 = 1 - all equal to 1. Fourth divided differences are therefore 0, so f is a cubic with leading coefficient 1.",
-      "Newton's form using the leading diagonal: f(x) = 1 + 13(x - 0) - 6(x - 0)(x - 1) + 1(x - 0)(x - 1)(x - 2).",
-      "At x = 3: f(3) = 1 + 13(3) - 6(3)(2) + (3)(2)(1) = 1 + 39 - 36 + 6 = 10, option (c)."
+      "Data: $(0,1), (1,14), (2,15), (4,5), (5,6), (6,19)$.",
+      "First divided differences: 13, 1, -5, 1, 13. Second: $(1-13)/2$ = -$6, (-5-1)/3$ = -$2, (1+5)/3 = 2, (13-1)/2 = 6$.",
+      "Third: $(-2+6)/4 = 1, (2+2)/4 = 1, (6-2)/4 = 1$ - all equal to 1. Fourth divided differences are therefore 0, so f is a cubic with leading coefficient 1.",
+      "Newton's form using the leading diagonal: $f(x) = 1 + 13(x - 0) - 6(x - 0)(x - 1) + 1(x - 0)(x - 1)(x - 2)$.",
+      "At $x = 3$: $f(3) = 1 + 13(3) - 6(3)(2) + (3)(2)(1) = 1 + 39 - 36 + 6 = 10$, option (c)."
     ]
   },
   "2021-Q70": {
     "answer": 3,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "Each application of Delta to x^(n) brings down a factor n h and lowers the order by one, so after n applications the result is n! h^n.",
+    "shortcut": "Each application of $\\Delta$ to $x^{n}$ brings down a factor n h and lowers the order by one, so after n applications the result is $n! h^{n}$.",
     "tips": [
-      "Base rule: Delta x^(n) = n h x^(n-1). Iterating n times gives n(n-1)...(1) h^n = n! h^n - the exact analogue of the nth derivative of x^n.",
-      "Dimensional check: x^(n) is a product of n factors each carrying the dimension of x, and each difference removes one, so the answer must carry h^n. Options (a), (b) and (c) fail this.",
-      "Test with n = 2, h = 1: x^(2) = x(x-1) = x^2 - x, whose second difference is 2 = 2! h^2. Only option (d) matches.",
+      "Base rule: $\\Delta x^{n} = n h x^{n-1}$. Iterating n times gives $n(n-1)$...$(1) h^{n} = n! h^{n}$ - the exact analogue of the nth derivative of $x^{n}$.",
+      "Dimensional check: $x^{n}$ is a product of n factors each carrying the dimension of x, and each difference removes one, so the answer must carry $h^{n}$. Options (a), (b) and (c) fail this.",
+      "Test with $n = 2, h = 1$: $x^{2} = x(x-1) = x^{2} - x$, whose second difference is $2 = 2! h^{2}$. Only option (d) matches.",
       "This identity is the reason factorial notation exists - it makes differencing as mechanical as differentiating."
     ],
     "solution": [
-      "The factorial function with interval h is x^(n) = x(x-h)(x-2h)...(x-(n-1)h).",
-      "Its first difference is Delta x^(n) = (x+h)x(x-h)...(x-(n-2)h) - x(x-h)...(x-(n-1)h).",
-      "Factoring out the common product x(x-h)...(x-(n-2)h) gives [(x + h) - (x - (n-1)h)] = n h, so Delta x^(n) = n h x^(n-1).",
-      "Applying Delta again gives n h (n-1) h x^(n-2), and so on.",
-      "After n applications the factorial part is exhausted and the constant accumulated is n(n-1)(n-2)...(1) h^n = n! h^n.",
-      "Hence Delta^n x^(n) = n! h^n, option (d)."
+      "The factorial function with interval h is $x^{n} = x(x-h)(x-2h)$...$(x-(n-1)h)$.",
+      "Its first difference is $\\Delta x^{n} = (x+h)x(x-h)$...$(x-(n-2)h) - x(x-h)$...$(x-(n-1)h)$.",
+      "Factoring out the common product $x(x-h)$...$(x-(n-2)h)$ gives $[(x + h) - (x - (n-1)h)] = n h$, so $\\Delta x^{n} = n h x^{n-1}$.",
+      "Applying $\\Delta$ again gives $n h (n-1) h x^{n-2}$, and so on.",
+      "After n applications the factorial part is exhausted and the constant accumulated is $n(n-1)(n-2)$...$(1) h^{n} = n! h^{n}$.",
+      "Hence $\\Delta^{n} x^{n} = n! h^{n}$, option (d)."
     ]
   },
   "2021-Q71": {
@@ -222,17 +222,17 @@
     "type": "Numerical",
     "shortcut": "Data lines are fixed by the WORD size, not the number of locations: 2 bytes = 16 bits, so 16 data lines are needed.",
     "tips": [
-      "Separate the two buses: ADDRESS lines are determined by the number of locations (2048 = 2^11 gives 11), while DATA lines are determined by the word size (2 bytes = 16 bits).",
+      "Separate the two buses: ADDRESS lines are determined by the number of locations ($2048 = 2^{11}$ gives 11), while DATA lines are determined by the word size (2 bytes = 16 bits).",
       "Option (a) 11 is the address-line count, planted for candidates who answer the wrong half of the specification.",
       "Chips placed in parallel to widen the word would multiply the data lines, but chips stacked to add capacity share the same data bus; here the 16-bit word governs.",
-      "General formula: a memory of 2^m locations by n bits needs m address lines and n data lines, giving a capacity of 2^m x n bits."
+      "General formula: a memory of $2^{m}$ locations by n bits needs m address lines and n data lines, giving a capacity of $2^{m} x n$ bits."
     ],
     "solution": [
       "The number of data lines of a memory is equal to the width of one addressable location, since all bits of a word are read or written in parallel.",
       "Each location here holds 2 bytes.",
       "One byte is 8 bits, so 2 bytes = 16 bits.",
       "Hence 16 data lines are required for read/write operations.",
-      "The figure 2048 = 2^11 determines the ADDRESS lines (11 of them), not the data lines, and is included as a distractor.",
+      "The figure $2048 = 2^{11}$ determines the ADDRESS lines (11 of them), not the data lines, and is included as a distractor.",
       "Option (b) is correct."
     ]
   },
@@ -299,18 +299,18 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Gray to binary: copy the leading bit, then XOR each previous BINARY bit with the next Gray bit. 10101110 gives 1, 1, 0, 0, 1, 0, 1, 1 = 11001011.",
+    "shortcut": "Gray to binary: copy the leading bit, then XOR each previous BINARY bit with the next Gray bit. 10101110 gives $1, 1, 0, 0, 1, 0, 1, 1 = 11001011$.",
     "tips": [
-      "Conversion rule: b1 = g1 and b_i = b_(i-1) XOR g_i. Note that the running value uses the BINARY bit just produced, not the Gray bit - this is the step candidates reverse.",
-      "The reverse direction (binary to Gray) is g1 = b1 and g_i = b_(i-1) XOR b_i, which uses only binary bits. Keep the two rules distinct.",
+      "Conversion rule: $b_{1} = g_{1}$ and $b_{i} = b_{i-1}$ XOR $g_{i}$. Note that the running value uses the BINARY bit just produced, not the Gray bit - this is the step candidates reverse.",
+      "The reverse direction (binary to Gray) is $g_{1} = b_{1}$ and $g_{i} = b_{i-1}$ XOR $b_{i}$, which uses only binary bits. Keep the two rules distinct.",
       "Work left to right and write the growing binary string underneath the Gray string so each XOR is visually aligned.",
-      "Check: converting 11001011 back to Gray gives 1, 1 XOR 1 = 0, 1 XOR 0 = 1, 0 XOR 0 = 0, 0 XOR 1 = 1, 1 XOR 0 = 1, 0 XOR 1 = 1, 1 XOR 1 = 0, i.e. 10101110 - the original."
+      "Check: converting 11001011 back to Gray gives 1, 1 XOR $1 = 0, 1$ XOR $0 = 1, 0$ XOR $0 = 0, 0$ XOR $1 = 1, 1$ XOR $0 = 1, 0$ XOR $1 = 1, 1$ XOR $1 = 0$, i.e. 10101110 - the original."
     ],
     "solution": [
-      "For Gray-to-binary conversion, the most significant binary bit equals the most significant Gray bit, and thereafter b_i = b_(i-1) XOR g_i.",
-      "Gray code: g = 1, 0, 1, 0, 1, 1, 1, 0.",
-      "b1 = g1 = 1. b2 = b1 XOR g2 = 1 XOR 0 = 1. b3 = b2 XOR g3 = 1 XOR 1 = 0. b4 = b3 XOR g4 = 0 XOR 0 = 0.",
-      "b5 = b4 XOR g5 = 0 XOR 1 = 1. b6 = b5 XOR g6 = 1 XOR 1 = 0. b7 = b6 XOR g7 = 0 XOR 1 = 1. b8 = b7 XOR g8 = 1 XOR 0 = 1.",
+      "For Gray-to-binary conversion, the most significant binary bit equals the most significant Gray bit, and thereafter $b_{i} = b_{i-1}$ XOR $g_{i}$.",
+      "Gray code: $g = 1, 0, 1, 0, 1, 1, 1, 0$.",
+      "$b_{1} = g_{1} = 1$. $b_{2} = b_{1}$ XOR $g_{2} = 1$ XOR $0 = 1$. $b_{3} = b_{2}$ XOR $g_{3} = 1$ XOR $1 = 0$. $b_{4} = b_{3}$ XOR $g_{4} = 0$ XOR $0 = 0$.",
+      "$b_{5} = b_{4}$ XOR $g_{5} = 0$ XOR $1 = 1$. $b_{6} = b_{5}$ XOR $g_{6} = 1$ XOR $1 = 0$. $b_{7} = b_{6}$ XOR $g_{7} = 0$ XOR $1 = 1$. $b_{8} = b_{7}$ XOR $g_{8} = 1$ XOR $0 = 1$.",
       "So the binary equivalent is 11001011.",
       "Reconverting to Gray reproduces 10101110, confirming the result. Option (c) is correct."
     ]
@@ -321,7 +321,7 @@
     "type": "Factual",
     "shortcut": "The CPU always checks the fastest tier first: cache memory, before going to main memory and then to secondary storage.",
     "tips": [
-      "Search order follows the hierarchy top-down: registers, then cache (L1, L2, L3), then main memory, then secondary storage. Registers hold current operands, so the first SEARCH is in cache.",
+      "Search order follows the hierarchy top-down: registers, then cache $(L_{1}, L_{2}, L_{3})$, then main memory, then secondary storage. Registers hold current operands, so the first SEARCH is in cache.",
       "A cache hit avoids the far slower main-memory access; a miss triggers a fetch from RAM and the block is then cached for next time.",
       "The principle behind this design is LOCALITY OF REFERENCE - programs reuse recently accessed data (temporal) and nearby data (spatial).",
       "ROM holds firmware and is not part of the data-search path; secondary memory is the last resort, reached only through the operating system."
@@ -339,20 +339,20 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Octal to binary in triples: 6251 = 110 010 101 001. Regroup in fours from the right: 1100 1010 1001 = CA9.",
+    "shortcut": "Octal to binary in triples: $6251 = 110 010 101 001$. Regroup in fours from the right: 1100 1010 1001 = CA9.",
     "tips": [
       "Octal to hexadecimal always goes through BINARY - there is no direct digit correspondence because 8 and 16 are different powers of 2.",
       "Three bits per octal digit, four bits per hex digit. Convert to binary, then regroup from the RIGHT.",
-      "Check by decimal: (6251)_8 = 6(512) + 2(64) + 5(8) + 1 = 3072 + 128 + 40 + 1 = 3241, and (CA9)_16 = 12(256) + 10(16) + 9 = 3072 + 160 + 9 = 3241. They agree.",
+      "Check by decimal: $(6251)_{8} = 6(512) + 2(64) + 5(8) + 1 = 3072 + 128 + 40 + 1 = 3241$, and $(CA9)_{16} = 12(256) + 10(16) + 9 = 3072 + 160 + 9 = 3241$. They agree.",
       "The same conversion appears again as 2023 Q79 - it is a repeated item, so the technique is worth drilling."
     ],
     "solution": [
-      "Convert each octal digit to three binary bits: 6 = 110, 2 = 010, 5 = 101, 1 = 001.",
+      "Convert each octal digit to three binary bits: $6 = 110, 2 = 010, 5 = 101, 1 = 001$.",
       "Concatenating gives the binary number 110010101001.",
-      "Regroup into fours starting from the right: 1100 | 1010 | 1001.",
-      "Convert each group to a hexadecimal digit: 1100 = C, 1010 = A, 1001 = 9.",
-      "So (6251)_8 = (CA9)_16.",
-      "Check in decimal: 6(512) + 2(64) + 5(8) + 1 = 3241, and C(256) + A(16) + 9 = 3072 + 160 + 9 = 3241. Option (c) is correct."
+      "Regroup into fours starting from the right: $1100 \\lvert 1010 \\rvert 1001$.",
+      "Convert each group to a hexadecimal digit: $1100 = C, 1010 = A, 1001 = 9$.",
+      "So $(6251)_{8} = (CA9)_{16}$.",
+      "Check in decimal: $6(512) + 2(64) + 5(8) + 1 = 3241$, and $C(256) + A(16) + 9 = 3072 + 160 + 9 = 3241$. Option (c) is correct."
     ]
   },
   "2021-Q79": {

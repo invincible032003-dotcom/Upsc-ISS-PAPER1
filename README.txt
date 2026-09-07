@@ -13,7 +13,7 @@ connection needed, no server, no app store, no account.
 
 Keep these four files together in one folder:
 
-    index.html      the application
+    index.html      the application (includes the LaTeX typesetting engine)
     questions.js    the 720-question database
     styles.css      the styling
     README.txt      this file
@@ -212,13 +212,28 @@ The app looks cramped on a phone
     360px-wide screen, but the exam screen has more room in landscape.
 
 
+MATHEMATICS
+-----------
+Every formula in this app - in the questions, in the options, and in all the
+shortcuts, tips and solutions - is written in LaTeX and typeset properly, the
+way a textbook sets it: real fractions with rules, real integral and summation
+signs, proper subscripts and superscripts, stretchy brackets, Greek letters
+and the correct spacing around operators.
+
+The typesetting engine is KaTeX. It is not downloaded when you open the app -
+the engine, its stylesheet and all twenty of its mathematical fonts are
+embedded inside index.html itself. That is why index.html is around 730 KB and
+why the mathematics looks identical whether you are online, offline, or in
+aeroplane mode.
+
+
 A NOTE ON PRIVACY AND OFFLINE OPERATION
 ---------------------------------------
 This application makes no network request of any kind. There is no CDN, no
-API, no analytics, no external font, no external icon set, no external
-JavaScript library, no server and no database. The mathematics is rendered
-by code inside index.html, not by an online formula service. You can put
-the device in aeroplane mode and everything, including the entire question
-bank, still works.
+API, no analytics, no externally loaded font, no external icon set, no
+externally loaded JavaScript library, no server and no database. The
+mathematics is typeset by an engine embedded inside index.html, not by an
+online formula service. You can put the device in aeroplane mode and
+everything, including the entire question bank, still works.
 
 ====================================================================

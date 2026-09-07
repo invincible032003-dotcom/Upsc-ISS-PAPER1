@@ -236,6 +236,63 @@ const locked = await page.evaluate(() =>
   [...document.querySelectorAll('.opt')].every(o => o.disabled));
 ok('options lock after reveal', locked);
 
+/* --- 2023 → Statistical Methods sectional --------------------------------- */
+head('Test C2 — 2023 Statistical Methods sectional');
+await page.click('[data-act="go"][data-r="home"]');
+await page.waitForSelector('[data-act="setup"][data-k="section"]');
+await page.click('[data-act="setup"][data-k="section"]');
+await page.waitForSelector('input[data-act="tgYear"][value="2023"]');
+await page.check('input[data-act="tgYear"][value="2023"]');
+await page.check('input[data-act="tgUnit"][value="Statistical Methods"]');
+await page.check('input[data-act="setMode"][value="learn"]');
+await page.click('[data-act="startMock"]');
+await page.waitForSelector('.exam-head');
+const nSM = await page.evaluate(() => document.querySelectorAll('.pal').length);
+const expSM = await page.evaluate(() =>
+  window.quizData.filter(q => q.year === 2023 && q.unit === 'Statistical Methods').length);
+ok('2023 Statistical Methods sectional has the right length', nSM === expSM,
+  nSM + ' vs ' + expSM);
+let badSM = 0;
+for (let i = 0; i < nSM; i++) {
+  await page.click(`.pal[data-i="${i}"]`);
+  const m = await page.textContent('.qmeta');
+  if (!/2023-Q/.test(m) || !/Statistical Methods/.test(m)) badSM++;
+}
+ok('every question is a 2023 Statistical Methods question', badSM === 0, badSM + ' offenders');
+
+/* --- cross-year TOPIC mock ------------------------------------------------ */
+head('Cross-year topic mock (all nine papers, one syllabus topic)');
+await page.click('[data-act="go"][data-r="home"]');
+await page.waitForSelector('[data-act="setup"][data-k="topic"]');
+await page.click('[data-act="setup"][data-k="topic"]');
+await page.waitForSelector('input[data-act="tgUnit"][value="Numerical Analysis"]');
+await page.check('input[data-act="tgUnit"][value="Numerical Analysis"]');
+await page.waitForSelector('input[data-act="tgTopic"]');
+const topicVal = await page.evaluate(() => {
+  const tax = window.quizMeta.taxonomy['Numerical Analysis'].topics;
+  const names = Object.keys(tax);
+  return names.find(n => /Numerical Integration/i.test(n)) || names[0];
+});
+await page.check(`input[data-act="tgTopic"][value="${topicVal.replace(/"/g, '\\"')}"]`);
+await page.check('input[data-act="setMode"][value="learn"]');
+await page.click('[data-act="startMock"]');
+await page.waitForSelector('.exam-head');
+const nT = await page.evaluate(() => document.querySelectorAll('.pal').length);
+const expT = await page.evaluate(t => window.quizData.filter(q => q.topic === t).length, topicVal);
+ok('cross-year topic mock pulls the whole topic', nT === expT, nT + ' vs ' + expT);
+const yrsSeen = new Set();
+let badT = 0;
+for (let i = 0; i < nT; i++) {
+  await page.click(`.pal[data-i="${i}"]`);
+  const m = await page.textContent('.qmeta');
+  const y = (m.match(/(\d{4})-Q/) || [])[1];
+  if (y) yrsSeen.add(y);
+  if (m.indexOf(topicVal) < 0) badT++;
+}
+ok('every question carries the selected topic', badT === 0, badT + ' offenders');
+ok('the topic mock spans multiple papers', yrsSeen.size >= 5,
+  'years: ' + [...yrsSeen].sort().join(','));
+
 /* --- Test D: 2018–2026 → Probability, no duplicates ----------------------- */
 head('Test D — cross-year Probability, duplicate check');
 await page.click('[data-act="go"][data-r="home"]');

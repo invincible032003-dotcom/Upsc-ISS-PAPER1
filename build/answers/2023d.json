@@ -1,0 +1,357 @@
+{
+"2023-Q61": {
+  "answer": 3, "confidence": "high", "type": "Factual",
+  "shortcut": "CISC instructions are indeed variable length, RISC's simple fixed-length instructions are what make pipelining and parallel execution practical, and ARM is the best-known RISC architecture. All three hold.",
+  "tips": [
+    "Core contrast: CISC has many complex, VARIABLE-length instructions taking several cycles; RISC has few simple, FIXED-length instructions executing in one cycle.",
+    "Fixed-length instructions are precisely what make decoding uniform and pipelining efficient, so statement 2 follows from the RISC design philosophy.",
+    "Named examples worth knowing: RISC - ARM, MIPS, SPARC, PowerPC, RISC-V; CISC - Intel x86, Motorola 68000.",
+    "ARM chips dominate mobile devices because the RISC design gives high performance per watt - a real-world anchor for statement 3."
+  ],
+  "solution": [
+    "Statement 1: CISC architectures provide a large set of complex instructions of differing formats and lengths, so instruction length is variable. TRUE.",
+    "Statement 2: RISC uses a small set of simple, fixed-length instructions with uniform decoding, which makes deep pipelining and superscalar (parallel) execution practical. TRUE.",
+    "Statement 3: ARM - originally the Acorn RISC Machine - is the most widely deployed RISC architecture, used in the great majority of mobile devices. TRUE.",
+    "All three statements describe standard properties of the two architectures.",
+    "Hence option (d) is correct."
+  ]
+},
+"2023-Q62": {
+  "answer": 1, "confidence": "high", "type": "Factual",
+  "shortcut": "MPEG, WAV and WMA are audio (or audio-carrying) formats; TIFF is an image format.",
+  "tips": [
+    "TIFF = Tagged Image File Format - the word IMAGE is in the name, so any option containing item 3 is out at once.",
+    "Audio formats to recognise: MP3 (MPEG-1 Layer 3), WAV, WMA, AAC, FLAC, OGG.",
+    "Image formats: JPEG, PNG, GIF, TIFF, BMP, SVG. Video: MP4, AVI, MOV, MKV.",
+    "MPEG is a family of compression standards covering both audio and video; MP3 audio is its best-known member, which is why it counts here."
+  ],
+  "solution": [
+    "Item 1, MPEG: the Moving Picture Experts Group standards cover audio as well as video, and MPEG-1 Audio Layer 3 (MP3) is the most widely used audio format of all. AUDIO.",
+    "Item 2, WAV: the Waveform Audio File Format, the standard uncompressed audio container on Windows. AUDIO.",
+    "Item 3, TIFF: the Tagged Image File Format, a raster IMAGE format used in printing and archiving. NOT audio.",
+    "Item 4, WMA: Windows Media Audio, Microsoft's compressed audio format. AUDIO.",
+    "Hence items 1, 2 and 4 are audio formats, option (b)."
+  ]
+},
+"2023-Q63": {
+  "answer": 0, "confidence": "medium", "type": "Definition",
+  "shortcut": "Paging divides PHYSICAL memory into fixed-size blocks called frames (and logical memory into equal-sized pages).",
+  "tips": [
+    "Key distinction: paging divides PHYSICAL memory into equal-sized frames; segmentation divides the LOGICAL address space into variable-sized, logically meaningful segments.",
+    "The phrase 'physical memory space into multiple blocks' points squarely at frames, hence paging.",
+    "Fragmentation is a PROBLEM (wasted space), not a technique, and swapping moves whole processes between memory and disk - neither divides memory into blocks.",
+    "Paging eliminates external fragmentation but introduces a little internal fragmentation in the last frame of each process - a useful follow-up fact."
+  ],
+  "solution": [
+    "Under paging, physical memory is divided into fixed-size blocks called FRAMES, and the logical address space of each process into pages of the same size.",
+    "A page table maps each page to whatever frame currently holds it, so a process need not occupy contiguous physical memory.",
+    "Segmentation instead divides the LOGICAL address space into variable-length segments corresponding to program units such as code, stack and data.",
+    "Fragmentation is not a technique at all but the wastage that arises from allocation, and swapping transfers whole processes between memory and backing store.",
+    "Hence the division of physical memory into multiple blocks is paging, option (a)."
+  ]
+},
+"2023-Q64": {
+  "answer": 0, "confidence": "high", "type": "Factual",
+  "shortcut": "SMTP, FTP and DHCP are application-layer protocols; IP is network layer and TCP is transport layer.",
+  "tips": [
+    "TCP/IP layer map: application (HTTP, FTP, SMTP, DNS, DHCP, SNMP, Telnet), transport (TCP, UDP), internet (IP, ICMP, ARP), network access (Ethernet).",
+    "The two easiest to place are IP and TCP - they name the model itself and sit at the internet and transport layers respectively, so any option containing them is wrong.",
+    "DHCP surprises candidates because it configures addresses, but it runs over UDP as an ordinary application service - hence application layer.",
+    "Once items 4 and 5 are excluded, only option (a) remains without further checking."
+  ],
+  "solution": [
+    "The TCP/IP reference model has four layers: application, transport, internet and network access.",
+    "Item 1, SMTP: transfers email between clients and servers - an application service. APPLICATION.",
+    "Item 2, FTP: transfers files on behalf of users - APPLICATION.",
+    "Item 3, DHCP: dynamically assigns IP addresses and configuration to hosts, running as a client-server service over UDP - APPLICATION.",
+    "Item 4, IP provides logical addressing and routing at the INTERNET layer, and item 5, TCP provides reliable end-to-end delivery at the TRANSPORT layer.",
+    "Hence the application-layer protocols are 1, 2 and 3, option (a)."
+  ]
+},
+"2023-Q65": {
+  "answer": 1, "confidence": "high", "type": "Conceptual",
+  "shortcut": "Cache is much SMALLER than RAM, so statement 1 fails. Statements 2 (registers > cache > RAM in speed) and 3 (hit rate measures effectiveness) are both correct.",
+  "tips": [
+    "Hierarchy rule: as you move towards the CPU, memory gets faster, smaller and more expensive per bit. Cache is therefore smaller than RAM, never larger.",
+    "Speed order: registers, then cache (L1, L2, L3), then main memory, then secondary storage. Statement 2 states exactly this.",
+    "Hit rate = (number of cache hits)/(total accesses); the effective access time is h x t_cache + (1-h) x t_memory, so a high hit rate is the whole point of cache.",
+    "Any statement containing 'always' deserves scrutiny - here it is the giveaway that statement 1 is the false one."
+  ],
+  "solution": [
+    "Statement 1: cache memory is built from fast, expensive SRAM and is deliberately kept SMALL - typically a few kilobytes to a few megabytes against gigabytes of RAM. The claim that it is always larger than RAM is FALSE.",
+    "Statement 2: the memory hierarchy in decreasing order of speed is registers, cache, main memory, secondary storage. Cache is therefore faster than RAM but slower than CPU registers. TRUE.",
+    "Statement 3: the effectiveness of cache is measured by the hit rate h, the proportion of accesses satisfied from cache; the effective access time is h t_cache + (1 - h) t_memory. TRUE.",
+    "Only statements 2 and 3 are correct.",
+    "Hence option (b) is correct."
+  ]
+},
+"2023-Q66": {
+  "answer": 2, "confidence": "high", "type": "Definition",
+  "shortcut": "Guaranteeing a response within a predetermined time is the defining property of a Real-time Operating System.",
+  "tips": [
+    "The key words are 'within a predetermined time' - that is the definition of a DEADLINE, and deadlines are what real-time systems guarantee.",
+    "Time-sharing systems optimise fair average response, not guaranteed worst-case response - a crucial distinction from real-time.",
+    "Hard real time means a missed deadline is a system failure (avionics, pacemakers); soft real time means quality degrades (video streaming).",
+    "Embedded systems OFTEN use an RTOS, but 'embedded' describes where the system runs, whereas 'real-time' describes its timing guarantee - the question asks about timing."
+  ],
+  "solution": [
+    "A Real-time Operating System is designed so that processing is completed within a specified, bounded time after an event occurs.",
+    "It achieves this through deterministic scheduling, priority-based pre-emption and bounded interrupt latency.",
+    "A time-sharing operating system divides processor time among many users to give good AVERAGE response, but offers no guarantee for any individual event.",
+    "A batch operating system executes jobs one after another with no interactive response requirement at all.",
+    "An embedded operating system is defined by the dedicated device it runs on rather than by any timing guarantee, though it often is a real-time system.",
+    "Hence the OS that responds within a predetermined time is the real-time operating system, option (c)."
+  ]
+},
+"2023-Q67": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "(1100)_2 = 12 and (110)_X = X^2 + X, so X^2 + X - 12 = 0 gives X = 3. And converting 01010010 to Gray by XOR-ing adjacent bits gives 01111011. Both statements hold.",
+  "tips": [
+    "Convert the known side first: (1100)_2 = 8 + 4 = 12, then solve the quadratic X^2 + X = 12 by factorising (X+4)(X-3) = 0 and discarding the negative root.",
+    "Binary to Gray: keep the leading bit, then XOR each pair of ADJACENT BINARY bits. (The reverse direction uses the running binary result, which is easy to confuse.)",
+    "Work the XORs across: 0 | 0^1=1 | 1^0=1 | 0^1=1 | 1^0=1 | 0^0=0 | 0^1=1 | 1^0=1, giving 01111011 - matching the claim.",
+    "A base must exceed its largest digit; X = 3 is consistent with the digits 1 and 0 appearing in (110)_X."
+  ],
+  "solution": [
+    "Statement 1: (1100)_2 = 8 + 4 + 0 + 0 = 12, and (110)_X = 1(X^2) + 1(X) + 0 = X^2 + X.",
+    "Setting X^2 + X = 12 gives X^2 + X - 12 = 0, i.e. (X + 4)(X - 3) = 0, so X = 3 (the negative root is inadmissible). TRUE.",
+    "Statement 2: to convert binary to Gray, the leading Gray bit equals the leading binary bit and thereafter g_i = b_(i-1) XOR b_i.",
+    "With b = 0,1,0,1,0,0,1,0: g1 = 0; g2 = 0 XOR 1 = 1; g3 = 1 XOR 0 = 1; g4 = 0 XOR 1 = 1; g5 = 1 XOR 0 = 1; g6 = 0 XOR 0 = 0; g7 = 0 XOR 1 = 1; g8 = 1 XOR 0 = 1.",
+    "So the Gray code is 01111011, exactly as stated. TRUE.",
+    "Both statements are correct, option (c)."
+  ]
+},
+"2023-Q68": {
+  "answer": 2, "confidence": "high", "type": "Conceptual",
+  "shortcut": "Breaking a program into functions and modules is the defining feature of STRUCTURED (structural) programming languages.",
+  "tips": [
+    "Structured programming rests on three ideas: sequence, selection and iteration, plus decomposition into independent subprograms - which is exactly what the question describes.",
+    "Assembly, machine and low-level languages work with individual instructions and jumps; they have no native concept of a function or module.",
+    "Modularity brings reusability, easier testing and maintainability - the standard advantages to quote.",
+    "Classic structured languages: C, Pascal, ALGOL. Structured programming was the historical reaction against unrestricted GOTO-based code."
+  ],
+  "solution": [
+    "Structured (structural) programming organises a program as a hierarchy of self-contained blocks, built from sequence, selection and iteration, and decomposed into functions, procedures and modules.",
+    "This decomposition allows each unit to be written, tested and maintained independently, and to be reused elsewhere.",
+    "Machine language consists of raw binary instructions with no notion of a function or module.",
+    "Assembly language works at the level of individual mnemonic instructions and branch targets; subroutines exist only as manually managed jumps.",
+    "Low-level languages generally are machine-oriented and lack the block structure the question describes.",
+    "Hence the feature belongs to structural languages, option (c)."
+  ]
+},
+"2023-Q69": {
+  "answer": 2, "confidence": "high", "type": "Factual",
+  "shortcut": "Linux is released under the GNU General Public License with freely available source code; Windows, iOS and MS-DOS are all proprietary.",
+  "tips": [
+    "Open source means the source code is published and may be studied, modified and redistributed - Linux under the GPL is the standard example.",
+    "Windows, iOS and MS-DOS are all closed, commercially licensed products from Microsoft and Apple.",
+    "Other open-source systems worth naming: FreeBSD, OpenBSD, Android (AOSP core), and the GNU tool chain that accompanies Linux.",
+    "Being free of charge and being open source are different things - the defining test is access to and freedom to modify the source."
+  ],
+  "solution": [
+    "An open-source operating system publishes its source code under a licence permitting study, modification and redistribution.",
+    "Linux, created by Linus Torvalds and released under the GNU General Public License, is the archetypal open-source operating system; its kernel source is publicly available and maintained by a worldwide community.",
+    "Windows 10 is proprietary software licensed by Microsoft, with its source code closed.",
+    "iOS 16 is Apple's proprietary mobile operating system, restricted to Apple hardware.",
+    "MS-DOS was Microsoft's proprietary disk operating system of the 1980s.",
+    "Hence the open-source operating system is Linux, option (c)."
+  ]
+},
+"2023-Q70": {
+  "answer": 0, "confidence": "high", "type": "Conceptual",
+  "shortcut": "Statements 1 and 2 are correct. Statement 3 confuses the IP address with the MAC address - the hardware address is the MAC, not the IP.",
+  "tips": [
+    "Address distinction: the MAC address is the permanent HARDWARE address burned into the NIC; the IP address is a LOGICAL address assigned by the network and changeable.",
+    "ARP exists precisely to translate between the two, which is proof that they are different things.",
+    "TCP/IP is the protocol suite of the internet - statement 1 is definitional and safe.",
+    "The NIC provides the physical interface to the network, so statement 2 is also straightforward; the false statement is the one that conflates two address types."
+  ],
+  "solution": [
+    "Statement 1: the internet runs on the TCP/IP protocol suite, with IP providing addressing and routing and TCP reliable delivery. TRUE.",
+    "Statement 2: a Network Interface Card provides the physical and data-link connection between a computer and the network, and hence to the internet. TRUE.",
+    "Statement 3: the HARDWARE address is the MAC address, a 48-bit identifier permanently assigned to the NIC by its manufacturer.",
+    "The IP address is a LOGICAL address assigned by the network administrator or by DHCP, and it changes when the machine moves to a different network.",
+    "Since ARP is needed to translate an IP address into a MAC address, the two are plainly distinct. Statement 3 is FALSE.",
+    "Only statements 1 and 2 are correct, option (a)."
+  ]
+},
+"2023-Q71": {
+  "answer": 0, "confidence": "high", "type": "Conceptual",
+  "shortcut": "SQL can certainly query and update, but it does NOT remove duplicates automatically - the DISTINCT keyword is required.",
+  "tips": [
+    "SQL SELECT returns ALL matching rows, duplicates included; DISTINCT must be requested explicitly. That is the false statement here.",
+    "The SQL sub-languages: DDL (CREATE, ALTER, DROP), DML (SELECT, INSERT, UPDATE, DELETE), DCL (GRANT, REVOKE). Statements 1 and 2 are DML capabilities.",
+    "Contrast with relational algebra, where the projection operator DOES eliminate duplicates by definition - the divergence between theory and SQL is exactly what is being tested.",
+    "UNION removes duplicates by default while UNION ALL keeps them - a useful reminder that duplicate handling in SQL is always explicit."
+  ],
+  "solution": [
+    "Statement 1: SQL's SELECT statement executes queries against a database, retrieving rows that satisfy stated conditions. TRUE.",
+    "Statement 2: SQL's UPDATE statement modifies existing records, and INSERT and DELETE add and remove them. TRUE.",
+    "Statement 3: a SQL query returns every row satisfying the WHERE clause, including duplicate rows. To eliminate duplicates the programmer must write SELECT DISTINCT.",
+    "This differs from relational algebra, where projection removes duplicates automatically - SQL works with multisets rather than sets. FALSE.",
+    "Only statements 1 and 2 are correct.",
+    "Hence option (a) is correct."
+  ]
+},
+"2023-Q72": {
+  "answer": 1, "confidence": "high", "type": "Conceptual",
+  "shortcut": "Statement 1 reverses the definition - encryption turns plain text into cipher text. Statements 2 and 3 correctly describe digital signatures and secret-key cryptography.",
+  "tips": [
+    "Direction check: ENcryption goes plain -> cipher; DEcryption goes cipher -> plain. Reversal is the standard falsification device.",
+    "Digital signatures use asymmetric keys: the sender signs with the PRIVATE key and anyone verifies with the matching PUBLIC key - two keys, as statement 2 says.",
+    "Secret-key (symmetric) cryptography uses one shared key for both operations - DES and AES are the standard examples.",
+    "Symmetric ciphers are fast but require secure key distribution; asymmetric ones solve distribution but are slow, which is why real systems combine them."
+  ],
+  "solution": [
+    "Statement 1: encryption transforms readable PLAIN text into unintelligible CIPHER text; it is decryption that performs the reverse. The statement inverts the definition. FALSE.",
+    "Statement 2: a digital signature is created with the sender's PRIVATE key and verified by anyone using the corresponding PUBLIC key, so two mathematically related keys are involved. TRUE.",
+    "Statement 3: secret-key (symmetric) cryptography uses a single shared key for both encryption and decryption - DES and AES are standard examples. TRUE.",
+    "Only statements 2 and 3 are correct.",
+    "Hence option (b) is correct."
+  ]
+},
+"2023-Q73": {
+  "answer": 1, "confidence": "high", "type": "Definition",
+  "shortcut": "A modem MODulates digital data onto an analog carrier and DEModulates it back - the name is the definition.",
+  "tips": [
+    "The acronym is the answer: MODulator-DEModulator. Digital to analog and back is exactly what it does.",
+    "Switches, hubs and routers all handle DIGITAL signals only - none performs signal-form conversion, so they are out of category.",
+    "Layer placement: a hub works at layer 1, a switch at layer 2, a router at layer 3; a modem operates at the physical layer converting signal form.",
+    "Modems were needed because telephone lines carried analog signals; DSL and cable modems apply the same principle at much higher frequencies."
+  ],
+  "solution": [
+    "A modem (MOdulator-DEModulator) converts the digital signals produced by a computer into analog signals suitable for transmission over an analog medium such as a telephone line.",
+    "At the receiving end it performs the reverse conversion, demodulating the analog carrier back into digital data.",
+    "A network switch forwards digital frames between ports using MAC addresses (layer 2).",
+    "A network hub simply repeats incoming digital signals to all its ports (layer 1).",
+    "A router forwards digital packets between networks using IP addresses (layer 3). None of these three converts between digital and analog form.",
+    "Hence the device is the modem, option (b)."
+  ]
+},
+"2023-Q74": {
+  "answer": 1, "confidence": "high", "type": "Factual",
+  "shortcut": "The kernel is the core of UNIX; the shell is only the outer command interpreter.",
+  "tips": [
+    "UNIX layers from the inside out: hardware, kernel, shell, applications. 'Core' always means the kernel.",
+    "Kernel duties: process scheduling, memory management, file-system control, device drivers, system calls.",
+    "The shell can be replaced (sh, bash, csh, ksh, zsh) without touching the operating system, which proves it is not the core.",
+    "This item repeats 2018 Q64 word for word - a clear signal that the layered UNIX structure is worth memorising."
+  ],
+  "solution": [
+    "UNIX has a layered architecture: the hardware at the centre, surrounded by the kernel, then the shell, then user applications and utilities.",
+    "The kernel is the resident core that manages processes, memory, the file system and device I/O, and services every system call.",
+    "The shell is a command interpreter running as an ordinary user process; several different shells may be used interchangeably.",
+    "A process is a program in execution - an entity MANAGED by the kernel, not a component of the operating system itself.",
+    "Directories are file-system objects, again managed by the kernel.",
+    "Hence the core component of UNIX is the kernel, option (b)."
+  ]
+},
+"2023-Q75": {
+  "answer": 0, "confidence": "medium", "type": "Factual",
+  "shortcut": "Supermarket point-of-sale systems read printed characters and codes optically, which is OCR; OMR only detects marks and MICR reads magnetic ink on cheques.",
+  "tips": [
+    "Match the technology to the medium: OCR recognises printed or written CHARACTERS, OMR detects the presence of MARKS in fixed positions, MICR reads magnetic-ink characters on bank cheques.",
+    "The question says 'recognizing the characters', which is precisely OCR's job - OMR cannot identify a character at all.",
+    "MICR is confined to banking because it requires special iron-oxide ink, so it has no supermarket application.",
+    "OMR's domain is answer sheets and survey forms, where only the position of a mark matters - not retail character reading."
+  ],
+  "solution": [
+    "The task described is recognising printed characters at a supermarket point of sale.",
+    "OCR (Optical Character Recognition) scans printed or handwritten characters with light and converts their images into machine-readable text - exactly the required capability.",
+    "OMR (Optical Mark Recognition) only detects whether a mark is present in a predefined position; it cannot identify which character has been printed.",
+    "MICR (Magnetic Ink Character Recognition) reads characters printed in magnetic ink and is used almost exclusively for bank cheques.",
+    "Since only OCR recognises characters in this setting, the answer is OCR alone.",
+    "Option (a) is correct."
+  ]
+},
+"2023-Q76": {
+  "answer": 0, "confidence": "high", "type": "Conceptual",
+  "shortcut": "RISC's advantages are its compact, simple design and its small instruction set. Executing in MULTIPLE clock cycles is a CISC trait, not a RISC advantage - so statement 3 fails.",
+  "tips": [
+    "RISC executes most instructions in a SINGLE clock cycle; multi-cycle instructions are the CISC characteristic. Statement 3 attributes the wrong property.",
+    "Fewer and simpler instructions mean less decoding logic, hence a smaller die area and lower power - which is statement 1.",
+    "The simplicity also frees chip area for more registers and deeper pipelines, the real source of RISC's speed.",
+    "Read such statements for the direction of the claim: 'executing multiple clock cycles' would be a DISADVANTAGE even if true, so it cannot be a reason for preference."
+  ],
+  "solution": [
+    "Statement 1: because RISC needs far less instruction-decoding and microcode logic, the processor core is simpler and physically more compact, with lower power consumption. A genuine advantage. TRUE.",
+    "Statement 2: RISC is defined by its small set of simple, fixed-format instructions, which simplifies the hardware and enables efficient pipelining. TRUE.",
+    "Statement 3: RISC is designed so that most instructions complete in a SINGLE clock cycle; it is CISC whose complex instructions take several cycles.",
+    "Attributing multi-cycle execution to RISC therefore reverses the distinction, and in any case would be a drawback rather than a reason for preference. FALSE.",
+    "Only statements 1 and 2 are correct.",
+    "Hence option (a) is correct."
+  ]
+},
+"2023-Q77": {
+  "answer": 2, "confidence": "high", "type": "Factual",
+  "shortcut": "Bubble, merge and insertion sorts are stable; quick sort is not, because its partitioning swaps distant elements and can reorder equal keys.",
+  "tips": [
+    "Stable sorts: bubble, insertion, merge, counting, radix. Unstable: quick, heap, selection (in its usual form).",
+    "Stability means records with EQUAL keys keep their original relative order - essential when sorting successively on several fields.",
+    "Quick sort's partition step swaps elements across long distances, which can carry an equal key past another - hence instability.",
+    "Merge sort is stable provided the merge step takes from the LEFT run when the two keys tie - a detail worth remembering."
+  ],
+  "solution": [
+    "A sorting algorithm is stable if records with equal keys retain their original relative order in the sorted output.",
+    "Item 1, bubble sort: it swaps only ADJACENT elements, and only when strictly out of order, so equal keys are never exchanged. STABLE.",
+    "Item 3, merge sort: in the merge step, ties are resolved in favour of the left run, preserving the original order. STABLE.",
+    "Item 4, insertion sort: each element is inserted after all elements with keys less than OR EQUAL to it, so equal keys keep their order. STABLE.",
+    "Item 2, quick sort: partitioning exchanges elements that may be far apart, which can move one equal key past another. NOT stable in its standard in-place form.",
+    "Hence the stable algorithms are 1, 3 and 4, option (c)."
+  ]
+},
+"2023-Q78": {
+  "answer": 2, "confidence": "medium", "type": "Conceptual",
+  "shortcut": "The development cycle - analyse, design, code, compile, test, debug - is the same on any operating system, and a call to exp() must indeed be resolved by linking the math library's object code. Both statements hold.",
+  "tips": [
+    "Statement 1 is about the METHODOLOGY, not the tools: the sequence of development steps is platform-independent even though compilers and file formats differ.",
+    "Statement 2 describes the linker's job: the compiler emits a call with an unresolved reference, and the linker supplies the object code for exp() from the math library.",
+    "In practice this is why C programs on UNIX must be compiled with the -lm flag - a concrete anchor for statement 2.",
+    "Library functions are pre-compiled object code, not source, which is why LINKING rather than compiling is the step that resolves them."
+  ],
+  "solution": [
+    "Statement 1: the software development process - problem analysis, algorithm design, coding, compilation, testing and debugging, then maintenance - is a methodology independent of the particular operating system.",
+    "Although the specific compilers, file formats and tools differ between platforms, the sequence of development steps does not. TRUE.",
+    "Statement 2: when a program calls a standard library function such as exp(), the compiler emits a call with an unresolved external reference.",
+    "The linker then locates the pre-compiled object code for exp() in the mathematical library and binds it into the executable.",
+    "This is exactly why C programs using such functions must be linked against the math library. TRUE.",
+    "Both statements are correct, option (c)."
+  ]
+},
+"2023-Q79": {
+  "answer": 3, "confidence": "high", "type": "Numerical",
+  "shortcut": "Octal to binary in triples: 6251 = 110 010 101 001. Regrouping in fours from the right gives 1100 1010 1001 = CA9.",
+  "tips": [
+    "Octal to hexadecimal must pass through BINARY: three bits per octal digit out, four bits per hex digit in.",
+    "Always regroup from the RIGHT for the integer part, padding the leftmost group with zeros if necessary.",
+    "Decimal check: (6251)_8 = 6(512) + 2(64) + 5(8) + 1 = 3241, and (CA9)_16 = 12(256) + 10(16) + 9 = 3241. They agree.",
+    "This is a verbatim repeat of 2021 Q78, so the conversion is clearly worth drilling until it is automatic."
+  ],
+  "solution": [
+    "Convert each octal digit to three binary bits: 6 = 110, 2 = 010, 5 = 101, 1 = 001.",
+    "Concatenating gives the binary number 110010101001.",
+    "Regroup into fours from the right: 1100 | 1010 | 1001.",
+    "Convert each group: 1100 = C, 1010 = A, 1001 = 9.",
+    "So (6251)_8 = (CA9)_16.",
+    "Decimal check: 6(512) + 2(64) + 5(8) + 1 = 3241 and C(256) + A(16) + 9 = 3241. Option (d) is correct."
+  ]
+},
+"2023-Q80": {
+  "answer": 3, "confidence": "high", "type": "Factual",
+  "shortcut": "Gateways, proxy servers and screening routers are all standard firewall components, so all three terms belong to firewall terminology.",
+  "tips": [
+    "The three classical firewall implementations: packet-filtering (screening) routers, application-level gateways (proxies), and circuit-level gateways.",
+    "A screening router filters packets by IP address, port and protocol at the network layer - the simplest firewall form.",
+    "A proxy server terminates the connection and re-originates it, inspecting content at the application layer - deeper but slower filtering.",
+    "'Bastion host', 'DMZ' and 'stateful inspection' are other terms from this vocabulary worth recognising alongside these three."
+  ],
+  "solution": [
+    "A firewall controls traffic between a trusted internal network and an untrusted external one, and is built from several standard components.",
+    "Item 1, gateway: an application-level or circuit-level gateway relays traffic between the two networks while enforcing the security policy. FIREWALL TERM.",
+    "Item 2, proxy server: an application-level gateway that terminates the client connection, inspects the request and re-originates it on the client's behalf, hiding the internal network. FIREWALL TERM.",
+    "Item 3, screening router: a packet-filtering router that permits or denies packets on the basis of source and destination addresses, ports and protocols - the simplest firewall form. FIREWALL TERM.",
+    "All three belong to firewall terminology.",
+    "Hence option (d) is correct."
+  ]
+}
+}

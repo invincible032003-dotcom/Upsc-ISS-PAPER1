@@ -1,0 +1,359 @@
+{
+"2024-Q41": {
+  "answer": 3, "confidence": "high", "type": "Conceptual",
+  "shortcut": "Detecting bugs, single-stepping through code and halting execution at breakpoints are all standard debugger facilities, so all three statements hold.",
+  "tips": [
+    "Core debugger facilities to remember: breakpoints, single-stepping, watching variables, examining the call stack, and modifying values at run time.",
+    "Statement II describes SINGLE-STEPPING and statement III describes BREAKPOINTS - two distinct, genuine features, not duplicates.",
+    "A debugger locates run-time and LOGICAL errors, the ones a compiler cannot report - which is exactly why it is a separate tool.",
+    "When every statement in a set names a textbook feature of the same tool, 'all of them' is the natural key."
+  ],
+  "solution": [
+    "A debugger is a software tool that assists the programmer in locating and correcting faults in a program.",
+    "Statement I: it is used to detect errors and bugs - particularly run-time and logical errors that the compiler cannot report. TRUE.",
+    "Statement II: single-stepping lets the programmer execute one statement at a time and observe the effect on variables and control flow. TRUE.",
+    "Statement III: breakpoints let the programmer halt execution at chosen points, inspect the program state and resume once the problem is understood or corrected. TRUE.",
+    "All three describe standard debugger facilities.",
+    "Hence option (d) is correct."
+  ]
+},
+"2024-Q42": {
+  "answer": 3, "confidence": "high", "type": "Conceptual",
+  "shortcut": "The operating system is the principal system software, the manager of all machine resources, and the interface between user and hardware - all three statements are standard definitions.",
+  "tips": [
+    "Three standard descriptions of an OS: principal system software, resource manager, and user-hardware interface. Each statement matches one.",
+    "Resource management covers the processor, memory, files and I/O devices - the four resources every textbook lists.",
+    "The OS also provides the environment in which application programs are loaded and run, which is the second half of statement III.",
+    "When all three statements paraphrase the same textbook definition from different angles, 'all of them' is almost always the key."
+  ],
+  "solution": [
+    "Statement I: system software comprises the operating system, device drivers, language translators and utilities, and the operating system is its principal component - without it no other software can run. TRUE.",
+    "Statement II: the operating system allocates and manages the processor, main memory, files and I/O devices among competing processes. TRUE.",
+    "Statement III: it provides the interface - command line or graphical - through which the user directs the machine, and it loads and runs application programs, providing them with system services. TRUE.",
+    "All three are standard descriptions of an operating system.",
+    "Hence option (d) is correct."
+  ]
+},
+"2024-Q43": {
+  "answer": 2, "confidence": "medium", "type": "Conceptual",
+  "shortcut": "Encryption, virus scanning, backup and data recovery are all system-maintenance tasks performed by utility programs. 'Search and replace' is a text-editing feature of application software, so four of the five qualify.",
+  "tips": [
+    "Utility programs MAINTAIN and PROTECT the system: antivirus, backup, data recovery, encryption, compression, disk defragmentation, file management.",
+    "Search and replace is an editing operation inside a word processor or editor - application software performing work for the user, not housekeeping for the system.",
+    "Ask of each item: 'does this look after the computer, or does it do the user's work?'. That test sorts the five instantly.",
+    "Note the distinction from system software proper (the OS and translators); utilities are a maintenance sub-category sitting alongside them."
+  ],
+  "solution": [
+    "Utility programs are system software that maintain, analyse, configure and protect the computer system.",
+    "Item II, encryption: protecting stored or transmitted data is a standard security utility. UTILITY.",
+    "Item III, virus scanner: antivirus software is the archetypal utility program. UTILITY.",
+    "Item IV, backup: copying data for safekeeping is a standard maintenance utility. UTILITY. Item V, data recovery: restoring lost or damaged files is likewise a maintenance utility. UTILITY.",
+    "Item I, search and replace: this is an editing operation provided by a word processor or text editor, i.e. application software doing the user's work rather than maintaining the system. NOT a utility task.",
+    "Four of the five are tasks of utility programs, option (c)."
+  ]
+},
+"2024-Q44": {
+  "answer": 2, "confidence": "high", "type": "Definition",
+  "shortcut": "Preventing a party from later denying that a message was sent or received is precisely the definition of non-repudiation.",
+  "tips": [
+    "The five classical security services: confidentiality (secrecy), integrity (no alteration), authentication (identity), non-repudiation (no denial), availability (access).",
+    "The word 'denying' in the stem maps directly onto 'repudiation' - the vocabulary itself gives the answer.",
+    "Digital signatures provide non-repudiation because only the holder of the private key could have produced the signature.",
+    "Authentication proves who you ARE at the time; non-repudiation proves who acted LATER, in a way that stands up to subsequent denial - a subtle but examinable distinction."
+  ],
+  "solution": [
+    "Non-repudiation is the security service that prevents either party from later denying an action they performed.",
+    "Non-repudiation of origin prevents the sender from denying having sent the message; non-repudiation of delivery prevents the receiver from denying having received it.",
+    "It is typically implemented with digital signatures, since only the holder of the private key could have generated the signature.",
+    "Authentication verifies identity at the time of access, confidentiality prevents unauthorised disclosure, and integrity ensures the message has not been altered - none of these addresses subsequent denial.",
+    "Hence the required service is non-repudiation, option (c)."
+  ]
+},
+"2024-Q45": {
+  "answer": 0, "confidence": "medium", "type": "Factual",
+  "shortcut": "ICMP and ARP are both support protocols for IP, so in the TCP/IP model they are placed at the network (internet) layer.",
+  "tips": [
+    "ICMP carries error and control messages for IP itself (ping, destination unreachable, time exceeded), so it sits alongside IP at the network layer.",
+    "ARP resolves IP addresses to MAC addresses; it straddles the network-data link boundary but is conventionally grouped with the network layer in the TCP/IP model.",
+    "Neither carries user data end to end, so they cannot be transport or application protocols - options (b) and (c) are out of category.",
+    "Companion facts: ICMP messages are encapsulated inside IP datagrams, and ARP requests are broadcast on the local link only."
+  ],
+  "solution": [
+    "The TCP/IP model has four layers: application, transport, network (internet) and network access.",
+    "ICMP (Internet Control Message Protocol) carries error reports and diagnostic messages about IP delivery, such as 'destination unreachable' and the echo request and reply used by ping. Its messages are encapsulated in IP datagrams, so it belongs with IP at the network layer.",
+    "ARP (Address Resolution Protocol) maps an IP address to the corresponding MAC address so that a datagram can be delivered on the local link. It supports IP addressing and is conventionally placed at the network layer of the TCP/IP model.",
+    "Neither protocol provides end-to-end data transfer (transport layer) nor user services (application layer).",
+    "Hence both function at the network layer, option (a)."
+  ]
+},
+"2024-Q46": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "59 = 00111011; invert to get 11000100; add 1 to get 11000101.",
+  "tips": [
+    "Two's complement = one's complement PLUS ONE. Stopping at the inversion gives 11000100, which is planted as option (b).",
+    "59 = 32 + 16 + 8 + 2 + 1 = 00111011 - build from powers of two rather than by repeated division.",
+    "The sign bit must be 1 for a negative number, which eliminates any option beginning with 0.",
+    "Verify by addition: 00111011 + 11000101 = 1 00000000, and discarding the carry leaves zero - the definitive check."
+  ],
+  "solution": [
+    "Write the magnitude in 8-bit binary: 59 = 32 + 16 + 8 + 2 + 1, so 59 = 00111011.",
+    "Take the one's complement by inverting every bit: 11000100.",
+    "Add 1: 11000100 + 1 = 11000101.",
+    "The leading bit is 1, correctly marking a negative value.",
+    "Check: 00111011 + 11000101 = 100000000; discarding the carry out of the 8-bit word leaves 00000000, confirming the two are additive inverses.",
+    "Hence -59 is 11000101, option (a)."
+  ]
+},
+"2024-Q47": {
+  "answer": 0, "confidence": "high", "type": "Conceptual",
+  "shortcut": "Statement I is true - both translators convert high-level source to machine instructions. Statement II describes the COMPILER, not the interpreter, so it is false.",
+  "tips": [
+    "One-line contrast: compiler translates the WHOLE program before any execution; interpreter translates and executes ONE statement at a time.",
+    "Statement II simply swaps the two definitions - the classic falsification device in this topic.",
+    "Both are translators, which is why statement I is safe; the difference lies in WHEN translation happens, not in what is produced.",
+    "Consequences: a compiler produces a separate object/executable file and reports all errors up front, whereas an interpreter produces no object file and stops at the first error encountered."
+  ],
+  "solution": [
+    "Statement I: both compilers and interpreters are language translators that convert a program written in a high-level language into machine-level instructions the processor can execute. TRUE.",
+    "Statement II: it is the COMPILER that reads and translates the entire program before any execution takes place, producing an object program.",
+    "An interpreter takes the source one statement at a time, translates that statement and immediately executes it before moving on, so it never translates the whole program in advance.",
+    "The statement therefore attributes the compiler's behaviour to the interpreter. FALSE.",
+    "Only statement I is correct.",
+    "Hence option (a) is correct."
+  ]
+},
+"2024-Q48": {
+  "answer": 1, "confidence": "high", "type": "Conceptual",
+  "shortcut": "A webcam is an input device and its quality does depend on frame rate and resolution, so I and II hold. Statement III is wrong: BOTH frame rate and resolution should be high for smooth, clear video.",
+  "tips": [
+    "Separate the two quality dimensions: FRAME RATE governs smoothness of motion, RESOLUTION governs sharpness of detail. Good video needs both to be high.",
+    "Statement III asks for minimum resolution, which would give smooth but BLURRED video - internally contradictory with the word 'clear'.",
+    "A webcam captures images and sends them into the computer, so it is unambiguously an input device.",
+    "The trade-off in practice is bandwidth: raising both frame rate and resolution increases the data rate, which is why compression is used - but neither is deliberately minimised."
+  ],
+  "solution": [
+    "Statement I: a webcam captures live images and video and transmits them into the computer, so it is an input device. TRUE.",
+    "Statement II: video quality is governed principally by the frame rate (frames per second, controlling smoothness of motion) and the resolution (pixels per frame, controlling detail). TRUE.",
+    "Statement III: smooth motion requires a HIGH frame rate, and clear, detailed images require a HIGH resolution.",
+    "Minimising the resolution would make the picture blurred, contradicting the requirement that the video be 'clear'. FALSE.",
+    "Only statements I and II are correct.",
+    "Hence option (b) is correct."
+  ]
+},
+"2024-Q49": {
+  "answer": 3, "confidence": "high", "type": "Conceptual",
+  "shortcut": "Fetch, decode, execute and store are the four phases of the machine cycle, so all four listed operations are CPU operations.",
+  "tips": [
+    "The machine cycle is fetch - decode - execute - store; memorising these four words answers a family of questions.",
+    "The control unit handles fetching and decoding while the ALU performs execution, but both are parts of the CPU, so all four remain CPU operations.",
+    "Storing the result back to memory is genuinely part of the cycle (the write-back phase), so item IV must be included.",
+    "This repeats 2022 Q74's content in list form - the machine cycle is clearly a recurring theme."
+  ],
+  "solution": [
+    "The CPU repeatedly executes the machine cycle, which consists of four phases.",
+    "Item I, fetch: the control unit uses the program counter to read the next instruction from memory into the instruction register.",
+    "Item II, decode: the control unit interprets the instruction and determines the operation and operands required.",
+    "Item III, execute: the arithmetic and logic unit performs the required arithmetic, logical or data-movement operation.",
+    "Item IV, store: the result is written back to a register or to memory, completing the cycle.",
+    "All four are main operations of the CPU, option (d)."
+  ]
+},
+"2024-Q50": {
+  "answer": 3, "confidence": "high", "type": "Factual",
+  "shortcut": "SMTP uses port 25, POP3 uses 110 and IMAP uses 143 - in the order asked, 25, 110, 143.",
+  "tips": [
+    "Memorise the email trio in ascending order: 25 (SMTP), 110 (POP3), 143 (IMAP). They happen to run low to high in the same order the question lists them.",
+    "Other well-known ports: HTTP 80, HTTPS 443, FTP 21 (control) and 20 (data), Telnet 23, DNS 53, SSH 22.",
+    "Secure variants: SMTPS 465/587, POP3S 995, IMAPS 993 - useful if a question asks about encrypted mail.",
+    "Read the requested SEQUENCE carefully; options (a), (b) and (c) contain the same three numbers in different orders, so the ordering is the entire question."
+  ],
+  "solution": [
+    "SMTP (Simple Mail Transfer Protocol) transfers outgoing mail and uses well-known port 25.",
+    "POP3 (Post Office Protocol version 3) retrieves mail from a server, downloading and typically deleting it, and uses port 110.",
+    "IMAP (Internet Message Access Protocol) also retrieves mail but leaves it on the server for synchronisation across devices, and uses port 143.",
+    "The question asks for the ports in the sequence SMTP, POP3, IMAP.",
+    "That sequence is 25, 110, 143.",
+    "Option (d) is correct."
+  ]
+},
+"2024-Q51": {
+  "answer": 3, "confidence": "high", "type": "Conceptual",
+  "shortcut": "The BIOS runs the power-on self-test, bootstraps the operating system, and supplies a standard low-level interface to the hardware - all three functions are genuine.",
+  "tips": [
+    "BIOS duties in order of execution: POST (test the hardware), then bootstrap (find and load the OS), then provide run-time hardware services.",
+    "Statement III captures the abstraction role: BIOS routines let software access disks, keyboard and display without knowing the specific hardware details.",
+    "BIOS resides in ROM or flash so that it is available before any disk has been read - a key reason it can bootstrap the machine.",
+    "Modern machines use UEFI, the successor to BIOS, performing the same three functions with a richer interface."
+  ],
+  "solution": [
+    "BIOS (Basic Input Output System) is firmware held in ROM or flash memory on the motherboard, available as soon as power is applied.",
+    "Statement I: on power-up the BIOS runs the Power-On Self-Test, checking the processor, memory and essential peripherals before anything else happens. TRUE.",
+    "Statement II: it then locates the boot device, loads the bootstrap loader and hands control to the operating system. TRUE.",
+    "Statement III: the BIOS provides a standard set of low-level service routines through which software can access disks, the keyboard and the display without needing to know the specific hardware details - a hardware-independent access layer. TRUE.",
+    "All three are genuine BIOS functions.",
+    "Hence option (d) is correct."
+  ]
+},
+"2024-Q52": {
+  "answer": 0, "confidence": "high", "type": "Definition",
+  "shortcut": "Encapsulating IPSec-protected packets inside ordinary IP packets between two gateway routers is called TUNNELLING - the basis of a VPN.",
+  "tips": [
+    "IPSec has two modes: TRANSPORT mode (host to host, only the payload protected) and TUNNEL mode (gateway to gateway, the whole original packet encapsulated). Router-to-router means tunnel mode.",
+    "The tunnel is what creates a Virtual Private Network across the public internet - a useful real-world anchor.",
+    "A leased line is a physical dedicated circuit, not a software encapsulation, so option (b) is a different category entirely.",
+    "Packet filtering is a firewall function and message switching is a store-and-forward transmission technique - neither describes IPSec encapsulation."
+  ],
+  "solution": [
+    "IPSec can operate in transport mode, protecting only the payload between two hosts, or in tunnel mode, in which the entire original IP packet is encrypted and encapsulated inside a new IP packet.",
+    "When two IPSec-compliant routers exchange traffic across the public internet, they use tunnel mode: each router encapsulates the packets of its internal network and the peer router decapsulates them.",
+    "This encapsulation of one protocol's packets inside another's is called TUNNELLING, and it is the mechanism underlying a Virtual Private Network.",
+    "A leased line is a physical dedicated circuit rented from a carrier, not an encapsulation technique.",
+    "Packet filtering is a firewall function, and message switching is a store-and-forward transmission method.",
+    "Hence the term is tunnelling, option (a)."
+  ]
+},
+"2024-Q53": {
+  "answer": 1, "confidence": "high", "type": "Conceptual",
+  "shortcut": "Distributed systems have no shared physical memory, so processes must communicate by MESSAGE PASSING.",
+  "tips": [
+    "The two IPC models are shared memory and message passing; in a DISTRIBUTED system the machines have separate memories, so only message passing is available.",
+    "Every option except (b) presupposes some shared memory or cache, which by definition does not exist across independent machines.",
+    "Message passing is realised in practice by sockets, remote procedure calls (RPC) and message queues - worth naming as examples.",
+    "The trade-off: message passing is slower than shared memory but requires no common address space and scales across a network."
+  ],
+  "solution": [
+    "A distributed system consists of autonomous computers, each with its own local memory, connected only by a communication network.",
+    "Because there is no physical memory common to the machines, shared-memory mechanisms - shared regions, shared caches - cannot be used across nodes.",
+    "The remaining interprocess communication model is message passing, in which processes exchange data using send and receive primitives supplied by the operating system.",
+    "In practice this is implemented through sockets, remote procedure calls or message queues.",
+    "Options (a), (c) and (d) all presuppose memory shared between the communicating processes, which distributed systems lack.",
+    "Hence the method is message passing, option (b)."
+  ]
+},
+"2024-Q54": {
+  "answer": 2, "confidence": "medium", "type": "Numerical",
+  "shortcut": "Grouping 1101010101 in fours from the right gives 0011 0101 0101 = 355 in hex, so statement I holds. And the radix (10's) complement of 47 is 100 - 47 = 53, so statement II holds too.",
+  "tips": [
+    "Binary to hex: pad on the LEFT to a multiple of four bits, then translate each nibble. Here 1101010101 becomes 0011|0101|0101 = 3, 5, 5.",
+    "Decimal check for statement I: (1101010101)_2 = 512+256+64+16+4+1 = 853, and (355)_16 = 3(256) + 5(16) + 5 = 853. They agree.",
+    "For a two-digit decimal number the r's (10's) complement is 100 - n, so 100 - 47 = 53; the (r-1)'s (9's) complement would be 99 - 47 = 52.",
+    "When 'complement' is stated without qualification for base r it conventionally means the r's complement - which is what makes statement II true as printed."
+  ],
+  "solution": [
+    "Statement I: group the binary digits in fours from the right, padding on the left: 1101010101 becomes 0011 | 0101 | 0101.",
+    "Translating each group: 0011 = 3, 0101 = 5, 0101 = 5, so the hexadecimal equivalent is 355.",
+    "Decimal verification: (1101010101)_2 = 512 + 256 + 64 + 16 + 4 + 1 = 853, and (355)_16 = 3(256) + 5(16) + 5 = 768 + 80 + 5 = 853. TRUE.",
+    "Statement II: for a decimal number of n digits, the radix (10's) complement is 10^n minus the number. With n = 2 and the number 47, this is 100 - 47 = 53.",
+    "(The diminished-radix or 9's complement would be 99 - 47 = 52; 'the complement' without qualification conventionally denotes the radix complement.) TRUE.",
+    "Both statements are correct, option (c)."
+  ]
+},
+"2024-Q55": {
+  "answer": 1, "confidence": "medium", "type": "Factual",
+  "issue": "SOURCE NOTE: HTTP, FTP and SMTP are strictly APPLICATION-layer protocols of the TCP/IP model, not network-layer protocols (the network layer carries IP, ICMP and ARP). 'NMP' is not a standard TCP/IP protocol name - the recognised network-management protocol is SNMP, itself an application-layer protocol. Under the literal reading of the stem none of the four items is a network-layer protocol; option (b) is selected because it names the three genuine, universally recognised protocols in the list, and the discrepancy is flagged rather than the stem altered.",
+  "shortcut": "HTTP, FTP and SMTP are the three genuine, standard protocols listed; 'NMP' is not a recognised TCP/IP protocol name (the network-management protocol is SNMP).",
+  "tips": [
+    "Correct layer map: application - HTTP, FTP, SMTP, DNS, SNMP, Telnet; transport - TCP, UDP; network - IP, ICMP, ARP, RARP.",
+    "If a question about the 'network layer' lists only application-layer names, work by elimination on which items are genuine protocols at all.",
+    "SNMP (Simple Network Management Protocol) is the real protocol; 'NMP' with the S omitted is not a standard designation.",
+    "Keep the true network-layer list short and firm - IP, ICMP, ARP - so that mislabelled options are easy to spot."
+  ],
+  "solution": [
+    "In the TCP/IP reference model the network (internet) layer carries IP, ICMP, ARP and RARP.",
+    "Item I, HTTP: transfers web pages between browser and server - an APPLICATION-layer protocol.",
+    "Item II, FTP: transfers files on behalf of users - an APPLICATION-layer protocol.",
+    "Item IV, SMTP: transfers outgoing email - an APPLICATION-layer protocol.",
+    "Item III, 'NMP': not a standard TCP/IP protocol name; the recognised network-management protocol is SNMP, which is itself an application-layer protocol.",
+    "None of the four is genuinely a network-layer protocol, so the item is flagged; among the printed options only (b) names the three universally recognised protocols HTTP, FTP and SMTP, and it is selected on that basis."
+  ]
+},
+"2024-Q56": {
+  "answer": 0, "confidence": "high", "type": "Factual",
+  "shortcut": "Repeater, bridge and hub are all network connecting devices. Bluetooth is a short-range wireless communication STANDARD, not a device.",
+  "tips": [
+    "Connecting devices by layer: repeater and hub at layer 1 (physical), bridge and switch at layer 2 (data link), router at layer 3 (network), gateway above that.",
+    "Bluetooth is a technology/standard (IEEE 802.15) like Wi-Fi, not a piece of connecting hardware - a category difference, not a technical detail.",
+    "A repeater regenerates a weakened signal; a hub repeats it to all ports; a bridge forwards frames selectively between segments using MAC addresses.",
+    "Sorting the list by category before comparing details identifies the odd one out immediately."
+  ],
+  "solution": [
+    "Network connecting devices are hardware components used to link segments or nodes of a network.",
+    "Item I, repeater: regenerates and retransmits a weakened signal to extend the reach of a segment - a physical-layer connecting device.",
+    "Item II, bridge: connects two network segments and forwards frames selectively using MAC addresses - a data-link-layer connecting device.",
+    "Item III, hub: a multiport repeater that connects several nodes into one segment - a physical-layer connecting device.",
+    "Item IV, Bluetooth: a short-range wireless communication STANDARD (IEEE 802.15), not a connecting device in its own right.",
+    "Hence items I, II and III are the connecting devices, option (a)."
+  ]
+},
+"2024-Q57": {
+  "answer": 3, "confidence": "high", "type": "Conceptual",
+  "shortcut": "Data integrity, consistency and security are three of the standard advantages of a DBMS over file-based storage, so all three statements hold.",
+  "tips": [
+    "Standard DBMS advantages: controlled redundancy, data consistency, integrity constraints, security, concurrent access, backup and recovery, data independence.",
+    "Integrity is enforced through constraints (primary keys, foreign keys, check conditions) that the DBMS validates on every operation.",
+    "Consistency follows from controlled redundancy: because a fact is stored once, it cannot disagree with itself across files.",
+    "Security is enforced through authentication, user accounts and privilege grants - password protection being the simplest form."
+  ],
+  "solution": [
+    "A Database Management System sits between users and the stored data and enforces rules that a plain file system cannot.",
+    "Statement I: integrity constraints - primary keys, foreign keys, domain and check constraints - are validated by the DBMS on every insertion, update and deletion, so invalid data cannot enter. TRUE.",
+    "Statement II: by controlling redundancy so that each fact is stored once, and by propagating updates centrally, the DBMS keeps the stored information consistent. TRUE.",
+    "Statement III: the DBMS provides authentication and authorisation, allowing access to be restricted by user account and privilege, of which password protection is the basic form. TRUE.",
+    "All three are standard advantages of a DBMS.",
+    "Hence option (d) is correct."
+  ]
+},
+"2024-Q58": {
+  "answer": 3, "confidence": "medium", "type": "Conceptual",
+  "shortcut": "All three are standard textbook descriptions: the light pen is an electro-optical device used against the VDU, the touchscreen accepts input by direct touch, and the joystick moves the cursor in the direction it is pushed.",
+  "tips": [
+    "Pointing devices to know: mouse, trackball, joystick, light pen, touchpad, touchscreen, stylus - all convert physical motion or contact into cursor movement or coordinates.",
+    "The light pen contains a photodetector that senses the screen's refresh beam, which is why it works only against a CRT-style VDU - hence 'electro-optical'.",
+    "The classic distinction for statement III: with a mouse the cursor stops when the mouse stops, whereas with a joystick the cursor keeps moving in the direction the stick is held.",
+    "Touchscreens are unusual in being both an input and an output device, since the display and the sensor share the same surface."
+  ],
+  "solution": [
+    "Statement I: a light pen contains a photodetector and is held against the screen of the visual display unit, sensing the display's own light to determine its position. It is therefore an electro-optical pointing device connected to the VDU. TRUE.",
+    "Statement II: a touchscreen senses the position of a finger or stylus on the display surface, allowing text, drawings and selections to be entered by touching the screen directly. TRUE.",
+    "Statement III: a joystick moves the cursor in whichever direction the stick is pushed, and - unlike a mouse - the cursor continues to move while the stick is held in that direction. TRUE.",
+    "All three descriptions match the standard textbook accounts of these pointing devices.",
+    "Hence option (d) is correct."
+  ]
+},
+"2024-Q59": {
+  "answer": 3, "confidence": "high", "type": "Factual",
+  "shortcut": "While, for and do-while are the three loop constructs; break and continue are jump statements that alter the flow WITHIN a loop but are not loops themselves.",
+  "tips": [
+    "Three loop constructs in C-family languages: while (entry-controlled), for (entry-controlled with initialisation and update), do-while (exit-controlled, body runs at least once).",
+    "break and continue are JUMP statements, alongside goto and return - they modify loop behaviour but do not create iteration.",
+    "The distinguishing test: a looping statement can repeat a block on its own; break and continue cannot repeat anything.",
+    "do-while is the only exit-controlled loop, guaranteeing at least one execution of the body - a common follow-up question."
+  ],
+  "solution": [
+    "A looping (iteration) statement repeatedly executes a block of code while a condition holds.",
+    "Item I, while: tests the condition before each iteration - an entry-controlled loop. LOOP.",
+    "Item III, for: combines initialisation, condition and update in one header and is likewise entry-controlled. LOOP.",
+    "Item V, do while: executes the body first and tests the condition afterwards, so the body runs at least once - an exit-controlled loop. LOOP.",
+    "Item II, break: a jump statement that terminates the enclosing loop or switch immediately. Item IV, continue: a jump statement that skips to the next iteration. Neither creates iteration by itself.",
+    "Hence the looping statements are I, III and V, option (d)."
+  ]
+},
+"2024-Q60": {
+  "answer": 2, "confidence": "high", "type": "Factual",
+  "shortcut": "Records arranged as a tree, each child having exactly one parent, define the HIERARCHICAL data model.",
+  "tips": [
+    "Model shapes: hierarchical = tree (one parent per child), network = graph (many parents allowed), relational = tables joined by keys.",
+    "The hierarchical model supports only one-to-many relationships; many-to-many requires the network model - the key discriminator between options (c) and (d).",
+    "IBM's IMS is the classic hierarchical DBMS and CODASYL/IDMS the classic network one; almost all modern systems are relational.",
+    "The entity(-relationship) model is a DESIGN notation used before implementation, not a storage model - which places option (a) in a different category."
+  ],
+  "solution": [
+    "In the hierarchical data model, records are organised as a tree: there is a single root, and every child record has exactly one parent.",
+    "Navigation proceeds from the root downwards along parent-child links, which makes access fast for naturally tree-shaped data but rigid otherwise.",
+    "The network model generalises this to a graph in which a record may have several parents, so it is not a tree.",
+    "The relational model stores data in flat tables related by keys, with no inherent hierarchy.",
+    "The entity model (entity-relationship diagram) is a conceptual design notation rather than a storage structure.",
+    "Hence records are arranged as a tree in the hierarchical model, option (c)."
+  ]
+}
+}

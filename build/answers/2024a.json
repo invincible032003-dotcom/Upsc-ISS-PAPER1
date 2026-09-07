@@ -1,0 +1,362 @@
+{
+"2024-Q1": {
+  "answer": 0, "confidence": "high", "type": "Theoretical",
+  "shortcut": "The minimum of n i.i.d. Exponential(lambda) variables is Exponential(n lambda). With n = 5 and lambda = 2 the rate is 10, so the density is 10 e^(-10x).",
+  "tips": [
+    "Memorise: min of n i.i.d. Exp(lambda) is Exp(n lambda) - the rates ADD, because P(min > x) = [e^(-lambda x)]^n = e^(-n lambda x).",
+    "Options (b) and (c) are cumulative distribution functions, not densities - a density must integrate to 1, and 1 - e^(-2x) does not.",
+    "Option (d) 10 e^(-2x) is not a density either: its integral is 5, not 1. Checking normalisation eliminates three options instantly.",
+    "Companion result: the MAXIMUM of exponentials is NOT exponential; only the minimum inherits the family."
+  ],
+  "solution": [
+    "The parent density is f(x) = 2 e^(-2x) for x > 0, i.e. Exponential with rate 2, whose survival function is P(X > x) = e^(-2x).",
+    "For a sample of size 5, the event X_(1) > x means every one of the five observations exceeds x.",
+    "By independence, P(X_(1) > x) = [e^(-2x)]^5 = e^(-10x).",
+    "So the CDF of X_(1) is 1 - e^(-10x), and differentiating gives the density 10 e^(-10x) for x > 0.",
+    "That is, X_(1) ~ Exponential with rate 5 x 2 = 10.",
+    "Option (a) is correct."
+  ]
+},
+"2024-Q2": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "(n-1)S^2/sigma^2 ~ chi-square(n-1), so S^2 = [sigma^2/(n-1)] times a chi-square. Replacing t by t sigma^2/(n-1) in (1-2t)^(-(n-1)/2) gives (1 - 2 sigma^2 t/(n-1))^(-(n-1)/2).",
+  "tips": [
+    "Start from the sampling result (n-1)S^2/sigma^2 ~ chi-square with n - 1 d.f., then treat S^2 as a constant multiple of that chi-square.",
+    "Scaling rule for MGFs: if M_V(t) is the MGF of V then the MGF of cV is M_V(ct). Here c = sigma^2/(n-1).",
+    "chi-square MGF is (1 - 2t)^(-k/2) with k = n - 1, so the exponent -(n-1)/2 is common to all four options - the discriminator is the bracket.",
+    "Dimension check: t multiplies S^2, which has the units of sigma^2, so the product sigma^2 t must appear in the NUMERATOR. Options (a) and (b) have sigma^2 in the denominator and are wrong."
+  ],
+  "solution": [
+    "For a random sample from N(mu, sigma^2), the standard result is that (n-1)S^2/sigma^2 follows a chi-square distribution with n - 1 degrees of freedom.",
+    "Write V = (n-1)S^2/sigma^2, so S^2 = [sigma^2/(n-1)] V.",
+    "The moment generating function of a chi-square variable with k degrees of freedom is M_V(t) = (1 - 2t)^(-k/2), here with k = n - 1.",
+    "For a constant multiple, M_(cV)(t) = M_V(ct) with c = sigma^2/(n-1).",
+    "Hence M_(S^2)(t) = [1 - 2t sigma^2/(n-1)]^(-(n-1)/2).",
+    "Option (c) is correct."
+  ]
+},
+"2024-Q3": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "E(1/chi-square(k)) = 1/(k-2), so with k = n-1, E(1/S^2) = (n-1)/[sigma^2(n-3)]. Since the Gamma ratio gives r = 1/(n-3), this is (n-1)r/sigma^2.",
+  "tips": [
+    "Key moment: for V ~ chi-square(k) with k > 2, E(1/V) = 1/(k - 2). Here k = n - 1, so the denominator is n - 3, which explains the condition n > 3.",
+    "Simplify the given r first: Gamma((n-1)/2) = ((n-3)/2) Gamma((n-3)/2), so the ratio is 2/(n-3) and r = 1/(n-3).",
+    "Because S^2 = sigma^2 V/(n-1), the reciprocal brings a factor (n-1)/sigma^2 out in front - track that constant carefully.",
+    "The recurrence Gamma(z+1) = z Gamma(z) is the only Gamma identity needed; applying it once collapses the whole expression."
+  ],
+  "solution": [
+    "Let V = (n-1)S^2/sigma^2 ~ chi-square with n - 1 degrees of freedom, so S^2 = sigma^2 V/(n-1) and 1/S^2 = (n-1)/(sigma^2 V).",
+    "For a chi-square variable with k > 2 degrees of freedom, E(1/V) = 1/(k - 2). With k = n - 1 this is 1/(n - 3), which requires n > 3.",
+    "Hence E(1/S^2) = (n-1)/[sigma^2 (n-3)].",
+    "Now simplify the given constant: using Gamma(z+1) = z Gamma(z) with z = (n-3)/2, we get Gamma((n-1)/2) = ((n-3)/2) Gamma((n-3)/2).",
+    "So r = (1/2) Gamma((n-3)/2)/Gamma((n-1)/2) = (1/2)(2/(n-3)) = 1/(n-3).",
+    "Therefore E(1/S^2) = (n-1)r/sigma^2, option (a)."
+  ]
+},
+"2024-Q4": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "-ln X_i is Exp(1) for X_i uniform, so T is the sum of n independent Exp(1) variables, i.e. Gamma(n,1), with mean n.",
+  "tips": [
+    "Convert the log of a product into a sum of logs FIRST: T = sum of (-ln X_i). The rest is the exponential distribution.",
+    "For U ~ U(0,1), P(-ln U > t) = P(U < e^(-t)) = e^(-t), so -ln U ~ Exponential(1) with mean 1.",
+    "Sum of n independent Exp(1) variables is Gamma(shape n, rate 1), with mean n and variance n - both needed for the next parts.",
+    "This is the inverse-transform construction used to simulate exponential and Gamma variates, so the identification is worth knowing cold."
+  ],
+  "solution": [
+    "Since ln(X_1 X_2 ... X_n) = sum of ln X_i, we can write T = sum over i of (-ln X_i).",
+    "For X ~ U(0,1) and t > 0, P(-ln X > t) = P(X < e^(-t)) = e^(-t), so -ln X ~ Exponential with rate 1.",
+    "Hence T is the sum of n independent Exponential(1) variables, i.e. T ~ Gamma(shape n, rate 1).",
+    "The mean of Exponential(1) is 1, so by linearity E(T) = n(1) = n.",
+    "Equivalently, the Gamma(n,1) mean is n/1 = n.",
+    "Option (a) is correct."
+  ]
+},
+"2024-Q5": {
+  "answer": 3, "confidence": "high", "type": "Numerical",
+  "shortcut": "T is a sum of n independent Exp(1) variables, each with variance 1, so Var(T) = n.",
+  "tips": [
+    "Variances of INDEPENDENT summands add, so Var(T) = n Var(-ln X_1) = n(1) = n.",
+    "Exponential(1) has mean 1 and variance 1 - both equal to 1, which is why E(T) and Var(T) coincide here at n.",
+    "Gamma(shape a, rate b) has mean a/b and variance a/b^2; with a = n and b = 1 both equal n.",
+    "Options 2n, 3n and 4n would correspond to Exp with rate 1/sqrt2 and so on - none arises from the uniform-to-exponential transformation."
+  ],
+  "solution": [
+    "From the previous part, T = sum over i of (-ln X_i) where the -ln X_i are independent Exponential(1) variables.",
+    "For Exponential with rate 1, the variance is 1/1^2 = 1.",
+    "Since the summands are independent, their variances add: Var(T) = n x 1 = n.",
+    "Equivalently, T ~ Gamma(shape n, rate 1), whose variance is n/1^2 = n.",
+    "Note that here the mean and variance of T coincide, both equal to n.",
+    "Option (d) is correct."
+  ]
+},
+"2024-Q6": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "Each -ln X_i is Exp(1) with MGF (1-t)^(-1); n independent copies multiply, giving (1-t)^(-n).",
+  "tips": [
+    "MGF of Exp(rate lambda) is lambda/(lambda - t) = (1 - t/lambda)^(-1); with lambda = 1 that is (1-t)^(-1), valid for t < 1.",
+    "MGFs of INDEPENDENT variables multiply, so n copies give the nth power - the exponent equals the number of summands.",
+    "Consistency check: differentiating (1-t)^(-n) at t = 0 gives n, matching E(T) = n; the second derivative gives n(n+1), so Var = n(n+1) - n^2 = n, matching Var(T).",
+    "Note (1-2t)^(-n) would be the MGF of chi-square(2n); since T = chi-square(2n)/2 here, the factor 2 is absent - a common confusion."
+  ],
+  "solution": [
+    "T = sum over i of (-ln X_i), a sum of n independent Exponential(1) variables.",
+    "The moment generating function of an Exponential(1) variable is E(e^(tW)) = the integral of e^(tw) e^(-w) dw = 1/(1 - t) for t < 1.",
+    "For independent summands the MGFs multiply, so M_T(t) = [(1-t)^(-1)]^n = (1 - t)^(-n).",
+    "Check: M'(0) = n gives E(T) = n, and M''(0) = n(n+1) gives Var(T) = n(n+1) - n^2 = n, agreeing with the previous parts.",
+    "This is the Gamma(shape n, rate 1) moment generating function, as expected.",
+    "Option (c) is correct."
+  ]
+},
+"2024-Q7": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "The numerator X5 - X6 + X7 is N(0,3); the denominator squared satisfies [(X1+X2+X3)^2 + 3X4^2]/3 ~ chi-square(2). Assembling the t template gives t with 2 degrees of freedom.",
+  "tips": [
+    "Divide the denominator's contents by 3: (X1+X2+X3)^2/3 is the square of a standard normal, and 3X4^2/3 = X4^2 is another - two independent chi-square(1) terms, so chi-square(2).",
+    "X5 - X6 + X7 has variance 1 + 1 + 1 = 3 regardless of the signs, so dividing by sqrt(3) standardises it.",
+    "t = Z/sqrt(chi-square_v/v) with v = 2; the constants sqrt(3) cancel and leave exactly the sqrt(2) shown in the stem - a strong confirmation.",
+    "Degrees of freedom = number of independent squared normals in the denominator, here 2, not the sample size 7. Option (d) is the trap."
+  ],
+  "solution": [
+    "Numerator: X5 - X6 + X7 is normal with mean 0 and variance 1 + 1 + 1 = 3, so Z = (X5 - X6 + X7)/sqrt(3) ~ N(0,1).",
+    "Denominator: X1 + X2 + X3 ~ N(0,3), so (X1+X2+X3)/sqrt(3) is standard normal and (X1+X2+X3)^2/3 ~ chi-square(1).",
+    "Also X4 ~ N(0,1) gives X4^2 ~ chi-square(1), and these two are independent.",
+    "Hence W = [(X1+X2+X3)^2 + 3X4^2]/3 = (X1+X2+X3)^2/3 + X4^2 ~ chi-square with 2 degrees of freedom, independent of the numerator.",
+    "The t statistic is Z/sqrt(W/2) = [(X5-X6+X7)/sqrt3] . sqrt(2)/sqrt(W) = sqrt(2)(X5-X6+X7)/sqrt(3W), and 3W is exactly the expression under the printed radical.",
+    "So the statistic is t with 2 degrees of freedom, option (b)."
+  ]
+},
+"2024-Q8": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "The sum of four squared standard normals is chi-square(4), and E(1/chi-square(k)) = 1/(k-2) = 1/2.",
+  "tips": [
+    "Memorise E(1/V) = 1/(k-2) for V ~ chi-square(k), k > 2; it is the workhorse for every 'expected reciprocal' item in this chapter.",
+    "Identify the degrees of freedom by COUNTING the squared standard normals: four here, so k = 4 and the answer is 1/2.",
+    "The expectation is finite only for k > 2 - with k = 1 or 2 the integral diverges, a useful caveat to state.",
+    "Do not confuse with E(1/X) for the F distribution or with 1/E(V) = 1/4; the reciprocal of an expectation is not the expectation of a reciprocal."
+  ],
+  "solution": [
+    "X_1, X_2, X_3, X_4 are independent N(0,1), so V = X_1^2 + X_2^2 + X_3^2 + X_4^2 ~ chi-square with 4 degrees of freedom.",
+    "For a chi-square variable with k degrees of freedom, the density is proportional to v^(k/2 - 1) e^(-v/2).",
+    "Computing E(1/V) shifts the exponent down by one and yields the standard result E(1/V) = 1/(k - 2), valid for k > 2.",
+    "With k = 4: E(1/V) = 1/(4 - 2) = 1/2.",
+    "Note that this differs from 1/E(V) = 1/4, since the expectation of a reciprocal is not the reciprocal of the expectation.",
+    "Option (c) is correct."
+  ]
+},
+"2024-Q9": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "The numerator and denominator involve disjoint variables and are therefore independent. Since E(X1+X2+X3) = 0, the whole expectation is 0.",
+  "tips": [
+    "Check for DISJOINT index sets first: the numerator uses X1, X2, X3 and the denominator X4 to X7, so the two are independent and the expectation factorises.",
+    "E(numerator) = 0 because each X_i has mean 0 - the answer follows without evaluating the denominator's expectation at all.",
+    "The denominator's expectation E(1/chi-square(4)) = 1/2 is finite, which is what makes the product 0 x 1/2 legitimate rather than an indeterminate form.",
+    "Contrast with a ratio built from the SAME variables (as in a t statistic), where independence fails and this shortcut is unavailable."
+  ],
+  "solution": [
+    "The numerator involves X1, X2, X3 and the denominator involves X4, X5, X6, X7 - disjoint sets of independent variables.",
+    "Hence the numerator and the reciprocal of the denominator are independent, and the expectation factorises.",
+    "E(X1 + X2 + X3) = 0 + 0 + 0 = 0.",
+    "The denominator X4^2 + ... + X7^2 ~ chi-square(4), so E(1/(X4^2+...+X7^2)) = 1/(4-2) = 1/2, which is finite.",
+    "Therefore the expectation is 0 x (1/2) = 0.",
+    "Option (a) is correct."
+  ]
+},
+"2024-Q10": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "The ratio of N(0,5) to N(0,2) is sqrt(5/2) times a standard Cauchy, so lambda must equal sqrt(2/5) and 5 lambda^2 = 5(2/5) = 2.",
+  "tips": [
+    "Key fact: for independent N(0, a^2) and N(0, b^2), the ratio is (a/b) times a standard Cauchy - the scale parameter is the RATIO of the standard deviations.",
+    "Variances: the five-term sum has variance 5 and the two-term sum has variance 2, so the scale is sqrt(5)/sqrt(2) = sqrt(5/2).",
+    "To standardise, lambda must be the reciprocal sqrt(2/5), and squaring gives lambda^2 = 2/5 - hence 5 lambda^2 = 2.",
+    "The question asks for 5 lambda^2 precisely so that the answer is an integer; computing lambda itself and then squaring is the safest order."
+  ],
+  "solution": [
+    "X3 + X4 + X5 + X6 + X7 is normal with mean 0 and variance 5; X1 + X2 is normal with mean 0 and variance 2, and the two are independent.",
+    "For independent U ~ N(0, a^2) and V ~ N(0, b^2), the ratio U/V has a Cauchy distribution centred at 0 with scale a/b.",
+    "Here a = sqrt(5) and b = sqrt(2), so the ratio is Cauchy(0, sqrt(5/2)).",
+    "Multiplying a Cauchy(0, s) variable by lambda gives Cauchy(0, lambda s), so for the result to be Cauchy(0,1) we need lambda sqrt(5/2) = 1.",
+    "Hence lambda = sqrt(2/5) and lambda^2 = 2/5.",
+    "Therefore 5 lambda^2 = 5(2/5) = 2, option (b)."
+  ]
+},
+"2024-Q11": {
+  "answer": 2, "confidence": "medium", "type": "Numerical",
+  "shortcut": "Treat each quadratic form as its coefficient triple and take the dot product. Pairs I (6), II (1) and IV (3) give non-zero values, while pair III gives 2 + 2 - 4 = 0. So three pairs are non-orthogonal.",
+  "tips": [
+    "Reduce each form to the coefficient vector of (square, cross, square): e.g. x1^2 + 2x1x2 + x2^2 becomes (1, 2, 1). Orthogonality is then a simple dot product.",
+    "Work through the four dot products systematically: I gives 1+4+1 = 6; II gives 2-2+1 = 1; III gives 2+2-4 = 0; IV gives 1+1+1 = 3.",
+    "Only ONE pair is orthogonal, so THREE are non-orthogonal - read the question direction carefully, since it asks for the non-orthogonal count.",
+    "Sign care in pair II: the coefficients are (1, -2, -1) and (2, 1, -1), so the middle product is -2 and the last is +1."
+  ],
+  "solution": [
+    "Represent each quadratic form by the vector of its coefficients in the order (first square, cross term, second square); two forms are orthogonal when the dot product of their coefficient vectors is zero.",
+    "Pair I: (1, 2, 1) and (1, 2, 1) give 1 + 4 + 1 = 6, not zero. NON-ORTHOGONAL.",
+    "Pair II: (1, -2, -1) and (2, 1, -1) give 2 - 2 + 1 = 1, not zero. NON-ORTHOGONAL.",
+    "Pair III: (1, 2, -2) and (2, 1, 2) give 2 + 2 - 4 = 0. ORTHOGONAL.",
+    "Pair IV: (1, 1, -1) and (1, 1, -1) give 1 + 1 + 1 = 3, not zero. NON-ORTHOGONAL.",
+    "Three of the four pairs are non-orthogonal, option (c)."
+  ]
+},
+"2024-Q12": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "Var(Z) = 4(4) + 9(17/9) - 12 Cov = 16 + 17 - 24 = 9, so Z ~ N(0,9) with density (1/(3 sqrt(2 pi))) e^(-z^2/18) = (1/sqrt(18 pi)) e^(-z^2/18).",
+  "tips": [
+    "Var(aX + bY) = a^2 Var X + b^2 Var Y + 2ab Cov. With a = 2 and b = -3 the cross term is 2(2)(-3)(2) = -24 - the minus sign is essential.",
+    "E(XY) = Cov(X,Y) here because both means are zero; the question gives the raw product moment deliberately.",
+    "Convert the density: 1/(sigma sqrt(2 pi)) with sigma = 3 is 1/(3 sqrt(2 pi)) = 1/sqrt(9 x 2 pi) = 1/sqrt(18 pi), and the exponent is -z^2/(2 x 9) = -z^2/18.",
+    "Cross-check the two parts of the option: the constant sqrt(18 pi) and the exponent denominator 18 must agree, which only option (b) achieves."
+  ],
+  "solution": [
+    "X and Y are jointly normal with zero means, Var(X) = 4, Var(Y) = 17/9 and Cov(X,Y) = E(XY) = 2 (the means being zero).",
+    "Z = 2X - 3Y is a linear combination of jointly normal variables, so Z is normal with mean 0.",
+    "Var(Z) = 2^2 Var(X) + (-3)^2 Var(Y) + 2(2)(-3) Cov(X,Y) = 4(4) + 9(17/9) - 12(2).",
+    "= 16 + 17 - 24 = 9, so sigma_Z = 3.",
+    "The N(0,9) density is f(z) = (1/(3 sqrt(2 pi))) e^(-z^2/18), and 3 sqrt(2 pi) = sqrt(9 x 2 pi) = sqrt(18 pi).",
+    "Hence f(z) = (1/sqrt(18 pi)) e^(-z^2/18), option (b)."
+  ]
+},
+"2024-Q13": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "The sample median from N(mu, sigma^2) is asymptotically N(mu, pi sigma^2/(2n)). With sigma^2 = 2 and n = 20 the variance is 2 pi/40 = pi/20.",
+  "tips": [
+    "Asymptotic variance of the median: 1/(4n f(m)^2). For the normal, f(mu) = 1/(sigma sqrt(2 pi)), giving pi sigma^2/(2n).",
+    "The median is centred at the population median, which for a symmetric normal equals mu = 1 - so all four options share that centre.",
+    "Substitute carefully: pi(2)/(2 x 20) = pi/20. Option (a) 1/10 is the variance of the sample MEAN (sigma^2/n = 2/20), the standard trap.",
+    "The ratio (pi/20)/(1/10) = pi/2 = 1.571 is the reciprocal of the efficiency 2/pi - a neat consistency check with the ARE result."
+  ],
+  "solution": [
+    "For a random sample of size n from a distribution with density f and population median m, the sample median is asymptotically normal with mean m and variance 1/(4 n [f(m)]^2).",
+    "For N(mu, sigma^2) the median equals the mean mu, and the density at the mean is f(mu) = 1/(sigma sqrt(2 pi)).",
+    "Hence [f(mu)]^2 = 1/(2 pi sigma^2), and the asymptotic variance is 1/(4n) x 2 pi sigma^2 = pi sigma^2/(2n).",
+    "Substituting sigma^2 = 2 and n = 20: pi(2)/(2 x 20) = 2 pi/40 = pi/20.",
+    "The centre is mu = 1.",
+    "So the asymptotic distribution is N(1, pi/20), option (b)."
+  ]
+},
+"2024-Q14": {
+  "answer": 2, "confidence": "high", "type": "Theoretical",
+  "shortcut": "F(m,n) is defined as (X/m)/(Y/n) = nX/(mY), so statement I holds; its reciprocal mY/(nX) is F(n,m), so statement II holds too.",
+  "tips": [
+    "Definition: F with (m,n) degrees of freedom is the ratio of two independent chi-squares EACH DIVIDED BY ITS OWN degrees of freedom.",
+    "Write it out: (X/m)/(Y/n) = (X/m)(n/Y) = nX/(mY). Matching this against statement I confirms it immediately.",
+    "Reciprocal property: 1/F(m,n) = F(n,m). Statement II is exactly the reciprocal of statement I, so the two stand or fall together.",
+    "Because the two statements are reciprocals, only options (c) and (d) are logically possible - and since the definition holds, it must be (c)."
+  ],
+  "solution": [
+    "X ~ chi-square(m) and Y ~ chi-square(n) are independent.",
+    "By definition, an F variable with (m, n) degrees of freedom is the ratio of the two chi-squares each divided by its own degrees of freedom: F = (X/m)/(Y/n).",
+    "Simplifying, (X/m)(n/Y) = nX/(mY), which is exactly the expression in statement I. TRUE.",
+    "Taking reciprocals, mY/(nX) = 1/F, and the standard reciprocal property gives 1/F(m,n) = F(n,m).",
+    "Directly: mY/(nX) = (Y/n)/(X/m), which is the ratio of the chi-squares in the opposite order, hence F with (n, m) degrees of freedom. TRUE.",
+    "Both statements are correct, option (c)."
+  ]
+},
+"2024-Q15": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "Assigning 8X - 10Y + 66 = 0 as Y on X gives b_YX = 0.8, and 40X - 18Y = 214 as X on Y gives b_XY = 0.45, whose product 0.36 is admissible so r = 0.6. Statement I mislabels 0.8 as b_XY, so only II and III hold.",
+  "tips": [
+    "Assign the lines by TESTING: the product of the two regression coefficients must lie in [0,1]. The other assignment gives 1.25 x 2.222 = 2.78 > 1 and is impossible.",
+    "b_YX is the coefficient of X when Y is the subject; b_XY is the coefficient of Y when X is the subject. Statement I attaches 0.8 to the wrong one.",
+    "r = sqrt(b_YX b_XY) = sqrt(0.36) = 0.6, positive because both coefficients are positive.",
+    "For prediction of Y from X use the Y on X line: Y = 0.8(30) + 6.6 = 30.6, confirming statement III."
+  ],
+  "solution": [
+    "Try 8X - 10Y + 66 = 0 as the regression of Y on X: 10Y = 8X + 66, so Y = 0.8X + 6.6 and b_YX = 0.8.",
+    "Then 40X - 18Y = 214 must be the regression of X on Y: 40X = 18Y + 214, so X = 0.45Y + 5.35 and b_XY = 0.45.",
+    "Check: b_YX b_XY = 0.8 x 0.45 = 0.36, which lies in [0,1], so this assignment is admissible. (The opposite assignment gives 1.25 x 2.222 = 2.78 > 1 and is impossible.)",
+    "Statement I: the regression coefficient of X on Y is b_XY = 0.45, not 0.8 (0.8 is b_YX). FALSE.",
+    "Statement II: r = sqrt(0.36) = 0.6, positive since both coefficients are positive. TRUE.",
+    "Statement III: predicting Y from X uses the Y on X line, giving Y = 0.8(30) + 6.6 = 30.6. TRUE. Only II and III hold, option (b)."
+  ]
+},
+"2024-Q16": {
+  "answer": 2, "confidence": "high", "type": "Factual",
+  "shortcut": "The chi-square MGF is (1 - 2t)^(-k/2); with k = 10 the exponent is -5, giving (1-2t)^(-5).",
+  "tips": [
+    "Memorise M(t) = (1 - 2t)^(-k/2) for chi-square with k d.f., valid for t < 1/2. The 2 inside and the halved exponent are both essential.",
+    "For k = 10 the exponent is -10/2 = -5. Options (b) and (d) keep the full 10 and options (a) and (b) drop the 2.",
+    "Verify by differentiating: M'(0) = k = 10 gives the mean, and M''(0) = k(k+2) = 120 gives Var = 120 - 100 = 20 = 2k. Both correct.",
+    "The chi-square is Gamma(shape k/2, scale 2), so its MGF is the Gamma MGF (1 - scale x t)^(-shape) - one formula covers both families."
+  ],
+  "solution": [
+    "A chi-square variable with k degrees of freedom is Gamma with shape k/2 and scale 2.",
+    "The moment generating function of Gamma(shape a, scale b) is (1 - bt)^(-a) for t < 1/b.",
+    "With a = k/2 and b = 2, this gives M(t) = (1 - 2t)^(-k/2), valid for t < 1/2.",
+    "For k = 10 the exponent is -10/2 = -5.",
+    "Hence M(t) = (1 - 2t)^(-5).",
+    "Check: M'(0) = 10 = E(X) and M''(0) = 120, so Var(X) = 120 - 100 = 20 = 2(10). Option (c) is correct."
+  ]
+},
+"2024-Q17": {
+  "answer": 1, "confidence": "high", "type": "Theoretical",
+  "shortcut": "The density of the maximum is n[F(x)]^(n-1) f(x). With F(x) = 1 - e^(-x) and f(x) = e^(-x) this is n(1-e^(-x))^(n-1) e^(-x).",
+  "tips": [
+    "Maximum: P(X_(n) <= x) = [F(x)]^n, so differentiating gives n[F(x)]^(n-1) f(x). Minimum uses [1 - F(x)]^n instead.",
+    "The answer must contain BOTH the CDF power and the density factor f(x) = e^(-x). Options (a), (c) and (d) are missing one or the other.",
+    "Options (a) and (c) are not densities at all: (1-e^(-x))^n is the CDF of the maximum, integrating to infinity as a density.",
+    "The constant n counts the ways the maximum can be attained by one of the n observations - it must be present, which eliminates option (a)."
+  ],
+  "solution": [
+    "For the exponential density f(x) = e^(-x) on x >= 0, the CDF is F(x) = 1 - e^(-x).",
+    "The maximum X_(n) satisfies X_(n) <= x exactly when every observation is at most x, so P(X_(n) <= x) = [F(x)]^n = (1 - e^(-x))^n.",
+    "Differentiating with respect to x gives the density g_n(x) = n[F(x)]^(n-1) f(x).",
+    "Substituting: g_n(x) = n(1 - e^(-x))^(n-1) e^(-x) for x >= 0.",
+    "Check: integrating this over (0, infinity) gives [(1-e^(-x))^n] from 0 to infinity = 1, a valid density.",
+    "Option (b) is correct."
+  ]
+},
+"2024-Q18": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "From 4 sigma_x^2 = 25 and 9 sigma_y^2 = 25 we get sigma_x^2 = 25/4 and sigma_y^2 = 25/9. Then Var((2x+3y)/sqrt2) = (1/2)[4(25/4) + 9(25/9)] = (1/2)(50) = 25.",
+  "tips": [
+    "Read the chain 4 sigma_x^2 = 9 sigma_y^2 = 25 as TWO equations, then solve each for its variance separately.",
+    "The design is deliberate: 4 sigma_x^2 = 25 and 9 sigma_y^2 = 25 make the two terms in the variance BOTH equal 25, so the bracket is simply 50.",
+    "Independence means no covariance term; the 1/sqrt(2) divisor contributes a factor 1/2, not 1/sqrt(2), because variance scales by the square.",
+    "Forgetting to square the divisor gives 50/sqrt(2) = 35.4 and no matching option; forgetting it entirely gives 50, which is planted as option (b)."
+  ],
+  "solution": [
+    "From 4 sigma_x^2 = 25 we get sigma_x^2 = 25/4, and from 9 sigma_y^2 = 25 we get sigma_y^2 = 25/9.",
+    "Since x and y are independent, Var(2x + 3y) = 4 sigma_x^2 + 9 sigma_y^2.",
+    "= 4(25/4) + 9(25/9) = 25 + 25 = 50.",
+    "Dividing by sqrt(2) scales the variance by (1/sqrt2)^2 = 1/2.",
+    "Var((2x + 3y)/sqrt(2)) = 50/2 = 25.",
+    "Option (a) is correct."
+  ]
+},
+"2024-Q19": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "Cov(x,y) = 2, Var(x) = 16 and Var(y) = 567, so r = 2/(4 sqrt(567)). Then (18r)^2 = 324(4)/(16 x 567) = 81/567 = 1/7.",
+  "tips": [
+    "Undo each transformation first: Cov(2x,y) = 2Cov(x,y) gives Cov = 2; Var(x/4) = Var(x)/16 gives Var(x) = 16; Var(y/9) = Var(y)/81 gives Var(y) = 567.",
+    "Keep 567 = 81 x 7 in factored form - it cancels beautifully at the end against the 81 from 18^2/4.",
+    "(18r)^2 = 324 r^2 = 324 Cov^2/(Var x Var y) = 324(4)/(16 x 567) = 1296/9072 = 1/7. Work with squares throughout to avoid surds.",
+    "Sanity check: r = 2/(4 x 23.81) = 0.021, a very weak correlation, so (18r)^2 = 0.143 = 1/7 is the right order of magnitude."
+  ],
+  "solution": [
+    "From Cov(2x, y) = 2 Cov(x, y) = 4 we get Cov(x, y) = 2.",
+    "From Var(x/4) = Var(x)/16 = 1 we get Var(x) = 16, so sd(x) = 4.",
+    "From Var(y/9) = Var(y)/81 = 7 we get Var(y) = 567.",
+    "Hence r(x,y) = Cov/(sd(x) sd(y)) = 2/(4 sqrt(567)).",
+    "Then (18r)^2 = 324 r^2 = 324 x 4/(16 x 567) = 1296/9072.",
+    "Since 567 = 81 x 7, this is 81/567 = 1/7. Option (b) is correct."
+  ]
+},
+"2024-Q20": {
+  "answer": 3, "confidence": "high", "type": "Numerical",
+  "shortcut": "For U[0,2], f = 1/2 and F(x) = x/2. The minimum has density 5(1 - x/2)^4 (1/2), which at x = 1 is 5(1/16)(1/2) = 5/32.",
+  "tips": [
+    "Density of the minimum: n[1 - F(x)]^(n-1) f(x). Substitute n = 5, F(1) = 1/2 and f = 1/2.",
+    "Careful with the uniform on [0,2]: the density is 1/2, NOT 1, and F(1) = 1/2, not 1. Both appear in the formula.",
+    "Compute in stages: (1 - 1/2)^4 = 1/16, then 5 x (1/16) x (1/2) = 5/32.",
+    "Option (b) 5/16 omits the density factor 1/2 and option (c) 1/32 omits the constant 5 - each distractor drops one factor."
+  ],
+  "solution": [
+    "For the Uniform[0,2] distribution the density is f(x) = 1/2 and the CDF is F(x) = x/2 for 0 <= x <= 2.",
+    "The density of the smallest order statistic in a sample of size n is f_(1)(x) = n[1 - F(x)]^(n-1) f(x).",
+    "With n = 5: f_(1)(x) = 5(1 - x/2)^4 (1/2).",
+    "At x = 1: 1 - 1/2 = 1/2, so (1/2)^4 = 1/16.",
+    "f_(1)(1) = 5 x (1/16) x (1/2) = 5/32.",
+    "Option (d) is correct."
+  ]
+}
+}

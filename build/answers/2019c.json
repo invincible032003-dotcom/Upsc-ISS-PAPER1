@@ -201,7 +201,7 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Four values are known, so set the fourth difference to zero: $y_{4} - 4y3 + 6y2 - 4y1 + y_{0} = 0$ gives $67.4 - 4k + 324.6 - 196.8 + 45 = 0$, so $4k = 240.2$ and $k = 60.05$.",
+    "shortcut": "Four values are known, so set the fourth difference to zero: $y_{4} - 4y_{3} + 6y_{2} - 4y_{1} + y_{0} = 0$ gives $67.4 - 4k + 324.6 - 196.8 + 45 = 0$, so $4k = 240.2$ and $k = 60.05$.",
     "tips": [
       "Missing-value technique: with one gap among five equally spaced points, assume a cubic and impose $\\Delta^{4} y_{0} = 0$. The coefficients are 1, -4, 6, -4, 1.",
       "Collect the three known contributions first: $67.4 + 324.6 - 196.8 + 45 = 240.2$, then divide by 4. Doing the arithmetic in one sweep avoids sign errors.",
@@ -211,7 +211,7 @@
     "solution": [
       "The tabulated values at $x = 2, 3, 4, 5, 6$ are $y_{0} = 45, y_{1} = 49.2, y_{2} = 54.1, y_{3} = k, y_{4} = 67.4$, equally spaced with $h = 1$.",
       "Only four values are known, so the standard assumption is that y is a cubic in x, whence the fourth difference vanishes.",
-      "$\\Delta^{4} y_{0} = y_{4} - 4y3 + 6y2 - 4y1 + y_{0} = 0$.",
+      "$\\Delta^{4} y_{0} = y_{4} - 4y_{3} + 6y_{2} - 4y_{1} + y_{0} = 0$.",
       "Substituting: $67.4 - 4k + 6(54.1) - 4(49.2) + 45 = 0$, i.e. $67.4 - 4k + 324.6 - 196.8 + 45 = 0$.",
       "Collecting the constants: $240.2 - 4k = 0$, so $k = 60.05$.",
       "Hence option (a) is correct."
@@ -221,17 +221,17 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The product has degree $1 + 2 + 3 + 4 = 10$ with leading coefficient $(-a)(-b)(-c)(-d)$ = abcd. For $h = 1, \\Delta^{n}$ of a degree-n polynomial is (leading coefficient) $x n!$, so the answer is abcd x 10!.",
+    "shortcut": "The product has degree $1 + 2 + 3 + 4 = 10$ with leading coefficient $(-a)(-b)(-c)(-d) = abcd$. For $h = 1, \\Delta^{n}$ of a degree-n polynomial is (leading coefficient) $x n!$, so the answer is abcd x 10!.",
     "tips": [
-      "Key identity: for $h = 1, \\Delta^{n}$ [$a_{n} x^{n}$ + lower terms] = $a_{n}$ . n!. All lower-degree terms are annihilated.",
+      "Key identity: for $h = 1, \\Delta^{n}$ [$a_{n} x^{n}$ + lower terms] = $a_{n} \\cdot n$!. All lower-degree terms are annihilated.",
       "Get the degree by ADDING the degrees of the factors $(1+2+3+4 = 10)$ - do not multiply them out.",
-      "The leading coefficient is the product of the leading coefficients: $(-a)(-b)(-c)(-d)$ = +abcd. Four negatives give a positive, which is why no minus sign appears.",
+      "The leading coefficient is the product of the leading coefficients: $(-a)(-b)(-c)(-d) = +abcd$. Four negatives give a positive, which is why no minus sign appears.",
       "If the operator order had exceeded the degree the answer would be 0 (option a); here they match exactly, which is what makes the factorial appear."
     ],
     "solution": [
       "Expand the degrees: $(1 - ax)$ has degree $1, (1 - bx^{2})$ degree $2, (1 - cx^{3})$ degree $3, (1 - dx^{4})$ degree 4.",
       "The product is therefore a polynomial of degree $1 + 2 + 3 + 4 = 10$.",
-      "Its leading term comes from multiplying the highest-degree term of each factor: $(-ax)(-bx^{2})(-cx^{3})(-dx^{4})$ = abcd $x^{10}$, so the leading coefficient is abcd.",
+      "Its leading term comes from multiplying the highest-degree term of each factor: $(-ax)(-bx^{2})(-cx^{3})(-dx^{4}) = abcd x^{10}$, so the leading coefficient is abcd.",
       "For an interval of differencing $h = 1$, the standard result is $\\Delta^{n}(x^{n}) = n!$, and all terms of degree below n vanish under $\\Delta^{n}$.",
       "Hence $\\Delta^{10}$ of the product equals abcd x 10!.",
       "Option (c) is correct."
@@ -286,13 +286,13 @@
       "Work downwards from the highest power: the leading coefficient transfers unchanged, then each lower coefficient is corrected for the terms the factorial polynomials contribute.",
       "The constant is read off instantly: every factorial polynomial vanishes at $x = 0$, so $D = f(0) = 1$.",
       "Fast check at $x = 1$: $x^{2} = 0$ and $x^{3} = 0$, so the expression reduces to C + D. Since $f(1) = 1+1+1+1 = 4$ and $D = 1$, we get $C = 3$ in one line.",
-      "Alternatively build the difference table of f at $x = 0$,1,2,3 (values 1, 4, 15, 40): the leading differences 1, 3, 8, 6 give the coefficients 1, 3, 4, 1 in the order $D, C, B/1!$, ... - a useful cross-check."
+      "Alternatively build the difference table of f at $x = 0$,1,2,3 (values 1, 4, 15, 40): the leading differences 1, 3, 8, 6 give the coefficients 1, 3, 4, 1 in the order $D, C, B/1!, \\ldots$ - a useful cross-check."
     ],
     "solution": [
       "With interval of differencing $h = 1, x^{1} = x, x^{2} = x(x-1) = x^{2} - x$, and $x^{3} = x(x-1)(x-2) = x^{3} - 3x^{2} + 2x$.",
       "Write $1 + x + x^{2} + x^{3} = A x^{3} + B x^{2} + C x^{1} + D$.",
       "Coefficient of $x^{3}$: $A = 1$.",
-      "Coefficient of $x^{2}$: -$3A + B = 1$, so $B = 1 + 3 = 4$.",
+      "Coefficient of $x^{2}$: $-3A + B = 1$, so $B = 1 + 3 = 4$.",
       "Coefficient of x: $2A - B + C = 1$, i.e. $2 - 4 + C = 1$, so $C = 3$. Constant: $D = 1$.",
       "Hence $1 + x + x^{2} + x^{3} = x^{3} + 4x^{2} + 3x^{1} + 1$, option (d)."
     ]
@@ -301,18 +301,18 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "A cubic has zero fourth differences. Applying $\\Delta^{4} = 0$ at x = -2 and at x = -1 gives $m_{2} - 4m1 = 39$ and m1 - 4m2 = -81; solving, m1 = -5 and $m_{2} = 19$.",
+    "shortcut": "A cubic has zero fourth differences. Applying $\\Delta^{4} = 0$ at $x = -2$ and at $x = -1$ gives $m_{2} - 4m_{1} = 39$ and $m_{1} - 4m_{2} = -81$; solving, $m_{1} = -5$ and $m_{2} = 19$.",
     "tips": [
       "Two unknowns need two equations, so write the fourth-difference condition at TWO starting points. The coefficient pattern 1, -4, 6, -4, 1 is the same each time.",
       "Verify at the end by building the table: 45 values -33, -5, 5, 9, 19, 47 give first differences 28, 10, 4, 10, 28 and third differences 12, 12, 12 - constant, as a cubic demands.",
-      "The value $f(0) = 5$ is the constant term and $f(1) - f(0) = 4$ is a strong anchor; a candidate value of m1 = -10 would make the first differences 23, 15, 4, ... which cannot come from a cubic with constant third differences.",
-      "Solve the pair by substitution: $m_{2} = 4m1 + 39$ into $m_{1} - 4m2 + 81 = 0$ gives -$15 m_{1} = 75$, so m1 = -5."
+      "The value $f(0) = 5$ is the constant term and $f(1) - f(0) = 4$ is a strong anchor; a candidate value of $m_{1} = -10$ would make the first differences $23, 15, 4, \\ldots$ which cannot come from a cubic with constant third differences.",
+      "Solve the pair by substitution: $m_{2} = 4m_{1} + 39$ into $m_{1} - 4m_{2} + 81 = 0$ gives $-15 m_{1} = 75$, so $m_{1} = -5$."
     ],
     "solution": [
       "For a third-degree polynomial the fourth forward difference vanishes identically, with coefficient pattern 1, -4, 6, -4, 1.",
-      "Applying it at x = -2: $f(2) - 4f(1) + 6f(0) - 4f(-1) + f(-2) = 0$, i.e. $m_{2} - 36 + 30 - 4m1 - 33 = 0$, so $m_{2} - 4m1 = 39$.",
-      "Applying it at x = -1: $f(3) - 4f(2) + 6f(1) - 4f(0) + f(-1) = 0$, i.e. $47 - 4m2 + 54 - 20 + m_{1} = 0$, so m1 - 4m2 = -81.",
-      "From the first equation $m_{2} = 4m1 + 39$; substituting into the second gives $m_{1} - 16m1 - 156$ = -81, i.e. -$15m1 = 75$, so m1 = -5.",
+      "Applying it at $x = -2$: $f(2) - 4f(1) + 6f(0) - 4f(-1) + f(-2) = 0$, i.e. $m_{2} - 36 + 30 - 4m_{1} - 33 = 0$, so $m_{2} - 4m_{1} = 39$.",
+      "Applying it at $x = -1$: $f(3) - 4f(2) + 6f(1) - 4f(0) + f(-1) = 0$, i.e. $47 - 4m_{2} + 54 - 20 + m_{1} = 0$, so $m_{1} - 4m_{2} = -81$.",
+      "From the first equation $m_{2} = 4m_{1} + 39$; substituting into the second gives $m_{1} - 16m_{1} - 156 = -81$, i.e. $-15m_{1} = 75$, so $m_{1} = -5$.",
       "Then $m_{2} = 4(-5) + 39 = 19$.",
       "Check: the values -33, -5, 5, 9, 19, 47 give first differences 28, 10, 4, 10, 28; second differences -18, -6, 6, 18; third differences 12, 12, 12 - constant, confirming a cubic. Option (c) is correct."
     ]
@@ -321,18 +321,18 @@
     "answer": 2,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "Gauss's forward formula uses $\\Delta y_{0}, \\Delta^{2} y(-1), \\Delta^{3} y(-1), \\Delta^{4} y(-2)$, ... - the ODD differences lie below the central line and the EVEN differences lie on it.",
+    "shortcut": "Gauss's forward formula uses $\\Delta y_{0}, \\Delta^{2} y(-1), \\Delta^{3} y(-1), \\Delta^{4} y(-2), \\ldots$ - the ODD differences lie below the central line and the EVEN differences lie on it.",
     "tips": [
       "Write the two formulas as difference paths: Gauss FORWARD zig-zags downward first (odd differences below the central line); Gauss BACKWARD zig-zags upward first (odd differences above it). Even differences sit on the central line in both.",
       "Gauss forward is used when the interpolation point lies just AFTER $x_{0} (0 < p < 1)$; Gauss backward when it lies just before.",
-      "Stirling's formula is the mean of the two Gauss formulas and is best for |p| < 0.25; Bessel's uses the mean of the two central lines and is best near $p = 0.5$. Knowing which to choose is itself examinable.",
+      "Stirling's formula is the mean of the two Gauss formulas and is best for $\\lvert p\\rvert < 0.25$; Bessel's uses the mean of the two central lines and is best near $p = 0.5$. Knowing which to choose is itself examinable.",
       "Options (a) and (b) put odd differences ON the central line, which is impossible - the central line of a difference table can only carry even-order differences."
     ],
     "solution": [
-      "Set the central value y0 in a difference table with $y(-2), y(-1), y_{0}, y_{1}, y_{2}$ and their differences.",
-      "Gauss's forward interpolation formula is $y_{p} = y_{0} + p \\Delta y_{0} + [p(p-1)/2!] \\Delta^{2} y(-1) + [(p+1)p(p-1)/3!] \\Delta^{3} y(-1) + [(p+1)p(p-1)(p-2)/4!] \\Delta^{4} y(-2)$ + ...",
-      "The differences used are $\\Delta y_{0}, \\Delta^{2} y(-1), \\Delta^{3} y(-1), \\Delta^{4} y(-2)$, ...",
-      "In the difference table, $\\Delta y_{0}$ and $\\Delta^{3} y(-1)$ - the ODD-order differences - lie immediately BELOW the horizontal line through y0.",
+      "Set the central value $y_{0}$ in a difference table with $y(-2), y(-1), y_{0}, y_{1}, y_{2}$ and their differences.",
+      "Gauss's forward interpolation formula is $y_{p} = y_{0} + p \\Delta y_{0} + [p(p-1)/2!] \\Delta^{2} y(-1) + [(p+1)p(p-1)/3!] \\Delta^{3} y(-1) + [(p+1)p(p-1)(p-2)/4!] \\Delta^{4} y(-2) + \\ldots$",
+      "The differences used are $\\Delta y_{0}, \\Delta^{2} y(-1), \\Delta^{3} y(-1), \\Delta^{4} y(-2), \\ldots$",
+      "In the difference table, $\\Delta y_{0}$ and $\\Delta^{3} y(-1)$ - the ODD-order differences - lie immediately BELOW the horizontal line through $y_{0}$.",
       "The EVEN-order differences $\\Delta^{2} y(-1)$ and $\\Delta^{4} y(-2)$ lie ON that central line.",
       "Hence the formula involves odd differences below the central line and even differences on the central line, option (c)."
     ]
@@ -361,7 +361,7 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Newton's divided differences give $f(x) = 2x^{3} - 10x^{2} + 18$, so $f'(x) = 6x^{2} - 20x$ and $f'(2) = 24 - 40$ = -16.",
+    "shortcut": "Newton's divided differences give $f(x) = 2x^{3} - 10x^{2} + 18$, so $f'(x) = 6x^{2} - 20x$ and $f'(2) = 24 - 40 = -16$.",
     "tips": [
       "Build the interpolating cubic explicitly - it is far safer than differentiating Lagrange basis polynomials one by one.",
       "Divided-difference ladder: 18, then -8, -14, 36; then -2, 10; then 2. The last entry, 2, is the leading coefficient of the cubic.",
@@ -370,11 +370,11 @@
     ],
     "solution": [
       "Data: $(0,18), (1,10), (3,-18), (6,90)$. Form divided differences.",
-      "First order: $f[0,1] = (10-18)/1$ = -8; $f[1,3] = (-18-10)/2$ = -14; $f[3,6] = (90+18)/3 = 36$.",
-      "Second order: $f[0,1,3] = (-14+8)/3$ = -2; $f[1,3,6] = (36+14)/5 = 10$.",
+      "First order: $f[0,1] = (10-18)/1 = -8$; $f[1,3] = (-18-10)/2 = -14$; $f[3,6] = (90+18)/3 = 36$.",
+      "Second order: $f[0,1,3] = (-14+8)/3 = -2$; $f[1,3,6] = (36+14)/5 = 10$.",
       "Third order: $f[0,1,3,6] = (10+2)/6 = 2$.",
-      "Newton's form: $f(x) = 18 - 8x - 2x(x-1) + 2x(x-1)(x-3) = 2x^{3} - 10x^{2} + 18$. (Check: $f(0)=18, f(1)=10, f(3)$=-$18, f(6)=90$.)",
-      "Differentiating, $f'(x) = 6x^{2} - 20x$, so $f'(2) = 24 - 40$ = -16, option (a)."
+      "Newton's form: $f(x) = 18 - 8x - 2 \\times (x-1) + 2 \\times (x-1)(x-3) = 2x^{3} - 10x^{2} + 18$. (Check: $f(0)=18, f(1)=10, f(3)=-18, f(6)=90$.)",
+      "Differentiating, $f'(x) = 6x^{2} - 20x$, so $f'(2) = 24 - 40 = -16$, option (a)."
     ]
   },
   "2019-Q60": {

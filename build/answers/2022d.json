@@ -32,8 +32,8 @@
     ],
     "solution": [
       "With $x_{0} = 0$ and $h = 1$, the values are 5, 1, 9, 25, 55.",
-      "Differences: $\\Delta$ = -4, 8, 16, 30; $\\Delta^{2} = 12, 8, 14$; $\\Delta^{3}$ = -4, 6; $\\Delta^{4} = 10$.",
-      "For $x = 5, p = (5 - 0)/1 = 5$, and since p is an integer the coefficients $p(p-1)$.../k! are the binomial coefficients $\\binom{5}{k}$: 5, 10, 10, 5.",
+      "Differences: $\\Delta = -4, 8, 16, 30$; $\\Delta^{2} = 12, 8, 14$; $\\Delta^{3} = -4, 6$; $\\Delta^{4} = 10$.",
+      "For $x = 5, p = (5 - 0)/1 = 5$, and since p is an integer the coefficients $p(p-1)\\ldots/k!$ are the binomial coefficients $\\binom{5}{k}$: 5, 10, 10, 5.",
       "Newton's forward formula: $f(5) = 5 + 5(-4) + 10(12) + 10(-4) + 5(10) = 5 - 20 + 120 - 40 + 50 = 115$, option (d)."
     ]
   },
@@ -44,15 +44,15 @@
     "shortcut": "Second differences are constant at 2, so y is quadratic with leading coefficient 1. Fitting gives $y_{x} = x^{2} - 18x + 83$, and $y_{4} = 16 - 72 + 83 = 27$.",
     "tips": [
       "Constant second differences equal to 2 with $h = 1$ mean $2a h^{2} = 2$, so the leading coefficient $a = 1$ - identify it before fitting anything else.",
-      "Two data points then pin down b and c: subtracting $y_{10}$ from $y_{11}$ gives $21 + b = 3$, so b = -18.",
+      "Two data points then pin down b and c: subtracting $y_{10}$ from $y_{11}$ gives $21 + b = 3$, so $b = -18$.",
       "Alternative route: extend the difference table BACKWARDS from $y_{10}$ six steps, subtracting 2 from each first difference each time. Slower but needs no algebra.",
       "Check the fitted formula on a value you did not use: $y_{12} = 144 - 216 + 83 = 11$, matching the table."
     ],
     "solution": [
       "The values $y_{10}$ to $y_{14}$ are 3, 6, 11, 18, 27 with $h = 1$.",
       "First differences: 3, 5, 7, 9. Second differences: 2, 2, 2 - constant, so y is a quadratic in x.",
-      "For y = ax^2 + bx + c with $h = 1$, the second difference is 2a, so $2a = 2$ and $a = 1$.",
-      "From $y_{10} = 3$: $100 + 10b + c = 3$. From $y_{11} = 6$: $121 + 11b + c = 6$. Subtracting: $21 + b = 3$, so b = -18.",
+      "For $y = ax^{2} + bx + c$ with $h = 1$, the second difference is 2a, so $2a = 2$ and $a = 1$.",
+      "From $y_{10} = 3$: $100 + 10b + c = 3$. From $y_{11} = 6$: $121 + 11b + c = 6$. Subtracting: $21 + b = 3$, so $b = -18$.",
       "Then $100 - 180 + c = 3$ gives $c = 83$, so $y_{x} = x^{2} - 18x + 83$ (check: $y_{12} = 144 - 216 + 83 = 11$).",
       "Therefore $y_{4} = 16 - 72 + 83 = 27$, option (d)."
     ]
@@ -61,18 +61,18 @@
     "answer": 1,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "$\\Delta$ - nabla = $(E - 1) - (1 - E^{-1}) = E - 2 + E^{-1}$, and $\\Delta$ nabla = $(E-1)(1 - E^{-1}) = E - 2 + E^{-1}$. They are equal.",
+    "shortcut": "$\\Delta - \\nabla = (E - 1) - (1 - E^{-1}) = E - 2 + E^{-1}$, and $\\Delta \\nabla = (E-1)(1 - E^{-1}) = E - 2 + E^{-1}$. They are equal.",
     "tips": [
-      "Convert everything to E: $\\Delta = E - 1$ and nabla = $1 - E^{-1}$. Every identity in this chapter falls out in one line from these two.",
-      "Both sides equal $\\delta^{2} = E - 2 + E^{-1}$, so the identity can also be written $\\Delta$ - nabla = $\\Delta$ nabla = $\\delta^{2} - a$ three-way identity worth memorising.",
-      "Numerical check on $f(x) = x^{2}$ with $h = 1$: $\\Delta f = 2x + 1$, nabla $f = 2x - 1$, so $\\Delta f$ - nabla $f = 2$; and $\\Delta$ nabla $f = \\Delta(2x-1) = 2$. Equal.",
-      "Companion identity from the same pair: $\\Delta$ + nabla = $E - E^{-1} = 2 \\mu \\delta$."
+      "Convert everything to E: $\\Delta = E - 1$ and $\\nabla = 1 - E^{-1}$. Every identity in this chapter falls out in one line from these two.",
+      "Both sides equal $\\delta^{2} = E - 2 + E^{-1}$, so the identity can also be written $\\Delta - \\nabla = \\Delta \\nabla = \\delta^{2}$ - a three-way identity worth memorising.",
+      "Numerical check on $f(x) = x^{2}$ with $h = 1$: $\\Delta f = 2x + 1, \\nabla f = 2x - 1$, so $\\Delta f - \\nabla f = 2$; and $\\Delta \\nabla f = \\Delta(2x-1) = 2$. Equal.",
+      "Companion identity from the same pair: $\\Delta + \\nabla = E - E^{-1} = 2 \\mu \\delta$."
     ],
     "solution": [
-      "In terms of the shift operator, $\\Delta = E - 1$ and nabla = $1 - E^{-1}$.",
-      "Therefore $\\Delta$ - nabla = $(E - 1) - (1 - E^{-1}) = E - 2 + E^{-1}$.",
-      "Also $\\Delta$ nabla = $(E - 1)(1 - E^{-1}) = E - E E^{-1} - 1 + E^{-1} = E - 1 - 1 + E^{-1} = E - 2 + E^{-1}$.",
-      "The two expressions coincide, so $\\Delta$ - nabla = $\\Delta$ nabla.",
+      "In terms of the shift operator, $\\Delta = E - 1$ and $\\nabla = 1 - E^{-1}$.",
+      "Therefore $\\Delta - \\nabla = (E - 1) - (1 - E^{-1}) = E - 2 + E^{-1}$.",
+      "Also $\\Delta \\nabla = (E - 1)(1 - E^{-1}) = E - E E^{-1} - 1 + E^{-1} = E - 1 - 1 + E^{-1} = E - 2 + E^{-1}$.",
+      "The two expressions coincide, so $\\Delta - \\nabla = \\Delta \\nabla$.",
       "Both also equal $\\delta^{2}$, since $\\delta^{2} = (E^{1/2} - E^{-1/2})^{2} = E - 2 + E^{-1}$.",
       "Hence option (b) is correct."
     ]
@@ -86,7 +86,7 @@
       "When several options agree at the first data point, move straight to the SECOND - do not keep testing the same value.",
       "At $x = 1$ every cubic here evaluates to the sum of its coefficients, which the examiner has deliberately made equal to 12 in all four options.",
       "The polynomial factorises as $x(x+2)(x+3)$, so $f(1) = 1(3)(4) = 12$ and $f(2) = 2(4)(5) = 40$ - the factored form makes verification instant.",
-      "Cross-check with 2018 Q41, which used the same data and established that the underlying polynomial has degree 3 - consistent with all the options offered."
+      "Cross-check with $2018 Q_{41}$, which used the same data and established that the underlying polynomial has degree 3 - consistent with all the options offered."
     ],
     "solution": [
       "The data are $f(1) = 12, f(2) = 40, f(3) = 90, f(4) = 168, f(5) = 280, f(6) = 432$, which $(as in 2018 Q_{41})$ have constant third differences and so come from a cubic.",
@@ -101,18 +101,18 @@
     "answer": 3,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "nabla $g(x) = \\Delta g(x-1)$, so w is literally u. And both u and v expand to $f(x)\\Delta g(x) - f(x-1)\\Delta g(x-1)$. Hence $u = v = w$.",
+    "shortcut": "$\\nabla g(x) = \\Delta g(x-1)$, so w is literally u. And both u and v expand to $f(x)\\Delta g(x) - f(x-1)\\Delta g(x-1)$. Hence $u = v = w$.",
     "tips": [
-      "Key bridge identity: nabla $g(x) = g(x) - g(x-1) = \\Delta g(x-1)$. Substituting it turns w into u without any expansion.",
+      "Key bridge identity: $\\nabla g(x) = g(x) - g(x-1) = \\Delta g(x-1)$. Substituting it turns w into u without any expansion.",
       "Expand u and v fully in terms of function values: both give $f(x)\\Delta g(x) - f(x-1)\\Delta g(x-1)$. Writing out the two terms is the safest route.",
-      "$\\Delta$ applied at x-1 and nabla applied at x reach the SAME pair of points - that shared reach is why all three expressions coincide.",
-      "Numerical check with $f(x) = x$ and $g(x) = x^{2}$ at $x = 2$: all three expressions evaluate to 3 x 5 - 1 x 3 = ... compute once and the equality is confirmed."
+      "$\\Delta$ applied at $x-1$ and $\\nabla$ applied at x reach the SAME pair of points - that shared reach is why all three expressions coincide.",
+      "Numerical check with $f(x) = x$ and $g(x) = x^{2}$ at $x = 2$: all three expressions evaluate to $3 \\times 5 - 1 \\times 3 = \\ldots$ compute once and the equality is confirmed."
     ],
     "solution": [
-      "With difference interval 1, nabla $g(x) = g(x) - g(x-1) = \\Delta g(x-1)$.",
-      "Substituting this into $w = \\Delta$[$f(x-1)$ nabla g(x)] gives $w = \\Delta[f(x-1) \\Delta g(x-1)] = u$. So $u = w$ immediately.",
+      "With difference interval $1, \\nabla g(x) = g(x) - g(x-1) = \\Delta g(x-1)$.",
+      "Substituting this into $w = \\Delta[f(x-1) \\nabla g(x)]$ gives $w = \\Delta[f(x-1) \\Delta g(x-1)] = u$. So $u = w$ immediately.",
       "Now expand u. Writing $G(x) = f(x-1) \\Delta g(x-1)$, we have $u = \\Delta G(x) = G(x+1) - G(x) = f(x) \\Delta g(x) - f(x-1) \\Delta g(x-1)$.",
-      "Expand v. Writing $F(x) = f(x) \\Delta g(x)$, we have v = nabla $F(x) = F(x) - F(x-1) = f(x) \\Delta g(x) - f(x-1) \\Delta g(x-1)$.",
+      "Expand v. Writing $F(x) = f(x) \\Delta g(x)$, we have $v = \\nabla F(x) = F(x) - F(x-1) = f(x) \\Delta g(x) - f(x-1) \\Delta g(x-1)$.",
       "The two expansions are identical, so $u = v$.",
       "Therefore $u = v = w$, option (d)."
     ]
@@ -121,19 +121,19 @@
     "answer": 1,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "Expressions 1 and 2 are standard. Expression 3 drops the factor $\\delta$: the true identity is nabla = -$\\delta^{2}/2 + \\delta \\sqrt{1 + \\delta^{2}/4}$, so as printed it is false.",
+    "shortcut": "Expressions 1 and 2 are standard. Expression 3 drops the factor $\\delta$: the true identity is $\\nabla = -\\delta^{2}/2 + \\delta \\sqrt{1 + \\delta^{2}/4}$, so as printed it is false.",
     "tips": [
-      "Master identities: $\\mu = \\sqrt{1 + \\delta^{2}/4}, \\Delta = \\delta^{2}/2 + \\delta \\mu$, nabla = -$\\delta^{2}/2 + \\delta \\mu$. All three carry mu MULTIPLIED by $\\delta$ in the second term.",
+      "Master identities: $\\mu = \\sqrt{1 + \\delta^{2}/4}, \\Delta = \\delta^{2}/2 + \\delta \\mu, \\nabla = -\\delta^{2}/2 + \\delta \\mu$. All three carry $\\mu$ MULTIPLIED by $\\delta$ in the second term.",
       "Compare expressions 2 and 3 side by side: expression 2 has $\\delta$ before the square root, expression 3 does not. That single missing factor is the whole question.",
-      "Verify with E-forms: $\\delta \\mu = (E - E^{-1})/2$ and $\\delta^{2}/2 = (E - 2 + E^{-1})/2$. Adding gives $E - 1 = \\Delta$; subtracting gives $1 - E^{-1}$ = nabla.",
-      "Dimensional check: $\\Delta$ and nabla are first-order difference operators, so each term must contain an ODD total power of $\\delta$. In expression 3 the term mu alone is even-order, which cannot be right."
+      "Verify with E-forms: $\\delta \\mu = (E - E^{-1})/2$ and $\\delta^{2}/2 = (E - 2 + E^{-1})/2$. Adding gives $E - 1 = \\Delta$; subtracting gives $1 - E^{-1} = \\nabla$.",
+      "Dimensional check: $\\Delta$ and $\\nabla$ are first-order difference operators, so each term must contain an ODD total power of $\\delta$. In expression 3 the term $\\mu$ alone is even-order, which cannot be right."
     ],
     "solution": [
       "Write the operators in terms of E: $\\delta = E^{1/2} - E^{-1/2}, \\mu = (E^{1/2} + E^{-1/2})/2$, so $\\delta^{2} = E - 2 + E^{-1}$ and $\\delta \\mu = (E - E^{-1})/2$.",
       "Expression 1: $\\mu^{2} = (E + 2 + E^{-1})/4 = 1 + (E - 2 + E^{-1})/4 = 1 + \\delta^{2}/4$, so $\\mu = \\sqrt{1 + \\delta^{2}/4}$. TRUE.",
       "Expression 2: $\\delta^{2}/2 + \\delta \\mu = (E - 2 + E^{-1})/2 + (E - E^{-1})/2 = (2E - 2)/2 = E - 1 = \\Delta$. TRUE.",
-      "Expression 3 as printed is -$\\delta^{2}/2 + \\sqrt{1 + \\delta^{2}/4}$ = -$\\delta^{2}/2 + \\mu$, which is not nabla.",
-      "The correct identity is nabla = -$\\delta^{2}/2 + \\delta \\mu$ = -$(E - 2 + E^{-1})/2 + (E - E^{-1})/2 = 1 - E^{-1}$; the printed version omits the factor $\\delta$. FALSE.",
+      "Expression 3 as printed is $-\\delta^{2}/2 + \\sqrt{1 + \\delta^{2}/4} = -\\delta^{2}/2 + \\mu$, which is not $\\nabla$.",
+      "The correct identity is $\\nabla = -\\delta^{2}/2 + \\delta \\mu = -(E - 2 + E^{-1})/2 + (E - E^{-1})/2 = 1 - E^{-1}$; the printed version omits the factor $\\delta$. FALSE.",
       "Exactly two expressions are correct, option (b)."
     ]
   },
@@ -145,9 +145,9 @@
     "shortcut": "Differences: -73, -93, -103; then -20, -10; then 10. A non-zero third difference rules out a quadratic, and Newton forward at $p = 0.5$ gives 478.63, not 477.",
     "tips": [
       "Degree test: a quadratic requires CONSTANT second differences. Here they are -20 and -10, so at least a cubic is needed.",
-      "For $p = 0.5$ the factorial coefficients are $p = 0.5, p(p-1)/2$ = -0.125 and $p(p-1)(p-2)/6$ = +0.0625 - note the sign change at the third term.",
-      "Assemble carefully: $512 - 36.5 = 475.5$, then +$2.5 = 478.0$, then +$0.625 = 478.625$.",
-      "The same data appear as 2020 Q74, where the statements concerned degree $n < 2$ and the choice of forward versus backward formula - a clear repeat of the underlying table."
+      "For $p = 0.5$ the factorial coefficients are $p = 0.5, p(p-1)/2 = -0.125$ and $p(p-1)(p-2)/6 = +0.0625$ - note the sign change at the third term.",
+      "Assemble carefully: $512 - 36.5 = 475.5$, then $+2.5 = 478.0$, then $+0.625 = 478.625$.",
+      "The same data appear as $2020 Q_{74}$, where the statements concerned degree $n < 2$ and the choice of forward versus backward formula - a clear repeat of the underlying table."
     ],
     "solution": [
       "The tabulated values at $x = 20, 30, 40, 50$ are 512, 439, 346, 243 with $h = 10$.",
@@ -169,7 +169,7 @@
       "Sanity check with $a = 2$: $a^{4} - 1 = 15$ and $a^{2} - 1 = 3$, so the constant is $(15/3)^{2} = 25 = (a^{2}+1)^{2} = 5^{2}$. Confirmed."
     ],
     "solution": [
-      "With interval of differencing $1, \\Delta a^{4x} = a^(4(x+1)) - a^{4x} = a^{4x}(a^{4} - 1)$.",
+      "With interval of differencing $1, \\Delta a^{4x} = a^{4(x+1)} - a^{4x} = a^{4x}(a^{4} - 1)$.",
       "Applying $\\Delta a$ second time multiplies by the same constant: $\\Delta^{2} a^{4x} = a^{4x}(a^{4} - 1)^{2}$.",
       "The constant $(a^{2} - 1)^{-2}$ passes through the operator unchanged, so $\\Delta^{2}[a^{4x}/(a^{2}-1)^{2}] = a^{4x}(a^{4}-1)^{2}/(a^{2}-1)^{2}$.",
       "Factorise $a^{4} - 1 = (a^{2} - 1)(a^{2} + 1)$, so $(a^{4} - 1)^{2} = (a^{2}-1)^{2} (a^{2}+1)^{2}$.",
@@ -181,19 +181,19 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$\\Delta(3x-3)^{-2} = (-2)(3)(3x-3)^{-3}$ = -$6(3x-3)^{-3}$. Shifting by $E^{2}$ gives -$6/[(3x+6)(3x+9)(3x+12)]$, which at $x = 1$ is -$6/(9 \\times 12 \\times 15)$ = -$1/270$.",
+    "shortcut": "$\\Delta(3x-3)^{-2} = (-2)(3)(3x-3)^{-3} = -6(3x-3)^{-3}$. Shifting by $E^{2}$ gives $-6/[(3x+6)(3x+9)(3x+12)]$, which at $x = 1$ is $-6/(9 \\times 12 \\times 15) = -1/270$.",
     "tips": [
-      "Negative factorial with a linear argument and coefficient a: $u^{-n} = 1/[(u+a)(u+2a)...(u+na)]$. Here $a = 3$, so $(3x-3)^{-2} = 1/[(3x)(3x+3)]$.",
-      "The difference rule $\\Delta u^{n} = n a u^{n-1}$ holds for negative n too, with n = -2 giving the factor $(-2)(3)$ = -6.",
+      "Negative factorial with a linear argument and coefficient a: $u^{-n} = 1/[(u+a)(u+2a)\\ldots(u+na)]$. Here $a = 3$, so $(3x-3)^{-2} = 1/[(3x)(3x+3)]$.",
+      "The difference rule $\\Delta u^{n} = n a u^{n-1}$ holds for negative n too, with $n = -2$ giving the factor $(-2)(3) = -6$.",
       "E and $\\Delta$ commute, so apply the difference rule first and the double shift afterwards - far cleaner than expanding four separate fractions.",
       "Sign check: a negative factorial power decreases in magnitude as x grows, so its forward difference must be NEGATIVE - options (b) and (d) are eliminated at once."
     ],
     "solution": [
       "With interval 1 and a linear argument of coefficient $a = 3$, the generalised factorial rule is $\\Delta u^{n} = n a u^{n-1}$, valid for negative n as well.",
-      "So $\\Delta[(3x-3)^{-2}] = (-2)(3)(3x-3)^{-3}$ = -$6(3x-3)^{-3}$.",
-      "Since E and $\\Delta$ commute, apply $E^{2}$, which replaces x by x + 2: $E^{2}[-6(3x-3)^{-3}]$ = -$6(3x+3)^{-3}$.",
+      "So $\\Delta[(3x-3)^{-2}] = (-2)(3)(3x-3)^{-3} = -6(3x-3)^{-3}$.",
+      "Since E and $\\Delta$ commute, apply $E^{2}$, which replaces x by x + 2: $E^{2}[-6(3x-3)^{-3}] = -6(3x+3)^{-3}$.",
       "By definition of the negative factorial, $(3x+3)^{-3} = 1/[(3x+3+3)(3x+3+6)(3x+3+9)] = 1/[(3x+6)(3x+9)(3x+12)]$.",
-      "At $x = 1$ the three factors are 9, 12 and 15, so the value is -$6/(9 \\times 12 \\times 15)$ = -$6/1620$ = -$1/270$, option (c)."
+      "At $x = 1$ the three factors are 9, 12 and 15, so the value is $-6/(9 \\times 12 \\times 15) = -6/1620 = -1/270$, option (c)."
     ]
   },
   "2022-Q71": {

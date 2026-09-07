@@ -11,7 +11,7 @@
       "Option (b) 0.054 is the Agency-1 branch alone and option (a) 0.006 the Agency-3 branch - both punish stopping before the addition."
     ],
     "solution": [
-      "Let A1, A2, A3 be the events that a car comes from Agency-1, 2 and 3, with $\\operatorname{P}(A_{1}) = 0.6, \\operatorname{P}(A_{2}) = 0.3, \\operatorname{P}(A_{3}) = 0.1$.",
+      "Let $A_{1}, A_{2}, A_{3}$ be the events that a car comes from Agency-1, 2 and 3, with $\\operatorname{P}(A_{1}) = 0.6, \\operatorname{P}(A_{2}) = 0.3, \\operatorname{P}(A_{3}) = 0.1$.",
       "Let C be the event that the car needs an oil change, with $\\operatorname{P}(C\\mid A_{1}) = 0.09, \\operatorname{P}(C\\mid A_{2}) = 0.20, \\operatorname{P}(C\\mid A_{3}) = 0.06$.",
       "By the law of total probability, $\\operatorname{P}(C) = \\operatorname{P}(A_{1})\\operatorname{P}(C\\mid A_{1}) + \\operatorname{P}(A_{2})\\operatorname{P}(C\\mid A_{2}) + \\operatorname{P}(A_{3})\\operatorname{P}(C\\mid A_{3})$.",
       "Branch products: $0.6(0.09) = 0.054$; $0.3(0.20) = 0.060$; $0.1(0.06) = 0.006$.",
@@ -25,7 +25,7 @@
     "type": "Numerical",
     "shortcut": "Y given $X = x$ is uniform on $(x-1, x+1)$, whose mean is the midpoint x. So $\\operatorname{E}(Y\\mid X) = X$ and $\\operatorname{E}[E^{2}(Y\\mid X)] = \\operatorname{E}(X^{2}) = 1$.",
     "tips": [
-      "The mean of U(a,b) is the midpoint $(a+b)/2$; here $((x-1) + (x+1))/2 = x$ exactly, so the conditional mean is X itself.",
+      "The mean of $U(a,b)$ is the midpoint $(a+b)/2$; here $((x-1) + (x+1))/2 = x$ exactly, so the conditional mean is X itself.",
       "Read the notation carefully: $E^{2}(Y\\mid X)$ means the SQUARE of the conditional mean, not the second conditional moment.",
       "For $X \\sim N(0,1), \\operatorname{E}(X^{2}) = \\operatorname{Var}(X) + [\\operatorname{E}(X)]^{2} = 1 + 0 = 1$ - the whole answer once the conditional mean is identified.",
       "The half-width 1 of the uniform affects the conditional VARIANCE $(1/3)$ but not the conditional mean, so it never enters this calculation."
@@ -43,18 +43,18 @@
     "answer": 0,
     "confidence": "high",
     "type": "Conceptual",
-    "shortcut": "Only statement 1 holds: $Var$/Mean = $1/\\theta$, so the variance exceeds the mean exactly when $\\theta < 1$. The minimum of exponentials is exponential, not $\\chi^{2}$, and memorylessness holds for every $\\theta$.",
+    "shortcut": "Only statement 1 holds: $\\operatorname{Var}$/Mean = $1/\\theta$, so the variance exceeds the mean exactly when $\\theta < 1$. The minimum of exponentials is exponential, not $\\chi^{2}$, and memorylessness holds for every $\\theta$.",
     "tips": [
-      "Exponential($\\theta$) with $\\theta$ as RATE: mean $1/\\theta$, variance $1/\\theta^{2}$, so the ratio is $1/\\theta$ and the comparison reduces to $\\theta$ versus 1.",
-      "Minimum of n i.i.d. Exp($\\theta$) is Exp($n \\theta$) - the exponential family is closed under minima, which is the standard result statement 2 misquotes.",
+      "$\\text{Exponential}(\\theta)$ with $\\theta$ as RATE: mean $1/\\theta$, variance $1/\\theta^{2}$, so the ratio is $1/\\theta$ and the comparison reduces to $\\theta$ versus 1.",
+      "Minimum of n i.i.d. $\\text{Exp}(\\theta)$ is $\\text{Exp}(n \\theta)$ - the exponential family is closed under minima, which is the standard result statement 2 misquotes.",
       "Memorylessness is a property of the exponential FAMILY, holding for every rate parameter; no condition on $\\theta$ is needed, so statement 3 is false.",
-      "The $\\chi^{2}$ link that does exist is Exp($1/2$) = $\\chi^{2}_{2} - a$ special case, not a statement about minima."
+      "The $\\chi^{2}$ link that does exist is $\\text{Exp}(1/2) = \\chi^{2}_{2}$ - a special case, not a statement about minima."
     ],
     "solution": [
-      "For X ~ Exponential with rate $\\theta$, the mean is $1/\\theta$ and the variance is $1/\\theta^{2}$.",
-      "Statement 1: $Var$/Mean = $(1/\\theta^{2})/(1/\\theta) = 1/\\theta$, which exceeds 1 exactly when $\\theta < 1$. So the variance exceeds the mean for $0 < \\theta < 1$. TRUE.",
-      "Statement 2: for a sample of n i.i.d. Exponential($\\theta$) variables, $\\operatorname{P}\\!\\left(\\text{min > x}\\right) = e^{-n \\theta x}$, so the minimum is Exponential($n \\theta$), not $\\chi^{2}$. FALSE.",
-      "Statement 3: the lack-of-memory property $\\operatorname{P}(X > s+t \\mid X > s) = \\operatorname{P}(X > t)$ follows from $e^(-\\theta(s+t))/e^{-\\theta s} = e^{-\\theta t}$, which holds for every $\\theta > 0$. No restriction to $\\theta > 1$ exists. FALSE.",
+      "For $X \\sim \\text{Exponential}$ with rate $\\theta$, the mean is $1/\\theta$ and the variance is $1/\\theta^{2}$.",
+      "Statement 1: $\\operatorname{Var}$/Mean = $(1/\\theta^{2})/(1/\\theta) = 1/\\theta$, which exceeds 1 exactly when $\\theta < 1$. So the variance exceeds the mean for $0 < \\theta < 1$. TRUE.",
+      "Statement 2: for a sample of n i.i.d. $\\text{Exponential}(\\theta)$ variables, $\\operatorname{P}\\!\\left(\\text{min > x}\\right) = e^{-n \\theta x}$, so the minimum is $\\text{Exponential}(n \\theta)$, not $\\chi^{2}$. FALSE.",
+      "Statement 3: the lack-of-memory property $\\operatorname{P}(X > s+t \\mid X > s) = \\operatorname{P}(X > t)$ follows from $e^{-\\theta(s+t)}/e^{-\\theta s} = e^{-\\theta t}$, which holds for every $\\theta > 0$. No restriction to $\\theta > 1$ exists. FALSE.",
       "Only statement 1 is correct.",
       "Hence option (a) is correct."
     ]
@@ -63,7 +63,7 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Rewrite the pmf as $\\binom{10}{x}(2/5)^{x} (3/5)^{10-x}$: a Binomial(10, 0.4). Mean = 4 and variance = $10(0.4)(0.6) = 2.4$.",
+    "shortcut": "Rewrite the pmf as $\\binom{10}{x}(2/5)^{x} (3/5)^{10-x}$: a $\\text{Binomial}(10, 0.4)$. Mean = 4 and variance = $10(0.4)(0.6) = 2.4$.",
     "tips": [
       "Divide the $5^{10}$ into the two factors: $2^{x}/5^{x} = (2/5)^{x}$ and $3^{10-x}/5^{10-x} = (3/5)^{10-x}$. The binomial form then appears immediately.",
       "Read off $n = 10$ and $p = 2/5 = 0.4$, giving $q = 0.6$. Everything else is two multiplications.",
@@ -71,11 +71,11 @@
       "Mean 4 and variance 2.4 in that order; option (b) 2.4, 4 reverses them, the classic careless-reading trap."
     ],
     "solution": [
-      "The pmf is $\\operatorname{P}(X = x) = \\binom{10}{x} 2^{x} 3^{10-x}/5^{10}$ for $x = 0, 1$, ..., 10.",
-      "Split the denominator: $5^{10} = 5^{x}$ . $5^{10-x}$, so $\\operatorname{P}(X = x) = \\binom{10}{x}(2/5)^{x} (3/5)^{10-x}$.",
+      "The pmf is $\\operatorname{P}(X = x) = \\binom{10}{x} 2^{x} 3^{10-x}/5^{10}$ for $x = 0, 1, \\ldots, 10$.",
+      "Split the denominator: $5^{10} = 5^{x} \\cdot 5^{10-x}$, so $\\operatorname{P}(X = x) = \\binom{10}{x}(2/5)^{x} (3/5)^{10-x}$.",
       "This is exactly the Binomial distribution with $n = 10$ and $p = 2/5 = 0.4$, so $q = 0.6$.",
-      "Mean = np = $10(0.4) = 4$.",
-      "Variance = npq = $10(0.4)(0.6) = 2.4$.",
+      "Mean = $np = 10(0.4) = 4$.",
+      "Variance = $npq = 10(0.4)(0.6) = 2.4$.",
       "Hence the mean and variance are 4 and 2.4, option (c)."
     ]
   },
@@ -86,8 +86,8 @@
     "shortcut": "$\\log(Y/\\sigma) = \\mu \\log X = \\mu W$ with $W \\sim N(\\mu, \\sigma^{2})$, so the bracket is $\\mu(W - \\mu) = \\mu \\sigma Z$. Its square is $\\mu^{2} \\sigma^{2} Z^{2}$ and $\\operatorname{Var}(Z^{2}) = 2$, giving $2 \\mu^{4} \\sigma^{4}$.",
     "tips": [
       "Peel the transformation one layer at a time: $Y = \\sigma X^{\\mu}$ gives $Y/\\sigma = X^{\\mu}$, so $\\log(Y/\\sigma) = \\mu \\log X$ - the $\\sigma$ cancels by design.",
-      "X lognormal means $W = \\log X \\sim N(\\mu, \\sigma^{2})$, so $\\mu W - \\mu^{2} = \\mu(W - \\mu), a$ centred normal with SD $\\mu \\sigma$.",
-      "The square of a centred normal is $(\\mu \\sigma)^{2}$ times $a \\chi^{2}_{1}$, and $Var$($\\chi^{2}_{1}$) = 2 - the source of the factor 2.",
+      "X lognormal means $W = \\log X \\sim N(\\mu, \\sigma^{2})$, so $\\mu W - \\mu^{2} = \\mu(W - \\mu), a$ centred normal with $\\operatorname{SD} \\mu \\sigma$.",
+      "The square of a centred normal is $(\\mu \\sigma)^{2}$ times a $\\chi^{2}_{1}$, and $\\operatorname{Var}(\\chi^{2}_{1}) = 2$ - the source of the factor 2.",
       "The distractors encode wrong $\\chi^{2}$ variances: 3 (option c) and 15 or 105 (options b, a) come from higher moments of the normal, so pinning $\\operatorname{Var}(Z^{2}) = 2$ is decisive."
     ],
     "solution": [
@@ -103,18 +103,18 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The density is Uniform(0,5), so every probability is (interval length)/5. All four values - 0.2, 0.3, 0.6 and 0.8 - check out.",
+    "shortcut": "The density is $\\text{Uniform}(0,5)$, so every probability is (interval length)/5. All four values - 0.2, 0.3, 0.6 and 0.8 - check out.",
     "tips": [
       "A constant density 0.2 over a range of length 5 is $U(0,5)$; probabilities are then just lengths divided by 5, with no integration at all.",
-      "Statement 3 has the trap: |X| >= 2 looks two-sided, but X is confined to $[0,5]$, so it reduces to $X \\ge 2$ and gives $3/5 = 0.6$.",
+      "Statement 3 has the trap: $\\lvert X\\rvert \\ge 2$ looks two-sided, but X is confined to $[0,5]$, so it reduces to $X \\ge 2$ and gives $3/5 = 0.6$.",
       "Check each in turn: $(3-2)/5 = 0.2$; $(5-3.5)/5 = 0.3$; $(5-2)/5 = 0.6$; $(4-0)/5 = 0.8$. Four quick divisions.",
       "When every statement in a set is a straightforward computation from the same simple density, expect 'all four' - but verify the one with the absolute value."
     ],
     "solution": [
-      "The density is $f(x) = 0.2$ on $[0,5]$, which is the Uniform(0,5) distribution; probabilities equal interval length divided by 5.",
+      "The density is $f(x) = 0.2$ on $[0,5]$, which is the $\\text{Uniform}(0,5)$ distribution; probabilities equal interval length divided by 5.",
       "Statement 1: $\\operatorname{P}(2 \\le X \\le 3) = (3 - 2)/5 = 0.2$. CORRECT.",
       "Statement 2: $\\operatorname{P}(X > 3.5) = (5 - 3.5)/5 = 1.5/5 = 0.3$. CORRECT.",
-      "Statement 3: since X takes only non-negative values, |X| >= 2 is the same as $X \\ge 2$, giving $(5 - 2)/5 = 0.6$. CORRECT.",
+      "Statement 3: since X takes only non-negative values, $\\lvert X\\rvert \\ge 2$ is the same as $X \\ge 2$, giving $(5 - 2)/5 = 0.6$. CORRECT.",
       "Statement 4: $\\operatorname{P}(X < 4) = (4 - 0)/5 = 0.8$. CORRECT.",
       "All four probabilities are correct, option (d)."
     ]
@@ -123,19 +123,19 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Unit area means pi $r^{2} = 1$, so $r^{2} = 1/pi$. The integral is $\\operatorname{P}(X^{2} + Y^{2} \\le r^{2})$ with $X^{2}+Y^{2} \\sim \\chi^{2}_{2}$ = Exp($1/2$), giving $1 - e^{-r^{2}/2} = 1 - e^(-1/(2 pi))$.",
+    "shortcut": "Unit area means $\\pi r^{2} = 1$, so $r^{2} = 1/\\pi$. The integral is $\\operatorname{P}(X^{2} + Y^{2} \\le r^{2})$ with $X^{2}+Y^{2} \\sim \\chi^{2}_{2} = \\text{Exp}(1/2)$, giving $1 - e^{-r^{2}/2} = 1 - e^{-1/(2 \\pi)}$.",
     "tips": [
-      "'Unit AREA' not unit radius - solve pi $r^{2} = 1$ first to get $r^{2} = 1/pi$. Reading it as $r = 1$ leads straight to option (c).",
-      "For independent standard normals, $X^{2} + Y^{2} \\sim \\chi^{2}$ with 2 d.f., which is Exponential with rate $1/2 - a$ fact worth memorising.",
-      "Hence $\\operatorname{P}(X^{2}+Y^{2} \\le c) = 1 - e^{-c/2}$ for any $c > 0$; substituting $c = 1/pi$ gives the answer in one step.",
+      "'Unit AREA' not unit radius - solve $\\pi r^{2} = 1$ first to get $r^{2} = 1/\\pi$. Reading it as $r = 1$ leads straight to option (c).",
+      "For independent standard normals, $X^{2} + Y^{2} \\sim \\chi^{2}$ with 2 d.f., which is Exponential with rate $1/2$ - a fact worth memorising.",
+      "Hence $\\operatorname{P}(X^{2}+Y^{2} \\le c) = 1 - e^{-c/2}$ for any $c > 0$; substituting $c = 1/\\pi$ gives the answer in one step.",
       "The bivariate standard normal density is circularly symmetric, which is precisely why a circular region turns a double integral into a one-dimensional $\\chi^{2}$ probability."
     ],
     "solution": [
       "The integrand $\\phi(x)\\phi(y)$ is the joint density of two independent standard normal variables, so the integral is P((X,Y) lies in A).",
-      "A is a circle centred at the origin with unit AREA, so pi $r^{2} = 1$ and $r^{2} = 1/pi$.",
-      "The event is therefore $X^{2} + Y^{2} \\le r^{2} = 1/pi$.",
-      "For independent standard normals, $X^{2} + Y^{2}$ follows $a \\chi^{2}$ distribution with 2 degrees of freedom, which is exponential with rate $1/2$.",
-      "Hence $\\operatorname{P}(X^{2} + Y^{2} \\le c) = 1 - e^{-c/2}$, and with $c = 1/pi$ this is $1 - e^(-1/(2 pi))$.",
+      "A is a circle centred at the origin with unit AREA, so $\\pi r^{2} = 1$ and $r^{2} = 1/\\pi$.",
+      "The event is therefore $X^{2} + Y^{2} \\le r^{2} = 1/\\pi$.",
+      "For independent standard normals, $X^{2} + Y^{2}$ follows a $\\chi^{2}$ distribution with 2 degrees of freedom, which is exponential with rate $1/2$.",
+      "Hence $\\operatorname{P}(X^{2} + Y^{2} \\le c) = 1 - e^{-c/2}$, and with $c = 1/\\pi$ this is $1 - e^{-1/(2 \\pi)}$.",
       "Option (b) is correct."
     ]
   },
@@ -145,15 +145,15 @@
     "type": "Numerical",
     "shortcut": "The density says $X \\mid Y = y \\sim N(12y, y)$, and integrating out x leaves $f_{Y}(y) = 1$ on $(0,1)$, so $Y \\sim U(0,1)$. Then $\\operatorname{E}(X) = \\operatorname{E}(12Y) = 12(1/2) = 6$.",
     "tips": [
-      "Recognise the normal kernel in x: $(1/\\sqrt{2 pi y}) \\exp(-(x - 12y)^{2}/(2y))$ is exactly the $N(12y, y)$ density, so the conditional law is read off directly.",
-      "Because that kernel integrates to 1 for each y, the marginal of Y is the constant 1 on $(0,1)$ - i.e. Y is Uniform(0,1). This identification drives all three parts.",
+      "Recognise the normal kernel in x: $(1/\\sqrt{2 \\pi y}) \\exp(-(x - 12y)^{2}/(2y))$ is exactly the $N(12y, y)$ density, so the conditional law is read off directly.",
+      "Because that kernel integrates to 1 for each y, the marginal of Y is the constant 1 on $(0,1)$ - i.e. Y is $\\text{Uniform}(0,1)$. This identification drives all three parts.",
       "Tower property: $\\operatorname{E}(X) = \\operatorname{E}[\\operatorname{E}(X\\mid Y)] = \\operatorname{E}(12Y)$. Never attempt the double integral directly.",
       "$\\operatorname{E}(Y) = 1/2, \\operatorname{E}(Y^{2}) = 1/3$ and $\\operatorname{Var}(Y) = 1/12$ for $U(0,1)$ - keep all three ready, since the next two parts need them."
     ],
     "solution": [
-      "Write the joint density as $f(x,y) = [1/\\sqrt{2 pi y}] \\exp(-(x - 12y)^{2}/(2y))$ for -$\\infty < x < \\infty$ and $0 < y < 1$.",
+      "Write the joint density as $f(x,y) = [1/\\sqrt{2 \\pi y}] \\exp(-(x - 12y)^{2}/(2y))$ for $-\\infty < x < \\infty$ and $0 < y < 1$.",
       "For fixed y this is exactly the $N(12y, y)$ density in x, so $X \\mid Y = y \\sim N(12y, y)$.",
-      "Integrating that normal density over x gives 1 for every y, so the marginal density of Y is 1 on $(0,1)$, i.e. Y ~ Uniform(0,1).",
+      "Integrating that normal density over x gives 1 for every y, so the marginal density of Y is 1 on $(0,1)$, i.e. $Y \\sim \\text{Uniform}(0,1)$.",
       "By the tower property, $\\operatorname{E}(X) = \\operatorname{E}[\\operatorname{E}(X \\mid Y)] = \\operatorname{E}(12Y)$.",
       "Since $\\operatorname{E}(Y) = 1/2$ for $U(0,1), \\operatorname{E}(X) = 12(1/2) = 6$.",
       "Hence option (d) is correct."
@@ -171,7 +171,7 @@
       "The two contributions are of very different sizes here (0.5 versus 12), which is a useful reminder that the between-group term usually dominates."
     ],
     "solution": [
-      "From the joint density, $X \\mid Y = y \\sim N(12y, y)$ and Y ~ Uniform(0,1).",
+      "From the joint density, $X \\mid Y = y \\sim N(12y, y)$ and $Y \\sim \\text{Uniform}(0,1)$.",
       "The law of total variance gives $\\operatorname{Var}(X) = \\operatorname{E}[\\operatorname{Var}(X \\mid Y)] + \\operatorname{Var}[\\operatorname{E}(X \\mid Y)]$.",
       "The conditional variance is $\\operatorname{Var}(X \\mid Y) = Y$, so $\\operatorname{E}[\\operatorname{Var}(X\\mid Y)] = \\operatorname{E}(Y) = 1/2$.",
       "The conditional mean is $\\operatorname{E}(X\\mid Y) = 12Y$, so $\\operatorname{Var}[\\operatorname{E}(X\\mid Y)] = 144 \\operatorname{Var}(Y) = 144(1/12) = 12$.",
@@ -183,18 +183,18 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$\\operatorname{E}(XY) = \\operatorname{E}[Y \\operatorname{E}(X\\mid Y)] = \\operatorname{E}(12Y^{2}) = 12(1/3) = 4$, and $\\operatorname{E}(X)\\operatorname{E}(Y) = 6(1/2) = 3$, so $Cov = 4 - 3 = 1$.",
+    "shortcut": "$\\operatorname{E}(XY) = \\operatorname{E}[Y \\operatorname{E}(X\\mid Y)] = \\operatorname{E}(12Y^{2}) = 12(1/3) = 4$, and $\\operatorname{E}(X)\\operatorname{E}(Y) = 6(1/2) = 3$, so $\\operatorname{Cov} = 4 - 3 = 1$.",
     "tips": [
       "Condition first: $\\operatorname{E}(XY) = \\operatorname{E}[\\operatorname{E}(XY\\mid Y)] = \\operatorname{E}[Y \\operatorname{E}(X\\mid Y)]$, because Y is fixed inside the inner expectation.",
       "For $U(0,1), \\operatorname{E}(Y^{2}) = 1/3$ - not $1/4$. Confusing $\\operatorname{E}(Y^{2})$ with $[\\operatorname{E}(Y)]^{2}$ gives 3 and a covariance of 0.",
       "Reuse $\\operatorname{E}(X) = 6$ from the first part rather than recomputing; shared-stem items are built to chain.",
-      "Consistency check: $Cov = 12 \\operatorname{Var}(Y) = 12/12 = 1$, since $X = 12Y$ plus conditional noise that is uncorrelated with Y - a neat one-line confirmation."
+      "Consistency check: $\\operatorname{Cov} = 12 \\operatorname{Var}(Y) = 12/12 = 1$, since $X = 12Y$ plus conditional noise that is uncorrelated with Y - a neat one-line confirmation."
     ],
     "solution": [
-      "From the joint density, $X \\mid Y = y \\sim N(12y, y)$ and Y ~ Uniform(0,1), with $\\operatorname{E}(X) = 6$ from the earlier part.",
+      "From the joint density, $X \\mid Y = y \\sim N(12y, y)$ and $Y \\sim \\text{Uniform}(0,1)$, with $\\operatorname{E}(X) = 6$ from the earlier part.",
       "$\\operatorname{E}(XY) = \\operatorname{E}[\\operatorname{E}(XY \\mid Y)] = \\operatorname{E}[Y \\operatorname{E}(X \\mid Y)] = \\operatorname{E}[Y (12Y)] = 12 \\operatorname{E}(Y^{2})$.",
       "For $U(0,1), \\operatorname{E}(Y^{2}) = 1/3$, so $\\operatorname{E}(XY) = 12(1/3) = 4$.",
-      "$\\operatorname{E}(X)\\operatorname{E}(Y) = 6 x (1/2) = 3$.",
+      "$\\operatorname{E}(X)\\operatorname{E}(Y) = 6 \\times (1/2) = 3$.",
       "$\\operatorname{Cov}(X,Y) = \\operatorname{E}(XY) - \\operatorname{E}(X)\\operatorname{E}(Y) = 4 - 3 = 1$.",
       "Equivalently $\\operatorname{Cov}(X,Y) = \\operatorname{Cov}(12Y, Y) = 12 \\operatorname{Var}(Y) = 12/12 = 1$. Option (a) is correct."
     ]
@@ -203,38 +203,38 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$Y = 10 - X$ ~ Binomial($10, 3/4$). The third cumulant of B(n,p) is npq(q-p) = $10(3/4)(1/4)(1/4 - 3/4)$ = -$15/16$.",
+    "shortcut": "$Y = 10 - X \\sim \\text{Binomial}(10, 3/4)$. The third cumulant of $B(n,p)$ is npq($q-p$) = $10(3/4)(1/4)(1/4 - 3/4) = -15/16$.",
     "tips": [
       "Reflection rule: $X \\sim B(n,p)$ implies $n - X \\sim B(n, 1-p)$. Apply it FIRST and then use the standard cumulant formula.",
-      "Third cumulant of the binomial: k3 = npq(q - p). It changes sign with the skewness, so $p > 1/2$ gives a negative value.",
-      "Here $p = 3/4$ exceeds $q = 1/4$, so q - p = -$1/2$ and the answer must be NEGATIVE - only option (a) qualifies.",
-      "Alternative route: cumulants of a reflected variable satisfy $k_{3}(c - X)$ = -k3(X). Since $k_{3}(X) = 10(1/4)(3/4)(1/2) = 15/16$, the reflection gives -$15/16$."
+      "Third cumulant of the binomial: $k_{3} = npq(q - p)$. It changes sign with the skewness, so $p > 1/2$ gives a negative value.",
+      "Here $p = 3/4$ exceeds $q = 1/4$, so $q - p = -1/2$ and the answer must be NEGATIVE - only option (a) qualifies.",
+      "Alternative route: cumulants of a reflected variable satisfy $k_{3}(c - X) = -k_{3}(X)$. Since $k_{3}(X) = 10(1/4)(3/4)(1/2) = 15/16$, the reflection gives $-15/16$."
     ],
     "solution": [
-      "X ~ Binomial($10, 1/4$), and $Y = 10 - X$ counts the failures, so Y ~ Binomial($10, 3/4$).",
+      "$X \\sim \\text{Binomial}(10, 1/4)$, and $Y = 10 - X$ counts the failures, so $Y \\sim \\text{Binomial}(10, 3/4)$.",
       "For Y the parameters are $n = 10, p = 3/4$ and $q = 1/4$.",
       "The third cumulant of a binomial variable is $k_{3} = n p q (q - p)$.",
-      "Substituting: $k_{3} = 10 (3/4)(1/4)(1/4 - 3/4) = 10 (3/16)(-1/2)$ = -$30/32$ = -$15/16$.",
-      "Equivalently, $k_{3}(10 - X)$ = -k3(X) = -$10(1/4)(3/4)(3/4 - 1/4)$ = -$15/16$. Option (a) is correct."
+      "Substituting: $k_{3} = 10 (3/4)(1/4)(1/4 - 3/4) = 10 (3/16)(-1/2) = -30/32 = -15/16$.",
+      "Equivalently, $k_{3}(10 - X) = -k_{3}(X) = -10(1/4)(3/4)(3/4 - 1/4) = -15/16$. Option (a) is correct."
     ]
   },
   "2023-Q12": {
     "answer": 3,
     "confidence": "high",
     "type": "Conceptual",
-    "shortcut": "The sum of three i.i.d. Exp(1) variables is $\\Gamma$(shape 3, rate 1); dividing by 3 multiplies the rate by 3, giving $\\Gamma(n = 3, \\lambda = 3)$.",
+    "shortcut": "The sum of three i.i.d. $\\text{Exp}(1)$ variables is $\\Gamma$(shape 3, rate 1); dividing by 3 multiplies the rate by 3, giving $\\Gamma(n = 3, \\lambda = 3)$.",
     "tips": [
-      "Additive property: the sum of n i.i.d. Exp($\\lambda$) variables is $\\Gamma$(shape n, rate $\\lambda$). Here the sum is $\\Gamma(3, 1)$.",
+      "Additive property: the sum of n i.i.d. $\\text{Exp}(\\lambda)$ variables is $\\Gamma$(shape n, rate $\\lambda$). Here the sum is $\\Gamma(3, 1)$.",
       "Scaling rule: if $W \\sim \\Gamma$(shape a, rate b) then $W/c \\sim \\Gamma$(shape a, rate bc). Dividing by 3 raises the rate from 1 to 3, leaving the shape unchanged.",
       "The SHAPE never changes under scaling, so any answer with shape other than 3 - options (a) and (b), which are exponential, i.e. shape 1 - is wrong.",
-      "Check the mean: E of the average of three Exp(1) variables is 1, and $\\Gamma$(3, rate 3) has mean $3/3 = 1$. Confirmed."
+      "Check the mean: E of the average of three $\\text{Exp}(1)$ variables is 1, and $\\Gamma$(3, rate 3) has mean $3/3 = 1$. Confirmed."
     ],
     "solution": [
-      "X, Y, Z are i.i.d. Exponential(1), which is $\\Gamma$ with shape 1 and rate 1.",
+      "X, Y, Z are i.i.d. $\\text{Exponential}(1)$, which is $\\Gamma$ with shape 1 and rate 1.",
       "By the additive property of the $\\Gamma$ family with a common rate, $X + Y + Z \\sim \\Gamma$(shape 3, rate 1).",
       "Let $W = X + Y + Z$ and consider $W/3$.",
       "If $W \\sim \\Gamma$(shape a, rate b), then $W/c \\sim \\Gamma$(shape a, rate bc); with $c = 3$ and $b = 1$ the rate becomes 3.",
-      "Hence $(X+Y+Z)/3 \\sim \\Gamma$ with $n = 3$ and $\\lambda = 3$, whose mean is $3/3 = 1$, agreeing with the mean of an average of Exp(1) variables.",
+      "Hence $(X+Y+Z)/3 \\sim \\Gamma$ with $n = 3$ and $\\lambda = 3$, whose mean is $3/3 = 1$, agreeing with the mean of an average of $\\text{Exp}(1)$ variables.",
       "Option (d) is correct."
     ]
   },
@@ -246,15 +246,15 @@
     "tips": [
       "Interchange the summations - the double sum over the region $k \\le n$ is the standard manoeuvre for turning a CDF generating function into a pmf one.",
       "The inner geometric sum over $n \\ge k$ gives $s^{2k}/(1 - s^{2})$, which supplies both the argument $s^{2}$ and the denominator.",
-      "The surviving sum of $p_{k} (s^{2})^{k}$ is by definition $\\operatorname{P}(s^{2})$, since P(t) = sum $p_{k} t^{k}$. Substituting the argument correctly is what separates the options.",
+      "The surviving sum of $p_{k} (s^{2})^{k}$ is by definition $\\operatorname{P}(s^{2})$, since $\\operatorname{P}(t) = \\sum p_{k} t^{k}$. Substituting the argument correctly is what separates the options.",
       "Sanity check at $s = 0$: the left side is $\\operatorname{P}(X \\le 0) = p_{0}$, and $\\operatorname{P}(0)/(1-0) = p_{0}$. Only options with argument $s^{2}$ or s pass, and the general identity settles it."
     ],
     "solution": [
       "Write $\\operatorname{P}(X \\le n)$ = sum over $k = 0$ to n of $p_{k}$, where $p_{k} = \\operatorname{P}(X = k)$.",
       "Then the required sum is $S = \\sum s^{2n}$ sum over $k = 0$ to n of $p_{k}$.",
       "Interchange the order of summation over the region $0 \\le k \\le n$: $S = \\sum p_{k} \\sum s^{2n}$.",
-      "The inner geometric series is $s^{2k} + s^{2k+2}$ + ... = $s^{2k}/(1 - s^{2})$ for |s| < 1.",
-      "So $S = [1/(1 - s^{2})] \\sum p_{k} (s^{2})^{k} = \\operatorname{P}(s^{2})/(1 - s^{2})$, since $\\operatorname{P}(t) = \\operatorname{E}(t^{X})$ = sum $p_{k} t^{k}$.",
+      "The inner geometric series is $s^{2k} + s^{2k+2} + \\ldots = s^{2k}/(1 - s^{2})$ for $\\lvert s\\rvert < 1$.",
+      "So $S = [1/(1 - s^{2})] \\sum p_{k} (s^{2})^{k} = \\operatorname{P}(s^{2})/(1 - s^{2})$, since $\\operatorname{P}(t) = \\operatorname{E}(t^{X}) = \\sum p_{k} t^{k}$.",
       "Hence option (c) is correct."
     ]
   },
@@ -264,14 +264,14 @@
     "type": "Numerical",
     "shortcut": "Interchanging sums, $\\sum x \\operatorname{P}(X > x) = \\sum p_{k} [k(k-1)/2] = [\\operatorname{E}(X^{2}) - \\operatorname{E}(X)]/2$. Doubling gives $\\operatorname{E}(X^{2}) - \\operatorname{E}(X) = \\sigma^{2} + \\mu^{2} - \\mu$.",
     "tips": [
-      "Swap the summations: $\\sum x \\sum p_{k} = \\sum p_{k}$ sum over $x = 0$ to k-1 of x, and the inner sum is $k(k-1)/2$.",
+      "Swap the summations: $\\sum x \\sum p_{k} = \\sum p_{k}$ sum over $x = 0$ to $k-1$ of x, and the inner sum is $k(k-1)/2$.",
       "The factor 2 outside is placed exactly to cancel the $1/2$ from the triangular number - a strong hint that the identity is being tested.",
       "Finish with $\\operatorname{E}(X^{2}) = \\sigma^{2} + \\mu^{2}$, so the answer is $\\sigma^{2} + \\mu^{2} - \\mu$. Options (c) and (d) retain a stray $1/2$.",
       "Companion identity worth knowing: $\\sum \\operatorname{P}(X > x) = \\operatorname{E}(X)$ for non-negative integer variables - the first-moment version of the same trick."
     ],
     "solution": [
       "Write $S = \\sum x \\operatorname{P}(X > x) = \\sum x \\sum p_{k}$, where $p_{k} = \\operatorname{P}(X = k)$.",
-      "Interchange the order of summation over the region $0 \\le x < k$: $S = \\sum p_{k}$ sum over $x = 0$ to k-1 of x.",
+      "Interchange the order of summation over the region $0 \\le x < k$: $S = \\sum p_{k}$ sum over $x = 0$ to $k-1$ of x.",
       "The inner sum is the triangular number $k(k-1)/2$.",
       "So $S = \\sum p_{k} k(k-1)/2 = [\\operatorname{E}(X^{2}) - \\operatorname{E}(X)]/2$.",
       "Therefore $2S = \\operatorname{E}(X^{2}) - \\operatorname{E}(X)$.",
@@ -282,16 +282,16 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The $Y = 2$ column has masses $\\theta, 0, 2\\theta$ for X = -1, 0, 1, so the conditional probabilities are $1/3, 0, 2/3$. The MGF is $(e^{-t} + 2e^{t})/3$.",
+    "shortcut": "The $Y = 2$ column has masses $\\theta, 0, 2\\theta$ for $X = -1, 0, 1$, so the conditional probabilities are $1/3, 0, 2/3$. The MGF is $(e^{-t} + 2e^{t})/3$.",
     "tips": [
       "For a conditional distribution, take only the relevant COLUMN and renormalise by its total - the value of $\\theta$ never matters.",
-      "Column $Y = 2$ totals $\\theta + 0 + 2\\theta = 3\\theta$, so the weights are $1/3$ and $2/3$ on X = -1 and X = +1.",
+      "Column $Y = 2$ totals $\\theta + 0 + 2\\theta = 3\\theta$, so the weights are $1/3$ and $2/3$ on $X = -1$ and $X = +1$.",
       "MGF = $\\sum e^{tx} \\operatorname{P}(X = x \\mid Y = 2) = (1/3)e^{-t} + (2/3)e^{t}$. Options (b) and (c) attach the weights to the wrong values.",
       "Validity check: every MGF must equal 1 at $t = 0$. Here $(1 + 2)/3 = 1$, as required; option (b) gives $3/3 = 1$ too, so use the weights, not this test, to choose."
     ],
     "solution": [
-      "Summing the whole table: row X = -1 gives $8\\theta$, row $X = 0$ gives $6\\theta$ and row $X = 1$ gives $6\\theta, a$ total of $20\\theta = 1$, so $\\theta = 1/20$.",
-      "The column $Y = 2$ has entries $\\theta$ at X = -1, 0 at $X = 0$ and $2\\theta$ at $X = 1$, totalling $3\\theta$.",
+      "Summing the whole table: row $X = -1$ gives $8\\theta$, row $X = 0$ gives $6\\theta$ and row $X = 1$ gives $6\\theta, a$ total of $20\\theta = 1$, so $\\theta = 1/20$.",
+      "The column $Y = 2$ has entries $\\theta$ at $X = -1, 0$ at $X = 0$ and $2\\theta$ at $X = 1$, totalling $3\\theta$.",
       "Conditional probabilities: $\\operatorname{P}(X = -1 \\mid Y = 2) = \\theta/3\\theta = 1/3, \\operatorname{P}(X = 0 \\mid Y = 2) = 0, \\operatorname{P}(X = 1 \\mid Y = 2) = 2\\theta/3\\theta = 2/3$.",
       "The moment generating function is $M(t) = \\operatorname{E}(e^{tX} \\mid Y = 2) = (1/3)e^{-t} + 0 + (2/3)e^{t} = (e^{-t} + 2e^{t})/3$.",
       "Check $M(0) = (1 + 2)/3 = 1$. Option (a) is correct."
@@ -304,9 +304,9 @@
     "shortcut": "With conditional probabilities $1/3$ on -1 and $2/3$ on +1: $\\operatorname{E}(X\\mid Y=2) = 1/3$ and $\\operatorname{E}(X^{2}\\mid Y=2) = 1$, so the variance is $1 - 1/9 = 8/9$.",
     "tips": [
       "Since X takes only the values -1 and +1 here, $X^{2} = 1$ with certainty, so $\\operatorname{E}(X^{2} \\mid Y = 2) = 1$ without any computation.",
-      "$\\operatorname{E}(X\\mid Y=2)$ = -$1(1/3) + 1(2/3) = 1/3$ - the same conditional distribution as the previous part, so reuse it.",
+      "$\\operatorname{E}(X\\mid Y=2) = -1(1/3) + 1(2/3) = 1/3$ - the same conditional distribution as the previous part, so reuse it.",
       "Variance = $1 - (1/3)^{2} = 8/9$. Option $(a) 1/3$ is the conditional MEAN, the classic mis-selection.",
-      "A two-point variable on {-1, 1} with probability p on +1 has variance $4p(1-p) = 4(2/3)(1/3) = 8/9 - a$ fast cross-check."
+      "A two-point variable on {-1, 1} with probability p on +1 has variance $4p(1-p) = 4(2/3)(1/3) = 8/9$ - a fast cross-check."
     ],
     "solution": [
       "From the previous part, conditionally on $Y = 2$ the variable X takes the value -1 with probability $1/3$ and +1 with probability $2/3$.",
@@ -340,17 +340,17 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Integrating x first (substituting u = xy) gives $B(13,7)/y^{13}$; integrating that over $y > 1$ gives $B(13,7)/12$. So $\\lambda = 12/B(13,7) = 19/B(12,7)$, since $B(13,7) = (12/19)B(12,7)$.",
+    "shortcut": "Integrating x first (substituting $u = xy$) gives $B(13,7)/y^{13}$; integrating that over $y > 1$ gives $B(13,7)/12$. So $\\lambda = 12/B(13,7) = 19/B(12,7)$, since $B(13,7) = (12/19)B(12,7)$.",
     "tips": [
       "Beta second-kind integral: the $\\int_{0}^{\\infty} u^{m-1}/(1+u)^{m+n}\\,du = B(m,n)$. With numerator power 12 and denominator power $20, m = 13$ and $n = 7$.",
-      "The substitution u = xy turns $(1 + xy)$ into $(1 + u)$ and produces the factor $y^{-13}$, which then integrates cleanly over $(1, \\infty)$ to $1/12$.",
+      "The substitution $u = xy$ turns $(1 + xy)$ into $(1 + u)$ and produces the factor $y^{-13}$, which then integrates cleanly over $(1, \\infty)$ to $1/12$.",
       "Convert $B(13,7)$ to $B(12,7)$ using $B(m,n) = \\Gamma(m)\\Gamma(n)/\\Gamma(m+n)$: the ratio $B(13,7)/B(12,7) = 12/19$, so $\\lambda = 12 \\times 19/12$ divided by $B(12,7) = 19/B(12,7)$.",
-      "The options are all expressed in $B(12,7)$, which is the signal that $a \\Gamma$-ratio conversion is expected - do it at the very end."
+      "The options are all expressed in $B(12,7)$, which is the signal that a Gamma-ratio conversion is expected - do it at the very end."
     ],
     "solution": [
       "Require the double $\\int \\lambda x^{12}/(1+xy)^{20}$ over $x > 0, y > 1$ to equal 1.",
-      "Inner integral over x: substitute u = xy, so $x = u/y$ and $dx = du/y$, giving the $\\int (u/y)^{12}/(1+u)^{20}\\,du/y = (1/y^{13})$ times the $\\int u^{12}/(1+u)^{20}\\,du$.",
-      "That standard integral is B(m,n) with $m - 1 = 12$ and $m + n = 20$, i.e. $B(13,7)$. So the inner integral equals $B(13,7)/y^{13}$.",
+      "Inner integral over x: substitute $u = xy$, so $x = u/y$ and $dx = du/y$, giving the $\\int (u/y)^{12}/(1+u)^{20}\\,du/y = (1/y^{13})$ times the $\\int u^{12}/(1+u)^{20}\\,du$.",
+      "That standard integral is $B(m,n)$ with $m - 1 = 12$ and $m + n = 20$, i.e. $B(13,7)$. So the inner integral equals $B(13,7)/y^{13}$.",
       "Outer integral over y from 1 to $\\infty$: the $\\int y^{-13}\\,dy = [y^{-12}/(-12)]$ from 1 to $\\infty = 1/12$.",
       "Hence $\\lambda B(13,7)/12 = 1$, giving $\\lambda = 12/B(13,7)$.",
       "Since $B(13,7) = \\Gamma(13)\\Gamma(7)/\\Gamma(20)$ and $B(12,7) = \\Gamma(12)\\Gamma(7)/\\Gamma(19)$, their ratio is $(12!/11!)(18!/19!) = 12/19$, so $B(13,7) = (12/19)B(12,7)$ and $\\lambda = 12 \\times 19/(12 B(12,7)) = 19/B(12,7)$, option (b)."
@@ -389,7 +389,7 @@
     ],
     "solution": [
       "The marginal of Y is $f_{Y}(y)$ = the $\\int \\lambda x^{12}/(1 + xy)^{20}\\,dx$.",
-      "As computed in the normalisation step, substituting u = xy gives this integral as $\\lambda B(13,7)/y^{13}$ for $y > 1$.",
+      "As computed in the normalisation step, substituting $u = xy$ gives this integral as $\\lambda B(13,7)/y^{13}$ for $y > 1$.",
       "From the normalisation, $\\lambda B(13,7)/12 = 1$, so $\\lambda B(13,7) = 12$.",
       "Hence $f_{Y}(y) = 12/y^{13}$ for $y > 1$, and 0 otherwise.",
       "Check: the $\\int 12 y^{-13}\\,dy$ from 1 to $\\infty = 12 [y^{-12}/(-12)]$ from 1 to $\\infty = 1, a$ valid density.",

@@ -5,14 +5,14 @@
     "type": "Conceptual",
     "shortcut": "Statement 1 is the standard nPr count. Statement 2 is false: the probability that n distinguishable balls fill n cells is n!/$n^{n}$, which is far below 1 for $n \\ge 2$.",
     "tips": [
-      "Ordered sampling counts: WITHOUT replacement $n(n-1)$...$(n-r+1)$ = nPr; WITH replacement $n^{r}$. Learn the pair together.",
+      "Ordered sampling counts: WITHOUT replacement $n(n-1)\\ldots(n-r+1)$ = nPr; WITH replacement $n^{r}$. Learn the pair together.",
       "Total placements of n distinguishable balls in n cells is $n^{n}$; favourable ones (one per cell) number n!, so the probability is n!/$n^{n}$ - for $n = 3$ that is $6/27 = 0.22$, nowhere near 1.",
       "Any statement asserting that a non-trivial probability equals exactly 1 deserves immediate suspicion; certainty is rare.",
-      "This is the classical occupancy problem, and n!/$n^{n}$ tends to 0 rapidly - by Stirling it behaves like $\\sqrt{2 pi n} e^{-n}$."
+      "This is the classical occupancy problem, and n!/$n^{n}$ tends to 0 rapidly - by Stirling it behaves like $\\sqrt{2 \\pi n} e^{-n}$."
     ],
     "solution": [
-      "Statement 1: to draw an ordered sample of size r from n elements without replacement, the first element can be chosen in n ways, the second in n-1 ways, and so on down to $n - r + 1$ ways for the rth.",
-      "The total is $n(n-1)(n-2)$...$(n-r+1)$ = nPr, exactly as stated. TRUE.",
+      "Statement 1: to draw an ordered sample of size r from n elements without replacement, the first element can be chosen in n ways, the second in $n-1$ ways, and so on down to $n - r + 1$ ways for the rth.",
+      "The total is $n(n-1)(n-2)\\ldots(n-r+1)$ = nPr, exactly as stated. TRUE.",
       "Statement 2: placing n distinguishable balls into n cells at random gives $n^{n}$ equally likely arrangements.",
       "The arrangements in which every cell is occupied are exactly the ones with one ball per cell, and there are n! of them.",
       "Hence the probability is n!/$n^{n}$, which equals 1 only for $n = 1$; for $n = 3$ it is $6/27 = 0.222$. The claim that it is 1 is FALSE.",
@@ -43,17 +43,17 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The support is the EVEN integers, so the sum is $k(1 + p^{2} + p^{4} + ...) = k/(1 - p^{2}) = 1$, giving $k = 1 - p^{2}$.",
+    "shortcut": "The support is the EVEN integers, so the sum is $k(1 + p^{2} + p^{4} + \\ldots) = k/(1 - p^{2}) = 1$, giving $k = 1 - p^{2}$.",
     "tips": [
-      "Read the support carefully: $x = 0, 2, 4$, ... means the ratio between consecutive terms is $p^{2}$, not p. That single observation is the whole question.",
+      "Read the support carefully: $x = 0, 2, 4, \\ldots$ means the ratio between consecutive terms is $p^{2}$, not p. That single observation is the whole question.",
       "Geometric series: sum of $r^{j}$ for $j \\ge 0$ is $1/(1 - r)$. Here $r = p^{2}$, so the normaliser is $1 - p^{2}$.",
-      "Option (a) 1 - p is the answer to the SAME question with support 0, 1, 2, 3, ... - the trap for candidates who skim the support.",
-      "Check with $p = 1/2$: $k = 3/4$, and the probabilities $3/4, 3/16, 3/64$, ... sum to $(3/4)/(1 - 1/4) = 1$."
+      "Option (a) 1 - p is the answer to the SAME question with support $0, 1, 2, 3, \\ldots$ - the trap for candidates who skim the support.",
+      "Check with $p = 1/2$: $k = 3/4$, and the probabilities $3/4, 3/16, 3/64, \\ldots$ sum to $(3/4)/(1 - 1/4) = 1$."
     ],
     "solution": [
-      "The probability mass function is $p(x) = k p^{x}$ for $x = 0, 2, 4, 6$, ..., i.e. only the even non-negative integers.",
-      "Writing $x = 2j$ for $j = 0, 1, 2$, ..., the masses are $k p^{2j} = k (p^{2})^{j}$.",
-      "For p(x) to be a valid pmf, the total must be 1: $k \\sum (p^{2})^{j} = 1$.",
+      "The probability mass function is $p(x) = k p^{x}$ for $x = 0, 2, 4, 6, \\ldots$, i.e. only the even non-negative integers.",
+      "Writing $x = 2j$ for $j = 0, 1, 2, \\ldots$, the masses are $k p^{2j} = k (p^{2})^{j}$.",
+      "For $p(x)$ to be a valid pmf, the total must be 1: $k \\sum (p^{2})^{j} = 1$.",
       "Since $0 < p < 1$ we have $0 < p^{2} < 1$, so the geometric series sums to $1/(1 - p^{2})$.",
       "Hence $k/(1 - p^{2}) = 1$, giving $k = 1 - p^{2}$.",
       "Option (c) is correct."
@@ -63,7 +63,7 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$Z = X - Y \\sim N(1 - 2, 9 + 16) = N(-1, 25)$, so its median equals its mean -1 and its SD is 5 - statement 1 holds. And $\\operatorname{P}(Z + 1 < 0) = \\operatorname{P}(Z < -1) = \\operatorname{P}\\!\\left(\\text{Z < median}\\right) = 0.5$ - statement 2 holds.",
+    "shortcut": "$Z = X - Y \\sim N(1 - 2, 9 + 16) = N(-1, 25)$, so its median equals its mean -1 and its $\\operatorname{SD}$ is 5 - statement 1 holds. And $\\operatorname{P}(Z + 1 < 0) = \\operatorname{P}(Z < -1) = \\operatorname{P}\\!\\left(\\text{Z < median}\\right) = 0.5$ - statement 2 holds.",
     "tips": [
       "Convert SDs to variances before adding: 3 and 4 give 9 and 16, whose sum is 25 and whose square root is 5. Adding the SDs directly would give 7 - the classic error.",
       "Variances ADD for a difference of independent variables; the minus sign disappears on squaring.",
@@ -72,7 +72,7 @@
     ],
     "solution": [
       "$X \\sim N(1, 3^{2}) = N(1, 9)$ and $Y \\sim N(2, 4^{2}) = N(2, 16)$, independent.",
-      "$Z = X - Y$ is normal with mean 1 - 2 = -1 and variance $9 + 16 = 25$, so SD(Z) = 5.",
+      "$Z = X - Y$ is normal with mean $1 - 2 = -1$ and variance $9 + 16 = 25$, so $\\operatorname{SD}(Z) = 5$.",
       "Because the normal distribution is symmetric about its mean, the median of Z equals its mean, -1. Statement 1 is TRUE.",
       "$\\operatorname{P}(Z + 1 < 0) = \\operatorname{P}(Z < -1)$.",
       "Since -1 is the median of Z, this probability is exactly 0.5. Statement 2 is TRUE.",
@@ -105,8 +105,8 @@
     "type": "Numerical",
     "shortcut": "Integrate out y to get the marginal $f_{X}(x) = 3(1-x)^{2}$ on $(0,1)$. Then $\\operatorname{P}(X \\ge 0.4)$ = the integral from 0.4 to $1 = (0.6)^{3} = 0.216$, i.e. about 0.21.",
     "tips": [
-      "Get the marginal first: for a fixed x the y-range is $(0, 1-x)$, and the inner $\\int 6(1-x-y)\\,dy$ is $3(1-x)^{2} - a$ clean, memorable result.",
-      "Recognise $f_{X}(x) = 3(1-x)^{2}$ as the Beta(1,3) density, so $\\operatorname{P}(X > c) = (1 - c)^{3}$ directly. No second integral is needed.",
+      "Get the marginal first: for a fixed x the y-range is $(0, 1-x)$, and the inner $\\int 6(1-x-y)\\,dy$ is $3(1-x)^{2}$ - a clean, memorable result.",
+      "Recognise $f_{X}(x) = 3(1-x)^{2}$ as the $\\text{Beta}(1,3)$ density, so $\\operatorname{P}(X > c) = (1 - c)^{3}$ directly. No second integral is needed.",
       "$(0.6)^{3} = 0.216$ rounds to 0.21 at two decimals; option (b) 0.25 would correspond to $(0.63)^{3}$, so keep three decimals before rounding.",
       "Sanity check: X is concentrated near 0 (its mean is $1/4$), so $\\operatorname{P}(X \\ge 0.4)$ should be well under a half - which rules out (c) and (d) as too large only marginally, so do the computation."
     ],
@@ -114,7 +114,7 @@
       "The joint density is $f(x,y) = 6(1 - x - y)$ on the triangle $x > 0, y > 0, x + y < 1$.",
       "For fixed x in $(0,1), y$ ranges over $(0, 1-x)$, so $f_{X}(x)$ = the $\\int_{0}^{1-x} 6(1 - x - y)\\,dy$.",
       "Substituting $u = 1 - x - y$, the integral is 6 times the $\\int u\\,du$ from 0 to $1-x = 6(1-x)^{2}/2 = 3(1-x)^{2}$.",
-      "Thus X has the Beta(1,3) density $3(1-x)^{2}$ on $(0,1)$.",
+      "Thus X has the $\\text{Beta}(1,3)$ density $3(1-x)^{2}$ on $(0,1)$.",
       "$\\operatorname{P}(X \\ge 0.4)$ = the $\\int_{0.4}^{1} 3(1-x)^{2}\\,dx = [-(1-x)^{3}]$ from 0.4 to $1 = 0 + (0.6)^{3} = 0.216$.",
       "Rounding, the probability is about 0.21, option (a)."
     ]
@@ -123,7 +123,7 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$12x^{2}(1-x)$ is the Beta(3,2) density, whose mean is $a/(a+b) = 3/5 = 0.6$.",
+    "shortcut": "$12x^{2}(1-x)$ is the $\\text{Beta}(3,2)$ density, whose mean is $a/(a+b) = 3/5 = 0.6$.",
     "tips": [
       "Recognise the Beta kernel $x^{a-1}(1-x)^{b-1}$: here $a - 1 = 2$ and $b - 1 = 1$, so $a = 3$ and $b = 2$.",
       "Beta mean = $a/(a+b)$ and variance = ab/$[(a+b)^{2}(a+b+1)]$. Recognition beats integration every time.",
@@ -134,7 +134,7 @@
       "The density is $f(x) = 12 x^{2} (1 - x)$ on $[0,1]$.",
       "Comparing with the Beta density $x^{a-1}(1-x)^{b-1}/B(a,b)$, we read $a - 1 = 2$ and $b - 1 = 1$, so $a = 3$ and $b = 2$.",
       "The normalising constant is $1/B(3,2) = \\Gamma(5)/(\\Gamma(3) \\Gamma(2)) = 24/(2 \\times 1) = 12$, confirming the identification.",
-      "For a Beta(a,b) variable the mean is $a/(a + b)$.",
+      "For a $\\text{Beta}(a,b)$ variable the mean is $a/(a + b)$.",
       "Hence the mean is $3/(3 + 2) = 3/5 = 0.6$.",
       "Option (b) is correct."
     ]
@@ -143,19 +143,19 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "M(t) = the $\\int e^{ty} e^{y}\\,dy$ = the $\\int e^((t+1)y)\\,dy$ from minus $\\infty$ to $0 = 1/(t+1)$, converging when $t + 1 > 0$, i.e. t > -1.",
+    "shortcut": "$M(t)$ = the $\\int e^{ty} e^{y}\\,dy$ = the $\\int e^{(t+1)y}\\,dy$ from minus $\\infty$ to $0 = 1/(t+1)$, converging when $t + 1 > 0$, i.e. $t > -1$.",
     "tips": [
-      "Y here is the NEGATIVE of an exponential (Y = -E with E ~ Exp(1)), so its MGF is the exponential MGF with t replaced by -t: $1/(1 + t)$.",
-      "Convergence direction flips with the sign of the support: for Exp(1) the MGF exists for $t < 1$, so for -Exp(1) it exists for t > -1.",
+      "Y here is the NEGATIVE of an exponential ($Y = -E$ with $E \\sim \\text{Exp}(1)$), so its MGF is the exponential MGF with t replaced by -t: $1/(1 + t)$.",
+      "Convergence direction flips with the sign of the support: for $\\text{Exp}(1)$ the MGF exists for $t < 1$, so for $-\\text{Exp}(1)$ it exists for $t > -1$.",
       "Always state the region of convergence - it is what distinguishes option (a) from option (c), since the formulas are mirror images.",
-      "Options (b) and (d) use |t| and are not differentiable at $t = 0$, so they cannot be MGFs (an MGF must be smooth at 0 to generate moments)."
+      "Options (b) and (d) use $\\lvert t\\rvert$ and are not differentiable at $t = 0$, so they cannot be MGFs (an MGF must be smooth at 0 to generate moments)."
     ],
     "solution": [
       "The density is $f(y) = e^{y}$ for $y < 0$ and 0 otherwise. Check: the $\\int e^{y}$ from minus $\\infty$ to 0 is 1, so f is a valid density.",
-      "$M_{Y}(t) = \\operatorname{E}(e^{tY})$ = the integral from minus $\\infty$ to 0 of $e^{ty} e^{y} dy$ = the $\\int e^((t+1)y)\\,dy$.",
-      "The antiderivative is $e^((t+1)y)/(t+1)$, evaluated from minus $\\infty$ to 0.",
-      "For the lower limit to vanish we need $t + 1 > 0$, i.e. t > -1; then the value is $1/(t+1) - 0 = 1/(1 + t)$.",
-      "So $M_{Y}(t) = 1/(1 + t)$ for t > -1.",
+      "$M_{Y}(t) = \\operatorname{E}(e^{tY})$ = the integral from minus $\\infty$ to 0 of $e^{ty} e^{y} dy$ = the $\\int e^{(t+1)y}\\,dy$.",
+      "The antiderivative is $e^{(t+1)y}/(t+1)$, evaluated from minus $\\infty$ to 0.",
+      "For the lower limit to vanish we need $t + 1 > 0$, i.e. $t > -1$; then the value is $1/(t+1) - 0 = 1/(1 + t)$.",
+      "So $M_{Y}(t) = 1/(1 + t)$ for $t > -1$.",
       "Option (c) is correct."
     ]
   },
@@ -166,7 +166,7 @@
     "shortcut": "Markov's inequality: for $X \\ge 0, \\operatorname{P}(X \\ge a) \\le \\operatorname{E}(X)/a$. Putting $a = t \\mu$ gives $\\operatorname{P}(X \\ge t \\mu) \\le \\mu/(t \\mu) = 1/t$.",
     "tips": [
       "Markov's inequality needs only non-negativity and a finite mean - exactly the assumptions stated, which is the signal to use it rather than Chebyshev.",
-      "The mu cancels completely, leaving the clean bound $1/t$. Any option retaining mu (options (a) and (c)) is therefore structurally wrong.",
+      "The $\\mu$ cancels completely, leaving the clean bound $1/t$. Any option retaining $\\mu$ (options (a) and (c)) is therefore structurally wrong.",
       "Direction check: an upper tail probability must be BOUNDED ABOVE, so the inequality sign must be <=. That eliminates options (a) and (d).",
       "Chebyshev's inequality is Markov applied to $(X - \\mu)^{2}$; knowing that link lets you derive one from the other under exam pressure."
     ],
@@ -175,7 +175,7 @@
       "Here $\\operatorname{E}(X) = \\mu$, which is finite and non-zero, and $X \\ge 0$ as required.",
       "Take $a = t \\mu$, which is positive for every $t > 0$.",
       "Then $\\operatorname{P}(X \\ge t \\mu) \\le \\mu/(t \\mu) = 1/t$.",
-      "The bound is free of mu, as it must be, since scaling X does not change the ratio $X/\\mu$.",
+      "The bound is free of $\\mu$, as it must be, since scaling X does not change the ratio $X/\\mu$.",
       "Hence $\\operatorname{P}(X \\ge t \\mu) \\le 1/t$, option (b)."
     ]
   },
@@ -185,17 +185,17 @@
     "type": "Numerical",
     "shortcut": "$\\operatorname{P}(A \\cap B) = \\operatorname{P}(A)\\operatorname{P}(B\\mid A) = 1/8$ and $\\operatorname{P}(B) = \\operatorname{P}(A \\cap B)/\\operatorname{P}(A\\mid B) = 1/2$. Statement 1 asks for $\\operatorname{P}\\!\\left(\\text{exactly one of A, B}\\right) = 1/4 + 1/2 - 2(1/8) = 1/2$, not $1/4$ - false. Statement 2 is an identity for indicators - true.",
     "tips": [
-      "Indicators satisfy $X^{2} = X$ and $Y^{2} = Y$, so $X^{2} + Y^{2} = 1$ means exactly one of the two events occurs, and XY = $X^{2} Y^{2}$ holds identically.",
+      "Indicators satisfy $X^{2} = X$ and $Y^{2} = Y$, so $X^{2} + Y^{2} = 1$ means exactly one of the two events occurs, and $XY = X^{2} Y^{2}$ holds identically.",
       "Statement 2 needs no numbers at all - recognise it as an algebraic identity for $0/1$ variables and it is true with probability 1 whatever the events.",
       "$\\operatorname{P}\\!\\left(\\text{exactly one}\\right) = \\operatorname{P}(A) + \\operatorname{P}(B) - 2\\operatorname{P}(A \\cap B)$. The factor 2 is essential: it removes the intersection from BOTH marginal probabilities.",
-      "Recover P(B) from Bayes in reverse: $\\operatorname{P}(B) = \\operatorname{P}(A \\cap B)/\\operatorname{P}(A\\mid B) = (1/8)/(1/4) = 1/2$. Chaining the two conditional probabilities is the only computational step in the item."
+      "Recover $\\operatorname{P}(B)$ from Bayes in reverse: $\\operatorname{P}(B) = \\operatorname{P}(A \\cap B)/\\operatorname{P}(A\\mid B) = (1/8)/(1/4) = 1/2$. Chaining the two conditional probabilities is the only computational step in the item."
     ],
     "solution": [
       "From $\\operatorname{P}(A) = 1/4$ and $\\operatorname{P}(B\\mid A) = 1/2$ we get $\\operatorname{P}(A \\cap B) = \\operatorname{P}(A) \\operatorname{P}(B\\mid A) = 1/8$.",
       "From $\\operatorname{P}(A\\mid B) = \\operatorname{P}(A \\cap B)/\\operatorname{P}(B) = 1/4$ we get $\\operatorname{P}(B) = (1/8)/(1/4) = 1/2$.",
       "X and Y are indicator variables, so $X^{2} = X$ and $Y^{2} = Y$.",
       "Statement 1: $X^{2} + Y^{2} = X + Y = 1$ means exactly one of A, B occurs. $\\operatorname{P}\\!\\left(\\text{exactly one}\\right) = \\operatorname{P}(A) + \\operatorname{P}(B) - 2\\operatorname{P}(A \\cap B) = 1/4 + 1/2 - 2(1/8) = 3/4 - 1/4 = 1/2$. The claimed value $1/4$ is wrong, so statement 1 is FALSE.",
-      "Statement 2: since $X^{2} = X$ and $Y^{2} = Y$ identically, XY = $X^{2} Y^{2}$ always holds, so its probability is 1. TRUE.",
+      "Statement 2: since $X^{2} = X$ and $Y^{2} = Y$ identically, $XY = X^{2} Y^{2}$ always holds, so its probability is 1. TRUE.",
       "Only statement 2 is correct, option (b)."
     ]
   },
@@ -203,18 +203,18 @@
     "answer": 1,
     "confidence": "high",
     "type": "Conceptual",
-    "shortcut": "A bivariate normal has no density exactly when its covariance matrix is singular, i.e. |$\\rho$| = 1, i.e. $Cov^{2} = \\operatorname{V}(X)\\operatorname{V}(Y) = 6$. So $\\alpha$ = +-$\\sqrt{6}$.",
+    "shortcut": "A bivariate normal has no density exactly when its covariance matrix is singular, i.e. $\\lvert \\rho\\rvert = 1$, i.e. $\\operatorname{Cov}^{2} = \\operatorname{V}(X)\\operatorname{V}(Y) = 6$. So $\\alpha = \\pm \\sqrt{6}$.",
     "tips": [
-      "Singular covariance matrix means the determinant $\\operatorname{V}(X)\\operatorname{V}(Y) - Cov^{2} = 0$, which is the same as $\\rho^{2} = 1$. Compute the determinant, do not reason about $\\rho$ separately.",
+      "Singular covariance matrix means the determinant $\\operatorname{V}(X)\\operatorname{V}(Y) - \\operatorname{Cov}^{2} = 0$, which is the same as $\\rho^{2} = 1$. Compute the determinant, do not reason about $\\rho$ separately.",
       "A singular bivariate normal is concentrated on a LINE in the plane, which has zero area, so no two-dimensional density can exist.",
-      "The Cauchy-Schwarz inequality guarantees |$Cov$| <= $sqrt(\\operatorname{V}(X)\\operatorname{V}(Y)) = sqrt6$, so |$\\alpha$| > 6 in option (d) is impossible for any distribution at all.",
-      "Option $(c) \\mid \\alpha$| < sqrt6 is precisely the case where the density DOES exist - the exact opposite of what is asked."
+      "The Cauchy-Schwarz inequality guarantees $\\lvert \\operatorname{Cov}\\rvert \\le \\sqrt{V(X)\\operatorname{V}(Y)} = \\sqrt{6}$, so $\\lvert \\alpha\\rvert > 6$ in option (d) is impossible for any distribution at all.",
+      "Option $(c) \\mid \\alpha$| < $\\sqrt{6}$ is precisely the case where the density DOES exist - the exact opposite of what is asked."
     ],
     "solution": [
       "The bivariate normal density exists if and only if its covariance matrix is positive definite, i.e. non-singular.",
       "The covariance matrix here is $[[2, \\alpha], [\\alpha, 3]]$, with determinant $2(3) - \\alpha^{2} = 6 - \\alpha^{2}$.",
       "The density fails to exist exactly when this determinant is zero, that is $\\alpha^{2} = 6$.",
-      "Hence $\\alpha$ = +$\\sqrt{6}$ or -$\\sqrt{6}$, which corresponds to correlation $\\rho$ = +-1.",
+      "Hence $\\alpha = +\\sqrt{6}$ or $-\\sqrt{6}$, which corresponds to correlation $\\rho = \\pm 1$.",
       "In that case the distribution is degenerate, concentrated on a straight line in the plane, so no two-dimensional density function exists.",
       "Option (b) is correct."
     ]
@@ -227,12 +227,12 @@
     "tips": [
       "Two separate computations, one for each mode: $\\operatorname{P}\\!\\left(X_{n}\\ \\text{not 0}\\right)$ for almost-sure convergence, $\\operatorname{E}(X_{n}^{2})$ for mean-square convergence. Do them independently.",
       "Borel-Cantelli I: if the sum of $\\operatorname{P}(A_{n})$ converges then $\\operatorname{P}\\!\\left(A_{n}\\ \\text{infinitely often}\\right) = 0$. Here sum $1/n^{2}$ converges, so eventually $X_{n}$ is 0 forever.",
-      "$\\operatorname{E}(X_{n}^{2}) = (sqrt n)^{2} x \\operatorname{P}(U < 1/n^{2}) = n x 1/n^{2} = 1/n$. The value taken grows but its probability shrinks faster, so the second moment still dies.",
+      "$\\operatorname{E}(X_{n}^{2}) = (\\sqrt{n})^{2} x \\operatorname{P}(U < 1/n^{2}) = n x 1/n^{2} = 1/n$. The value taken grows but its probability shrinks faster, so the second moment still dies.",
       "Contrast with the classic counterexample $X_{n} = n$ on $(0, 1/n)$: there $\\operatorname{P}\\!\\left(X_{n}\\ \\text{not 0}\\right) = 1/n$ whose sum DIVERGES and $\\operatorname{E}(X_{n}^{2}) = n$, so neither mode holds. Changing the exponents changes the answer completely."
     ],
     "solution": [
       "Let $A_{n}$ be the event {$0 < U < 1/n^{2}$}, on which $X_{n} = \\sqrt{n}$; elsewhere $X_{n} = 0$. Then $\\operatorname{P}(A_{n}) = 1/n^{2}$.",
-      "The series sum of $\\operatorname{P}(A_{n})$ = sum of $1/n^{2}$ converges (it equals pi^2/6).",
+      "The series sum of $\\operatorname{P}(A_{n})$ = sum of $1/n^{2}$ converges (it equals $\\pi^{2}/6$).",
       "By the first Borel-Cantelli lemma, $\\operatorname{P}\\!\\left(A_{n}\\ \\text{occurs infinitely often}\\right) = 0$, so with probability one only finitely many $A_{n}$ occur and $X_{n} = 0$ for all large n.",
       "Hence $X_{n}$ converges to 0 with probability one.",
       "For mean-square convergence, $\\operatorname{E}(X_{n}^{2}) = n \\operatorname{P}(A_{n}) + 0 = n (1/n^{2}) = 1/n$, which tends to 0 as n grows.",
@@ -251,7 +251,7 @@
       "The slope condition $1 - \\alpha \\ge 0$ is easy to overlook; without it, $\\alpha > 1$ would make F decrease on [1,2)."
     ],
     "solution": [
-      "F must be non-decreasing on the whole line, right-continuous, with F(-$\\infty$) = 0 and F(+$\\infty$) = 1.",
+      "F must be non-decreasing on the whole line, right-continuous, with $F(-\\infty) = 0$ and $F(+\\infty) = 1$.",
       "On [0,1) the branch $x/2$ rises from 0 to a left-limit of $1/2$ at $x = 1$.",
       "At $x = 1$ the middle branch takes the value $(1-\\alpha)(1) + 2\\alpha - 1 = \\alpha$. To avoid a decrease we need $\\alpha \\ge 1/2$ (an upward jump is permissible).",
       "On [1,2) the middle branch has slope $1 - \\alpha$, which must be non-negative, giving $\\alpha \\le 1$.",
@@ -267,14 +267,14 @@
     "tips": [
       "Substituting $u = e^{-3 \\lambda}$ turns a transcendental maximisation into the elementary quadratic $u - u^{2}$ - the key move in this item.",
       "Note that $6 = 2 \\times 3$, so $e^{-6 \\lambda} = u^{2}$ exactly. The doubling of the endpoints is what makes the substitution work.",
-      "$u - u^{2}$ has its maximum at $u = 1/2$, i.e. $e^{-3 \\lambda} = 1/2$ and $\\lambda = (\\ln 2)/3 = 0.231$. The optimal mean is therefore about 4.33, comfortably inside $[3,6] - a$ good plausibility check.",
+      "$u - u^{2}$ has its maximum at $u = 1/2$, i.e. $e^{-3 \\lambda} = 1/2$ and $\\lambda = (\\ln 2)/3 = 0.231$. The optimal mean is therefore about 4.33, comfortably inside $[3,6]$ - a good plausibility check.",
       "The maximum value $1/4$ is a bound over ALL exponential distributions, so no single choice of parameter can do better - the reason option $(a) 1/2$ is unattainable."
     ],
     "solution": [
       "For an exponential distribution with rate $\\lambda, \\operatorname{P}(3 \\le X \\le 6) = e^{-3 \\lambda} - e^{-6 \\lambda}$.",
       "Let $u = e^{-3 \\lambda}$, which ranges over $(0, 1)$ as $\\lambda$ ranges over $(0, \\infty)$. Then $e^{-6 \\lambda} = u^{2}$.",
       "So the probability is $g(u) = u - u^{2}$.",
-      "Differentiating, $g'(u) = 1 - 2u = 0$ at $u = 1/2$, and $g''(u)$ = -$2 < 0$, so this is a maximum.",
+      "Differentiating, $g'(u) = 1 - 2u = 0$ at $u = 1/2$, and $g''(u) = -2 < 0$, so this is a maximum.",
       "The maximum value is $g(1/2) = 1/2 - 1/4 = 1/4$, attained when $e^{-3 \\lambda} = 1/2$, i.e. $\\lambda = (\\ln 2)/3$.",
       "Hence the maximum possible probability is $1/4$, option (c)."
     ]
@@ -283,17 +283,17 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Poisson PGF is $\\operatorname{P}(s) = e^(\\lambda(s-1))$. At $s = 2/3$ this is $e^{-\\lambda/3} = e^{-1}$, so $\\lambda/3 = 1$ and $\\lambda = 3$. The Poisson mean is $\\lambda = 3$.",
+    "shortcut": "Poisson PGF is $\\operatorname{P}(s) = e^{\\lambda(s-1)}$. At $s = 2/3$ this is $e^{-\\lambda/3} = e^{-1}$, so $\\lambda/3 = 1$ and $\\lambda = 3$. The Poisson mean is $\\lambda = 3$.",
     "tips": [
-      "Poisson PGF: $\\operatorname{P}(s) = e^(\\lambda(s - 1))$; the MGF is $e^(\\lambda(e^{t} - 1))$. Keep the two apart - substituting into the wrong one is the main trap.",
-      "$s - 1 = 2/3 - 1$ = -$1/3$, so the exponent is -$\\lambda/3$. Equating exponents is faster than taking logarithms.",
+      "Poisson PGF: $\\operatorname{P}(s) = e^{\\lambda(s - 1)}$; the MGF is $e^{\\lambda(e^{t} - 1)}$. Keep the two apart - substituting into the wrong one is the main trap.",
+      "$s - 1 = 2/3 - 1 = -1/3$, so the exponent is $-\\lambda/3$. Equating exponents is faster than taking logarithms.",
       "For the Poisson, mean = variance = $\\lambda$, so once $\\lambda = 3$ is found the answer is immediate.",
       "Check: $\\operatorname{P}(1) = e^{0} = 1$ for every $\\lambda$, as any PGF must satisfy - a quick validity test of the formula you are using."
     ],
     "solution": [
-      "The probability generating function of a Poisson variable with parameter $\\lambda$ is $\\operatorname{P}(s) = \\operatorname{E}(s^{X}) = e^(\\lambda(s - 1))$.",
+      "The probability generating function of a Poisson variable with parameter $\\lambda$ is $\\operatorname{P}(s) = \\operatorname{E}(s^{X}) = e^{\\lambda(s - 1)}$.",
       "We are told $\\operatorname{P}(2/3) = e^{-1}$.",
-      "Substituting $s = 2/3$: $\\operatorname{P}(2/3) = e^(\\lambda(2/3 - 1)) = e^{-\\lambda/3}$.",
+      "Substituting $s = 2/3$: $\\operatorname{P}(2/3) = e^{\\lambda(2/3 - 1)} = e^{-\\lambda/3}$.",
       "Setting $e^{-\\lambda/3} = e^{-1}$ gives $\\lambda/3 = 1$, so $\\lambda = 3$.",
       "For the Poisson distribution the mean equals $\\lambda$.",
       "Hence the mean is 3, option (d)."
@@ -308,7 +308,7 @@
       "'Continuous random variable' is a strictly stronger requirement than 'distribution function': every junction must match exactly, with no jump allowed anywhere.",
       "Evaluate both branches AT the junction: $x/3$ at $x = 2$ is $2/3$, and $(1-\\alpha)x + 3\\alpha - 2$ at $x = 2$ is $2 - 2\\alpha + 3\\alpha - 2 = \\alpha$. Equate them.",
       "The junction at $x = 3$ imposes nothing: $(1-\\alpha)(3) + 3\\alpha - 2 = 1$ identically, so only the $x = 2$ junction matters.",
-      "Contrast with Q33 of the same paper, where an upward jump was allowed and the answer was an interval. The word 'continuous' is what collapses the interval to a single point here."
+      "Contrast with $Q_{33}$ of the same paper, where an upward jump was allowed and the answer was an interval. The word 'continuous' is what collapses the interval to a single point here."
     ],
     "solution": [
       "For F to be the distribution function of a CONTINUOUS random variable, F must be continuous everywhere - no jumps are permitted.",
@@ -343,9 +343,9 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The linear map has matrix $(1/2)[[1,1,0],[0,1,1],[1,0,1]]$ with determinant $(1/8)(2) = 1/4$, so the density picks up the factor 1/|J| = 4. Inverting gives $x = u - v + w, y = u + v - w, z$ = -$u + v + w$.",
+    "shortcut": "The linear map has matrix $(1/2)[[1,1,0],[0,1,1],[1,0,1]]$ with determinant $(1/8)(2) = 1/4$, so the density picks up the factor $1/\\lvert J\\rvert = 4$. Inverting gives $x = u - v + w, y = u + v - w, z = -u + v + w$.",
     "tips": [
-      "For a linear transformation, $g(u) = f(A^{-1}u)$/|$\\det A$|. Compute $\\det A$ once; here $\\det$ of $[[1,1,0],[0,1,1],[1,0,1]]$ is 2, and the factor $(1/2)^{3}$ gives $\\det A = 1/4$.",
+      "For a linear transformation, $g(u) = f(A^{-1}u)/\\lvert \\det A\\rvert$. Compute $\\det A$ once; here $\\det$ of $[[1,1,0],[0,1,1],[1,0,1]]$ is 2, and the factor $(1/2)^{3}$ gives $\\det A = 1/4$.",
       "Invert cleverly: adding all three equations gives $x + y + z = u + v + w$, and then each variable follows by subtracting twice one of the new coordinates.",
       "Check the inverse by substitution: $(x + y)/2 = ((u-v+w) + (u+v-w))/2 = u$. Do this once and the arguments are confirmed.",
       "Options (c) and (d) halve the arguments as well, which would correspond to a different transformation entirely - the inverse here has NO factor of $1/2$ inside f."
@@ -354,8 +354,8 @@
       "Write $U = (X+Y)/2, V = (Y+Z)/2, W = (Z+X)/2, a$ linear transformation with matrix $A = (1/2)[[1,1,0],[0,1,1],[1,0,1]]$.",
       "The determinant of $[[1,1,0],[0,1,1],[1,0,1]]$ is $1(1) - 1(-1) + 0 = 2$, so $\\det A = (1/2)^{3} (2) = 1/4$.",
       "Invert: from $x + y = 2u, y + z = 2v, z + x = 2w$, adding gives $2(x+y+z) = 2(u+v+w)$, so $x + y + z = u + v + w$.",
-      "Then $x = (x+y+z) - (y+z) = (u+v+w) - 2v = u - v + w$; $y = (x+y+z) - (z+x) = u + v - w$; $z = (x+y+z) - (x+y)$ = -$u + v + w$.",
-      "The density transforms as $g(u,v,w) = f(x,y,z)$/|$\\det A$| = $4 f(u - v + w, u + v - w, -u + v + w)$.",
+      "Then $x = (x+y+z) - (y+z) = (u+v+w) - 2v = u - v + w$; $y = (x+y+z) - (z+x) = u + v - w$; $z = (x+y+z) - (x+y) = -u + v + w$.",
+      "The density transforms as $g(u,v,w) = f(x,y,z)/\\lvert \\det A\\rvert = 4 f(u - v + w, u + v - w, -u + v + w)$.",
       "Hence option (b) is correct."
     ]
   },
@@ -371,7 +371,7 @@
       "Check by bounds: $X/(X+1)$ takes the values $0, 1/2, 2/3, 3/4$ with the mass concentrated on the small values, so the answer must be well below $1/2$. $43/108 = 0.398$ fits."
     ],
     "solution": [
-      "X ~ Binomial($3, 1/3$), so $\\operatorname{P}(X=0) = (2/3)^{3} = 8/27, \\operatorname{P}(X=1) = 3(1/3)(2/3)^{2} = 12/27, \\operatorname{P}(X=2) = 3(1/3)^{2}(2/3) = 6/27, \\operatorname{P}(X=3) = (1/3)^{3} = 1/27$. These sum to 1.",
+      "$X \\sim \\text{Binomial}(3, 1/3)$, so $\\operatorname{P}(X=0) = (2/3)^{3} = 8/27, \\operatorname{P}(X=1) = 3(1/3)(2/3)^{2} = 12/27, \\operatorname{P}(X=2) = 3(1/3)^{2}(2/3) = 6/27, \\operatorname{P}(X=3) = (1/3)^{3} = 1/27$. These sum to 1.",
       "The function values are $X/(X+1) = 0, 1/2, 2/3, 3/4$ for $X = 0, 1, 2, 3$.",
       "$\\operatorname{E}[X/(X+1)] = 0(8/27) + (1/2)(12/27) + (2/3)(6/27) + (3/4)(1/27)$.",
       "Term by term: $(1/2)(12/27) = 6/27$; $(2/3)(6/27) = 4/27$; $(3/4)(1/27) = 3/108$.",

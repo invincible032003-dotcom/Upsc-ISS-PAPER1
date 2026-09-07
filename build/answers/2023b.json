@@ -26,15 +26,15 @@
     "shortcut": "Mean = $30/10 = 3$ and sum of squares = 152, so $\\operatorname{Var}(X) = 15.2 - 9 = 6.2$. Then $\\operatorname{Var}(2X+2) = 4(6.2) = 24.8$.",
     "tips": [
       "$\\operatorname{Var}(aX + b) = a^{2} \\operatorname{Var}(X)$ - the constant b vanishes and the multiplier is SQUARED. Adding 2 changes nothing.",
-      "Use the computing formula $Var$ = (sum $x^{2}$)/$n - \\bar{x}$^2 rather than deviations: $152/10 - 3^{2} = 6.2$ in one line.",
-      "Check the two totals separately: sum $x = 30$ and sum $x^{2} = 4+25+0+36+9+64+1+9+0+4 = 152$. Recomputing these is where marks are lost.",
+      "Use the computing formula $\\operatorname{Var} = (\\sum x^{2})/n - \\bar{x}^{2}$ rather than deviations: $152/10 - 3^{2} = 6.2$ in one line.",
+      "Check the two totals separately: $\\sum x = 30$ and $\\sum x^{2} = 4+25+0+36+9+64+1+9+0+4 = 152$. Recomputing these is where marks are lost.",
       "This is the population (divisor n) variance; with divisor n - 1 the answer would be 6.889 and 27.6, so note which convention the options match - here it is n."
     ],
     "solution": [
       "The ten observations are 2, 5, 0, 6, 3, 8, 1, 3, 0, 2.",
       "Sum = 30, so the mean is $\\bar{x} = 30/10 = 3$.",
       "Sum of squares = $4 + 25 + 0 + 36 + 9 + 64 + 1 + 9 + 0 + 4 = 152$.",
-      "$\\operatorname{Var}(X)$ = (sum $x^{2}$)/$n - \\bar{x}$^2 = $152/10 - 9 = 15.2 - 9 = 6.2$.",
+      "$\\operatorname{Var}(X) = (\\sum x^{2})/n - \\bar{x}^{2} = 152/10 - 9 = 15.2 - 9 = 6.2$.",
       "For a linear transformation, $\\operatorname{Var}(2X + 2) = 2^{2} \\operatorname{Var}(X) = 4(6.2) = 24.8$, option (a)."
     ]
   },
@@ -42,12 +42,12 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The third central moment of B(n,p) is npq(q - p). With $p = q = 1/2$ the factor $(q - p)$ is 0, so the moment is 0.",
+    "shortcut": "The third central moment of $B(n,p)$ is npq(q - p). With $p = q = 1/2$ the factor $(q - p)$ is 0, so the moment is 0.",
     "tips": [
-      "Formula: $\\mu_{3}$ = npq(q - p). Its sign is the sign of the skewness, and it vanishes exactly when $p = 1/2$.",
+      "Formula: $\\mu_{3} = npq(q - p)$. Its sign is the sign of the skewness, and it vanishes exactly when $p = 1/2$.",
       "A binomial with $p = 1/2$ is SYMMETRIC about $n/2$, and every odd central moment of a symmetric distribution is zero - no formula is needed.",
       "Do not confuse $\\mu_{3}$ (third central moment) with the coefficient of skewness $\\mu_{3}/\\sigma^{3}$; both are 0 here, but they are different quantities.",
-      "For comparison, $\\mu_{2}$ = npq = 2.5 here, which is planted as option (c) to catch a mis-read of the moment order."
+      "For comparison, $\\mu_{2} = npq = 2.5$ here, which is planted as option (c) to catch a mis-read of the moment order."
     ],
     "solution": [
       "For the binomial distribution the third central moment is $\\mu_{3} = n p q (q - p)$.",
@@ -65,7 +65,7 @@
     "shortcut": "Row totals 60 and 40, column totals 50 and $50, N = 100$, so every expected frequency equals the observed one $(30, 30, 20, 20)$. Hence $\\chi^{2} = 0$.",
     "tips": [
       "Compute one expected value first: $60 \\times 50/100 = 30$, which already equals the observed 30 - a strong hint that the whole table is exactly independent.",
-      "Independence test by cross products: ad - bc = $30(20) - 30(20) = 0$, so the attributes are exactly independent and $\\chi^{2}$ must be 0.",
+      "Independence test by cross products: ad - $bc = 30(20) - 30(20) = 0$, so the attributes are exactly independent and $\\chi^{2}$ must be 0.",
       "In this table each row splits 50:50 between skilled and unskilled, so gender carries NO information about the nature of work.",
       "$\\chi^{2}$ is non-negative and equals 0 only under exact independence - recognising that here saves all four cell computations."
     ],
@@ -74,7 +74,7 @@
       "Row totals are 60 and 40; column totals are 50 and 50; the grand total is $N = 100$.",
       "Expected frequencies under independence: Male-Skilled = $60 \\times 50/100 = 30$, Male-Unskilled = 30, Female-Skilled = $40 \\times 50/100 = 20$, Female-Unskilled = 20.",
       "Every expected frequency equals the corresponding observed frequency, so each term $(O - E)^{2}/E$ is zero.",
-      "Equivalently, ad - bc = $30(20) - 30(20) = 0$, the condition for exact independence.",
+      "Equivalently, ad - $bc = 30(20) - 30(20) = 0$, the condition for exact independence.",
       "Hence $\\chi^{2} = 0$, option (d)."
     ]
   },
@@ -82,20 +82,20 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$r = Cov/(sd_{X} sd_{Y})$ gives $0.8 = 32/(2 sd_{Y})$, so sd_Y = 20 and $\\operatorname{V}(Y) = 400$.",
+    "shortcut": "$r = \\operatorname{Cov}/(\\operatorname{sd}_{X} \\operatorname{sd}_{Y})$ gives $0.8 = 32/(2 \\operatorname{sd}_{Y})$, so $\\operatorname{sd}_{Y} = 20$ and $\\operatorname{V}(Y) = 400$.",
     "tips": [
-      "Take the square root of $\\operatorname{Var}(X) = 4$ to get sd_X = 2 BEFORE substituting - using 4 directly is the standard error here.",
-      "Rearranged form: sd_Y = $Cov/(r sd_{X}) = 32/(0.8 \\times 2) = 20$. One division and one multiplication.",
+      "Take the square root of $\\operatorname{Var}(X) = 4$ to get $\\operatorname{sd}_{X} = 2$ BEFORE substituting - using 4 directly is the standard error here.",
+      "Rearranged form: $\\operatorname{sd}_{Y} = \\operatorname{Cov}/(r \\operatorname{sd}_{X}) = 32/(0.8 \\times 2) = 20$. One division and one multiplication.",
       "Remember to SQUARE the standard deviation at the end: the question asks for the variance, so 20 becomes 400.",
-      "Consistency check: $Cov = r$ sd_X sd_Y = $0.8 \\times 2 \\times 20 = 32$, matching the datum exactly."
+      "Consistency check: $\\operatorname{Cov} = r \\operatorname{sd}_{X} \\operatorname{sd}_{Y} = 0.8 \\times 2 \\times 20 = 32$, matching the datum exactly."
     ],
     "solution": [
-      "The correlation coefficient is $r = \\operatorname{Cov}(X,Y)/(sd(X) sd(Y))$.",
-      "Given $\\operatorname{Var}(X) = 4$, the standard deviation is sd(X) = 2.",
-      "Substituting the known values: $0.8 = 32/(2 sd(Y))$.",
-      "So 2 sd(Y) = $32/0.8 = 40$, giving sd(Y) = 20.",
+      "The correlation coefficient is $r = \\operatorname{Cov}(X,Y)/(\\operatorname{sd}(X) \\operatorname{sd}(Y))$.",
+      "Given $\\operatorname{Var}(X) = 4$, the standard deviation is $\\operatorname{sd}(X) = 2$.",
+      "Substituting the known values: $0.8 = 32/(2 \\operatorname{sd}(Y))$.",
+      "So $2 \\operatorname{sd}(Y) = 32/0.8 = 40$, giving $\\operatorname{sd}(Y) = 20$.",
       "Therefore $\\operatorname{V}(Y) = 20^{2} = 400$.",
-      "Check: r sd(X) sd(Y) = $0.8(2)(20) = 32 = \\operatorname{Cov}(X,Y)$. Option (a) is correct."
+      "Check: $r \\operatorname{sd}(X) \\operatorname{sd}(Y) = 0.8(2)(20) = 32 = \\operatorname{Cov}(X,Y)$. Option (a) is correct."
     ]
   },
   "2023-Q26": {
@@ -104,14 +104,14 @@
     "type": "Numerical",
     "shortcut": "The means are where the quadratic form is stationary: $4x + 3y = 7$ and $3x + 8y = 11$ give $x = y = 1$. So $\\operatorname{E}(X) + \\operatorname{E}(Y) + 3 = 5$.",
     "tips": [
-      "The mean vector of a normal density is the MINIMISER of the exponent's quadratic form - set both partial derivatives to zero and solve the 2x2 system.",
+      "The mean vector of a normal density is the MINIMISER of the exponent's quadratic form - set both $\\partial$ derivatives to zero and solve the $2 \\times 2$ system.",
       "Partial derivatives: $d/dx$ of $(2x^{2} + 3xy - 7x)$ is $4x + 3y - 7$; $d/dy$ of $(3xy + 4y^{2} - 11y)$ is $3x + 8y - 11$. Watch the factor 2 on the squared terms.",
       "Elimination: $8(4x + 3y) - 3(3x + 8y) = 32x - 9x = 23x$, and $8(7) - 3(11) = 23$, so $x = 1$ immediately - the determinant 23 reappears throughout this set.",
-      "The offset '+3' in the question is pure decoration; find the two means and add."
+      "The offset '$+3'$ in the question is pure decoration; find the two means and add."
     ],
     "solution": [
-      "Write the exponent as -Q(x,y) with $Q = 2x^{2} + 3$xy + $4y^{2} - 7x - 11y$.",
-      "For a bivariate normal density the mean vector is the point at which the quadratic form Q attains its minimum, i.e. where both partial derivatives vanish.",
+      "Write the exponent as $-Q(x,y)$ with $Q = 2x^{2} + 3xy + 4y^{2} - 7x - 11y$.",
+      "For a bivariate normal density the mean vector is the point at which the quadratic form Q attains its minimum, i.e. where both $\\partial$ derivatives vanish.",
       "dQ/$dx = 4x + 3y - 7 = 0$ and dQ/$dy = 3x + 8y - 11 = 0$.",
       "Multiply the first by 8 and the second by 3: $32x + 24y = 56$ and $9x + 24y = 33$. Subtracting gives $23x = 23$, so $x = 1$.",
       "Substituting back, $4(1) + 3y = 7$ gives $y = 1$. Hence $\\operatorname{E}(X) = 1$ and $\\operatorname{E}(Y) = 1$.",
@@ -122,16 +122,16 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The precision matrix is $A = [[4,3],[3,8]]$ with determinant 23, so the covariance matrix is $(1/23)[[8,-3],[-3,4]]$. Then $23(Var X + Var Y) = 8 + 4 = 12$.",
+    "shortcut": "The precision matrix is $A = [[4,3],[3,8]]$ with determinant 23, so the covariance matrix is $(1/23)[[8,-3],[-3,4]]$. Then $23(\\operatorname{Var} X + \\operatorname{Var} Y) = 8 + 4 = 12$.",
     "tips": [
-      "Reading the precision matrix: $\\exp(-Q)$ with $Q = a x^{2} + b$ xy + $c y^{2}$ means $Q = (1/2)z'$Az, so $A_{11} = 2a, A_{22} = 2c$ and $A_{12} = b$. Here $A = [[4,3],[3,8]]$.",
-      "Covariance = inverse of the precision matrix: for a 2x2 matrix, swap the diagonal, negate the off-diagonal and divide by the determinant $4(8) - 9 = 23$.",
+      "Reading the precision matrix: $\\exp(-Q)$ with $Q = a x^{2} + b xy + c y^{2}$ means $Q = (1/2)z'$Az, so $A_{11} = 2a, A_{22} = 2c$ and $A_{12} = b$. Here $A = [[4,3],[3,8]]$.",
+      "Covariance = inverse of the precision matrix: for a $2 \\times 2$ matrix, swap the diagonal, negate the off-diagonal and divide by the determinant $4(8) - 9 = 23$.",
       "$\\operatorname{Var}(X) = 8/23$ and $\\operatorname{Var}(Y) = 4/23$ - note the SWAP: the larger variance goes with the smaller coefficient in the quadratic form.",
       "The factor 23 in the question is exactly the determinant, placed there to clear the denominators - a strong hint that this route is intended."
     ],
     "solution": [
-      "The exponent is -Q with $Q = 2x^{2} + 3$xy + $4y^{2} - 7x - 11y$; the quadratic part is $2x^{2} + 3$xy + $4y^{2}$.",
-      "Writing the quadratic part as $(1/2) z' A z$ with $z = (x - \\mu1, y - \\mu2)'$, we read $A_{11} = 2(2) = 4, A_{22} = 2(4) = 8$ and $A_{12} = A_{21} = 3$.",
+      "The exponent is -Q with $Q = 2x^{2} + 3xy + 4y^{2} - 7x - 11y$; the quadratic part is $2x^{2} + 3xy + 4y^{2}$.",
+      "Writing the quadratic part as $(1/2) z' A z$ with $z = (x - \\mu_{1}, y - \\mu_{2})'$, we read $A_{11} = 2(2) = 4, A_{22} = 2(4) = 8$ and $A_{12} = A_{21} = 3$.",
       "So the precision matrix is $A = [[4, 3], [3, 8]]$, with determinant $4(8) - 3(3) = 32 - 9 = 23$.",
       "The covariance matrix is the inverse: $\\Sigma = (1/23)[[8, -3], [-3, 4]]$.",
       "Hence $\\operatorname{Var}(X) = 8/23$ and $\\operatorname{Var}(Y) = 4/23$.",
@@ -142,19 +142,19 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "From $\\Sigma = (1/23)[[8,-3],[-3,4]], r = (-3/23)/sqrt((8/23)(4/23))$ = -$3/\\sqrt{32}$ = -$3/(4 sqrt2)$, so $\\sqrt{2} r$ = -$3/4$.",
+    "shortcut": "From $\\Sigma = (1/23)[[8,-3],[-3,4]], r = (-3/23)/\\sqrt{(8/23)(4/23)} = -3/\\sqrt{32} = -3/(4 \\sqrt{2})$, so $\\sqrt{2} r = -3/4$.",
     "tips": [
-      "The 23s cancel in the correlation, leaving r = -$3/\\sqrt{8 \\times 4}$ = -$3/\\sqrt{32}$ - so the determinant never needs to be carried through.",
+      "The 23s cancel in the correlation, leaving $r = -3/\\sqrt{8 \\times 4} = -3/\\sqrt{32}$ - so the determinant never needs to be carried through.",
       "Sign rule: the correlation takes the OPPOSITE sign to the off-diagonal entry of the precision matrix. Here that entry is +3, so r is negative - all four options duly are.",
-      "$\\sqrt{32} = 4 \\sqrt{2}$, so multiplying by $\\sqrt{2}$ clears the surd exactly and gives the clean -$3/4$. The question's $\\sqrt{2}$ factor is the hint that this will happen.",
-      "Validity check: |r| = $3/(4 sqrt2) = 0.53 < 1$, so the covariance matrix is positive definite and the density exists."
+      "$\\sqrt{32} = 4 \\sqrt{2}$, so multiplying by $\\sqrt{2}$ clears the surd exactly and gives the clean $-3/4$. The question's $\\sqrt{2}$ factor is the hint that this will happen.",
+      "Validity check: $\\lvert r\\rvert = 3/(4 \\sqrt{2}) = 0.53 < 1$, so the covariance matrix is positive definite and the density exists."
     ],
     "solution": [
       "From the previous part, the covariance matrix is $\\Sigma = (1/23)[[8, -3], [-3, 4]]$.",
-      "So $\\operatorname{Var}(X) = 8/23, \\operatorname{Var}(Y) = 4/23$ and $\\operatorname{Cov}(X,Y)$ = -$3/23$.",
-      "The correlation is $r = Cov/sqrt(\\operatorname{Var}(X) \\operatorname{Var}(Y)) = (-3/23)/sqrt((8/23)(4/23)) = (-3/23)/(\\sqrt{32}/23)$.",
-      "The factors of 23 cancel, giving r = -$3/\\sqrt{32}$ = -$3/(4 \\sqrt{2})$.",
-      "Multiplying by $\\sqrt{2}$: $\\sqrt{2} r$ = -$3 \\sqrt{2}/(4 \\sqrt{2})$ = -$3/4$.",
+      "So $\\operatorname{Var}(X) = 8/23, \\operatorname{Var}(Y) = 4/23$ and $\\operatorname{Cov}(X,Y) = -3/23$.",
+      "The correlation is $r = \\operatorname{Cov}/\\sqrt{\\operatorname{Var}(X) \\operatorname{Var}(Y)} = (-3/23)/\\sqrt{(8/23)(4/23)} = (-3/23)/(\\sqrt{32}/23)$.",
+      "The factors of 23 cancel, giving $r = -3/\\sqrt{32} = -3/(4 \\sqrt{2})$.",
+      "Multiplying by $\\sqrt{2}$: $\\sqrt{2} r = -3 \\sqrt{2}/(4 \\sqrt{2}) = -3/4$.",
       "Option (a) is correct."
     ]
   },
@@ -165,13 +165,13 @@
     "shortcut": "Collect the y-terms of the exponent: $4y^{2} + (3x - 11)y$. Completing the square gives a normal with mean $(11 - 3x)/8$ and variance $1/(2 \\times 4) = 1/8$.",
     "tips": [
       "For a conditional distribution, treat x as FIXED and complete the square in y only - the x-only terms are absorbed into the normalising constant.",
-      "Coefficient reading: $\\exp(-c y^{2} + ...)$ corresponds to variance $1/(2c)$. Here $c = 4$, so the conditional variance is $1/8$ regardless of x.",
-      "The conditional mean is -(coefficient of y)/$(2c)$ = -$(3x - 11)/8 = (11 - 3x)/8$. Getting the sign right is the crux.",
+      "Coefficient reading: $\\exp(-c y^{2} + \\ldots)$ corresponds to variance $1/(2c)$. Here $c = 4$, so the conditional variance is $1/8$ regardless of x.",
+      "The conditional mean is -(coefficient of y)/$(2c) = -(3x - 11)/8 = (11 - 3x)/8$. Getting the sign right is the crux.",
       "Cross-check at $x = 1$ (the mean of X): the conditional mean is $(11-3)/8 = 1 = \\operatorname{E}(Y)$, exactly as the regression line must pass through the means."
     ],
     "solution": [
       "The joint density is proportional to $\\exp(-(2x^{2} + 3xy + 4y^{2} - 7x - 11y))$.",
-      "For fixed x, keep only the terms involving y: -$(4y^{2} + 3xy - 11y)$ = -$(4y^{2} + (3x - 11)y)$.",
+      "For fixed x, keep only the terms involving y: $-(4y^{2} + 3xy - 11y) = -(4y^{2} + (3x - 11)y)$.",
       "Complete the square: $4y^{2} + (3x-11)y = 4[y + (3x-11)/8]^{2}$ - constant, where the constant depends only on x.",
       "So the conditional density of Y given $X = x$ is proportional to $\\exp(-4[y - (11 - 3x)/8]^{2})$.",
       "Comparing with $\\exp(-(y - m)^{2}/(2 \\sigma^{2}))$ gives $2 \\sigma^{2} = 1/4$, i.e. $\\sigma^{2} = 1/8$, and $m = (11 - 3x)/8$.",
@@ -182,19 +182,19 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "At the mean vector the bivariate normal density attains its maximum $1/(2 pi \\sqrt{\\det \\Sigma})$. Here $\\det \\Sigma = 1/23$, so 2 pi $f(\\mu1, \\mu2) = \\sqrt{23}$.",
+    "shortcut": "At the mean vector the bivariate normal density attains its maximum $1/(2 \\pi \\sqrt{\\det \\Sigma})$. Here $\\det \\Sigma = 1/23$, so $2 \\pi f(\\mu_{1}, \\mu_{2}) = \\sqrt{23}$.",
     "tips": [
-      "Peak value of a bivariate normal: $f(\\mu) = 1/(2 pi \\sqrt{\\det \\Sigma}) = \\sqrt{\\det A}/(2 pi)$, where A is the precision matrix. Multiplying by 2 pi leaves sqrt($\\det A$).",
-      "$\\det A = 23$ was already computed for the variances, so this part is a one-line reuse - the 2 pi in the question exists precisely to cancel.",
-      "Equivalently $f(\\mu) = 1/(2 pi \\sigma1 \\sigma2 \\sqrt{1 - r^2})$; substituting $\\sigma1^{2} = 8/23, \\sigma2^{2} = 4/23$ and $r^{2} = 9/32$ gives the same $\\sqrt{23}/(2 pi)$.",
+      "Peak value of a bivariate normal: $f(\\mu) = 1/(2 \\pi \\sqrt{\\det \\Sigma}) = \\sqrt{\\det A}/(2 \\pi)$, where A is the precision matrix. Multiplying by $2 \\pi$ leaves $\\sqrt{\\det A}$.",
+      "$\\det A = 23$ was already computed for the variances, so this part is a one-line reuse - the $2 \\pi$ in the question exists precisely to cancel.",
+      "Equivalently $f(\\mu) = 1/(2 \\pi \\sigma_{1} \\sigma_{2} \\sqrt{1 - r^2})$; substituting $\\sigma_{1}^{2} = 8/23, \\sigma_{2}^{2} = 4/23$ and $r^{2} = 9/32$ gives the same $\\sqrt{23}/(2 \\pi)$.",
       "The exponential factor is $\\exp(0) = 1$ at the mean, which is why only the normalising constant survives."
     ],
     "solution": [
-      "For a bivariate normal density, the maximum occurs at the mean vector and equals the normalising constant $1/(2 pi \\sqrt{\\det \\Sigma})$.",
+      "For a bivariate normal density, the maximum occurs at the mean vector and equals the normalising constant $1/(2 \\pi \\sqrt{\\det \\Sigma})$.",
       "From the earlier parts, the precision matrix is $A = [[4,3],[3,8]]$ with $\\det A = 23$, so $\\Sigma = A^{-1}$ has $\\det \\Sigma = 1/23$.",
-      "Hence $f(\\mu1, \\mu2) = 1/(2 pi \\sqrt{1/23}) = \\sqrt{23}/(2 pi)$.",
-      "Multiplying by 2 pi: 2 pi $f(\\mu1, \\mu2) = \\sqrt{23}$.",
-      "Equivalently, using $f(\\mu) = 1/(2 pi \\sigma1 \\sigma2 \\sqrt{1-r^2})$ with $\\sigma1 \\sigma2 = \\sqrt{32}/23$ and $1 - r^{2} = 23/32$ gives the same value.",
+      "Hence $f(\\mu_{1}, \\mu_{2}) = 1/(2 \\pi \\sqrt{1/23}) = \\sqrt{23}/(2 \\pi)$.",
+      "Multiplying by $2 \\pi$: $2 \\pi f(\\mu_{1}, \\mu_{2}) = \\sqrt{23}$.",
+      "Equivalently, using $f(\\mu) = 1/(2 \\pi \\sigma_{1} \\sigma_{2} \\sqrt{1-r^2})$ with $\\sigma_{1} \\sigma_{2} = \\sqrt{32}/23$ and $1 - r^{2} = 23/32$ gives the same value.",
       "Option (a) is correct."
     ]
   },
@@ -210,7 +210,7 @@
       "Note the answer does not depend on X at all, so the conditional expectation is a constant and equals the unconditional one - a useful structural observation."
     ],
     "solution": [
-      "For (X,Y) ~ BVN(0,0,1,1,$\\rho$), the conditional distribution is $Y \\mid X = x \\sim N(\\rho x, 1 - \\rho^{2})$.",
+      "For $(X,Y) \\sim \\text{BVN}(0,0,1,1,\\rho)$, the conditional distribution is $Y \\mid X = x \\sim N(\\rho x, 1 - \\rho^{2})$.",
       "Hence the residual $Y - \\rho X$, conditionally on X, is normal with mean 0 and variance $\\sigma^{2} = 1 - \\rho^{2}$.",
       "For a centred normal variable with variance $\\sigma^{2}$, the fourth moment is $\\operatorname{E}(W^{4}) = 3 \\sigma^{4}$.",
       "So $\\operatorname{E}[(Y - \\rho X)^{4} \\mid X] = 3(1 - \\rho^{2})^{2}$.",
@@ -222,9 +222,9 @@
     "answer": 3,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "The intra-class correlation lies between -$1/(k-1)$ and +1, the lower bound arising because the k members' deviations within a family must sum to zero.",
+    "shortcut": "The intra-class correlation lies between $-1/(k-1)$ and +1, the lower bound arising because the k members' deviations within a family must sum to zero.",
     "tips": [
-      "Range to memorise: -$1/(k-1) \\le \\rho \\le 1$, where k is the family (group) size. The lower bound is NOT -1 - that is the key discriminator.",
+      "Range to memorise: $-1/(k-1) \\le \\rho \\le 1$, where k is the family (group) size. The lower bound is NOT -1 - that is the key discriminator.",
       "Reason for the asymmetry: within a group the deviations from the group mean sum to zero, so the members cannot all be strongly negatively correlated with one another.",
       "As k grows the lower bound tends to 0, so large groups permit almost no negative intra-class correlation - a useful sanity anchor.",
       "For $k = 2$ the bound is -1, which is why the pairwise case looks like an ordinary correlation and can mislead you into choosing option (b)."
@@ -233,8 +233,8 @@
       "The intra-class correlation coefficient measures the similarity of members within the same group, here families of k members each.",
       "It can be written as $\\rho$ = (MS_between - MS_within)/(MS_between + $(k-1)$ MS_within) in the analysis-of-variance formulation.",
       "Its maximum is +1, attained when all members of a family are identical so that the within-family variation vanishes.",
-      "Its minimum is not -1: because the k deviations from the family mean must sum to zero, the members cannot be arbitrarily negatively correlated. Setting the between-family mean square to zero gives the smallest value -$1/(k-1)$.",
-      "Hence the range is -$1/(k - 1)$ to 1.",
+      "Its minimum is not -1: because the k deviations from the family mean must sum to zero, the members cannot be arbitrarily negatively correlated. Setting the between-family mean square to zero gives the smallest value $-1/(k-1)$.",
+      "Hence the range is $-1/(k - 1)$ to 1.",
       "Option (d) is correct."
     ]
   },
@@ -262,12 +262,12 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$SE = 3/\\sqrt{100} = 0.3$, so the margin is $2(0.3) = 0.6$ and the interval is 64 +- $0.6 = (63.4, 64.6)$.",
+    "shortcut": "$\\operatorname{SE} = 3/\\sqrt{100} = 0.3$, so the margin is $2(0.3) = 0.6$ and the interval is $64 \\pm 0.6 = (63.4, 64.6)$.",
     "tips": [
-      "$SE = \\sigma/\\sqrt{n} = 3/10 = 0.3$. The population SD is given, so the normal multiplier applies rather than t.",
+      "$\\operatorname{SE} = \\sigma/\\sqrt{n} = 3/10 = 0.3$. The population $\\operatorname{SD}$ is given, so the normal multiplier applies rather than t.",
       "The question supplies $Z = 2$ rather than 1.96 to keep the arithmetic exact - use the value given, not the one you remember.",
       "The interval must be SYMMETRIC about the sample mean 64: check that $(63.4 + 64.6)/2 = 64$. Option (b) fails this test at once.",
-      "Interval width $2 \\times 2 \\times 0.3 = 1.2$ inches; options (c) and (d) are three and five times too wide, corresponding to forgetting the sqrt(n)."
+      "Interval width $2 \\times 2 \\times 0.3 = 1.2$ inches; options (c) and (d) are three and five times too wide, corresponding to forgetting the $\\sqrt{n}$."
     ],
     "solution": [
       "The sample mean is $\\bar{x} = 64$ inches, the population standard deviation is $\\sigma = 3$ inches and the sample size is $n = 100$.",
@@ -282,19 +282,19 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$p = 380/800 = 0.475$, so $E^{2}$ = pq/$n = 0.475(0.525)/800 = 0.00031172$. Multiplying by 1,280,000 gives 399.",
+    "shortcut": "$p = 380/800 = 0.475$, so $E^{2} = pq/n = 0.475(0.525)/800 = 0.00031172$. Multiplying by 1,280,000 gives 399.",
     "tips": [
-      "SE of a proportion: $E = \\sqrt{pq/n}$, so $E^{2}$ = pq/n - the question asks for $E^{2}$, which spares you the square root entirely.",
-      "pq = $0.475 \\times 0.525 = 0.249375$. Note that pq is always close to 0.25 when p is near $1/2, a$ useful check.",
-      "1,280,$000/800 = 1600$, so the answer is $1600 \\times 0.249375 = 399$ - factor the constant before multiplying.",
-      "The tidy result 399 confirms the arithmetic; a value near 400 is exactly what 1600 x 0.25 would give."
+      "SE of a proportion: $E = \\sqrt{pq/n}$, so $E^{2} = pq/n$ - the question asks for $E^{2}$, which spares you the square root entirely.",
+      "$pq = 0.475 \\times 0.525 = 0.249375$. Note that pq is always close to 0.25 when p is near $1/2, a$ useful check.",
+      "$1,280,000/800 = 1600$, so the answer is $1600 \\times 0.249375 = 399$ - factor the constant before multiplying.",
+      "The tidy result 399 confirms the arithmetic; a value near 400 is exactly what $1600 \\times 0.25$ would give."
     ],
     "solution": [
       "The sample proportion of singers is $p = 380/800 = 0.475$, so $q = 1 - p = 0.525$, with $n = 800$.",
-      "The standard error of a proportion is $E = \\sqrt{pq/n}$, hence $E^{2}$ = pq/n.",
-      "pq = $0.475 \\times 0.525 = 0.249375$.",
+      "The standard error of a proportion is $E = \\sqrt{pq/n}$, hence $E^{2} = pq/n$.",
+      "$pq = 0.475 \\times 0.525 = 0.249375$.",
       "$E^{2} = 0.249375/800 = 0.000311719$.",
-      "1,280,$000 E^{2} = 1$,280,$000 \\times 0.000311719 = 1600 \\times 0.249375 = 399.0$.",
+      "$1,280,000 E^{2} = 1,280,000 \\times 0.000311719 = 1600 \\times 0.249375 = 399.0$.",
       "Option (b) is correct."
     ]
   },
@@ -302,19 +302,19 @@
     "answer": 0,
     "confidence": "high",
     "type": "Factual",
-    "shortcut": "In normal sampling, $(n-1)s^{2}/\\sigma^{2}$ follows $a \\chi^{2}$ distribution with n - 1 degrees of freedom.",
+    "shortcut": "In normal sampling, $(n-1)s^{2}/\\sigma^{2}$ follows a $\\chi^{2}$ distribution with n - 1 degrees of freedom.",
     "tips": [
       "One degree of freedom is lost because the sample mean is estimated from the data - hence n - 1, not n.",
       "The statistic is non-negative and skewed, so it cannot be a t distribution; t variables range over the whole line. That kills options (c) and (d) immediately.",
-      "Companion facts: $\\bar{x}$ and $s^{2}$ are INDEPENDENT in normal sampling, and their combination gives the t statistic $(\\bar{x} - \\mu)/(s/sqrt n) \\sim t$ with n-1 d.f.",
+      "Companion facts: $\\bar{x}$ and $s^{2}$ are INDEPENDENT in normal sampling, and their combination gives the t statistic $(\\bar{x} - \\mu)/(s/\\sqrt{n}) \\sim t$ with $n-1$ d.f.",
       "This result underpins both the confidence interval for $\\sigma^{2}$ and the $\\chi^{2}$ test of a specified variance."
     ],
     "solution": [
-      "Let $x_{1}$, ..., $x_{n}$ be a random sample from $N(\\mu, \\sigma^{2})$, with sample mean $\\bar{x}$ and sample variance $s^{2}$ = sum $(x_{i} - \\bar{x})^{2}/(n-1)$.",
-      "Then sum $(x_{i} - \\bar{x})^{2} = (n-1)s^{2}$, and dividing by $\\sigma^{2}$ standardises the sum of squared deviations.",
-      "Because the deviations are taken about the ESTIMATED mean $\\bar{x}$ rather than the true mean mu, one linear constraint is imposed and one degree of freedom is lost.",
-      "The classical result is that $(n-1)s^{2}/\\sigma^{2}$ follows $a \\chi^{2}$ distribution with n - 1 degrees of freedom, independently of $\\bar{x}$.",
-      "The statistic is non-negative and skewed, consistent with $a \\chi^{2}$ rather than a t distribution.",
+      "Let $x_{1}, \\ldots, x_{n}$ be a random sample from $N(\\mu, \\sigma^{2})$, with sample mean $\\bar{x}$ and sample variance $s^{2} = \\sum (x_{i} - \\bar{x})^{2}/(n-1)$.",
+      "Then $\\sum (x_{i} - \\bar{x})^{2} = (n-1)s^{2}$, and dividing by $\\sigma^{2}$ standardises the sum of squared deviations.",
+      "Because the deviations are taken about the ESTIMATED mean $\\bar{x}$ rather than the true mean $\\mu$, one linear constraint is imposed and one degree of freedom is lost.",
+      "The classical result is that $(n-1)s^{2}/\\sigma^{2}$ follows a $\\chi^{2}$ distribution with n - 1 degrees of freedom, independently of $\\bar{x}$.",
+      "The statistic is non-negative and skewed, consistent with a $\\chi^{2}$ rather than a t distribution.",
       "Option (a) is correct."
     ]
   },
@@ -322,19 +322,19 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Choose the model with the smaller residual sum of squares: E2 has 13.36 against $E_{1}'s 15.48$. Then Y = -$36 + 48 + 2 = 14$ at $X = 6$.",
+    "shortcut": "Choose the model with the smaller residual sum of squares: $E_{2}$ has 13.36 against $E_{1}$'s 15.48. Then $Y = -36 + 48 + 2 = 14$ at $X = 6$.",
     "tips": [
       "Least squares selects the model with the SMALLER sum of squared residuals - that single comparison decides which equation to substitute into.",
-      "Compute both predictions to see the trap: E1 gives $3(6) + 5 = 23$ and E2 gives 14. Both appear as options, so the model choice is the whole question.",
-      "Substitute carefully into the quadratic: -$(6^{2}) + 8(6) + 2$ = -$36 + 48 + 2 = 14$. The leading minus sign applies to the square.",
+      "Compute both predictions to see the trap: $E_{1}$ gives $3(6) + 5 = 23$ and $E_{2}$ gives 14. Both appear as options, so the model choice is the whole question.",
+      "Substitute carefully into the quadratic: $-(6^{2}) + 8(6) + 2 = -36 + 48 + 2 = 14$. The leading minus sign applies to the square.",
       "The quadratic's advantage here is modest (13.36 against 15.48), a reminder that a better fit is not automatically a better model - but the question asks only for the least-squares choice."
     ],
     "solution": [
       "Two least-squares models are offered, with their residual sums of squares stated.",
-      "Model E1: $Y = 3X + 5$ with sum of squared residuals 15.48.",
-      "Model E2: Y = -$X^{2} + 8X + 2$ with sum of squared residuals 13.36.",
-      "The principle of least squares prefers the model with the smaller residual sum of squares, so E2 is selected since $13.36 < 15.48$.",
-      "Substituting $X = 6$ into E2: Y = -$(36) + 8(6) + 2$ = -$36 + 48 + 2 = 14$, option (b). (Model E1 would have given 23, which is offered as option (d).)"
+      "Model $E_{1}$: $Y = 3X + 5$ with sum of squared residuals 15.48.",
+      "Model $E_{2}$: $Y = -X^{2} + 8X + 2$ with sum of squared residuals 13.36.",
+      "The principle of least squares prefers the model with the smaller residual sum of squares, so $E_{2}$ is selected since $13.36 < 15.48$.",
+      "Substituting $X = 6$ into $E_{2}$: $Y = -(36) + 8(6) + 2 = -36 + 48 + 2 = 14$, option (b). (Model $E_{1}$ would have given 23, which is offered as option (d).)"
     ]
   },
   "2023-Q38": {
@@ -345,15 +345,15 @@
     "tips": [
       "$\\sigma$ in the denominator gives $N(0,1)$; s in the denominator gives t with n - 1 degrees of freedom. Check which symbol appears before choosing.",
       "For a NORMAL parent the result is exact for every n, not merely asymptotic - no appeal to the CLT is needed.",
-      "$\\bar{x} \\sim N(\\mu, \\sigma^{2}/n)$, so subtracting mu and dividing by $\\sigma/\\sqrt{n}$ standardises it exactly.",
+      "$\\bar{x} \\sim N(\\mu, \\sigma^{2}/n)$, so subtracting $\\mu$ and dividing by $\\sigma/\\sqrt{n}$ standardises it exactly.",
       "The t distribution arises only because s is itself random; replacing $\\sigma$ by s adds variability and fattens the tails."
     ],
     "solution": [
-      "The sample comes from a normal population with mean $\\mu0$ and variance $\\sigma^{2}$, so the sample mean is exactly normal: $\\bar{X} \\sim N(\\mu0, \\sigma^{2}/n)$.",
-      "Subtracting the mean gives $\\bar{X} - \\mu0 \\sim N(0, \\sigma^{2}/n)$.",
+      "The sample comes from a normal population with mean $\\mu_{0}$ and variance $\\sigma^{2}$, so the sample mean is exactly normal: $\\bar{X} \\sim N(\\mu_{0}, \\sigma^{2}/n)$.",
+      "Subtracting the mean gives $\\bar{X} - \\mu_{0} \\sim N(0, \\sigma^{2}/n)$.",
       "Dividing by the standard deviation of $\\bar{X}$, namely $\\sigma/\\sqrt{n}$, standardises it.",
       "Since $\\sigma$ is the KNOWN population standard deviation and not a sample estimate, no additional randomness is introduced.",
-      "Hence $(\\bar{X} - \\mu0)/(\\sigma/\\sqrt{n}) \\sim N(0,1)$ exactly, for every sample size n.",
+      "Hence $(\\bar{X} - \\mu_{0})/(\\sigma/\\sqrt{n}) \\sim N(0,1)$ exactly, for every sample size n.",
       "Option (a) is correct."
     ]
   },
@@ -369,7 +369,7 @@
       "Under joint normality this zero covariance upgrades to full independence - which is exactly what the next part exploits."
     ],
     "solution": [
-      "For (X,Y) ~ BVN(0,0,1,1,$\\rho$) we have $\\operatorname{Var}(X) = \\operatorname{Var}(Y) = 1$ and $\\operatorname{Cov}(X,Y) = \\rho$.",
+      "For $(X,Y) \\sim \\text{BVN}(0,0,1,1,\\rho)$ we have $\\operatorname{Var}(X) = \\operatorname{Var}(Y) = 1$ and $\\operatorname{Cov}(X,Y) = \\rho$.",
       "By the bilinearity of covariance, $\\operatorname{Cov}\\!\\left(\\text{Y - rho X, X}\\right) = \\operatorname{Cov}(Y, X) - \\rho \\operatorname{Cov}(X, X)$.",
       "$\\operatorname{Cov}(X,X) = \\operatorname{Var}(X) = 1$.",
       "So the expression is $\\rho - \\rho(1) = 0$.",
@@ -389,10 +389,10 @@
       "Check $\\rho = 0$: $X^{2} + Y^{2} \\sim \\chi^{2}_{2}$ with MGF $(1-2t)^{-1}$, and option (c) duly reduces to that."
     ],
     "solution": [
-      "For (X,Y) ~ BVN(0,0,1,1,$\\rho$), the covariance matrix is $\\Sigma = [[1, \\rho],[\\rho, 1]]$ with inverse $\\Sigma^{-1} = (1/(1-\\rho^{2}))[[1, -\\rho],[-\\rho, 1]]$.",
+      "For $(X,Y) \\sim \\text{BVN}(0,0,1,1,\\rho)$, the covariance matrix is $\\Sigma = [[1, \\rho],[\\rho, 1]]$ with inverse $\\Sigma^{-1} = (1/(1-\\rho^{2}))[[1, -\\rho],[-\\rho, 1]]$.",
       "The standard quadratic-form result gives $Z' \\Sigma^{-1} Z \\sim \\chi^{2}$ with 2 degrees of freedom, where $Z = (X, Y)'$.",
       "Expanding, $Z' \\Sigma^{-1} Z = (X^{2} - 2 \\rho XY + Y^{2})/(1 - \\rho^{2})$.",
-      "Hence $W = X^{2} + Y^{2} - 2 \\rho$ XY = $(1 - \\rho^{2})$ times $a \\chi^{2}_{2}$ variable.",
+      "Hence $W = X^{2} + Y^{2} - 2 \\rho XY = (1 - \\rho^{2})$ times a $\\chi^{2}_{2}$ variable.",
       "The MGF of $\\chi^{2}_{2}$ is $(1 - 2t)^{-1}$, so for a constant multiple c the MGF is $(1 - 2ct)^{-1}$ with $c = 1 - \\rho^{2}$.",
       "Therefore $M(t) = [1 - 2(1 - \\rho^{2})t]^{-1} = (1 - 2t + 2 \\rho^{2} t)^{-1}$, option (c)."
     ]

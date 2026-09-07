@@ -11,7 +11,7 @@
       "Contrast with finite differences on an equally spaced table, where the third difference likewise consumes four consecutive tabulated values."
     ],
     "solution": [
-      "A divided difference of order k is defined recursively as $f[x_{0},...,xk] = (f[x_{1},...,xk] - f[x_{0},...,x(k-1)])/(xk - x_{0})$.",
+      "A divided difference of order k is defined recursively as $f[x_{0},\\ldots,x_{k}] = (f[x_{1},\\ldots,x_{k}] - f[x_{0},\\ldots,x(k-1)])/(x_{k} - x_{0})$.",
       "Each application of the recursion consumes one additional distinct argument.",
       "The zeroth divided difference $f[x_{0}]$ needs 1 argument, the first needs 2, the second needs 3.",
       "Hence the third divided difference $f[x_{0}, x_{1}, x_{2}, x_{3}]$ requires 4 distinct arguments.",
@@ -25,7 +25,7 @@
     "type": "Numerical",
     "shortcut": "The second divided difference of $x^{3}$ over nodes x, y, z is the complete homogeneous symmetric polynomial of degree 1, namely $x + y + z$.",
     "tips": [
-      "General rule: the kth divided difference of $t^{n}$ over nodes x0,...,xk is the complete homogeneous symmetric polynomial $h_{n-k}$ in those nodes.",
+      "General rule: the kth divided difference of $t^{n}$ over nodes $x_{0}$,$\\ldots$,$x_{k}$ is the complete homogeneous symmetric polynomial $h_{n-k}$ in those nodes.",
       "Here $n = 3$ and $k = 2$, so the result is $h_{1} = x + y + z$ - degree 1 in the nodes, which immediately rules out options (a) and (d).",
       "Verify directly: $f[x,y] = (x^{3} - y^{3})/(x - y) = x^{2} + xy + y^{2}$, and then $f[x,y,z] = (f[x,y] - f[y,z])/(x - z)$ simplifies to $x + y + z$.",
       "Symmetry check: a divided difference must be symmetric in its arguments, and $x + y + z$ plainly is."
@@ -47,11 +47,11 @@
     "tips": [
       "The fourth-difference coefficients 1, -4, 6, -4, 1 pair the OUTER terms and the INNER terms symmetrically - exactly matching the two sums supplied.",
       "Group before substituting: $[U(0) + U(4)] - 4[U(1) + U(3)] + 6U(2) = 0$. The question is designed so that the individual values are never needed.",
-      "Arithmetic: 72 - 168 = -96, so $6U(2) = 96$ and $U(2) = 16$.",
+      "Arithmetic: $72 - 168 = -96$, so $6U(2) = 96$ and $U(2) = 16$.",
       "Note the interval $h = 1$ is stated so that the plain fourth-difference relation applies with unit spacing."
     ],
     "solution": [
-      "U(x) is a polynomial of degree 3, so its fourth forward difference vanishes identically.",
+      "$U(x)$ is a polynomial of degree 3, so its fourth forward difference vanishes identically.",
       "With $h = 1, \\Delta^{4} U(0) = U(4) - 4U(3) + 6U(2) - 4U(1) + U(0) = 0$.",
       "Group the terms to match the given data: $[U(0) + U(4)] - 4[U(1) + U(3)] + 6U(2) = 0$.",
       "Substituting $U(0) + U(4) = 72$ and $U(1) + U(3) = 42$: $72 - 4(42) + 6U(2) = 0$.",
@@ -74,7 +74,7 @@
       "With interval of differencing $h, \\Delta \\arctan x = \\arctan(x + h) - \\arctan(x)$.",
       "Apply the tangent subtraction formula $\\tan(A - B) = (\\tan A - \\tan B)/(1 + \\tan A \\tan B)$ with $\\tan A = x + h$ and $\\tan B = x$.",
       "$\\tan(\\Delta \\arctan x) = [(x + h) - x]/[1 + x(x + h)] = h/(1 + x^{2} + hx)$.",
-      "Multiplying by the given factor: $(x^{2} + hx + 1)$ . $h/(1 + x^{2} + hx)$.",
+      "Multiplying by the given factor: $(x^{2} + hx + 1) \\cdot h/(1 + x^{2} + hx)$.",
       "The bracket cancels exactly, leaving h.",
       "Option (b) is correct."
     ]
@@ -83,20 +83,20 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Only $x^{5}$ and $x^{4}$ reach degree 4. Since $x^{5} = x^{5} - 10x^{4}$ + ... and $x^{4} = x^{4}$ - ..., the coefficient is $2(-10) + (-5)(1)$ = -25.",
+    "shortcut": "Only $x^{5}$ and $x^{4}$ reach degree 4. Since $x^{5} = x^{5} - 10x^{4} + \\ldots$ and $x^{4} = x^{4} - \\ldots$, the coefficient is $2(-10) + (-5)(1) = -25$.",
     "tips": [
       "Terms of degree below 4 cannot contribute, so only the first two summands matter - discard $x^{3}, x^{2}$ and the constant immediately.",
       "Expansion coefficients are Stirling numbers of the first kind: $x^{5} = x^{5} - 10x^{4} + 35x^{3} - 50x^{2} + 24x$, so the $x^{4}$ coefficient is -10.",
-      "The sub-leading coefficient of $x^{r}$ is always -(1 + 2 + ... + $(r-1)$) = -$r(r-1)/2$. For $r = 5$ that is -10 and for $r = 4$ it is -6 - a quick way to generate them.",
-      "$x^{4}$ contributes its LEADING coefficient 1 to $x^{4}$, multiplied by -5, giving -5. Adding $2(-10)$ = -20 gives -25."
+      "The sub-leading coefficient of $x^{r}$ is always $-(1 + 2 + \\ldots + (r-1)) = -r(r-1)/2$. For $r = 5$ that is -10 and for $r = 4$ it is -6 - a quick way to generate them.",
+      "$x^{4}$ contributes its LEADING coefficient 1 to $x^{4}$, multiplied by -5, giving -5. Adding $2(-10) = -20$ gives -25."
     ],
     "solution": [
-      "The factorial polynomial $x^{r} = x(x-1)$...$(x-r+1)$ has degree r, so only $x^{5}$ and $x^{4}$ can contribute to the coefficient of $x^{4}$.",
+      "The factorial polynomial $x^{r} = x(x-1)\\ldots(x-r+1)$ has degree r, so only $x^{5}$ and $x^{4}$ can contribute to the coefficient of $x^{4}$.",
       "Expanding, $x^{5} = x(x-1)(x-2)(x-3)(x-4) = x^{5} - 10x^{4} + 35x^{3} - 50x^{2} + 24x$, so its $x^{4}$ coefficient is -10.",
-      "(The sub-leading coefficient of $x^{r}$ is -$r(r-1)/2$, which for $r = 5$ gives -10.)",
+      "(The sub-leading coefficient of $x^{r}$ is $-r(r-1)/2$, which for $r = 5$ gives -10.)",
       "$x^{4} = x(x-1)(x-2)(x-3) = x^{4} - 6x^{3} + 11x^{2} - 6x$, so its $x^{4}$ coefficient is 1.",
       "The terms $3x^{3}, 2x^{2}$ and the constant have degree at most 3 and contribute nothing.",
-      "Coefficient of $x^{4} = 2(-10) + (-5)(1)$ = -20 - 5 = -25, option (d)."
+      "Coefficient of $x^{4} = 2(-10) + (-5)(1) = -20 - 5 = -25$, option (d)."
     ]
   },
   "2023-Q46": {
@@ -111,7 +111,7 @@
       "Analogue for quadratic interpolation: the bound involves the third difference, with a different constant - the pattern is 'one order higher than the formula retains'."
     ],
     "solution": [
-      "Newton's forward formula is $y_{p} = y_{0} + p \\Delta y_{0} + [p(p-1)/2!] \\Delta^{2} y_{0}$ + ...",
+      "Newton's forward formula is $y_{p} = y_{0} + p \\Delta y_{0} + [p(p-1)/2!] \\Delta^{2} y_{0} + \\ldots$",
       "Linear interpolation keeps only the first two terms, so the leading error is the first neglected term, $[p(p-1)/2] \\Delta^{2} y_{0}$.",
       "For interpolation between two consecutive tabulated points, p lies in $[0,1]$.",
       "The function |$p(p-1)$| attains its maximum on $[0,1]$ at $p = 1/2$, where it equals $1/4$.",
@@ -125,8 +125,8 @@
     "type": "Numerical",
     "shortcut": "By Euler-Maclaurin the composite trapezoidal error is $(h^{2}/12)[f'(1) - f'(0)]$. With $f' = 3x^{2}$ this is $(h^{2}/12)(3 - 0) = h^{2}/4$.",
     "tips": [
-      "Euler-Maclaurin form: $T - I = (h^{2}/12)[f'(b) - f'(a)] + O(h^{4})$. It gives an EXPLICIT error rather than one containing an unknown point xi.",
-      "The alternative form -$(b-a)h^{2} f''(\\xi)/12$ is awkward here because $f'' = 6x$ varies over the interval; the derivative-difference form avoids the ambiguity.",
+      "Euler-Maclaurin form: $T - I = (h^{2}/12)[f'(b) - f'(a)] + O(h^{4})$. It gives an EXPLICIT error rather than one containing an unknown point $\\xi$.",
+      "The alternative form $-(b-a)h^{2} f''(\\xi)/12$ is awkward here because $f'' = 6x$ varies over the interval; the derivative-difference form avoids the ambiguity.",
       "$f'(x) = 3x^{2}$, so $f'(1) - f'(0) = 3$. Then $3h^{2}/12 = h^{2}/4$.",
       "The trapezoidal rule OVERESTIMATES for a convex integrand, and $x^{3}$ is convex on $[0,1]$, so a positive error of $h^{2}/4$ is exactly what is expected."
     ],
@@ -163,7 +163,7 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The product has degree $1 + 2 + 3 = 6$ with leading coefficient $(-1)(-3)(-4)$ = -12. So $\\Delta^{6}$ = -$12 \\times 6!$ = -12 x 720 = -8640.",
+    "shortcut": "The product has degree $1 + 2 + 3 = 6$ with leading coefficient $(-1)(-3)(-4) = -12$. So $\\Delta^{6} = -12 \\times 6! = -12 \\times 720 = -8640$.",
     "tips": [
       "Identity: for $h = 1, \\Delta^{n}$ applied to a degree-n polynomial gives (leading coefficient) $x n!$, and everything of lower degree is annihilated.",
       "Add the degrees of the factors $(1 + 2 + 3 = 6)$ rather than multiplying anything out.",
@@ -172,10 +172,10 @@
     ],
     "solution": [
       "The factors have degrees 1, 2 and 3, so the product is a polynomial of degree $1 + 2 + 3 = 6$.",
-      "Its leading term comes from multiplying the highest-degree term of each factor: $(-x)(-3x^{2})(-4x^{3})$ = -$12 x^{6}$.",
+      "Its leading term comes from multiplying the highest-degree term of each factor: $(-x)(-3x^{2})(-4x^{3}) = -12 x^{6}$.",
       "So the leading coefficient is -12.",
       "For an interval of differencing $1, \\Delta^{n}$ annihilates every term of degree below n and maps the leading term $a_{n} x^{n}$ to $a_{n} n$!.",
-      "Hence $\\Delta^{6}$ of the product = -$12 \\times 6!$ = -12 x 720 = -8640, option (d)."
+      "Hence $\\Delta^{6}$ of the product = $-12 \\times 6! = -12 \\times 720 = -8640$, option (d)."
     ]
   },
   "2023-Q50": {
@@ -202,17 +202,17 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Third differences are constant at 0.5, so the data are cubic. Newton forward from u3 with p = -1 gives $4.8 - 3.6 + 2.5 - 0.5 = 3.2$.",
+    "shortcut": "Third differences are constant at 0.5, so the data are cubic. Newton forward from $u_{3}$ with $p = -1$ gives $4.8 - 3.6 + 2.5 - 0.5 = 3.2$.",
     "tips": [
-      "Extrapolating one step BACKWARDS means p = -1 in Newton's forward formula - the formula still works, with alternating-sign coefficients.",
-      "For p = -1 the coefficients are p = -$1, p(p-1)/2$ = +1 and $p(p-1)(p-2)/6$ = -1, so the terms simply alternate in sign.",
+      "Extrapolating one step BACKWARDS means $p = -1$ in Newton's forward formula - the formula still works, with alternating-sign coefficients.",
+      "For $p = -1$ the coefficients are $p = -1, p(p-1)/2 = +1$ and $p(p-1)(p-2)/6 = -1$, so the terms simply alternate in sign.",
       "Build the table first: $\\Delta = 3.6, 6.1, 9.1, 12.6, 16.6, 21.1$; $\\Delta^{2} = 2.5, 3.0, 3.5, 4.0, 4.5$; $\\Delta^{3} = 0.5$ throughout. The constant third difference confirms a cubic and truncates the series.",
-      "Alternatively extend the difference table leftwards: the new second difference is $2.5 - 0.5 = 2.0$ and the new first difference is $3.6 - 2.0 = 1.6$, so $u_{2} = 4.8 - 1.6 = 3.2 - a$ useful cross-check."
+      "Alternatively extend the difference table leftwards: the new second difference is $2.5 - 0.5 = 2.0$ and the new first difference is $3.6 - 2.0 = 1.6$, so $u_{2} = 4.8 - 1.6 = 3.2$ - a useful cross-check."
     ],
     "solution": [
-      "The values u3 to u9 are 4.8, 8.4, 14.5, 23.6, 36.2, 52.8, 73.9 with $h = 1$.",
+      "The values $u_{3}$ to $u_{9}$ are 4.8, 8.4, 14.5, 23.6, 36.2, 52.8, 73.9 with $h = 1$.",
       "First differences: 3.6, 6.1, 9.1, 12.6, 16.6, 21.1. Second differences: 2.5, 3.0, 3.5, 4.0, 4.5. Third differences: 0.5, 0.5, 0.5, 0.5 - constant, so the data are cubic and fourth differences vanish.",
-      "Taking $x_{0} = 3$, the value $x = 2$ corresponds to $p = (2 - 3)/1$ = -1.",
+      "Taking $x_{0} = 3$, the value $x = 2$ corresponds to $p = (2 - 3)/1 = -1$.",
       "Newton's forward formula: $u_{2} = 4.8 + (-1)(3.6) + [(-1)(-2)/2](2.5) + [(-1)(-2)(-3)/6](0.5) = 4.8 - 3.6 + (1)(2.5) + (-1)(0.5) = 4.8 - 3.6 + 2.5 - 0.5 = 3.2$. (Check by extending the table backwards: new $\\Delta^{2} = 2.0$, new $\\Delta = 1.6$, so $u_{2} = 4.8 - 1.6 = 3.2$.) Option (b) is correct."
     ]
   },
@@ -220,19 +220,19 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Backward differences at u9 are 21.1, 4.5, 0.5. With p = -0.5 the formula gives $73.9 - 10.55 - 0.5625 - 0.03125 = 62.76$.",
+    "shortcut": "Backward differences at $u_{9}$ are 21.1, 4.5, 0.5. With $p = -0.5$ the formula gives $73.9 - 10.55 - 0.5625 - 0.03125 = 62.76$.",
     "tips": [
-      "Newton BACKWARD formula: $u = u_{n} + p$ nabla $u_{n} + [p(p+1)/2!]$ nabla^2 $u_{n} + [p(p+1)(p+2)/3!]$ nabla^3 $u_{n}$, with $p = (x - x_{n})/h$ negative.",
+      "Newton BACKWARD formula: $u = u_{n} + p \\nabla u_{n} + [p(p+1)/2!] \\nabla^{2} u_{n} + [p(p+1)(p+2)/3!] \\nabla^{3} u_{n}$, with $p = (x - x_{n})/h$ negative.",
       "Note the PLUS signs inside the coefficients $(p+1, p+2)$, in contrast to the minus signs of the forward formula - mixing them is the classic error.",
       "The backward differences at the last point are simply the last entries of each difference column: 21.1, 4.5 and 0.5.",
       "Bracket the answer: $u_{8} = 52.8$ and $u_{9} = 73.9$, so a value near the midpoint but below it (the function is convex) is expected - 62.76 fits, while options (c) and (d) are too high."
     ],
     "solution": [
-      "Take $x_{n} = 9$ with $h = 1$. The backward differences at u9 are nabla $u_{9} = 73.9 - 52.8 = 21.1$, nabla^2 $u_{9} = 21.1 - 16.6 = 4.5$ and nabla^3 $u_{9} = 4.5 - 4.0 = 0.5$, with higher differences zero.",
-      "For $x = 8.5, p = (8.5 - 9)/1$ = -0.5.",
-      "Newton's backward formula: $u = u_{9} + p$ nabla $u_{9} + [p(p+1)/2]$ nabla^2 $u_{9} + [p(p+1)(p+2)/6]$ nabla^3 u9.",
-      "Term 1: $(-0.5)(21.1)$ = -10.55. Term 2: $[(-0.5)(0.5)/2](4.5) = (-0.125)(4.5)$ = -0.5625.",
-      "Term 3: $[(-0.5)(0.5)(1.5)/6](0.5) = (-0.0625)(0.5)$ = -0.03125.",
+      "Take $x_{n} = 9$ with $h = 1$. The backward differences at $u_{9}$ are $\\nabla u_{9} = 73.9 - 52.8 = 21.1, \\nabla^{2} u_{9} = 21.1 - 16.6 = 4.5$ and $\\nabla^{3} u_{9} = 4.5 - 4.0 = 0.5$, with higher differences zero.",
+      "For $x = 8.5, p = (8.5 - 9)/1 = -0.5$.",
+      "Newton's backward formula: $u = u_{9} + p \\nabla u_{9} + [p(p+1)/2] \\nabla^{2} u_{9} + [p(p+1)(p+2)/6] \\nabla^{3} u_{9}$.",
+      "Term 1: $(-0.5)(21.1) = -10.55$. Term 2: $[(-0.5)(0.5)/2](4.5) = (-0.125)(4.5) = -0.5625$.",
+      "Term 3: $[(-0.5)(0.5)(1.5)/6](0.5) = (-0.0625)(0.5) = -0.03125$.",
       "$u(8.5) = 73.9 - 10.55 - 0.5625 - 0.03125 = 62.756$, i.e. about 62.75, option (a)."
     ]
   },
@@ -242,13 +242,13 @@
     "type": "Conceptual",
     "shortcut": "The nodes are arbitrary and need not be equally spaced. Only the trapezoidal rule works on unequal intervals; both Simpson's rules require equal spacing.",
     "tips": [
-      "Read the node specification: $t_{0} < t_{1}$ < ... < $t_{n}$ with no equal-spacing assumption. That single observation decides the question.",
+      "Read the node specification: $t_{0} < t_{1} < \\ldots < t_{n}$ with no equal-spacing assumption. That single observation decides the question.",
       "The composite trapezoidal rule sums $(t_{i+1} - t_{i})(f_{i} + f_{i+1})/2$ over the panels, so each panel may have its own width.",
       "Simpson's rules are derived from equally spaced parabolic and cubic fits, so they break down when the spacing varies.",
       "Option (d) is wrong because the trapezoidal rule always applies - a quadrature formula does exist for any set of distinct ordered nodes."
     ],
     "solution": [
-      "The nodes satisfy only $0 = t_{0} < t_{1}$ < ... < $t_{n} = 1$; nothing is said about equal spacing.",
+      "The nodes satisfy only $0 = t_{0} < t_{1} < \\ldots < t_{n} = 1$; nothing is said about equal spacing.",
       "Simpson's one-third rule requires an even number of EQUALLY spaced subintervals, and Simpson's three-eighth rule requires the number of equally spaced subintervals to be a multiple of 3. Neither can be applied to arbitrary nodes.",
       "The trapezoidal rule, by contrast, approximates the curve by a straight line on each panel independently, so it accommodates panels of different widths.",
       "The composite formula is the $\\sum (t_{i+1} - t_{i})[f(t_{i}) + f(t_{i+1})]/2$.",
@@ -262,13 +262,13 @@
     "type": "Conceptual",
     "shortcut": "On $[0, 0.5]$ there are 5 equal strips of width 0.1 - an odd number, so only the trapezoidal rule fits; on $[0.5, 1]$ there are 10 equal strips of width 0.05, an even number, so Simpson's one-third rule applies there.",
     "tips": [
-      "Translate the data first: $t/10$ for $t = 0$..5 gives $x = 0, 0.1$, ..., 0.5, and $t/20$ for $t = 11$..20 gives $x = 0.55, 0.60$, ..., 1.00, with $x = 0.5$ shared.",
+      "Translate the data first: $t/10$ for $t = 0$..5 gives $x = 0, 0.1, \\ldots, 0.5$, and $t/20$ for $t = 11$..20 gives $x = 0.55, 0.60, \\ldots, 1.00$, with $x = 0.5$ shared.",
       "Count the panels in each half: 5 on the left (odd, so Simpson's $1/3$ is barred) and 10 on the right (even, so it is allowed).",
       "The trapezoidal rule works everywhere, so the honest answer is 'trapezoidal, or trapezoidal on the left combined with Simpson's $1/3$ on the right'.",
       "Simpson's three-eighth rule would need panel counts divisible by 3, which neither half provides - so option (c) is out."
     ],
     "solution": [
-      "The supplied abscissae are $x = t/10$ for $t = 0$,...,5, i.e. 0, 0.1, 0.2, 0.3, 0.4, 0.5, and $x = t/20$ for $t = 11$,...,20, i.e. 0.55, 0.60, ..., 1.00.",
+      "The supplied abscissae are $x = t/10$ for $t = 0$,$\\ldots$,5, i.e. 0, 0.1, 0.2, 0.3, 0.4, 0.5, and $x = t/20$ for $t = 11$,$\\ldots$,20, i.e. $0.55, 0.60, \\ldots, 1.00$.",
       "On $[0, 0.5]$ the spacing is uniform at 0.1, giving 5 subintervals - an ODD number, so Simpson's one-third rule cannot be applied to the whole half.",
       "On $[0.5, 1]$ the spacing is uniform at 0.05, giving 10 subintervals - an EVEN number, so Simpson's one-third rule applies there.",
       "Neither half has a panel count divisible by 3, so Simpson's three-eighth rule is unavailable.",
@@ -282,17 +282,17 @@
     "type": "Theoretical",
     "shortcut": "Statement 1 carries a spurious factor 2 (the correct identity is $x^{-r} = 1/(x+rh)^{r}$), and statement 2 omits the sign $(-1)^{m}$ and mis-states the last factor. Both fail.",
     "tips": [
-      "Definition: $x^{-r} = 1/[(x+h)(x+2h)...(x+rh)]$, and $(x+rh)^{r}$ is exactly that product, so the correct identity has NO factor 2.",
-      "Difference rule for negative factorials: $\\Delta x^{-r}$ = -$r h x^{-r-1}$. Iterating m times gives $(-1)^{m} r(r+1)$...$(r+m-1) h^{m} x^{-r-m}$.",
+      "Definition: $x^{-r} = 1/[(x+h)(x+2h)\\ldots(x+rh)]$, and $(x+rh)^{r}$ is exactly that product, so the correct identity has NO factor 2.",
+      "Difference rule for negative factorials: $\\Delta x^{-r} = -r h x^{-r-1}$. Iterating m times gives $(-1)^{m} r(r+1)\\ldots(r+m-1) h^{m} x^{-r-m}$.",
       "Two defects in statement 2: the missing $(-1)^{m}$ and the product running to $(r+m)$ instead of $(r+m-1)$. Either alone makes it false.",
-      "Sanity check with $r = 1, m = 1$: $\\Delta x^{-1}$ = -$h x^{-2}$, whereas statement 2 would give $1(2) h x^{-2} = 2h x^{-2}$ - wrong in both sign and magnitude."
+      "Sanity check with $r = 1, m = 1$: $\\Delta x^{-1} = -h x^{-2}$, whereas statement 2 would give $1(2) h x^{-2} = 2h x^{-2}$ - wrong in both sign and magnitude."
     ],
     "solution": [
-      "The negative factorial function is defined by $x^{-r} = 1/[(x+h)(x+2h)...(x+rh)]$.",
-      "Now $(x + rh)^{r} = (x+rh)(x+rh-h)$...$(x+rh-(r-1)h) = (x+rh)(x+(r-1)h)$...$(x+h)$, which is exactly the same product.",
-      "Hence the correct identity is $x^{-r} = 1/(x+rh)^{r}$; statement $1's$ factor of 2 is spurious. FALSE.",
-      "For the difference, $\\Delta x^{-r} = 1/[(x+2h)...(x+(r+1)h)] - 1/[(x+h)...(x+rh)]$, and combining over the common denominator gives -$r h x^{-r-1}$.",
-      "Iterating m times yields $\\Delta^{m} x^{-r} = (-1)^{m} r(r+1)$...$(r+m-1) h^{m} x^{-r-m}$. Statement 2 omits the factor $(-1)^{m}$ and runs the product to $(r+m)$ rather than $(r+m-1)$. FALSE.",
+      "The negative factorial function is defined by $x^{-r} = 1/[(x+h)(x+2h)\\ldots(x+rh)]$.",
+      "Now $(x + rh)^{r} = (x+rh)(x+rh-h)\\ldots(x+rh-(r-1)h) = (x+rh)(x+(r-1)h)\\ldots(x+h)$, which is exactly the same product.",
+      "Hence the correct identity is $x^{-r} = 1/(x+rh)^{r}$; statement 1's factor of 2 is spurious. FALSE.",
+      "For the difference, $\\Delta x^{-r} = 1/[(x+2h)\\ldots(x+(r+1)h)] - 1/[(x+h)\\ldots(x+rh)]$, and combining over the common denominator gives $-r h x^{-r-1}$.",
+      "Iterating m times yields $\\Delta^{m} x^{-r} = (-1)^{m} r(r+1)\\ldots(r+m-1) h^{m} x^{-r-m}$. Statement 2 omits the factor $(-1)^{m}$ and runs the product to $(r+m)$ rather than $(r+m-1)$. FALSE.",
       "Neither statement is correct, option (d)."
     ]
   },
@@ -304,7 +304,7 @@
     "tips": [
       "The discrete product rule comes in two equivalent forms because the 'cross term' can be split either way - both are standard and both are correct.",
       "Expand each side explicitly: $u_{x}(v_{x+1} - v_{x}) + v_{x+1}(u_{x+1} - u_{x})$ telescopes to $u_{x+1}v_{x+1} - u_{x} v_{x}$.",
-      "The asymmetry is essential: in each form exactly ONE factor carries the shift x+1. A version with both unshifted would be wrong.",
+      "The asymmetry is essential: in each form exactly ONE factor carries the shift $x+1$. A version with both unshifted would be wrong.",
       "Numerical check with $u_{x} = x, v_{x} = x^{2}, x = 1$: $\\Delta(uv) = 8 - 1 = 7$; form 1 gives $1(3) + 4(1) = 7$; form 2 gives $1(1) + 2(3) = 7$. Both agree."
     ],
     "solution": [
@@ -318,38 +318,38 @@
     "answer": 3,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "Euler gives $y_{n+1} = (1 + \\lambda h) y_{n}$, so stability needs |$1 + \\lambda h$| < 1, i.e. -$2 < \\lambda h < 0$.",
+    "shortcut": "Euler gives $y_{n+1} = (1 + \\lambda h) y_{n}$, so stability needs $\\lvert 1 + \\lambda h\\rvert < 1$, i.e. $-2 < \\lambda h < 0$.",
     "tips": [
-      "Absolute stability means the numerical solution DECAYS, which requires the amplification factor to satisfy |$1 + \\lambda h$| < 1.",
-      "Solve the modulus inequality: -$1 < 1 + \\lambda h < 1$ gives -$2 < \\lambda h < 0$. The upper limit is 0, not 2.",
-      "Since $\\lambda < 0$ is given, $\\lambda h$ is automatically negative, so only the lower bound bites: $h < 2$/|$\\lambda$| - the practical step-size restriction.",
+      "Absolute stability means the numerical solution DECAYS, which requires the amplification factor to satisfy $\\lvert 1 + \\lambda h\\rvert < 1$.",
+      "Solve the modulus inequality: $-1 < 1 + \\lambda h < 1$ gives $-2 < \\lambda h < 0$. The upper limit is 0, not 2.",
+      "Since $\\lambda < 0$ is given, $\\lambda h$ is automatically negative, so only the lower bound bites: $h < 2/\\lvert \\lambda\\rvert$ - the practical step-size restriction.",
       "Options (a) and (b) admit positive $\\lambda h$, which would make the numerical solution grow while the true solution decays - impossible for a stable method."
     ],
     "solution": [
       "Applying Euler's method to $y' = \\lambda y$ gives $y_{n+1} = y_{n} + h \\lambda y_{n} = (1 + \\lambda h) y_{n}$.",
-      "Hence $y_{n} = (1 + \\lambda h)^{n} y_{0}$, and the numerical solution decays to zero - matching the true solution $e^{\\lambda x}$ for $\\lambda < 0$ - precisely when |$1 + \\lambda h$| < 1.",
-      "The inequality |$1 + \\lambda h$| < 1 means -$1 < 1 + \\lambda h < 1$.",
-      "Subtracting 1 throughout: -$2 < \\lambda h < 0$.",
-      "Since $\\lambda < 0$ and $h > 0, \\lambda h$ is automatically negative, so the binding condition is $\\lambda h$ > -2, i.e. $h < 2$/|$\\lambda$|.",
-      "Hence the region of absolute stability is -$2 < \\lambda h < 0$, option (d)."
+      "Hence $y_{n} = (1 + \\lambda h)^{n} y_{0}$, and the numerical solution decays to zero - matching the true solution $e^{\\lambda x}$ for $\\lambda < 0$ - precisely when $\\lvert 1 + \\lambda h\\rvert < 1$.",
+      "The inequality $\\lvert 1 + \\lambda h\\rvert < 1$ means $-1 < 1 + \\lambda h < 1$.",
+      "Subtracting 1 throughout: $-2 < \\lambda h < 0$.",
+      "Since $\\lambda < 0$ and $h > 0, \\lambda h$ is automatically negative, so the binding condition is $\\lambda h > -2$, i.e. $h < 2/\\lvert \\lambda\\rvert$.",
+      "Hence the region of absolute stability is $-2 < \\lambda h < 0$, option (d)."
     ]
   },
   "2023-Q58": {
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "For a linear problem $y' = \\lambda y$, RK4 reproduces the Taylor series to fourth order: $y_{1} = 1 + (\\lambda h) + (\\lambda h)^{2}/2 + (\\lambda h)^{3}/6 + (\\lambda h)^{4}/24$. With $\\lambda$ = -1 the signs alternate.",
+    "shortcut": "For a linear problem $y' = \\lambda y$, RK4 reproduces the Taylor series to fourth order: $y_{1} = 1 + (\\lambda h) + (\\lambda h)^{2}/2 + (\\lambda h)^{3}/6 + (\\lambda h)^{4}/24$. With $\\lambda = -1$ the signs alternate.",
     "tips": [
       "RK4 applied to $y' = \\lambda y$ gives exactly the first five terms of $e^{\\lambda h}$ - that is what 'fourth order' means for a linear test problem.",
-      "With $\\lambda$ = -1 the powers of $(-h)$ alternate in sign: $1 - h + h^{2}/2 - h^{3}/6 + h^{4}/24$. Option (d), with all signs negative, cannot be a truncated exponential.",
-      "Compare with the exact solution $e^{-h} = 1 - h + h^{2}/2 - h^{3}/6 + h^{4}/24$ - ...; the method matches through $h^{4}$ and errs at $h^{5}$, confirming the local error $O(h^{5})$.",
+      "With $\\lambda = -1$ the powers of $(-h)$ alternate in sign: $1 - h + h^{2}/2 - h^{3}/6 + h^{4}/24$. Option (d), with all signs negative, cannot be a truncated exponential.",
+      "Compare with the exact solution $e^{-h} = 1 - h + h^{2}/2 - h^{3}/6 + h^{4}/24 - \\ldots$; the method matches through $h^{4}$ and errs at $h^{5}$, confirming the local error $O(h^{5})$.",
       "Option (a) is the second-order $(RK2)$ result and option (b) is the series for $e^{+h}$ - both are one step away from the correct answer."
     ],
     "solution": [
       "For the linear test equation $y' = \\lambda y$, the four RK4 increments are $k_{1} = h \\lambda y_{0}, k_{2} = h \\lambda(y_{0} + k_{1}/2), k_{3} = h \\lambda(y_{0} + k_{2}/2), k_{4} = h \\lambda(y_{0} + k_{3})$.",
       "Substituting and collecting, $y_{1} = y_{0}[1 + (\\lambda h) + (\\lambda h)^{2}/2 + (\\lambda h)^{3}/6 + (\\lambda h)^{4}/24]$.",
       "This is exactly the Taylor polynomial of $e^{\\lambda h}$ truncated after the $h^{4}$ term, which is why the method is of fourth order.",
-      "Here $\\lambda$ = -1 and $y_{0} = 1$, so $\\lambda h$ = -h.",
+      "Here $\\lambda = -1$ and $y_{0} = 1$, so $\\lambda h = -h$.",
       "$y_{1} = 1 - h + h^{2}/2 - h^{3}/6 + h^{4}/24$.",
       "Option (c) is correct."
     ]
@@ -362,7 +362,7 @@
     "tips": [
       "The order of the first CONSTANT difference row is the degree of the polynomial. Stop differencing the moment a row repeats.",
       "You need only three equal entries in a row to be confident; here 6, 6, 6 settles it and the fourth differences are 0.",
-      "Same data as 2018 Q41 and 2022 Q65 - this series has now appeared in three papers, so the difference table is worth knowing by heart.",
+      "Same data as $2018 Q_{41}$ and $2022 Q_{65}$ - this series has now appeared in three papers, so the difference table is worth knowing by heart.",
       "The underlying polynomial is $x(x+2)(x+3) = x^{3} + 5x^{2} + 6x$, whose degree 3 matches."
     ],
     "solution": [
@@ -383,13 +383,13 @@
       "The constant term is $f(0)$, so extend the difference table one step BACKWARDS from $f(1) = 12$ rather than solving for all four coefficients.",
       "Working backwards: the second difference before 22 is $22 - 6 = 16$, the first difference before 28 is $28 - 16 = 12$, so $f(0) = 12 - 12 = 0$.",
       "The polynomial factorises as $x(x+2)(x+3)$, which makes the zero constant term obvious and reproduces $1(3)(4) = 12$ at $x = 1$.",
-      "Cross-check with 2022 Q65, where the same data identified $f(x) = x^{3} + 5x^{2} + 6x$ among four options - consistent with a constant term of 0."
+      "Cross-check with $2022 Q_{65}$, where the same data identified $f(x) = x^{3} + 5x^{2} + 6x$ among four options - consistent with a constant term of 0."
     ],
     "solution": [
-      "From the previous part the data 12, 40, 90, 168, 280, 432 at $x = 1, 2, 3$, ... come from a cubic, with third difference 6 and hence leading coefficient $6/3! = 1$.",
+      "From the previous part the data 12, 40, 90, 168, 280, 432 at $x = 1, 2, 3, \\ldots$ come from a cubic, with third difference 6 and hence leading coefficient $6/3! = 1$.",
       "The constant term of f is $f(0)$, which can be found by extending the difference table one step to the left.",
       "The second differences are 22, 28, 34, 40 with common difference 6, so the entry before 22 is 16.",
-      "The first differences are 28, 50, 78, ... so the entry before 28 is $28 - 16 = 12$.",
+      "The first differences are $28, 50, 78, \\ldots$ so the entry before 28 is $28 - 16 = 12$.",
       "Therefore $f(0) = f(1) - 12 = 12 - 12 = 0$, and indeed $f(x) = x^{3} + 5x^{2} + 6x = x(x+2)(x+3)$ reproduces every tabulated value.",
       "The constant term is 0, option (a)."
     ]

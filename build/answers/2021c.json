@@ -8,13 +8,13 @@
       "Newton's FORWARD formula is the special case of the divided-difference formula when the nodes are equally spaced, not the other way round - so option (a) reverses the containment.",
       "Option (b) is the exact opposite of the truth: uniform spacing is a permitted special case, not a prohibition.",
       "Option (d) describes INVERSE interpolation, where x and f are deliberately interchanged; that is a separate technique, not a property of the formula itself.",
-      "For equally spaced nodes the link is $f[x_{0},...,xn] = \\Delta^{n} y_{0}/(n! h^{n})$ - worth memorising as the bridge between the two families."
+      "For equally spaced nodes the link is $f[x_{0},\\ldots,x_{n}] = \\Delta^{n} y_{0}/(n! h^{n})$ - worth memorising as the bridge between the two families."
     ],
     "solution": [
-      "Newton's divided-difference formula is $f(x) = f[x_{0}] + (x-x_{0})f[x_{0},x_{1}] + (x-x_{0})(x-x_{1})f[x_{0},x_{1},x_{2}]$ + ...",
+      "Newton's divided-difference formula is $f(x) = f[x_{0}] + (x-x_{0})f[x_{0},x_{1}] + (x-x_{0})(x-x_{1})f[x_{0},x_{1},x_{2}] + \\ldots$",
       "Each divided difference is formed by dividing by the actual difference of the arguments, e.g. $f[x_{0},x_{1}] = (f(x_{1})-f(x_{0}))/(x_{1}-x_{0})$, so no assumption of equal spacing is made.",
       "It therefore applies to arbitrary distinct nodes, uniformly spaced or not.",
-      "When the nodes happen to be equally spaced with step h, the formula reduces to Newton's forward difference formula via $f[x_{0},...,xn] = \\Delta^{n} y_{0}/(n! h^{n})$ - so the forward formula is the special case, not the general one.",
+      "When the nodes happen to be equally spaced with step h, the formula reduces to Newton's forward difference formula via $f[x_{0},\\ldots,x_{n}] = \\Delta^{n} y_{0}/(n! h^{n})$ - so the forward formula is the special case, not the general one.",
       "Interchanging the roles of argument and entry is the technique of inverse interpolation, a different procedure.",
       "Hence the correct statement is that it applies whether or not the arguments are uniformly spaced, option (c)."
     ]
@@ -23,9 +23,9 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$k_{1} = 0.1, k_{2} = 0.11, k_{3} = 0.1105, k_{4} = 0.12105$. Then $y = 1 + (k_{1} + 2k2 + 2k3 + k_{4})/6 = 1 + 0.66205/6 = 1.1103$.",
+    "shortcut": "$k_{1} = 0.1, k_{2} = 0.11, k_{3} = 0.1105, k_{4} = 0.12105$. Then $y = 1 + (k_{1} + 2k_{2} + 2k_{3} + k_{4})/6 = 1 + 0.66205/6 = 1.1103$.",
     "tips": [
-      "RK4 recipe: $k_{1} = h f(x_{0},y_{0})$; $k_{2} = h f(x_{0}+h/2, y_{0}+k_{1}/2)$; $k_{3} = h f(x_{0}+h/2, y_{0}+k_{2}/2)$; $k_{4} = h f(x_{0}+h, y_{0}+k_{3})$; then $y_{1} = y_{0} + (k_{1} + 2k2 + 2k3 + k_{4})/6$.",
+      "RK4 recipe: $k_{1} = h f(x_{0},y_{0})$; $k_{2} = h f(x_{0}+h/2, y_{0}+k_{1}/2)$; $k_{3} = h f(x_{0}+h/2, y_{0}+k_{2}/2)$; $k_{4} = h f(x_{0}+h, y_{0}+k_{3})$; then $y_{1} = y_{0} + (k_{1} + 2k_{2} + 2k_{3} + k_{4})/6$.",
       "Write the four k values in a column and keep five decimals - the options differ in the second decimal, so a single rounding slip is survivable but sloppiness is not.",
       "The k values should be close to one another for a smooth problem (0.100, 0.110, 0.1105, 0.121 here); a wildly different k signals an arithmetic error.",
       "Exact solution $y = 2e^{x} - x - 1$ gives $y(0.1) = 1.110342$, matching RK4 to six decimals - a striking illustration of fourth-order accuracy."
@@ -43,18 +43,18 @@
     "answer": 2,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "Forward and backward differences of the same order are related by $\\Delta^{n} y_{k}$ = nabla^n $y_{k+n}$. With $n = 3$ and $k = 2, \\Delta^{3} y_{2}$ = nabla^3 $y_{5}$.",
+    "shortcut": "Forward and backward differences of the same order are related by $\\Delta^{n} y_{k} = \\nabla^{n} y_{k+n}$. With $n = 3$ and $k = 2, \\Delta^{3} y_{2} = \\nabla^{3} y_{5}$.",
     "tips": [
-      "Memorise $\\Delta^{n} y_{k}$ = nabla^n $y_{k+n}$: the same number sits in the difference table, read forward from $y_{k}$ or backward from $y_{k+n}$.",
+      "Memorise $\\Delta^{n} y_{k} = \\nabla^{n} y_{k+n}$: the same number sits in the difference table, read forward from $y_{k}$ or backward from $y_{k+n}$.",
       "Both expand to $y_{5} - 3y_{4} + 3y_{3} - y_{2}$; writing out the four terms once makes the identity obvious.",
       "Index check: a third difference starting at index 2 must reach index 5, so any answer must involve $y_{5}$ - which immediately narrows the options.",
-      "Operator proof: $\\Delta = E - 1$ and nabla = $1 - E^{-1} = (E-1)E^{-1} = \\Delta E^{-1}$, so nabla^n = $\\Delta^{n} E^{-n}$ and nabla^n $y_{k+n} = \\Delta^{n} y_{k}$."
+      "Operator proof: $\\Delta = E - 1$ and $\\nabla = 1 - E^{-1} = (E-1)E^{-1} = \\Delta E^{-1}$, so $\\nabla^{n} = \\Delta^{n} E^{-n}$ and $\\nabla^{n} y_{k+n} = \\Delta^{n} y_{k}$."
     ],
     "solution": [
       "Expand the forward difference: $\\Delta^{3} y_{2} = y_{5} - 3y_{4} + 3y_{3} - y_{2}$.",
-      "Expand the backward difference: nabla^3 $y_{5} = y_{5} - 3y_{4} + 3y_{3} - y_{2}$.",
-      "The two expansions are identical, so $\\Delta^{3} y_{2}$ = nabla^3 $y_{5}$.",
-      "In operator form, nabla = $1 - E^{-1} = (E - 1)E^{-1} = \\Delta E^{-1}$, hence nabla^3 = $\\Delta^{3} E^{-3}$ and nabla^3 $y_{5} = \\Delta^{3} y_{2}$.",
+      "Expand the backward difference: $\\nabla^{3} y_{5} = y_{5} - 3y_{4} + 3y_{3} - y_{2}$.",
+      "The two expansions are identical, so $\\Delta^{3} y_{2} = \\nabla^{3} y_{5}$.",
+      "In operator form, $\\nabla = 1 - E^{-1} = (E - 1)E^{-1} = \\Delta E^{-1}$, hence $\\nabla^{3} = \\Delta^{3} E^{-3}$ and $\\nabla^{3} y_{5} = \\Delta^{3} y_{2}$.",
       "Options (a), (b) and (d) equate a third difference with a function value or a lower-order difference, which cannot hold in general.",
       "Hence option (c) is correct."
     ]
@@ -68,7 +68,7 @@
       "n + 1 points determine a polynomial of degree at most n, so four points can never give degree 4 - option (a) is impossible on principle.",
       "Compute the top divided difference to confirm the degree is not lower: a non-zero value means the leading coefficient is non-zero.",
       "Divided-difference ladder here: 1, 9, 45; then 4, 9; then 1. The final 1 is the leading coefficient of the cubic.",
-      "Quick check: the data 2, 3, 12, 147 at 0, 1, 2, 5 fit $f(x) = x^{3}$ + ... - the rapid growth to 147 at $x = 5$ already suggests a cubic rather than a quadratic."
+      "Quick check: the data 2, 3, 12, 147 at 0, 1, 2, 5 fit $f(x) = x^{3} + \\ldots$ - the rapid growth to 147 at $x = 5$ already suggests a cubic rather than a quadratic."
     ],
     "solution": [
       "With four data points $(0,2), (1,3), (2,12), (5,147)$, the interpolating polynomial has degree at most 3.",
@@ -94,7 +94,7 @@
       "Simpson's three-eighth rule is derived by replacing the integrand over each group of THREE consecutive subintervals by the cubic through the four corresponding points.",
       "Each cubic arc therefore consumes exactly three subintervals.",
       "For the whole interval to be covered by complete groups, the total number of subintervals n must be divisible by 3.",
-      "The composite weight pattern 1, 3, 3, 2, 3, 3, 2, ..., 3, 3, 1 closes correctly only under this condition.",
+      "The composite weight pattern $1, 3, 3, 2, 3, 3, 2, \\ldots, 3, 3, 1$ closes correctly only under this condition.",
       "Hence n must be a multiple of 3, option (b)."
     ]
   },
@@ -104,7 +104,7 @@
     "type": "Factual",
     "shortcut": "All three are the standard selection rules: forward formula near the start, Bessel (a central formula) near the middle, Lagrange for unequal intervals.",
     "tips": [
-      "Position map for equally spaced tables: Newton forward at the START, Newton backward at the END, Stirling near the MIDDLE for |p| < 0.25, Bessel near the middle for p around 0.5.",
+      "Position map for equally spaced tables: Newton forward at the START, Newton backward at the END, Stirling near the MIDDLE for $\\lvert p\\rvert < 0.25$, Bessel near the middle for p around 0.5.",
       "Bessel's formula uses the mean of two central lines and is most accurate when the interpolation point lies midway between two tabulated values.",
       "Lagrange's formula makes no spacing assumption at all, which is exactly why it is the standard choice for unequal intervals.",
       "When all three statements are textbook selection rules for different situations, 'all of them' is the natural key."
@@ -124,7 +124,7 @@
     "shortcut": "RK4 is a fourth-order method, meaning GLOBAL error $O(h^{4})$; the LOCAL truncation error is one power higher, $O(h^{5})$.",
     "tips": [
       "Local versus global: a method of order p has local truncation error $O(h^{p+1})$ and global error $O(h^{p})$. The one-power gap arises because errors accumulate over about $1/h$ steps.",
-      "The question says LOCAL, so the answer must carry $h^{5}$ - option $(a)'s h^{4}$ is the global error, the intended trap.",
+      "The question says LOCAL, so the answer must carry $h^{5}$ - option (a)'$s h^{4}$ is the global error, the intended trap.",
       "Comparison table: Euler is order 1 (local $h^{2}$), RK2 order 2 (local $h^{3}$), RK4 order 4 (local $h^{5}$).",
       "Practical consequence: halving h reduces RK4's global error by a factor of about 16, which is why it remains the workhorse single-step method."
     ],
@@ -140,7 +140,7 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Second differences are constant at 2, so the polynomial is quadratic. Newton forward from x0 = -1 gives $p^{2} - 3p + 4$ with $p = x + 1$, i.e. $x^{2} - x + 2$.",
+    "shortcut": "Second differences are constant at 2, so the polynomial is quadratic. Newton forward from $x_{0} = -1$ gives $p^{2} - 3p + 4$ with $p = x + 1$, i.e. $x^{2} - x + 2$.",
     "tips": [
       "Build the difference table first: values 4, 2, 2, 4 give first differences -2, 0, 2 and second differences 2, 2 - constant, so the degree is 2 and the third difference vanishes.",
       "Faster route: test the options. At $x = 0$ the value must be 2, which options (a) and (c) satisfy; then $x = 1$ must give 2, which only (c) does.",
@@ -148,31 +148,31 @@
       "Leading coefficient check: the second difference is $2 = 2a h^{2}$ with $h = 1$, so $a = 1$ - eliminating options (a) and (d), which have $a = 2$."
     ],
     "solution": [
-      "Tabulate: at x = -1, 0, 1, 2 the values are 4, 2, 2, 4 with $h = 1$.",
+      "Tabulate: at $x = -1, 0, 1, 2$ the values are 4, 2, 2, 4 with $h = 1$.",
       "First differences: -2, 0, 2. Second differences: 2, 2. Third difference: 0, so the data lie on a quadratic.",
-      "Newton's forward formula from x0 = -1 with $p = (x + 1)/1$: $f = 4 + p(-2) + [p(p-1)/2](2) = 4 - 2p + p(p-1)$.",
+      "Newton's forward formula from $x_{0} = -1$ with $p = (x + 1)/1$: $f = 4 + p(-2) + [p(p-1)/2](2) = 4 - 2p + p(p-1)$.",
       "Simplifying: $4 - 2p + p^{2} - p = p^{2} - 3p + 4$.",
       "Substituting $p = x + 1$: $(x+1)^{2} - 3(x+1) + 4 = x^{2} + 2x + 1 - 3x - 3 + 4 = x^{2} - x + 2$.",
-      "Check: at x = -$1, 1 + 1 + 2 = 4$; at $x = 0, 2$; at $x = 1, 2$; at $x = 2, 4$. All match. Option (c) is correct."
+      "Check: at $x = -1, 1 + 1 + 2 = 4$; at $x = 0, 2$; at $x = 1, 2$; at $x = 2, 4$. All match. Option (c) is correct."
     ]
   },
   "2021-Q49": {
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "For $f(x) = 1/x$ the nth divided difference is $(-1)^{n}$/(product of the nodes). With $n = 2$ the sign is positive, giving 1/(abc).",
+    "shortcut": "For $f(x) = 1/x$ the nth divided difference is $(-1)^{n}$/(product of the nodes). With $n = 2$ the sign is positive, giving $1/(abc)$.",
     "tips": [
-      "Reciprocal rule: $f[x_{0}, x_{1}, ..., xn] = (-1)^{n}$/(x0 x1 ... xn) when $f(x) = 1/x$. One formula covers every order.",
-      "Order 2 is EVEN, so the sign is +. Compare with 2018 Q53, where order 3 gave the negative -1/(abcd).",
-      "Symmetry test: a divided difference must be symmetric in its arguments, which 1/(abc) is. Options (b) and (c) are symmetric too, so use the derivation, not just symmetry.",
-      "Derive the first step yourself: $f[a,b] = (1/a - 1/b)/(a-b)$ = -$1/(ab)$, then $f[a,b,c] = (-1/(ab) + 1/(bc))/(a-c) = 1$/(abc)."
+      "Reciprocal rule: $f[x_{0}, x_{1}, \\ldots, x_{n}] = (-1)^{n}/(x_{0} x_{1} \\ldots x_{n})$ when $f(x) = 1/x$. One formula covers every order.",
+      "Order 2 is EVEN, so the sign is +. Compare with $2018 Q_{53}$, where order 3 gave the negative $-1/(abcd)$.",
+      "Symmetry test: a divided difference must be symmetric in its arguments, which $1/(abc)$ is. Options (b) and (c) are symmetric too, so use the derivation, not just symmetry.",
+      "Derive the first step yourself: $f[a,b] = (1/a - 1/b)/(a-b) = -1/(ab)$, then $f[a,b,c] = (-1/(ab) + 1/(bc))/(a-c) = 1/(abc)$."
     ],
     "solution": [
-      "First divided difference: $f[a,b] = (1/a - 1/b)/(a - b) = [(b - a)/(ab)]/(a - b)$ = -$1/(ab)$.",
-      "Similarly f[b,c] = -$1/(bc)$.",
+      "First divided difference: $f[a,b] = (1/a - 1/b)/(a - b) = [(b - a)/(ab)]/(a - b) = -1/(ab)$.",
+      "Similarly $f[b,c] = -1/(bc)$.",
       "Second divided difference: $f[a,b,c] = (f[a,b] - f[b,c])/(a - c) = (-1/(ab) + 1/(bc))/(a - c)$.",
-      "Combine the numerator over the common denominator abc: $(-c + a)$/(abc) = $(a - c)$/(abc).",
-      "Dividing by $(a - c)$ gives $f[a,b,c] = 1$/(abc).",
+      "Combine the numerator over the common denominator abc: $(-c + a)/(abc) = (a - c)/(abc)$.",
+      "Dividing by $(a - c)$ gives $f[a,b,c] = 1/(abc)$.",
       "This matches the general rule $(-1)^{n}$/(product of nodes) with $n = 2$. Option (d) is correct."
     ]
   },
@@ -283,7 +283,7 @@
     "tips": [
       "A real-time OS guarantees BOUNDED response times; a general-purpose OS optimises average throughput and fairness instead. That distinction is the whole question.",
       "Common RTOS names worth recognising: VxWorks, QNX, RTLinux, LynxOS, RTX, MTOS, FreeRTOS, pSOS.",
-      "Standard Linux is not an RTOS, although real-time VARIANTS exist (RTLinux, PREEMPT_RT) - the question refers to plain LINUX.",
+      "Standard Linux is not an RTOS, although real-time VARIANTS exist (RTLinux, $\\text{PREEMPT}_{RT}$) - the question refers to plain LINUX.",
       "Hard real time means a missed deadline is a system failure (avionics, pacemakers); soft real time merely degrades quality (video streaming)."
     ],
     "solution": [

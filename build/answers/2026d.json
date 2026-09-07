@@ -48,14 +48,14 @@
       "Decimal to octal: divide repeatedly by 8 and read the remainders bottom-up.",
       "Octal to hexadecimal always goes via binary: expand each octal digit to 3 bits, then regroup the bit string into blocks of 4 from the right.",
       "Octal $365 = 3(64) + 6(8) + 5 = 245$ in decimal, and $245 = 15(16) + 5 = F_{5}$ in hex - a fast independent check.",
-      "A leading zero $(0F5)$ does not change the value; treat it as cosmetic, not as an error in the statement."
+      "A leading zero $(0F_{5})$ does not change the value; treat it as cosmetic, not as an error in the statement."
     ],
     "solution": [
       "Statement I: convert 45796 to octal by repeated division by 8.",
       "$45796 = 8(5724) + 4$; $5724 = 8(715) + 4$; $715 = 8(89) + 3$; $89 = 8(11) + 1$; $11 = 8(1) + 3$; $1 = 8(0) + 1$.",
       "Reading the remainders from last to first gives $1 3 1 3 4 4 = 131344$ (octal). Statement I is correct.",
       "Statement II: expand octal 365 into binary, three bits per digit: $3 = 011, 6 = 110, 5 = 101$, giving 011110101.",
-      "Regroup from the right in blocks of four: 0 1111 0101, i.e. $1111 0101 = F_{5}$ in hexadecimal (written 0F5 with a leading zero).",
+      "Regroup from the right in blocks of four: 0 1111 0101, i.e. $1111 0101 = F_{5}$ in hexadecimal (written $0F_{5}$ with a leading zero).",
       "Check in decimal: octal $365 = 3(64) + 6(8) + 5 = 192 + 48 + 5 = 245$, and $245 = 15(16) + 5 = F_{5}$. Statement II is correct.",
       "Both statements hold.",
       "Hence option (c) is correct."
@@ -106,9 +106,9 @@
     "shortcut": "RISC architectures use a uniform 32-bit instruction word - that fixed width is what makes the pipeline simple. Answer (c).",
     "tips": [
       "Defining RISC features: fixed-length 32-bit instructions, load/store architecture, large uniform register file, few addressing modes, hardwired control, one instruction per cycle target.",
-      "CISC (for example x86) uses variable-length instructions, from 1 byte to 15 bytes - the direct contrast that the question is testing.",
+      "CISC (for example $x_{86}$) uses variable-length instructions, from 1 byte to 15 bytes - the direct contrast that the question is testing.",
       "Fixed 32-bit width means the fetch stage always knows where the next instruction starts, which is exactly what enables clean pipelining.",
-      "Classic RISC families - MIPS, SPARC, early ARM, RISC-$V's$ base RV32I - all use 32-bit instruction encodings."
+      "Classic RISC families - MIPS, SPARC, early ARM, RISC-V's base RV32I - all use 32-bit instruction encodings."
     ],
     "solution": [
       "A reduced instruction set computer (RISC) is designed around a simple, regular instruction encoding to support efficient pipelining.",
@@ -226,7 +226,7 @@
       "There is always a speed-versus-quality trade-off in any mechanical output device, so 'no effect' (option b) is implausible on principle."
     ],
     "solution": [
-      "A flatbed plotter draws by physically moving a pen across the paper under X-Y stepper-motor control.",
+      "A flatbed plotter draws by physically moving a pen across the paper under $X-Y$ stepper-motor control.",
       "If the commanded pen speed is raised too far, the mechanical system cannot track the intended path: the carriage overshoots on direction changes, vibration sets in, and the pen may skip or lift momentarily.",
       "In addition, ink flow is rate-limited, so at high speed the line becomes faint or broken.",
       "The result is distorted lines - wavering, overshot corners and uneven density.",
@@ -280,7 +280,7 @@
     "shortcut": "Transferring a block of data straight between a device and memory without the CPU handling each word is Direct Memory Access. Answer (b).",
     "tips": [
       "Three I/O techniques in increasing CPU independence: programmed I/O (CPU polls and moves every word) -> interrupt-driven I/O (device signals, CPU still moves the data) -> DMA (a controller moves the whole block).",
-      "The key phrase in the question is 'continuously ... without constant CPU intervention' - only DMA removes the CPU from the per-word data path.",
+      "The key phrase in the question is 'continuously $\\ldots$ without constant CPU intervention' - only DMA removes the CPU from the per-word data path.",
       "Under DMA the CPU is involved only twice: to program the DMA controller with source, destination and count, and to service the completion interrupt.",
       "Polling (option c) is the most CPU-intensive scheme of all, and interrupt-driven transfer (option d) still requires the CPU to execute the transfer instructions for each item."
     ],
@@ -335,10 +335,10 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Dots per side: $1200 \\times 8 = 9600$ and $1200 \\times 10 = 12000$. Product = $9600 \\times 12000 = 115$,200,$000 = 115.2$ million.",
+    "shortcut": "Dots per side: $1200 \\times 8 = 9600$ and $1200 \\times 10 = 12000$. Product = $9600 \\times 12000 = 115,200,000 = 115.2$ million.",
     "tips": [
-      "Resolution is dots per linear inch, so it must be applied to EACH dimension - the total is dpi^2 times the area.",
-      "Shortcut: total = $1200^{2} x (8 \\times 10) = 1$,440,$000 \\times 80 = 115$,200,000. Squaring the dpi first is the fastest route.",
+      "Resolution is dots per linear inch, so it must be applied to EACH dimension - the total is $\\text{dpi}^{2}$ times the area.",
+      "Shortcut: total = $1200^{2} \\times (8 \\times 10) = 1,440,000 \\times 80 = 115,200,000$. Squaring the dpi first is the fastest route.",
       "Multiplying 1200 by the area 80 just once gives 96,000, which inflates to the distractor 96 million - that is exactly the error the option list is testing.",
       "Order-of-magnitude check: a 1200 dpi page has over 100 million dots, which is why high-resolution printing demands so much memory."
     ],
@@ -346,8 +346,8 @@
       "The printer resolution is 1200 dots per inch in each direction.",
       "Along the 8-inch side: $1200 \\times 8 = 9600$ dots.",
       "Along the 10-inch side: $1200 \\times 10 = 12000$ dots.",
-      "Total dots = $9600 \\times 12000 = 115$,200,000.",
-      "Equivalently, total = $(1200)^{2} x (8 \\times 10) = 1$,440,$000 \\times 80 = 115$,200,$000 = 115.2$ million.",
+      "Total dots = $9600 \\times 12000 = 115,200,000$.",
+      "Equivalently, total = $(1200)^{2} \\times (8 \\times 10) = 1,440,000 \\times 80 = 115,200,000 = 115.2$ million.",
       "Hence option (c) is correct."
     ]
   },

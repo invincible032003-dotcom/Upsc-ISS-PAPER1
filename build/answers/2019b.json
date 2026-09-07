@@ -27,11 +27,11 @@
     "tips": [
       "Fix the trade-off in your mind: lowering $\\alpha$ raises $\\beta$, so a smaller type I error rate does NOT make the inference 'more correct' - it merely shifts which mistake you are more likely to make.",
       "Sample size drives POWER and the type II error rate; the nominal type I error rate is fixed at whatever $\\alpha$ the experimenter declares. That single sentence disposes of statement 3.",
-      "Type I error = rejecting a true H0 (a 'false positive'); type II error = failing to reject a false H0 (a 'false negative'). Label them before reading any statement.",
+      "Type I error = rejecting a true $H_{0}$ (a 'false positive'); type II error = failing to reject a false $H_{0}$ (a 'false negative'). Label them before reading any statement.",
       "Statement 1 is the standard verbal reading of $\\alpha = 0.05$ and can reasonably be argued to be true - note the ambiguity, choose the internally consistent option, and move on rather than losing time."
     ],
     "solution": [
-      "Statement 1: $\\alpha = 0.05$ means P(reject H0 | H0 true) = 0.05, i.e. in 5 of every 100 repetitions of the experiment a true null hypothesis would be rejected. This is the standard interpretation and is defensible as TRUE.",
+      "Statement 1: $\\alpha = 0.05$ means $\\operatorname{P}\\!\\left(\\text{reject H0}\\mid H0\\ \\text{true}\\right) = 0.05$, i.e. in 5 of every 100 repetitions of the experiment a true null hypothesis would be rejected. This is the standard interpretation and is defensible as TRUE.",
       "Statement 2: reducing $\\alpha$ increases the probability $\\beta$ of a type II error, so a smaller type I error rate does not make the inference more correct - it only trades one kind of error for the other. FALSE.",
       "Statement 3: the nominal type I error rate is fixed by the chosen significance level and does not change with n; it is the type II error rate (and hence the power) that is sensitive to sample size. FALSE.",
       "Statement 4: the experimenter selects the significance level before the test, so the type I error rate is entirely under their control. TRUE.",
@@ -43,18 +43,18 @@
     "answer": 3,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "For independent samples, variances ADD even for a difference: $\\operatorname{Var}\\!\\left(\\text{Xbar1 - Xbar2}\\right) = W_{1}^{2} + W_{2}^{2}$, so the standard error is $\\sqrt{W1^{2} + W_{2}^2}$.",
+    "shortcut": "For independent samples, variances ADD even for a difference: $\\operatorname{Var}\\!\\left(\\text{Xbar1 - Xbar2}\\right) = W_{1}^{2} + W_{2}^{2}$, so the standard error is $\\sqrt{W_{1}^{2} + W_{2}^2}$.",
     "tips": [
       "The minus sign is squared away: $\\operatorname{Var}(A - B) = \\operatorname{Var}(A) + \\operatorname{Var}(B)$ when A and B are independent. Standard errors never subtract.",
       "Standard errors combine in quadrature, like the sides of a right triangle - never linearly. That kills option (b) at once.",
       "Option (a) 0 would require the two sample means to be identical every time, and option (c) can even become imaginary in spirit (it needs an absolute value to stay real) - both are structurally impossible.",
-      "Same formula in raw terms: $SE = \\sqrt{s1^{2}/n_{1} + s_{2}^{2}/n2}$, which is exactly $\\sqrt{W1^{2} + W_{2}^2}$."
+      "Same formula in raw terms: $\\operatorname{SE} = \\sqrt{s_{1}^{2}/n_{1} + s_{2}^{2}/n2}$, which is exactly $\\sqrt{W_{1}^{2} + W_{2}^2}$."
     ],
     "solution": [
-      "W1 and W2 are the standard errors of Xbar1 and Xbar2, so $\\operatorname{Var}\\!\\left(\\text{Xbar1}\\right) = W_{1}^{2}$ and $\\operatorname{Var}\\!\\left(\\text{Xbar2}\\right) = W_{2}^{2}$.",
+      "$W_{1}$ and $W_{2}$ are the standard errors of Xbar1 and Xbar2, so $\\operatorname{Var}\\!\\left(\\text{Xbar1}\\right) = W_{1}^{2}$ and $\\operatorname{Var}\\!\\left(\\text{Xbar2}\\right) = W_{2}^{2}$.",
       "The two samples are independent, so $\\operatorname{Cov}\\!\\left(\\text{Xbar1, Xbar2}\\right) = 0$.",
-      "Hence $\\operatorname{Var}(T) = \\operatorname{Var}\\!\\left(\\text{Xbar1 - Xbar2}\\right) = \\operatorname{Var}\\!\\left(\\text{Xbar1}\\right) + \\operatorname{Var}\\!\\left(\\text{Xbar2}\\right) - 2Cov = W_{1}^{2} + W_{2}^{2}$.",
-      "The standard error is the square root of this variance: $\\operatorname{SE}(T) = \\sqrt{W1^{2} + W_{2}^2}$.",
+      "Hence $\\operatorname{Var}(T) = \\operatorname{Var}\\!\\left(\\text{Xbar1 - Xbar2}\\right) = \\operatorname{Var}\\!\\left(\\text{Xbar1}\\right) + \\operatorname{Var}\\!\\left(\\text{Xbar2}\\right) - 2\\operatorname{Cov} = W_{1}^{2} + W_{2}^{2}$.",
+      "The standard error is the square root of this variance: $\\operatorname{SE}(T) = \\sqrt{W_{1}^{2} + W_{2}^2}$.",
       "Hence option (d) is correct."
     ]
   },
@@ -62,18 +62,18 @@
     "answer": 1,
     "confidence": "medium",
     "type": "Numerical",
-    "issue": "AI-derived key with a caveat. Statements 1, 2 and 3 are exactly true: the pooled test statistic is $Z = 1.543$, which is below $Z(0.05) = 1.645$ but above $Z(0.10) = 1.28$, and the expected recoveries under H0 are $100 \\times 0.70 = 70$. Statement 4 asserts the standard error is 0.06, whereas the exact pooled value is 0.0648 (unpooled 0.0644); since no option contains all four statements, statement 4 is treated as the intended false one, giving (b). If instead 0.06 is accepted as a rounding, the printed option set has no fully correct choice.",
-    "shortcut": "Pooled $p = 140/200 = 0.70, SE = \\sqrt{0.7 \\times 0.3 \\times 0.02} = 0.0648, Z = 0.10/0.0648 = 1.54$. Below 1.645 but above 1.28: not significant at 5%, significant at 10%. Expected recoveries in A under $H_{0} = 70$.",
+    "issue": "AI-derived key with a caveat. Statements 1, 2 and 3 are exactly true: the pooled test statistic is $Z = 1.543$, which is below $Z(0.05) = 1.645$ but above $Z(0.10) = 1.28$, and the expected recoveries under $H_{0}$ are $100 \\times 0.70 = 70$. Statement 4 asserts the standard error is 0.06, whereas the exact pooled value is 0.0648 (unpooled 0.0644); since no option contains all four statements, statement 4 is treated as the intended false one, giving (b). If instead 0.06 is accepted as a rounding, the printed option set has no fully correct choice.",
+    "shortcut": "Pooled $p = 140/200 = 0.70, \\operatorname{SE} = \\sqrt{0.7 \\times 0.3 \\times 0.02} = 0.0648, Z = 0.10/0.0648 = 1.54$. Below 1.645 but above 1.28: not significant at 5%, significant at 10%. Expected recoveries in A under $H_{0} = 70$.",
     "tips": [
-      "For a difference of proportions under H0, pool first: $p_{hat} = (x_{1} + x_{2})/(n_{1} + n_{2}) = 140/200 = 0.70$, then $SE = sqrt$($p_{hat} q_{hat} (1/n_{1} + 1/n_{2})$).",
+      "For a difference of proportions under $H_{0}$, pool first: $\\hat{p} = (x_{1} + x_{2})/(n_{1} + n_{2}) = 140/200 = 0.70$, then $\\operatorname{SE} = \\sqrt{\\hat{p} \\hat{q} (1/n_{1} + 1/n_{2})}$.",
       "One Z value answers several statements at once - compute $Z = 1.54$ and then simply compare it with each supplied critical value.",
-      "'Results are due to chance' is the language of FAILING to reject H0; 'the serum is effective' is the language of rejecting it. The same Z can do both at different $\\alpha$ levels, which is exactly what this item exploits.",
-      "Expected frequency under H0 is n x pooled $p = 100 \\times 0.70 = 70 - a$ one-line calculation that confirms statement 3 without any testing."
+      "'Results are due to chance' is the language of FAILING to reject $H_{0}$; 'the serum is effective' is the language of rejecting it. The same Z can do both at different $\\alpha$ levels, which is exactly what this item exploits.",
+      "Expected frequency under $H_{0}$ is n x pooled $p = 100 \\times 0.70 = 70$ - a one-line calculation that confirms statement 3 without any testing."
     ],
     "solution": [
       "Sample proportions: $p_{1} = 75/100 = 0.75$ for group A and $p_{2} = 65/100 = 0.65$ for group B, with $n_{1} = n_{2} = 100$.",
-      "Under H0 (the serum has no effect) the pooled proportion is $p_{hat} = (75 + 65)/200 = 0.70$, so statement $3's$ expected recoveries in group A are $100 \\times 0.70 = 70$. TRUE.",
-      "Standard error of the difference: $SE = sqrt$($p_{hat}$($1 - p_{hat}$)$(1/n_{1} + 1/n_{2})$) = $\\sqrt{0.70 \\times 0.30 \\times 0.02} = \\sqrt{0.0042} = 0.0648$.",
+      "Under $H_{0}$ (the serum has no effect) the pooled proportion is $\\hat{p} = (75 + 65)/200 = 0.70$, so statement 3's expected recoveries in group A are $100 \\times 0.70 = 70$. TRUE.",
+      "Standard error of the difference: $\\operatorname{SE} = \\sqrt{\\hat{p}(1 - \\hat{p})(1/n_{1} + 1/n_{2})} = \\sqrt{0.70 \\times 0.30 \\times 0.02} = \\sqrt{0.0042} = 0.0648$.",
       "Test statistic: $Z = (0.75 - 0.65)/0.0648 = 0.10/0.0648 = 1.543$.",
       "Since $1.543 < Z(0.05) = 1.645, H_{0}$ is not rejected at the 5% level, so the difference can be attributed to chance - statement 1 is TRUE. Since $1.543 > Z(0.10) = 1.28, H_{0}$ is rejected at the 10% level, so the serum is effective at that level - statement 2 is TRUE.",
       "Statement 4 claims the standard error is 0.06, but the exact value is 0.0648 (0.0644 unpooled). Taking statement 4 as the inexact one, the correct set is 1, 2 and 3, option (b)."
@@ -91,27 +91,27 @@
       "Note T uses $n - 1 = 4$ degrees of freedom, not 5 - subtracting one for the estimated mean is where most marks are lost here."
     ],
     "solution": [
-      "For a random sample of size $n = 5$ from $N(0,1)$, the sample mean $\\bar{X}$ and the corrected sum of squares T = sum $(X_{i} - \\bar{X})^{2}$ are independent.",
-      "T follows $a \\chi^{2}$ distribution with $n - 1 = 4$ degrees of freedom, and $\\bar{X} \\sim N(0, 1/5)$.",
-      "By independence, $\\operatorname{E}(T^{2} \\bar{X}^{2}) = \\operatorname{E}(T^{2})$ . $\\operatorname{E}(\\bar{X}^{2})$.",
+      "For a random sample of size $n = 5$ from $N(0,1)$, the sample mean $\\bar{X}$ and the corrected sum of squares $T = \\sum (X_{i} - \\bar{X})^{2}$ are independent.",
+      "T follows a $\\chi^{2}$ distribution with $n - 1 = 4$ degrees of freedom, and $\\bar{X} \\sim N(0, 1/5)$.",
+      "By independence, $\\operatorname{E}(T^{2} \\bar{X}^{2}) = \\operatorname{E}(T^{2}) \\cdot \\operatorname{E}(\\bar{X}^{2})$.",
       "For $\\chi^{2}$ with 4 d.f.: $\\operatorname{E}(T) = 4$ and $\\operatorname{Var}(T) = 8$, so $\\operatorname{E}(T^{2}) = \\operatorname{Var}(T) + [\\operatorname{E}(T)]^{2} = 8 + 16 = 24$.",
-      "Since E($\\bar{X}$) = $0, \\operatorname{E}(\\bar{X}^{2}) = Var$($\\bar{X}$) = $1/5$.",
-      "Therefore $\\operatorname{E}(T^{2} \\bar{X}^{2}) = 24 x (1/5) = 4.8$, option (c)."
+      "Since $\\operatorname{E}(\\bar{X}) = 0, \\operatorname{E}(\\bar{X}^{2}) = \\operatorname{Var}(\\bar{X}) = 1/5$.",
+      "Therefore $\\operatorname{E}(T^{2} \\bar{X}^{2}) = 24 \\times (1/5) = 4.8$, option (c)."
     ]
   },
   "2019-Q26": {
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$C = sqrt(\\chi^{2}/(\\chi^{2} + N)) = \\sqrt{2.38/202.38} = \\sqrt{0.01176} = 0.1084$.",
+    "shortcut": "$C = \\sqrt{\\chi^{2}/(\\chi^{2} + N)} = \\sqrt{2.38/202.38} = \\sqrt{0.01176} = 0.1084$.",
     "tips": [
-      "Pearson's coefficient of contingency is $C = sqrt(\\chi^{2}/(\\chi^{2} + N))$. The N in the denominator is the TOTAL frequency, added to $\\chi^{2}$, not multiplied.",
+      "Pearson's coefficient of contingency is $C = \\sqrt{\\chi^{2}/(\\chi^{2} + N)}$. The N in the denominator is the TOTAL frequency, added to $\\chi^{2}$, not multiplied.",
       "C always lies in [0, 1) and can never reach 1 - a useful check that your value is small when $\\chi^{2}$ is small relative to N.",
       "Estimate before computing: $2.38/202$ is about 0.0118, whose square root is about 0.109. Options (b) and (c) differ only in the fourth decimal, so carry one extra digit: 0.011760 gives 0.10844, i.e. 0.1084.",
-      "Do not confuse C with Cramer's $V = sqrt(\\chi^{2}/(N \\min(r-1, c-1)))$, which would give a different value here."
+      "Do not confuse C with Cramer's $V = \\sqrt{\\chi^{2}/(N \\min(r-1, c-1))}$, which would give a different value here."
     ],
     "solution": [
-      "Pearson's coefficient of contingency is $C = sqrt(\\chi^{2}/(\\chi^{2} + N))$.",
+      "Pearson's coefficient of contingency is $C = \\sqrt{\\chi^{2}/(\\chi^{2} + N)}$.",
       "Substituting $\\chi^{2} = 2.38$ and $N = 200$: $\\chi^{2} + N = 2.38 + 200 = 202.38$.",
       "The ratio is $2.38/202.38 = 0.011760$.",
       "Taking the square root: $C = \\sqrt{0.011760} = 0.10844$.",
@@ -143,18 +143,18 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Standardise the numerator: $(X_{1}+X_{2})/sqrt2 \\sim N(0,1)$. The denominator squared is $\\chi^{2}_{3}$, so divide by sqrt3. Hence $C = sqrt3/sqrt2 = \\sqrt{3/2}$.",
+    "shortcut": "Standardise the numerator: $(X_{1}+X_{2})/\\sqrt{2} \\sim N(0,1)$. The denominator squared is $\\chi^{2}_{3}$, so divide by $\\sqrt{3}$. Hence $C = \\sqrt{3}/\\sqrt{2} = \\sqrt{3/2}$.",
     "tips": [
-      "$t = N(0,1) / sqrt$($\\chi$-square_v / v). Write that template first and then match the pieces of the given expression to it.",
-      "$\\operatorname{Var}(X_{1} + X_{2}) = 2$, so the numerator needs a sqrt2 divisor; three squared normals give $v = 3$, so the denominator needs a sqrt3 divisor. Combining gives $\\sqrt{3/2}$.",
-      "This item is an exact repeat of 2018 Q35 - a clear signal that the sampling-distribution constructions are recycled across papers.",
-      "Numerically $\\sqrt{3/2} = 1.2247$ whereas $sqrt3/2 = 0.866$; if you find a value below 1 you have divided instead of multiplied."
+      "$t = N(0,1) / \\sqrt{\\chi^{2}_{v} / v}$. Write that template first and then match the pieces of the given expression to it.",
+      "$\\operatorname{Var}(X_{1} + X_{2}) = 2$, so the numerator needs a $\\sqrt{2}$ divisor; three squared normals give $v = 3$, so the denominator needs a $\\sqrt{3}$ divisor. Combining gives $\\sqrt{3/2}$.",
+      "This item is an exact repeat of $2018 Q_{35}$ - a clear signal that the sampling-distribution constructions are recycled across papers.",
+      "Numerically $\\sqrt{3/2} = 1.2247$ whereas $\\sqrt{3}/2 = 0.866$; if you find a value below 1 you have divided instead of multiplied."
     ],
     "solution": [
-      "X1, ..., X5 are independent $N(0,1)$ variables.",
+      "$X_{1}, \\ldots, X_{5}$ are independent $N(0,1)$ variables.",
       "$X_{1} + X_{2} \\sim N(0, 2)$, so $Z = (X_{1} + X_{2})/\\sqrt{2}$ is standard normal.",
-      "$X_{3}^{2} + X_{4}^{2} + X_{5}^{2} \\sim \\chi^{2}$ with 3 degrees of freedom, independent of X1 + X2.",
-      "By definition $t = Z/sqrt$($\\chi$-square_3/3) = $[(X_{1}+X_{2})/sqrt2]$ . $\\sqrt{3}/\\sqrt{X3^{2}+X_{4}^{2}+X_{5}^2}$.",
+      "$X_{3}^{2} + X_{4}^{2} + X_{5}^{2} \\sim \\chi^{2}$ with 3 degrees of freedom, independent of $X_{1} + X_{2}$.",
+      "By definition $t = Z/\\sqrt{\\chi^{2}_{3}/3} = [(X_{1}+X_{2})/\\sqrt{2}] * \\sqrt{3}/\\sqrt{X_{3}^{2}+X_{4}^{2}+X_{5}^2}$.",
       "Rewriting: $t = \\sqrt{3/2} (X_{1}+X_{2})/(X_{3}^{2}+X_{4}^{2}+X_{5}^{2})^{1/2}$.",
       "Hence $C = \\sqrt{3/2}$, option (b)."
     ]
@@ -165,15 +165,15 @@
     "type": "Numerical",
     "shortcut": "$\\operatorname{E}(X) = n/(n-2)$ and, since $1/X \\sim F(n,m), \\operatorname{E}(1/X) = m/(m-2)$. Their product is mn/$((m-2)(n-2))$.",
     "tips": [
-      "The reciprocal of an F(m,n) variable is F(n,m) - this single property converts $\\operatorname{E}(1/X)$ into a mean formula with the degrees of freedom swapped.",
-      "The mean of F(m,n) uses only the DENOMINATOR degrees of freedom: $n/(n-2)$. Using $m/(m-2)$ for E(X) produces option (b), the mirror trap.",
+      "The reciprocal of an $F(m,n)$ variable is $F(n,m)$ - this single property converts $\\operatorname{E}(1/X)$ into a mean formula with the degrees of freedom swapped.",
+      "The mean of $F(m,n)$ uses only the DENOMINATOR degrees of freedom: $n/(n-2)$. Using $m/(m-2)$ for $\\operatorname{E}(X)$ produces option (b), the mirror trap.",
       "Jensen's inequality guarantees $\\operatorname{E}(X)\\operatorname{E}(1/X) \\ge 1$; only option (c) exceeds 1 for all admissible m, n greater than 2.",
-      "This item repeats 2018 Q36 verbatim - F-distribution moment identities are among the most reused facts in this paper."
+      "This item repeats $2018 Q_{36}$ verbatim - F-distribution moment identities are among the most reused facts in this paper."
     ],
     "solution": [
       "For $X \\sim F(m, n)$ with $n > 2$, the mean is $\\operatorname{E}(X) = n/(n - 2)$.",
       "Since $1/X \\sim F(n, m)$, the mean formula applied with the roles of m and n exchanged gives $\\operatorname{E}(1/X) = m/(m - 2)$, valid because $m > 2$.",
-      "Multiplying the two expectations: $\\operatorname{E}(X) \\operatorname{E}(1/X) = [n/(n-2)][m/(m-2)]$ = mn/$((m-2)(n-2))$.",
+      "Multiplying the two expectations: $\\operatorname{E}(X) \\operatorname{E}(1/X) = [n/(n-2)][m/(m-2)] = mn/((m-2)(n-2))$.",
       "Hence option (c) is correct."
     ]
   },
@@ -183,16 +183,16 @@
     "type": "Numerical",
     "shortcut": "$F(x) = x^{2}$, so $p = \\operatorname{P}(X > 1/2) = 1 - 1/4 = 3/4$. The median of 3 exceeds $1/2$ iff at least 2 observations do: $3(3/4)^{2}(1/4) + (3/4)^{3} = 27/64 + 27/64 = 27/32$.",
     "tips": [
-      "For an odd sample size $n = 2m+1$, the median exceeds c exactly when at least m+1 of the observations exceed c. Convert the order-statistic question into a binomial one.",
+      "For an odd sample size $n = 2m+1$, the median exceeds c exactly when at least $m+1$ of the observations exceed c. Convert the order-statistic question into a binomial one.",
       "Get the CDF first: for $f(x) = 2x$ on $(0,1), F(x) = x^{2}$, so $F(1/2) = 1/4$ and $p = 3/4$ - the single number that drives everything.",
-      "Both binomial terms equal $27/64$ here (since $3 x (9/16)(1/4) = 27/64$ and $(3/4)^{3} = 27/64$), so the total $54/64 = 27/32$ falls out neatly - a good sign the set-up is right.",
+      "Both binomial terms equal $27/64$ here (since $3 \\times (9/16)(1/4) = 27/64$ and $(3/4)^{3} = 27/64$), so the total $54/64 = 27/32$ falls out neatly - a good sign the set-up is right.",
       "Option $(a) 3/4$ is simply p itself, planted for candidates who forget the 'at least two out of three' step."
     ],
     "solution": [
       "The density is $f(x) = 2x$ on $(0,1)$, so the CDF is $F(x) = x^{2}$ for $0 < x < 1$.",
       "$\\operatorname{P}(X > 1/2) = 1 - F(1/2) = 1 - 1/4 = 3/4$; call this p.",
       "For a sample of size 3, the sample median is the second order statistic $X_{2}$. It exceeds $1/2$ exactly when at least 2 of the 3 observations exceed $1/2$.",
-      "Let B ~ Binomial($3, 3/4$) count the observations exceeding $1/2$. Then $\\operatorname{P}\\!\\left(\\text{median > 1/2}\\right) = \\operatorname{P}(B = 2) + \\operatorname{P}(B = 3)$.",
+      "Let $B \\sim \\text{Binomial}(3, 3/4)$ count the observations exceeding $1/2$. Then $\\operatorname{P}\\!\\left(\\text{median > 1/2}\\right) = \\operatorname{P}(B = 2) + \\operatorname{P}(B = 3)$.",
       "$\\operatorname{P}(B = 2) = \\binom{3}{2}(3/4)^{2}(1/4) = 3(9/16)(1/4) = 27/64$, and $\\operatorname{P}(B = 3) = (3/4)^{3} = 27/64$.",
       "Adding: $27/64 + 27/64 = 54/64 = 27/32$, option (c)."
     ]
@@ -201,20 +201,20 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$\\sin x = y$ has TWO roots in $(0, pi)$, namely x and pi - x, and they sum to pi. Since f is proportional to x, the two contributions add to 2 pi/pi^2, and dividing by |$\\cos x$| = $\\sqrt{1-y^2}$ gives $2/(pi \\sqrt{1-y^2})$.",
+    "shortcut": "$\\sin x = y$ has TWO roots in $(0, \\pi)$, namely x and $\\pi - x$, and they sum to $\\pi$. Since f is proportional to x, the two contributions add to $2 \\pi/\\pi^{2}$, and dividing by $\\lvert \\cos x\\rvert = \\sqrt{1-y^2}$ gives $2/(\\pi \\sqrt{1-y^2})$.",
     "tips": [
-      "Always count the pre-images before transforming: on $(0, pi)$ the sine is two-to-one, so the density of Y is a SUM of two terms.",
-      "The elegance here is that x1 + x2 = pi exactly, so the linear density $2x/pi^{2}$ sums to 2 pi/pi^2 = $2/pi$ independently of y - the answer needs no arcsine at all.",
-      "|$dy/dx$| = |$\\cos x$| = $\\sqrt{1 - \\sin^{2} x} = \\sqrt{1 - y^2}$ at BOTH roots, so the Jacobian factor is common and can be taken outside.",
-      "Validity check: the $\\int 2/(pi \\sqrt{1-y^2})$ over $(0,1)$ is $(2/pi)(pi/2) = 1$. Options (a), (b) and (c) fail this test."
+      "Always count the pre-images before transforming: on $(0, \\pi)$ the sine is two-to-one, so the density of Y is a SUM of two terms.",
+      "The elegance here is that $x_{1} + x_{2} = \\pi$ exactly, so the linear density $2x/\\pi^{2}$ sums to $2 \\pi/\\pi^{2} = 2/\\pi$ independently of y - the answer needs no arcsine at all.",
+      "$\\lvert dy/dx\\rvert = \\lvert \\cos x\\rvert = \\sqrt{1 - \\sin^{2} x} = \\sqrt{1 - y^2}$ at BOTH roots, so the Jacobian factor is common and can be taken outside.",
+      "Validity check: the $\\int 2/(\\pi \\sqrt{1-y^2})$ over $(0,1)$ is $(2/\\pi)(\\pi/2) = 1$. Options (a), (b) and (c) fail this test."
     ],
     "solution": [
-      "X has density $f(x) = 2x/pi^{2}$ on $(0, pi)$, and $Y = \\sin X$ takes values in $(0, 1)$.",
-      "For a given y in $(0,1)$, the equation $\\sin x = y$ has two solutions in $(0, pi)$: $x_{1} = \\arcsin(y)$ in $(0, pi/2)$ and x2 = pi - $\\arcsin(y)$ in $(pi/2, pi)$.",
-      "At both roots |$dy/dx$| = |$\\cos x$| = $\\sqrt{1 - y^2}$.",
+      "X has density $f(x) = 2x/\\pi^{2}$ on $(0, \\pi)$, and $Y = \\sin X$ takes values in $(0, 1)$.",
+      "For a given y in $(0,1)$, the equation $\\sin x = y$ has two solutions in $(0, \\pi)$: $x_{1} = \\arcsin(y)$ in $(0, \\pi/2)$ and $x_{2} = \\pi - \\arcsin(y)$ in $(\\pi/2, \\pi)$.",
+      "At both roots $\\lvert dy/dx\\rvert = \\lvert \\cos x\\rvert = \\sqrt{1 - y^2}$.",
       "By the change-of-variable formula for a two-to-one map, $g(y) = f(x_{1})/\\sqrt{1-y^2} + f(x_{2})/\\sqrt{1-y^2} = [f(x_{1}) + f(x_{2})]/\\sqrt{1-y^2}$.",
-      "Now $f(x_{1}) + f(x_{2}) = (2/pi^{2})(x_{1} + x_{2}) = (2/pi^{2})(pi) = 2/pi$, since x1 + x2 = pi.",
-      "Therefore $g(y) = 2/(pi \\sqrt{1 - y^2})$ for $0 < y < 1$, option (d). (Check: its integral over $(0,1)$ is $(2/pi)(pi/2) = 1$.)"
+      "Now $f(x_{1}) + f(x_{2}) = (2/\\pi^{2})(x_{1} + x_{2}) = (2/\\pi^{2})(\\pi) = 2/\\pi$, since $x_{1} + x_{2} = \\pi$.",
+      "Therefore $g(y) = 2/(\\pi \\sqrt{1 - y^2})$ for $0 < y < 1$, option (d). (Check: its integral over $(0,1)$ is $(2/\\pi)(\\pi/2) = 1$.)"
     ]
   },
   "2019-Q32": {
@@ -222,19 +222,19 @@
     "confidence": "medium",
     "type": "Theoretical",
     "issue": "SOURCE NOTE: sampling is without replacement, so the number of black balls is HYPERGEOMETRIC with exact variance $r(m/N)(n/N)(N-r)/(N-1)$ where $N = m+n$, i.e. mnr($m+n-r$)/$[(m+n)^{2} (m+n-1)]$. Option (b) as printed carries $(m+n+1)$ in place of $(m+n-1)$ in the denominator. Every other option is structurally wrong (wrong symmetry in m and n, or not even a variance), so (b) is the only defensible key; the sign in its last denominator factor is preserved exactly as printed and flagged here rather than silently corrected.",
-    "shortcut": "Without replacement means hypergeometric: $Var = r p q (N-r)/(N-1)$ with $p = m/N, q = n/N$ and $N = m + n$, i.e. mnr($m+n-r$)/$[(m+n)^{2}(m+n-1)]$. Option (b) is the only choice with that structure.",
+    "shortcut": "Without replacement means hypergeometric: $\\operatorname{Var} = r p q (N-r)/(N-1)$ with $p = m/N, q = n/N$ and $N = m + n$, i.e. mnr($m+n-r$)/$[(m+n)^{2}(m+n-1)]$. Option (b) is the only choice with that structure.",
     "tips": [
-      "Sampling WITHOUT replacement always brings the finite population correction $(N - r)/(N - 1)$; with replacement the count would be Binomial($r, m/N$) with variance r p q and no correction factor.",
+      "Sampling WITHOUT replacement always brings the finite population correction $(N - r)/(N - 1)$; with replacement the count would be $\\text{Binomial}(r, m/N)$ with variance r p q and no correction factor.",
       "Symmetry check: swapping the roles of m and n must leave the variance unchanged, because black and white are interchangeable labels. Options (a), (c) and (d) are not symmetric in m and n and can be struck out instantly.",
-      "Boundary check: putting $r = N$ must give variance 0 (every ball is drawn, so the count is certain). Option $(b)'s$ factor $(m + n - r)$ vanishes at $r = N$, confirming its structure.",
+      "Boundary check: putting $r = N$ must give variance 0 (every ball is drawn, so the count is certain). Option (b)'s factor $(m + n - r)$ vanishes at $r = N$, confirming its structure.",
       "The hypergeometric mean is $r m/N$; pairing mean and variance together makes this family quick to recognise in the exam."
     ],
     "solution": [
       "Let $N = m + n$ be the total number of balls, of which m are black. Drawing r balls one at a time WITHOUT replacement makes X, the number of black balls drawn, hypergeometric.",
-      "Write X as a sum of indicators $I_{1}$ + ... + $I_{r}$, where $I_{k} = 1$ if the kth ball drawn is black. Each $I_{k}$ has mean $m/N$, so E(X) = rm/N.",
-      "Each $\\operatorname{Var}(I_{k}) = (m/N)(n/N)$, and for k not equal to $j, \\operatorname{Cov}(I_{k}, I_{j})$ = -$(m/N)(n/N)/(N-1)$.",
+      "Write X as a sum of indicators $I_{1} + \\ldots + I_{r}$, where $I_{k} = 1$ if the kth ball drawn is black. Each $I_{k}$ has mean $m/N$, so $\\operatorname{E}(X) = rm/N$.",
+      "Each $\\operatorname{Var}(I_{k}) = (m/N)(n/N)$, and for k not equal to $j, \\operatorname{Cov}(I_{k}, I_{j}) = -(m/N)(n/N)/(N-1)$.",
       "Summing: $\\operatorname{Var}(X) = r(m/N)(n/N) - r(r-1)(m/N)(n/N)/(N-1) = r(m/N)(n/N)[1 - (r-1)/(N-1)] = r (mn/N^{2})(N - r)/(N - 1)$.",
-      "That is $\\operatorname{Var}(X)$ = mnr($m + n - r$)/$[(m+n)^{2} (m+n-1)]$. It is symmetric in m and n and vanishes at $r = N$, as it must.",
+      "That is $\\operatorname{Var}(X) = mnr(m + n - r)/[(m+n)^{2} (m+n-1)]$. It is symmetric in m and n and vanishes at $r = N$, as it must.",
       "Option (b) is the only choice with this structure (it prints $(m+n+1)$ where the exact result has $(m+n-1)$); the remaining options are not even symmetric in m and n. Hence (b)."
     ]
   },
@@ -251,7 +251,7 @@
     ],
     "solution": [
       "Let X be the weekly production, with $\\mu = 50$ and $\\operatorname{Var}(X) = 25$, so $\\sigma = 5$.",
-      "The event $40 < X < 60$ is |X - 50| < 10.",
+      "The event $40 < X < 60$ is $\\lvert X - 50\\rvert < 10$.",
       "Express the half-width in standard deviations: $10 = k \\sigma = 5k$, so $k = 2$.",
       "Chebyshev's inequality gives $\\operatorname{P}(\\lvert X - \\mu\\rvert < k \\sigma) \\ge 1 - 1/k^{2}$.",
       "With $k = 2$ the bound is $1 - 1/4 = 0.75$.",
@@ -282,15 +282,15 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Each error has variance $(0.1)^{2}/12 = 1/1200$, so the sum of 1000 has variance $5/6$ and SD 0.9129. Then $\\operatorname{P}(\\lvert S\\rvert < 2) = \\operatorname{P}(\\lvert Z\\rvert < 2.19) = 2(0.985) - 1 = 0.97$.",
+    "shortcut": "Each error has variance $(0.1)^{2}/12 = 1/1200$, so the sum of 1000 has variance $5/6$ and $\\operatorname{SD} 0.9129$. Then $\\operatorname{P}(\\lvert S\\rvert < 2) = \\operatorname{P}(\\lvert Z\\rvert < 2.19) = 2(0.985) - 1 = 0.97$.",
     "tips": [
-      "Uniform(a,b) variance is $(b-a)^{2}/12$. Here $b - a = 0.1$, so the variance is $0.01/12$ - watch the square on the WIDTH, not on the endpoint.",
-      "Variances of independent errors add: $1000 x (1/1200) = 5/6 = 0.8333$, giving SD = 0.9129. The CLT then makes the sum approximately normal.",
+      "$\\text{Uniform}(a,b)$ variance is $(b-a)^{2}/12$. Here $b - a = 0.1$, so the variance is $0.01/12$ - watch the square on the WIDTH, not on the endpoint.",
+      "Variances of independent errors add: $1000 \\times (1/1200) = 5/6 = 0.8333$, giving $\\operatorname{SD} = 0.9129$. The CLT then makes the sum approximately normal.",
       "$2/0.9129 = 2.19$, exactly the argument the examiner supplies - a strong confirmation that the set-up is right.",
       "For a two-sided probability use $2 \\Phi(z) - 1$, not $\\Phi(z)$. Forgetting this gives 0.985 and no matching option."
     ],
     "solution": [
-      "Each round-off error is Uniform(-0.05, 0.05), with mean 0 and variance $(0.1)^{2}/12 = 0.01/12 = 1/1200$.",
+      "Each round-off error is $\\text{Uniform}(-0.05, 0.05)$, with mean 0 and variance $(0.1)^{2}/12 = 0.01/12 = 1/1200$.",
       "The total error S is the sum of 1000 independent such errors, so $\\operatorname{E}(S) = 0$ and $\\operatorname{Var}(S) = 1000/1200 = 5/6 = 0.8333$.",
       "The standard deviation is $\\sqrt{0.8333} = 0.9129$, and by the Central Limit Theorem S is approximately normal.",
       "$\\operatorname{P}(\\lvert S\\rvert < 2) = \\operatorname{P}(\\lvert Z\\rvert < 2/0.9129) = \\operatorname{P}(\\lvert Z\\rvert < 2.19)$.",
@@ -302,18 +302,18 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$\\max(X,Y) = [(X+Y) + \\lvert X-Y\\rvert ]/2$. The first part has mean 0, and $X - Y \\sim N(0,2)$ gives $E\\mid X-Y$| = sqrt2 . $\\sqrt{2/pi} = 2/\\sqrt{pi}$. Half of that is $1/\\sqrt{pi}$.",
+    "shortcut": "$\\max(X,Y) = [(X+Y) + \\lvert X-Y\\rvert ]/2$. The first part has mean 0, and $X - Y \\sim N(0,2)$ gives $\\operatorname{E}\\lvert X-Y\\rvert = \\sqrt{2} \\cdot \\sqrt{2/\\pi} = 2/\\sqrt{\\pi}$. Half of that is $1/\\sqrt{\\pi}$.",
     "tips": [
       "Identity to memorise: $\\max(a,b) = (a + b + \\lvert a - b\\rvert )/2$. It reduces an order-statistic expectation to a mean absolute deviation.",
-      "For $W \\sim N(0, \\tau^{2}), E\\mid W$| = $\\tau \\sqrt{2/pi}$. Here $\\tau = sqrt2$, so $E\\mid X-Y$| = $2/\\sqrt{pi}$.",
-      "General result: for a sample of 2 from $N(\\mu, \\sigma^{2}), \\operatorname{E}[\\max] = \\mu + \\sigma/\\sqrt{pi}$ and $\\operatorname{E}[\\min] = \\mu - \\sigma/\\sqrt{pi}$. This is the companion of 2018 Q39.",
-      "Sign and size check: the answer must be positive and modest (about 0.564). Option $(d) 2/\\sqrt{pi} = 1.128$ is the value of $E\\mid X - Y$|, the classic half-way trap."
+      "For $W \\sim N(0, \\tau^{2}), \\operatorname{E}\\lvert W\\rvert = \\tau \\sqrt{2/\\pi}$. Here $\\tau = \\sqrt{2}$, so $\\operatorname{E}\\lvert X-Y\\rvert = 2/\\sqrt{\\pi}$.",
+      "General result: for a sample of 2 from $N(\\mu, \\sigma^{2}), \\operatorname{E}[\\max] = \\mu + \\sigma/\\sqrt{\\pi}$ and $\\operatorname{E}[\\min] = \\mu - \\sigma/\\sqrt{\\pi}$. This is the companion of $2018 Q_{39}$.",
+      "Sign and size check: the answer must be positive and modest (about 0.564). Option $(d) 2/\\sqrt{\\pi} = 1.128$ is the value of $\\operatorname{E}\\lvert X - Y\\rvert $, the classic half-way trap."
     ],
     "solution": [
       "Let X, Y be independent $N(0,1)$ and use $\\max(X, Y) = [(X + Y) + \\lvert X - Y\\rvert ]/2$.",
       "$\\operatorname{E}(X + Y) = 0$ since both means are zero.",
-      "$X - Y \\sim N(0, 2)$, so with $\\tau = \\sqrt{2}$ and the half-normal result E|W| = $\\tau \\sqrt{2/pi}$, we get $E\\mid X - Y$| = $\\sqrt{2} \\sqrt{2/pi} = 2/\\sqrt{pi}$.",
-      "Therefore $\\operatorname{E}[\\max(X, Y)] = [0 + 2/\\sqrt{pi}]/2 = 1/\\sqrt{pi}$.",
+      "$X - Y \\sim N(0, 2)$, so with $\\tau = \\sqrt{2}$ and the half-normal result $\\operatorname{E}\\lvert W\\rvert = \\tau \\sqrt{2/\\pi}$, we get $\\operatorname{E}\\lvert X - Y\\rvert = \\sqrt{2} \\sqrt{2/\\pi} = 2/\\sqrt{\\pi}$.",
+      "Therefore $\\operatorname{E}[\\max(X, Y)] = [0 + 2/\\sqrt{\\pi}]/2 = 1/\\sqrt{\\pi}$.",
       "Numerically this is 0.5642.",
       "Hence option (b) is correct."
     ]
@@ -327,10 +327,10 @@
       "Use AREAS rather than integrals for piecewise-linear densities: a triangle of base 1 and height a has area $a/2$, and a rectangle of width 1 and height a has area a.",
       "The trapezoidal shape here (rise, flat, fall) is symmetric about $x = 1.5$, which is therefore both the mean and the median - useful for follow-up parts.",
       "Total area $2a = 1$ gives $a = 1/2$ immediately; no calculus is needed anywhere in this item.",
-      "Contrast with 2018 Q3, where the same trapezoidal shape appeared with an inconsistent third branch - always run this normalisation check first."
+      "Contrast with $2018 Q_{3}$, where the same trapezoidal shape appeared with an inconsistent third branch - always run this normalisation check first."
     ],
     "solution": [
-      "The density has three pieces: f = ax on [0,1), $f = a$ on $[1,2]$, and $f = a(3 - x)$ on (2,3].",
+      "The density has three pieces: $f = ax$ on [0,1), $f = a$ on $[1,2]$, and $f = a(3 - x)$ on (2,3].",
       "Area of the first piece: the $\\int$ ax from 0 to $1 = a/2$ (a triangle of base 1 and height a).",
       "Area of the second piece: the $\\int a$ from 1 to $2 = a$ (a rectangle of width 1 and height a).",
       "Area of the third piece: the $\\int a(3-x)$ from 2 to $3 = a[3x - x^{2}/2]$ from 2 to $3 = a(4.5 - 4) = a/2$ (a triangle of base 1 and height a).",
@@ -342,19 +342,19 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Match the exponent to -$(x-\\mu)^{2}/(2 \\sigma^{2})$. The $x^{2}$ coefficient -$1/8$ gives $\\sigma^{2} = 4$; the x coefficient $\\mu/\\sigma^{2} = 2$ then gives $\\mu = 8$.",
+    "shortcut": "Match the exponent to $-(x-\\mu)^{2}/(2 \\sigma^{2})$. The $x^{2}$ coefficient $-1/8$ gives $\\sigma^{2} = 4$; the x coefficient $\\mu/\\sigma^{2} = 2$ then gives $\\mu = 8$.",
     "tips": [
-      "Standard expansion: -$(x-\\mu)^{2}/(2 \\sigma^{2})$ = -$x^{2}/(2 \\sigma^{2}) + (\\mu/\\sigma^{2}) x - \\mu^{2}/(2 \\sigma^{2})$. Read $\\sigma^{2}$ off the $x^{2}$ term FIRST, then mu from the x term.",
-      "From -$1/(2 \\sigma^{2})$ = -$1/8$ we get $2 \\sigma^{2} = 8$, so $\\sigma^{2} = 4$ (not 8) - halving at the right moment is the whole trick.",
+      "Standard expansion: $-(x-\\mu)^{2}/(2 \\sigma^{2}) = -x^{2}/(2 \\sigma^{2}) + (\\mu/\\sigma^{2}) x - \\mu^{2}/(2 \\sigma^{2})$. Read $\\sigma^{2}$ off the $x^{2}$ term FIRST, then $\\mu$ from the x term.",
+      "From $-1/(2 \\sigma^{2}) = -1/8$ we get $2 \\sigma^{2} = 8$, so $\\sigma^{2} = 4$ (not 8) - halving at the right moment is the whole trick.",
       "With $\\sigma^{2} = 4$, the x-coefficient $\\mu/4 = 2$ gives $\\mu = 8$. Options (a) and (b) mix up which parameter is which.",
-      "The constant k absorbs $\\exp(-\\mu^{2}/(2 \\sigma^{2}))$ together with the usual $1/(\\sigma \\sqrt{2 pi})$; it carries no information about mu or $\\sigma$ and can be ignored."
+      "The constant k absorbs $\\exp(-\\mu^{2}/(2 \\sigma^{2}))$ together with the usual $1/(\\sigma \\sqrt{2 \\pi})$; it carries no information about $\\mu$ or $\\sigma$ and can be ignored."
     ],
     "solution": [
-      "The normal density is $f(x) = [1/(\\sigma \\sqrt{2 pi})] \\exp(-(x - \\mu)^{2}/(2 \\sigma^{2}))$.",
-      "Expanding the exponent: -$(x - \\mu)^{2}/(2 \\sigma^{2})$ = -$x^{2}/(2 \\sigma^{2}) + (\\mu/\\sigma^{2}) x - \\mu^{2}/(2 \\sigma^{2})$.",
-      "The given exponent is -$x^{2}/8 + 2x$. Comparing coefficients of $x^{2}$: -$1/(2 \\sigma^{2})$ = -$1/8$, so $2 \\sigma^{2} = 8$ and $\\sigma^{2} = 4$.",
+      "The normal density is $f(x) = [1/(\\sigma \\sqrt{2 \\pi})] \\exp(-(x - \\mu)^{2}/(2 \\sigma^{2}))$.",
+      "Expanding the exponent: $-(x - \\mu)^{2}/(2 \\sigma^{2}) = -x^{2}/(2 \\sigma^{2}) + (\\mu/\\sigma^{2}) x - \\mu^{2}/(2 \\sigma^{2})$.",
+      "The given exponent is $-x^{2}/8 + 2x$. Comparing coefficients of $x^{2}$: $-1/(2 \\sigma^{2}) = -1/8$, so $2 \\sigma^{2} = 8$ and $\\sigma^{2} = 4$.",
       "Comparing coefficients of x: $\\mu/\\sigma^{2} = 2$, so $\\mu = 2 \\sigma^{2} = 2(4) = 8$.",
-      "The constant term -$\\mu^{2}/(2 \\sigma^{2})$ is absorbed into k, which is consistent.",
+      "The constant term $-\\mu^{2}/(2 \\sigma^{2})$ is absorbed into k, which is consistent.",
       "Hence the mean is 8 and the variance is 4, option (c)."
     ]
   },
@@ -362,12 +362,12 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "By symmetry E|X| = 2 times the $\\int x(3x^{2}/2)$ over $(0,1) = 3/4$, and $\\operatorname{E}(X^{2}) = 3/5$. So $\\operatorname{Var}(\\lvert X\\rvert ) = 3/5 - 9/16 = 3/80$.",
+    "shortcut": "By symmetry $\\operatorname{E}\\lvert X\\rvert = 2$ times the $\\int x(3x^{2}/2)$ over $(0,1) = 3/4$, and $\\operatorname{E}(X^{2}) = 3/5$. So $\\operatorname{Var}(\\lvert X\\rvert ) = 3/5 - 9/16 = 3/80$.",
     "tips": [
-      "Since the density is even, use E|X| = 2 times the integral over $(0,1)$ - the symmetry halves the work.",
-      "$\\operatorname{E}(\\lvert X\\rvert ^{2}) = \\operatorname{E}(X^{2})$, so you never need a separate integral for the second moment of |X|. That equality is the key labour-saving step.",
+      "Since the density is even, use $\\operatorname{E}\\lvert X\\rvert = 2$ times the integral over $(0,1)$ - the symmetry halves the work.",
+      "$\\operatorname{E}(\\lvert X\\rvert ^{2}) = \\operatorname{E}(X^{2})$, so you never need a separate integral for the second moment of $\\lvert X\\rvert$. That equality is the key labour-saving step.",
       "Arithmetic: $3/5 - 9/16 = 48/80 - 45/80 = 3/80$. Use the common denominator 80 to avoid a slip - option (b) offers $1/80$ as the near-miss.",
-      "Sanity check: |X| lies in $(0,1)$ with mean 0.75, so its variance must be small - $3/80 = 0.0375$ is entirely plausible."
+      "Sanity check: $\\lvert X\\rvert$ lies in $(0,1)$ with mean 0.75, so its variance must be small - $3/80 = 0.0375$ is entirely plausible."
     ],
     "solution": [
       "The density $f(x) = 3x^{2}/2$ on $(-1, 1)$ is even, and its integral is $(3/2)(2/3) = 1$, so it is valid.",
@@ -384,15 +384,15 @@
     "type": "Theoretical",
     "shortcut": "The difference of two i.i.d. exponentials is symmetric about 0 with an exponential decay on each side - that is exactly the Laplace (double exponential) distribution.",
     "tips": [
-      "Memorise: X - Y for i.i.d. Exp($\\lambda$) is Laplace with density $(\\lambda/2) e^{-\\lambda \\lvert z\\rvert }$ on the whole line. Here $\\lambda = 2$, so $f(z) = e^{-2\\mid z\\mid }$.",
-      "Support test alone settles it: Z can be negative, but an exponential and $a \\beta$ variable cannot. Options (a) and (b) are eliminated in one glance.",
+      "Memorise: X - Y for i.i.d. $\\text{Exp}(\\lambda)$ is Laplace with density $(\\lambda/2) e^{-\\lambda \\lvert z\\rvert }$ on the whole line. Here $\\lambda = 2$, so $f(z) = e^{-2\\mid z\\mid }$.",
+      "Support test alone settles it: Z can be negative, but an exponential and a $\\beta$ variable cannot. Options (a) and (b) are eliminated in one glance.",
       "MGF route: $M_{Z}(t) = M_{X}(t) M_{Y}(-t) = [2/(2-t)][2/(2+t)] = 4/(4 - t^{2})$, which is the Laplace MGF. A Cauchy variable has no MGF at all, ruling out option (d).",
-      "Note the companion result from 2018 Q12: |X - Y| for i.i.d. exponentials is again exponential. Taking the absolute value of a Laplace variable gives an exponential - the two facts fit together."
+      "Note the companion result from $2018 Q_{12}$: $\\lvert X - Y\\rvert$ for i.i.d. exponentials is again exponential. Taking the absolute value of a Laplace variable gives an exponential - the two facts fit together."
     ],
     "solution": [
       "X and Y are i.i.d. with density $2e^{-2x}$ for $x \\ge 0$, i.e. Exponential with rate 2.",
       "$Z = X - Y$ is symmetric about 0, since X and Y are exchangeable, and it can take any real value.",
-      "For $z > 0$, the density of Z is the $\\int f(z+y) f(y)\\,dy$ = the $\\int 4 e^(-2(z+y)) e^{-2y}\\,dy = 4 e^{-2z} (1/4) = e^{-2z}$.",
+      "For $z > 0$, the density of Z is the $\\int f(z+y) f(y)\\,dy$ = the $\\int 4 e^{-2(z+y)} e^{-2y}\\,dy = 4 e^{-2z} (1/4) = e^{-2z}$.",
       "By symmetry the density is $e^{2z}$ for $z < 0$, so $f_{Z}(z) = e^{-2\\mid z\\mid }$ for all real z.",
       "This is the Laplace (double exponential) density with scale $1/2$, confirmed by the MGF $M_{Z}(t) = [2/(2-t)][2/(2+t)] = 4/(4 - t^{2})$.",
       "Hence option (c) is correct."

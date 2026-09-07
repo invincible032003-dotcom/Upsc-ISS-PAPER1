@@ -7,7 +7,7 @@
     "tips": [
       "Core contrast: CISC has many complex, VARIABLE-length instructions taking several cycles; RISC has few simple, FIXED-length instructions executing in one cycle.",
       "Fixed-length instructions are precisely what make decoding uniform and pipelining efficient, so statement 2 follows from the RISC design philosophy.",
-      "Named examples worth knowing: RISC - ARM, MIPS, SPARC, PowerPC, RISC-V; CISC - Intel x86, Motorola 68000.",
+      "Named examples worth knowing: RISC - ARM, MIPS, SPARC, PowerPC, RISC-V; CISC - Intel $x_{86}$, Motorola 68000.",
       "ARM chips dominate mobile devices because the RISC design gives high performance per watt - a real-world anchor for statement 3."
     ],
     "solution": [
@@ -84,13 +84,13 @@
     "tips": [
       "Hierarchy rule: as you move towards the CPU, memory gets faster, smaller and more expensive per bit. Cache is therefore smaller than RAM, never larger.",
       "Speed order: registers, then cache $(L_{1}, L_{2}, L_{3})$, then main memory, then secondary storage. Statement 2 states exactly this.",
-      "Hit rate = (number of cache hits)/(total accesses); the effective access time is $h x t_{cache} + (1-h) x t_{memory}$, so a high hit rate is the whole point of cache.",
+      "Hit rate = (number of cache hits)/(total accesses); the effective access time is $h x t_{\\text{cache}} + (1-h) x t_{\\text{memory}}$, so a high hit rate is the whole point of cache.",
       "Any statement containing 'always' deserves scrutiny - here it is the giveaway that statement 1 is the false one."
     ],
     "solution": [
       "Statement 1: cache memory is built from fast, expensive SRAM and is deliberately kept SMALL - typically a few kilobytes to a few megabytes against gigabytes of RAM. The claim that it is always larger than RAM is FALSE.",
       "Statement 2: the memory hierarchy in decreasing order of speed is registers, cache, main memory, secondary storage. Cache is therefore faster than RAM but slower than CPU registers. TRUE.",
-      "Statement 3: the effectiveness of cache is measured by the hit rate h, the proportion of accesses satisfied from cache; the effective access time is $h t_{cache} + (1 - h) t_{memory}$. TRUE.",
+      "Statement 3: the effectiveness of cache is measured by the hit rate h, the proportion of accesses satisfied from cache; the effective access time is $h t_{\\text{cache}} + (1 - h) t_{\\text{memory}}$. TRUE.",
       "Only statements 2 and 3 are correct.",
       "Hence option (b) is correct."
     ]
@@ -263,7 +263,7 @@
       "UNIX layers from the inside out: hardware, kernel, shell, applications. 'Core' always means the kernel.",
       "Kernel duties: process scheduling, memory management, file-system control, device drivers, system calls.",
       "The shell can be replaced (sh, bash, csh, ksh, zsh) without touching the operating system, which proves it is not the core.",
-      "This item repeats 2018 Q64 word for word - a clear signal that the layered UNIX structure is worth memorising."
+      "This item repeats $2018 Q_{64}$ word for word - a clear signal that the layered UNIX structure is worth memorising."
     ],
     "solution": [
       "UNIX has a layered architecture: the hardware at the centre, surrounded by the kernel, then the shell, then user applications and utilities.",
@@ -363,7 +363,7 @@
       "Octal to hexadecimal must pass through BINARY: three bits per octal digit out, four bits per hex digit in.",
       "Always regroup from the RIGHT for the integer part, padding the leftmost group with zeros if necessary.",
       "Decimal check: $(6251)_{8} = 6(512) + 2(64) + 5(8) + 1 = 3241$, and $(CA9)_{16} = 12(256) + 10(16) + 9 = 3241$. They agree.",
-      "This is a verbatim repeat of 2021 Q78, so the conversion is clearly worth drilling until it is automatic."
+      "This is a verbatim repeat of $2021 Q_{78}$, so the conversion is clearly worth drilling until it is automatic."
     ],
     "solution": [
       "Convert each octal digit to three binary bits: $6 = 110, 2 = 010, 5 = 101, 1 = 001$.",

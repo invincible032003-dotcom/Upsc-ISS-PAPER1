@@ -3,15 +3,15 @@
     "answer": 2,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "Kolmogorov's strong law for i.i.d. variables needs only a finite mean, i.e. $E\\mid X_{k}$| < $\\infty$ - finite variance is sufficient but not necessary.",
+    "shortcut": "Kolmogorov's strong law for i.i.d. variables needs only a finite mean, i.e. $\\operatorname{E}\\lvert X_{k}\\rvert < \\infty$ - finite variance is sufficient but not necessary.",
     "tips": [
-      "For i.i.d. sequences, E|X| < $\\infty$ is NECESSARY AND SUFFICIENT for the strong law; the sample mean then converges almost surely to E(X).",
+      "For i.i.d. sequences, $\\operatorname{E}\\lvert X\\rvert < \\infty$ is NECESSARY AND SUFFICIENT for the strong law; the sample mean then converges almost surely to $\\operatorname{E}(X)$.",
       "Finite variance (option a) is a stronger condition than needed - it guarantees the SLLN but is not required, so it is not the correct characterisation.",
       "The Cauchy distribution is the standard counterexample: it has no finite mean and its sample means do not converge at all.",
       "Contrast with the weak law, which also needs only a finite mean for i.i.d. variables but gives convergence in probability rather than almost surely."
     ],
     "solution": [
-      "Kolmogorov's strong law of large numbers states that for a sequence of independent and identically distributed random variables, the sample mean converges almost surely to the population mean if and only if $E\\mid X_{1}$| is finite.",
+      "Kolmogorov's strong law of large numbers states that for a sequence of independent and identically distributed random variables, the sample mean converges almost surely to the population mean if and only if $\\operatorname{E}\\lvert X_{1}\\rvert $ is finite.",
       "That is, a finite first absolute moment is both necessary and sufficient in the i.i.d. case.",
       "A finite variance implies a finite mean and therefore also implies the SLLN, but it is a stronger assumption than required.",
       "An infinite variance does not prevent the SLLN, provided the mean exists - so option (b) is not a condition for it either.",
@@ -32,8 +32,8 @@
     ],
     "solution": [
       "Initially the urn has 3 white and 4 black balls, so 7 in total; after the first draw the ball is replaced together with 2 more of the same colour, leaving 9 balls.",
-      "If the first ball is white (probability $3/7$), the urn then holds 5 white out of 9, so P(second white | first white) = $5/9$.",
-      "If the first ball is black (probability $4/7$), the urn holds 3 white out of 9, so P(second white | first black) = $3/9$.",
+      "If the first ball is white (probability $3/7$), the urn then holds 5 white out of 9, so $\\operatorname{P}\\!\\left(\\text{second white}\\mid \\text{first white}\\right) = 5/9$.",
+      "If the first ball is black (probability $4/7$), the urn holds 3 white out of 9, so $\\operatorname{P}\\!\\left(\\text{second white}\\mid \\text{first black}\\right) = 3/9$.",
       "By the law of total probability, $\\operatorname{P}\\!\\left(\\text{second white}\\right) = (3/7)(5/9) + (4/7)(3/9) = 15/63 + 12/63 = 27/63 = 3/7$.",
       "This equals the original proportion of white balls, the characteristic invariance of the Polya urn. Option (a) is correct."
     ]
@@ -44,16 +44,16 @@
     "type": "Numerical",
     "shortcut": "Split at 0: the integral from -1 to 0 gives $(1/2)(1 - e^{-1})$ and from 0 to 2 gives $(1/2)(1 - e^{-2})$. Adding: $(1/2)(2 - e^{-1} - e^{-2})$.",
     "tips": [
-      "The Laplace density has |x| in the exponent, so ALWAYS split the range at 0 - on the left the density is $(1/2)e^{x}$ and on the right $(1/2)e^{-x}$.",
+      "The Laplace density has $\\lvert x\\rvert$ in the exponent, so ALWAYS split the range at 0 - on the left the density is $(1/2)e^{x}$ and on the right $(1/2)e^{-x}$.",
       "Each half integrates to $(1/2)(1 - e^{-a})$ where a is the distance from 0, so the two pieces are structurally identical and both SUBTRACT an exponential.",
       "Both exponential terms must therefore carry a minus sign, which identifies option (a) immediately; options (b), (c) and (d) have at least one wrong sign.",
       "Numerical check: $(1/2)(2 - 0.3679 - 0.1353) = 0.7484, a$ sensible probability for an interval covering most of the density's mass."
     ],
     "solution": [
       "The density is the Laplace (double exponential) $f(x) = (1/2)e^{-\\lvert x\\rvert }$, symmetric about 0.",
-      "Split the interval at 0. For -$1 < x < 0$, |x| = -x so $f(x) = (1/2)e^{x}$.",
+      "Split the interval at 0. For $-1 < x < 0, \\lvert x\\rvert = -x$ so $f(x) = (1/2)e^{x}$.",
       "The $\\int_{-1}^{0} (1/2)e^{x}\\,dx = (1/2)[e^{x}]$ from -1 to $0 = (1/2)(1 - e^{-1})$.",
-      "For $0 < x < 2$, |x| = x so $f(x) = (1/2)e^{-x}$, and the integral from 0 to 2 is $(1/2)[-e^{-x}]$ from 0 to $2 = (1/2)(1 - e^{-2})$.",
+      "For $0 < x < 2, \\lvert x\\rvert = x$ so $f(x) = (1/2)e^{-x}$, and the integral from 0 to 2 is $(1/2)[-e^{-x}]$ from 0 to $2 = (1/2)(1 - e^{-2})$.",
       "Adding: $\\operatorname{P}(-1 < X < 2) = (1/2)(1 - e^{-1}) + (1/2)(1 - e^{-2}) = (1/2)(2 - e^{-1} - e^{-2})$.",
       "Numerically this is 0.748. Option (a) is correct."
     ]
@@ -62,7 +62,7 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "P(HH | two-headed) = 1 and P(HH | fair) = $1/4$, with equal priors. So the posterior is $1/(1 + 1/4) = 4/5$.",
+    "shortcut": "$\\operatorname{P}\\!\\left(HH\\mid \\text{two-headed}\\right) = 1$ and $\\operatorname{P}\\!\\left(HH\\mid \\text{fair}\\right) = 1/4$, with equal priors. So the posterior is $1/(1 + 1/4) = 4/5$.",
     "tips": [
       "With EQUAL priors, Bayes reduces to the ratio of likelihoods: 1 : $1/4$, i.e. 4 : 1, giving $4/5$ directly.",
       "Two heads is four times more likely under the two-headed coin, so the posterior must exceed the prior $1/2$ substantially - options (b) and (c) are below $1/2$ and can be dismissed.",
@@ -71,10 +71,10 @@
     ],
     "solution": [
       "Let T be the event that the two-headed coin was chosen and F that the fair coin was chosen, with $\\operatorname{P}(T) = \\operatorname{P}(F) = 1/2$.",
-      "P(two heads | T) = 1, since both faces are heads.",
-      "P(two heads | F) = $(1/2)(1/2) = 1/4$.",
+      "$\\operatorname{P}\\!\\left(\\text{two heads}\\mid T\\right) = 1$, since both faces are heads.",
+      "$\\operatorname{P}\\!\\left(\\text{two heads}\\mid F\\right) = (1/2)(1/2) = 1/4$.",
       "Total probability: $\\operatorname{P}\\!\\left(\\text{two heads}\\right) = (1/2)(1) + (1/2)(1/4) = 1/2 + 1/8 = 5/8$.",
-      "By Bayes' theorem, P(T | two heads) = $(1/2)(1)/(5/8) = (1/2)(8/5) = 4/5$.",
+      "By Bayes' theorem, $\\operatorname{P}\\!\\left(T\\mid \\text{two heads}\\right) = (1/2)(1)/(5/8) = (1/2)(8/5) = 4/5$.",
       "Option (d) is correct."
     ]
   },
@@ -85,16 +85,16 @@
     "shortcut": "$F_{n}$ is the $U(-n, n)$ distribution function. For any fixed $x, F_{n}(x) = (x+n)/(2n)$ tends to $1/2$, and the constant $1/2$ is not a distribution function - so no limiting distribution exists.",
     "tips": [
       "Test the limit POINTWISE at a fixed x, letting n grow: $(x + n)/(2n) = 1/2 + x/(2n) \\to 1/2$ for every x.",
-      "A valid distribution function must tend to 0 as x -> -$\\infty$ and to 1 as x -> +$\\infty$; the constant function $1/2$ does neither.",
-      "This is the standard illustration that probability mass can 'escape to $\\infty$' - the uniform spreads out without limit and no proper limit law survives.",
+      "A valid distribution function must tend to 0 as $x \\to -\\infty$ and to 1 as $x \\to +\\infty$; the constant function $1/2$ does neither.",
+      "This is the standard illustration that probability mass can 'escape to $\\infty'$ - the uniform spreads out without limit and no proper limit law survives.",
       "Contrast with a sequence like $U(-1/n, 1/n)$, where mass CONCENTRATES and the limit is degenerate at 0 - the opposite failure mode."
     ],
     "solution": [
-      "$F_{n}$ is the distribution function of a Uniform(-n, n) random variable.",
-      "Fix any real x. For all n large enough that -$n \\le x \\le n, F_{n}(x) = (x + n)/(2n) = 1/2 + x/(2n)$.",
+      "$F_{n}$ is the distribution function of a $\\text{Uniform}(-n, n)$ random variable.",
+      "Fix any real x. For all n large enough that $-n \\le x \\le n, F_{n}(x) = (x + n)/(2n) = 1/2 + x/(2n)$.",
       "As n tends to $\\infty, x/(2n)$ tends to 0, so $F_{n}(x)$ tends to $1/2$ for EVERY fixed x.",
       "The pointwise limit is therefore the constant function $G(x) = 1/2$.",
-      "A distribution function must satisfy G(x) -> 0 as x -> -$\\infty$ and G(x) -> 1 as x -> +$\\infty$; the constant $1/2$ satisfies neither, so it is not a distribution function. The probability mass escapes to $\\infty$.",
+      "A distribution function must satisfy $G(x) \\to 0$ as $x \\to -\\infty$ and $G(x) \\to 1$ as $x \\to +\\infty$; the constant $1/2$ satisfies neither, so it is not a distribution function. The probability mass escapes to $\\infty$.",
       "Hence the limiting distribution function does not exist, option (d)."
     ]
   },
@@ -104,7 +104,7 @@
     "type": "Theoretical",
     "shortcut": "Split the sequence into disjoint blocks of four trials. Each block equals SFSF with the same positive probability independently, so the sum of these probabilities diverges and the second Borel-Cantelli lemma gives probability 1.",
     "tips": [
-      "Use DISJOINT blocks to obtain independence: trials $1-4, 5-8, 9-12$, ... are independent, which is exactly what Borel-Cantelli II requires.",
+      "Use DISJOINT blocks to obtain independence: trials $1-4, 5-8, 9-12, \\ldots$ are independent, which is exactly what Borel-Cantelli II requires.",
       "Each block matches SFSF with probability $p^{2} q^{2} > 0, a$ constant, so the sum over infinitely many blocks diverges immediately.",
       "Borel-Cantelli II: for INDEPENDENT events with divergent probability sum, $\\operatorname{P}\\!\\left(\\text{infinitely often}\\right) = 1$. Independence is essential and the blocking supplies it.",
       "General principle: in an infinite sequence of Bernoulli trials, ANY fixed finite pattern occurs infinitely often with probability 1 - the 'infinite monkey' result."
@@ -127,7 +127,7 @@
       "Beta second-kind integral: the $\\int_{0}^{\\infty} u^{m-1}/(1+u)^{m+n}\\,du = B(m,n)$. Here $m - 1 = 3$ and $m + n = 6$, so $m = 4$ and $n = 2$.",
       "The substitution $u = 2x$ is what converts $(1+2x)$ into $(1+u)$; the factor picked up is $(1/2)^{3}$ from $x^{3}$ and $(1/2)$ from dx, giving $1/16$.",
       "$B(4,2) = \\Gamma(4)\\Gamma(2)/\\Gamma(6) = (6)(1)/120 = 1/20$ - compute with factorials, not integrals.",
-      "Cross-check with 2018 Q20, which used the same density and showed that $2X/(1+2X)$ ~ Beta(4,2) - the same parameters appear, confirming $m = 4$ and $n = 2$."
+      "Cross-check with $2018 Q_{20}$, which used the same density and showed that $2X/(1+2X) \\sim \\text{Beta}(4,2)$ - the same parameters appear, confirming $m = 4$ and $n = 2$."
     ],
     "solution": [
       "The density must integrate to 1: k times the $\\int_{0}^{\\infty} x^{3}/(1+2x)^{6}\\,dx = 1$.",
@@ -144,7 +144,7 @@
     "type": "Numerical",
     "shortcut": "Mean $m/(m+n) = 1/3$ gives $n = 2m$. Substituting into the variance $2m^{2}/[9m^{2}(3m+1)] = 2/(9(3m+1)) = 2/63$ gives $3m + 1 = 7$, so $m = 2$ and $n = 4$.",
     "tips": [
-      "Beta(m,n) first kind: mean = $m/(m+n)$, variance = mn/$[(m+n)^{2} (m+n+1)]$. Write both down before substituting.",
+      "$\\text{Beta}(m,n)$ first kind: mean = $m/(m+n)$, variance = mn/$[(m+n)^{2} (m+n+1)]$. Write both down before substituting.",
       "Use the mean FIRST to express n in terms of m; the variance equation then has a single unknown and the $m^{2}$ factors cancel.",
       "Variance shortcut: variance = mean(1 - mean)/$(m+n+1) = (1/3)(2/3)/(m+n+1) = 2/(9(m+n+1))$. Setting this to $2/63$ gives $m + n + 1 = 7$ directly, so $m + n = 6$.",
       "With $m + n = 6$ and $m/(m+n) = 1/3$, we get $m = 2$ and $n = 4$ in one step - the fastest route of all."
@@ -190,7 +190,7 @@
       "Option $(c) 2/5$ is the trap for candidates who use the interval length 1 over the half-range, or who mis-subtract 0.5 - 0.1."
     ],
     "solution": [
-      "The distribution function $F(x) = x/5$ for $0 \\le x \\le 5$ is that of a Uniform(0,5) random variable, with density $1/5$ on that range.",
+      "The distribution function $F(x) = x/5$ for $0 \\le x \\le 5$ is that of a $\\text{Uniform}(0,5)$ random variable, with density $1/5$ on that range.",
       "For any interval, $\\operatorname{P}(a \\le X \\le b) = F(b) - F(a)$.",
       "$F(2.5) = 2.5/5 = 0.5$ and $F(1.5) = 1.5/5 = 0.3$.",
       "Hence $\\operatorname{P}(1.5 \\le X \\le 2.5) = 0.5 - 0.3 = 0.2$.",
@@ -204,13 +204,13 @@
     "type": "Theoretical",
     "shortcut": "The sum of absolute deviations is minimised at the MEDIAN and the sum of squared deviations at the MEAN. Statement 1 follows from the first, statements 2 and 3 from the second. All correct.",
     "tips": [
-      "Two minimisation facts drive every question in this family: sum |$x_{i} - a$| is smallest at a = median; sum $(x_{i} - a)^{2}$ is smallest at a = mean.",
+      "Two minimisation facts drive every question in this family: $\\sum \\mid x_{i} - a$| is smallest at a = median; $\\sum (x_{i} - a)^{2}$ is smallest at a = mean.",
       "Statement 1: the numerator is taken about the median (the minimiser) and the denominator about the mean, so the numerator is smaller and $R < 1$.",
       "Statements 2 and 3: the DENOMINATOR is now the minimum, so any other centre - an assumed mean A or the median M - makes the numerator larger and $R > 1$.",
-      "Useful identity: sum($x_{i} - A$)^2 = sum($x_{i} - \\bar{x}$)^2 + $n(\\bar{x} - A)^{2}$, which makes the strict inequality obvious whenever A is not $\\bar{x}$."
+      "Useful identity: $\\sum (x_{i} - A)^{2} = \\sum (x_{i} - \\bar{x})^{2} + n(\\bar{x} - A)^{2}$, which makes the strict inequality obvious whenever A is not $\\bar{x}$."
     ],
     "solution": [
-      "Fact 1: for any constant a, sum |$x_{i} - a$| attains its minimum when a is the median M. Fact 2: sum $(x_{i} - a)^{2}$ attains its minimum when a is the mean $\\bar{x}$, by the identity sum($x_{i} - a$)^2 = sum($x_{i} - \\bar{x}$)^2 + $n(\\bar{x} - a)^{2}$.",
+      "Fact 1: for any constant $a, \\sum \\mid x_{i} - a$| attains its minimum when a is the median M. Fact 2: $\\sum (x_{i} - a)^{2}$ attains its minimum when a is the mean $\\bar{x}$, by the identity $\\sum (x_{i} - a)^{2} = \\sum (x_{i} - \\bar{x})^{2} + n(\\bar{x} - a)^{2}$.",
       "Statement 1: the numerator uses the minimising centre M and the denominator the non-minimising centre $\\bar{x}$ (given M is not equal to $\\bar{x}$), so the numerator is smaller and $R < 1$. CORRECT.",
       "Statement 2: here the DENOMINATOR uses the minimising centre $\\bar{x}$ for squared deviations, while the numerator uses A which is not $\\bar{x}$. By the identity, the numerator exceeds the denominator by $n(\\bar{x} - A)^{2} > 0$, so $R > 1$. CORRECT.",
       "Statement 3: this is the same situation with A replaced by the median M, which is assumed different from $\\bar{x}$, so again $R > 1$. CORRECT.",
@@ -230,10 +230,10 @@
       "This is the $r = 1$ case of the general order-statistic density $[n!/((r-1)!(n-r)!)][F]^{r-1}[1-F]^{n-r} f$."
     ],
     "solution": [
-      "Let $Z = \\min(X_{1}, ..., X_{n})$ where the $X_{i}$ are i.i.d. with CDF F and density f.",
+      "Let $Z = \\min(X_{1}, \\ldots, X_{n})$ where the $X_{i}$ are i.i.d. with CDF F and density f.",
       "The event $Z > x$ occurs exactly when every $X_{i} > x$, so by independence $\\operatorname{P}(Z > x) = [1 - F(x)]^{n}$.",
       "Hence the CDF of Z is $G(x) = 1 - [1 - F(x)]^{n}$.",
-      "Differentiating with respect to x: g(x) = -$n[1 - F(x)]^{n-1}$ . $(-f(x)) = n[1 - F(x)]^{n-1} f(x)$.",
+      "Differentiating with respect to x: $g(x) = -n[1 - F(x)]^{n-1} \\cdot (-f(x)) = n[1 - F(x)]^{n-1} f(x)$.",
       "This is the $r = 1$ case of the general order-statistic density formula.",
       "Hence option (b) is correct."
     ]
@@ -244,10 +244,10 @@
     "type": "Factual",
     "shortcut": "Both the $\\chi^{2}$ goodness-of-fit test and the Kolmogorov-Smirnov test compare an observed distribution with a fully specified theoretical one.",
     "tips": [
-      "Sort the non-parametric tests by design: one sample against a specified distribution = $\\chi^{2}$ and K-S; two independent samples = Mann-Whitney, median test; paired = Wilcoxon signed-rank, sign test.",
-      "K-S works on the ungrouped empirical CDF and needs no minimum expected frequencies, which makes it preferable to $\\chi^{2}$ for small continuous samples.",
-      "The K-S statistic $D = \\sup \\mid F_{n}(x) - F_{0}(x)$| is the largest vertical gap between the empirical and hypothesised CDFs.",
-      "This item repeats 2018 Q37 verbatim - the goodness-of-fit pairing is clearly worth memorising."
+      "Sort the non-parametric tests by design: one sample against a specified distribution = $\\chi^{2}$ and $K-S$; two independent samples = Mann-Whitney, median test; paired = Wilcoxon signed-rank, sign test.",
+      "$K-S$ works on the ungrouped empirical CDF and needs no minimum expected frequencies, which makes it preferable to $\\chi^{2}$ for small continuous samples.",
+      "The $K-S$ statistic $D = \\sup \\mid F_{n}(x) - F_{0}(x)$| is the largest vertical gap between the empirical and hypothesised CDFs.",
+      "This item repeats $2018 Q_{37}$ verbatim - the goodness-of-fit pairing is clearly worth memorising."
     ],
     "solution": [
       "The $\\chi^{2}$ goodness-of-fit test compares observed class frequencies with those expected under a fully specified theoretical distribution.",
@@ -261,17 +261,17 @@
     "answer": 1,
     "confidence": "high",
     "type": "Conceptual",
-    "shortcut": "A hypothesis about a SINGLE normal variance is tested with the $\\chi^{2}$ statistic sum($X_{i}^{2}$)/$\\sigma_{0}^{2}$ (here the mean is known to be 0).",
+    "shortcut": "A hypothesis about a SINGLE normal variance is tested with the $\\chi^{2}$ statistic $\\sum (X_{i}^{2})/\\sigma_{0}^{2}$ (here the mean is known to be 0).",
     "tips": [
       "Match test to parameter: one mean with unknown $\\sigma = t$-test; one variance = $\\chi^{2}$; ratio of TWO variances = F-test; one mean with known $\\sigma$ or large n = normal test.",
-      "Because the mean is known to be 0, the statistic is sum($X_{i}^{2}$)/$\\sigma_{0}^{2}$ with n degrees of freedom - no degree of freedom is lost for estimating the mean.",
+      "Because the mean is known to be 0, the statistic is $\\sum (X_{i}^{2})/\\sigma_{0}^{2}$ with n degrees of freedom - no degree of freedom is lost for estimating the mean.",
       "If the mean had to be estimated, the statistic would be $(n-1)s^{2}/\\sigma_{0}^{2}$ with n - 1 degrees of freedom. Knowing which applies is the finer point of this item.",
       "Option (c) F-test is the trap: F compares TWO variances, whereas here a single variance is compared with a fixed constant."
     ],
     "solution": [
-      "The hypothesis concerns the variance of a single normal population, H0: $\\sigma^{2} = \\sigma_{0}^{2}$.",
-      "For a sample from $N(0, \\sigma^{2})$ with the mean known to be 0, the statistic sum($X_{i}^{2}$)/$\\sigma_{0}^{2}$ follows $a \\chi^{2}$ distribution with n degrees of freedom under H0.",
-      "(If the mean had to be estimated, the statistic would be $(n-1)s^{2}/\\sigma_{0}^{2}$ with n - 1 degrees of freedom - still $a \\chi^{2}$ test.)",
+      "The hypothesis concerns the variance of a single normal population, $H_{0}$: $\\sigma^{2} = \\sigma_{0}^{2}$.",
+      "For a sample from $N(0, \\sigma^{2})$ with the mean known to be 0, the statistic $\\sum (X_{i}^{2})/\\sigma_{0}^{2}$ follows a $\\chi^{2}$ distribution with n degrees of freedom under $H_{0}$.",
+      "(If the mean had to be estimated, the statistic would be $(n-1)s^{2}/\\sigma_{0}^{2}$ with n - 1 degrees of freedom - still a $\\chi^{2}$ test.)",
       "A t-test concerns a mean when the variance is unknown, and a normal test concerns a mean when the variance is known.",
       "An F-test compares the variances of TWO populations, not a single variance with a specified value.",
       "Hence the appropriate procedure is the $\\chi^{2}$ test, option (b)."
@@ -283,17 +283,17 @@
     "type": "Theoretical",
     "shortcut": "Lyapunov's inequality says the sequence $\\beta_{k}^{1/k}$ is NON-DECREASING in k. Statement 2 states exactly that; statement 1 reverses the inequality and is false.",
     "tips": [
-      "Lyapunov's inequality: $[E\\mid X\\mid ^{r}]^{1/r}$ is non-decreasing in r. Remember the DIRECTION - higher-order norms are larger, never smaller.",
-      "It follows from Jensen's inequality applied to the convex function $t \\to t^((k+1)/k)$, or from Holder's inequality.",
+      "Lyapunov's inequality: $[\\operatorname{E}\\lvert X\\rvert ^{r}]^{1/r}$ is non-decreasing in r. Remember the DIRECTION - higher-order norms are larger, never smaller.",
+      "It follows from Jensen's inequality applied to the convex function $t \\to t^{(k+1)/k}$, or from Holder's inequality.",
       "Statements 1 and 2 assert opposite orderings, so exactly one can be true - decide the direction once and both are settled.",
       "Concrete check: for $X \\sim U(0,1), \\beta_{1} = 1/2$ and $\\beta_{2}^{1/2} = (1/3)^{1/2} = 0.577 > 0.5$, confirming the increasing direction."
     ],
     "solution": [
       "Let $\\beta_{n} = \\operatorname{E}(\\lvert X\\rvert ^{n})$ denote the nth absolute moment.",
-      "Lyapunov's inequality states that for $0 < r < s, [E\\mid X\\mid ^{r}]^{1/r} \\le [E\\mid X\\mid ^{s}]^{1/s}$, i.e. the sequence $\\beta_{k}^{1/k}$ is non-decreasing in k.",
+      "Lyapunov's inequality states that for $0 < r < s, [\\operatorname{E}\\lvert X\\rvert ^{r}]^{1/r} \\le [\\operatorname{E}\\lvert X\\rvert ^{s}]^{1/s}$, i.e. the sequence $\\beta_{k}^{1/k}$ is non-decreasing in k.",
       "It follows from Jensen's inequality applied to the convex function $t \\to t^{s/r}$.",
-      "Statement 1 asserts $\\beta_{k}^{1/k} > \\beta_{k+1}^(1/(k+1))$, the reverse ordering. FALSE.",
-      "Statement 2 asserts $\\beta_{1} \\le \\beta_{2}^{1/2} \\le \\beta_{3}^{1/3}$ <= ... <= $\\beta_{n}^{1/n}$, which is exactly Lyapunov's inequality. TRUE.",
+      "Statement 1 asserts $\\beta_{k}^{1/k} > \\beta_{k+1}^{1/(k+1)}$, the reverse ordering. FALSE.",
+      "Statement 2 asserts $\\beta_{1} \\le \\beta_{2}^{1/2} \\le \\beta_{3}^{1/3} \\le \\ldots \\le \\beta_{n}^{1/n}$, which is exactly Lyapunov's inequality. TRUE.",
       "Only statement 2 is correct, option (b)."
     ]
   },
@@ -350,21 +350,21 @@
     ],
     "solution": [
       "The observed frequencies are 10, 8, 5, 12 and 15, totalling $N = 50$ balls across $k = 5$ colours.",
-      "Under H0 of equal frequency, each expected frequency is $E = 50/5 = 10$.",
+      "Under $H_{0}$ of equal frequency, each expected frequency is $E = 50/5 = 10$.",
       "Deviations O - E: 0, -2, -5, 2, 5.",
       "Squared deviations: 0, 4, 25, 4, 25, summing to 58.",
       "Since every expected frequency is $10, \\chi^{2} = 58/10 = 5.8$.",
-      "Option (b) is correct. (With 4 degrees of freedom the 5% critical value is 9.49, so H0 would not be rejected.)"
+      "Option (b) is correct. (With 4 degrees of freedom the 5% critical value is 9.49, so $H_{0}$ would not be rejected.)"
     ]
   },
   "2022-Q59": {
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$SE = \\sqrt{25}/\\sqrt{100} = 5/10 = 0.5$, so the margin is $1.96(0.5) = 0.98$ and the interval is 5.96 +- $0.98 = [4.98, 6.94]$.",
+    "shortcut": "$\\operatorname{SE} = \\sqrt{25}/\\sqrt{100} = 5/10 = 0.5$, so the margin is $1.96(0.5) = 0.98$ and the interval is $5.96 \\pm 0.98 = [4.98, 6.94]$.",
     "tips": [
       "Convert the variance to a standard deviation first: 25 gives $\\sigma = 5$, not 25. Using the variance directly inflates the interval enormously.",
-      "$SE = \\sigma/\\sqrt{n} = 5/10 = 0.5$. The clean numbers are deliberate - the margin $1.96 \\times 0.5 = 0.98$ is exact.",
+      "$\\operatorname{SE} = \\sigma/\\sqrt{n} = 5/10 = 0.5$. The clean numbers are deliberate - the margin $1.96 \\times 0.5 = 0.98$ is exact.",
       "The interval must be SYMMETRIC about the sample mean 5.96; check that 5.96 is the midpoint of your chosen option. For $(b), (4.98 + 6.94)/2 = 5.96$ exactly.",
       "Option $(a) [5.47, 6.45]$ has the right midpoint but a margin of 0.49 - the result of forgetting a factor of 2 or halving the SE."
     ],
@@ -372,7 +372,7 @@
       "The population is $N(\\mu, 25)$, so $\\sigma = \\sqrt{25} = 5$, and the sample size is $n = 100$.",
       "The standard error of the sample mean is $\\sigma/\\sqrt{n} = 5/10 = 0.5$.",
       "For a 95% confidence interval the multiplier is $Z = 1.96$, so the margin of error is $1.96 \\times 0.5 = 0.98$.",
-      "The interval is $\\bar{x}$ +- $0.98 = 5.96$ +- 0.98.",
+      "The interval is $\\bar{x} \\pm 0.98 = 5.96 \\pm 0.98$.",
       "Lower limit $5.96 - 0.98 = 4.98$; upper limit $5.96 + 0.98 = 6.94$.",
       "Hence the interval is $[4.98, 6.94]$, option (b)."
     ]
@@ -384,12 +384,12 @@
     "shortcut": "$\\operatorname{P}\\!\\left(\\text{-2 log X > y}\\right) = \\operatorname{P}(X < e^{-y/2}) = e^{-y/2}$, the survival function of an Exponential with rate $1/2$ (equivalently $\\chi^{2}$ with 2 d.f.).",
     "tips": [
       "Work with the SURVIVAL function for monotone transformations - it avoids Jacobians entirely and the algebra is one line.",
-      "-$\\log U$ ~ Exp(1) for U uniform, so -$2 \\log U$ ~ Exp(rate $1/2$) with mean 2. Scaling an exponential by c divides the rate by c.",
-      "Exp(rate $1/2$) is exactly $\\chi^{2}$ with 2 degrees of freedom - a fact worth carrying, and the basis of the Box-Muller and inverse-transform simulation methods.",
-      "Option (c) names $a \\chi^{2}$ with $n/2$ degrees of freedom, but no n appears in the problem - a structural giveaway that it is a distractor."
+      "$-\\log U \\sim \\text{Exp}(1)$ for U uniform, so $-2 \\log U \\sim \\text{Exp}(\\text{rate }1/2)$ with mean 2. Scaling an exponential by c divides the rate by c.",
+      "$\\text{Exp}(\\text{rate }1/2)$ is exactly $\\chi^{2}$ with 2 degrees of freedom - a fact worth carrying, and the basis of the Box-Muller and inverse-transform simulation methods.",
+      "Option (c) names a $\\chi^{2}$ with $n/2$ degrees of freedom, but no n appears in the problem - a structural giveaway that it is a distractor."
     ],
     "solution": [
-      "Let $X \\sim U[0,1]$ and Y = -$2 \\log X$, which takes values in $(0, \\infty)$.",
+      "Let $X \\sim U[0,1]$ and $Y = -2 \\log X$, which takes values in $(0, \\infty)$.",
       "For $y > 0, \\operatorname{P}(Y > y) = \\operatorname{P}\\!\\left(\\text{-2 log X > y}\\right) = \\operatorname{P}\\!\\left(\\text{log X < -y/2}\\right) = \\operatorname{P}(X < e^{-y/2})$.",
       "Since X is uniform on $[0,1]$, this probability is simply $e^{-y/2}$.",
       "So the survival function of Y is $e^{-y/2}$, which is that of an exponential distribution with rate parameter $1/2$ (mean 2).",

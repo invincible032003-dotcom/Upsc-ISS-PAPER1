@@ -8,12 +8,12 @@
       "Memorise the Dirichlet formula for the triangle $x, y > 0, x + y < 1$ - every moment of this density is one substitution away from it, with no iterated integration at all.",
       "Read the parameters straight off the powers: $x^{1}$ gives $a = 2, y^{1}$ gives $b = 2, (1-x-y)^{1}$ gives $c = 2$, so the denominator is $\\Gamma(6) = 120$.",
       "Check normalisation the same way: $a = b = 1, c = 2$ gives $1/\\Gamma(4) = 1/6$, and $6 \\times 1/6 = 1$, confirming the density is valid.",
-      "Options (a) 10 and (b) 20 are impossible on size grounds - X and Y both lie in $(0,1)$, so E(XY) must be well below 1."
+      "Options (a) 10 and (b) 20 are impossible on size grounds - X and Y both lie in $(0,1)$, so $\\operatorname{E}(XY)$ must be well below 1."
     ],
     "solution": [
       "The joint density is $f(x,y) = 6(1 - x - y)$ on the triangle $x > 0, y > 0, x + y < 1$.",
       "The Dirichlet $\\int x^{a-1} y^{b-1} (1-x-y)^{c-1}\\,dx\\,dy = \\Gamma(a)\\Gamma(b)\\Gamma(c)/\\Gamma(a+b+c)$.",
-      "For E(XY) we need the $\\int x y (1-x-y)$, i.e. $a - 1 = 1, b - 1 = 1, c - 1 = 1$, so $a = b = c = 2$.",
+      "For $\\operatorname{E}(XY)$ we need the $\\int x y (1-x-y)$, i.e. $a - 1 = 1, b - 1 = 1, c - 1 = 1$, so $a = b = c = 2$.",
       "The integral equals $\\Gamma(2)\\Gamma(2)\\Gamma(2)/\\Gamma(6) = (1)(1)(1)/120 = 1/120$.",
       "Multiplying by the constant 6: $\\operatorname{E}(XY) = 6/120 = 1/20$.",
       "Hence option (d) is correct."
@@ -23,11 +23,11 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$\\operatorname{E}(X) = \\operatorname{E}(Y) = 1/4$ by symmetry (Dirichlet with $a = 2, b = 1, c = 2$ gives $1/24$, times 6). With $\\operatorname{E}(XY) = 1/20$ from the previous part, $Cov = 1/20 - 1/16$ = -$1/80$.",
+    "shortcut": "$\\operatorname{E}(X) = \\operatorname{E}(Y) = 1/4$ by symmetry (Dirichlet with $a = 2, b = 1, c = 2$ gives $1/24$, times 6). With $\\operatorname{E}(XY) = 1/20$ from the previous part, $\\operatorname{Cov} = 1/20 - 1/16 = -1/80$.",
     "tips": [
       "Exploit symmetry: the density is symmetric in x and y, so $\\operatorname{E}(X) = \\operatorname{E}(Y)$ and only one marginal moment need be computed.",
       "The sign must be NEGATIVE: the constraint $x + y < 1$ means a large X forces a small Y. That alone eliminates options (a) and (b).",
-      "Common denominator 80: $1/20 = 4/80$ and $1/16 = 5/80$, so the difference is -$1/80$ exactly. Convert before subtracting.",
+      "Common denominator 80: $1/20 = 4/80$ and $1/16 = 5/80$, so the difference is $-1/80$ exactly. Convert before subtracting.",
       "Reuse the previous part's $\\operatorname{E}(XY) = 1/20$ rather than recomputing - shared-stem questions are designed so that each answer feeds the next."
     ],
     "solution": [
@@ -35,7 +35,7 @@
       "The density is symmetric in x and y, so $\\operatorname{E}(Y) = 1/4$ as well.",
       "From the previous part, $\\operatorname{E}(XY) = 1/20$.",
       "$\\operatorname{Cov}(X,Y) = \\operatorname{E}(XY) - \\operatorname{E}(X)\\operatorname{E}(Y) = 1/20 - (1/4)(1/4) = 1/20 - 1/16$.",
-      "Using the common denominator 80: $4/80 - 5/80$ = -$1/80$.",
+      "Using the common denominator 80: $4/80 - 5/80 = -1/80$.",
       "The covariance is negative, as expected from the constraint $x + y < 1$. Option (d) is correct."
     ]
   },
@@ -43,18 +43,18 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$\\operatorname{E}(X^{2}) = 6 \\Gamma(3)\\Gamma(1)\\Gamma(2)/\\Gamma(6) = 1/10$, so $\\operatorname{Var}(X) = 1/10 - 1/16 = 3/80$ and by symmetry $\\operatorname{Var}(Y) = 3/80$. Then $b_{XY} = (-1/80)/(3/80)$ = -$1/3$, giving $X = 1/4 - (1/3)(Y - 1/4) = (1 - Y)/3$.",
+    "shortcut": "$\\operatorname{E}(X^{2}) = 6 \\Gamma(3)\\Gamma(1)\\Gamma(2)/\\Gamma(6) = 1/10$, so $\\operatorname{Var}(X) = 1/10 - 1/16 = 3/80$ and by symmetry $\\operatorname{Var}(Y) = 3/80$. Then $b_{XY} = (-1/80)/(3/80) = -1/3$, giving $X = 1/4 - (1/3)(Y - 1/4) = (1 - Y)/3$.",
     "tips": [
-      "Regression of X on Y: $X = \\operatorname{E}(X) + [Cov/\\operatorname{Var}(Y)](Y - \\operatorname{E}(Y))$. Write the template first and slot in the three numbers.",
-      "Both variances equal $3/80$ by symmetry, so the regression coefficient is simply $Cov/Var$ = -$1/3 - a$ clean number that signals the working is right.",
+      "Regression of X on Y: $X = \\operatorname{E}(X) + [\\operatorname{Cov}/\\operatorname{Var}(Y)](Y - \\operatorname{E}(Y))$. Write the template first and slot in the three numbers.",
+      "Both variances equal $3/80$ by symmetry, so the regression coefficient is simply $\\operatorname{Cov}/\\operatorname{Var} = -1/3$ - a clean number that signals the working is right.",
       "Simplify at the end: $1/4 + 1/12 = 4/12 = 1/3$, so the line collapses to $(1 - Y)/3$ with no stray fractions.",
       "Sign check: the covariance is negative, so the slope must be negative. Options (b) and (d) both have negative slopes; the constant term then separates them."
     ],
     "solution": [
-      "From the previous parts, $\\operatorname{E}(X) = \\operatorname{E}(Y) = 1/4$ and $\\operatorname{Cov}(X,Y)$ = -$1/80$.",
+      "From the previous parts, $\\operatorname{E}(X) = \\operatorname{E}(Y) = 1/4$ and $\\operatorname{Cov}(X,Y) = -1/80$.",
       "$\\operatorname{E}(X^{2}) = 6$ times the Dirichlet integral with $a = 3, b = 1, c = 2$: $6 \\Gamma(3)\\Gamma(1)\\Gamma(2)/\\Gamma(6) = 6(2)/120 = 1/10$.",
       "$\\operatorname{Var}(X) = 1/10 - (1/4)^{2} = 1/10 - 1/16 = 8/80 - 5/80 = 3/80$, and by symmetry $\\operatorname{Var}(Y) = 3/80$.",
-      "Regression coefficient of X on Y: $b_{XY} = \\operatorname{Cov}(X,Y)/\\operatorname{Var}(Y) = (-1/80)/(3/80)$ = -$1/3$.",
+      "Regression coefficient of X on Y: $b_{XY} = \\operatorname{Cov}(X,Y)/\\operatorname{Var}(Y) = (-1/80)/(3/80) = -1/3$.",
       "The line is $X - \\operatorname{E}(X) = b_{XY} (Y - \\operatorname{E}(Y))$, i.e. $X = 1/4 - (1/3)(Y - 1/4) = 1/4 - Y/3 + 1/12$.",
       "Since $1/4 + 1/12 = 1/3$, this is $X = 1/3 - Y/3 = (1 - Y)/3$. Option (b) is correct."
     ]
@@ -63,18 +63,18 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$f_{X}(x)$ = the $\\int 8$xy dy from x to $1 = 4x(1 - x^{2})$, so $f(y\\mid x) = 2y/(1-x^{2})$ on $(x,1)$. Then $\\operatorname{E}(Y\\mid X=x) = 2(1-x^{3})/(3(1-x^{2}))$.",
+    "shortcut": "$f_{X}(x)$ = the $\\int 8xy\\,dy$ from x to $1 = 4 \\times (1 - x^{2})$, so $f(y\\mid x) = 2y/(1-x^{2})$ on $(x,1)$. Then $\\operatorname{E}(Y\\mid X=x) = 2(1-x^{3})/(3(1-x^{2}))$.",
     "tips": [
       "Mind the region: $0 < x < y < 1$ means y runs from x to 1, not from 0 to 1. Getting the limits right is the whole difficulty here.",
       "The conditional density $2y/(1 - x^{2})$ on $(x, 1)$ integrates to 1 - always verify this before taking moments.",
       "The factor $2/3$ in front is the signature of integrating y times y: the $y^{3}/3$ term produces the 3 in the denominator and the 2 comes from the conditional density.",
-      "Boundary check at x -> 1: $(1-x^{3})/(1-x^{2}) \\to 3/2$, so $\\operatorname{E}(Y\\mid X=x) \\to 1$, which is right since Y is squeezed against 1. Option (c) passes; options (a) and (b) do not."
+      "Boundary check at $x \\to 1$: $(1-x^{3})/(1-x^{2}) \\to 3/2$, so $\\operatorname{E}(Y\\mid X=x) \\to 1$, which is right since Y is squeezed against 1. Option (c) passes; options (a) and (b) do not."
     ],
     "solution": [
-      "The joint density is $f(x,y) = 8$xy on the region $0 < x < y < 1$.",
-      "Marginal of X: $f_{X}(x)$ = the integral from $y = x$ to 1 of 8xy $dy = 8x[y^{2}/2]$ from x to $1 = 4x(1 - x^{2})$, for $0 < x < 1$.",
-      "Conditional density: $f(y\\mid x) = 8$xy/$[4x(1-x^{2})] = 2y/(1 - x^{2})$ for $x < y < 1$.",
-      "$\\operatorname{E}(Y\\mid X = x)$ = the $\\int_{x}^{1} y$ . $2y/(1-x^{2}) dy = [2/(1-x^{2})] [y^{3}/3]$ from x to $1 = [2/(1-x^{2})] (1 - x^{3})/3 = (2/3)(1 - x^{3})/(1 - x^{2})$.",
+      "The joint density is $f(x,y) = 8xy$ on the region $0 < x < y < 1$.",
+      "Marginal of X: $f_{X}(x)$ = the integral from $y = x$ to 1 of $8xy dy = 8x[y^{2}/2]$ from x to $1 = 4 \\times (1 - x^{2})$, for $0 < x < 1$.",
+      "Conditional density: $f(y\\mid x) = 8xy/[4 \\times (1-x^{2})] = 2y/(1 - x^{2})$ for $x < y < 1$.",
+      "$\\operatorname{E}(Y\\mid X = x)$ = the $\\int_{x}^{1} y \\cdot 2y/(1-x^{2})\\,dy = [2/(1-x^{2})] [y^{3}/3]$ from x to $1 = [2/(1-x^{2})] (1 - x^{3})/3 = (2/3)(1 - x^{3})/(1 - x^{2})$.",
       "Hence option (c) is correct."
     ]
   },
@@ -91,7 +91,7 @@
     ],
     "solution": [
       "From the previous part, the conditional density of Y given $X = x$ is $f(y\\mid x) = 2y/(1 - x^{2})$ for $x < y < 1$.",
-      "$\\operatorname{E}(Y^{2} \\mid X = x)$ = the $\\int_{x}^{1} y^{2}$ . $2y/(1-x^{2}) dy = [2/(1-x^{2})] [y^{4}/4]$ from x to $1 = [2/(1-x^{2})] (1 - x^{4})/4 = (1 - x^{4})/(2(1 - x^{2}))$.",
+      "$\\operatorname{E}(Y^{2} \\mid X = x)$ = the $\\int_{x}^{1} y^{2} \\cdot 2y/(1-x^{2})\\,dy = [2/(1-x^{2})] [y^{4}/4]$ from x to $1 = [2/(1-x^{2})] (1 - x^{4})/4 = (1 - x^{4})/(2(1 - x^{2}))$.",
       "Since $1 - x^{4} = (1 - x^{2})(1 + x^{2})$, this simplifies to $(1 + x^{2})/2$.",
       "At $x = 0.5$: $(1 + 0.25)/2 = 1.25/2 = 0.625$.",
       "Hence option (d) is correct."
@@ -103,14 +103,14 @@
     "type": "Numerical",
     "shortcut": "Chebyshev on the sample mean: $\\operatorname{P}(\\lvert \\bar{X} - \\mu\\rvert < e) \\ge 1 - \\sigma^{2}/(n e^{2})$. Require $1 - 1/(0.25n) \\ge 0.95$, so $0.25n \\ge 20$ and $n \\ge 80$.",
     "tips": [
-      "Chebyshev applied to $\\bar{X}$ uses $Var$($\\bar{X}$) = $\\sigma^{2}/n$, so the bound is $1 - \\sigma^{2}/(n e^{2})$. Forgetting the n makes the problem unsolvable.",
+      "Chebyshev applied to $\\bar{X}$ uses $\\operatorname{Var}(\\bar{X}) = \\sigma^{2}/n$, so the bound is $1 - \\sigma^{2}/(n e^{2})$. Forgetting the n makes the problem unsolvable.",
       "Rearrange once: $n \\ge \\sigma^{2}/(e^{2} (1 - P)) = 1/(0.25 \\times 0.05) = 80$. Memorise this compact form.",
       "$e^{2} = 0.25$, not 0.5 - squaring the neighbourhood radius is the step most often skipped, and it changes the answer by a factor of 2.",
       "Under normality the requirement would be only $n = 16$ (from $1.96/\\sqrt{n} \\le 0.5$); Chebyshev's 80 is far larger because it assumes nothing about the shape."
     ],
     "solution": [
-      "Let $\\bar{X}$ be the mean of a sample of size n from a population with standard deviation $\\sigma = 1$, so $Var$($\\bar{X}$) = $1/n$.",
-      "Chebyshev's inequality gives $\\operatorname{P}(\\lvert \\bar{X} - \\mu\\rvert < e) \\ge 1 - Var$($\\bar{X}$)/$e^{2} = 1 - 1/(n e^{2})$.",
+      "Let $\\bar{X}$ be the mean of a sample of size n from a population with standard deviation $\\sigma = 1$, so $\\operatorname{Var}(\\bar{X}) = 1/n$.",
+      "Chebyshev's inequality gives $\\operatorname{P}(\\lvert \\bar{X} - \\mu\\rvert < e) \\ge 1 - \\operatorname{Var}(\\bar{X})/e^{2} = 1 - 1/(n e^{2})$.",
       "Here the required neighbourhood is $e = 0.5$, so $e^{2} = 0.25$ and the bound is $1 - 1/(0.25 n) = 1 - 4/n$.",
       "We need $1 - 4/n \\ge 0.95$, i.e. $4/n \\le 0.05$.",
       "Hence $n \\ge 4/0.05 = 80$.",
@@ -121,18 +121,18 @@
     "answer": 3,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "This is exactly the first Borel-Cantelli lemma: if the sum of $\\operatorname{P}(A_{n})$ converges then $\\operatorname{P}\\!\\left(A_{n}\\ \\text{infinitely often}\\right) = \\operatorname{P}(\\lim \\sup A_{n}) = 0$.",
+    "shortcut": "This is exactly the first Borel-Cantelli lemma: if the sum of $\\operatorname{P}(A_{n})$ converges then $\\operatorname{P}\\!\\left(A_{n}\\ \\text{infinitely often}\\right) = \\operatorname{P}(\\limsup A_{n}) = 0$.",
     "tips": [
-      "$\\lim \\sup A_{n}$ is the event that infinitely many $A_{n}$ occur - read the notation as 'A_n infinitely often' and the lemma is immediate.",
+      "$\\limsup A_{n}$ is the event that infinitely many $A_{n}$ occur - read the notation as '$A_{n}$ infinitely often' and the lemma is immediate.",
       "Borel-Cantelli I needs NO independence; Borel-Cantelli II (divergent sum implies probability 1) does require independence. Knowing which lemma needs what is a standard exam point.",
-      "Convergent sum means the tail sums go to zero, and $\\operatorname{P}(\\lim \\sup A_{n})$ <= the tail sum for every n - that is the one-line proof.",
+      "Convergent sum means the tail sums go to zero, and $\\operatorname{P}(\\limsup A_{n})$ <= the tail sum for every n - that is the one-line proof.",
       "This lemma is the workhorse for proving almost-sure convergence: to show $X_{n} \\to X$ a.s., show that sum $\\operatorname{P}(\\lvert X_{n} - X\\rvert > e)$ converges for each e."
     ],
     "solution": [
-      "By definition, $\\lim \\sup A_{n}$ = the intersection over n of the union over $m \\ge n$ of $A_{m}$, which is the event that infinitely many of the $A_{n}$ occur.",
-      "For every $n, \\operatorname{P}(\\lim \\sup A_{m}) \\le P$(union over $m \\ge n$ of $A_{m}$) <= the $\\sum \\operatorname{P}(A_{m})$.",
+      "By definition, $\\limsup A_{n}$ = the $\\bigcap$ the $\\bigcup A_{m}$, which is the event that infinitely many of the $A_{n}$ occur.",
+      "For every $n, \\operatorname{P}(\\limsup A_{m}) \\le \\operatorname{P}(\\bigcup A_{m})$ <= the $\\sum \\operatorname{P}(A_{m})$.",
       "Since the series of $\\operatorname{P}(A_{n})$ converges, its tail sums tend to 0 as n grows.",
-      "Hence $\\operatorname{P}(\\lim \\sup A_{n})$ is bounded above by a quantity tending to 0, so $\\operatorname{P}(E) = 0$.",
+      "Hence $\\operatorname{P}(\\limsup A_{n})$ is bounded above by a quantity tending to 0, so $\\operatorname{P}(E) = 0$.",
       "This is the first Borel-Cantelli lemma, which requires no independence assumption.",
       "Option (d) is correct."
     ]
@@ -143,15 +143,15 @@
     "type": "Theoretical",
     "shortcut": "Statements 1, 2 and 3 are standard properties of the characteristic function. Statement 4 is the FALSE converse: a factorising characteristic function of the sum does not imply independence.",
     "tips": [
-      "Existence is guaranteed because |e^(itx)| = 1, so the integral always converges - unlike the MGF, which may fail to exist.",
-      "Uniform continuity follows from |$\\phi(t+h) - \\phi(t)$| <= E|e^(ihX) - 1|, a bound free of t. Learn this as a standard property.",
-      "Change of origin and scale: $\\phi_{aX+b}(t) = e$^(ibt) $\\phi_{X}(at)$, so the characteristic function certainly DOES depend on both - statement 3 is correctly worded as a negative and is true.",
+      "Existence is guaranteed because |$e^{\\text{itx}}$| = 1, so the integral always converges - unlike the MGF, which may fail to exist.",
+      "Uniform continuity follows from |$\\phi(t+h) - \\phi(t)$| <= $E\\mid e^{\\text{ihX}} - 1$|, a bound free of t. Learn this as a standard property.",
+      "Change of origin and scale: $\\phi_{aX+b}(t) = e^{\\text{ibt}} \\phi_{X}(at)$, so the characteristic function certainly DOES depend on both - statement 3 is correctly worded as a negative and is true.",
       "Statement 4 states the converse of a true theorem. Independence implies factorisation, but factorisation of the sum's characteristic function does not imply independence - counterexamples exist."
     ],
     "solution": [
-      "Statement 1: $\\phi(t) = E$(e^(itX)) always exists because |e^(itX)| = 1, so the expectation is finite for every t and every distribution. TRUE.",
-      "Statement 2: |$\\phi(t+h) - \\phi(t)$| = |E[e^(itX)(e^(ihX) - 1)]| <= E|e^(ihX) - 1|, which tends to 0 as h tends to 0 uniformly in t. Hence $\\phi$ is uniformly continuous on R. TRUE.",
-      "Statement 3: for Y = aX + $b, \\phi_{Y}(t) = e$^(ibt) $\\phi_{X}(at)$, so the characteristic function changes under a change of origin or scale - it is NOT independent of them. TRUE.",
+      "Statement 1: $\\phi(t) = \\operatorname{E}(e^{\\text{itX}})$ always exists because |$e^{\\text{itX}}$| = 1, so the expectation is finite for every t and every distribution. TRUE.",
+      "Statement 2: |$\\phi(t+h) - \\phi(t)$| = |$\\operatorname{E}[e^{\\text{itX}}(e^{\\text{ihX}} - 1)]$| <= $E\\mid e^{\\text{ihX}} - 1$|, which tends to 0 as h tends to 0 uniformly in t. Hence $\\phi$ is uniformly continuous on R. TRUE.",
+      "Statement 3: for $Y = aX + b, \\phi_{Y}(t) = e^{\\text{ibt}} \\phi_{X}(at)$, so the characteristic function changes under a change of origin or scale - it is NOT independent of them. TRUE.",
       "Statement 4: if X and Y are independent then $\\phi_{X+Y} = \\phi_{X} \\phi_{Y}$, but the converse fails. There exist dependent pairs whose sum's characteristic function still factorises. FALSE.",
       "The correct statements are 1, 2 and 3.",
       "Hence option (a) is correct."
@@ -161,15 +161,15 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The sum is $\\operatorname{P}(X \\ge n)$ where X ~ Binomial($4n, 1/4$), whose mean is exactly n. By the CLT the probability of being at or above the mean tends to $1/2$.",
+    "shortcut": "The sum is $\\operatorname{P}(X \\ge n)$ where $X \\sim \\text{Binomial}(4n, 1/4)$, whose mean is exactly n. By the CLT the probability of being at or above the mean tends to $1/2$.",
     "tips": [
-      "Recognise the binomial tail first: $\\binom{4n}{j}(1/4)^{j}(3/4)^{4n-j}$ summed from $j = n$ to 4n is $\\operatorname{P}(X \\ge n)$ for X ~ Bin($4n, 1/4$).",
-      "Compute the mean: np = $4n(1/4) = n$, exactly the lower summation limit. That coincidence is the entire design of the question.",
+      "Recognise the binomial tail first: $\\binom{4n}{j}(1/4)^{j}(3/4)^{4n-j}$ summed from $j = n$ to 4n is $\\operatorname{P}(X \\ge n)$ for $X \\sim \\text{Bin}(4n, 1/4)$.",
+      "Compute the mean: $np = 4n(1/4) = n$, exactly the lower summation limit. That coincidence is the entire design of the question.",
       "By the CLT the standardised binomial tends to $N(0,1)$, and $\\operatorname{P}(Z \\ge 0) = 1/2$. The single-point mass $\\operatorname{P}(X = n)$ is of order $1/\\sqrt{n}$ and vanishes.",
       "The de Moivre-Laplace theorem is the special case of the CLT being used here - worth naming in an answer for full credit."
     ],
     "solution": [
-      "Let X ~ Binomial($4n, 1/4$). Then the given sum is exactly $\\operatorname{P}(X \\ge n)$.",
+      "Let $X \\sim \\text{Binomial}(4n, 1/4)$. Then the given sum is exactly $\\operatorname{P}(X \\ge n)$.",
       "The mean of X is $\\operatorname{E}(X) = 4n(1/4) = n$, and its variance is $4n(1/4)(3/4) = 3n/4$.",
       "Standardising, $\\operatorname{P}(X \\ge n) = \\operatorname{P}((X - n)/\\sqrt{3n/4} \\ge 0)$.",
       "By the Central Limit Theorem (de Moivre-Laplace), the standardised variable converges in distribution to $N(0,1)$.",
@@ -189,8 +189,8 @@
       "De Moivre-Laplace (option b) is the normal approximation to the binomial, a CLT statement about the distribution, not about consistency."
     ],
     "solution": [
-      "Write the number of successes as $f = X_{1} + X_{2}$ + ... + Xn where the Xi are independent Bernoulli(p) variables.",
-      "Then $f/n$ is the sample mean of these Xi, and $\\operatorname{E}(\\Xi) = p$.",
+      "Write the number of successes as $f = X_{1} + X_{2} + \\ldots + X_{n}$ where the $\\Xi$ are independent $\\text{Bernoulli}(p)$ variables.",
+      "Then $f/n$ is the sample mean of these $\\Xi$, and $\\operatorname{E}(\\Xi) = p$.",
       "The weak law of large numbers states that the sample mean of i.i.d. variables with finite mean converges in probability to that mean.",
       "Hence $f/n$ converges in probability to p, which is exactly the definition of $f/n$ being a consistent estimator of p.",
       "In its binomial form this result is known as Bernoulli's theorem, a special case of the law of large numbers. Chebyshev's inequality is the tool used in its proof, and the CLT and de Moivre-Laplace theorem describe the limiting DISTRIBUTION rather than consistency.",
@@ -206,12 +206,12 @@
       "Convert the order-statistic event into a binomial count: $X_{r} > c$ iff at most r - 1 observations are <= c, i.e. at least $n - r + 1$ exceed c. Here $n = 4, r = 3$, so at least 2 must exceed $1/2$.",
       "Compute the complement: it is far quicker to subtract $\\operatorname{P}\\!\\left(\\text{0 exceed}\\right) + \\operatorname{P}\\!\\left(\\text{1 exceeds}\\right)$ than to add three terms.",
       "With $p = 3/4, \\operatorname{P}(0) = (1/4)^{4} = 1/256$ and $\\operatorname{P}(1) = 4(3/4)(1/4)^{3} = 12/256$, totalling $13/256$ - clean numbers that confirm the set-up.",
-      "Option $(a) 15/16$ is the answer to 'at least one exceeds $1/2'$ and option $(c) 1/2$ ignores the density's shape - both are planted for partial reasoning."
+      "Option $(a) 15/16$ is the answer to 'at least one exceeds $1/2'$ and option $(c) 1/2$ ignores the density's shape - both are planted for $\\partial$ reasoning."
     ],
     "solution": [
       "The density $f(x) = 2x$ on $(0,1)$ has CDF $F(x) = x^{2}$, so $F(1/2) = 1/4$ and $p = \\operatorname{P}(X > 1/2) = 3/4$.",
       "With $n = 4$ observations, the third order statistic $x_{3}$ exceeds $1/2$ exactly when at least $4 - 3 + 1 = 2$ of the observations exceed $1/2$.",
-      "Let B ~ Binomial($4, 3/4$) count the observations exceeding $1/2$. We need $\\operatorname{P}(B \\ge 2) = 1 - \\operatorname{P}(B = 0) - \\operatorname{P}(B = 1)$.",
+      "Let $B \\sim \\text{Binomial}(4, 3/4)$ count the observations exceeding $1/2$. We need $\\operatorname{P}(B \\ge 2) = 1 - \\operatorname{P}(B = 0) - \\operatorname{P}(B = 1)$.",
       "$\\operatorname{P}(B = 0) = (1/4)^{4} = 1/256$.",
       "$\\operatorname{P}(B = 1) = \\binom{4}{1}(3/4)(1/4)^{3} = 4(3/4)(1/64) = 12/256$.",
       "So $\\operatorname{P}(B \\ge 2) = 1 - 13/256 = 243/256$, option (b)."
@@ -225,7 +225,7 @@
     "tips": [
       "Consistency = every ultimate class frequency is non-negative. Write the four cell frequencies in terms of (A), (B), (AB) and N, then impose non-negativity.",
       "Conditions 1 and 2 come from $(A \\beta) \\ge 0$ and $(\\alpha B) \\ge 0$; condition 3 comes from $(\\alpha \\beta) \\ge 0$. One condition per empty-looking cell.",
-      "Combined form worth memorising: $\\max(0, (A) + (B) - N) \\le (AB) \\le \\min((A), (B))$ - the Frechet bounds for a 2x2 table.",
+      "Combined form worth memorising: $\\max(0, (A) + (B) - N) \\le (AB) \\le \\min((A), (B))$ - the Frechet bounds for a $2 \\times 2$ table.",
       "When each listed condition corresponds to a distinct cell of the table, all of them are needed - 'all three' is the natural key."
     ],
     "solution": [
@@ -244,14 +244,14 @@
     "shortcut": "Statement 2 is false because standard deviations carry units and cannot be compared across different units; the coefficient of variation must be used. Statements 1 and 3 are standard results.",
     "tips": [
       "Mean deviation is minimised about the MEDIAN; the sum of SQUARED deviations is minimised about the MEAN. Keep the pair straight - each is a classic one-mark fact.",
-      "SD has the same units as the data, so comparing an SD in kilograms with one in centimetres is meaningless. The CV = (SD/mean) x 100 is dimensionless and fixes this.",
-      "Smaller CV means less relative variability, hence greater consistency or uniformity - the standard interpretation in comparison problems.",
+      "$\\operatorname{SD}$ has the same units as the data, so comparing an $\\operatorname{SD}$ in kilograms with one in centimetres is meaningless. The $\\operatorname{CV}$ = ($\\operatorname{SD}$/mean) x 100 is dimensionless and fixes this.",
+      "Smaller $\\operatorname{CV}$ means less relative variability, hence greater consistency or uniformity - the standard interpretation in comparison problems.",
       "Statements 2 and 3 are effectively about the same issue from opposite sides, so deciding one settles the other."
     ],
     "solution": [
-      "Statement 1: for any constant a, the sum of |$x_{i} - a$| is minimised when a is the median of the data. This is a standard property of the mean deviation. TRUE.",
+      "Statement 1: for any constant a, the sum of $\\lvert x_{i} - a\\rvert$ is minimised when a is the median of the data. This is a standard property of the mean deviation. TRUE.",
       "Statement 2: the standard deviation is measured in the same units as the original data, so two series in different units cannot be compared by their SDs. The correct tool is the coefficient of variation, which is unit-free. FALSE.",
-      "Statement 3: the coefficient of variation measures relative dispersion, so the series with the smaller CV shows less relative variability and is described as more consistent. TRUE.",
+      "Statement 3: the coefficient of variation measures relative dispersion, so the series with the smaller $\\operatorname{CV}$ shows less relative variability and is described as more consistent. TRUE.",
       "Only statements 1 and 3 are correct.",
       "Hence option (c) is correct."
     ]
@@ -263,7 +263,7 @@
     "shortcut": "Statement 1 is the Cramer-Wold characterisation of the bivariate normal and is true. Statement 2 is false - normal marginals do not force joint normality.",
     "tips": [
       "Cramer-Wold device: a random vector is multivariate normal if and only if EVERY linear combination of its components is univariate normal. This is the standard definition, so statement 1 is true by definition.",
-      "Standard counterexample for statement 2: take $Z \\sim N(0,1)$ and S = +-1 independently with equal probability; then Z and SZ are each $N(0,1)$ but the pair is not bivariate normal (it is concentrated on two lines).",
+      "Standard counterexample for statement 2: take $Z \\sim N(0,1)$ and $S = \\pm 1$ independently with equal probability; then Z and SZ are each $N(0,1)$ but the pair is not bivariate normal (it is concentrated on two lines).",
       "The direction of implication matters: joint normality implies normal marginals, but not conversely - the classic one-way street of this chapter.",
       "The word 'always' in statement 2 is the giveaway; universal claims in this area are usually the false ones."
     ],
@@ -271,7 +271,7 @@
       "Statement 1: by the Cramer-Wold device, a random vector (X,Y) has a bivariate normal distribution if and only if aX + bY is univariate normal for every pair of constants a, b. This is the standard characterisation. TRUE.",
       "Statement 2: joint normality implies normal marginals, but the converse fails.",
       "A standard counterexample: let $Z \\sim N(0,1)$ and let S take the values +1 and -1 with probability $1/2$ each, independently of Z. Put $X = Z$ and Y = SZ.",
-      "Then both X and Y are $N(0,1)$, but the pair (X,Y) is concentrated on the two lines $y = x$ and y = -x and has no bivariate normal density.",
+      "Then both X and Y are $N(0,1)$, but the pair (X,Y) is concentrated on the two lines $y = x$ and $y = -x$ and has no bivariate normal density.",
       "So normal marginals do not imply bivariate normality. Statement 2 is FALSE.",
       "Only statement 1 is correct, option (a)."
     ]
@@ -280,36 +280,36 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$\\max(X,Y) = [(X+Y) + \\lvert X-Y\\rvert ]/2$. Here $X - Y \\sim N(0, 2(1-\\rho))$, so $E\\mid X-Y$| = $sqrt(2(1-\\rho)) \\sqrt{2/pi} = 2 sqrt((1-\\rho)/pi)$, and half of that is $sqrt((1-\\rho)/pi)$.",
+    "shortcut": "$\\max(X,Y) = [(X+Y) + \\lvert X-Y\\rvert ]/2$. Here $X - Y \\sim N(0, 2(1-\\rho))$, so $\\operatorname{E}\\lvert X-Y\\rvert = \\sqrt{2(1-\\rho)} \\sqrt{2/\\pi} = 2 \\sqrt{(1-\\rho)/\\pi}$, and half of that is $\\sqrt{(1-\\rho)/\\pi}$.",
     "tips": [
       "Same identity as the independent case, only the variance of X - Y changes: $\\operatorname{Var}(X - Y) = 1 + 1 - 2\\rho = 2(1 - \\rho)$.",
-      "For $W \\sim N(0, \\tau^{2}), E\\mid W$| = $\\tau \\sqrt{2/pi}$. The two factors of $\\sqrt{2}$ cancel neatly, leaving the tidy answer.",
-      "Check $\\rho = 0$: the formula gives $1/\\sqrt{pi}$, matching the independent-case result of 2019 Q36 - a strong consistency test.",
+      "For $W \\sim N(0, \\tau^{2}), \\operatorname{E}\\lvert W\\rvert = \\tau \\sqrt{2/\\pi}$. The two factors of $\\sqrt{2}$ cancel neatly, leaving the tidy answer.",
+      "Check $\\rho = 0$: the formula gives $1/\\sqrt{\\pi}$, matching the independent-case result of $2019 Q_{36}$ - a strong consistency test.",
       "Check $\\rho = 1$: $X = Y$ so the maximum is X itself with mean 0, and the formula duly gives 0. Only option (d) satisfies both limits."
     ],
     "solution": [
       "For a standard bivariate normal pair, use $\\max(X, Y) = [(X + Y) + \\lvert X - Y\\rvert ]/2$.",
       "$\\operatorname{E}(X + Y) = 0$ since both means are zero.",
       "X - Y is normal with mean 0 and variance $\\operatorname{Var}(X) + \\operatorname{Var}(Y) - 2 \\operatorname{Cov}(X,Y) = 1 + 1 - 2\\rho = 2(1 - \\rho)$.",
-      "With $\\tau = sqrt(2(1-\\rho))$ and the half-normal mean formula E|W| = $\\tau \\sqrt{2/pi}$, we get $E\\mid X - Y$| = $sqrt(2(1-\\rho)) \\sqrt{2/pi} = 2 sqrt((1-\\rho)/pi)$.",
-      "Therefore $\\operatorname{E}[\\max(X,Y)] = [0 + 2 sqrt((1-\\rho)/pi)]/2 = sqrt((1 - \\rho)/pi)$.",
-      "Checks: $\\rho = 0$ gives $1/\\sqrt{pi}$ and $\\rho = 1$ gives 0, both correct. Option (d)."
+      "With $\\tau = \\sqrt{2(1-\\rho)}$ and the half-normal mean formula $\\operatorname{E}\\lvert W\\rvert = \\tau \\sqrt{2/\\pi}$, we get $\\operatorname{E}\\lvert X - Y\\rvert = \\sqrt{2(1-\\rho)} \\sqrt{2/\\pi} = 2 \\sqrt{(1-\\rho)/\\pi}$.",
+      "Therefore $\\operatorname{E}[\\max(X,Y)] = [0 + 2 \\sqrt{(1-\\rho)/\\pi}]/2 = \\sqrt{(1 - \\rho)/\\pi}$.",
+      "Checks: $\\rho = 0$ gives $1/\\sqrt{\\pi}$ and $\\rho = 1$ gives 0, both correct. Option (d)."
     ]
   },
   "2021-Q16": {
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$\\operatorname{E}(XY) = (1/3)$ times the double $\\int$ xy(x+y). Integrating in y from 0 to 2 gives $2x^{2} + 8x/3$; integrating that in x from 0 to 1 gives 2, so $\\operatorname{E}(XY) = 2/3$.",
+    "shortcut": "$\\operatorname{E}(XY) = (1/3)$ times the double $\\int xy(x+y)$. Integrating in y from 0 to 2 gives $2x^{2} + 8x/3$; integrating that in x from 0 to 1 gives 2, so $\\operatorname{E}(XY) = 2/3$.",
     "tips": [
       "Integrate over the WIDER range first (y from 0 to 2 here) - the inner integral $2x^{2} + 8x/3$ is then simple to carry forward.",
       "Validity check: the double $\\int (x+y)/3$ over the rectangle is $(1/3)(1 + 2) = 1$, so the density is correct and the limits are right.",
-      "This is the same density as 2018 Q14, where 6E(XY) contributed 4 to the answer - recognising the repeat saves the whole computation.",
+      "This is the same density as $2018 Q_{14}$, where $6\\operatorname{E}(XY)$ contributed 4 to the answer - recognising the repeat saves the whole computation.",
       "Magnitude check: X averages about $5/9$ and Y about $10/9$, so a product expectation near $2/3$ is entirely plausible; options (c) and (d) are too small."
     ],
     "solution": [
       "The density is $f(x,y) = (x + y)/3$ on $0 \\le x \\le 1, 0 \\le y \\le 2$. Its total integral is $(1/3)(1 + 2) = 1$, so it is valid.",
-      "$\\operatorname{E}(XY) = (1/3)$ times the double $\\int$ xy(x + y) over the rectangle.",
+      "$\\operatorname{E}(XY) = (1/3)$ times the double $\\int xy(x + y)$ over the rectangle.",
       "Inner $\\int (x^{2} y + x y^{2})\\,dy = [x^{2} y^{2}/2 + x y^{3}/3]$ from 0 to $2 = 2x^{2} + 8x/3$.",
       "Outer $\\int (2x^{2} + 8x/3)\\,dx = 2/3 + 4/3 = 2$.",
       "Therefore $\\operatorname{E}(XY) = (1/3)(2) = 2/3$.",
@@ -325,7 +325,7 @@
       "Match weight to family: normal weight gives Hermite, $e^{-x}$ on $(0, \\infty)$ gives Laguerre, constant weight on $(-1,1)$ gives Legendre, and $(1-x^{2})^{-1/2}$ gives Chebyshev.",
       "First few probabilists' Hermite polynomials: He_0 = 1, He_1 = x, He_2 = $x^{2} - 1$, He_3 = $x^{3} - 3x$, He_4 = $x^{4} - 6x^{2} + 3$.",
       "Parity argument alone settles it: the normal weight is even, so an odd-degree orthogonal polynomial must be an ODD function. Options (a) and (d) contain even terms and are eliminated at once.",
-      "Orthogonality to lower degrees is easy to verify: $\\operatorname{E}(He_{3}(X)) = \\operatorname{E}(X^{3}) - 3\\operatorname{E}(X) = 0$ and E(X . He_3(X)) = $\\operatorname{E}(X^{4}) - 3\\operatorname{E}(X^{2}) = 3 - 3 = 0$."
+      "Orthogonality to lower degrees is easy to verify: $\\operatorname{E}(He_{3}(X)) = \\operatorname{E}(X^{3}) - 3\\operatorname{E}(X) = 0$ and $\\operatorname{E}(X \\cdot He_{3}(X)) = \\operatorname{E}(X^{4}) - 3\\operatorname{E}(X^{2}) = 3 - 3 = 0$."
     ],
     "solution": [
       "Orthogonal polynomials with respect to the standard normal density are the (probabilists') Hermite polynomials He_n(x).",
@@ -342,14 +342,14 @@
     "type": "Numerical",
     "shortcut": "Matching the quadratic form: the ratio of the $u^{2}$ and $v^{2}$ coefficients is 1 : 4, so $\\sigma_{2}^{2} = \\sigma_{1}^{2}/4$; the cross term then forces $\\rho = 1/2$, whence $1/(2(1-\\rho^{2})) = 2/3$ and $\\sigma_{1}^{2} = (2/3)(27/8) = 9/4, \\sigma_{2}^{2} = 9/16$.",
     "tips": [
-      "Write $u = x - 7$ and $v = y + 5$ first; the means are read off directly as $\\mu_{1} = 7$ and $\\mu_{2}$ = -5 before any algebra.",
-      "Compare the printed form $Q = A[u^{2} - 2uv + 4v^{2}]$ with the standard $[u^{2}/s_{1}^{2} - 2 \\rho uv/(s_{1} s_{2}) + v^{2}/s_{2}^{2}]$ divided by $2(1-\\rho^{2})$. Three coefficient equations determine $\\rho, s_{1}$ and s2.",
+      "Write $u = x - 7$ and $v = y + 5$ first; the means are read off directly as $\\mu_{1} = 7$ and $\\mu_{2} = -5$ before any algebra.",
+      "Compare the printed form $Q = A[u^{2} - 2uv + 4v^{2}]$ with the standard $[u^{2}/s_{1}^{2} - 2 \\rho uv/(s_{1} s_{2}) + v^{2}/s_{2}^{2}]$ divided by $2(1-\\rho^{2})$. Three coefficient equations determine $\\rho, s_{1}$ and $s_{2}$.",
       "Shortcut for $\\rho$: dividing the cross-term equation by the $u^{2}$ equation gives $\\rho = s_{2}/s_{1}$, so the ratio of the standard deviations IS the correlation here - a neat structural fact of this particular form.",
       "Sanity check: $\\operatorname{V}(X) = 9/4 > \\operatorname{V}(Y) = 9/16$, consistent with the smaller coefficient on $u^{2}$ (a larger variance means a flatter quadratic in that direction)."
     ],
     "solution": [
-      "Put $u = x - 7$ and $v = y + 5$, so the exponent is -$(8/27)[u^{2} - 2uv + 4v^{2}]$.",
-      "The bivariate normal exponent is -$(1/(2(1-\\rho^{2})))[u^{2}/s_{1}^{2} - 2 \\rho u v/(s_{1} s_{2}) + v^{2}/s_{2}^{2}]$. Write $A = 1/(2(1-\\rho^{2}))$.",
+      "Put $u = x - 7$ and $v = y + 5$, so the exponent is $-(8/27)[u^{2} - 2uv + 4v^{2}]$.",
+      "The bivariate normal exponent is $-(1/(2(1-\\rho^{2})))[u^{2}/s_{1}^{2} - 2 \\rho u v/(s_{1} s_{2}) + v^{2}/s_{2}^{2}]$. Write $A = 1/(2(1-\\rho^{2}))$.",
       "Matching coefficients: $A/s_{1}^{2} = 8/27, A \\rho/(s_{1} s_{2}) = 8/27$, and $A/s_{2}^{2} = 4(8/27) = 32/27$.",
       "Dividing the first by the third: $s_{2}^{2}/s_{1}^{2} = (8/27)/(32/27) = 1/4$, so $s_{1} = 2 s_{2}$. Dividing the second by the first: $\\rho s_{1}^{2}/(s_{1} s_{2}) = 1$, i.e. $\\rho s_{1}/s_{2} = 1$, so $\\rho = s_{2}/s_{1} = 1/2$.",
       "Then $A = 1/(2(1 - 1/4)) = 2/3$, and from $A/s_{1}^{2} = 8/27$ we get $s_{1}^{2} = (2/3)(27/8) = 9/4$.",
@@ -360,38 +360,38 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$k = 1/(2 pi s_{1} s_{2} \\sqrt{1-\\rho^2})$ with $s_{1} = 3/2, s_{2} = 3/4, \\rho = 1/2$. The product $s_{1} s_{2} \\sqrt{3}/2 = (9/8)(0.866) = 0.9743$, so $k = 1/(2 pi x 0.9743) = 0.51/pi$.",
+    "shortcut": "$k = 1/(2 \\pi s_{1} s_{2} \\sqrt{1-\\rho^2})$ with $s_{1} = 3/2, s_{2} = 3/4, \\rho = 1/2$. The product $s_{1} s_{2} \\sqrt{3}/2 = (9/8)(0.866) = 0.9743$, so $k = 1/(2 \\pi x 0.9743) = 0.51/\\pi$.",
     "tips": [
-      "The bivariate normal normalising constant is $1/(2 pi s_{1} s_{2} \\sqrt{1 - \\rho^2})$ - memorise it as '2 pi times the two SDs times the root of one minus $\\rho$ squared'.",
+      "The bivariate normal normalising constant is $1/(2 \\pi s_{1} s_{2} \\sqrt{1 - \\rho^2})$ - memorise it as '$2 \\pi$ times the two SDs times the root of one minus $\\rho$ squared'.",
       "Take square roots of the variances first: $s_{1} = 3/2$ and $s_{2} = 3/4$ from $\\operatorname{V}(X) = 9/4$ and $\\operatorname{V}(Y) = 9/16$. Using the variances directly is the standard error here.",
-      "The options are all of the form $c/pi$, so factor out $1/pi$ early: $k = 1/(2 pi (0.9743)) = (1/1.9486)/pi = 0.513/pi$.",
+      "The options are all of the form $c/\\pi$, so factor out $1/\\pi$ early: $k = 1/(2 \\pi (0.9743)) = (1/1.9486)/\\pi = 0.513/\\pi$.",
       "$\\sqrt{1 - 1/4} = \\sqrt{3}/2 = 0.866$ - keep four significant figures, since the options differ only in the second decimal of c."
     ],
     "solution": [
       "From the previous part, $s_{1}^{2} = 9/4$ and $s_{2}^{2} = 9/16$, so $s_{1} = 3/2$ and $s_{2} = 3/4$, with $\\rho = 1/2$.",
-      "The bivariate normal density has normalising constant $k = 1/[2 pi s_{1} s_{2} \\sqrt{1 - \\rho^2}]$.",
+      "The bivariate normal density has normalising constant $k = 1/[2 \\pi s_{1} s_{2} \\sqrt{1 - \\rho^2}]$.",
       "Compute $\\sqrt{1 - \\rho^2} = \\sqrt{1 - 1/4} = \\sqrt{3}/2 = 0.8660$.",
       "$s_{1} s_{2} = (3/2)(3/4) = 9/8 = 1.125$, so $s_{1} s_{2} \\sqrt{1-\\rho^2} = 1.125 \\times 0.8660 = 0.9743$.",
-      "Hence $k = 1/(2 pi x 0.9743) = 1/(1.9486 pi) = 0.5132/pi$.",
-      "To two decimals this is $0.51/pi$, option (c)."
+      "Hence $k = 1/(2 \\pi x 0.9743) = 1/(1.9486 \\pi) = 0.5132/\\pi$.",
+      "To two decimals this is $0.51/\\pi$, option (c)."
     ]
   },
   "2021-Q20": {
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The regression of Y on X is $\\operatorname{E}(Y\\mid X=x) = \\mu_{2} + \\rho(s_{2}/s_{1})(x - \\mu_{1})$ = -$5 + (1/2)(1/2)(x - 7) = 0.25x - 6.75$.",
+    "shortcut": "The regression of Y on X is $\\operatorname{E}(Y\\mid X=x) = \\mu_{2} + \\rho(s_{2}/s_{1})(x - \\mu_{1}) = -5 + (1/2)(1/2)(x - 7) = 0.25x - 6.75$.",
     "tips": [
       "Regression coefficient $b_{YX} = \\rho s_{2}/s_{1} = (1/2)(3/4)/(3/2) = 1/4$. Compute this single number first and the line follows.",
-      "The slope of a regression line can never exceed |$\\rho$| times the SD ratio, so a slope of 6.75 (options (a), (c), (d)) is impossible here - the answer is identifiable almost by inspection.",
-      "Constant term: -$5 - 0.25(7)$ = -5 - 1.75 = -6.75. Keep the sign of $\\mu_{2}$ = -5, which comes from the $(y + 5)$ in the exponent.",
-      "Check that the line passes through the means: at $x = 7, Y = 0.25(7) - 6.75$ = -$5 = \\mu_{2}$, as every regression line must."
+      "The slope of a regression line can never exceed $\\lvert \\rho\\rvert$ times the $\\operatorname{SD}$ ratio, so a slope of 6.75 (options (a), (c), (d)) is impossible here - the answer is identifiable almost by inspection.",
+      "Constant term: $-5 - 0.25(7) = -5 - 1.75 = -6.75$. Keep the sign of $\\mu_{2} = -5$, which comes from the $(y + 5)$ in the exponent.",
+      "Check that the line passes through the means: at $x = 7, Y = 0.25(7) - 6.75 = -5 = \\mu_{2}$, as every regression line must."
     ],
     "solution": [
-      "From the exponent, $\\mu_{1} = 7$ and $\\mu_{2}$ = -5; from the earlier parts, $s_{1} = 3/2, s_{2} = 3/4$ and $\\rho = 1/2$.",
+      "From the exponent, $\\mu_{1} = 7$ and $\\mu_{2} = -5$; from the earlier parts, $s_{1} = 3/2, s_{2} = 3/4$ and $\\rho = 1/2$.",
       "The regression of Y on X for a bivariate normal is $\\operatorname{E}(Y \\mid X = x) = \\mu_{2} + \\rho (s_{2}/s_{1})(x - \\mu_{1})$.",
       "The regression coefficient is $b_{YX} = \\rho s_{2}/s_{1} = (1/2)(3/4)/(3/2) = (1/2)(1/2) = 1/4 = 0.25$.",
-      "Substituting: Y = -$5 + 0.25(x - 7)$ = -$5 + 0.25x - 1.75$.",
+      "Substituting: $Y = -5 + 0.25(x - 7) = -5 + 0.25x - 1.75$.",
       "So $Y = 0.25x - 6.75$.",
       "Check: at $x = 7$ the line gives -5, the mean of Y, as required. Option (b) is correct."
     ]

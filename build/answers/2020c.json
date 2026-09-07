@@ -84,7 +84,7 @@
     "type": "Factual",
     "shortcut": "Two's complement is the universal choice: one representation of zero, one extra representable value, and subtraction performed by the adder alone.",
     "tips": [
-      "Three reasons to remember: unique zero, range -$2^{n-1}$ to $2^{n-1} - 1$, and subtraction implemented as addition with the carry discarded.",
+      "Three reasons to remember: unique zero, range $-2^{n-1}$ to $2^{n-1} - 1$, and subtraction implemented as addition with the carry discarded.",
       "One's complement suffers from negative zero and needs an end-around carry, which costs an extra cycle - the reason it lost.",
       "Signed magnitude also has two zeros and requires separate add and subtract logic depending on the signs.",
       "Floating point (option d) represents real numbers generally; it is not a scheme for representing negative INTEGERS and is out of category."
@@ -92,7 +92,7 @@
     "solution": [
       "In signed-magnitude representation the sign bit is separate from the magnitude, giving two encodings of zero (+0 and -0) and requiring different hardware paths for addition and subtraction.",
       "One's complement also has two zeros and needs an end-around carry when adding, which slows arithmetic.",
-      "Two's complement has a single representation of zero, gives one extra representable value (range -$2^{n-1}$ to $2^{n-1} - 1$), and allows A - B to be computed as A plus the two's complement of B using the ordinary adder with the final carry discarded.",
+      "Two's complement has a single representation of zero, gives one extra representable value (range $-2^{n-1}$ to $2^{n-1} - 1$), and allows A - B to be computed as A plus the two's complement of B using the ordinary adder with the final carry discarded.",
       "These advantages make two's complement the standard in virtually all modern processors.",
       "Floating point is a scheme for representing real numbers, not specifically negative integers.",
       "Hence the answer is two's complement, option (c)."
@@ -180,19 +180,19 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Group the bits in fours: $0001 1111 0111 = 1F7$ for the integer part, and $1101 0100 = D_{4}$ for the fraction. Answer $(1F7.D_{4})16$.",
+    "shortcut": "Group the bits in fours: $0001 1111 0111 = 1F_{7}$ for the integer part, and $1101 0100 = D_{4}$ for the fraction. Answer $(1F_{7}.D_{4})16$.",
     "tips": [
       "Binary to hex is pure grouping: four bits per hex digit. Group the INTEGER part leftwards from the point and the FRACTION rightwards from the point.",
       "Pad with zeros in the right direction: leading zeros for the integer part (1 becomes 0001) and TRAILING zeros for the fraction (01 becomes 0100).",
-      "Padding the fraction on the wrong side is the single most common error and turns D4 into D5 - exactly the difference between options (b) and (c).",
+      "Padding the fraction on the wrong side is the single most common error and turns $D_{4}$ into $D_{5}$ - exactly the difference between options (b) and (c).",
       "Verify the integer digit count: nine bits give three hex digits, so the answer must start with 1, not 2. That eliminates options (a) and (d) immediately."
     ],
     "solution": [
       "Take the integer part 111110111 and group it in fours from the binary point leftwards: $1 \\lvert 1110 \\rvert 1111$... more carefully, from the right: 0111, then 1111, then the remaining 1 padded to 0001.",
-      "So the integer part is $0001 1111 0111 = 1, F, 7 = 1F7$ in hexadecimal.",
+      "So the integer part is $0001 1111 0111 = 1, F, 7 = 1F_{7}$ in hexadecimal.",
       "Take the fractional part 110101 and group it in fours from the binary point rightwards: 1101 | 01, padding the last group with trailing zeros to give 0100.",
       "So the fraction is $1101 0100 = D, 4 = D_{4}$ in hexadecimal.",
-      "Combining, $(111110111.110101)_{2} = (1F7.D_{4})_{16}$.",
+      "Combining, $(111110111.110101)_{2} = (1F_{7}.D_{4})_{16}$.",
       "Option (c) is correct."
     ]
   },
@@ -279,7 +279,7 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "1 GB = 1024 MB = 1024 x 1024 KB. Two steps down the ladder from GB lands on kilobytes.",
+    "shortcut": "1 GB = 1024 MB = $1024 \\times 1024$ KB. Two steps down the ladder from GB lands on kilobytes.",
     "tips": [
       "Memory ladder: 1 KB = 1024 B, 1 MB = 1024 KB, 1 GB = 1024 MB, 1 TB = 1024 GB. Each rung is a factor of $1024 = 2^{10}$.",
       "$1024 \\times 1024 = 2^{20}$, so the question is asking which unit is $2^{20}$ below a gigabyte - two rungs down, i.e. kilobytes.",
@@ -289,10 +289,10 @@
     "solution": [
       "The standard binary memory units are 1 KB = 1024 bytes, 1 MB = 1024 KB, 1 GB = 1024 MB and 1 TB = 1024 GB.",
       "So 1 GB = 1024 MB.",
-      "Substituting 1 MB = 1024 KB gives 1 GB = 1024 x 1024 KB.",
+      "Substituting 1 MB = 1024 KB gives 1 GB = $1024 \\times 1024$ KB.",
       "In powers of two, 1 GB = $2^{30}$ bytes and 1 KB = $2^{10}$ bytes, so the ratio is $2^{20} = 1024 \\times 1024$, confirming the result.",
       "Option (a) would make a gigabyte equal to a terabyte, and option (b) would make it larger than a terabyte; option (c) understates it by a factor of 1024.",
-      "Hence 1 GB = 1024 x 1024 kilobytes, option (d)."
+      "Hence 1 GB = $1024 \\times 1024$ kilobytes, option (d)."
     ]
   },
   "2020-Q56": {
@@ -321,10 +321,10 @@
     "type": "Factual",
     "shortcut": "The wireless LAN family is IEEE 802.11. Only option (d) has the correct 802 prefix; the others print 803 or 801.",
     "tips": [
-      "IEEE 802 is the family for local and metropolitan area networks: 802.3 is Ethernet, 802.11 is Wi-Fi, 802.15 is Bluetooth, 802.16 is WiMAX.",
+      "IEEE 802 is the family for local and metropolitan area networks: 802.3 is Ethernet, 802.11 is $W_{i}-F_{i}, 802.15$ is Bluetooth, 802.16 is WiMAX.",
       "This item is really a proof-reading test - scan the digits before the first dot and reject anything that is not 802.",
       "802.11 letter suffixes and their nominal rates: $b = 11$ Mbps, $a = 54$ Mbps, $g = 54$ Mbps, $n = 600$ Mbps, ac = gigabit class.",
-      "Wi-Fi is the marketing name for certified 802.11 equipment - the two terms are used interchangeably in these papers."
+      "$W_{i}-F_{i}$ is the marketing name for certified 802.11 equipment - the two terms are used interchangeably in these papers."
     ],
     "solution": [
       "Wireless local area networking is standardised by the IEEE 802.11 family of standards.",
@@ -358,20 +358,20 @@
     "answer": 2,
     "confidence": "high",
     "type": "Conceptual",
-    "shortcut": "Hexadecimal digits are 0-9 and A-F. The string 15F6G contains G, which is out of range, so it is not a valid hexadecimal number.",
+    "shortcut": "Hexadecimal digits are $0-9$ and $A-F$. The string $15F6G$ contains G, which is out of range, so it is not a valid hexadecimal number.",
     "tips": [
-      "Hex uses sixteen symbols: 0-9 then $A (10), B (11), C (12), D (13), \\operatorname{E} (14), F (15)$. Anything beyond F is invalid.",
+      "Hex uses sixteen symbols: $0-9$ then A $(10), B (11), C (12), D (13), \\operatorname{E} (14), F (15)$. Anything beyond F is invalid.",
       "Scan each option for letters past F - the check takes seconds and needs no conversion.",
       "Option (a) 12345 uses only decimal digits, which are perfectly valid hex digits; a number can be simultaneously valid in several bases.",
       "The same reasoning applies elsewhere: 8 and 9 are invalid in octal, and 2 is invalid in binary."
     ],
     "solution": [
-      "The hexadecimal system is base 16 and uses exactly sixteen digit symbols: 0, 1, 2, ..., 9, A, B, C, D, E, F.",
+      "The hexadecimal system is base 16 and uses exactly sixteen digit symbols: $0, 1, 2, \\ldots, 9, A, B, C, D, E, F$.",
       "Option (a) 12345 uses only the digits 1 to 5, all valid hexadecimal digits.",
       "Option (b) 1AB9F uses 1, A, B, 9 and F, all valid.",
-      "Option (d) 1A3BC uses 1, A, 3, B and C, all valid.",
-      "Option (c) 15F6G contains the letter G, which lies beyond F and is not a hexadecimal digit.",
-      "Hence 15F6G is not a valid hexadecimal number, option (c)."
+      "Option $(d) 1A_{3}$BC uses 1, A, 3, B and C, all valid.",
+      "Option $(c) 15F6G$ contains the letter G, which lies beyond F and is not a hexadecimal digit.",
+      "Hence $15F6G$ is not a valid hexadecimal number, option (c)."
     ]
   },
   "2020-Q60": {

@@ -25,7 +25,7 @@
     "type": "Numerical",
     "shortcut": "With $h = 2, x^{3} = x(x-2)(x-4) = x^{3} - 6x^{2} + 8x$ and $x^{2} = x(x-2) = x^{2} - 2x$. Matching coefficients of $x^{3}$ gives $A = 1$, then $x^{2}$ gives $B = 6$ and x gives $C = 4$, with $D = 0$.",
     "tips": [
-      "Factorial notation with spacing h: $x^{n} = x(x-h)(x-2h)$...$(x-(n-1)h)$. Here $h = 2$, so the factors step down by 2 - not by 1. Using $h = 1$ gives A,B,C,$D = 1$,3,1,0 and no matching option.",
+      "Factorial notation with spacing h: $x^{n} = x(x-h)(x-2h)\\ldots(x-(n-1)h)$. Here $h = 2$, so the factors step down by 2 - not by 1. Using $h = 1$ gives A,B,C,$D = 1$,3,1,0 and no matching option.",
       "D must be 0 because $x^{3}$ has no constant term and every factorial term vanishes at $x = 0$ - read that off before any algebra.",
       "The leading coefficient always transfers unchanged: $A = 1$ because both $x^{3}$ and $x^{3}$ are monic.",
       "Cross-check with a value: at $x = 2, x^{3} = 0$ and $x^{2} = 0$, so $f(2) = 2C = 8$, giving $C = 4$ in a single substitution."
@@ -33,8 +33,8 @@
     "solution": [
       "With interval of differencing $h = 2$, the factorial polynomials are $x^{3} = x(x-2)(x-4)$ and $x^{2} = x(x-2)$.",
       "Expand: $x(x-2)(x-4) = x(x^{2} - 6x + 8) = x^{3} - 6x^{2} + 8x$, and $x(x-2) = x^{2} - 2x$.",
-      "So $A x^{3} + B x^{2}$ + Cx + $D = A(x^{3} - 6x^{2} + 8x) + B(x^{2} - 2x)$ + Cx + D, which must equal $x^{3}$.",
-      "Coefficient of $x^{3}$: $A = 1$. Coefficient of $x^{2}$: -$6A + B = 0$, so $B = 6$.",
+      "So A $x^{3} + B x^{2}$ + Cx + $D = A(x^{3} - 6x^{2} + 8x) + B(x^{2} - 2x)$ + Cx + D, which must equal $x^{3}$.",
+      "Coefficient of $x^{3}$: $A = 1$. Coefficient of $x^{2}$: $-6A + B = 0$, so $B = 6$.",
       "Coefficient of x: $8A - 2B + C = 0$, i.e. $8 - 12 + C = 0$, so $C = 4$. Constant: $D = 0$.",
       "Hence $(A, B, C, D) = (1, 6, 4, 0)$, option (b)."
     ]
@@ -51,10 +51,10 @@
       "Divided differences are symmetric in their arguments, so the answer cannot depend on which points are used - another reason it must be a constant."
     ],
     "solution": [
-      "Let $f(x) = a_{n} x^{n} + a_{n-1} x^{n-1}$ + ... + $a_{0}$ be a polynomial of degree n, so $a_{n}$ is not 0.",
+      "Let $f(x) = a_{n} x^{n} + a_{n-1} x^{n-1} + \\ldots + a_{0}$ be a polynomial of degree n, so $a_{n}$ is not 0.",
       "Divided differences are linear, and the kth divided difference of a polynomial of degree less than k is 0.",
       "Hence the nth divided difference of f depends only on the leading term $a_{n} x^{n}$.",
-      "For $x^{n}$, the nth divided difference over any n+1 distinct nodes equals 1 (this is the standard result, e.g. from the Newton form of the interpolating polynomial).",
+      "For $x^{n}$, the nth divided difference over any $n+1$ distinct nodes equals 1 (this is the standard result, e.g. from the Newton form of the interpolating polynomial).",
       "Therefore the nth divided difference of f is $a_{n}, a$ fixed non-zero number independent of the nodes - i.e. a constant.",
       "Hence option (b) is correct."
     ]
@@ -63,7 +63,7 @@
     "answer": 3,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "When f does not involve y, RK4 has $k_{2} = k_{3} = h f(h/2)$, so $y(h) = (k_{1} + 2k2 + 2k3 + k_{4})/6 = (h/6)[f(0) + 4f(h/2) + f(h)]$ - exactly Simpson's one-third rule.",
+    "shortcut": "When f does not involve y, RK4 has $k_{2} = k_{3} = h f(h/2)$, so $y(h) = (k_{1} + 2k_{2} + 2k_{3} + k_{4})/6 = (h/6)[f(0) + 4f(h/2) + f(h)]$ - exactly Simpson's one-third rule.",
     "tips": [
       "The weights 1, 2, 2, 1 divided by 6 collapse to 1, 4, 1 divided by 6 when the two midpoint slopes coincide. Recognising this makes the whole question a one-liner.",
       "Every option has the same $1/6$ prefactor, so just check whether the interior weights sum correctly: $1 + 4 + 1 = 6$, which only option (d) satisfies.",
@@ -71,7 +71,7 @@
       "The weights in any such formula must sum to 6 (so that a constant f is integrated exactly to h f); options (a), (b) and (c) sum to 7, 6 and 6 respectively, so use the x-symmetry check to finish."
     ],
     "solution": [
-      "The RK4 increments for $dy/dx = f(x, y)$ are $k_{1} = h f(x_{0}, y_{0}), k_{2} = h f(x_{0} + h/2, y_{0} + k_{1}/2), k_{3} = h f(x_{0} + h/2, y_{0} + k_{2}/2), k_{4} = h f(x_{0} + h, y_{0} + k_{3})$, and $y_{1} = y_{0} + (k_{1} + 2k2 + 2k3 + k_{4})/6$.",
+      "The RK4 increments for $dy/dx = f(x, y)$ are $k_{1} = h f(x_{0}, y_{0}), k_{2} = h f(x_{0} + h/2, y_{0} + k_{1}/2), k_{3} = h f(x_{0} + h/2, y_{0} + k_{2}/2), k_{4} = h f(x_{0} + h, y_{0} + k_{3})$, and $y_{1} = y_{0} + (k_{1} + 2k_{2} + 2k_{3} + k_{4})/6$.",
       "Here f depends on x only, so the y-arguments are irrelevant: $k_{1} = h f(0), k_{2} = h f(h/2), k_{3} = h f(h/2), k_{4} = h f(h)$.",
       "Since $y(0) = 0, y(h) = (1/6)[h f(0) + 2h f(h/2) + 2h f(h/2) + h f(h)]$.",
       "Combining the two equal middle terms: $y(h) = (h/6)[f(0) + 4 f(h/2) + f(h)]$.",
@@ -83,7 +83,7 @@
     "answer": 3,
     "confidence": "high",
     "type": "Conceptual",
-    "shortcut": "The set {1,...,99} minus {50} has 98 points. A unique interpolating polynomial through 98 points has degree at most 97.",
+    "shortcut": "The set {1,$\\ldots$,99} minus {50} has 98 points. A unique interpolating polynomial through 98 points has degree at most 97.",
     "tips": [
       "Counting rule: k data points determine a polynomial of degree at most k - 1. Count the points first, subtract one, and you are done.",
       "The classic slip is to count 99 points and forget that $f(50)$ is the value being ESTIMATED, not a datum - that gives 98 and lands on option (c).",
@@ -91,7 +91,7 @@
       "In practice a difference table for missing-value problems is truncated far earlier; the theoretical maximum degree is what this item tests."
     ],
     "solution": [
-      "The images f(n) are given for $n = 1, 2$, ..., 99 with $n = 50$ omitted.",
+      "The images $f(n)$ are given for $n = 1, 2, \\ldots, 99$ with $n = 50$ omitted.",
       "That is $99 - 1 = 98$ known data points.",
       "Through 98 distinct points there passes exactly one polynomial of degree at most $98 - 1 = 97$.",
       "The forward-difference (missing-value) technique assumes precisely this: that f is a polynomial whose degree does not exceed 97, so that the 98th difference vanishes.",
@@ -102,11 +102,11 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Four values are known, so assume a cubic and set the fourth difference to zero: $f_{4} - 4f3 + 6f2 - 4f1 + f_{0} = 0$, i.e. $32 - 4a + 42 - 20 + 2 = 0$, giving $a = 14$.",
+    "shortcut": "Four values are known, so assume a cubic and set the fourth difference to zero: $f_{4} - 4f_{3} + 6f_{2} - 4f_{1} + f_{0} = 0$, i.e. $32 - 4a + 42 - 20 + 2 = 0$, giving $a = 14$.",
     "tips": [
-      "Missing-value template: with one gap among k+1 tabulated points, set $\\Delta^{k} f_{0} = 0$ and solve. The binomial coefficients with alternating signs are the whole method.",
+      "Missing-value template: with one gap among $k+1$ tabulated points, set $\\Delta^{k} f_{0} = 0$ and solve. The binomial coefficients with alternating signs are the whole method.",
       "The fourth-difference operator expands with coefficients 1, -4, 6, -4, 1. Memorise the row of Pascal's triangle with alternating signs - it appears in every missing-value item.",
-      "Arithmetic care: $6f2 = 6 \\times 7 = 42$ and -4f1 = -20. Combining the knowns gives 56, so $4a = 56$ and $a = 14$ in one step.",
+      "Arithmetic care: $6f_{2} = 6 \\times 7 = 42$ and $-4f_{1} = -20$. Combining the knowns gives 56, so $4a = 56$ and $a = 14$ in one step.",
       "Sanity check the pattern: with $a = 14$ the first differences are 3, 2, 7, 18 and the third differences are constant at 9, confirming a genuine cubic fit."
     ],
     "solution": [
@@ -122,17 +122,17 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$E^{3/2}$ advances 1.5 intervals from u10, i.e. it estimates u25. Expand $(1+\\Delta)^{3/2} = 1 + 1.5 \\Delta + 0.375 \\Delta^{2} - 0.0625 \\Delta^{3}$ and apply to u10: $9 + 45 + 1.875 - 0.125 = 55.75$.",
+    "shortcut": "$E^{3/2}$ advances 1.5 intervals from $u_{10}$, i.e. it estimates $u_{25}$. Expand $(1+\\Delta)^{3/2} = 1 + 1.5 \\Delta + 0.375 \\Delta^{2} - 0.0625 \\Delta^{3}$ and apply to $u_{10}$: $9 + 45 + 1.875 - 0.125 = 55.75$.",
     "tips": [
-      "$E^{p} = (1 + \\Delta)^{p}$, so a fractional shift becomes a binomial series in $\\Delta$. The coefficients for $p = 3/2$ are $1, 3/2, 3/8$, -$1/16$, ... - the fourth one is NEGATIVE, which is where careless work goes wrong.",
+      "$E^{p} = (1 + \\Delta)^{p}$, so a fractional shift becomes a binomial series in $\\Delta$. The coefficients for $p = 3/2$ are $1, 3/2, 3/8, -1/16, \\ldots$ - the fourth one is NEGATIVE, which is where careless work goes wrong.",
       "Build the difference table first: $\\Delta u_{10} = 30, \\Delta^{2} = 5, \\Delta^{3} = 2, \\Delta^{4} = 0$. The series terminates automatically at the third difference.",
       "The four options differ by exactly 10, and $1.5 \\times 30 = 45$ dominates the sum. Getting the leading term right $(9 + 45 = 54)$ already points to (c).",
-      "Interpretation check: with a tabular interval of $10, E^{3/2}$ applied to u10 gives the value at $10 + 1.5(10) = 25 - a$ genuine interpolation, which is why the answer lies between $u_{20} = 39$ and $u_{30} = 74$... note it does not, because the expansion is a formal operator identity, so trust the algebra."
+      "Interpretation check: with a tabular interval of $10, E^{3/2}$ applied to $u_{10}$ gives the value at $10 + 1.5(10) = 25$ - a genuine interpolation, which is why the answer lies between $u_{20} = 39$ and $u_{30} = 74$... note it does not, because the expansion is a formal operator identity, so trust the algebra."
     ],
     "solution": [
       "The tabulated values are $u_{10} = 9, u_{20} = 39, u_{30} = 74, u_{40} = 116, u_{50} = 167$.",
       "First differences: 30, 35, 42, 51. Second differences: 5, 7, 9. Third differences: 2, 2. Fourth difference: 0.",
-      "Since $E = 1 + \\Delta$, we expand $E^{3/2} = (1 + \\Delta)^{3/2} = 1 + (3/2)\\Delta + [(3/2)(1/2)/2!]\\Delta^{2} + [(3/2)(1/2)(-1/2)/3!]\\Delta^{3}$ + ...",
+      "Since $E = 1 + \\Delta$, we expand $E^{3/2} = (1 + \\Delta)^{3/2} = 1 + (3/2)\\Delta + [(3/2)(1/2)/2!]\\Delta^{2} + [(3/2)(1/2)(-1/2)/3!]\\Delta^{3} + \\ldots$",
       "The coefficients are 1, 1.5, 0.375 and -0.0625; all later terms vanish because $\\Delta^{4} u_{10} = 0$.",
       "$E^{3/2} u_{10} = 9 + 1.5(30) + 0.375(5) - 0.0625(2) = 9 + 45 + 1.875 - 0.125$.",
       "Summing gives 55.75, option (c)."
@@ -166,13 +166,13 @@
     "tips": [
       "Annihilator rule: $(E - a)^{k+1}$ kills $x^{k} a^{x}$. Here $k = 1$, so the SECOND power already gives zero - and so does every higher power.",
       "Statement 2 is false not because the cube is wrong but because the square already vanishes; anything annihilated by $(E-3)^{2}$ is certainly annihilated by $(E-3)^{3}$.",
-      "Do the algebra once with a general base a: $\\operatorname{E}(x a^{x}) = (x+1)a^{x+1}$, so $(E-a)(x a^{x}) = (x+1)a^{x+1} - a$ . $x a^{x} = a^{x+1}$. One derivation covers both statements.",
+      "Do the algebra once with a general base a: $\\operatorname{E}(x a^{x}) = (x+1)a^{x+1}$, so $(E-a)(x a^{x}) = (x+1)a^{x+1} - a \\cdot x a^{x} = a^{x+1}$. One derivation covers both statements.",
       "This mirrors the differential-operator result $(D - a)^{k+1} [x^{k} e^{ax}] = 0$ - the same annihilator theory in shift form."
     ],
     "solution": [
       "Work with a general base a and interval of differencing 1. $\\operatorname{E}(x a^{x}) = (x + 1) a^{x+1}$.",
       "$(E - a)(x a^{x}) = (x+1) a^{x+1} - a (x a^{x}) = (x+1) a^{x+1} - x a^{x+1} = a^{x+1}$.",
-      "Now $(E - a) a^{x+1} = a^{x+2} - a$ . $a^{x+1} = a^{x+2} - a^{x+2} = 0$.",
+      "Now $(E - a) a^{x+1} = a^{x+2} - a \\cdot a^{x+1} = a^{x+2} - a^{x+2} = 0$.",
       "So $(E - a)^{2} (x a^{x}) = 0$ for every a.",
       "Statement 1: with $a = 2, (E - 2)^{2} (x 2^{x}) = 0$. TRUE.",
       "Statement 2: with $a = 3, (E - 3)^{2} (x 3^{x}) = 0$, hence $(E - 3)^{3} (x 3^{x}) = 0$ as well. The claim that it is non-zero is FALSE. Only statement 1 holds, option (a)."
@@ -184,7 +184,7 @@
     "type": "Numerical",
     "shortcut": "With $h = 10$ and origin $1971, p = (2006-1971)/10 = 3.5$. Differences: $\\Delta = 0.3, \\Delta^{2} = 0.0, \\Delta^{3} = 0.1, \\Delta^{4} = 0$. So $P = 0.9 + 3.5(0.3) + 0 + 2.1875(0.1) = 2.169$.",
     "tips": [
-      "Newton's forward formula: $P = y_{0} + p \\Delta y_{0} + p(p-1)/2! \\Delta^{2} y_{0} + p(p-1)(p-2)/3! \\Delta^{3} y_{0}$ + ...  Compute p first; everything else follows mechanically.",
+      "Newton's forward formula: $P = y_{0} + p \\Delta y_{0} + p(p-1)/2! \\Delta^{2} y_{0} + p(p-1)(p-2)/3! \\Delta^{3} y_{0} + \\ldots$  Compute p first; everything else follows mechanically.",
       "Here $\\Delta^{2} y_{0} = 0$, which kills the quadratic term entirely - always scan the leading diagonal for zeros before grinding through the arithmetic.",
       "$p(p-1)(p-2)/6$ with $p = 3.5$ is $(3.5)(2.5)(1.5)/6 = 13.125/6 = 2.1875$. Keep the numerator as a product until the end to avoid rounding drift.",
       "Sanity check: 2006 lies between $2001 (1.9)$ and $2011 (2.5)$, so linear interpolation would give 2.2. The answer must be near but not equal to that, which points at band (c) rather than (d)."
@@ -211,8 +211,8 @@
     "solution": [
       "Three complete data pairs are available: $(2, 4), (3, 5)$ and $(5, 25)$. Fit the Lagrange quadratic through them.",
       "$\\operatorname{P}(x) = 4 (x-3)(x-5)/[(2-3)(2-5)] + 5 (x-2)(x-5)/[(3-2)(3-5)] + 25 (x-2)(x-3)/[(5-2)(5-3)] = (4/3)(x^{2} - 8x + 15) - (5/2)(x^{2} - 7x + 10) + (25/6)(x^{2} - 5x + 6)$.",
-      "Collecting terms: coefficient of $x^{2}$ is $4/3 - 5/2 + 25/6 = 3$; coefficient of x is -$32/3 + 35/2 - 125/6$ = -14; constant is $20 - 25 + 25 = 20$. So $\\operatorname{P}(x) = 3x^{2} - 14x + 20$.",
-      "Set $\\operatorname{P}\\!\\left(\\text{alpha}\\right) = 16$: $3 \\alpha^{2} - 14 \\alpha + 4 = 0$, so $\\alpha = [14 +- \\sqrt{196 - 48}]/6 = [14 +- \\sqrt{148}]/6$.",
+      "Collecting terms: coefficient of $x^{2}$ is $4/3 - 5/2 + 25/6 = 3$; coefficient of x is $-32/3 + 35/2 - 125/6 = -14$; constant is $20 - 25 + 25 = 20$. So $\\operatorname{P}(x) = 3x^{2} - 14x + 20$.",
+      "Set $\\operatorname{P}\\!\\left(\\text{alpha}\\right) = 16$: $3 \\alpha^{2} - 14 \\alpha + 4 = 0$, so $\\alpha = [14 \\pm \\sqrt{196 - 48}]/6 = [14 \\pm \\sqrt{148}]/6$.",
       "$\\sqrt{148} = 12.166$, giving $\\alpha = 4.361$ (the other root 0.306 lies outside the table). Since $4.2 < 4.361 < 4.5$, option (d) is correct."
     ]
   },
@@ -220,46 +220,46 @@
     "answer": 3,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "The central-difference product rule mirrors the derivative product rule with mu playing the role of 'value': $\\delta(fg) = \\mu f$ . $\\delta g + \\mu g$ . $\\delta f$.",
+    "shortcut": "The central-difference product rule mirrors the derivative product rule with $\\mu$ playing the role of 'value': $\\delta(fg) = \\mu f \\cdot \\delta g + \\mu g \\cdot \\delta f$.",
     "tips": [
-      "Expand once and remember it: with f+ = $f(x+h/2)$ and f- = $f(x-h/2), \\mu f$ . $\\delta g + \\mu g$ . $\\delta f = f+ g$+ - f- g- = $\\delta(fg)$. The cross terms cancel exactly.",
+      "Expand once and remember it: with $f_{+} = f(x+h/2)$ and $f_{-} = f(x-h/2), \\mu f \\cdot \\delta g + \\mu g \\cdot \\delta f = f_{+} g_{+} - f_{-} g_{-} = \\delta(fg)$. The cross terms cancel exactly.",
       "Structural check: $\\delta(fg)$ must be ANTI-symmetric in the sense that swapping f and g leaves it unchanged. Option (c) has a minus sign and changes sign on swapping, so it is impossible.",
-      "Option (a) contains no $\\delta$ at all on one term and is dimensionally wrong: every term of $a \\delta$-identity must carry exactly one $\\delta$.",
+      "Option (a) contains no $\\delta$ at all on one term and is dimensionally wrong: every term of a delta-identity must carry exactly one $\\delta$.",
       "Companion identities to keep together: $\\mu(fg) = \\mu f \\mu g + (1/4) \\delta f \\delta g$, and $\\mu^{2} = 1 + \\delta^{2}/4$."
     ],
     "solution": [
-      "Write f+ = $f(x + h/2), f$- = $f(x - h/2)$, and similarly for g. Then $\\delta f = f$+ - f- and $\\mu f = (f+ + f-)/2$.",
-      "By definition, $\\delta[f(x)g(x)] = f+ g$+ - f- g-.",
-      "Now compute $\\mu f$ . $\\delta g + \\mu g$ . $\\delta f = (1/2)(f+ + f-)(g+ - g-) + (1/2)(g+ + g-)(f+ - f-)$.",
-      "Expanding the first product: $(1/2)[f+g+ - f+g- + f-g+ - f-g-]$. Expanding the second: $(1/2)[f+g+ - f-g+ + f+g- - f-g-]$.",
-      "Adding, the terms -f+g- and +f+g- cancel, as do +f-g+ and -f-g+, leaving f+g+ - f-g-.",
-      "This equals $\\delta(fg)$, so $\\delta[f(x)g(x)] = \\mu f$ . $\\delta g + \\mu g$ . $\\delta f$, option (d)."
+      "Write $f_{+} = f(x + h/2), f_{-} = f(x - h/2)$, and similarly for g. Then $\\delta f = f_{+} - f_{-}$ and $\\mu f = (f_{+} + f_{-})/2$.",
+      "By definition, $\\delta[f(x)g(x)] = f_{+} g_{+} - f_{-} g_{-}$.",
+      "Now compute $\\mu f \\cdot \\delta g + \\mu g \\cdot \\delta f = (1/2)(f_{+} + f_{-})(g_{+} - g_{-}) + (1/2)(g_{+} + g_{-})(f_{+} - f_{-})$.",
+      "Expanding the first product: $(1/2)[f+g_{+} - f+g_{-} + f-g_{+} - f-g-]$. Expanding the second: $(1/2)[f+g_{+} - f-g_{+} + f+g_{-} - f-g-]$.",
+      "Adding, the terms $-f+g_{-}$ and $+f+g_{-}$ cancel, as do $+f-g_{+}$ and $-f-g_{+}$, leaving $f+g_{+} - f-g_{-}$.",
+      "This equals $\\delta(fg)$, so $\\delta[f(x)g(x)] = \\mu f \\cdot \\delta g + \\mu g \\cdot \\delta f$, option (d)."
     ]
   },
   "2018-Q53": {
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "For $f(x) = 1/x$ the nth divided difference is $(-1)^{n}$/(x0 x1 ... xn). With $n = 3$ that is -1/(abcd).",
+    "shortcut": "For $f(x) = 1/x$ the nth divided difference is $(-1)^{n}/(x_{0} x_{1} \\ldots x_{n})$. With $n = 3$ that is $-1/(abcd)$.",
     "tips": [
-      "Memorise the reciprocal rule: $f[x_{0}, x_{1}, ..., xn] = (-1)^{n}$/(x0 x1 ... xn) when $f(x) = 1/x$. It converts an otherwise tedious recursion into one line.",
+      "Memorise the reciprocal rule: $f[x_{0}, x_{1}, \\ldots, x_{n}] = (-1)^{n}/(x_{0} x_{1} \\ldots x_{n})$ when $f(x) = 1/x$. It converts an otherwise tedious recursion into one line.",
       "Sign check: the order 3 is ODD, so the answer must be negative - options (a) is eliminated at once.",
-      "Verify the first step yourself: $f[a,b] = (1/a - 1/b)/(a - b) = [(b-a)/ab]/(a-b)$ = -$1/(ab)$, which sets the alternating pattern.",
+      "Verify the first step yourself: $f[a,b] = (1/a - 1/b)/(a - b) = [(b-a)/ab]/(a-b) = -1/(ab)$, which sets the alternating pattern.",
       "Divided differences are symmetric functions of their nodes, so the answer must be symmetric in a, b, c, d. Options (c) and (d) are not symmetric and can be struck out immediately."
     ],
     "solution": [
-      "First divided difference: $f[a, b] = (f(a) - f(b))/(a - b) = (1/a - 1/b)/(a - b) = [(b - a)/(ab)]/(a - b)$ = -$1/(ab)$.",
-      "Second: $f[a, b, c] = (f[a,b] - f[b,c])/(a - c) = (-1/(ab) + 1/(bc))/(a - c)$ = [$(a - c)$/(abc)]/$(a - c) = 1$/(abc).",
-      "Third: $f[a, b, c, d] = (f[a,b,c] - f[b,c,d])/(a - d)$ = (1/(abc) - 1/(bcd))/$(a - d)$ = [$(d - a)$/(abcd)]/$(a - d)$ = -1/(abcd).",
+      "First divided difference: $f[a, b] = (f(a) - f(b))/(a - b) = (1/a - 1/b)/(a - b) = [(b - a)/(ab)]/(a - b) = -1/(ab)$.",
+      "Second: $f[a, b, c] = (f[a,b] - f[b,c])/(a - c) = (-1/(ab) + 1/(bc))/(a - c) = [(a - c)/(abc)]/(a - c) = 1/(abc)$.",
+      "Third: $f[a, b, c, d] = (f[a,b,c] - f[b,c,d])/(a - d) = (1/(abc) - 1/(bcd))/(a - d) = [(d - a)/(abcd)]/(a - d) = -1/(abcd)$.",
       "The pattern $(-1)^{n}$/(product of the nodes) is confirmed.",
-      "Hence the third divided difference is -1/(abcd), option (b)."
+      "Hence the third divided difference is $-1/(abcd)$, option (b)."
     ]
   },
   "2018-Q54": {
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The data are $(1,1), (4,8), (9,27)$. Lagrange at $x = 3$: weights $6/24$, -12/-15, -$2/40$ give $0.25(1) + 0.8(8) - 0.05(27) = 0.25 + 6.4 - 1.35 = 5.3$.",
+    "shortcut": "The data are $(1,1), (4,8), (9,27)$. Lagrange at $x = 3$: weights $6/24, -12/-15, -2/40$ give $0.25(1) + 0.8(8) - 0.05(27) = 0.25 + 6.4 - 1.35 = 5.3$.",
     "tips": [
       "Translate the disguised statement first: $f(n^{2}) = n^{3}$ for $n = 1, 2, 3$ means $f(1) = 1, f(4) = 8, f(9) = 27$. Half the candidates lose the mark here, not in the interpolation.",
       "Lagrange weights must sum to 1: $0.25 + 0.8 - 0.05 = 1.00$. Use this as an instant arithmetic check before multiplying by the f-values.",
@@ -268,10 +268,10 @@
     ],
     "solution": [
       "From $f(n^{2}) = n^{3}$ with $n = 1, 2, 3$ we obtain the data points $(x, f) = (1, 1), (4, 8)$ and $(9, 27)$.",
-      "Lagrange's formula at $x = 3$: $f(3) = 1$ . L0 + 8 . L1 + 27 . L2.",
+      "Lagrange's formula at $x = 3$: $f(3) = 1 \\cdot L_{0} + 8 \\cdot L_{1} + 27 \\cdot L_{2}$.",
       "$L_{0} = (3-4)(3-9)/[(1-4)(1-9)] = (-1)(-6)/[(-3)(-8)] = 6/24 = 0.25$.",
-      "$L_{1} = (3-1)(3-9)/[(4-1)(4-9)] = (2)(-6)/[(3)(-5)]$ = -12/-$15 = 0.8$.",
-      "$L_{2} = (3-1)(3-4)/[(9-1)(9-4)] = (2)(-1)/[(8)(5)]$ = -$2/40$ = -0.05. (Check: $0.25 + 0.8 - 0.05 = 1$.)",
+      "$L_{1} = (3-1)(3-9)/[(4-1)(4-9)] = (2)(-6)/[(3)(-5)] = -12/-15 = 0.8$.",
+      "$L_{2} = (3-1)(3-4)/[(9-1)(9-4)] = (2)(-1)/[(8)(5)] = -2/40 = -0.05$. (Check: $0.25 + 0.8 - 0.05 = 1$.)",
       "$f(3) = 1(0.25) + 8(0.8) + 27(-0.05) = 0.25 + 6.4 - 1.35 = 5.3$, option (c)."
     ]
   },
@@ -283,8 +283,8 @@
     "tips": [
       "Anchor everything on the two identities $E = e^{hD}$ and $E = 1 + \\Delta$. Every operator relation in this chapter is one substitution away from those two.",
       "$\\delta = E^{1/2} - E^{-1/2}$ is the definition; factor out $E^{-1/2}$ to get $E^{-1/2}(E - 1) = E^{-1/2} \\Delta$, which settles statements 2 and 3 together.",
-      "The hyperbolic form follows because $e^{t} - e^{-t} = 2 \\sinh t$ with t = hD/2 - note the HALF in the argument, a frequent slip.",
-      "Related identities worth carrying: $\\mu = \\cosh(hD/2), \\Delta = E - 1$, nabla = $1 - E^{-1}$, and $\\delta^{2} = \\Delta$ nabla."
+      "The hyperbolic form follows because $e^{t} - e^{-t} = 2 \\sinh t$ with $t = hD/2$ - note the HALF in the argument, a frequent slip.",
+      "Related identities worth carrying: $\\mu = \\cosh(hD/2), \\Delta = E - 1, \\nabla = 1 - E^{-1}$, and $\\delta^{2} = \\Delta \\nabla$."
     ],
     "solution": [
       "By definition the central difference operator is $\\delta = E^{1/2} - E^{-1/2}$, where E is the shift operator.",
@@ -303,12 +303,12 @@
     "tips": [
       "Simpson's $1/3$ rule needs an EVEN number n of subintervals and fits one parabola over each consecutive pair, hence exactly $n/2$ parabolic arcs.",
       "Weddle's rule is the 7-point Newton-Cotes formula with the coefficient $41/140$ rounded to $42/140 = 3/10$. That deliberate rounding is precisely what destroys exactness at degree 6.",
-      "Quick disproof of statement 2: apply $(3h/10)[f_{0} + 5f1 + f_{2} + 6f3 + f_{4} + 5f5 + f_{6}]$ to $f(x) = x^{6}$ on $[0,6]$ with $h = 1$. It returns 39996 while the exact integral is $6^{7}/7 = 39990.86$.",
+      "Quick disproof of statement 2: apply $(3h/10)[f_{0} + 5f_{1} + f_{2} + 6f_{3} + f_{4} + 5f_{5} + f_{6}]$ to $f(x) = x^{6}$ on $[0,6]$ with $h = 1$. It returns 39996 while the exact integral is $6^{7}/7 = 39990.86$.",
       "Do remember that Simpson's $1/3$ rule itself is exact for CUBICS despite fitting parabolas - the odd-degree error term cancels by symmetry. That bonus degree is a favourite examiner point."
     ],
     "solution": [
       "Statement 1: Simpson's one-third rule divides [a, b] into n (even) subintervals and, on each consecutive PAIR of subintervals, replaces the curve by the parabola through the three points. There are $n/2$ such pairs, so the graph is replaced by $n/2$ arcs of second-degree polynomials. TRUE.",
-      "Statement 2: Weddle's rule is $I = (3h/10)[f_{0} + 5f1 + f_{2} + 6f3 + f_{4} + 5f5 + f_{6}]$. It is obtained from the seven-point Newton-Cotes formula by replacing the coefficient $41/140$ of the sixth difference by $42/140 = 3/10$.",
+      "Statement 2: Weddle's rule is $I = (3h/10)[f_{0} + 5f_{1} + f_{2} + 6f_{3} + f_{4} + 5f_{5} + f_{6}]$. It is obtained from the seven-point Newton-Cotes formula by replacing the coefficient $41/140$ of the sixth difference by $42/140 = 3/10$.",
       "Test it on $f(x) = x^{6}$ over $[0, 6]$ with $h = 1$: the bracket is $0 + 5(1) + 64 + 6(729) + 4096 + 5(15625) + 46656 = 133320$, so the rule gives $(3/10)(133320) = 39996$.",
       "The exact value is the $\\int x^{6}$ from 0 to $6 = 6^{7}/7 = 39990.857$, which differs. So Weddle's rule is NOT exact for degree 6.",
       "The same test on $f(x) = x^{5}$ returns 7776, matching the exact value, so exactness holds up to degree 5 only. Statement 2 is FALSE.",
@@ -319,59 +319,59 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$h = (1/2)/3 = 1/6$ and the ordinates are $\\sin0 = 0, \\sin(pi/6) = 1/2, \\sin(pi/3) = sqrt3/2, \\sin(pi/2) = 1$. The $3/8$ rule gives $(3h/8)[0 + 3(1/2) + 3(sqrt3/2) + 1] = (5 + 3sqrt3)/32$.",
+    "shortcut": "$h = (1/2)/3 = 1/6$ and the ordinates are $\\sin0 = 0, \\sin(\\pi/6) = 1/2, \\sin(\\pi/3) = \\sqrt{3}/2, \\sin(\\pi/2) = 1$. The $3/8$ rule gives $(3h/8)[0 + 3(1/2) + 3(\\sqrt{3}/2) + 1] = (5 + 3sqrt3)/32$.",
     "tips": [
       "Simpson's $3/8$ rule weights are 1, 3, 3, 1 with prefactor $3h/8$. Here $3h/8 = 3/(6 \\times 8) = 1/16$ - simplify the prefactor before substituting.",
-      "The angles are pi times $0, 1/6, 1/3, 1/2$, giving the standard sines $0, 1/2, sqrt3/2, 1$. Converting x to the ANGLE pi x is the step candidates most often skip.",
+      "The angles are $\\pi$ times $0, 1/6, 1/3, 1/2$, giving the standard sines $0, 1/2, \\sqrt{3}/2, 1$. Converting x to the ANGLE $\\pi x$ is the step candidates most often skip.",
       "Assemble as $(1/16)[3/2 + 3sqrt3/2 + 1] = (1/16)(5 + 3sqrt3)/2 = (5 + 3sqrt3)/32$. Options (b) and (c) differ only by swapping 5 and 3, so keep the rational and surd parts separate to the end.",
-      "Numerical check: $(5 + 3(1.732))/32 = 10.196/32 = 0.3186$, against the exact value $1/pi = 0.3183$ - agreement to three decimals confirms the choice."
+      "Numerical check: $(5 + 3(1.732))/32 = 10.196/32 = 0.3186$, against the exact value $1/\\pi = 0.3183$ - agreement to three decimals confirms the choice."
     ],
     "solution": [
       "The range $[0, 1/2]$ is divided into 3 equal parts, so $h = (1/2 - 0)/3 = 1/6$, with nodes $x = 0, 1/6, 1/3, 1/2$.",
-      "The ordinates are $f(0) = \\sin 0 = 0, f(1/6) = \\sin(pi/6) = 1/2, f(1/3) = \\sin(pi/3) = \\sqrt{3}/2, f(1/2) = \\sin(pi/2) = 1$.",
-      "Simpson's three-eighth rule: $I = (3h/8)[f_{0} + 3f1 + 3f2 + f_{3}]$.",
+      "The ordinates are $f(0) = \\sin 0 = 0, f(1/6) = \\sin(\\pi/6) = 1/2, f(1/3) = \\sin(\\pi/3) = \\sqrt{3}/2, f(1/2) = \\sin(\\pi/2) = 1$.",
+      "Simpson's three-eighth rule: $I = (3h/8)[f_{0} + 3f_{1} + 3f_{2} + f_{3}]$.",
       "Here $3h/8 = 3(1/6)/8 = 1/16$.",
-      "$I = (1/16)[0 + 3(1/2) + 3(sqrt3/2) + 1] = (1/16)[3/2 + 3sqrt3/2 + 1] = (1/16)[(5 + 3sqrt3)/2] = (5 + 3 sqrt3)/32$.",
-      "Numerically this is 0.3186 against the exact value $1/pi = 0.3183$, confirming option (b)."
+      "$I = (1/16)[0 + 3(1/2) + 3(\\sqrt{3}/2) + 1] = (1/16)[3/2 + 3sqrt3/2 + 1] = (1/16)[(5 + 3sqrt3)/2] = (5 + 3 \\sqrt{3})/32$.",
+      "Numerically this is 0.3186 against the exact value $1/\\pi = 0.3183$, confirming option (b)."
     ]
   },
   "2018-Q58": {
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Impose exactness on $1, x, x^{2}$. From x: $\\alpha = \\gamma$. From 1: $\\alpha + \\beta + \\gamma = 2$. From $x^{2}$: $(\\alpha + \\gamma)/4 = 2/3$, so $\\alpha = \\gamma = 4/3$ and $\\beta = 2 - 8/3$ = -$2/3$.",
+    "shortcut": "Impose exactness on $1, x, x^{2}$. From x: $\\alpha = \\gamma$. From 1: $\\alpha + \\beta + \\gamma = 2$. From $x^{2}$: $(\\alpha + \\gamma)/4 = 2/3$, so $\\alpha = \\gamma = 4/3$ and $\\beta = 2 - 8/3 = -2/3$.",
     "tips": [
-      "Method of undetermined coefficients: force exactness on the basis $1, x, x^{2}$, ... one degree at a time. Three unknowns need exactly three equations.",
+      "Method of undetermined coefficients: force exactness on the basis $1, x, x^{2}, \\ldots$ one degree at a time. Three unknowns need exactly three equations.",
       "The x-equation is free: symmetry of the nodes about 0 forces $\\alpha = \\gamma$ immediately, halving the algebra.",
       "The odd basis function $x^{3}$ is automatically integrated exactly by any symmetric rule, which is why 'degree less than 3' is achievable with only three nodes.",
-      "A negative weight is legitimate here - the nodes +-$1/2$ are interior to $[-1,1]$, so the rule must 'over-reach' and compensate with $\\beta < 0$. Do not reject option (a) merely because -$2/3$ looks odd."
+      "A negative weight is legitimate here - the nodes +$-1/2$ are interior to $[-1,1]$, so the rule must 'over-reach' and compensate with $\\beta < 0$. Do not reject option (a) merely because $-2/3$ looks odd."
     ],
     "solution": [
       "Require the rule $Q(f) = \\alpha f(-1/2) + \\beta f(0) + \\gamma f(1/2)$ to equal the $\\int f$ from -1 to 1 for $f = 1, x$ and $x^{2}$.",
       "$f(x) = 1$: $\\alpha + \\beta + \\gamma = \\int 1$ from -1 to $1 = 2$.",
-      "$f(x) = x$: -$\\alpha/2 + 0 + \\gamma/2 = \\int x$ from -1 to $1 = 0$, hence $\\alpha = \\gamma$.",
+      "$f(x) = x$: $-\\alpha/2 + 0 + \\gamma/2 = \\int x$ from -1 to $1 = 0$, hence $\\alpha = \\gamma$.",
       "$f(x) = x^{2}$: $\\alpha/4 + \\gamma/4 = \\int x^{2}$ from -1 to $1 = 2/3$, so $(\\alpha + \\gamma)/4 = 2/3$ and $\\alpha + \\gamma = 8/3$.",
-      "With $\\alpha = \\gamma$ this gives $\\alpha = \\gamma = 4/3$, and then $\\beta = 2 - 8/3$ = -$2/3$.",
-      "Hence $\\alpha = \\gamma = 4/3$ and $\\beta$ = -$2/3$, option (a)."
+      "With $\\alpha = \\gamma$ this gives $\\alpha = \\gamma = 4/3$, and then $\\beta = 2 - 8/3 = -2/3$.",
+      "Hence $\\alpha = \\gamma = 4/3$ and $\\beta = -2/3$, option (a)."
     ]
   },
   "2018-Q59": {
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "With $h = 1$ the trapezoidal sum is $(1/2)(1)$ + (2 + 4 + ... + 512) + $(1/2)(1024) = 0.5 + 1022 + 512 = 1534.5$, which lies in $(1500, 1550)$.",
+    "shortcut": "With $h = 1$ the trapezoidal sum is $(1/2)(1) + (2 + 4 + \\ldots + 512) + (1/2)(1024) = 0.5 + 1022 + 512 = 1534.5$, which lies in $(1500, 1550)$.",
     "tips": [
-      "Trapezoidal form: $T = h$[$(f_{0} + fn)/2 + f_{1}$ + ... + $f(n-1)$]. Halve only the two END ordinates.",
-      "The interior sum 2 + 4 + ... + 512 is a geometric series: $2^{10} - 2 = 1022$. Recognising the GP saves all the addition.",
+      "Trapezoidal form: $T = h[(f_{0} + fn)/2 + f_{1} + \\ldots + f(n-1)]$. Halve only the two END ordinates.",
+      "The interior sum $2 + 4 + \\ldots + 512$ is a geometric series: $2^{10} - 2 = 1022$. Recognising the GP saves all the addition.",
       "The exact value is $(2^{10} - 1)/\\ln 2 = 1023/0.6931 = 1476.0$, so the trapezoidal rule OVERESTIMATES here - as it always does for a convex function. That check confirms a value above 1476, i.e. band (c).",
       "Option (b) contains the exact answer 1476 and is the trap for candidates who integrate analytically instead of applying the required rule."
     ],
     "solution": [
-      "With $a = 0, b = 10$ and 10 equal parts, $h = 1$ and the nodes are $x = 0, 1$, ..., 10 with $f(x) = 2^{x}$.",
-      "Ordinates: $f_{0} = 1, f_{1} = 2, f_{2} = 4$, ..., $f_{9} = 512, f_{10} = 1024$.",
-      "Trapezoidal rule: $T = h$[$(f_{0} + f_{10})/2 + f_{1} + f_{2}$ + ... + f9].",
-      "The interior sum is $2 + 4 + 8$ + ... + $512 = 2^{10} - 2 = 1022$, and $(f_{0} + f_{10})/2 = (1 + 1024)/2 = 512.5$.",
-      "$T = 1 x (512.5 + 1022) = 1534.5$.",
+      "With $a = 0, b = 10$ and 10 equal parts, $h = 1$ and the nodes are $x = 0, 1, \\ldots, 10$ with $f(x) = 2^{x}$.",
+      "Ordinates: $f_{0} = 1, f_{1} = 2, f_{2} = 4, \\ldots, f_{9} = 512, f_{10} = 1024$.",
+      "Trapezoidal rule: $T = h[(f_{0} + f_{10})/2 + f_{1} + f_{2} + \\ldots + f_{9}]$.",
+      "The interior sum is $2 + 4 + 8 + \\ldots + 512 = 2^{10} - 2 = 1022$, and $(f_{0} + f_{10})/2 = (1 + 1024)/2 = 512.5$.",
+      "$T = 1 \\times (512.5 + 1022) = 1534.5$.",
       "Since $1500 < 1534.5 < 1550$, option (c) is correct. (The exact value $1023/\\ln2 = 1476$ confirms the expected overestimate for a convex integrand.)"
     ]
   },
@@ -382,15 +382,15 @@
     "shortcut": "$y_{1} = 1 + \\int 1/t^{2} = 2 - 1/x$, constant term 2. $y_{2} = 1 + \\int (2/t^{2} - 1/t^{3}) = 5/2 - 2/x + 1/(2x^{2})$, constant term $5/2$. The pair $(2, 5/2)$ is not listed, so 'None of the above'.",
     "tips": [
       "Picard's iteration is $y_{n+1}(x) = y(x_{0}) + \\int_{x0}^{x} f(t, y_{n}(t))\\,dt$. The lower limit is $x_{0} = 1$ here, NOT 0 - using 0 is the commonest error and makes the integrals divergent.",
-      "Track only the constant term if that is all the question wants: each iterate's constant is 1 minus the value of the antiderivative at x0.",
-      "y1 has constant 2 and y2 has constant $5/2$, so the answer differs from every listed pair. Do not force a fit - 'None of the above' is a legitimate key in this paper.",
-      "Cross-check with the exact solution $y = \\exp(1 - 1/x)$: its expansion in powers of $1/x$ is $1 + (1 - 1/x) + (1 - 1/x)^{2}/2$ + ..., whose constant terms build up towards e, consistent with the increasing sequence $2, 5/2$, ..."
+      "Track only the constant term if that is all the question wants: each iterate's constant is 1 minus the value of the antiderivative at $x_{0}$.",
+      "$y_{1}$ has constant 2 and $y_{2}$ has constant $5/2$, so the answer differs from every listed pair. Do not force a fit - 'None of the above' is a legitimate key in this paper.",
+      "Cross-check with the exact solution $y = \\exp(1 - 1/x)$: its expansion in powers of $1/x$ is $1 + (1 - 1/x) + (1 - 1/x)^{2}/2 + \\ldots$, whose constant terms build up towards e, consistent with the increasing sequence $2, 5/2, \\ldots$"
     ],
     "solution": [
       "Picard's method for $dy/dx = y/x^{2}$ with $y(1) = 1$ uses $y_{n+1}(x) = 1 + \\int_{1}^{x} y_{n}(t)/t^{2}\\,dt$, starting from $y_{0} = 1$.",
       "First approximation: $y_{1}(x) = 1 + \\int_{1}^{x} 1/t^{2}\\,dt = 1 + [-1/t]$ from 1 to $x = 1 + (1 - 1/x) = 2 - 1/x$. Its constant term is 2.",
       "Second approximation: $y_{2}(x) = 1 + \\int_{1}^{x} (2 - 1/t)/t^{2}\\,dt = 1 + \\int_{1}^{x} (2/t^{2} - 1/t^{3})\\,dt$.",
-      "The antiderivative is -$2/t + 1/(2t^{2})$, so the integral equals $(-2/x + 1/(2x^{2})) - (-2 + 1/2)$ = -$2/x + 1/(2x^{2}) + 3/2$.",
+      "The antiderivative is $-2/t + 1/(2t^{2})$, so the integral equals $(-2/x + 1/(2x^{2})) - (-2 + 1/2) = -2/x + 1/(2x^{2}) + 3/2$.",
       "Hence $y_{2}(x) = 5/2 - 2/x + 1/(2x^{2})$, whose constant term is $5/2$.",
       "The constant terms are therefore 2 and $5/2$, which matches neither (a), (b) nor (c). Option (d), None of the above, is correct."
     ]

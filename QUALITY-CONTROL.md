@@ -92,12 +92,12 @@ screen, and under the question in the PDF.
 
 ## 3. Strict LaTeX typesetting
 
-`node build/test_katex.mjs` — **14,160 formulas, 0 parse errors**
+`node build/test_katex.mjs` — **14,524 formulas, 0 parse errors**
 
 | | |
 |---|---|
 | Engine | KaTeX 0.16.22, vendored and **inlined** into `index.html` |
-| Formulas in the dataset | 14,160 (14,099 inline, 61 display) |
+| Formulas in the dataset | 14,524 (14,463 inline, 61 display) |
 | Text fields scanned | 11,479, across all 720 questions |
 | Parse failures | **0** — every formula compiles under `throwOnError` |
 | Formulas rendering empty | 0 |
@@ -107,11 +107,30 @@ screen, and under the question in the PDF.
 Everything is LaTeX, not an approximation of it: the question stems, the four
 options, the shared stems, and every Exam Shortcut, Tips & Tricks entry and
 Step-by-Step Solution step. `build/mathify.py` converted the explanations from
-the ASCII mathematics they were drafted in into real LaTeX — 11,075 formulas
-across 590 records — using a maximal-expression scanner that only ever admits
-identifiers it recognises as mathematical, so prose (`Answer (d).`, `I/O`,
-`SSL/TLS`, `ROM/PROM/EPROM`, `(=, +=, -=, ...)`) is never dragged into math
-mode. Every formula it produced was then re-validated by KaTeX.
+the ASCII mathematics they were drafted in into real LaTeX — 11,448 formulas
+across 604 of the 720 records — using a maximal-expression scanner that only
+ever admits identifiers it recognises as mathematical, so prose (`Answer (d).`,
+`I/O`, `SSL/TLS`, `ROM/PROM/EPROM`, `(=, +=, -=, ...)`, `New -> Ready ->
+Running`, `binary = 2, octal = 8`) is never dragged into math mode. On top of
+the scanner sit phrase rules for mathematics no scanner could infer from
+punctuation alone:
+
+| Rule | Example in, LaTeX out |
+|---|---|
+| integrals and sums written in words | `integral from 0 to 1 of` → `\int_{0}^{1}`, `sum xy` → `\sum xy` |
+| named distributions, set upright | `Beta(n-1, 2)` → `\text{Beta}(n-1, 2)`, `Exponential(h(x))` → `\text{Exponential}(h(x))` |
+| distribution parameters typeset too | `BVN(mu1, mu2, sigma1^2, sigma2^2, rho)` → `\text{BVN}(\mu_{1}, \mu_{2}, \sigma_{1}^{2}, \sigma_{2}^{2}, \rho)` |
+| probability of a described event | `P(9th is defective \| above)` → `\operatorname{P}\!\left(\text{9th is defective}\mid\text{above}\right)` |
+| operators applied to a modulus | `E\|X_k\|` → `\operatorname{E}\lvert X_{k}\rvert` |
+| upright statistical abbreviations | `Sk = 3(Mean - Median)/SD` → `\operatorname{Sk} = 3(\text{Mean} - \text{Median})/\operatorname{SD}` |
+| finite-difference operators | `nabla^3 y_5`, `chi-square_3`, `xbar`, `p_hat` → `\nabla^{3} y_{5}`, `\chi^{2}_{3}`, `\bar{x}`, `\hat{p}` |
+| products written with x or a dot | `16 x 256 x 16 x 512`, `delta.mu`, `sd(X) . sd(20X)` → `\times`, `\cdot` |
+| roots, however written | `sqrt(3/2)`, `sqrt[(1-r12^2)(1-r23^2)]`, `sqrt 2` → `\sqrt{...}` |
+| named subscripts | `t_cache`, `rate_X`, `dpi^2` → `t_{\text{cache}}`, `\text{rate}_{X}`, `\text{dpi}^{2}` |
+
+Every formula the converter produced was then re-validated by KaTeX under
+`throwOnError`, and the whole answer bank re-passed `build/qc.py` with zero
+errors and zero warnings, so the conversion is provably presentation-only.
 
 The same engine typesets the dashboard and the PDFs, so a formula looks
 identical in both.
@@ -125,7 +144,7 @@ identical in both.
 | File | Size |
 |---|---|
 | `index.html` | 726 KB (includes the inlined KaTeX engine and its 20 math fonts) |
-| `questions.js` | 1571 KB |
+| `questions.js` | 1625 KB |
 | `styles.css` | 18 KB |
 | `README.txt` | 10 KB |
 
@@ -198,11 +217,11 @@ Export produces valid JSON and import accepts it back.
 
 | PDF | Questions | Topics | Pages | Size |
 |---|---|---|---|---|
-| `Probability.pdf` | 196 | 13 | 178 | 2.2 MB |
-| `Statistical_Methods.pdf` | 164 | 14 | 156 | 1.9 MB |
-| `Numerical_Analysis.pdf` | 180 | 8 | 174 | 2.0 MB |
+| `Probability.pdf` | 196 | 13 | 179 | 2.2 MB |
+| `Statistical_Methods.pdf` | 164 | 14 | 155 | 1.9 MB |
+| `Numerical_Analysis.pdf` | 180 | 8 | 173 | 2.0 MB |
 | `Computer_Application_and_Data_Processing.pdf` | 180 | 10 | 177 | 1.9 MB |
-| **Total** | **720** | **45** | **685** | |
+| **Total** | **720** | **45** | **684** | |
 
 Verified per PDF, mechanically:
 
@@ -267,7 +286,7 @@ Verified per PDF, mechanically:
 | No Python/Node/npm requirement | the four delivered files contain no such reference; the tooling is build-time only |
 | `file://` target works | the entire suite runs over `file://` |
 | Mobile responsive design works | five viewports, no overflow, no small touch targets |
-| Mathematical notation readable offline | 11,479 fields swept; 14,160 formulas compiled by the embedded KaTeX engine with zero parse errors and zero network requests |
+| Mathematical notation readable offline | 11,479 fields swept; 14,524 formulas compiled by the embedded KaTeX engine with zero parse errors and zero network requests |
 
 ---
 
@@ -306,6 +325,32 @@ Verified per PDF, mechanically:
     discards KaTeX-positioned glyphs entirely. The content check was moved to
     layout-mode extraction (which keeps them) and the order check to the prose
     around the formulas.
+12. **Greek letters typeset as words.** The named-subscript rule fired on
+    `sigma_2`, producing an upright `\text{sigma}` and — worse — sealing the
+    atom so the following `^2` was orphaned outside the formula. The rule now
+    refuses any name the converter already knows as a symbol, and a finished
+    atom accepts trailing scripts, so `sigma_2^2` and `ybar^2` typeset whole.
+13. **Later rules rewriting finished LaTeX.** A rule meant for `Zi` matched the
+    `Sk` inside an already-built `\operatorname{Sk}` and produced
+    `\operatorname{S_{k}`, which KaTeX rejected. Substitutions now run only on
+    the prose between finished atoms (`sub_free`).
+14. **Prose pulled into mathematics.** `a chi-square test` became
+    `$a \chi^{2}$ test`, `- a Vandermonde denominator` was read as a
+    subtraction, `statement 3's` as a prime, and `(.so / .dll)` as a quotient.
+    Articles, prose dashes, apostrophes and file extensions are now excluded
+    explicitly, and the Computer-unit explanations were re-read end to end to
+    confirm nothing else was affected.
+15. **Formulas cut in half.** `2^4 x 2^8` was being split at `4 x 2` by the
+    numeric-product rule, `1,440,000 x 80` at the thousands separator, and
+    `16 x 256 x 16 x 512.` was rejected outright because of the sentence's full
+    stop. All three now typeset as one formula.
+16. **Residual ASCII mathematics.** A systematic audit of the explanation
+    fields for surviving ASCII notation (`^`, `<=`, `~`, `|x|`, `sqrt(`, bare
+    Greek names, `Name(...)` distributions) drove the phrase-rule table above.
+    The count of genuine residues fell from 897 to 253, and every one of the
+    253 was inspected: they are English prose — the C operator list
+    `& | ^ ~ << >>`, pipeline arrows `preprocessor -> compiler -> assembler`,
+    definition lists `binary = 2, octal = 8` — which must stay prose.
 
 ---
 

@@ -121,7 +121,7 @@ TOTAL MERGED RECORDS           : 720
   2026-Q10 [Probability]
       The answer depends on the counting convention. Using the standard Indian-textbook convention in which both the geometric and the negative binomial count FAILURES (geometric mean $q/p$, negative binomi
   2026-Q43 [Numerical Analysis]
-      Statement II is order-sensitive. The determinant representation quoted in most textbooks uses two determinants of order $(n+1) - a$ Vandermonde denominator and a numerator with its last column replace
+      Statement II is order-sensitive. The determinant representation quoted in most textbooks uses two determinants of order $(n+1)$ - a Vandermonde denominator and a numerator with its last column replace
   2026-Q73 [Computer Application and Data Processing]
       Textbook presentations of the absolute loading scheme split the four loader functions differently. In Dhamdhere's table, allocation and linking are done by the PROGRAMMER, relocation by the translator
 

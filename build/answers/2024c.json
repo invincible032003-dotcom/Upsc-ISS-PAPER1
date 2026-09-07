@@ -165,7 +165,7 @@
       "The machine cycle is fetch - decode - execute - store; memorising these four words answers a family of questions.",
       "The control unit handles fetching and decoding while the ALU performs execution, but both are parts of the CPU, so all four remain CPU operations.",
       "Storing the result back to memory is genuinely part of the cycle (the write-back phase), so item IV must be included.",
-      "This repeats $2022 Q_{74}'s$ content in list form - the machine cycle is clearly a recurring theme."
+      "This repeats $2022 Q_{74}$'s content in list form - the machine cycle is clearly a recurring theme."
     ],
     "solution": [
       "The CPU repeatedly executes the machine cycle, which consists of four phases.",
@@ -264,15 +264,15 @@
     "tips": [
       "Binary to hex: pad on the LEFT to a multiple of four bits, then translate each nibble. Here 1101010101 becomes $0011\\mid 0101\\mid 0101 = 3, 5, 5$.",
       "Decimal check for statement I: $(1101010101)_{2} = 512+256+64+16+4+1 = 853$, and $(355)_{16} = 3(256) + 5(16) + 5 = 853$. They agree.",
-      "For a two-digit decimal number the $r's (10's)$ complement is 100 - n, so $100 - 47 = 53$; the $(r-1)'s (9's)$ complement would be $99 - 47 = 52$.",
-      "When 'complement' is stated without qualification for base r it conventionally means the $r's$ complement - which is what makes statement II true as printed."
+      "For a two-digit decimal number the r's $(10's)$ complement is 100 - n, so $100 - 47 = 53$; the $(r-1)$'$s (9's)$ complement would be $99 - 47 = 52$.",
+      "When 'complement' is stated without qualification for base r it conventionally means the r's complement - which is what makes statement II true as printed."
     ],
     "solution": [
       "Statement I: group the binary digits in fours from the right, padding on the left: 1101010101 becomes $0011 \\lvert 0101 \\rvert 0101$.",
       "Translating each group: $0011 = 3, 0101 = 5, 0101 = 5$, so the hexadecimal equivalent is 355.",
       "Decimal verification: $(1101010101)_{2} = 512 + 256 + 64 + 16 + 4 + 1 = 853$, and $(355)_{16} = 3(256) + 5(16) + 5 = 768 + 80 + 5 = 853$. TRUE.",
       "Statement II: for a decimal number of n digits, the radix $(10's)$ complement is $10^{n}$ minus the number. With $n = 2$ and the number 47, this is $100 - 47 = 53$.",
-      "(The diminished-radix or $9's$ complement would be $99 - 47 = 52$; 'the complement' without qualification conventionally denotes the radix complement.) TRUE.",
+      "(The diminished-radix or 9's complement would be $99 - 47 = 52$; 'the complement' without qualification conventionally denotes the radix complement.) TRUE.",
       "Both statements are correct, option (c)."
     ]
   },
@@ -304,7 +304,7 @@
     "shortcut": "Repeater, bridge and hub are all network connecting devices. Bluetooth is a short-range wireless communication STANDARD, not a device.",
     "tips": [
       "Connecting devices by layer: repeater and hub at layer 1 (physical), bridge and switch at layer 2 (data link), router at layer 3 (network), gateway above that.",
-      "Bluetooth is a technology/standard (IEEE 802.15) like Wi-Fi, not a piece of connecting hardware - a category difference, not a technical detail.",
+      "Bluetooth is a technology/standard (IEEE 802.15) like $W_{i}-F_{i}$, not a piece of connecting hardware - a category difference, not a technical detail.",
       "A repeater regenerates a weakened signal; a hub repeats it to all ports; a bridge forwards frames selectively between segments using MAC addresses.",
       "Sorting the list by category before comparing details identifies the odd one out immediately."
     ],

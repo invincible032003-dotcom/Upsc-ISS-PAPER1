@@ -65,7 +65,7 @@
       "Speed ranking of common media: fibre optic > UTP (twisted pair) > coaxial (thick then thin Ethernet). Fibre wins every 'fastest medium' question.",
       "Fibre's other advantages worth quoting: immunity to electromagnetic interference, very low attenuation over long runs, and high security since it is hard to tap.",
       "Thin Ethernet (10Base2) and thick Ethernet (10Base5) are legacy coaxial standards capped around 10 Mbps - historical distractors.",
-      "The identical concept appears again as Q67 in this very paper, so a single fact answers two marks."
+      "The identical concept appears again as $Q_{67}$ in this very paper, so a single fact answers two marks."
     ],
     "solution": [
       "Thin Ethernet (10Base2) and thick Ethernet (10Base5) are coaxial cable standards limited to about 10 Mbps.",
@@ -119,7 +119,7 @@
     "type": "Factual",
     "shortcut": "Fibre optic supports by far the highest bandwidth of the listed media.",
     "tips": [
-      "This restates Q64 of the same paper - the examiner is testing the same ranking twice, so the medium comparison is clearly worth memorising.",
+      "This restates $Q_{64}$ of the same paper - the examiner is testing the same ranking twice, so the medium comparison is clearly worth memorising.",
       "Bandwidth ranking: fibre optic > coaxial > UTP > thin Ethernet in classical textbook terms, with fibre always at the top.",
       "Fibre carries light rather than electrical current, so its bandwidth is not limited by the resistance, capacitance and interference that cap copper media.",
       "Modern backbone links and undersea cables are all fibre for exactly this reason - a real-world anchor for the fact."
@@ -187,7 +187,7 @@
       "Programmable ROM can be programmed only once and cannot be updated, so it is unsuitable for user data.",
       "RAM is volatile - its contents vanish when power is removed - so it cannot serve as the main storage of a portable device.",
       "Optical disks require a mechanical drive with moving parts, making them unsuitable for compact handheld devices.",
-      "Flash memory is non-volatile, electrically erasable and rewritable, compact, shock-resistant and low-power, which is why it is used in SD cards, USB drives and phone storage.",
+      "Flash memory is non-volatile, electrically erasable and rewritable, compact, shock-resistant and low-power, which is why it is used in $\\operatorname{SD}$ cards, USB drives and phone storage.",
       "Hence the answer is flash memory, option (b)."
     ]
   },
@@ -219,7 +219,7 @@
     "tips": [
       "Rule of thumb: Simpson's $1/3$ needs n divisible by 2; Simpson's $3/8$ needs n divisible by 3; the trapezoidal rule works for any n.",
       "The word 'equal' matters too - all these Newton-Cotes formulas assume equally spaced nodes, which eliminates option (d).",
-      "The weight pattern 1, 4, 2, 4, 2, ..., 4, 1 only closes correctly when n is even; with odd n the final strip is left without a partner.",
+      "The weight pattern $1, 4, 2, 4, 2, \\ldots, 4, 1$ only closes correctly when n is even; with odd n the final strip is left without a partner.",
       "If n happens to be odd, apply the $3/8$ rule to the first three strips and the $1/3$ rule to the rest - a standard practical fix worth remembering."
     ],
     "solution": [
@@ -234,17 +234,17 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Six strips with $h = 1$. Composite $3/8$ rule: $(3/8)[f_{0} + 3f1 + 3f2 + 2f3 + 3f4 + 3f5 + f_{6}] = (3/8)(128) = 48$.",
+    "shortcut": "Six strips with $h = 1$. Composite $3/8$ rule: $(3/8)[f_{0} + 3f_{1} + 3f_{2} + 2f_{3} + 3f_{4} + 3f_{5} + f_{6}] = (3/8)(128) = 48$.",
     "tips": [
-      "Composite $3/8$ weight pattern: 1, 3, 3, 2, 3, 3, 2, ..., 3, 3, 1 - the weight 2 appears at every node where two groups of three strips join.",
+      "Composite $3/8$ weight pattern: $1, 3, 3, 2, 3, 3, 2, \\ldots, 3, 3, 1$ - the weight 2 appears at every node where two groups of three strips join.",
       "Check divisibility first: $n = 6$ is a multiple of 3, so the $3/8$ rule applies cleanly.",
       "The data are exactly $f(x) = x^{2} + 1$, and Simpson's rules integrate quadratics EXACTLY, so the answer must equal the true value 48 - a decisive cross-check.",
       "Bracket sum: $2 + 3 + 6 + 10 + 30 + 51 + 26 = 128$, and $(3/8)(128) = 48$. Keeping the weighted terms in a single column reduces slips."
     ],
     "solution": [
-      "The tabulated points run from x = -1 to $x = 5$ with $h = 1$, giving $n = 6$ subintervals, which is a multiple of 3 so Simpson's three-eighth rule applies.",
+      "The tabulated points run from $x = -1$ to $x = 5$ with $h = 1$, giving $n = 6$ subintervals, which is a multiple of 3 so Simpson's three-eighth rule applies.",
       "Ordinates: $f_{0} = 2, f_{1} = 1, f_{2} = 2, f_{3} = 5, f_{4} = 10, f_{5} = 17, f_{6} = 26$.",
-      "Composite three-eighth rule: $I = (3h/8)[f_{0} + 3f1 + 3f2 + 2f3 + 3f4 + 3f5 + f_{6}]$.",
+      "Composite three-eighth rule: $I = (3h/8)[f_{0} + 3f_{1} + 3f_{2} + 2f_{3} + 3f_{4} + 3f_{5} + f_{6}]$.",
       "Weighted sum: $2 + 3(1) + 3(2) + 2(5) + 3(10) + 3(17) + 26 = 2 + 3 + 6 + 10 + 30 + 51 + 26 = 128$.",
       "With $h = 1, I = (3/8)(128) = 48$.",
       "Check: the data satisfy $f(x) = x^{2} + 1$, whose exact integral from -1 to 5 is $[x^{3}/3 + x] = (125/3 + 5) - (-1/3 - 1) = 48$. Option (a) is correct."
@@ -277,8 +277,8 @@
     "tips": [
       "Picard iteration: $y_{n+1}(x) = y(0) + \\int_{0}^{x} f(t, y_{n}(t))\\,dt$. Each round raises the degree by one, so the THIRD approximation is a quartic.",
       "Degree check alone decides the item: only option (a) has an $x^{4}$ term, so it is the only candidate for a third approximation.",
-      "Option (b) is y2, the second approximation - the classic 'one iteration short' trap.",
-      "Cross-check with the exact solution $y = 3e^{x} - x - 1 = 1 + x + x^{2} + x^{3}/3 + x^{4}/12$ + ...; Picard's terms agree up to $x^{3}$, as they must after three iterations."
+      "Option (b) is $y_{2}$, the second approximation - the classic 'one iteration short' trap.",
+      "Cross-check with the exact solution $y = 3e^{x} - x - 1 = 1 + x + x^{2} + x^{3}/3 + x^{4}/12 + \\ldots$; Picard's terms agree up to $x^{3}$, as they must after three iterations."
     ],
     "solution": [
       "Picard's method for $dy/dx = x + y$ with $y(0) = 1$ uses $y_{n+1}(x) = 1 + \\int_{0}^{x} (t + y_{n}(t))\\,dt$, starting from $y_{0} = 1$.",
@@ -296,15 +296,15 @@
     "shortcut": "The data are symmetric about $x = 4.5$ ($f(1) = f(8) = 4$ and $f(2) = f(7) = 5$), and the values RISE towards the centre, so the interpolating curve has a maximum at $x = 4.5$.",
     "tips": [
       "Spot the symmetry before computing: matching values at mirror-image abscissae force the interpolating polynomial to be symmetric about the midpoint $(1+8)/2 = 4.5$.",
-      "In the shifted variable $u = x - 4.5$ the polynomial is even, so it reduces to $a + bu^{2}$. Fitting $a + 12.25b = 4$ and $a + 6.25b = 5$ gives b = -$1/6 < 0$, hence a maximum.",
+      "In the shifted variable $u = x - 4.5$ the polynomial is even, so it reduces to $a + bu^{2}$. Fitting $a + 12.25b = 4$ and $a + 6.25b = 5$ gives $b = -1/6 < 0$, hence a maximum.",
       "Direction check without algebra: moving inward from $x = 1$ to $x = 2$ the value RISES from 4 to 5, and it falls again from $x = 7$ to $x = 8$. Rise then fall means a maximum.",
-      "Option (d) places the turning point at x = -4.5, outside the data range entirely - a sign trap for candidates who mishandle the shift."
+      "Option (d) places the turning point at $x = -4.5$, outside the data range entirely - a sign trap for candidates who mishandle the shift."
     ],
     "solution": [
       "The data are $f(1) = 4, f(2) = 5, f(7) = 5, f(8) = 4$.",
       "The abscissae are symmetric about $x = (1 + 8)/2 = 4.5$, and the paired values are equal: $f(1) = f(8)$ and $f(2) = f(7)$.",
       "Hence the interpolating polynomial is symmetric about $x = 4.5$, so in the variable $u = x - 4.5$ it is an even function; with four data points it takes the form $f = a + b u^{2}$.",
-      "At u = +-3.5: $a + 12.25b = 4$. At u = +-2.5: $a + 6.25b = 5$. Subtracting gives 6b = -1, so b = -$1/6$ and $a = 5 + 6.25/6 = 6.042$.",
+      "At $u = \\pm 3.5$: $a + 12.25b = 4$. At $u = \\pm 2.5$: $a + 6.25b = 5$. Subtracting gives $6b = -1$, so $b = -1/6$ and $a = 5 + 6.25/6 = 6.042$.",
       "Since $b < 0$, the parabola opens downwards and the turning point at $u = 0$ is a MAXIMUM.",
       "Therefore f attains a maximum at $x = 4.5$, option (a)."
     ]
@@ -336,7 +336,7 @@
     "shortcut": "$k_{1} = 0.1(3 + 1.44) = 0.444$; $k_{2} = 0.1(3.3 + 1.644^{2}) = 0.60027$. Then $y = 1.2 + (k_{1} + k_{2})/2 = 1.2 + 0.5221 = 1.722$.",
     "tips": [
       "Second-order RK (Heun's method): $k_{1} = h f(x_{0}, y_{0}), k_{2} = h f(x_{0} + h, y_{0} + k_{1}), y_{1} = y_{0} + (k_{1} + k_{2})/2$. Write the three lines out before substituting.",
-      "Option (b) 1.644 is exactly y0 + k1, the plain EULER value - the trap for candidates who stop after k1.",
+      "Option (b) 1.644 is exactly $y_{0} + k_{1}$, the plain EULER value - the trap for candidates who stop after $k_{1}$.",
       "Watch the square: $y_{0} + k_{1} = 1.644$, and $1.644^{2} = 2.7027$. Squaring the updated y, not the original, is the essential second step.",
       "Averaging the two slopes is what makes the method second order; the final increment 0.5221 sits between $k_{1} = 0.444$ and $k_{2} = 0.600$, as it must."
     ],
@@ -353,18 +353,18 @@
     "answer": 2,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "Recognise $\\sqrt{1 + \\delta^{2}/4} = \\mu$. Then $(1/2)\\delta^{2} + \\delta$.$\\mu = (E - 2 + E^{-1})/2 + (E - E^{-1})/2 = E - 1 = \\Delta$.",
+    "shortcut": "Recognise $\\sqrt{1 + \\delta^{2}/4} = \\mu$. Then $(1/2)\\delta^{2} + \\delta \\cdot \\mu = (E - 2 + E^{-1})/2 + (E - E^{-1})/2 = E - 1 = \\Delta$.",
     "tips": [
       "Memorise $\\mu = \\sqrt{1 + \\delta^{2}/4}$ - it is the single identity that unlocks this whole family of questions.",
-      "Work in terms of $E^{1/2}$ and $E^{-1/2}$: $\\delta = E^{1/2} - E^{-1/2}$ and $\\mu = (E^{1/2} + E^{-1/2})/2$, so $\\delta$.$\\mu = (E - E^{-1})/2$ as a difference of squares.",
-      "$\\delta^{2} = E - 2 + E^{-1}$. Adding half of it to $\\delta$.mu makes both $E^{-1}$ terms cancel, leaving E - 1.",
-      "Sanity test on $f(x) = x$ with $h = 1$: $\\delta^{2} x = 0$ and $\\delta$.$\\mu x = 1$, so the expression gives 1, which equals $\\Delta x$. Quick numerical checks like this settle operator identities fast."
+      "Work in terms of $E^{1/2}$ and $E^{-1/2}$: $\\delta = E^{1/2} - E^{-1/2}$ and $\\mu = (E^{1/2} + E^{-1/2})/2$, so $\\delta \\cdot \\mu = (E - E^{-1})/2$ as a difference of squares.",
+      "$\\delta^{2} = E - 2 + E^{-1}$. Adding half of it to $\\delta \\cdot \\mu$ makes both $E^{-1}$ terms cancel, leaving E - 1.",
+      "Sanity test on $f(x) = x$ with $h = 1$: $\\delta^{2} x = 0$ and $\\delta \\cdot \\mu x = 1$, so the expression gives 1, which equals $\\Delta x$. Quick numerical checks like this settle operator identities fast."
     ],
     "solution": [
       "Write everything in terms of the shift operator: $\\delta = E^{1/2} - E^{-1/2}$ and $\\mu = (E^{1/2} + E^{-1/2})/2$.",
-      "A standard identity is $\\mu = \\sqrt{1 + \\delta^{2}/4}$, so the given expression is $(1/2)\\delta^{2} + \\delta$.mu.",
+      "A standard identity is $\\mu = \\sqrt{1 + \\delta^{2}/4}$, so the given expression is $(1/2)\\delta^{2} + \\delta \\cdot \\mu$.",
       "$\\delta^{2} = (E^{1/2} - E^{-1/2})^{2} = E - 2 + E^{-1}$, so $(1/2)\\delta^{2} = (E - 2 + E^{-1})/2$.",
-      "$\\delta$.$\\mu = (E^{1/2} - E^{-1/2})(E^{1/2} + E^{-1/2})/2 = (E - E^{-1})/2$.",
+      "$\\delta \\cdot \\mu = (E^{1/2} - E^{-1/2})(E^{1/2} + E^{-1/2})/2 = (E - E^{-1})/2$.",
       "Adding: $(E - 2 + E^{-1})/2 + (E - E^{-1})/2 = (2E - 2)/2 = E - 1$.",
       "Since $\\Delta = E - 1$, the expression equals $\\Delta$, option (c)."
     ]

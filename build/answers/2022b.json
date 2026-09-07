@@ -3,18 +3,18 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Composite trapezoidal error = -$(b-a)h^{2} f''(t)/12$. With $b - a = 2$ and $h = 2/10 = 0.2$, this is -$(2)(0.04)/12$ = -$1/150$ times $f''(t)$.",
+    "shortcut": "Composite trapezoidal error = $-(b-a)h^{2} f''(t)/12$. With $b - a = 2$ and $h = 2/10 = 0.2$, this is $-(2)(0.04)/12 = -1/150$ times $f''(t)$.",
     "tips": [
-      "Memorise the composite error terms: trapezoidal -$(b-a)h^{2} f''/12$; Simpson's $1/3 -(b-a)h^{4} f''''/180$. The DERIVATIVE ORDER identifies the rule.",
+      "Memorise the composite error terms: trapezoidal $-(b-a)h^{2} f''/12$; Simpson's $1/3 -(b-a)h^{4} f''''/180$. The DERIVATIVE ORDER identifies the rule.",
       "Trapezoidal error involves the SECOND derivative, so options (a) and (d) with f' and $f'''$ are eliminated before any arithmetic.",
       "Compute h first: $h = (2-0)/10 = 0.2$, so $h^{2} = 0.04$ and $(2)(0.04)/12 = 0.08/12 = 1/150$.",
       "Option $(c) -1/300$ comes from using $(b-a) = 1$ or from halving twice - keep $(b-a) = 2$ explicitly in the formula."
     ],
     "solution": [
-      "The composite trapezoidal rule on [a,b] with n equal subintervals has error E = -$(b - a) h^{2} f''(t)/12$ for some t in [a,b], where $h = (b-a)/n$.",
+      "The composite trapezoidal rule on [a,b] with n equal subintervals has error $E = -(b - a) h^{2} f''(t)/12$ for some t in [a,b], where $h = (b-a)/n$.",
       "Here $a = 0, b = 2$ and $n = 10$, so $h = 2/10 = 0.2$ and $h^{2} = 0.04$.",
-      "Substituting: E = -$(2)(0.04) f''(t)/12$ = -$0.08 f''(t)/12$ = -$f''(t)/150$.",
-      "The error therefore involves the second derivative with coefficient -$1/150$.",
+      "Substituting: $E = -(2)(0.04) f''(t)/12 = -0.08 f''(t)/12 = -f''(t)/150$.",
+      "The error therefore involves the second derivative with coefficient $-1/150$.",
       "Option (b) is correct."
     ]
   },
@@ -22,19 +22,19 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Euler's local truncation error is $(h^{2}/2)y''(\\xi)$. Here $y'' = (\\cos y)(\\sin y) = (1/2)\\sin 2y$, so |$y''$| <= $1/2$ and the bound is $h^{2}/4$.",
+    "shortcut": "Euler's local truncation error is $(h^{2}/2)y''(\\xi)$. Here $y'' = (\\cos y)(\\sin y) = (1/2)\\sin 2y$, so $\\lvert y''\\rvert \\le 1/2$ and the bound is $h^{2}/4$.",
     "tips": [
       "Euler LTE = $(h^{2}/2) y''(\\xi)$, so bounding the error means bounding the SECOND derivative of the solution.",
       "Differentiate the ODE itself: $y' = \\sin y$ gives $y'' = (\\cos y) y' = \\sin y \\cos y = (1/2) \\sin 2y$, whose modulus never exceeds $1/2$.",
       "Combining: |LTE| <= $(h^{2}/2)(1/2) = h^{2}/4$. Missing the double-angle simplification gives the looser and wrong bound $h^{2}/2$.",
-      "Note the error is $O(h^{2})$ LOCALLY and O(h) globally, which is why options (a) and (d) with a single power of h are the global-error distractors."
+      "Note the error is $O(h^{2})$ LOCALLY and $O(h)$ globally, which is why options (a) and (d) with a single power of h are the global-error distractors."
     ],
     "solution": [
-      "For Euler's method the local truncation error over one step is $E = (h^{2}/2) y''(\\xi)$ for some xi in the step.",
+      "For Euler's method the local truncation error over one step is $E = (h^{2}/2) y''(\\xi)$ for some $\\xi$ in the step.",
       "The differential equation is $y' = \\sin y$, so differentiating with respect to t gives $y'' = (\\cos y) y' = (\\cos y)(\\sin y)$.",
       "Using the double-angle identity, $y'' = (1/2) \\sin(2y)$.",
-      "Since |$\\sin(2y)$| <= 1 for all y, we have |$y''$| <= $1/2$ everywhere.",
-      "Therefore |E| <= $(h^{2}/2)(1/2) = h^{2}/4$.",
+      "Since |$\\sin(2y)$| <= 1 for all y, we have $\\lvert y''\\rvert \\le 1/2$ everywhere.",
+      "Therefore $\\lvert E\\rvert \\le (h^{2}/2)(1/2) = h^{2}/4$.",
       "Option (c) is correct."
     ]
   },
@@ -53,7 +53,7 @@
       "With interval of differencing $h, \\Delta e^{x} = e^{x+h} - e^{x} = e^{x}(e^{h} - 1)$, so $\\Delta^{2} e^{x} = e^{x} (e^{h} - 1)^{2}$.",
       "The first factor is $(\\Delta^{2}/E) e^{x} = E^{-1}[e^{x} (e^{h} - 1)^{2}] = e^{x-h}(e^{h} - 1)^{2}$.",
       "The second factor is $(E e^{x})/(\\Delta^{2} e^{x}) = e^{x+h}/[e^{x} (e^{h} - 1)^{2}]$.",
-      "Multiplying, the factors $(e^{h} - 1)^{2}$ cancel: $e^{x-h}$ . $e^{x+h}/e^{x}$.",
+      "Multiplying, the factors $(e^{h} - 1)^{2}$ cancel: $e^{x-h} \\cdot e^{x+h}/e^{x}$.",
       "The shifts cancel too: $e^{x-h+x+h} /e^{x} = e^{2x}/e^{x} = e^{x}$.",
       "Option (d) is correct."
     ]
@@ -82,20 +82,20 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "On $2^{x} g(x), E$ acts as 2E on g, so $(E-8)$ becomes $2(E-4) = 2(\\Delta - 3)$. Then $1/(\\Delta-3)$ applied to $x^{2}$ gives -$(9x^{2}+6x+5)/27$, and the extra $1/2$ gives -$2^{x}(9x^{2}+6x+5)/54$.",
+    "shortcut": "On $2^{x} g(x), E$ acts as 2E on g, so $(E-8)$ becomes $2(E-4) = 2(\\Delta - 3)$. Then $1/(\\Delta-3)$ applied to $x^{2}$ gives $-(9x^{2}+6x+5)/27$, and the extra $1/2$ gives $-2^{x}(9x^{2}+6x+5)/54$.",
     "tips": [
-      "Shift rule for inverse operators: $1/\\phi(E) [a^{x} g(x)] = a^{x}$ . $1/\\phi(aE) [g(x)]$. Here $a = 2$, so $\\phi(E) = E - 8$ becomes $2E - 8 = 2(E - 4)$.",
-      "Convert to $\\Delta$: $E - 4 = (1 + \\Delta) - 4 = \\Delta - 3$, then expand $1/(\\Delta - 3)$ = -$(1/3)(1 - \\Delta/3)^{-1}$ = -$(1/3)(1 + \\Delta/3 + \\Delta^{2}/9 + ...)$.",
+      "Shift rule for inverse operators: $1/\\phi(E) [a^{x} g(x)] = a^{x} \\cdot 1/\\phi(aE) [g(x)]$. Here $a = 2$, so $\\phi(E) = E - 8$ becomes $2E - 8 = 2(E - 4)$.",
+      "Convert to $\\Delta$: $E - 4 = (1 + \\Delta) - 4 = \\Delta - 3$, then expand $1/(\\Delta - 3) = -(1/3)(1 - \\Delta/3)^{-1} = -(1/3)(1 + \\Delta/3 + \\Delta^{2}/9 + \\ldots)$.",
       "The series terminates because $\\Delta^{3} x^{2} = 0$ - only three terms are ever needed for a quadratic.",
-      "Sign check: the leading coefficient of $1/(\\Delta - 3)$ is -$1/3$, so the whole answer must be NEGATIVE. That eliminates options (b) and (d) at a glance."
+      "Sign check: the leading coefficient of $1/(\\Delta - 3)$ is $-1/3$, so the whole answer must be NEGATIVE. That eliminates options (b) and (d) at a glance."
     ],
     "solution": [
-      "Use the shift rule $1/\\phi(E)[a^{x} g(x)] = a^{x}$ . $1/\\phi(aE)[g(x)]$ with $a = 2$: $(E - 8)$ becomes $(2E - 8) = 2(E - 4)$.",
-      "So $1/(E-8)[2^{x} x^{2}] = 2^{x}$ . $(1/2)$ . $1/(E - 4)[x^{2}]$.",
-      "Write $E - 4 = (1 + \\Delta) - 4 = \\Delta - 3$, and expand $1/(\\Delta - 3)$ = -$(1/3)[1 - \\Delta/3]^{-1}$ = -$(1/3)[1 + \\Delta/3 + \\Delta^{2}/9 + ...]$.",
+      "Use the shift rule $1/\\phi(E)[a^{x} g(x)] = a^{x} \\cdot 1/\\phi(aE)[g(x)]$ with $a = 2$: $(E - 8)$ becomes $(2E - 8) = 2(E - 4)$.",
+      "So $1/(E-8)[2^{x} x^{2}] = 2^{x} \\cdot (1/2) \\cdot 1/(E - 4)[x^{2}]$.",
+      "Write $E - 4 = (1 + \\Delta) - 4 = \\Delta - 3$, and expand $1/(\\Delta - 3) = -(1/3)[1 - \\Delta/3]^{-1} = -(1/3)[1 + \\Delta/3 + \\Delta^{2}/9 + \\ldots]$.",
       "For $x^{2}$ with $h = 1$: $\\Delta x^{2} = 2x + 1$ and $\\Delta^{2} x^{2} = 2$, with all higher differences zero.",
-      "So $1/(\\Delta-3)[x^{2}]$ = -$(1/3)[x^{2} + (2x+1)/3 + 2/9]$ = -$(9x^{2} + 6x + 3 + 2)/27$ = -$(9x^{2} + 6x + 5)/27$.",
-      "Multiplying by $2^{x}/2$: $1/(E-8)[x^{2} 2^{x}]$ = -$2^{x}(9x^{2} + 6x + 5)/54$, option (c)."
+      "So $1/(\\Delta-3)[x^{2}] = -(1/3)[x^{2} + (2x+1)/3 + 2/9] = -(9x^{2} + 6x + 3 + 2)/27 = -(9x^{2} + 6x + 5)/27$.",
+      "Multiplying by $2^{x}/2$: $1/(E-8)[x^{2} 2^{x}] = -2^{x}(9x^{2} + 6x + 5)/54$, option (c)."
     ]
   },
   "2022-Q26": {
@@ -104,16 +104,16 @@
     "type": "Factual",
     "shortcut": "Bessel's formula is built on the mean of the two central lines and is most accurate near the midpoint, i.e. for p between 0.25 and 0.75.",
     "tips": [
-      "Range map for central formulas: Stirling for |p| < 0.25 (near a tabulated value), Bessel for $0.25 < p < 0.75$ (near the midpoint).",
+      "Range map for central formulas: Stirling for $\\lvert p\\rvert < 0.25$ (near a tabulated value), Bessel for $0.25 < p < 0.75$ (near the midpoint).",
       "Bessel's formula is exactly symmetric about $p = 0.5$, where its odd-order terms drop out and the accuracy is highest - that symmetry is the reason for the range.",
       "For p outside $[0,1]$ entirely, use Newton's forward formula near the start of the table or the backward formula near its end.",
       "Both Stirling and Bessel are averages of the two Gauss formulas; the difference is which pair of lines is averaged, and hence where each is sharpest."
     ],
     "solution": [
-      "Bessel's interpolation formula is constructed by averaging the two central lines of the difference table, which makes it symmetric about the midpoint between x0 and x1.",
+      "Bessel's interpolation formula is constructed by averaging the two central lines of the difference table, which makes it symmetric about the midpoint between $x_{0}$ and $x_{1}$.",
       "At $p = 0.5$ the odd-order terms of Bessel's formula vanish, so the truncation error is smallest there.",
       "The formula therefore gives the best accuracy when the interpolation point lies near the middle of the interval, conventionally taken as $0.25 < p < 0.75$.",
-      "For |p| < 0.25 the point is close to a tabulated value and Stirling's formula is preferred.",
+      "For $\\lvert p\\rvert < 0.25$ the point is close to a tabulated value and Stirling's formula is preferred.",
       "For p outside the range 0 to 1 the Newton-Gregory forward or backward formulas are appropriate.",
       "Hence Bessel's formula suits p between 0.25 and 0.75, option (b)."
     ]
@@ -132,8 +132,8 @@
     "solution": [
       "The data pairs are $(x, y) = (1, 4), (3, 12), (4, 19)$, and we seek x when $y = 7$ by inverse interpolation, treating y as the independent variable.",
       "Weight for $y = 4$: $(7-12)(7-19)/[(4-12)(4-19)] = (-5)(-12)/[(-8)(-15)] = 60/120 = 0.5$.",
-      "Weight for $y = 12$: $(7-4)(7-19)/[(12-4)(12-19)] = (3)(-12)/[(8)(-7)]$ = -36/-$56 = 0.642857$.",
-      "Weight for $y = 19$: $(7-4)(7-12)/[(19-4)(19-12)] = (3)(-5)/[(15)(7)]$ = -$15/105$ = -0.142857. (Sum = 1.)",
+      "Weight for $y = 12$: $(7-4)(7-19)/[(12-4)(12-19)] = (3)(-12)/[(8)(-7)] = -36/-56 = 0.642857$.",
+      "Weight for $y = 19$: $(7-4)(7-12)/[(19-4)(19-12)] = (3)(-5)/[(15)(7)] = -15/105 = -0.142857$. (Sum = 1.)",
       "$x = 1(0.5) + 3(0.642857) + 4(-0.142857) = 0.5 + 1.928571 - 0.571429 = 1.857$, i.e. approximately 1.86, option (a)."
     ]
   },
@@ -146,10 +146,10 @@
       "Coefficients of any pure difference operator must sum to ZERO so that constants are annihilated: $1 - 2 + 1 = 0$. Option (a) sums to 3 and is eliminated instantly.",
       "The denominator must be $h^{2}$ because a second derivative has dimensions of f per length squared. Option (b) has a first-difference numerator over $h^{2}$ and is dimensionally inconsistent.",
       "Central formulas are symmetric about the point i, which option (d) is not - it is the BACKWARD second difference.",
-      "This approximation is second-order accurate, with error -$h^{2} f''''(\\xi)/12$ - noticeably better than the one-sided forward or backward versions."
+      "This approximation is second-order accurate, with error $-h^{2} f''''(\\xi)/12$ - noticeably better than the one-sided forward or backward versions."
     ],
     "solution": [
-      "Expand by Taylor series about $x_{i}$: $f_{i+1} = f_{i} + h f'_{i} + (h^{2}/2) f''_{i} + (h^{3}/6) f'''_{i}$ + ... and $f_{i-1} = f_{i} - h f'_{i} + (h^{2}/2) f''_{i} - (h^{3}/6) f'''_{i}$ + ...",
+      "Expand by Taylor series about $x_{i}$: $f_{i+1} = f_{i} + h f'_{i} + (h^{2}/2) f''_{i} + (h^{3}/6) f'''_{i} + \\ldots$ and $f_{i-1} = f_{i} - h f'_{i} + (h^{2}/2) f''_{i} - (h^{3}/6) f'''_{i} + \\ldots$",
       "Adding the two expansions, the odd-order terms cancel: $f_{i+1} + f_{i-1} = 2 f_{i} + h^{2} f''_{i} + O(h^{4})$.",
       "Rearranging: $f''_{i} = (f_{i-1} - 2 f_{i} + f_{i+1})/h^{2} + O(h^{2})$.",
       "The numerator is exactly the central second difference $\\delta^{2} f_{i}$, with coefficients 1, -2, 1 summing to zero as any difference operator must.",
@@ -161,19 +161,19 @@
     "answer": 1,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "With n arguments the divided difference has ORDER n - 1, and for $f(x) = 1/x$ the order-k difference is $(-1)^{k}$ over the product of the nodes. Hence $(-1)^{n-1}$/(x1 x2 ... xn).",
+    "shortcut": "With n arguments the divided difference has ORDER n - 1, and for $f(x) = 1/x$ the order-k difference is $(-1)^{k}$ over the product of the nodes. Hence $(-1)^{n-1}/(x_{1} x_{2} \\ldots x_{n})$.",
     "tips": [
-      "Count the arguments carefully: $f(x_{1},...,xn)$ lists n nodes, so it is the $(n-1)$th divided difference - the exponent is n-1, not n.",
-      "Base rule: $f[x_{0}, x_{1}, ..., xk] = (-1)^{k}$/(x0 x1 ... xk) for $f(x) = 1/x$. Fix the pattern with the two-node case f[a,b] = -$1/(ab)$.",
-      "Verify with $n = 2$: $f(x_{1},x_{2})$ = -$1/(x_{1} x_{2})$, and $(-1)^{2-1}$ = -1. Option (b) matches; option (a) would give +$1/(x1 \\times 2)$.",
+      "Count the arguments carefully: $f(x_{1},\\ldots,x_{n})$ lists n nodes, so it is the $(n-1)$th divided difference - the exponent is $n-1$, not n.",
+      "Base rule: $f[x_{0}, x_{1}, \\ldots, x_{k}] = (-1)^{k}/(x_{0} x_{1} \\ldots x_{k})$ for $f(x) = 1/x$. Fix the pattern with the two-node case $f[a,b] = -1/(ab)$.",
+      "Verify with $n = 2$: $f(x_{1},x_{2}) = -1/(x_{1} x_{2})$, and $(-1)^{2-1} = -1$. Option (b) matches; option (a) would give $+1/(x1x_{2})$.",
       "The result is symmetric in all the nodes, as every divided difference must be - options (c) and (d) are symmetric too, so the sign is what decides."
     ],
     "solution": [
-      "For $f(x) = 1/x$ the first divided difference is $f[a,b] = (1/a - 1/b)/(a-b)$ = -$1/(ab)$.",
-      "Iterating, the kth divided difference over k+1 nodes is $f[x_{0}, ..., xk] = (-1)^{k}$/(x0 x1 ... xk).",
-      "The notation $f(x_{1}, x_{2}, ..., xn)$ involves n arguments, so it denotes the divided difference of order n - 1.",
-      "Applying the rule with $k = n - 1$ gives $f(x_{1}, ..., xn) = (-1)^{n-1}$/(x1 x2 ... xn).",
-      "Check with $n = 2$: the formula gives -$1/(x_{1} x_{2})$, matching the first divided difference computed above.",
+      "For $f(x) = 1/x$ the first divided difference is $f[a,b] = (1/a - 1/b)/(a-b) = -1/(ab)$.",
+      "Iterating, the kth divided difference over $k+1$ nodes is $f[x_{0}, \\ldots, x_{k}] = (-1)^{k}/(x_{0} x_{1} \\ldots x_{k})$.",
+      "The notation $f(x_{1}, x_{2}, \\ldots, x_{n})$ involves n arguments, so it denotes the divided difference of order n - 1.",
+      "Applying the rule with $k = n - 1$ gives $f(x_{1}, \\ldots, x_{n}) = (-1)^{n-1}/(x_{1} x_{2} \\ldots x_{n})$.",
+      "Check with $n = 2$: the formula gives $-1/(x_{1} x_{2})$, matching the first divided difference computed above.",
       "Option (b) is correct."
     ]
   },
@@ -186,13 +186,13 @@
       "For an exponential, each $\\Delta$ multiplies by the constant $(e^{ah} - 1)$; with $h = 1$ that is $(e^{a} - 1)$. The operator behaves like a scalar.",
       "E and $\\Delta$ commute, so the order of application does not matter - apply $\\Delta^{n}$ first and then the single shift E.",
       "E contributes exactly one extra factor $e^{a}$, which is what separates option (b) from option (c). Count the shifts carefully.",
-      "Dimension check on the exponent count: n differences give $(e^{a} - 1)^{n}$ and one shift gives $e^{a}$ - options (a) and (d) with power n+1 over-count the differences."
+      "Dimension check on the exponent count: n differences give $(e^{a} - 1)^{n}$ and one shift gives $e^{a}$ - options (a) and (d) with power $n+1$ over-count the differences."
     ],
     "solution": [
-      "With step length $h = 1, \\Delta e^{ax+b} = e^(a(x+1)+b) - e^{ax+b} = e^{ax+b}(e^{a} - 1)$.",
+      "With step length $h = 1, \\Delta e^{ax+b} = e^{a(x+1)+b} - e^{ax+b} = e^{ax+b}(e^{a} - 1)$.",
       "Each further application of $\\Delta$ multiplies by the same constant factor $(e^{a} - 1)$.",
       "Hence $\\Delta^{n} e^{ax+b} = e^{ax+b}(e^{a} - 1)^{n}$.",
-      "Now apply the shift operator E, which replaces x by x + 1: $\\operatorname{E}[e^{ax+b}] = e^(a(x+1)+b) = e^{ax+b} e^{a}$.",
+      "Now apply the shift operator E, which replaces x by x + 1: $\\operatorname{E}[e^{ax+b}] = e^{a(x+1)+b} = e^{ax+b} e^{a}$.",
       "Therefore $\\operatorname{E}(\\Delta^{n} e^{ax+b}) = e^{ax+b} e^{a} (e^{a} - 1)^{n}$.",
       "Option (b) is correct."
     ]
@@ -224,15 +224,15 @@
     "shortcut": "A base-b system uses the digits 0 through b - 1, so the highest digit is one less than the base.",
     "tips": [
       "Anchor with examples: binary (base 2) tops out at 1; octal (base 8) at 7; decimal (base 10) at 9; hexadecimal (base 16) at $F = 15$. Every one is base minus one.",
-      "The base itself can never be a single digit - it is written as '10' in its own system, which is exactly why the maximum digit is b - 1.",
+      "The base itself can never be a single digit - it is written as '$10'$ in its own system, which is exactly why the maximum digit is b - 1.",
       "'Radix' is a synonym for base, so option (c) - one more than the radix - is even further from the truth than option (a).",
       "This is the fastest way to spot invalid numerals: an 8 or 9 in an octal number, or a 2 in a binary one, is immediately illegal."
     ],
     "solution": [
       "A positional number system with base (radix) b represents values using exactly b distinct digit symbols.",
-      "These symbols denote the values 0, 1, 2, ..., b - 1.",
+      "These symbols denote the values $0, 1, 2, \\ldots, b - 1$.",
       "The largest of them is therefore b - 1, one less than the base.",
-      "The base itself is not a digit; in its own system it is written as the two-symbol numeral '10'.",
+      "The base itself is not a digit; in its own system it is written as the two-symbol numeral '$10'$.",
       "Examples confirm this: binary's largest digit is 1, octal's is 7, decimal's is 9 and hexadecimal's is $F (= 15)$.",
       "Hence the highest digit equals one less than the base, option (b)."
     ]
@@ -266,7 +266,7 @@
       "The defining feature is content addressing - you supply the DATA and the memory tells you whether and where it is stored, the reverse of ordinary addressing.",
       "Options (a) and (b) describe ordinary location-addressed memory; option (c) describes sequential-access media such as tape.",
       "Because every cell compares its contents in parallel, associative memory is fast but expensive, so it is used only for small structures such as the TLB and cache tag store.",
-      "Same concept appears as 2019 Q62 in reverse phrasing - 'content-based addressable memory' is the exact synonym."
+      "Same concept appears as $2019 Q_{62}$ in reverse phrasing - 'content-based addressable memory' is the exact synonym."
     ],
     "solution": [
       "In conventional memory the CPU supplies an address and the memory returns the contents of that location.",
@@ -305,7 +305,7 @@
       "SVG = Scalable Vector Graphics - the word 'vector' is in the name, so any option containing item 4 can be struck out immediately.",
       "Raster formats to recognise: JPEG, PNG, GIF, TIFF, BMP. Vector formats: SVG, EPS, AI.",
       "Raster images pixellate when enlarged; vector images redraw perfectly at any size - the practical test of which family a format belongs to.",
-      "This repeats 2021 Q60 in the opposite direction ('which is NOT raster'), so one fact answers items in two papers."
+      "This repeats $2021 Q_{60}$ in the opposite direction ('which is NOT raster'), so one fact answers items in two papers."
     ],
     "solution": [
       "A raster (bitmap) image is stored as a rectangular grid of pixels, each with its own colour value.",
@@ -360,7 +360,7 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Convert through binary: 32FC.$75 = 0011 0010 1111 1100$ . 0111 0101. Regrouping in threes gives 31374.352 in octal.",
+    "shortcut": "Convert through binary: 32FC.$75 = 0011 0010 1111 1100 \\cdot 0111 0101$. Regrouping in threes gives 31374.352 in octal.",
     "tips": [
       "Hex to octal must pass through BINARY - four bits per hex digit out, three bits per octal digit in. There is no direct digit mapping.",
       "Group the integer part in threes from the BINARY POINT leftwards and the fractional part from the point rightwards, padding each end with zeros as needed.",
@@ -369,7 +369,7 @@
     ],
     "solution": [
       "Convert each hexadecimal digit to four binary bits: $3 = 0011, 2 = 0010, F = 1111, C = 1100$, and after the point $7 = 0111, 5 = 0101$.",
-      "So the number in binary is 0011 0010 1111 1100 . 0111 0101, i.e. 11001011111100.01110101.",
+      "So the number in binary is 0011 0010 1111 1100 * 0111 0101, i.e. 11001011111100.01110101.",
       "For octal, regroup the integer part in threes from the binary point leftwards, padding with leading zeros: 011 001 011 111 100.",
       "These groups give the octal digits 3, 1, 3, 7, 4.",
       "Regroup the fractional part in threes from the point rightwards, padding with a trailing zero: 011 101 010, giving 3, 5, 2.",

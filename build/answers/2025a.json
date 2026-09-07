@@ -5,7 +5,7 @@
     "type": "Factual",
     "shortcut": "Differentiating the Beta kernel $x^{a-1}(1-x)^{b-1}$ and setting the derivative to zero gives the mode $(a-1)/(a+b-2)$, valid when both parameters exceed 1.",
     "tips": [
-      "Mode of Beta(a,b) = $(a-1)/(a+b-2)$; mean = $a/(a+b)$. The '-1' and '-2' pattern distinguishes the mode from the mean at a glance.",
+      "Mode of $\\text{Beta}(a,b) = (a-1)/(a+b-2)$; mean = $a/(a+b)$. The '$-1'$ and '$-2'$ pattern distinguishes the mode from the mean at a glance.",
       "The condition $a > 1$ and $b > 1$ is exactly what makes the density unimodal with an interior maximum, so the formula applies.",
       "Symmetry check: for $a = b$ the formula gives $1/2$, as it must for a symmetric Beta - option (d) fails this at once.",
       "Boundary check: as a grows with b fixed the mode tends to 1, which the formula reproduces; option (b) is the MEAN, the standard near-miss."
@@ -23,16 +23,16 @@
     "answer": 0,
     "confidence": "high",
     "type": "Conceptual",
-    "shortcut": "Statement I is true - with both parameters above 1 the Beta density is strictly concave in $\\log$ scale and has a unique interior mode. Statement II fails because Beta(1,1) is Uniform on $[0,1]$, not $[0,2]$.",
+    "shortcut": "Statement I is true - with both parameters above 1 the Beta density is strictly concave in $\\log$ scale and has a unique interior mode. Statement II fails because $\\text{Beta}(1,1)$ is Uniform on $[0,1]$, not $[0,2]$.",
     "tips": [
       "Beta support is ALWAYS $[0,1]$, whatever the parameters - so any claim about $[0,2]$ is wrong by definition.",
-      "Beta(1,1) is exactly the Uniform(0,1) distribution: the density is the constant 1, so every point of $[0,1]$ is a mode.",
+      "$\\text{Beta}(1,1)$ is exactly the $\\text{Uniform}(0,1)$ distribution: the density is the constant 1, so every point of $[0,1]$ is a mode.",
       "For $a > 1$ and $b > 1$ the density vanishes at both endpoints and is positive inside, so a unique interior maximum must exist - statement I follows.",
       "Watch the support in every Beta question; the first-kind Beta lives on $(0,1)$ and the second-kind Beta on $(0, \\infty)$."
     ],
     "solution": [
       "Statement I: for $a > 1$ and $b > 1$ the Beta density $x^{a-1}(1-x)^{b-1}$ vanishes at both $x = 0$ and $x = 1$ and is positive in between, and $\\log f$ is strictly concave, so there is exactly one interior maximum at $(a-1)/(a+b-2)$. TRUE.",
-      "Statement II: with $a = b = 1$ the density becomes $x^{0} (1-x)^{0}/B(1,1) = 1$ on $(0,1)$, which is the Uniform(0,1) distribution.",
+      "Statement II: with $a = b = 1$ the density becomes $x^{0} (1-x)^{0}/B(1,1) = 1$ on $(0,1)$, which is the $\\text{Uniform}(0,1)$ distribution.",
       "Every point of $[0,1]$ is then a mode, since the density is constant there.",
       "However the statement asserts that all points of $[0,2]$ are modes, whereas the Beta distribution of the first kind has support $[0,1]$ only, and the density is zero outside it. FALSE.",
       "Only statement I is correct.",
@@ -43,7 +43,7 @@
     "answer": 1,
     "confidence": "high",
     "type": "Conceptual",
-    "shortcut": "A constant density $1/8$ on $[2,10]$ is $U(2,10)$; a positive linear map sends the endpoints to 2a+b and 10a+b, so $Y \\sim U(2a+b, 10a+b)$.",
+    "shortcut": "A constant density $1/8$ on $[2,10]$ is $U(2,10)$; a positive linear map sends the endpoints to $2a+b$ and $10a+b$, so $Y \\sim U(2a+b, 10a+b)$.",
     "tips": [
       "A linear transformation of a uniform variable is uniform - only the endpoints move, and they move by the same map as the variable.",
       "Since $a > 0$ the order of the endpoints is preserved; a negative a would swap them, which is why the sign condition is stated.",
@@ -51,11 +51,11 @@
       "Option (a) uses the wrong endpoints (8 and 12 rather than 2 and 10) - read the support from the stem, not from the constant $1/8$."
     ],
     "solution": [
-      "The density is the constant $1/8$ on $[2, 10]$, an interval of length 8, so X ~ Uniform(2, 10).",
-      "Let Y = aX + b with $a > 0, a$ strictly increasing linear map.",
+      "The density is the constant $1/8$ on $[2, 10]$, an interval of length 8, so $X \\sim \\text{Uniform}(2, 10)$.",
+      "Let $Y = aX + b$ with $a > 0, a$ strictly increasing linear map.",
       "The endpoints map to 2a + b and 10a + b, and the order is preserved because a is positive.",
       "For y between these values, $F_{Y}(y) = \\operatorname{P}(X \\le (y-b)/a) = [(y-b)/a - 2]/8$, which is linear in y - so Y has a constant density.",
-      "That density is $1/(8a)$ over an interval of length 8a, confirming Y ~ Uniform($2a + b, 10a + b$).",
+      "That density is $1/(8a)$ over an interval of length 8a, confirming $Y \\sim \\text{Uniform}(2a + b, 10a + b)$.",
       "Option (b) is correct."
     ]
   },
@@ -66,8 +66,8 @@
     "shortcut": "$\\operatorname{E}(D) = 3.5$. Head pays 2D and tail pays $D/2$, each with probability $1/2$, so the expected win is $(1/2)(2)(3.5) + (1/2)(0.5)(3.5) = 3.5 + 0.875 = 4.375$.",
     "tips": [
       "Condition on the coin: the payoff is a MULTIPLE of the die value in each case, so $\\operatorname{E}\\!\\left(\\text{win}\\right) = \\operatorname{E}\\!\\left(\\text{multiplier}\\right) x \\operatorname{E}(D)$ with the multiplier averaging $(2 + 0.5)/2 = 1.25$.",
-      "$1.25 \\times 3.5 = 4.375 - a$ one-line route once the independence of coin and die is noticed.",
-      "$\\operatorname{E}(D) = (1+2+...+6)/6 = 3.5$ for a fair die; keeping it as $7/2$ makes the arithmetic exact.",
+      "$1.25 \\times 3.5 = 4.375$ - a one-line route once the independence of coin and die is noticed.",
+      "$\\operatorname{E}(D) = (1+2+\\ldots+6)/6 = 3.5$ for a fair die; keeping it as $7/2$ makes the arithmetic exact.",
       "Note the payoffs are asymmetric: doubling gains more than halving loses, so the expected win must EXCEED 3.5 - but only modestly, which rules out options (a), (b) and (c)."
     ],
     "solution": [
@@ -103,14 +103,14 @@
     "type": "Numerical",
     "shortcut": "Integrating $(1/2)e^{x}$ up to $x \\le 0$ gives $e^{x}/2$; for $x > 0$ add the remaining area to get $1 - e^{-x}/2$.",
     "tips": [
-      "Split at 0 because of the |x|: the density is $(1/2)e^{x}$ on the left and $(1/2)e^{-x}$ on the right.",
+      "Split at 0 because of the $\\lvert x\\rvert$: the density is $(1/2)e^{x}$ on the left and $(1/2)e^{-x}$ on the right.",
       "$F(0)$ must equal $1/2$ by symmetry. Check each option at $x = 0$: only options (a) and (b) give $1/2$ from the left branch, and only (a) gives $1/2$ from the right.",
       "The right branch is $1/2$ + the $\\int_{0}^{x} (1/2)e^{-t}\\,dt = 1/2 + (1/2)(1 - e^{-x}) = 1 - e^{-x}/2$.",
-      "Limits check: F(-$\\infty$) = 0 and F(+$\\infty$) = 1. Option (c) tends to 0 at +$\\infty$ and option (d) is discontinuous - both invalid."
+      "Limits check: $F(-\\infty) = 0$ and $F(+\\infty) = 1$. Option (c) tends to 0 at $+\\infty$ and option (d) is discontinuous - both invalid."
     ],
     "solution": [
       "The standard Laplace density is $f(x) = (1/2)e^{-\\lvert x\\rvert }$, i.e. $(1/2)e^{x}$ for $x \\le 0$ and $(1/2)e^{-x}$ for $x > 0$.",
-      "For $x \\le 0$: F(x) = the $\\int_{-\\infty}^{x} (1/2)e^{t}\\,dt = (1/2)e^{x}$.",
+      "For $x \\le 0$: $F(x)$ = the $\\int_{-\\infty}^{x} (1/2)e^{t}\\,dt = (1/2)e^{x}$.",
       "In particular $F(0) = 1/2$, as symmetry requires.",
       "For $x > 0$: $F(x) = 1/2$ + the $\\int_{0}^{x} (1/2)e^{-t}\\,dt = 1/2 + (1/2)(1 - e^{-x}) = 1 - (1/2)e^{-x}$.",
       "So $F(x) = e^{x}/2$ for $x \\le 0$ and $1 - e^{-x}/2$ for $x > 0$, option (a)."
@@ -120,17 +120,17 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "For fixed x1, the variable x2 ranges over $(x_{1}, 1)$, so $f_{1}(x_{1}) = 2(1 - x_{1})$ on $(0,1)$.",
+    "shortcut": "For fixed $x_{1}$, the variable $x_{2}$ ranges over $(x_{1}, 1)$, so $f_{1}(x_{1}) = 2(1 - x_{1})$ on $(0,1)$.",
     "tips": [
-      "Get the limits from the region: $0 < x_{1} < x_{2} < 1$ means x2 runs from x1 up to 1, a range of length 1 - x1.",
-      "Integrating the constant 2 over that range gives $2(1 - x_{1}) - a$ DECREASING density, since small x1 leaves more room for x2.",
-      "Validity check: the $\\int 2(1-x_{1})$ over $(0,1)$ is $2(1 - 1/2) = 1$. Option (c) 2x1 also integrates to 1, so use the limits, not this test, to choose.",
-      "Contrast with 2022 Q49, where the same density gave $f_{Y}(y) = 2y$ for the OTHER variable - the two marginals are mirror images."
+      "Get the limits from the region: $0 < x_{1} < x_{2} < 1$ means $x_{2}$ runs from $x_{1}$ up to 1, a range of length $1 - x_{1}$.",
+      "Integrating the constant 2 over that range gives $2(1 - x_{1})$ - a DECREASING density, since small $x_{1}$ leaves more room for $x_{2}$.",
+      "Validity check: the $\\int 2(1-x_{1})$ over $(0,1)$ is $2(1 - 1/2) = 1$. Option $(c) 2 \\times 1$ also integrates to 1, so use the limits, not this test, to choose.",
+      "Contrast with $2022 Q_{49}$, where the same density gave $f_{Y}(y) = 2y$ for the OTHER variable - the two marginals are mirror images."
     ],
     "solution": [
       "The joint density is $f(x_{1}, x_{2}) = 2$ on the triangle $0 < x_{1} < x_{2} < 1$, whose area is $1/2$, so the total probability is $2(1/2) = 1$.",
-      "The marginal of X1 is obtained by integrating out x2 over the values it may take for that x1.",
-      "The constraint $x_{1} < x_{2} < 1$ means x2 ranges from x1 to 1.",
+      "The marginal of $X_{1}$ is obtained by integrating out $x_{2}$ over the values it may take for that $x_{1}$.",
+      "The constraint $x_{1} < x_{2} < 1$ means $x_{2}$ ranges from $x_{1}$ to 1.",
       "$f_{1}(x_{1})$ = the $\\int_{x1}^{1} 2 dx2 = 2(1 - x_{1})$, for $0 < x_{1} < 1$.",
       "Check: the $\\int 2(1 - x_{1})$ over $(0,1) = 2[x_{1} - x_{1}^{2}/2]$ from 0 to $1 = 2(1/2) = 1, a$ valid density.",
       "Option (b) is correct."
@@ -140,17 +140,17 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "kx(1-x) on $(0,1)$ is the Beta(2,2) density $(k = 6)$, which is symmetric about $1/2$, so $\\operatorname{E}(X) = 1/2$.",
+    "shortcut": "kx($1-x$) on $(0,1)$ is the $\\text{Beta}(2,2)$ density $(k = 6)$, which is symmetric about $1/2$, so $\\operatorname{E}(X) = 1/2$.",
     "tips": [
-      "Recognise the Beta kernel: $x^{a-1}(1-x)^{b-1}$ with $a = b = 2$, so the distribution is Beta(2,2) and $k = 1/B(2,2) = 6$.",
+      "Recognise the Beta kernel: $x^{a-1}(1-x)^{b-1}$ with $a = b = 2$, so the distribution is $\\text{Beta}(2,2)$ and $k = 1/B(2,2) = 6$.",
       "Beta mean = $a/(a+b) = 2/4 = 1/2$ - no integration needed once the family is identified.",
-      "Symmetry shortcut: the density kx(1-x) is symmetric about $x = 1/2$, so the mean must be $1/2$ whatever k is.",
+      "Symmetry shortcut: the density kx($1-x$) is symmetric about $x = 1/2$, so the mean must be $1/2$ whatever k is.",
       "The constant k never enters the answer, which is why the question can leave it unspecified - a hint that symmetry is the intended route."
     ],
     "solution": [
-      "The density f(x) = kx(1-x) on $(0,1)$ has the form $x^{a-1}(1-x)^{b-1}$ with $a = b = 2$, so X ~ Beta(2,2).",
+      "The density $f(x) = kx(1-x)$ on $(0,1)$ has the form $x^{a-1}(1-x)^{b-1}$ with $a = b = 2$, so $X \\sim \\text{Beta}(2,2)$.",
       "Normalisation: the $\\int x(1-x)$ over $(0,1)$ is $1/2 - 1/3 = 1/6$, so $k = 6$.",
-      "For Beta(a,b) the mean is $a/(a+b) = 2/(2+2) = 1/2$.",
+      "For $\\text{Beta}(a,b)$ the mean is $a/(a+b) = 2/(2+2) = 1/2$.",
       "Alternatively, the density is symmetric about $x = 1/2$ (since $x(1-x)$ is unchanged by $x \\to 1-x$), so the mean is $1/2$ by symmetry.",
       "Direct check: $\\operatorname{E}(X) = 6$ times the $\\int x^{2}(1-x)\\,dx = 6(1/3 - 1/4) = 6(1/12) = 1/2$.",
       "Option (a) is correct."
@@ -164,8 +164,8 @@
     "tips": [
       "A PRODUCT of MGFs means a SUM of independent variables - so Y is distributed as X + Z with Z independent of X.",
       "Read Z off its MGF: coefficients are probabilities and the exponents are values, so $Z = 0$ with probability 0.75 and $Z = 2$ with probability 0.25.",
-      "$\\operatorname{Var}(Z) = \\operatorname{E}(Z^{2}) - [\\operatorname{E}(Z)]^{2} = 4(0.25) - (0.5)^{2} = 1 - 0.25 = 0.75$. (Equivalently $Z = 2W$ with W ~ Bernoulli(0.25), giving $4(0.25)(0.75)$.)",
-      "Variances of independent summands ADD, so $\\operatorname{Var}(Y) = 0.25 + 0.75 = 1$ - no knowledge of $X's$ distribution is needed beyond its variance."
+      "$\\operatorname{Var}(Z) = \\operatorname{E}(Z^{2}) - [\\operatorname{E}(Z)]^{2} = 4(0.25) - (0.5)^{2} = 1 - 0.25 = 0.75$. (Equivalently $Z = 2W$ with $W \\sim \\text{Bernoulli}(0.25)$, giving $4(0.25)(0.75)$.)",
+      "Variances of independent summands ADD, so $\\operatorname{Var}(Y) = 0.25 + 0.75 = 1$ - no knowledge of X's distribution is needed beyond its variance."
     ],
     "solution": [
       "$M_{Y}(t) = (0.75 + 0.25 e^{2t}) M_{X}(t)$ expresses $M_{Y}$ as a product of two moment generating functions.",
@@ -187,8 +187,8 @@
       "Because the two statements are equivalent, only options (c) and (d) are logically possible - and the CLT confirms (c)."
     ],
     "solution": [
-      "$A \\chi^{2}$ variable with n degrees of freedom can be written as $X = Z_{1}^{2} + Z_{2}^{2}$ + ... + Zn^2 with the Zi independent standard normal.",
-      "Each Zi^2 has mean 1 and variance 2, and they are i.i.d.",
+      "A $\\chi^{2}$ variable with n degrees of freedom can be written as $X = Z_{1}^{2} + Z_{2}^{2} + \\ldots + Z_{n}^{2}$ with the $Z_{i}$ independent standard normal.",
+      "Each $Z_{i}^{2}$ has mean 1 and variance 2, and they are i.i.d.",
       "By the Central Limit Theorem, $(X - n)/\\sqrt{2n}$ converges in distribution to $N(0,1)$. Statement I is TRUE.",
       "Dividing by n: $X/n$ has mean 1 and variance $2n/n^{2} = 2/n$.",
       "Since $X/n = 1 + \\sqrt{2/n} [(X-n)/\\sqrt{2n}]$, it is asymptotically normal with mean 1 and variance $2/n$. Statement II is TRUE and is simply a restatement of I.",
@@ -202,7 +202,7 @@
     "shortcut": "$\\operatorname{P}(A) = 0.5$ and $\\operatorname{P}(B) = 0.6$, so $\\operatorname{P}(A)\\operatorname{P}(B) = 0.30$ but $\\operatorname{P}(A \\cap B) = 0.40$ - not independent. And $\\operatorname{P}(A\\mid B') + \\operatorname{P}(A'\\mid B) = 0.1/0.4 + 0.2/0.6 = 0.25 + 0.333 = 0.583 > 0.5$.",
     "tips": [
       "Get the marginals by summing rows and columns: $\\operatorname{P}(A) = 0.4 + 0.1 = 0.5$ and $\\operatorname{P}(B) = 0.4 + 0.2 = 0.6$.",
-      "Independence test: compare P(A n B) with P(A)P(B). Here 0.40 against 0.30, so the events are positively associated, not independent.",
+      "Independence test: compare $\\operatorname{P}(A \\cap B)$ with $\\operatorname{P}(A)\\operatorname{P}(B)$. Here 0.40 against 0.30, so the events are positively associated, not independent.",
       "For the conditionals, divide the relevant cell by its column or row total: $\\operatorname{P}(A\\mid B') = 0.1/(0.1+0.3)$ and $\\operatorname{P}(A'\\mid B) = 0.2/(0.4+0.2)$.",
       "$0.25 + 0.3333 = 0.5833$ exceeds 0.5, so statement II holds - compute both fractions exactly rather than estimating."
     ],
@@ -219,18 +219,18 @@
     "answer": 3,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "The first three cumulants are the mean, the variance and the third central moment: $k_{1} = \\mu1', k_{2} = \\mu2' - \\mu1'^{2}$ and $k_{3} = \\mu3' - 3 \\mu2' \\mu1' + 2 \\mu1'^{3}$. All three statements are standard.",
+    "shortcut": "The first three cumulants are the mean, the variance and the third central moment: $k_{1} = \\mu_{1}', k_{2} = \\mu_{2}' - \\mu_{1}'^{2}$ and $k_{3} = \\mu_{3}' - 3 \\mu_{2}' \\mu_{1}' + 2 \\mu_{1}'^{3}$. All three statements are standard.",
     "tips": [
-      "Cumulants come from $\\log M(t)$: k1 is the mean, k2 the variance and k3 the third CENTRAL moment - the first three have direct interpretations.",
+      "Cumulants come from $\\log M(t)$: $k_{1}$ is the mean, $k_{2}$ the variance and $k_{3}$ the third CENTRAL moment - the first three have direct interpretations.",
       "Statement III is exactly the expansion of $\\mu_{3}$ (the third central moment) in terms of raw moments - a formula worth memorising in its own right.",
-      "$k_{4} = \\mu4' - 4 \\mu3' \\mu1' - 3 \\mu2'^{2} + 12 \\mu2' \\mu1'^{2} - 6 \\mu1'^{4}$ differs from $\\mu_{4}$, which is why cumulants and central moments part company from order 4 onwards.",
+      "$k_{4} = \\mu_{4}' - 4 \\mu_{3}' \\mu_{1}' - 3 \\mu_{2}'^{2} + 12 \\mu_{2}' \\mu_{1}'^{2} - 6 \\mu_{1}'^{4}$ differs from $\\mu_{4}$, which is why cumulants and central moments part company from order 4 onwards.",
       "All cumulants beyond the second vanish for the normal distribution - a memorable characterisation."
     ],
     "solution": [
-      "Cumulants are defined by the expansion of the cumulant generating function $K(t) = \\log M(t)$ = sum $k_{r} t^{r}/r$!.",
-      "Statement I: differentiating K once at $t = 0$ gives $K'(0) = M'(0)/M(0) = \\mu1'$, so k1 is the mean. TRUE.",
-      "Statement II: differentiating twice gives $K''(0) = M''(0)/M(0) - [M'(0)/M(0)]^{2} = \\mu2' - \\mu1'^{2}$, the variance. TRUE.",
-      "Statement III: the third derivative yields $k_{3} = \\mu3' - 3 \\mu2' \\mu1' + 2 \\mu1'^{3}$, which is precisely the third CENTRAL moment $\\mu_{3}$ expressed in raw moments. TRUE.",
+      "Cumulants are defined by the expansion of the cumulant generating function $K(t) = \\log M(t) = \\sum k_{r} t^{r}/r$!.",
+      "Statement I: differentiating K once at $t = 0$ gives $K'(0) = M'(0)/M(0) = \\mu_{1}'$, so $k_{1}$ is the mean. TRUE.",
+      "Statement II: differentiating twice gives $K''(0) = M''(0)/M(0) - [M'(0)/M(0)]^{2} = \\mu_{2}' - \\mu_{1}'^{2}$, the variance. TRUE.",
+      "Statement III: the third derivative yields $k_{3} = \\mu_{3}' - 3 \\mu_{2}' \\mu_{1}' + 2 \\mu_{1}'^{3}$, which is precisely the third CENTRAL moment $\\mu_{3}$ expressed in raw moments. TRUE.",
       "(From the fourth order onwards cumulants and central moments differ, but the first three coincide as stated.)",
       "All three statements are correct, option (d)."
     ]
@@ -242,13 +242,13 @@
     "shortcut": "With $s_{1} = 10, s_{2} = 12$ and $\\rho = 0.5, \\operatorname{E}(Y\\mid X=x) = 2 + 0.6(x - 2) = 0.8 + 0.6x$, not 3.2 + 0.6x, so statement I fails. $\\operatorname{V}(Y\\mid X) = 144(1 - 0.25) = 108$, so statement II holds.",
     "tips": [
       "Regression coefficient: $\\rho s_{2}/s_{1} = 0.5(12/10) = 0.6$. The SLOPE in statement I is right; only the intercept is wrong.",
-      "Intercept = $\\mu2$ - slope $x \\mu1 = 2 - 0.6(2) = 0.8$. Statement I quotes 3.2, which would need $\\mu2 = 4.4 - a$ straightforward misprint to detect.",
+      "Intercept = $\\mu_{2}$ - slope $x \\mu_{1} = 2 - 0.6(2) = 0.8$. Statement I quotes 3.2, which would need $\\mu_{2} = 4.4$ - a straightforward misprint to detect.",
       "Check that the line passes through the means: at $x = 2$ the correct line gives $2 = \\operatorname{E}(Y)$, whereas $3.2 + 0.6(2) = 4.4$ does not.",
       "Conditional variance $s_{2}^{2}(1 - \\rho^{2}) = 144(0.75) = 108$ does not depend on x - a reliable and quick confirmation of statement II."
     ],
     "solution": [
       "The parameters are $\\operatorname{E}(X) = \\operatorname{E}(Y) = 2, \\operatorname{V}(X) = 100, \\operatorname{V}(Y) = 144$ and $\\rho = 0.5$, so $s_{1} = 10$ and $s_{2} = 12$.",
-      "Statement I: $\\operatorname{E}(Y \\mid X = x) = \\mu2 + \\rho (s_{2}/s_{1})(x - \\mu1) = 2 + 0.5(12/10)(x - 2) = 2 + 0.6(x - 2) = 0.6x + 0.8$, not 3.2 + 0.6x. (Check: at $x = 2$ the correct line gives $2 = \\operatorname{E}(Y)$, whereas the stated line gives 4.4.) FALSE.",
+      "Statement I: $\\operatorname{E}(Y \\mid X = x) = \\mu_{2} + \\rho (s_{2}/s_{1})(x - \\mu_{1}) = 2 + 0.5(12/10)(x - 2) = 2 + 0.6(x - 2) = 0.6x + 0.8$, not 3.2 + 0.6x. (Check: at $x = 2$ the correct line gives $2 = \\operatorname{E}(Y)$, whereas the stated line gives 4.4.) FALSE.",
       "Statement II: $\\operatorname{V}(Y \\mid X = x) = s_{2}^{2} (1 - \\rho^{2}) = 144(1 - 0.25) = 144(0.75) = 108$, independent of x. TRUE.",
       "Only statement II is correct, option (b)."
     ]
@@ -257,20 +257,20 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "r13.$2 = (r_{13} - r_{12} r_{23})/sqrt[(1-r_{12}^{2})(1-r_{23}^{2})] = (-0.4 - 0)/\\sqrt{0.36 \\times 1}$ = -$0.4/0.6$ = -$2/3$.",
+    "shortcut": "$r_{13.2} = (r_{13} - r_{12} r_{23})/\\sqrt{(1-r_{12}^{2})(1-r_{23}^{2})} = (-0.4 - 0)/\\sqrt{0.36 \\times 1} = -0.4/0.6 = -2/3$.",
     "tips": [
-      "'Eliminating the linear effect of $X_{2}'$ is the definition of the PARTIAL correlation r13.2 - identify the notation before substituting.",
-      "$r_{23} = 0$ simplifies everything: the numerator reduces to r13 and the second bracket to 1.",
+      "'Eliminating the linear effect of $X_{2}'$ is the definition of the PARTIAL correlation $r_{13.2}$ - identify the notation before substituting.",
+      "$r_{23} = 0$ simplifies everything: the numerator reduces to $r_{13}$ and the second bracket to 1.",
       "$1 - r_{12}^{2} = 1 - 0.64 = 0.36$, whose square root is exactly 0.6 - the numbers are chosen to be clean.",
-      "Sign check: r13 is negative and the denominator is positive, so the partial correlation must be negative - options (a) and (b) are eliminated at once."
+      "Sign check: $r_{13}$ is negative and the denominator is positive, so the $\\partial$ correlation must be negative - options (a) and (b) are eliminated at once."
     ],
     "solution": [
-      "Removing the linear effect of X2 from both X1 and X3 gives the partial correlation r13.2.",
-      "The formula is r13.$2 = (r_{13} - r_{12} r_{23})/sqrt[(1 - r_{12}^{2})(1 - r_{23}^{2})]$.",
-      "Substituting $r_{12} = 0.8, r_{13}$ = -0.4 and $r_{23} = 0$: the numerator is -$0.4 - (0.8)(0)$ = -0.4.",
-      "The denominator is $sqrt[(1 - 0.64)(1 - 0)] = \\sqrt{0.36} = 0.6$.",
-      "So r13.2 = -$0.4/0.6$ = -$2/3$.",
-      "Note that the partial correlation is larger in magnitude than r13 itself, because removing X2 sharpens the relationship. Option (d) is correct."
+      "Removing the linear effect of $X_{2}$ from both $X_{1}$ and $X_{3}$ gives the $\\partial$ correlation $r_{13.2}$.",
+      "The formula is $r_{13.2} = (r_{13} - r_{12} r_{23})/\\sqrt{(1 - r_{12}^{2})(1 - r_{23}^{2})}$.",
+      "Substituting $r_{12} = 0.8, r_{13} = -0.4$ and $r_{23} = 0$: the numerator is $-0.4 - (0.8)(0) = -0.4$.",
+      "The denominator is $\\sqrt{(1 - 0.64)(1 - 0)} = \\sqrt{0.36} = 0.6$.",
+      "So $r_{13.2} = -0.4/0.6 = -2/3$.",
+      "Note that the $\\partial$ correlation is larger in magnitude than $r_{13}$ itself, because removing $X_{2}$ sharpens the relationship. Option (d) is correct."
     ]
   },
   "2025-Q15": {
@@ -279,7 +279,7 @@
     "type": "Theoretical",
     "shortcut": "The correlation ratio is invariant under change of origin and scale (I true) and always dominates $r^{2}$ (III true), but it is NOT symmetric: $\\eta_{YX}$ and $\\eta_{XY}$ generally differ (II false).",
     "tips": [
-      "$\\eta_{YX}^{2}$ measures the proportion of $Y's$ variance explained by ANY function of X, whereas $r^{2}$ measures only the LINEAR part - hence $\\eta^{2} \\ge r^{2}$ always.",
+      "$\\eta_{YX}^{2}$ measures the proportion of Y's variance explained by ANY function of X, whereas $r^{2}$ measures only the LINEAR part - hence $\\eta^{2} \\ge r^{2}$ always.",
       "Equality $\\eta^{2} = r^{2}$ holds exactly when the regression of Y on X is linear - a useful test for linearity.",
       "Asymmetry: $\\eta_{YX}$ is built from the conditional means of Y given X, and $\\eta_{XY}$ from those of X given Y. There is no reason for them to agree, unlike r which is symmetric.",
       "Invariance under linear transformation follows because $\\eta^{2}$ is a ratio of variances, and both numerator and denominator scale by the same factor."
@@ -297,11 +297,11 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Marginals give $\\operatorname{E}(X) = 3/4$ and $\\operatorname{E}(Y) = 1/2$, so they are unequal and statement II fails. $\\operatorname{E}(XY) = 6/28 = 3/14$, so $Cov = 3/14 - 3/8$ = -$9/56$, not $3/4$, and statement I fails too.",
+    "shortcut": "Marginals give $\\operatorname{E}(X) = 3/4$ and $\\operatorname{E}(Y) = 1/2$, so they are unequal and statement II fails. $\\operatorname{E}(XY) = 6/28 = 3/14$, so $\\operatorname{Cov} = 3/14 - 3/8 = -9/56$, not $3/4$, and statement I fails too.",
     "tips": [
       "Convert every entry to 28ths first: the table becomes $3, 9, 3 / 6, 6, 0 / 1, 0, 0$, which sums to 28 - confirming the pmf is valid.",
       "Column sums give the X-marginal $(10, 15, 3)/28$ and row sums the Y-marginal $(15, 12, 1)/28$. Compute both before evaluating either statement.",
-      "Only the cell $(x=1, y=1)$ contributes to E(XY), since every other cell has $x = 0, y = 0$ or probability 0 - so $\\operatorname{E}(XY) = 6/28$ directly.",
+      "Only the cell $(x=1, y=1)$ contributes to $\\operatorname{E}(XY)$, since every other cell has $x = 0, y = 0$ or probability 0 - so $\\operatorname{E}(XY) = 6/28$ directly.",
       "The covariance must be NEGATIVE here (large X goes with small Y in this table), so a positive value like $3/4$ is implausible on inspection."
     ],
     "solution": [
@@ -309,8 +309,8 @@
       "Column sums give the marginal of X: $\\operatorname{P}(X=0) = 10/28, \\operatorname{P}(X=1) = 15/28, \\operatorname{P}(X=2) = 3/28$, so $\\operatorname{E}(X) = (0 + 15 + 6)/28 = 21/28 = 3/4$.",
       "Row sums give the marginal of Y: $\\operatorname{P}(Y=0) = 15/28, \\operatorname{P}(Y=1) = 12/28, \\operatorname{P}(Y=2) = 1/28$, so $\\operatorname{E}(Y) = (0 + 12 + 2)/28 = 14/28 = 1/2$.",
       "Statement II: $\\operatorname{E}(X) = 3/4$ is not equal to $\\operatorname{E}(Y) = 1/2$. FALSE.",
-      "For the covariance, only the cell $x = 1, y = 1$ contributes to E(XY) (all others have a zero factor or zero probability), so $\\operatorname{E}(XY) = (1)(1)(6/28) = 3/14$.",
-      "$\\operatorname{Cov}(X,Y) = 3/14 - (3/4)(1/2) = 12/56 - 21/56$ = -$9/56$, not $3/4$. Statement I is FALSE. Neither statement holds, option (d)."
+      "For the covariance, only the cell $x = 1, y = 1$ contributes to $\\operatorname{E}(XY)$ (all others have a zero factor or zero probability), so $\\operatorname{E}(XY) = (1)(1)(6/28) = 3/14$.",
+      "$\\operatorname{Cov}(X,Y) = 3/14 - (3/4)(1/2) = 12/56 - 21/56 = -9/56$, not $3/4$. Statement I is FALSE. Neither statement holds, option (d)."
     ]
   },
   "2025-Q17": {
@@ -319,14 +319,14 @@
     "type": "Theoretical",
     "shortcut": "$\\operatorname{P}(X > m) = q^{m}$, so $\\operatorname{P}\\!\\left(\\text{min > m}\\right) = q^{km} = (q^{k})^{m}$. The minimum is geometric with failure probability $q^{k}$, i.e. success probability $1 - (1-p)^{k}$.",
     "tips": [
-      "Work with the SURVIVAL function: $\\operatorname{P}(X > m) = q^{m}$ for the geometric on {1,2,...}, and independence turns the k-fold minimum into the kth power.",
+      "Work with the SURVIVAL function: $\\operatorname{P}(X > m) = q^{m}$ for the geometric on {1,2,$\\ldots$}, and independence turns the k-fold minimum into the kth power.",
       "Recognise $(q^{k})^{m}$ as the survival function of a geometric with new failure probability $q' = q^{k}$, hence $p' = 1 - q^{k}$.",
       "Substituting $q = 1 - p$ gives $p' = 1 - (1-p)^{k}$ - exactly the probability that at least one of the k variables equals its first trial.",
       "Sanity check at $k = 1$: the formula returns p, as it must. Option (c) would give $(1-p)$, which fails this test."
     ],
     "solution": [
-      "For the geometric distribution with pmf $f(x) = p q^{x-1}$ on $x = 1, 2, 3$, ..., the survival function is $\\operatorname{P}(X > m) = q^{m}$.",
-      "Let $M = \\min(X_{1}, ..., X_{k})$ with the $X_{i}$ independent copies.",
+      "For the geometric distribution with pmf $f(x) = p q^{x-1}$ on $x = 1, 2, 3, \\ldots$, the survival function is $\\operatorname{P}(X > m) = q^{m}$.",
+      "Let $M = \\min(X_{1}, \\ldots, X_{k})$ with the $X_{i}$ independent copies.",
       "Then $\\operatorname{P}(M > m) = P$(every $X_{i} > m$) = $[q^{m}]^{k} = (q^{k})^{m}$.",
       "This is the survival function of a geometric distribution with failure probability $q^{k}$, hence success probability $1 - q^{k}$.",
       "Since $q = 1 - p$, the parameter is $1 - (1 - p)^{k}$.",
@@ -337,20 +337,20 @@
     "answer": 0,
     "confidence": "high",
     "type": "Factual",
-    "shortcut": "The marginal distribution of X in a bivariate normal is simply $N(\\mu1, \\sigma1^{2})$ - the correlation affects only the CONDITIONAL law.",
+    "shortcut": "The marginal distribution of X in a bivariate normal is simply $N(\\mu_{1}, \\sigma_{1}^{2})$ - the correlation affects only the CONDITIONAL law.",
     "tips": [
-      "Marginal versus conditional: the marginal of X is $N(\\mu1, \\sigma1^{2})$; the conditional $X \\mid Y = y$ is $N(\\mu1 + \\rho(s_{1}/s_{2})(y - \\mu2), s_{1}^{2}(1 - \\rho^{2}))$.",
+      "Marginal versus conditional: the marginal of X is $N(\\mu_{1}, \\sigma_{1}^{2})$; the conditional $X \\mid Y = y$ is $N(\\mu_{1} + \\rho(s_{1}/s_{2})(y - \\mu_{2}), s_{1}^{2}(1 - \\rho^{2}))$.",
       "Any option containing y is a CONDITIONAL distribution, so options (b) and (d) are eliminated at once - a marginal cannot depend on the other variable.",
       "The factor $(1 - \\rho^{2})$ belongs to the conditional variance only, which rules out option (c).",
       "Structural point: integrating out Y removes all information about the dependence, which is why $\\rho$ disappears from the marginal."
     ],
     "solution": [
-      "For a bivariate normal distribution with parameters $\\mu1, \\mu2, \\sigma1^{2}, \\sigma2^{2}$ and $\\rho$, integrating the joint density over y gives the marginal density of X.",
-      "The result is the univariate normal density with mean $\\mu1$ and variance $\\sigma1^{2}$: $X \\sim N(\\mu1, \\sigma1^{2})$.",
+      "For a bivariate normal distribution with parameters $\\mu_{1}, \\mu_{2}, \\sigma_{1}^{2}, \\sigma_{2}^{2}$ and $\\rho$, integrating the joint density over y gives the marginal density of X.",
+      "The result is the univariate normal density with mean $\\mu_{1}$ and variance $\\sigma_{1}^{2}$: $X \\sim N(\\mu_{1}, \\sigma_{1}^{2})$.",
       "The correlation $\\rho$ does not appear, because integrating out Y discards all information about the dependence between the variables.",
-      "By contrast, the CONDITIONAL distribution $X \\mid Y = y$ is $N(\\mu1 + \\rho(\\sigma1/\\sigma2)(y - \\mu2), \\sigma1^{2}(1 - \\rho^{2}))$ - option (d) - and options (b) and (c) are partial versions of that.",
+      "By contrast, the CONDITIONAL distribution $X \\mid Y = y$ is $N(\\mu_{1} + \\rho(\\sigma_{1}/\\sigma_{2})(y - \\mu_{2}), \\sigma_{1}^{2}(1 - \\rho^{2}))$ - option (d) - and options (b) and (c) are $\\partial$ versions of that.",
       "A marginal distribution cannot depend on y, which immediately rules out options (b) and (d).",
-      "Hence the marginal of X is $N(\\mu1, \\sigma1^{2})$, option (a)."
+      "Hence the marginal of X is $N(\\mu_{1}, \\sigma_{1}^{2})$, option (a)."
     ]
   },
   "2025-Q19": {
@@ -365,7 +365,7 @@
       "$t^{2} = 2.06^{2} = 4.2436$; keep four decimals, since the options differ in the second decimal of $r^{2}$."
     ],
     "solution": [
-      "To test H0: $\\rho = 0$ the statistic is $t = r \\sqrt{n - 2}/\\sqrt{1 - r^2}$ with n - 2 degrees of freedom.",
+      "To test $H_{0}$: $\\rho = 0$ the statistic is $t = r \\sqrt{n - 2}/\\sqrt{1 - r^2}$ with n - 2 degrees of freedom.",
       "With $n = 27$, the degrees of freedom are 25 and the 5% critical value is $t = 2.06$.",
       "Squaring: $t^{2} = r^{2} (n-2)/(1 - r^{2})$, so $4.2436 = 25 r^{2}/(1 - r^{2})$.",
       "Rearranging: $4.2436(1 - r^{2}) = 25 r^{2}$, i.e. $4.2436 = r^{2}(25 + 4.2436) = 29.2436 r^{2}$.",
@@ -385,8 +385,8 @@
       "The margin is narrow (2000 against 2080), so compute exactly rather than estimating; a rough calculation could easily suggest 'no association'."
     ],
     "solution": [
-      "Let A denote literacy and B criminality, with $N = 2$,500,$000, (A) = 200$,$000, (B) = 26$,000 and $(AB) = 2$,000.",
-      "Under independence the expected number of literate criminals would be $(A)(B)/N = 200$,000 x 26,$000/2$,500,$000 = 0.08 \\times 26$,$000 = 2$,080.",
+      "Let A denote literacy and B criminality, with $N = 2,500,000, (A) = 200,000, (B) = 26,000$ and $(AB) = 2,000$.",
+      "Under independence the expected number of literate criminals would be $(A)(B)/N = 200,000 \\times 26,000/2,500,000 = 0.08 \\times 26,000 = 2,080$.",
       "The observed value 2,000 is LESS than the expected 2,080.",
       "Since the observed joint frequency falls short of the frequency expected under independence, the attributes are negatively associated - literacy is associated with a slightly lower rate of criminality.",
       "Hence they are negatively associated, option (b)."

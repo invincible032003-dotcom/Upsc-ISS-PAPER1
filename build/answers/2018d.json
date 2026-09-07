@@ -28,7 +28,7 @@
       "Octal place values run 64, 8, 1 to the left of the point and $1/8, 1/64, 1/512$ to the right. Write the weights above the digits before multiplying.",
       "Every octal fraction terminates in decimal because 8 is a power of 2, so the answer must be an exact decimal - options (a), (c) and (d) with their ragged tails are implausible on that ground alone.",
       "Do the integer part first; 213 alone already isolates options (b) and (c), and only then does the fraction decide between them.",
-      "Alternative route: convert 325.12 (octal) to binary as 011 010 101 . 001 010 and then group in fours - useful when the question asks for a hexadecimal answer instead."
+      "Alternative route: convert 325.12 (octal) to binary as 011 010 101 * 001 010 and then group in fours - useful when the question asks for a hexadecimal answer instead."
     ],
     "solution": [
       "Octal 325.12 has digits 3, 2, 5 before the point and 1, 2 after it.",
@@ -44,7 +44,7 @@
     "type": "Numerical",
     "shortcut": "Address lines depend only on the NUMBER of locations: $1024 = 2^{10}$, so 10 address lines. The 8 bits per location fix the data-bus width, not the address bus.",
     "tips": [
-      "Formula: number of locations = 2^(address lines). Take $\\log$ base 2 of the location count and ignore the word size entirely.",
+      "Formula: number of locations = $2^{\\text{address lines}}$. Take $\\log$ base 2 of the location count and ignore the word size entirely.",
       "The '8 bits' is a deliberate distractor and is planted as option (a) - it is the data width, not the address width.",
       "Memorise the powers: $2^{10} = 1K, 2^{16} = 64K, 2^{20} = 1M$. Then 1024 locations means 10 lines without any calculation.",
       "Conversely, m address lines and n data lines give a capacity of $2^{m} x n$ bits - the formula behind most memory-sizing questions."
@@ -82,16 +82,16 @@
     "type": "Conceptual",
     "shortcut": "All three advantages are standard: only one zero representation means one extra value can be stored, subtraction becomes plain addition with no end-around carry (faster), and negation is a simple invert-and-add-one.",
     "tips": [
-      "Range comparison for 8 bits: sign-magnitude and $1's$ complement give -127 to +127 (two zeros), while $2's$ complement gives -128 to +127 - one extra number stored.",
-      "Speed advantage: in $2's$ complement A - B is computed as A + ($2's$ complement of B) with the carry simply discarded; $1's$ complement needs an end-around carry, an extra cycle.",
+      "Range comparison for 8 bits: sign-magnitude and 1's complement give -127 to +127 (two zeros), while 2's complement gives -128 to +127 - one extra number stored.",
+      "Speed advantage: in 2's complement A - B is computed as A + (2's complement of B) with the carry simply discarded; 1's complement needs an end-around carry, an extra cycle.",
       "The elimination of negative zero is the single fact behind advantages 1 and 2 - remember it and both follow.",
       "When every listed statement is a textbook advantage of the same design choice, 'all of them' is usually the key; verify only the one that sounds weakest."
     ],
     "solution": [
-      "Statement 1: in sign-magnitude and $1's$ complement representations, zero has two encodings (+0 and -0), wasting one pattern. In $2's$ complement zero has a single encoding, so an n-bit word represents $2^{n}$ distinct values from -$2^{n-1}$ to $2^{n-1} - 1$, one more than the alternatives. TRUE.",
-      "Statement 2: $2's$ complement lets subtraction be carried out by the ADDER alone - A - B becomes A + (complement of B) with the final carry simply discarded, whereas $1's$ complement requires an end-around carry. Arithmetic is therefore faster and the hardware simpler. TRUE.",
+      "Statement 1: in sign-magnitude and 1's complement representations, zero has two encodings (+0 and -0), wasting one pattern. In 2's complement zero has a single encoding, so an n-bit word represents $2^{n}$ distinct values from $-2^{n-1}$ to $2^{n-1} - 1$, one more than the alternatives. TRUE.",
+      "Statement 2: 2's complement lets subtraction be carried out by the ADDER alone - A - B becomes A + (complement of B) with the final carry simply discarded, whereas 1's complement requires an end-around carry. Arithmetic is therefore faster and the hardware simpler. TRUE.",
       "Statement 3: negating a number needs only a bitwise inversion followed by adding 1, a cheap and uniform operation, and the sign is read directly from the most significant bit. TRUE.",
-      "All three are the standard reasons for preferring $2's$ complement.",
+      "All three are the standard reasons for preferring 2's complement.",
       "Hence option (d) is correct."
     ]
   },
@@ -99,18 +99,18 @@
     "answer": 1,
     "confidence": "high",
     "type": "Conceptual",
-    "shortcut": "Normalised form places the mantissa in [0.1, 1) with a leading zero before the point: $11.234 = 0.11234 \\times 10^{2}$, written .11234E+2.",
+    "shortcut": "Normalised form places the mantissa in [0.1, 1) with a leading zero before the point: $11.234 = 0.11234 \\times 10^{2}$, written .$11234E+2$.",
     "tips": [
-      "In the classical (FORTRAN-style) normalised form the mantissa must satisfy 0.1 <= |m| < 1 - i.e. the first digit AFTER the decimal point is non-zero.",
-      "Option (c) .011234E+1 has a leading zero in the mantissa, so it is un-normalised even though its value is correct. 'Correct value' and 'normalised' are different tests.",
-      "Option (d) mixes two notations (E and x10) and is syntactically invalid; option (a) is simply the unconverted number.",
+      "In the classical (FORTRAN-style) normalised form the mantissa must satisfy $0.1 \\le \\lvert m\\rvert < 1$ - i.e. the first digit AFTER the decimal point is non-zero.",
+      "Option (c) .$011234E+1$ has a leading zero in the mantissa, so it is un-normalised even though its value is correct. 'Correct value' and 'normalised' are different tests.",
+      "Option (d) mixes two notations (E and $x_{10}$) and is syntactically invalid; option (a) is simply the unconverted number.",
       "Count the shift: moving the point two places left multiplies by $10^{2}$, so the exponent is +2. Direction rule: point moves left, exponent goes up."
     ],
     "solution": [
-      "A floating-point number is in normalised form when it is written as +-0.d1 d2 d3 ... $x 10^{e}$ with the leading digit d1 non-zero, so that the mantissa lies in [0.1, 1).",
+      "A floating-point number is in normalised form when it is written as +-0.$d_{1} d_{2} d_{3} \\ldots x 10^{e}$ with the leading digit $d_{1}$ non-zero, so that the mantissa lies in [0.1, 1).",
       "Take 11.234 and shift the decimal point two places to the left: $11.234 = 0.11234 \\times 10^{2}$.",
       "The mantissa 0.11234 lies in [0.1, 1) and its first digit after the point is 1, which is non-zero, so the form is normalised.",
-      "In E-notation this is written .11234E+2.",
+      "In E-notation this is written .$11234E+2$.",
       "Option (c) has value $0.011234 \\times 10 = 0.11234$, which is not even equal to 11.234, and its mantissa is un-normalised; options (a) and (d) are not in normalised E-notation at all.",
       "Hence option (b) is correct."
     ]
@@ -121,7 +121,7 @@
     "type": "Numerical",
     "shortcut": "An 8-bit signed word uses 1 bit for the sign and 7 for magnitude, so the largest integer is $2^{7} - 1 = 127$.",
     "tips": [
-      "Signed n-bit range in $2's$ complement: -$2^{n-1}$ to +$2^{n-1} - 1$. For $n = 8$ that is -128 to +127.",
+      "Signed n-bit range in 2's complement: $-2^{n-1}$ to $+2^{n-1} - 1$. For $n = 8$ that is -128 to +127.",
       "128 (option a) is the magnitude of the most NEGATIVE value, not the largest positive one - the classic off-by-one trap.",
       "If the question had said 'unsigned', the answer would be $2^{8} - 1 = 255$. Always check whether a sign bit is implied; 'integer' in these papers means signed.",
       "Powers of two to have ready: $2^{7} = 128, 2^{15} = 32768, 2^{31} = 2147483648$ - the three standard maxima plus/minus one."
@@ -129,7 +129,7 @@
     "solution": [
       "An 8-bit word holds $2^{8} = 256$ distinct bit patterns.",
       "For signed integers, one bit is used for the sign and the remaining 7 bits carry the magnitude.",
-      "In $2's$ complement the representable range is -$2^{8-1}$ to $2^{8-1} - 1$, that is -128 to +127.",
+      "In 2's complement the representable range is $-2^{8-1}$ to $2^{8-1} - 1$, that is -128 to +127.",
       "Hence the maximum decimal integer that can be stored is $2^{7} - 1 = 127$.",
       "Option (b) is correct."
     ]
@@ -201,7 +201,7 @@
     "shortcut": "Repeatedly replacing the larger by the difference is the subtraction form of Euclid's algorithm. The loop stops when $x = y$, and that common value is $\\gcd(x, y)$.",
     "tips": [
       "Trace one example: $x = 12, y = 18$ gives 12,6 then 6,6 - and $\\gcd(12,18) = 6$. A single trace beats any amount of staring at the code.",
-      "The invariant is $\\gcd(x, y)$ is unchanged by replacing the larger with the difference; the loop terminates because the sum x + y strictly decreases.",
+      "The invariant is $\\gcd(x, y)$ is unchanged by replacing the larger with the difference; the loop terminates because the $\\sum x + y$ strictly decreases.",
       "The modulo form of Euclid uses $x = x$ % y and is much faster; this subtraction version is its slower ancestor and is a favourite exam disguise.",
       "LCM (option d) cannot be right because the loop only ever DECREASES the values, whereas the LCM is at least as large as the larger input."
     ],
@@ -241,9 +241,9 @@
     "shortcut": "The standard weighted 4-bit BCD code is 8421, so statement 4 is true and statement $1 (1246)$ is invented. Octal is base 8, so statement 2 is true and statement 3 is false. Answer: 2 and 4.",
     "tips": [
       "8421 BCD: the four bit positions carry weights 8, 4, 2, 1 - the same as ordinary binary, which is why it is called the 'natural' BCD code.",
-      "Other weighted codes worth knowing: 2421 (Aiken) and 5211; the non-weighted ones are Excess-3 and Gray. '1246' is not a code at all.",
+      "Other weighted codes worth knowing: 2421 (Aiken) and 5211; the non-weighted ones are Excess-3 and Gray. '$1246'$ is not a code at all.",
       "Statements 1 and 4 are a true/false PAIR about the same fact, as are 2 and 3. Spot the pairs, decide each fact once, and the option follows automatically.",
-      "Base names: binary = 2, octal = 8, decimal = 10, hexadecimal = 16. Octal digits run 0-7, which is the quickest way to remember base 8."
+      "Base names: binary = 2, octal = 8, decimal = 10, hexadecimal = 16. Octal digits run $0-7$, which is the quickest way to remember base 8."
     ],
     "solution": [
       "Statement 1: the weighted 4-bit BCD code has weights 8, 4, 2, 1 - there is no '1246-weighted' code. FALSE.",
@@ -263,7 +263,7 @@
       "This is the general form of the 8-bit result $127 = 2^{7} - 1$; check any general formula against the concrete case you already know.",
       "Option $(a) 2^{n} - 1$ is the UNSIGNED maximum. The word 'integer' in these papers implies a signed representation, so one bit is lost to the sign.",
       "Options (c) and (d) add rather than subtract 1 and are impossible: the count of non-negative patterns is $2^{n-1}$, and the largest of them (starting from 0) must be $2^{n-1} - 1$.",
-      "Symmetric fact worth pairing: the minimum is -$2^{n-1}$ in $2's$ complement, which is one further from zero than the maximum."
+      "Symmetric fact worth pairing: the minimum is $-2^{n-1}$ in 2's complement, which is one further from zero than the maximum."
     ],
     "solution": [
       "An n-bit word provides $2^{n}$ distinct bit patterns.",
@@ -280,7 +280,7 @@
     "type": "Factual",
     "shortcut": "Right-to-left associativity belongs to the unary operators and the assignment operators (and the conditional ?:). Logical and bit-manipulation operators associate left to right.",
     "tips": [
-      "Memorise the short right-to-left list: unary (+, -, ++, --, !, ~, *, &, sizeof, casts), assignment (=, +=, -=, ...), and the ternary ?:. Everything else in C is left-to-right.",
+      "Memorise the short right-to-left list: unary (+, -, ++, --, !, ~, *, &, sizeof, casts), assignment $(=, +=, -=, \\ldots)$, and the ternary ?:. Everything else in C is left-to-right.",
       "Assignment must be right-to-left so that $a = b = c$ works: c is assigned to b first, then b to a.",
       "Unary operators must be right-to-left so that - -x and !!x parse from the operand outwards.",
       "Logical && and || are strictly left-to-right - that is exactly what makes short-circuit evaluation well defined, so item 3 cannot be right-associative."
@@ -303,7 +303,7 @@
       "Error taxonomy: syntax/grammatical errors are caught at COMPILE time; run-time errors surface during execution; logical errors are never reported at all - the program simply gives wrong answers.",
       "A logical error such as writing a + b when a - b was intended is perfectly grammatical, so no compiler could possibly flag it.",
       "Modern compilers do emit warnings for suspicious constructs, but a warning is not a diagnosis of a logical error - keep to the textbook distinction in this paper.",
-      "This pairs directly with Q78 of the same paper: a program with a logical error compiles AND runs successfully, just incorrectly."
+      "This pairs directly with $Q_{78}$ of the same paper: a program with a logical error compiles AND runs successfully, just incorrectly."
     ],
     "solution": [
       "A compiler performs lexical, syntactic and (limited) semantic analysis of the source program against the formal grammar of the language.",
@@ -339,7 +339,7 @@
     "shortcut": "Syntax errors stop compilation and run-time errors abort execution. A logical error breaks neither, so the program runs to completion - just with wrong output.",
     "tips": [
       "Ask 'does this error prevent the program from finishing?'. Syntax errors: yes, at compile time. Run-time errors: yes, during execution. Logical errors: no.",
-      "This is the mirror image of Q76 in the same paper - the two items together define the syntax/logic boundary, so answer them as a pair.",
+      "This is the mirror image of $Q_{76}$ in the same paper - the two items together define the syntax/logic boundary, so answer them as a pair.",
       "Classic logical errors: an off-by-one loop bound, using < instead of <=, or the wrong formula. The program executes happily and reports a wrong answer.",
       "'Run successfully' in this question means 'runs to completion', not 'produces the correct result' - read the phrase precisely."
     ],
@@ -355,7 +355,7 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Work in powers of two: $16 \\times 256 \\times 16 \\times 512 = 2^{4} x 2^{8} x 2^{4} x 2^{9} = 2^{25} = 33$,554,432 bytes.",
+    "shortcut": "Work in powers of two: $16 \\times 256 \\times 16 \\times 512 = 2^{4} \\times 2^{8} \\times 2^{4} \\times 2^{9} = 2^{25} = 33,554,432$ bytes.",
     "tips": [
       "Convert every factor to a power of 2 and simply ADD the exponents - $4 + 8 + 4 + 9 = 25$ - instead of multiplying four numbers.",
       "$2^{25} = 32$ MB exactly, since $2^{20} = 1$ MB and $2^{5} = 32$. Recognising the answer as a round 32 MB is the fastest confirmation.",
@@ -364,10 +364,10 @@
     ],
     "solution": [
       "Total capacity = (number of surfaces) x (tracks per surface) x (sectors per track) x (bytes per sector).",
-      "Substituting: 16 x 256 x 16 x 512.",
-      "Writing each factor as a power of two: $2^{4} x 2^{8} x 2^{4} x 2^{9}$.",
+      "Substituting: $16 \\times 256 \\times 16 \\times 512$.",
+      "Writing each factor as a power of two: $2^{4} \\times 2^{8} \\times 2^{4} \\times 2^{9}$.",
       "Adding the exponents: $2^{4+8+4+9} = 2^{25}$.",
-      "$2^{25} = 33$,554,432 bytes, i.e. exactly 32 MB.",
+      "$2^{25} = 33,554,432$ bytes, i.e. exactly 32 MB.",
       "Hence option (c) is correct."
     ]
   },

@@ -3,9 +3,9 @@
     "answer": 0,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "The minimum of n i.i.d. Exponential($\\lambda$) variables is Exponential($n \\lambda$). With $n = 5$ and $\\lambda = 2$ the rate is 10, so the density is $10 e^{-10x}$.",
+    "shortcut": "The minimum of n i.i.d. $\\text{Exponential}(\\lambda)$ variables is $\\text{Exponential}(n \\lambda)$. With $n = 5$ and $\\lambda = 2$ the rate is 10, so the density is $10 e^{-10x}$.",
     "tips": [
-      "Memorise: $\\min$ of n i.i.d. Exp($\\lambda$) is Exp($n \\lambda$) - the rates ADD, because $\\operatorname{P}\\!\\left(\\text{min > x}\\right) = [e^{-\\lambda x}]^{n} = e^{-n \\lambda x}$.",
+      "Memorise: $\\min$ of n i.i.d. $\\text{Exp}(\\lambda)$ is $\\text{Exp}(n \\lambda)$ - the rates ADD, because $\\operatorname{P}\\!\\left(\\text{min > x}\\right) = [e^{-\\lambda x}]^{n} = e^{-n \\lambda x}$.",
       "Options (b) and (c) are cumulative distribution functions, not densities - a density must integrate to 1, and $1 - e^{-2x}$ does not.",
       "Option $(d) 10 e^{-2x}$ is not a density either: its integral is 5, not 1. Checking normalisation eliminates three options instantly.",
       "Companion result: the MAXIMUM of exponentials is NOT exponential; only the minimum inherits the family."
@@ -15,7 +15,7 @@
       "For a sample of size 5, the event $X_{1} > x$ means every one of the five observations exceeds x.",
       "By independence, $\\operatorname{P}(X_{1} > x) = [e^{-2x}]^{5} = e^{-10x}$.",
       "So the CDF of $X_{1}$ is $1 - e^{-10x}$, and differentiating gives the density $10 e^{-10x}$ for $x > 0$.",
-      "That is, $X_{1}$ ~ Exponential with rate $5 \\times 2 = 10$.",
+      "That is, $X_{1} \\sim \\text{Exponential}$ with rate $5 \\times 2 = 10$.",
       "Option (a) is correct."
     ]
   },
@@ -23,19 +23,19 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$(n-1)S^{2}/\\sigma^{2} \\sim \\chi^{2}_{n-1}$, so $S^{2} = [\\sigma^{2}/(n-1)]$ times $a \\chi^{2}$. Replacing t by $t \\sigma^{2}/(n-1)$ in $(1-2t)^(-(n-1)/2)$ gives $(1 - 2 \\sigma^{2} t/(n-1))^(-(n-1)/2)$.",
+    "shortcut": "$(n-1)S^{2}/\\sigma^{2} \\sim \\chi^{2}_{n-1}$, so $S^{2} = [\\sigma^{2}/(n-1)]$ times a $\\chi^{2}$. Replacing t by $t \\sigma^{2}/(n-1)$ in $(1-2t)^{-(n-1)/2}$ gives $(1 - 2 \\sigma^{2} t/(n-1))^{-(n-1)/2}$.",
     "tips": [
       "Start from the sampling result $(n-1)S^{2}/\\sigma^{2} \\sim \\chi^{2}$ with n - 1 d.f., then treat $S^{2}$ as a constant multiple of that $\\chi^{2}$.",
       "Scaling rule for MGFs: if $M_{V}(t)$ is the MGF of V then the MGF of cV is $M_{V}(ct)$. Here $c = \\sigma^{2}/(n-1)$.",
-      "$\\chi^{2}$ MGF is $(1 - 2t)^{-k/2}$ with $k = n - 1$, so the exponent -$(n-1)/2$ is common to all four options - the discriminator is the bracket.",
+      "$\\chi^{2}$ MGF is $(1 - 2t)^{-k/2}$ with $k = n - 1$, so the exponent $-(n-1)/2$ is common to all four options - the discriminator is the bracket.",
       "Dimension check: t multiplies $S^{2}$, which has the units of $\\sigma^{2}$, so the product $\\sigma^{2} t$ must appear in the NUMERATOR. Options (a) and (b) have $\\sigma^{2}$ in the denominator and are wrong."
     ],
     "solution": [
-      "For a random sample from $N(\\mu, \\sigma^{2})$, the standard result is that $(n-1)S^{2}/\\sigma^{2}$ follows $a \\chi^{2}$ distribution with n - 1 degrees of freedom.",
+      "For a random sample from $N(\\mu, \\sigma^{2})$, the standard result is that $(n-1)S^{2}/\\sigma^{2}$ follows a $\\chi^{2}$ distribution with n - 1 degrees of freedom.",
       "Write $V = (n-1)S^{2}/\\sigma^{2}$, so $S^{2} = [\\sigma^{2}/(n-1)] V$.",
-      "The moment generating function of $a \\chi^{2}$ variable with k degrees of freedom is $M_{V}(t) = (1 - 2t)^{-k/2}$, here with $k = n - 1$.",
+      "The moment generating function of a $\\chi^{2}$ variable with k degrees of freedom is $M_{V}(t) = (1 - 2t)^{-k/2}$, here with $k = n - 1$.",
       "For a constant multiple, $M_{cV}(t) = M_{V}(ct)$ with $c = \\sigma^{2}/(n-1)$.",
-      "Hence $M_{S^2}(t) = [1 - 2t \\sigma^{2}/(n-1)]^(-(n-1)/2)$.",
+      "Hence $M_{S^2}(t) = [1 - 2t \\sigma^{2}/(n-1)]^{-(n-1)/2}$.",
       "Option (c) is correct."
     ]
   },
@@ -52,7 +52,7 @@
     ],
     "solution": [
       "Let $V = (n-1)S^{2}/\\sigma^{2} \\sim \\chi^{2}$ with n - 1 degrees of freedom, so $S^{2} = \\sigma^{2} V/(n-1)$ and $1/S^{2} = (n-1)/(\\sigma^{2} V)$.",
-      "For $a \\chi^{2}$ variable with $k > 2$ degrees of freedom, $\\operatorname{E}(1/V) = 1/(k - 2)$. With $k = n - 1$ this is $1/(n - 3)$, which requires $n > 3$.",
+      "For a $\\chi^{2}$ variable with $k > 2$ degrees of freedom, $\\operatorname{E}(1/V) = 1/(k - 2)$. With $k = n - 1$ this is $1/(n - 3)$, which requires $n > 3$.",
       "Hence $\\operatorname{E}(1/S^{2}) = (n-1)/[\\sigma^{2} (n-3)]$.",
       "Now simplify the given constant: using $\\Gamma(z+1) = z \\Gamma(z)$ with $z = (n-3)/2$, we get $\\Gamma((n-1)/2) = ((n-3)/2) \\Gamma((n-3)/2)$.",
       "So $r = (1/2) \\Gamma((n-3)/2)/\\Gamma((n-1)/2) = (1/2)(2/(n-3)) = 1/(n-3)$.",
@@ -63,18 +63,18 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "-$\\ln X_{i}$ is Exp(1) for $X_{i}$ uniform, so T is the sum of n independent Exp(1) variables, i.e. $\\Gamma(n,1)$, with mean n.",
+    "shortcut": "$-\\ln X_{i}$ is $\\text{Exp}(1)$ for $X_{i}$ uniform, so T is the sum of n independent $\\text{Exp}(1)$ variables, i.e. $\\Gamma(n,1)$, with mean n.",
     "tips": [
       "Convert the $\\log$ of a product into a sum of logs FIRST: T = sum of $(-\\ln X_{i})$. The rest is the exponential distribution.",
-      "For $U \\sim U(0,1), \\operatorname{P}(-\\ln U > t) = \\operatorname{P}(U < e^{-t}) = e^{-t}$, so -$\\ln U$ ~ Exponential(1) with mean 1.",
-      "Sum of n independent Exp(1) variables is $\\Gamma$(shape n, rate 1), with mean n and variance n - both needed for the next parts.",
+      "For $U \\sim U(0,1), \\operatorname{P}(-\\ln U > t) = \\operatorname{P}(U < e^{-t}) = e^{-t}$, so $-\\ln U \\sim \\text{Exponential}(1)$ with mean 1.",
+      "Sum of n independent $\\text{Exp}(1)$ variables is $\\Gamma$(shape n, rate 1), with mean n and variance n - both needed for the next parts.",
       "This is the inverse-transform construction used to simulate exponential and $\\Gamma$ variates, so the identification is worth knowing cold."
     ],
     "solution": [
-      "Since ln($X_{1} X_{2}$ ... $X_{n}$) = sum of $\\ln X_{i}$, we can write $T = \\sum (-\\ln X_{i})$.",
-      "For $X \\sim U(0,1)$ and $t > 0, \\operatorname{P}(-\\ln X > t) = \\operatorname{P}(X < e^{-t}) = e^{-t}$, so -$\\ln X$ ~ Exponential with rate 1.",
-      "Hence T is the sum of n independent Exponential(1) variables, i.e. $T \\sim \\Gamma$(shape n, rate 1).",
-      "The mean of Exponential(1) is 1, so by linearity $\\operatorname{E}(T) = n(1) = n$.",
+      "Since $\\ln(X_{1} X_{2} \\ldots X_{n})$ = sum of $\\ln X_{i}$, we can write $T = \\sum (-\\ln X_{i})$.",
+      "For $X \\sim U(0,1)$ and $t > 0, \\operatorname{P}(-\\ln X > t) = \\operatorname{P}(X < e^{-t}) = e^{-t}$, so $-\\ln X \\sim \\text{Exponential}$ with rate 1.",
+      "Hence T is the sum of n independent $\\text{Exponential}(1)$ variables, i.e. $T \\sim \\Gamma$(shape n, rate 1).",
+      "The mean of $\\text{Exponential}(1)$ is 1, so by linearity $\\operatorname{E}(T) = n(1) = n$.",
       "Equivalently, the $\\Gamma(n,1)$ mean is $n/1 = n$.",
       "Option (a) is correct."
     ]
@@ -83,15 +83,15 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "T is a sum of n independent Exp(1) variables, each with variance 1, so $\\operatorname{Var}(T) = n$.",
+    "shortcut": "T is a sum of n independent $\\text{Exp}(1)$ variables, each with variance 1, so $\\operatorname{Var}(T) = n$.",
     "tips": [
       "Variances of INDEPENDENT summands add, so $\\operatorname{Var}(T) = n \\operatorname{Var}(-\\ln X_{1}) = n(1) = n$.",
-      "Exponential(1) has mean 1 and variance 1 - both equal to 1, which is why E(T) and $\\operatorname{Var}(T)$ coincide here at n.",
+      "$\\text{Exponential}(1)$ has mean 1 and variance 1 - both equal to 1, which is why $\\operatorname{E}(T)$ and $\\operatorname{Var}(T)$ coincide here at n.",
       "$\\Gamma$(shape a, rate b) has mean $a/b$ and variance $a/b^{2}$; with $a = n$ and $b = 1$ both equal n.",
-      "Options 2n, 3n and 4n would correspond to Exp with rate $1/sqrt2$ and so on - none arises from the uniform-to-exponential transformation."
+      "Options 2n, 3n and 4n would correspond to Exp with rate $1/\\sqrt{2}$ and so on - none arises from the uniform-to-exponential transformation."
     ],
     "solution": [
-      "From the previous part, $T = \\sum (-\\ln X_{i})$ where the -$\\ln X_{i}$ are independent Exponential(1) variables.",
+      "From the previous part, $T = \\sum (-\\ln X_{i})$ where the $-\\ln X_{i}$ are independent $\\text{Exponential}(1)$ variables.",
       "For Exponential with rate 1, the variance is $1/1^{2} = 1$.",
       "Since the summands are independent, their variances add: $\\operatorname{Var}(T) = n x 1 = n$.",
       "Equivalently, $T \\sim \\Gamma$(shape n, rate 1), whose variance is $n/1^{2} = n$.",
@@ -103,16 +103,16 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Each -$\\ln X_{i}$ is Exp(1) with MGF $(1-t)^{-1}$; n independent copies multiply, giving $(1-t)^{-n}$.",
+    "shortcut": "Each $-\\ln X_{i}$ is $\\text{Exp}(1)$ with MGF $(1-t)^{-1}$; n independent copies multiply, giving $(1-t)^{-n}$.",
     "tips": [
-      "MGF of Exp(rate $\\lambda$) is $\\lambda/(\\lambda - t) = (1 - t/\\lambda)^{-1}$; with $\\lambda = 1$ that is $(1-t)^{-1}$, valid for $t < 1$.",
+      "MGF of $\\text{Exp}(\\text{rate }\\lambda)$ is $\\lambda/(\\lambda - t) = (1 - t/\\lambda)^{-1}$; with $\\lambda = 1$ that is $(1-t)^{-1}$, valid for $t < 1$.",
       "MGFs of INDEPENDENT variables multiply, so n copies give the nth power - the exponent equals the number of summands.",
-      "Consistency check: differentiating $(1-t)^{-n}$ at $t = 0$ gives n, matching $\\operatorname{E}(T) = n$; the second derivative gives $n(n+1)$, so $Var = n(n+1) - n^{2} = n$, matching $\\operatorname{Var}(T)$.",
+      "Consistency check: differentiating $(1-t)^{-n}$ at $t = 0$ gives n, matching $\\operatorname{E}(T) = n$; the second derivative gives $n(n+1)$, so $\\operatorname{Var} = n(n+1) - n^{2} = n$, matching $\\operatorname{Var}(T)$.",
       "Note $(1-2t)^{-n}$ would be the MGF of $\\chi^{2}_{2n}$; since $T = \\chi^{2}_{2n}/2$ here, the factor 2 is absent - a common confusion."
     ],
     "solution": [
-      "$T = \\sum (-\\ln X_{i}), a$ sum of n independent Exponential(1) variables.",
-      "The moment generating function of an Exponential(1) variable is $\\operatorname{E}(e^{tW})$ = the $\\int e^{tw} e^{-w}\\,dw = 1/(1 - t)$ for $t < 1$.",
+      "$T = \\sum (-\\ln X_{i}), a$ sum of n independent $\\text{Exponential}(1)$ variables.",
+      "The moment generating function of an $\\text{Exponential}(1)$ variable is $\\operatorname{E}(e^{tW})$ = the $\\int e^{tw} e^{-w}\\,dw = 1/(1 - t)$ for $t < 1$.",
       "For independent summands the MGFs multiply, so $M_{T}(t) = [(1-t)^{-1}]^{n} = (1 - t)^{-n}$.",
       "Check: $M'(0) = n$ gives $\\operatorname{E}(T) = n$, and $M''(0) = n(n+1)$ gives $\\operatorname{Var}(T) = n(n+1) - n^{2} = n$, agreeing with the previous parts.",
       "This is the $\\Gamma$(shape n, rate 1) moment generating function, as expected.",
@@ -123,19 +123,19 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The numerator $X_{5} - X_{6} + X_{7}$ is $N(0,3)$; the denominator squared satisfies $[(X_{1}+X_{2}+X_{3})^{2} + 3X4^{2}]/3 \\sim \\chi^{2}_{2}$. Assembling the t template gives t with 2 degrees of freedom.",
+    "shortcut": "The numerator $X_{5} - X_{6} + X_{7}$ is $N(0,3)$; the denominator squared satisfies $[(X_{1}+X_{2}+X_{3})^{2} + 3X_{4}^{2}]/3 \\sim \\chi^{2}_{2}$. Assembling the t template gives t with 2 degrees of freedom.",
     "tips": [
-      "Divide the denominator's contents by 3: $(X_{1}+X_{2}+X_{3})^{2}/3$ is the square of a standard normal, and $3X4^{2}/3 = X_{4}^{2}$ is another - two independent $\\chi^{2}_{1}$ terms, so $\\chi^{2}_{2}$.",
+      "Divide the denominator's contents by 3: $(X_{1}+X_{2}+X_{3})^{2}/3$ is the square of a standard normal, and $3X_{4}^{2}/3 = X_{4}^{2}$ is another - two independent $\\chi^{2}_{1}$ terms, so $\\chi^{2}_{2}$.",
       "$X_{5} - X_{6} + X_{7}$ has variance $1 + 1 + 1 = 3$ regardless of the signs, so dividing by $\\sqrt{3}$ standardises it.",
-      "$t = Z/sqrt$($\\chi$-square_v/v) with $v = 2$; the constants $\\sqrt{3}$ cancel and leave exactly the $\\sqrt{2}$ shown in the stem - a strong confirmation.",
+      "$t = Z/\\sqrt{\\chi^{2}_{v}/v}$ with $v = 2$; the constants $\\sqrt{3}$ cancel and leave exactly the $\\sqrt{2}$ shown in the stem - a strong confirmation.",
       "Degrees of freedom = number of independent squared normals in the denominator, here 2, not the sample size 7. Option (d) is the trap."
     ],
     "solution": [
       "Numerator: $X_{5} - X_{6} + X_{7}$ is normal with mean 0 and variance $1 + 1 + 1 = 3$, so $Z = (X_{5} - X_{6} + X_{7})/\\sqrt{3} \\sim N(0,1)$.",
       "Denominator: $X_{1} + X_{2} + X_{3} \\sim N(0,3)$, so $(X_{1}+X_{2}+X_{3})/\\sqrt{3}$ is standard normal and $(X_{1}+X_{2}+X_{3})^{2}/3 \\sim \\chi^{2}_{1}$.",
       "Also $X_{4} \\sim N(0,1)$ gives $X_{4}^{2} \\sim \\chi^{2}_{1}$, and these two are independent.",
-      "Hence $W = [(X_{1}+X_{2}+X_{3})^{2} + 3X4^{2}]/3 = (X_{1}+X_{2}+X_{3})^{2}/3 + X_{4}^{2} \\sim \\chi^{2}$ with 2 degrees of freedom, independent of the numerator.",
-      "The t statistic is $Z/\\sqrt{W/2} = [(X_{5}-X_{6}+X_{7})/sqrt3]$ . $\\sqrt{2}/\\sqrt{W} = \\sqrt{2}(X_{5}-X_{6}+X_{7})/\\sqrt{3W}$, and 3W is exactly the expression under the printed radical.",
+      "Hence $W = [(X_{1}+X_{2}+X_{3})^{2} + 3X_{4}^{2}]/3 = (X_{1}+X_{2}+X_{3})^{2}/3 + X_{4}^{2} \\sim \\chi^{2}$ with 2 degrees of freedom, independent of the numerator.",
+      "The t statistic is $Z/\\sqrt{W/2} = [(X_{5}-X_{6}+X_{7})/\\sqrt{3}] * \\sqrt{2}/\\sqrt{W} = \\sqrt{2}(X_{5}-X_{6}+X_{7})/\\sqrt{3W}$, and 3W is exactly the expression under the printed radical.",
       "So the statistic is t with 2 degrees of freedom, option (b)."
     ]
   },
@@ -152,7 +152,7 @@
     ],
     "solution": [
       "$X_{1}, X_{2}, X_{3}, X_{4}$ are independent $N(0,1)$, so $V = X_{1}^{2} + X_{2}^{2} + X_{3}^{2} + X_{4}^{2} \\sim \\chi^{2}$ with 4 degrees of freedom.",
-      "For $a \\chi^{2}$ variable with k degrees of freedom, the density is proportional to $v^{k/2 - 1} e^{-v/2}$.",
+      "For a $\\chi^{2}$ variable with k degrees of freedom, the density is proportional to $v^{k/2 - 1} e^{-v/2}$.",
       "Computing $\\operatorname{E}(1/V)$ shifts the exponent down by one and yields the standard result $\\operatorname{E}(1/V) = 1/(k - 2)$, valid for $k > 2$.",
       "With $k = 4$: $\\operatorname{E}(1/V) = 1/(4 - 2) = 1/2$.",
       "Note that this differs from $1/\\operatorname{E}(V) = 1/4$, since the expectation of a reciprocal is not the reciprocal of the expectation.",
@@ -165,17 +165,17 @@
     "type": "Numerical",
     "shortcut": "The numerator and denominator involve disjoint variables and are therefore independent. Since $\\operatorname{E}(X_{1}+X_{2}+X_{3}) = 0$, the whole expectation is 0.",
     "tips": [
-      "Check for DISJOINT index sets first: the numerator uses X1, X2, X3 and the denominator X4 to X7, so the two are independent and the expectation factorises.",
+      "Check for DISJOINT index sets first: the numerator uses $X_{1}, X_{2}, X_{3}$ and the denominator $X_{4}$ to $X_{7}$, so the two are independent and the expectation factorises.",
       "$\\operatorname{E}\\!\\left(\\text{numerator}\\right) = 0$ because each $X_{i}$ has mean 0 - the answer follows without evaluating the denominator's expectation at all.",
       "The denominator's expectation $\\operatorname{E}(1/\\chi^{2}_{4}) = 1/2$ is finite, which is what makes the product $0 \\times 1/2$ legitimate rather than an indeterminate form.",
       "Contrast with a ratio built from the SAME variables (as in a t statistic), where independence fails and this shortcut is unavailable."
     ],
     "solution": [
-      "The numerator involves X1, X2, X3 and the denominator involves X4, X5, X6, X7 - disjoint sets of independent variables.",
+      "The numerator involves $X_{1}, X_{2}, X_{3}$ and the denominator involves $X_{4}, X_{5}, X_{6}, X_{7}$ - disjoint sets of independent variables.",
       "Hence the numerator and the reciprocal of the denominator are independent, and the expectation factorises.",
       "$\\operatorname{E}(X_{1} + X_{2} + X_{3}) = 0 + 0 + 0 = 0$.",
-      "The denominator $X_{4}^{2}$ + ... + $X_{7}^{2} \\sim \\chi^{2}_{4}$, so $\\operatorname{E}(1/(X_{4}^{2}+...+X_{7}^{2})) = 1/(4-2) = 1/2$, which is finite.",
-      "Therefore the expectation is $0 x (1/2) = 0$.",
+      "The denominator $X_{4}^{2} + \\ldots + X_{7}^{2} \\sim \\chi^{2}_{4}$, so $\\operatorname{E}(1/(X_{4}^{2}+\\ldots+X_{7}^{2})) = 1/(4-2) = 1/2$, which is finite.",
+      "Therefore the expectation is $0 \\times (1/2) = 0$.",
       "Option (a) is correct."
     ]
   },
@@ -191,10 +191,10 @@
       "The question asks for $5 \\lambda^{2}$ precisely so that the answer is an integer; computing $\\lambda$ itself and then squaring is the safest order."
     ],
     "solution": [
-      "$X_{3} + X_{4} + X_{5} + X_{6} + X_{7}$ is normal with mean 0 and variance 5; X1 + X2 is normal with mean 0 and variance 2, and the two are independent.",
+      "$X_{3} + X_{4} + X_{5} + X_{6} + X_{7}$ is normal with mean 0 and variance 5; $X_{1} + X_{2}$ is normal with mean 0 and variance 2, and the two are independent.",
       "For independent $U \\sim N(0, a^{2})$ and $V \\sim N(0, b^{2})$, the ratio U/V has a Cauchy distribution centred at 0 with scale $a/b$.",
-      "Here $a = \\sqrt{5}$ and $b = \\sqrt{2}$, so the ratio is Cauchy($0, \\sqrt{5/2}$).",
-      "Multiplying a Cauchy(0, s) variable by $\\lambda$ gives Cauchy($0, \\lambda s$), so for the result to be Cauchy(0,1) we need $\\lambda \\sqrt{5/2} = 1$.",
+      "Here $a = \\sqrt{5}$ and $b = \\sqrt{2}$, so the ratio is $\\text{Cauchy}(0, \\sqrt{5/2})$.",
+      "Multiplying a $\\text{Cauchy}(0, s)$ variable by $\\lambda$ gives $\\text{Cauchy}(0, \\lambda s)$, so for the result to be $\\text{Cauchy}(0,1)$ we need $\\lambda \\sqrt{5/2} = 1$.",
       "Hence $\\lambda = \\sqrt{2/5}$ and $\\lambda^{2} = 2/5$.",
       "Therefore $5 \\lambda^{2} = 5(2/5) = 2$, option (b)."
     ]
@@ -203,7 +203,7 @@
     "answer": 2,
     "confidence": "medium",
     "type": "Numerical",
-    "shortcut": "Treat each quadratic form as its coefficient triple and take the dot product. Pairs $I (6)$, II $(1)$ and IV $(3)$ give non-zero values, while pair III gives $2 + 2 - 4 = 0$. So three pairs are non-orthogonal.",
+    "shortcut": "Treat each quadratic form as its coefficient triple and take the dot product. Pairs I $(6)$, II $(1)$ and IV $(3)$ give non-zero values, while pair III gives $2 + 2 - 4 = 0$. So three pairs are non-orthogonal.",
     "tips": [
       "Reduce each form to the coefficient vector of (square, cross, square): e.g. $x_{1}^{2} + 2 \\times 1 \\times 2 + x_{2}^{2}$ becomes $(1, 2, 1)$. Orthogonality is then a simple dot product.",
       "Work through the four dot products systematically: I gives $1+4+1 = 6$; II gives $2-2+1 = 1$; III gives $2+2-4 = 0$; IV gives $1+1+1 = 3$.",
@@ -223,58 +223,58 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$\\operatorname{Var}(Z) = 4(4) + 9(17/9) - 12 Cov = 16 + 17 - 24 = 9$, so $Z \\sim N(0,9)$ with density $(1/(3 \\sqrt{2 pi})) e^{-z^{2}/18} = (1/\\sqrt{18 pi}) e^{-z^{2}/18}$.",
+    "shortcut": "$\\operatorname{Var}(Z) = 4(4) + 9(17/9) - 12 \\operatorname{Cov} = 16 + 17 - 24 = 9$, so $Z \\sim N(0,9)$ with density $(1/(3 \\sqrt{2 \\pi})) e^{-z^{2}/18} = (1/\\sqrt{18 \\pi}) e^{-z^{2}/18}$.",
     "tips": [
-      "$\\operatorname{Var}(aX + bY) = a^{2} Var X + b^{2} Var Y + 2$ab $Cov$. With $a = 2$ and b = -3 the cross term is $2(2)(-3)(2)$ = -24 - the minus sign is essential.",
+      "$\\operatorname{Var}(aX + bY) = a^{2} \\operatorname{Var} X + b^{2} \\operatorname{Var} Y + 2ab \\operatorname{Cov}$. With $a = 2$ and $b = -3$ the cross term is $2(2)(-3)(2) = -24$ - the minus sign is essential.",
       "$\\operatorname{E}(XY) = \\operatorname{Cov}(X,Y)$ here because both means are zero; the question gives the raw product moment deliberately.",
-      "Convert the density: $1/(\\sigma \\sqrt{2 pi})$ with $\\sigma = 3$ is $1/(3 \\sqrt{2 pi}) = 1/\\sqrt{9 \\times 2 pi} = 1/\\sqrt{18 pi}$, and the exponent is -$z^{2}/(2 \\times 9)$ = -$z^{2}/18$.",
-      "Cross-check the two parts of the option: the constant $\\sqrt{18 pi}$ and the exponent denominator 18 must agree, which only option (b) achieves."
+      "Convert the density: $1/(\\sigma \\sqrt{2 \\pi})$ with $\\sigma = 3$ is $1/(3 \\sqrt{2 \\pi}) = 1/\\sqrt{9 \\times 2 \\pi} = 1/\\sqrt{18 \\pi}$, and the exponent is $-z^{2}/(2 \\times 9) = -z^{2}/18$.",
+      "Cross-check the two parts of the option: the constant $\\sqrt{18 \\pi}$ and the exponent denominator 18 must agree, which only option (b) achieves."
     ],
     "solution": [
       "X and Y are jointly normal with zero means, $\\operatorname{Var}(X) = 4, \\operatorname{Var}(Y) = 17/9$ and $\\operatorname{Cov}(X,Y) = \\operatorname{E}(XY) = 2$ (the means being zero).",
       "$Z = 2X - 3Y$ is a linear combination of jointly normal variables, so Z is normal with mean 0.",
       "$\\operatorname{Var}(Z) = 2^{2} \\operatorname{Var}(X) + (-3)^{2} \\operatorname{Var}(Y) + 2(2)(-3) \\operatorname{Cov}(X,Y) = 4(4) + 9(17/9) - 12(2) = 16 + 17 - 24 = 9$, so $\\sigma_{Z} = 3$.",
-      "The $N(0,9)$ density is $f(z) = (1/(3 \\sqrt{2 pi})) e^{-z^{2}/18}$, and $3 \\sqrt{2 pi} = \\sqrt{9 \\times 2 pi} = \\sqrt{18 pi}$.",
-      "Hence $f(z) = (1/\\sqrt{18 pi}) e^{-z^{2}/18}$, option (b)."
+      "The $N(0,9)$ density is $f(z) = (1/(3 \\sqrt{2 \\pi})) e^{-z^{2}/18}$, and $3 \\sqrt{2 \\pi} = \\sqrt{9 \\times 2 \\pi} = \\sqrt{18 \\pi}$.",
+      "Hence $f(z) = (1/\\sqrt{18 \\pi}) e^{-z^{2}/18}$, option (b)."
     ]
   },
   "2024-Q13": {
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The sample median from $N(\\mu, \\sigma^{2})$ is asymptotically $N(\\mu, pi \\sigma^{2}/(2n))$. With $\\sigma^{2} = 2$ and $n = 20$ the variance is 2 pi/40 = pi/20.",
+    "shortcut": "The sample median from $N(\\mu, \\sigma^{2})$ is asymptotically $N(\\mu, \\pi \\sigma^{2}/(2n))$. With $\\sigma^{2} = 2$ and $n = 20$ the variance is $2 \\pi/40 = \\pi/20$.",
     "tips": [
-      "Asymptotic variance of the median: $1/(4n f(m)^{2})$. For the normal, $f(\\mu) = 1/(\\sigma \\sqrt{2 pi})$, giving pi $\\sigma^{2}/(2n)$.",
+      "Asymptotic variance of the median: $1/(4n f(m)^{2})$. For the normal, $f(\\mu) = 1/(\\sigma \\sqrt{2 \\pi})$, giving $\\pi \\sigma^{2}/(2n)$.",
       "The median is centred at the population median, which for a symmetric normal equals $\\mu = 1$ - so all four options share that centre.",
-      "Substitute carefully: pi(2)/$(2 \\times 20)$ = pi/20. Option $(a) 1/10$ is the variance of the sample MEAN $(\\sigma^{2}/n = 2/20)$, the standard trap.",
-      "The ratio $(pi/20)/(1/10)$ = pi/$2 = 1.571$ is the reciprocal of the efficiency $2/pi - a$ neat consistency check with the ARE result."
+      "Substitute carefully: $\\pi(2)/(2 \\times 20) = \\pi/20$. Option $(a) 1/10$ is the variance of the sample MEAN $(\\sigma^{2}/n = 2/20)$, the standard trap.",
+      "The ratio $(\\pi/20)/(1/10) = \\pi/2 = 1.571$ is the reciprocal of the efficiency $2/\\pi$ - a neat consistency check with the ARE result."
     ],
     "solution": [
       "For a random sample of size n from a distribution with density f and population median m, the sample median is asymptotically normal with mean m and variance $1/(4 n [f(m)]^{2})$.",
-      "For $N(\\mu, \\sigma^{2})$ the median equals the mean mu, and the density at the mean is $f(\\mu) = 1/(\\sigma \\sqrt{2 pi})$.",
-      "Hence $[f(\\mu)]^{2} = 1/(2 pi \\sigma^{2})$, and the asymptotic variance is $1/(4n) x 2$ pi $\\sigma^{2}$ = pi $\\sigma^{2}/(2n)$.",
-      "Substituting $\\sigma^{2} = 2$ and $n = 20$: pi(2)/$(2 \\times 20) = 2$ pi/40 = pi/20.",
+      "For $N(\\mu, \\sigma^{2})$ the median equals the mean $\\mu$, and the density at the mean is $f(\\mu) = 1/(\\sigma \\sqrt{2 \\pi})$.",
+      "Hence $[f(\\mu)]^{2} = 1/(2 \\pi \\sigma^{2})$, and the asymptotic variance is $1/(4n) \\times 2 \\pi \\sigma^{2} = \\pi \\sigma^{2}/(2n)$.",
+      "Substituting $\\sigma^{2} = 2$ and $n = 20$: $\\pi(2)/(2 \\times 20) = 2 \\pi/40 = \\pi/20$.",
       "The centre is $\\mu = 1$.",
-      "So the asymptotic distribution is $N(1, pi/20)$, option (b)."
+      "So the asymptotic distribution is $N(1, \\pi/20)$, option (b)."
     ]
   },
   "2024-Q14": {
     "answer": 2,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "F(m,n) is defined as $(X/m)/(Y/n)$ = nX/(mY), so statement I holds; its reciprocal mY/(nX) is F(n,m), so statement II holds too.",
+    "shortcut": "$F(m,n)$ is defined as $(X/m)/(Y/n) = nX/(mY)$, so statement I holds; its reciprocal mY/(nX) is $F(n,m)$, so statement II holds too.",
     "tips": [
-      "Definition: F with (m,n) degrees of freedom is the ratio of two independent $\\chi$-squares EACH DIVIDED BY ITS OWN degrees of freedom.",
-      "Write it out: $(X/m)/(Y/n) = (X/m)(n/Y)$ = nX/(mY). Matching this against statement I confirms it immediately.",
+      "Definition: F with (m,n) degrees of freedom is the ratio of two independent chi-squares EACH DIVIDED BY ITS OWN degrees of freedom.",
+      "Write it out: $(X/m)/(Y/n) = (X/m)(n/Y) = nX/(mY)$. Matching this against statement I confirms it immediately.",
       "Reciprocal property: $1/F(m,n) = F(n,m)$. Statement II is exactly the reciprocal of statement I, so the two stand or fall together.",
       "Because the two statements are reciprocals, only options (c) and (d) are logically possible - and since the definition holds, it must be (c)."
     ],
     "solution": [
       "$X \\sim \\chi^{2}_{m}$ and $Y \\sim \\chi^{2}_{n}$ are independent.",
-      "By definition, an F variable with (m, n) degrees of freedom is the ratio of the two $\\chi$-squares each divided by its own degrees of freedom: $F = (X/m)/(Y/n)$.",
-      "Simplifying, $(X/m)(n/Y)$ = nX/(mY), which is exactly the expression in statement I. TRUE.",
+      "By definition, an F variable with (m, n) degrees of freedom is the ratio of the two chi-squares each divided by its own degrees of freedom: $F = (X/m)/(Y/n)$.",
+      "Simplifying, $(X/m)(n/Y) = nX/(mY)$, which is exactly the expression in statement I. TRUE.",
       "Taking reciprocals, mY/$(nX) = 1/F$, and the standard reciprocal property gives $1/F(m,n) = F(n,m)$.",
-      "Directly: mY/$(nX) = (Y/n)/(X/m)$, which is the ratio of the $\\chi$-squares in the opposite order, hence F with (n, m) degrees of freedom. TRUE.",
+      "Directly: mY/$(nX) = (Y/n)/(X/m)$, which is the ratio of the chi-squares in the opposite order, hence F with (n, m) degrees of freedom. TRUE.",
       "Both statements are correct, option (c)."
     ]
   },
@@ -305,15 +305,15 @@
     "shortcut": "The $\\chi^{2}$ MGF is $(1 - 2t)^{-k/2}$; with $k = 10$ the exponent is -5, giving $(1-2t)^{-5}$.",
     "tips": [
       "Memorise $M(t) = (1 - 2t)^{-k/2}$ for $\\chi^{2}$ with k d.f., valid for $t < 1/2$. The 2 inside and the halved exponent are both essential.",
-      "For $k = 10$ the exponent is -$10/2$ = -5. Options (b) and (d) keep the full 10 and options (a) and (b) drop the 2.",
-      "Verify by differentiating: $M'(0) = k = 10$ gives the mean, and $M''(0) = k(k+2) = 120$ gives $Var = 120 - 100 = 20 = 2k$. Both correct.",
+      "For $k = 10$ the exponent is $-10/2 = -5$. Options (b) and (d) keep the full 10 and options (a) and (b) drop the 2.",
+      "Verify by differentiating: $M'(0) = k = 10$ gives the mean, and $M''(0) = k(k+2) = 120$ gives $\\operatorname{Var} = 120 - 100 = 20 = 2k$. Both correct.",
       "The $\\chi^{2}$ is $\\Gamma$(shape $k/2$, scale 2), so its MGF is the $\\Gamma$ MGF (1 - scale x t)^(-shape) - one formula covers both families."
     ],
     "solution": [
-      "$A \\chi^{2}$ variable with k degrees of freedom is $\\Gamma$ with shape $k/2$ and scale 2.",
+      "A $\\chi^{2}$ variable with k degrees of freedom is $\\Gamma$ with shape $k/2$ and scale 2.",
       "The moment generating function of $\\Gamma$(shape a, scale b) is $(1 - bt)^{-a}$ for $t < 1/b$.",
       "With $a = k/2$ and $b = 2$, this gives $M(t) = (1 - 2t)^{-k/2}$, valid for $t < 1/2$.",
-      "For $k = 10$ the exponent is -$10/2$ = -5.",
+      "For $k = 10$ the exponent is $-10/2 = -5$.",
       "Hence $M(t) = (1 - 2t)^{-5}$.",
       "Check: $M'(0) = 10 = \\operatorname{E}(X)$ and $M''(0) = 120$, so $\\operatorname{Var}(X) = 120 - 100 = 20 = 2(10)$. Option (c) is correct."
     ]
@@ -342,7 +342,7 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "From $4 \\sigma_{x}^{2} = 25$ and $9 \\sigma_{y}^{2} = 25$ we get $\\sigma_{x}^{2} = 25/4$ and $\\sigma_{y}^{2} = 25/9$. Then $\\operatorname{Var}((2x+3y)/sqrt2) = (1/2)[4(25/4) + 9(25/9)] = (1/2)(50) = 25$.",
+    "shortcut": "From $4 \\sigma_{x}^{2} = 25$ and $9 \\sigma_{y}^{2} = 25$ we get $\\sigma_{x}^{2} = 25/4$ and $\\sigma_{y}^{2} = 25/9$. Then $\\operatorname{Var}((2x+3y)/\\sqrt{2}) = (1/2)[4(25/4) + 9(25/9)] = (1/2)(50) = 25$.",
     "tips": [
       "Read the chain $4 \\sigma_{x}^{2} = 9 \\sigma_{y}^{2} = 25$ as TWO equations, then solve each for its variance separately.",
       "The design is deliberate: $4 \\sigma_{x}^{2} = 25$ and $9 \\sigma_{y}^{2} = 25$ make the two terms in the variance BOTH equal 25, so the bracket is simply 50.",
@@ -352,7 +352,7 @@
     "solution": [
       "From $4 \\sigma_{x}^{2} = 25$ we get $\\sigma_{x}^{2} = 25/4$, and from $9 \\sigma_{y}^{2} = 25$ we get $\\sigma_{y}^{2} = 25/9$.",
       "Since x and y are independent, $\\operatorname{Var}(2x + 3y) = 4 \\sigma_{x}^{2} + 9 \\sigma_{y}^{2} = 4(25/4) + 9(25/9) = 25 + 25 = 50$.",
-      "Dividing by $\\sqrt{2}$ scales the variance by $(1/sqrt2)^{2} = 1/2$.",
+      "Dividing by $\\sqrt{2}$ scales the variance by $(1/\\sqrt{2})^{2} = 1/2$.",
       "$\\operatorname{Var}((2x + 3y)/\\sqrt{2}) = 50/2 = 25$.",
       "Option (a) is correct."
     ]
@@ -363,16 +363,16 @@
     "type": "Numerical",
     "shortcut": "$\\operatorname{Cov}(x,y) = 2, \\operatorname{Var}(x) = 16$ and $\\operatorname{Var}(y) = 567$, so $r = 2/(4 \\sqrt{567})$. Then $(18r)^{2} = 324(4)/(16 \\times 567) = 81/567 = 1/7$.",
     "tips": [
-      "Undo each transformation first: $\\operatorname{Cov}(2x,y) = 2\\operatorname{Cov}(x,y)$ gives $Cov = 2$; $\\operatorname{Var}(x/4) = \\operatorname{Var}(x)/16$ gives $\\operatorname{Var}(x) = 16$; $\\operatorname{Var}(y/9) = \\operatorname{Var}(y)/81$ gives $\\operatorname{Var}(y) = 567$.",
+      "Undo each transformation first: $\\operatorname{Cov}(2x,y) = 2\\operatorname{Cov}(x,y)$ gives $\\operatorname{Cov} = 2$; $\\operatorname{Var}(x/4) = \\operatorname{Var}(x)/16$ gives $\\operatorname{Var}(x) = 16$; $\\operatorname{Var}(y/9) = \\operatorname{Var}(y)/81$ gives $\\operatorname{Var}(y) = 567$.",
       "Keep $567 = 81 \\times 7$ in factored form - it cancels beautifully at the end against the 81 from $18^{2}/4$.",
-      "$(18r)^{2} = 324 r^{2} = 324 Cov^{2}/(Var x Var y) = 324(4)/(16 \\times 567) = 1296/9072 = 1/7$. Work with squares throughout to avoid surds.",
+      "$(18r)^{2} = 324 r^{2} = 324 \\operatorname{Cov}^{2}/(\\operatorname{Var} x \\operatorname{Var} y) = 324(4)/(16 \\times 567) = 1296/9072 = 1/7$. Work with squares throughout to avoid surds.",
       "Sanity check: $r = 2/(4 \\times 23.81) = 0.021, a$ very weak correlation, so $(18r)^{2} = 0.143 = 1/7$ is the right order of magnitude."
     ],
     "solution": [
       "From $\\operatorname{Cov}(2x, y) = 2 \\operatorname{Cov}(x, y) = 4$ we get $\\operatorname{Cov}(x, y) = 2$.",
-      "From $\\operatorname{Var}(x/4) = \\operatorname{Var}(x)/16 = 1$ we get $\\operatorname{Var}(x) = 16$, so sd(x) = 4.",
+      "From $\\operatorname{Var}(x/4) = \\operatorname{Var}(x)/16 = 1$ we get $\\operatorname{Var}(x) = 16$, so $\\operatorname{sd}(x) = 4$.",
       "From $\\operatorname{Var}(y/9) = \\operatorname{Var}(y)/81 = 7$ we get $\\operatorname{Var}(y) = 567$.",
-      "Hence $r(x,y) = Cov/(sd(x) sd(y)) = 2/(4 \\sqrt{567})$.",
+      "Hence $r(x,y) = \\operatorname{Cov}/(\\operatorname{sd}(x) \\operatorname{sd}(y)) = 2/(4 \\sqrt{567})$.",
       "Then $(18r)^{2} = 324 r^{2} = 324 \\times 4/(16 \\times 567) = 1296/9072$.",
       "Since $567 = 81 \\times 7$, this is $81/567 = 1/7$. Option (b) is correct."
     ]
@@ -385,7 +385,7 @@
     "tips": [
       "Density of the minimum: $n[1 - F(x)]^{n-1} f(x)$. Substitute $n = 5, F(1) = 1/2$ and $f = 1/2$.",
       "Careful with the uniform on $[0,2]$: the density is $1/2$, NOT 1, and $F(1) = 1/2$, not 1. Both appear in the formula.",
-      "Compute in stages: $(1 - 1/2)^{4} = 1/16$, then $5 x (1/16) x (1/2) = 5/32$.",
+      "Compute in stages: $(1 - 1/2)^{4} = 1/16$, then $5 \\times (1/16) \\times (1/2) = 5/32$.",
       "Option $(b) 5/16$ omits the density factor $1/2$ and option $(c) 1/32$ omits the constant 5 - each distractor drops one factor."
     ],
     "solution": [
@@ -393,7 +393,7 @@
       "The density of the smallest order statistic in a sample of size n is $f_{1}(x) = n[1 - F(x)]^{n-1} f(x)$.",
       "With $n = 5$: $f_{1}(x) = 5(1 - x/2)^{4} (1/2)$.",
       "At $x = 1$: $1 - 1/2 = 1/2$, so $(1/2)^{4} = 1/16$.",
-      "$f_{1}(1) = 5 x (1/16) x (1/2) = 5/32$.",
+      "$f_{1}(1) = 5 \\times (1/16) \\times (1/2) = 5/32$.",
       "Option (d) is correct."
     ]
   }

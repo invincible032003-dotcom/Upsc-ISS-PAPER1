@@ -1,0 +1,353 @@
+{
+"2018-Q61": {
+  "answer": 1, "confidence": "high", "type": "Conceptual",
+  "shortcut": "One hierarchy settles everything: CPU contains BOTH the ALU and the Control Unit as siblings. So statements 1 and 2 invert the hierarchy and fail; 3 and 4 are correct.",
+  "tips": [
+    "Draw the box: CPU = Control Unit + ALU + registers. The ALU and CU are peers inside the CPU; neither contains the other.",
+    "Statements 1 and 2 are both 'containment reversed' traps. Whenever an option asserts that a bigger unit sits inside a smaller one, reject it on sight.",
+    "Statement 3 is phrased negatively ('is NOT a component of'), which makes it TRUE. Read negations carefully - they flip the truth value of an otherwise false-looking claim.",
+    "The CU fetches and decodes instructions and issues control signals; the ALU performs arithmetic and logic. Keeping those two job descriptions apart answers most questions in this sub-topic."
+  ],
+  "solution": [
+    "The Central Processing Unit (CPU) consists of the Control Unit (CU), the Arithmetic and Logic Unit (ALU) and a set of registers.",
+    "Statement 1: 'ALU is a component of the Control Unit' - false; the ALU and CU are separate peer units within the CPU.",
+    "Statement 2: 'CPU is a component of the Control Unit' - false; the containment is the other way round, the CU is a component of the CPU.",
+    "Statement 3: 'The Control Unit is not a component of the ALU' - true, since the CU sits alongside the ALU, not inside it.",
+    "Statement 4: 'ALU is a component of the CPU' - true by the standard architecture.",
+    "Only statements 3 and 4 are correct, so option (b) is right."
+  ]
+},
+"2018-Q62": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "Integer part: 3(64) + 2(8) + 5 = 213. Fractional part: 1/8 + 2/64 = 0.125 + 0.03125 = 0.15625. Answer 213.15625.",
+  "tips": [
+    "Octal place values run 64, 8, 1 to the left of the point and 1/8, 1/64, 1/512 to the right. Write the weights above the digits before multiplying.",
+    "Every octal fraction terminates in decimal because 8 is a power of 2, so the answer must be an exact decimal - options (a), (c) and (d) with their ragged tails are implausible on that ground alone.",
+    "Do the integer part first; 213 alone already isolates options (b) and (c), and only then does the fraction decide between them.",
+    "Alternative route: convert 325.12 (octal) to binary as 011 010 101 . 001 010 and then group in fours - useful when the question asks for a hexadecimal answer instead."
+  ],
+  "solution": [
+    "Octal 325.12 has digits 3, 2, 5 before the point and 1, 2 after it.",
+    "Integer part: 3 x 8^2 + 2 x 8^1 + 5 x 8^0 = 3(64) + 2(8) + 5 = 192 + 16 + 5 = 213.",
+    "Fractional part: 1 x 8^(-1) + 2 x 8^(-2) = 1/8 + 2/64 = 0.125 + 0.03125 = 0.15625.",
+    "Adding: 213 + 0.15625 = 213.15625.",
+    "Hence option (b) is correct."
+  ]
+},
+"2018-Q63": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "Address lines depend only on the NUMBER of locations: 1024 = 2^10, so 10 address lines. The 8 bits per location fix the data-bus width, not the address bus.",
+  "tips": [
+    "Formula: number of locations = 2^(address lines). Take log base 2 of the location count and ignore the word size entirely.",
+    "The '8 bits' is a deliberate distractor and is planted as option (a) - it is the data width, not the address width.",
+    "Memorise the powers: 2^10 = 1K, 2^16 = 64K, 2^20 = 1M. Then 1024 locations means 10 lines without any calculation.",
+    "Conversely, m address lines and n data lines give a capacity of 2^m x n bits - the formula behind most memory-sizing questions."
+  ],
+  "solution": [
+    "The number of distinct memory locations that can be addressed by k address lines is 2^k.",
+    "Here the system has 1024 memory locations, so 2^k = 1024.",
+    "Since 1024 = 2^10, we get k = 10.",
+    "The word size of 8 bits determines the width of the DATA bus and has no bearing on the number of address lines.",
+    "Hence 10 address lines are required, option (b)."
+  ]
+},
+"2018-Q64": {
+  "answer": 1, "confidence": "high", "type": "Factual",
+  "shortcut": "The kernel is the core of UNIX - it manages processes, memory, files and devices. The shell is only the outer command interpreter.",
+  "tips": [
+    "UNIX has an onion structure: hardware, then kernel, then shell, then applications/utilities. 'Core' always means the kernel.",
+    "The shell (sh, bash, csh, ksh) is a user-level program that can be replaced without touching the operating system - hence it cannot be the core.",
+    "Kernel duties to remember: process scheduling, memory management, file-system control, device drivers and system calls.",
+    "This exact question is repeated in the 2023 paper (Q74), so the recall is worth locking in."
+  ],
+  "solution": [
+    "UNIX is layered: the hardware at the centre, surrounded by the kernel, then the shell, then user applications and utilities.",
+    "The kernel is the resident part of the operating system that manages processes, memory, the file system and device I/O, and it services all system calls.",
+    "The command shell is merely a command interpreter running as an ordinary user process; several different shells can be used interchangeably.",
+    "Directories and programs are file-system objects, not the operating core.",
+    "Hence the core component of UNIX is the kernel, option (b)."
+  ]
+},
+"2018-Q65": {
+  "answer": 3, "confidence": "medium", "type": "Conceptual",
+  "shortcut": "All three advantages are standard: only one zero representation means one extra value can be stored, subtraction becomes plain addition with no end-around carry (faster), and negation is a simple invert-and-add-one.",
+  "tips": [
+    "Range comparison for 8 bits: sign-magnitude and 1's complement give -127 to +127 (two zeros), while 2's complement gives -128 to +127 - one extra number stored.",
+    "Speed advantage: in 2's complement A - B is computed as A + (2's complement of B) with the carry simply discarded; 1's complement needs an end-around carry, an extra cycle.",
+    "The elimination of negative zero is the single fact behind advantages 1 and 2 - remember it and both follow.",
+    "When every listed statement is a textbook advantage of the same design choice, 'all of them' is usually the key; verify only the one that sounds weakest."
+  ],
+  "solution": [
+    "Statement 1: in sign-magnitude and 1's complement representations, zero has two encodings (+0 and -0), wasting one pattern. In 2's complement zero has a single encoding, so an n-bit word represents 2^n distinct values from -2^(n-1) to 2^(n-1) - 1, one more than the alternatives. TRUE.",
+    "Statement 2: 2's complement lets subtraction be carried out by the ADDER alone - A - B becomes A + (complement of B) with the final carry simply discarded, whereas 1's complement requires an end-around carry. Arithmetic is therefore faster and the hardware simpler. TRUE.",
+    "Statement 3: negating a number needs only a bitwise inversion followed by adding 1, a cheap and uniform operation, and the sign is read directly from the most significant bit. TRUE.",
+    "All three are the standard reasons for preferring 2's complement.",
+    "Hence option (d) is correct."
+  ]
+},
+"2018-Q66": {
+  "answer": 1, "confidence": "high", "type": "Conceptual",
+  "shortcut": "Normalised form places the mantissa in [0.1, 1) with a leading zero before the point: 11.234 = 0.11234 x 10^2, written .11234E+2.",
+  "tips": [
+    "In the classical (FORTRAN-style) normalised form the mantissa must satisfy 0.1 <= |m| < 1 - i.e. the first digit AFTER the decimal point is non-zero.",
+    "Option (c) .011234E+1 has a leading zero in the mantissa, so it is un-normalised even though its value is correct. 'Correct value' and 'normalised' are different tests.",
+    "Option (d) mixes two notations (E and x10) and is syntactically invalid; option (a) is simply the unconverted number.",
+    "Count the shift: moving the point two places left multiplies by 10^2, so the exponent is +2. Direction rule: point moves left, exponent goes up."
+  ],
+  "solution": [
+    "A floating-point number is in normalised form when it is written as +-0.d1 d2 d3 ... x 10^e with the leading digit d1 non-zero, so that the mantissa lies in [0.1, 1).",
+    "Take 11.234 and shift the decimal point two places to the left: 11.234 = 0.11234 x 10^2.",
+    "The mantissa 0.11234 lies in [0.1, 1) and its first digit after the point is 1, which is non-zero, so the form is normalised.",
+    "In E-notation this is written .11234E+2.",
+    "Option (c) has value 0.011234 x 10 = 0.11234, which is not even equal to 11.234, and its mantissa is un-normalised; options (a) and (d) are not in normalised E-notation at all.",
+    "Hence option (b) is correct."
+  ]
+},
+"2018-Q67": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "An 8-bit signed word uses 1 bit for the sign and 7 for magnitude, so the largest integer is 2^7 - 1 = 127.",
+  "tips": [
+    "Signed n-bit range in 2's complement: -2^(n-1) to +2^(n-1) - 1. For n = 8 that is -128 to +127.",
+    "128 (option a) is the magnitude of the most NEGATIVE value, not the largest positive one - the classic off-by-one trap.",
+    "If the question had said 'unsigned', the answer would be 2^8 - 1 = 255. Always check whether a sign bit is implied; 'integer' in these papers means signed.",
+    "Powers of two to have ready: 2^7 = 128, 2^15 = 32768, 2^31 = 2147483648 - the three standard maxima plus/minus one."
+  ],
+  "solution": [
+    "An 8-bit word holds 2^8 = 256 distinct bit patterns.",
+    "For signed integers, one bit is used for the sign and the remaining 7 bits carry the magnitude.",
+    "In 2's complement the representable range is -2^(8-1) to 2^(8-1) - 1, that is -128 to +127.",
+    "Hence the maximum decimal integer that can be stored is 2^7 - 1 = 127.",
+    "Option (b) is correct."
+  ]
+},
+"2018-Q68": {
+  "answer": 3, "confidence": "high", "type": "Conceptual",
+  "shortcut": "Bitwise operators act on individual bits: & and >> qualify. Logical && and !, and the arithmetic %, do not. So the non-bitwise ones are 1, 4 and 5.",
+  "tips": [
+    "The bitwise family in C is & | ^ ~ << >>. Anything outside that list - &&, ||, !, %, +, - - is not bitwise.",
+    "Single symbol versus doubled symbol is the discriminator: & is bitwise AND while && is logical AND; | is bitwise OR while || is logical OR.",
+    "~ is the bitwise NOT and ! is the logical NOT - these two are the pair most often confused, and ! appears here as item 4.",
+    "% is the modulus (remainder) operator, purely arithmetic. It is included precisely because its symbol looks unfamiliar enough to be mistaken for a bit operation."
+  ],
+  "solution": [
+    "Bitwise operators operate on the individual bits of their operands. In C these are & (AND), | (OR), ^ (XOR), ~ (NOT), << (left shift) and >> (right shift).",
+    "Item 1, &&, is the logical AND operator; it yields a truth value, not a bit pattern. NOT bitwise.",
+    "Item 2, &, is the bitwise AND. Bitwise.",
+    "Item 3, >>, is the right-shift operator. Bitwise.",
+    "Item 4, !, is the logical NOT (the bitwise complement is ~). NOT bitwise. Item 5, %, is the arithmetic modulus operator. NOT bitwise.",
+    "The operators that are NOT bitwise are 1, 4 and 5, so option (d) is correct."
+  ]
+},
+"2018-Q69": {
+  "answer": 1, "confidence": "high", "type": "Factual",
+  "shortcut": "Auxiliary (secondary) memory is non-volatile external storage. Of the four, only magnetic tape is external backing store; SRAM and cache are primary, and flash ROM is firmware memory.",
+  "tips": [
+    "Memory hierarchy by speed and role: registers, cache, main memory (RAM), then auxiliary/secondary storage (disk, tape, optical). 'Auxiliary' always means the bottom layer.",
+    "Auxiliary memory is characterised by being non-volatile, high capacity, low cost per bit and NOT directly addressable by the CPU - data must be transferred to main memory first.",
+    "SRAM (option a) is the technology used to build cache, and cache (option d) is primary memory - both sit near the top of the hierarchy.",
+    "Magnetic tape is sequential-access, which is why it survives as archival/backup auxiliary storage rather than as working memory."
+  ],
+  "solution": [
+    "Auxiliary memory (also called secondary or backing storage) is non-volatile storage that lies outside the CPU's directly addressable main memory.",
+    "SRAM is a fast volatile technology used for cache and registers - primary memory.",
+    "Cache memory is a small, very fast buffer between the CPU and main memory - primary memory.",
+    "Flash ROM is used to hold firmware/BIOS and is treated as read-mostly primary memory rather than auxiliary storage.",
+    "Magnetic tape is a high-capacity, non-volatile, sequential-access external medium used for backup and archiving - the classic auxiliary memory.",
+    "Hence option (b) is correct."
+  ]
+},
+"2018-Q70": {
+  "answer": 1, "confidence": "high", "type": "Conceptual",
+  "shortcut": "An interpreter translates and executes one statement at a time, so translation and execution happen together. A compiler translates the whole program first and executes nothing.",
+  "tips": [
+    "One-line contrast: compiler = translate ALL, then run; interpreter = translate ONE line, run it, move on. Everything else follows from this.",
+    "A compiler produces an object/executable file; an interpreter produces no separate object file, which is why interpreted programs are slower but easier to debug.",
+    "Option (c) reverses the machine: an interpreter translates HIGH-level source, it does not translate machine language (machine language needs no translation).",
+    "Java is the standard hybrid to remember - compiled to bytecode, then interpreted (or JIT-compiled) by the JVM."
+  ],
+  "solution": [
+    "A compiler reads the entire source program, translates it into object code, and reports all errors before any execution takes place; execution is a separate later step.",
+    "An interpreter takes the source program one statement at a time, translates that statement and immediately executes it before moving to the next.",
+    "Therefore translation and execution occur simultaneously in an interpreter, which makes option (b) correct and option (a) incorrect.",
+    "Option (c) is wrong because an interpreter translates high-level source code; machine language requires no translation at all.",
+    "Since (b) is a correct statement, option (d) cannot be right.",
+    "Hence option (b) is correct."
+  ]
+},
+"2018-Q71": {
+  "answer": 2, "confidence": "high", "type": "Conceptual",
+  "shortcut": "Repeatedly replacing the larger by the difference is the subtraction form of Euclid's algorithm. The loop stops when x = y, and that common value is gcd(x, y).",
+  "tips": [
+    "Trace one example: x = 12, y = 18 gives 12,6 then 6,6 - and gcd(12,18) = 6. A single trace beats any amount of staring at the code.",
+    "The invariant is gcd(x, y) is unchanged by replacing the larger with the difference; the loop terminates because the sum x + y strictly decreases.",
+    "The modulo form of Euclid uses x = x % y and is much faster; this subtraction version is its slower ancestor and is a favourite exam disguise.",
+    "LCM (option d) cannot be right because the loop only ever DECREASES the values, whereas the LCM is at least as large as the larger input."
+  ],
+  "solution": [
+    "The loop runs while x is not equal to y, each time subtracting the smaller value from the larger.",
+    "The key invariant is gcd(x, y) = gcd(x - y, y) when x > y, so every iteration preserves the greatest common divisor of the pair.",
+    "Each iteration strictly decreases x + y while keeping both values positive, so the loop must terminate; it terminates only when x = y.",
+    "At termination the common value equals the preserved gcd of the original pair.",
+    "For example, starting with x = 12, y = 18: (12,18) -> (12,6) -> (6,6), and gcd(12,18) = 6.",
+    "This is the subtraction form of Euclid's algorithm, so the code computes the GCD, option (c)."
+  ]
+},
+"2018-Q72": {
+  "answer": 1, "confidence": "medium", "type": "Conceptual",
+  "shortcut": "Statement 3 is plainly false - an array is homogeneous - and every option except (b) contains statement 3. So the key must be 1 and 2 only.",
+  "tips": [
+    "Elimination by a single false statement is the fastest route in 'which are correct' items: identify the certainly-false one and strike every option containing it.",
+    "An array is by definition a HOMOGENEOUS collection stored in contiguous memory; heterogeneous collections are structures/records, not arrays.",
+    "Statement 2 is true in the C sense: a string is a null-terminated char array and each char occupies one byte.",
+    "Statement 4 ('strings can be data arrays too') overlaps statement 2 and is not offered in any surviving combination; the option set forces (b), which is why the item is really a test of spotting the false statement 3."
+  ],
+  "solution": [
+    "Statement 1: an array is a collection of elements of the SAME data type stored in contiguous memory locations. TRUE.",
+    "Statement 2: in C a string is stored as an array of characters terminated by the null character, and each char occupies one byte. TRUE.",
+    "Statement 3: an array cannot hold elements of different types - that is the defining restriction which distinguishes an array from a structure. FALSE.",
+    "Since statement 3 is false, every option containing it - (a), (c) and (d) - is eliminated.",
+    "The only surviving option is (b), 1 and 2 only.",
+    "Hence option (b) is correct."
+  ]
+},
+"2018-Q73": {
+  "answer": 3, "confidence": "high", "type": "Factual",
+  "shortcut": "The standard weighted 4-bit BCD code is 8421, so statement 4 is true and statement 1 (1246) is invented. Octal is base 8, so statement 2 is true and statement 3 is false. Answer: 2 and 4.",
+  "tips": [
+    "8421 BCD: the four bit positions carry weights 8, 4, 2, 1 - the same as ordinary binary, which is why it is called the 'natural' BCD code.",
+    "Other weighted codes worth knowing: 2421 (Aiken) and 5211; the non-weighted ones are Excess-3 and Gray. '1246' is not a code at all.",
+    "Statements 1 and 4 are a true/false PAIR about the same fact, as are 2 and 3. Spot the pairs, decide each fact once, and the option follows automatically.",
+    "Base names: binary = 2, octal = 8, decimal = 10, hexadecimal = 16. Octal digits run 0-7, which is the quickest way to remember base 8."
+  ],
+  "solution": [
+    "Statement 1: the weighted 4-bit BCD code has weights 8, 4, 2, 1 - there is no '1246-weighted' code. FALSE.",
+    "Statement 2: the octal number system uses eight digits, 0 to 7, and is therefore the base-8 system. TRUE.",
+    "Statement 3: base-2 is the binary system, not octal. FALSE.",
+    "Statement 4: the standard weighted 4-bit BCD code is indeed the 8421 code. TRUE.",
+    "Only statements 2 and 4 are correct.",
+    "Hence option (d) is correct."
+  ]
+},
+"2018-Q74": {
+  "answer": 1, "confidence": "high", "type": "Conceptual",
+  "shortcut": "One bit of the n-bit word carries the sign, leaving n - 1 magnitude bits, so the largest integer is 2^(n-1) - 1.",
+  "tips": [
+    "This is the general form of the 8-bit result 127 = 2^7 - 1; check any general formula against the concrete case you already know.",
+    "Option (a) 2^n - 1 is the UNSIGNED maximum. The word 'integer' in these papers implies a signed representation, so one bit is lost to the sign.",
+    "Options (c) and (d) add rather than subtract 1 and are impossible: the count of non-negative patterns is 2^(n-1), and the largest of them (starting from 0) must be 2^(n-1) - 1.",
+    "Symmetric fact worth pairing: the minimum is -2^(n-1) in 2's complement, which is one further from zero than the maximum."
+  ],
+  "solution": [
+    "An n-bit word provides 2^n distinct bit patterns.",
+    "For signed integers the most significant bit is the sign bit, so 2^(n-1) patterns are available for non-negative values.",
+    "Those non-negative values run from 0 up to 2^(n-1) - 1.",
+    "Hence the maximum permissible integer is 2^(n-1) - 1.",
+    "For n = 8 this gives 127, agreeing with the standard 8-bit result.",
+    "Option (b) is correct."
+  ]
+},
+"2018-Q75": {
+  "answer": 0, "confidence": "high", "type": "Factual",
+  "shortcut": "Right-to-left associativity belongs to the unary operators and the assignment operators (and the conditional ?:). Logical and bit-manipulation operators associate left to right.",
+  "tips": [
+    "Memorise the short right-to-left list: unary (+, -, ++, --, !, ~, *, &, sizeof, casts), assignment (=, +=, -=, ...), and the ternary ?:. Everything else in C is left-to-right.",
+    "Assignment must be right-to-left so that a = b = c works: c is assigned to b first, then b to a.",
+    "Unary operators must be right-to-left so that - -x and !!x parse from the operand outwards.",
+    "Logical && and || are strictly left-to-right - that is exactly what makes short-circuit evaluation well defined, so item 3 cannot be right-associative."
+  ],
+  "solution": [
+    "Associativity determines the grouping order when operators of equal precedence appear together.",
+    "Item 1, unary operators: these bind from the operand outwards, i.e. right to left. TRUE.",
+    "Item 2, assignment operators: a = b = c is grouped as a = (b = c), i.e. right to left. TRUE.",
+    "Item 3, logical operators (&& and ||): these associate left to right, which is what makes short-circuit evaluation deterministic. FALSE.",
+    "Item 4, bit-manipulation operators (&, |, ^, <<, >>): these also associate left to right. FALSE.",
+    "Only items 1 and 2 follow right-to-left precedence, so option (a) is correct."
+  ]
+},
+"2018-Q76": {
+  "answer": 0, "confidence": "high", "type": "Conceptual",
+  "shortcut": "A compiler checks the program against the grammar of the language, so it catches syntax (grammatical) errors. Logical errors are semantically valid code and are invisible to it.",
+  "tips": [
+    "Error taxonomy: syntax/grammatical errors are caught at COMPILE time; run-time errors surface during execution; logical errors are never reported at all - the program simply gives wrong answers.",
+    "A logical error such as writing a + b when a - b was intended is perfectly grammatical, so no compiler could possibly flag it.",
+    "Modern compilers do emit warnings for suspicious constructs, but a warning is not a diagnosis of a logical error - keep to the textbook distinction in this paper.",
+    "This pairs directly with Q78 of the same paper: a program with a logical error compiles AND runs successfully, just incorrectly."
+  ],
+  "solution": [
+    "A compiler performs lexical, syntactic and (limited) semantic analysis of the source program against the formal grammar of the language.",
+    "Violations of that grammar - missing semicolons, unbalanced brackets, undeclared identifiers, type mismatches - are grammatical (syntax) errors, and the compiler reports them.",
+    "A logical error is a mistake in the algorithm: the code is grammatically valid but computes the wrong thing. The compiler has no knowledge of the programmer's intention, so it cannot detect this.",
+    "Therefore a compiler diagnoses grammatical errors only.",
+    "Hence option (a) is correct."
+  ]
+},
+"2018-Q77": {
+  "answer": 1, "confidence": "high", "type": "Definition",
+  "shortcut": "Software permanently held in ROM is firmware - the standard 'software living in hardware' hybrid.",
+  "tips": [
+    "Definition to lock in: firmware = software written into ROM/PROM/EPROM/flash, e.g. BIOS, device controllers, embedded system code.",
+    "The name itself is the mnemonic: it is 'firm' because it sits between soft (easily changed) and hard (fixed) - not as changeable as software, not as immutable as hardware.",
+    "A linker (option c) combines object modules into an executable and an editor (option d) creates source files; both are ordinary utility software stored on disk.",
+    "Modern firmware in flash memory CAN be updated ('flashing the BIOS'), but it is still classified as firmware - the defining feature is where it resides, not absolute immutability."
+  ],
+  "solution": [
+    "Programs stored permanently in read-only memory are not loaded from disk each time; they are built into the machine.",
+    "Such programs are called FIRMWARE - the classic examples being the BIOS, bootstrap loader and the control programs of embedded devices.",
+    "Hardware refers to the physical components themselves, not to a stored program, so option (a) is wrong.",
+    "A linker and an editor are ordinary application/system utilities stored on secondary storage, so options (c) and (d) are wrong.",
+    "Hence the answer is firmware, option (b)."
+  ]
+},
+"2018-Q78": {
+  "answer": 1, "confidence": "high", "type": "Conceptual",
+  "shortcut": "Syntax errors stop compilation and run-time errors abort execution. A logical error breaks neither, so the program runs to completion - just with wrong output.",
+  "tips": [
+    "Ask 'does this error prevent the program from finishing?'. Syntax errors: yes, at compile time. Run-time errors: yes, during execution. Logical errors: no.",
+    "This is the mirror image of Q76 in the same paper - the two items together define the syntax/logic boundary, so answer them as a pair.",
+    "Classic logical errors: an off-by-one loop bound, using < instead of <=, or the wrong formula. The program executes happily and reports a wrong answer.",
+    "'Run successfully' in this question means 'runs to completion', not 'produces the correct result' - read the phrase precisely."
+  ],
+  "solution": [
+    "A syntax error violates the grammar of the language, so the compiler refuses to produce an executable and the program cannot run at all.",
+    "A run-time error - division by zero, an out-of-range array index, a failed memory allocation - causes abnormal termination during execution.",
+    "A logical error is a flaw in the algorithm. The code is syntactically valid and performs no illegal operation, so it compiles and executes to completion.",
+    "The only symptom is that the output is wrong; the run itself is successful.",
+    "Hence a program can run successfully in the presence of a logical error, option (b)."
+  ]
+},
+"2018-Q79": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "Work in powers of two: 16 x 256 x 16 x 512 = 2^4 x 2^8 x 2^4 x 2^9 = 2^25 = 33,554,432 bytes.",
+  "tips": [
+    "Convert every factor to a power of 2 and simply ADD the exponents - 4 + 8 + 4 + 9 = 25 - instead of multiplying four numbers.",
+    "2^25 = 32 MB exactly, since 2^20 = 1 MB and 2^5 = 32. Recognising the answer as a round 32 MB is the fastest confirmation.",
+    "Capacity chain: surfaces x tracks per surface x sectors per track x bytes per sector. Multiply the whole chain; omitting any link is the standard error.",
+    "Only option (c) is a power of two, and disk capacities built from powers of two must be too - that alone identifies the answer."
+  ],
+  "solution": [
+    "Total capacity = (number of surfaces) x (tracks per surface) x (sectors per track) x (bytes per sector).",
+    "Substituting: 16 x 256 x 16 x 512.",
+    "Writing each factor as a power of two: 2^4 x 2^8 x 2^4 x 2^9.",
+    "Adding the exponents: 2^(4+8+4+9) = 2^25.",
+    "2^25 = 33,554,432 bytes, i.e. exactly 32 MB.",
+    "Hence option (c) is correct."
+  ]
+},
+"2018-Q80": {
+  "answer": 1, "confidence": "high", "type": "Factual",
+  "shortcut": "Low-level means machine-dependent and close to the hardware: machine language and assembly language. FORTRAN, COBOL and C are high-level languages.",
+  "tips": [
+    "Only two languages are low-level: machine language (pure binary, level 1) and assembly language (mnemonics, level 2). Everything with English-like statements is high-level.",
+    "C is often called a 'middle-level' language because it allows pointer and bit manipulation, but in UPSC classification it is a HIGH-level language - do not be tempted by option (d).",
+    "Machine language is the only one that needs no translator at all; assembly needs an assembler, and high-level languages need a compiler or interpreter.",
+    "FORTRAN (scientific) and COBOL (business) are the two classic first-generation high-level languages and appear as distractors throughout these papers."
+  ],
+  "solution": [
+    "Low-level languages are machine-dependent and correspond closely to the processor's instruction set: machine language (binary opcodes) and assembly language (symbolic mnemonics).",
+    "High-level languages use English-like statements, are machine-independent, and require a compiler or interpreter for translation.",
+    "FORTRAN and COBOL are classic high-level languages, and C, although it permits low-level operations, is also classified as a high-level language.",
+    "Machine language consists of binary instructions executed directly by the CPU and needs no translation.",
+    "Hence machine language is the low-level language here, option (b)."
+  ]
+}
+}

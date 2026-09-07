@@ -1,0 +1,360 @@
+{
+"2019-Q41": {
+  "answer": 1, "confidence": "medium", "type": "Definition",
+  "shortcut": "The address bus CARRIES addresses and the data bus CARRIES data; it is the control bus that issues the read/write and timing signals which MANAGE those transfers.",
+  "tips": [
+    "Split the system bus into its three jobs: address bus = where, data bus = what, control bus = when and how. The verb in the question tells you which one is wanted.",
+    "The word 'manages' is the discriminator here. A bus that merely carries something is not managing it - management means control signals.",
+    "The address bus is unidirectional (CPU to memory) while the data bus is bidirectional; the control bus carries individual signals in both directions.",
+    "Bus widths matter elsewhere: an n-line address bus addresses 2^n locations, and the data-bus width equals the word size."
+  ],
+  "solution": [
+    "A computer's system bus has three functional parts.",
+    "The address bus carries the address of the memory location or I/O port being accessed; it transports addresses but does not manage anything.",
+    "The data bus carries the actual data being transferred between components.",
+    "The control bus carries the control and timing signals - memory read, memory write, I/O read, I/O write, bus request, bus grant, interrupt acknowledge - which coordinate and manage the transfer of data and addresses among all components.",
+    "Since the question asks which bus MANAGES the transfers, the answer is the control bus.",
+    "Option (b) is correct."
+  ]
+},
+"2019-Q42": {
+  "answer": 3, "confidence": "high", "type": "Factual",
+  "shortcut": "Only BCD is positionally weighted (weights 8, 4, 2, 1). Gray, ASCII and Excess-3 are all non-weighted codes.",
+  "tips": [
+    "Weighted codes: 8421 (BCD), 2421 (Aiken), 5211, 84-2-1. Non-weighted codes: Gray, Excess-3, ASCII, EBCDIC.",
+    "Excess-3 is derived FROM 8421 BCD by adding 3, but the shift destroys positional weighting - a favourite trap because it looks like BCD.",
+    "Gray code is designed so that successive values differ in exactly one bit; that property is incompatible with fixed positional weights.",
+    "ASCII is an alphanumeric character code, not a numeric code at all, so weighting is meaningless for it."
+  ],
+  "solution": [
+    "A positional weighted code assigns a fixed weight to each bit position, so the decimal value is the weighted sum of the bits.",
+    "Item 1, Gray code: consecutive numbers differ in a single bit and no fixed weights can be assigned. NOT weighted.",
+    "Item 2, BCD (8421) code: the four bit positions carry weights 8, 4, 2 and 1, and the digit is their weighted sum. WEIGHTED.",
+    "Item 3, ASCII: a 7-bit alphanumeric character code with no numeric weighting. NOT weighted.",
+    "Item 4, Excess-3 code: formed by adding 3 to the 8421 BCD value, which destroys the positional weighting. NOT weighted.",
+    "Only item 2 is a positional weighted code, option (d)."
+  ]
+},
+"2019-Q43": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "217 = 12 x 18 + 1, so the quotient is 18 and the remainder 1. In binary, 18 = 10010 and 1 = 0001.",
+  "tips": [
+    "Do the division in DECIMAL first, then convert both results. Converting to binary before dividing wastes time and invites errors.",
+    "18 = 16 + 2 = 2^4 + 2^1 gives 10010 directly; recognising the powers of two beats repeated division by 2.",
+    "Check by reconstruction: 12 x 18 = 216, plus the remainder 1, gives 217 exactly.",
+    "Option (d) has remainder 0010 = 2 and option (a) has quotient 11010 = 26 - both fail the reconstruction test at once."
+  ],
+  "solution": [
+    "Divide in decimal: 217 / 12 = 18 with a remainder, since 12 x 18 = 216 and 217 - 216 = 1.",
+    "So the quotient is 18 and the remainder is 1.",
+    "Convert the quotient: 18 = 16 + 2 = 2^4 + 2^1, so 18 in binary is 10010.",
+    "Convert the remainder: 1 in binary, written to four places, is 0001.",
+    "Hence the quotient and remainder are 10010 and 0001.",
+    "Option (c) is correct."
+  ]
+},
+"2019-Q44": {
+  "answer": 2, "confidence": "high", "type": "Definition",
+  "shortcut": "Combining the separately compiled object modules into one executable program is precisely the linker's job.",
+  "tips": [
+    "Tool chain in order: editor writes source, compiler/assembler produces object code, LINKER combines object modules and libraries into an executable, loader places it in memory, debugger helps find errors.",
+    "The linker works on OBJECT code; the loader works on the finished EXECUTABLE. That distinction settles the choice between options (c) and (d).",
+    "A linker also resolves external references - a call in one module to a function defined in another - which is exactly the 'single program' aspect the question describes.",
+    "Static linking embeds library code at build time; dynamic linking defers it to load time, which is why shared libraries (DLLs, .so files) exist."
+  ],
+  "solution": [
+    "Language translators (compilers and assemblers) convert each source module separately into object code, leaving unresolved references between modules.",
+    "The LINKER takes all these object modules, together with any required library routines, resolves the cross-references between them, and produces a single executable program.",
+    "An editor is used only to create and modify source text.",
+    "A debugger assists in locating and correcting run-time and logical errors after linking.",
+    "A loader loads the already-linked executable into main memory for execution; it does not combine object modules.",
+    "Hence the answer is the linker, option (c)."
+  ]
+},
+"2019-Q45": {
+  "answer": 2, "confidence": "medium", "type": "Conceptual",
+  "shortcut": "Antivirus programs maintain and protect the system rather than doing end-user work, so they are classed as UTILITY software - item 3 only.",
+  "tips": [
+    "Three-way split: system software runs the machine (OS, device drivers), utility software maintains and protects it (antivirus, disk defragmenter, backup, compression), application software does the user's work (word processor, spreadsheet).",
+    "A debugger (item 4) is a programming/development tool, not a security product - it is never a classification for antivirus.",
+    "Utilities are often described as a SUBSET of system software, which is why option (d) looks tempting; the standard single-best classification asked for here is utility software.",
+    "Anchor examples of utilities: antivirus, disk cleanup, defragmenter, file compression, backup - all housekeeping tools."
+  ],
+  "solution": [
+    "Software is conventionally classified as system software, utility software, or application software.",
+    "System software (the operating system, device drivers, language translators) manages the hardware and provides the platform on which other programs run.",
+    "Utility software performs maintenance and protection tasks for the computer system - examples are antivirus programs, disk defragmenters, backup tools and file compressors.",
+    "Application software performs tasks directly for the end user, such as word processing or spreadsheets.",
+    "An antivirus program protects and maintains the system rather than performing end-user work, so it is utility software; a debugger is a program-development tool and is unrelated.",
+    "Hence only item 3 applies, option (c)."
+  ]
+},
+"2019-Q46": {
+  "answer": 3, "confidence": "high", "type": "Conceptual",
+  "shortcut": "Network protocols DO identify the physical connection and DO format messages, so statements 1 and 3 - both phrased as 'cannot' - are the incorrect ones.",
+  "tips": [
+    "Read the question direction: it asks which statements are NOT correct. The two negatively phrased items are the natural suspects.",
+    "The standard list of protocol functions: physical connection identification, message formatting (syntax and semantics), error detection and correction, sequencing, flow control, and connection initiation and termination.",
+    "Statements 2 and 4 assert genuine protocol functions and are therefore correct, so they cannot be part of the answer - that eliminates options (a) and (c) immediately.",
+    "A protocol is defined as a set of rules governing syntax, semantics and timing of communication; message formatting is literally the 'syntax' component."
+  ],
+  "solution": [
+    "The recognised functions of a network protocol include identifying the type of physical connection, formatting messages, detecting and correcting errors, sequencing, flow control, and initiating and terminating a connection.",
+    "Statement 1 claims that identification of the type of physical connection CANNOT be done by a network protocol. This contradicts a genuine protocol function, so statement 1 is NOT correct.",
+    "Statement 2 says error detection and correction are done by network protocols - this is a genuine function, so statement 2 IS correct.",
+    "Statement 3 claims message formatting CANNOT be done by a network protocol. Message formatting is the syntax function of a protocol, so statement 3 is NOT correct.",
+    "Statement 4 says network protocols handle initiation and termination - a genuine function, so statement 4 IS correct.",
+    "The statements that are not correct are 1 and 3, option (d)."
+  ]
+},
+"2019-Q47": {
+  "answer": 3, "confidence": "high", "type": "Definition",
+  "shortcut": "Software that secretly gathers information about a person or organisation is spyware, by definition.",
+  "tips": [
+    "Malware taxonomy: virus attaches to a host file and replicates; worm spreads by itself over a network; trojan disguises itself as useful software; SPYWARE secretly collects information; adware displays unwanted advertisements; ransomware encrypts and demands payment.",
+    "'Without their knowledge' is the signature phrase of spyware - the covert data collection is the defining property.",
+    "Adware (option b) may also track behaviour, but its defining purpose is displaying advertisements, so it is not the best answer.",
+    "Firmware (option a) is not malware at all - it is legitimate software stored in ROM, included purely as a distractor."
+  ],
+  "solution": [
+    "Spyware is malicious software installed on a computer that covertly monitors activity and collects information - keystrokes, browsing habits, credentials, personal or organisational data - and transmits it to a third party without the user's knowledge or consent.",
+    "Firmware is legitimate software permanently stored in ROM, such as the BIOS, and has nothing to do with covert data collection.",
+    "Adware displays unsolicited advertisements; although some variants track behaviour, its defining purpose is advertising, not covert information gathering.",
+    "A virus is self-replicating code that attaches itself to other programs and is defined by its replication, not by data theft.",
+    "Hence the correct answer is spyware, option (d)."
+  ]
+},
+"2019-Q48": {
+  "answer": null, "confidence": "source-defect", "type": "Conceptual",
+  "issue": "SOURCE DEFECT - the four answer options for this item are absent from the source scan; the page break in the original booklet falls immediately after statement 3. The question stem is reproduced exactly as it appears in the source. No options have been invented, so this item is displayed for study but excluded from scoring.",
+  "shortcut": "AI-derived: statements 1 and 2 are true of subroutines, statement 3 is false - a subroutine call pushes the return address (and usually its local frame) onto the STACK, so stack use is required.",
+  "tips": [
+    "A subroutine is stored once and called from many places, which is exactly why it reduces the length of code - statement 1 is true.",
+    "The call mechanism is: push the return address onto the stack, jump to the subroutine, execute, then pop the return address and return. Stack use is intrinsic, so statement 3 is false.",
+    "Recursion is possible only because of that stack - each nested call gets its own activation record.",
+    "Distinguish a subroutine (control transfers and returns) from a MACRO (code is textually expanded in place, so no stack and no call overhead)."
+  ],
+  "solution": [
+    "Statement 1: a subroutine is written once and invoked wherever needed, so repeated code is replaced by a single definition plus short call instructions. This reduces the length of the code. TRUE.",
+    "Statement 2: the subroutine body resides at a separate location in memory and control is transferred to it by a call instruction, returning afterwards to the caller. TRUE.",
+    "Statement 3: executing a subroutine call requires the return address (and typically the parameters and local variables) to be pushed onto the stack so that control can return correctly and so that nesting and recursion are possible. A subroutine therefore DOES require the stack. FALSE.",
+    "On this analysis the correct statements are 1 and 2 only.",
+    "However, the printed answer options are missing from the source, so no option letter can be selected and the item is excluded from scoring."
+  ]
+},
+"2019-Q49": {
+  "answer": 1, "confidence": "high", "type": "Conceptual",
+  "shortcut": "Linux is free and open source, with no licence fees and freely modifiable source, so it minimises both development and maintenance cost.",
+  "tips": [
+    "Cost drivers for an OS: licence fees, tooling costs, and the freedom to modify. Linux scores best on all three because it is open source under the GPL.",
+    "Installing BOTH Windows and Linux (option d) would raise cost, not reduce it - the extra licence and the burden of maintaining two platforms.",
+    "Linux also ships with free development tool chains (GCC, make, debuggers, editors), whereas equivalent proprietary tooling is normally paid for.",
+    "Mac requires Apple hardware in addition to the OS, making it the most expensive of the listed options."
+  ],
+  "solution": [
+    "The question asks which operating system minimises the cost of DEVELOPING and MAINTAINING software.",
+    "Windows is proprietary and requires paid licences for the operating system and often for its development tools.",
+    "Mac OS is proprietary and additionally tied to Apple hardware, raising the total cost further.",
+    "Linux is free and open source: there are no licence fees, the source code may be studied and modified, and a complete free development tool chain (compilers, debuggers, build tools) is included.",
+    "Installing both Windows and Linux would incur the Windows costs as well as the overhead of supporting two platforms, so it cannot be the cheapest option.",
+    "Hence Linux only, option (b)."
+  ]
+},
+"2019-Q50": {
+  "answer": 1, "confidence": "high", "type": "Factual",
+  "shortcut": "SMTP - Simple Mail Transfer Protocol - is the protocol used to SEND email. POP is for retrieving it.",
+  "tips": [
+    "Direction is the discriminator: SMTP pushes mail OUT, while POP3 and IMAP pull mail IN. The question says 'send', so SMTP.",
+    "TCP and UDP are transport-layer protocols that carry many kinds of traffic; they are not email protocols, so options (a) and (d) are out of category.",
+    "Port numbers worth remembering: SMTP 25, POP3 110, IMAP 143, HTTP 80, HTTPS 443, FTP 21, Telnet 23, DNS 53.",
+    "IMAP differs from POP3 by leaving messages on the server and synchronising across devices; both are retrieval protocols."
+  ],
+  "solution": [
+    "Email uses different protocols for sending and for retrieving messages.",
+    "SMTP (Simple Mail Transfer Protocol) is the application-layer protocol used to transfer outgoing mail from a client to a mail server and between mail servers.",
+    "POP (Post Office Protocol) is used by a client to RETRIEVE messages from a mail server, not to send them.",
+    "TCP and UDP are transport-layer protocols that provide connection-oriented and connectionless delivery respectively; they carry email traffic but are not email protocols.",
+    "Hence the protocol used to send email messages is SMTP, option (b)."
+  ]
+},
+"2019-Q51": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "Four values are known, so set the fourth difference to zero: y4 - 4y3 + 6y2 - 4y1 + y0 = 0 gives 67.4 - 4k + 324.6 - 196.8 + 45 = 0, so 4k = 240.2 and k = 60.05.",
+  "tips": [
+    "Missing-value technique: with one gap among five equally spaced points, assume a cubic and impose Delta^4 y0 = 0. The coefficients are 1, -4, 6, -4, 1.",
+    "Collect the three known contributions first: 67.4 + 324.6 - 196.8 + 45 = 240.2, then divide by 4. Doing the arithmetic in one sweep avoids sign errors.",
+    "The four options differ by exactly 1.00, so a single arithmetic slip moves you a whole option - carry the decimals carefully.",
+    "Plausibility: the y-values rise by roughly 4 to 6 per step, so a value near 60 between 54.1 and 67.4 is entirely reasonable."
+  ],
+  "solution": [
+    "The tabulated values at x = 2, 3, 4, 5, 6 are y0 = 45, y1 = 49.2, y2 = 54.1, y3 = k, y4 = 67.4, equally spaced with h = 1.",
+    "Only four values are known, so the standard assumption is that y is a cubic in x, whence the fourth difference vanishes.",
+    "Delta^4 y0 = y4 - 4y3 + 6y2 - 4y1 + y0 = 0.",
+    "Substituting: 67.4 - 4k + 6(54.1) - 4(49.2) + 45 = 0, i.e. 67.4 - 4k + 324.6 - 196.8 + 45 = 0.",
+    "Collecting the constants: 240.2 - 4k = 0, so k = 60.05.",
+    "Hence option (a) is correct."
+  ]
+},
+"2019-Q52": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "The product has degree 1 + 2 + 3 + 4 = 10 with leading coefficient (-a)(-b)(-c)(-d) = abcd. For h = 1, Delta^n of a degree-n polynomial is (leading coefficient) x n!, so the answer is abcd x 10!.",
+  "tips": [
+    "Key identity: for h = 1, Delta^n [a_n x^n + lower terms] = a_n . n!. All lower-degree terms are annihilated.",
+    "Get the degree by ADDING the degrees of the factors (1+2+3+4 = 10) - do not multiply them out.",
+    "The leading coefficient is the product of the leading coefficients: (-a)(-b)(-c)(-d) = +abcd. Four negatives give a positive, which is why no minus sign appears.",
+    "If the operator order had exceeded the degree the answer would be 0 (option a); here they match exactly, which is what makes the factorial appear."
+  ],
+  "solution": [
+    "Expand the degrees: (1 - ax) has degree 1, (1 - bx^2) degree 2, (1 - cx^3) degree 3, (1 - dx^4) degree 4.",
+    "The product is therefore a polynomial of degree 1 + 2 + 3 + 4 = 10.",
+    "Its leading term comes from multiplying the highest-degree term of each factor: (-ax)(-bx^2)(-cx^3)(-dx^4) = abcd x^10, so the leading coefficient is abcd.",
+    "For an interval of differencing h = 1, the standard result is Delta^n(x^n) = n!, and all terms of degree below n vanish under Delta^n.",
+    "Hence Delta^10 of the product equals abcd x 10!.",
+    "Option (c) is correct."
+  ]
+},
+"2019-Q53": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "Delta^n 0^m = 0 whenever n > m, so Delta^5 0^3 = 0. And Delta^3 0^5 = 3! S(5,3) = 6 x 25 = 150.",
+  "tips": [
+    "First rule: Delta^n 0^m vanishes when n > m, because 0^m behaves like a polynomial of degree m. This kills half the item instantly.",
+    "Second rule: Delta^n 0^m = n! S(m, n) with S the Stirling number of the second kind. The values you need most are S(5,2) = 15, S(5,3) = 25, S(5,4) = 10.",
+    "Direct check for Delta^3 0^5: from x^5 at x = 0,1,2,3 the values are 0, 1, 32, 243; first differences 1, 31, 211; second 30, 180; third 150.",
+    "Since Delta^5 0^3 = 0, options (b) and (d) fall immediately, and only the second value has to be computed."
+  ],
+  "solution": [
+    "The symbol Delta^n 0^m denotes the nth forward difference of x^m evaluated at x = 0 with h = 1.",
+    "Since x^3 is a polynomial of degree 3, its fifth difference is identically zero: Delta^5 0^3 = 0.",
+    "For Delta^3 0^5, tabulate x^5 at x = 0, 1, 2, 3: values 0, 1, 32, 243.",
+    "First differences: 1, 31, 211. Second differences: 30, 180. Third difference: 180 - 30 = 150.",
+    "This agrees with the formula Delta^n 0^m = n! S(m,n): 3! S(5,3) = 6 x 25 = 150.",
+    "Hence the values are 0 and 150, option (c)."
+  ]
+},
+"2019-Q54": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "The sum of second differences telescopes: sum over k = 0 to 4 of Delta^2 f(k) = Delta f(5) - Delta f(0) = (50 - 20) - (61 - 41) = 30 - 20 = 10.",
+  "tips": [
+    "Telescoping rule: the sum of Delta g(k) from k = a to b equals g(b+1) - g(a). Apply it with g = Delta f to collapse a sum of second differences into two first differences.",
+    "This is exactly why only f(0), f(1), f(5) and f(6) are supplied - the intermediate values cancel, so option (d) 'cannot be determined' is the planted trap.",
+    "Delta f(5) needs f(6) and f(5); Delta f(0) needs f(1) and f(0). Identify which four values you need BEFORE worrying about the missing ones.",
+    "The same telescoping idea underlies the 'summation of series whose general term is a first difference' topic in the syllabus - one technique, two exam applications."
+  ],
+  "solution": [
+    "By definition Delta^2 f(k) = Delta[Delta f(k)], so the sum in question is the sum of the first differences of the function g(k) = Delta f(k).",
+    "The sum of Delta g(k) for k = 0 to 4 telescopes to g(5) - g(0).",
+    "Hence S = Delta f(5) - Delta f(0).",
+    "Delta f(5) = f(6) - f(5) = 50 - 20 = 30.",
+    "Delta f(0) = f(1) - f(0) = 61 - 41 = 20.",
+    "Therefore S = 30 - 20 = 10, option (b)."
+  ]
+},
+"2019-Q55": {
+  "answer": 3, "confidence": "high", "type": "Numerical",
+  "shortcut": "With h = 1, x^(2) = x^2 - x and x^(3) = x^3 - 3x^2 + 2x. Matching coefficients from the top: x^3 gives A = 1, x^2 gives B = 4, x gives C = 3, constant gives D = 1.",
+  "tips": [
+    "Work downwards from the highest power: the leading coefficient transfers unchanged, then each lower coefficient is corrected for the terms the factorial polynomials contribute.",
+    "The constant is read off instantly: every factorial polynomial vanishes at x = 0, so D = f(0) = 1.",
+    "Fast check at x = 1: x^(2) = 0 and x^(3) = 0, so the expression reduces to C + D. Since f(1) = 1+1+1+1 = 4 and D = 1, we get C = 3 in one line.",
+    "Alternatively build the difference table of f at x = 0,1,2,3 (values 1, 4, 15, 40): the leading differences 1, 3, 8, 6 give the coefficients 1, 3, 4, 1 in the order D, C, B/1!, ... - a useful cross-check."
+  ],
+  "solution": [
+    "With interval of differencing h = 1, x^(1) = x, x^(2) = x(x-1) = x^2 - x, and x^(3) = x(x-1)(x-2) = x^3 - 3x^2 + 2x.",
+    "Write 1 + x + x^2 + x^3 = A x^(3) + B x^(2) + C x^(1) + D.",
+    "Coefficient of x^3: A = 1.",
+    "Coefficient of x^2: -3A + B = 1, so B = 1 + 3 = 4.",
+    "Coefficient of x: 2A - B + C = 1, i.e. 2 - 4 + C = 1, so C = 3. Constant: D = 1.",
+    "Hence 1 + x + x^2 + x^3 = x^(3) + 4x^(2) + 3x^(1) + 1, option (d)."
+  ]
+},
+"2019-Q56": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "A cubic has zero fourth differences. Applying Delta^4 = 0 at x = -2 and at x = -1 gives m2 - 4m1 = 39 and m1 - 4m2 = -81; solving, m1 = -5 and m2 = 19.",
+  "tips": [
+    "Two unknowns need two equations, so write the fourth-difference condition at TWO starting points. The coefficient pattern 1, -4, 6, -4, 1 is the same each time.",
+    "Verify at the end by building the table: 45 values -33, -5, 5, 9, 19, 47 give first differences 28, 10, 4, 10, 28 and third differences 12, 12, 12 - constant, as a cubic demands.",
+    "The value f(0) = 5 is the constant term and f(1) - f(0) = 4 is a strong anchor; a candidate value of m1 = -10 would make the first differences 23, 15, 4, ... which cannot come from a cubic with constant third differences.",
+    "Solve the pair by substitution: m2 = 4m1 + 39 into m1 - 4m2 + 81 = 0 gives -15 m1 = 75, so m1 = -5."
+  ],
+  "solution": [
+    "For a third-degree polynomial the fourth forward difference vanishes identically, with coefficient pattern 1, -4, 6, -4, 1.",
+    "Applying it at x = -2: f(2) - 4f(1) + 6f(0) - 4f(-1) + f(-2) = 0, i.e. m2 - 36 + 30 - 4m1 - 33 = 0, so m2 - 4m1 = 39.",
+    "Applying it at x = -1: f(3) - 4f(2) + 6f(1) - 4f(0) + f(-1) = 0, i.e. 47 - 4m2 + 54 - 20 + m1 = 0, so m1 - 4m2 = -81.",
+    "From the first equation m2 = 4m1 + 39; substituting into the second gives m1 - 16m1 - 156 = -81, i.e. -15m1 = 75, so m1 = -5.",
+    "Then m2 = 4(-5) + 39 = 19.",
+    "Check: the values -33, -5, 5, 9, 19, 47 give first differences 28, 10, 4, 10, 28; second differences -18, -6, 6, 18; third differences 12, 12, 12 - constant, confirming a cubic. Option (c) is correct."
+  ]
+},
+"2019-Q57": {
+  "answer": 2, "confidence": "high", "type": "Theoretical",
+  "shortcut": "Gauss's forward formula uses Delta y0, Delta^2 y(-1), Delta^3 y(-1), Delta^4 y(-2), ... - the ODD differences lie below the central line and the EVEN differences lie on it.",
+  "tips": [
+    "Write the two formulas as difference paths: Gauss FORWARD zig-zags downward first (odd differences below the central line); Gauss BACKWARD zig-zags upward first (odd differences above it). Even differences sit on the central line in both.",
+    "Gauss forward is used when the interpolation point lies just AFTER x0 (0 < p < 1); Gauss backward when it lies just before.",
+    "Stirling's formula is the mean of the two Gauss formulas and is best for |p| < 0.25; Bessel's uses the mean of the two central lines and is best near p = 0.5. Knowing which to choose is itself examinable.",
+    "Options (a) and (b) put odd differences ON the central line, which is impossible - the central line of a difference table can only carry even-order differences."
+  ],
+  "solution": [
+    "Set the central value y0 in a difference table with y(-2), y(-1), y0, y1, y2 and their differences.",
+    "Gauss's forward interpolation formula is y_p = y0 + p Delta y0 + [p(p-1)/2!] Delta^2 y(-1) + [(p+1)p(p-1)/3!] Delta^3 y(-1) + [(p+1)p(p-1)(p-2)/4!] Delta^4 y(-2) + ...",
+    "The differences used are Delta y0, Delta^2 y(-1), Delta^3 y(-1), Delta^4 y(-2), ...",
+    "In the difference table, Delta y0 and Delta^3 y(-1) - the ODD-order differences - lie immediately BELOW the horizontal line through y0.",
+    "The EVEN-order differences Delta^2 y(-1) and Delta^4 y(-2) lie ON that central line.",
+    "Hence the formula involves odd differences below the central line and even differences on the central line, option (c)."
+  ]
+},
+"2019-Q58": {
+  "answer": 0, "confidence": "high", "type": "Conceptual",
+  "shortcut": "Divided differences of order higher than the degree of the polynomial are identically zero. Here the polynomial is quadratic and the difference is of order 3, so the answer is 0.",
+  "tips": [
+    "Two rules cover every such item: the nth divided difference of a degree-n polynomial is its leading coefficient (a constant), and any HIGHER-order divided difference is zero.",
+    "Degree 2 versus order 3 - just compare the two numbers before doing any arithmetic.",
+    "Option (c) 2 is the leading coefficient, i.e. the answer to the SECOND divided difference. Read the order in the question carefully.",
+    "The nodes 0, 1, 3, 6 are deliberately unequal to make the problem look laborious; the result is independent of the nodes."
+  ],
+  "solution": [
+    "The polynomial f(x) = 2x^2 + 1 has degree 2.",
+    "The second divided difference of a quadratic equals its leading coefficient, here 2, and is the same for every choice of nodes.",
+    "Since the second divided difference is a constant, its further divided difference - the third divided difference - is zero.",
+    "In general the kth divided difference of a polynomial of degree n is identically zero whenever k > n.",
+    "Here k = 3 > n = 2, so the third divided difference over the points 0, 1, 3, 6 is 0.",
+    "Hence option (a) is correct."
+  ]
+},
+"2019-Q59": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "Newton's divided differences give f(x) = 2x^3 - 10x^2 + 18, so f'(x) = 6x^2 - 20x and f'(2) = 24 - 40 = -16.",
+  "tips": [
+    "Build the interpolating cubic explicitly - it is far safer than differentiating Lagrange basis polynomials one by one.",
+    "Divided-difference ladder: 18, then -8, -14, 36; then -2, 10; then 2. The last entry, 2, is the leading coefficient of the cubic.",
+    "Always verify the polynomial at all four data points before differentiating: 2x^3 - 10x^2 + 18 gives 18, 10, -18, 90 exactly.",
+    "The x-term vanishes here, which is a pleasant surprise worth checking twice; f'(x) = 6x^2 - 20x then makes the evaluation at x = 2 trivial."
+  ],
+  "solution": [
+    "Data: (0,18), (1,10), (3,-18), (6,90). Form divided differences.",
+    "First order: f[0,1] = (10-18)/1 = -8; f[1,3] = (-18-10)/2 = -14; f[3,6] = (90+18)/3 = 36.",
+    "Second order: f[0,1,3] = (-14+8)/3 = -2; f[1,3,6] = (36+14)/5 = 10.",
+    "Third order: f[0,1,3,6] = (10+2)/6 = 2.",
+    "Newton's form: f(x) = 18 - 8x - 2x(x-1) + 2x(x-1)(x-3) = 2x^3 - 10x^2 + 18. (Check: f(0)=18, f(1)=10, f(3)=-18, f(6)=90.)",
+    "Differentiating, f'(x) = 6x^2 - 20x, so f'(2) = 24 - 40 = -16, option (a)."
+  ]
+},
+"2019-Q60": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "Newton forward gives 3000 = 1754 + 894p + 11p(p-1), i.e. p = (1246 - 11p^2)/883. Iterating from p = 1.411 converges to p = 1.3871, so x = 10 + 5(1.3871) = 16.93.",
+  "tips": [
+    "Inverse interpolation by iteration: isolate the LINEAR p on the left and push the quadratic term to the right, then iterate p_(k+1) = (1246 - 11 p_k^2)/883. Convergence is very fast.",
+    "Compute the differences first: Delta y0 = 894 and Delta^2 y0 = 916 - 894 = 22, so the second-difference term is (22/2)p(p-1) = 11p(p-1).",
+    "The first guess is the linear estimate p = 1246/894 = 1.394 (or 1246/883 = 1.411); either converges to 1.387 within two iterations.",
+    "Finish with x = x0 + ph = 10 + 5p. Forgetting to multiply by h = 5 gives about 11.4 and no matching option."
+  ],
+  "solution": [
+    "With x0 = 10 and h = 5, the values are y0 = 1754, y1 = 2648, y2 = 3564, so Delta y0 = 894 and Delta^2 y0 = 916 - 894 = 22.",
+    "Newton's forward formula: y = y0 + p Delta y0 + [p(p-1)/2] Delta^2 y0 = 1754 + 894p + 11p(p-1).",
+    "Setting y = 3000: 1246 = 894p + 11p^2 - 11p = 883p + 11p^2.",
+    "Rearranged for iteration: p = (1246 - 11p^2)/883.",
+    "Start with p = 1246/883 = 1.4111; then p = (1246 - 11(1.9912))/883 = 1.3863; then p = (1246 - 11(1.9218))/883 = 1.3872; then 1.3871. The iteration has converged.",
+    "Therefore x = x0 + ph = 10 + 5(1.3871) = 16.936, i.e. about 16.93, option (c)."
+  ]
+}
+}

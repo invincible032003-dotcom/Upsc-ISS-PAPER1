@@ -1,0 +1,360 @@
+{
+"2019-Q1": {
+  "answer": 1, "confidence": "medium", "type": "Conceptual",
+  "shortcut": "Match each scale to its recommended summary: nominal - mode, bar/pie; ordinal - median; interval/ratio - mean and SD, histogram. Statement 1 pairs the median with the RATIO scale, where the mean is recommended, so it fails. Statements 2 and 3 are correct.",
+  "tips": [
+    "Learn the scale-to-statistic table once: nominal gives mode, frequency, bar and pie; ordinal gives median, quartiles; interval and ratio give mean, SD and histogram.",
+    "The permissible/recommended distinction is what the examiner exploits. The median is PERMISSIBLE at ratio level but the mean is RECOMMENDED there, because the ratio scale carries more information.",
+    "Pie charts require categories that partition a whole, so they suit nominal data; histograms require a continuous numeric axis, so they suit interval/ratio data. Never draw a histogram of nominal categories.",
+    "Standard deviation needs equal intervals to be meaningful, which is exactly why it is recommended from the interval scale upwards and not for ordinal data."
+  ],
+  "solution": [
+    "Statement 1: the median is the recommended measure of location for ORDINAL data, but for ratio-scale data the arithmetic mean is recommended because the scale supports addition and ratios. Pairing the median with the ratio scale is therefore not the recommended choice. FALSE.",
+    "Statement 2: nominal data consist of unordered categories with frequencies; the standard displays are bar diagrams and pie diagrams. TRUE.",
+    "Statement 3: interval-scale data are numeric with equal intervals, so a histogram is the appropriate graph and the standard deviation is the appropriate measure of variability. TRUE.",
+    "Only statements 2 and 3 are correct.",
+    "Hence option (b) is correct."
+  ]
+},
+"2019-Q2": {
+  "answer": 3, "confidence": "high", "type": "Theoretical",
+  "shortcut": "X takes only 0 and 1, so X^r = X for every r and E(X^r) = P(X=1) = a3 + a4. XY takes the values 0, -1, +1, so E(XY) = a4 - a3 and (XY)^(2n) is 1 exactly when X = 1, giving a3 + a4. All three hold.",
+  "tips": [
+    "Indicator trick: a variable taking only 0 and 1 satisfies X^r = X for all r >= 1, so all its moments coincide with its mean. That settles statement 1 with no algebra.",
+    "Build the value table of XY before touching statement 3: XY = 0 on the whole X = 0 row, XY = -1 with probability a3 and XY = +1 with probability a4.",
+    "An EVEN power kills the sign, so (XY)^(2n) equals 1 whenever XY is non-zero. Hence its expectation is P(XY not 0) = a3 + a4, the same as statement 1's answer - a nice internal consistency check.",
+    "When several statements about the same tiny table all reduce to the row/column sums, expect 'all of them' - but verify the one with the sign, here statement 2."
+  ],
+  "solution": [
+    "The table gives P(X=0, Y=-1) = a1, P(X=0, Y=1) = a2, P(X=1, Y=-1) = a3, P(X=1, Y=1) = a4.",
+    "Statement 1: X takes only the values 0 and 1, so X^r = X for every r >= 1. Hence E(X^r) = E(X) = 0(a1 + a2) + 1(a3 + a4) = a3 + a4. TRUE.",
+    "Statement 2: E(XY) = (0)(-1)a1 + (0)(1)a2 + (1)(-1)a3 + (1)(1)a4 = -a3 + a4 = a4 - a3. TRUE.",
+    "Statement 3: the product XY takes the value 0 with probability a1 + a2, the value -1 with probability a3, and +1 with probability a4.",
+    "Raising to the even power 2n maps 0 to 0 and both -1 and +1 to 1, so E[(XY)^(2n)] = a3 + a4 for every n. TRUE.",
+    "All three statements are correct, option (d)."
+  ]
+},
+"2019-Q3": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "Different units force a RELATIVE comparison. CV(height) = 6.5/115 = 5.65% and CV(weight) = 2.7/23 = 11.74%. The ratio is 11.74/5.65 = 2.08, so weight is about twice as variable.",
+  "tips": [
+    "Whenever two variables have different units (cm and kg), never compare standard deviations directly - compute the coefficient of variation, CV = s/mean.",
+    "Estimate the ratio mentally: 2.7/23 is a little over 11% while 6.5/115 is a little under 6%. Roughly 11 against 6 is about 2, which selects option (b) without a calculator.",
+    "The CV is dimensionless precisely so that such comparisons are legitimate; it is also the reason the answer is a pure number with no units.",
+    "Options (c) and (d) invert the comparison. Fix in your mind which variable is the SUBJECT of the sentence ('variable in body weight') before choosing."
+  ],
+  "solution": [
+    "Because height is in centimetres and weight in kilograms, the two standard deviations cannot be compared directly; we use the coefficient of variation CV = (s/mean) x 100%.",
+    "For body height: CV1 = (6.5/115) x 100 = 5.65%.",
+    "For body weight: CV2 = (2.7/23) x 100 = 11.74%.",
+    "The ratio CV2/CV1 = 11.74/5.65 = 2.08, which is approximately 2.",
+    "Hence the boys are about twice as variable in body weight as in body height.",
+    "Option (b) is correct."
+  ]
+},
+"2019-Q4": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "Under independence the expected (AB) is (A)(B)/N = 50 x 60/100 = 30. The observed 40 exceeds 30, so A and B are positively associated.",
+  "tips": [
+    "The whole test is one comparison: observed (AB) against (A)(B)/N. Greater means positive association, smaller means negative, equal means independence.",
+    "Compute (A)(B)/N first and keep it as a single number - here 30 - then a one-glance comparison with 40 finishes the item.",
+    "Yule's Q would confirm the sign: the 2x2 table is (AB)=40, (A beta)=10, (alpha B)=20, (alpha beta)=30, so ad - bc = 1200 - 200 > 0, again positive.",
+    "Option (d) is a trap for candidates who think a 2x2 table is insufficient - it is entirely sufficient, since the four cell frequencies follow from (A), (B), (AB) and N."
+  ],
+  "solution": [
+    "For two attributes A and B, independence means (AB) = (A)(B)/N.",
+    "Here (A) = 50, (B) = 60 and N = 100, so the expected frequency under independence is (50)(60)/100 = 30.",
+    "The observed frequency is (AB) = 40, which is greater than 30.",
+    "Since the observed joint frequency exceeds the frequency expected under independence, the attributes are positively associated.",
+    "As a check, the full table is (AB) = 40, (A beta) = 10, (alpha B) = 20, (alpha beta) = 30, giving Yule's Q = (1200 - 200)/(1200 + 200) = 5/7 > 0.",
+    "Hence option (b) is correct."
+  ]
+},
+"2019-Q5": {
+  "answer": 3, "confidence": "high", "type": "Numerical",
+  "shortcut": "b_xy = 4 from the first line and b_yx = k from the second. Since r^2 = b_xy b_yx must lie in [0,1], we need 0 <= 4k <= 1, i.e. 0 <= k <= 1/4.",
+  "tips": [
+    "Read the regression coefficients straight off: in x = 4y + 5 the coefficient of y is b_xy = 4; in y = kx + 4 the coefficient of x is b_yx = k.",
+    "The master constraint is r^2 = b_xy . b_yx with 0 <= r^2 <= 1. Every 'which values are possible' regression item reduces to this inequality.",
+    "Both regression coefficients must share the sign of r, so with b_xy = 4 > 0 we need k > 0 - that alone eliminates options (b) and (c).",
+    "The geometric mean of the two regression coefficients is |r|; here sqrt(4k) <= 1 gives the same bound in one step."
+  ],
+  "solution": [
+    "The line of regression of x on y is x = b_xy . y + constant, so from x = 4y + 5 we read b_xy = 4.",
+    "The line of regression of y on x is y = b_yx . x + constant, so from y = kx + 4 we read b_yx = k.",
+    "The fundamental relation is r^2 = b_xy . b_yx = 4k.",
+    "Since r is a correlation coefficient, 0 <= r^2 <= 1, so 0 <= 4k <= 1.",
+    "Dividing by 4: 0 <= k <= 1/4.",
+    "Hence option (d) is correct."
+  ]
+},
+"2019-Q6": {
+  "answer": 0, "confidence": "high", "type": "Theoretical",
+  "shortcut": "a = r s_Y/s_X and c = r s_X/s_Y. Multiplying gives ac = r^2, so r = sqrt(ac); dividing gives c/a = (s_X/s_Y)^2, so s_X/s_Y = sqrt(c/a).",
+  "tips": [
+    "Two moves only: MULTIPLY the regression coefficients to isolate r, DIVIDE them to isolate the ratio of standard deviations. Every question of this type uses that pair.",
+    "Keep the subscripts straight: b_YX = a = r s_Y/s_X carries s_Y on top, while b_XY = c = r s_X/s_Y carries s_X on top. Getting these the wrong way round turns (a) into (d).",
+    "The intercepts b and d carry no information about r or the standard deviations - they only locate the means. Option (c), which uses bd, is therefore impossible.",
+    "Since c/a = s_X^2/s_Y^2, the ratio s_X/s_Y is sqrt(c/a) - note it is c over a, not a over c, which is the sole difference between options (a) and (d)."
+  ],
+  "solution": [
+    "The regression of Y on X is Y = aX + b, so its slope is the regression coefficient b_YX = a = r (s_Y/s_X).",
+    "The regression of X on Y is X = cY + d, so its slope is b_XY = c = r (s_X/s_Y).",
+    "Multiplying: ac = r^2 (s_Y/s_X)(s_X/s_Y) = r^2, hence r = sqrt(ac) (taking the sign common to a and c).",
+    "Dividing: c/a = [r s_X/s_Y] / [r s_Y/s_X] = (s_X/s_Y)^2.",
+    "Therefore s_X/s_Y = sqrt(c/a).",
+    "The pair is (sqrt(ac), sqrt(c/a)), option (a)."
+  ]
+},
+"2019-Q7": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "Cov(X+tZ, Y+tZ) = t^2 and each variance is 1 + t^2, so rho = t^2/(1+t^2) = 0.25. Cross-multiplying, 4t^2 = 1 + t^2 gives t^2 = 1/3 and |t| = 1/sqrt3.",
+  "tips": [
+    "The shared component Z is what creates the correlation: only the Z-terms survive in the covariance because X, Y, Z are independent.",
+    "The form rho = t^2/(1 + t^2) is the standard 'common factor' correlation; note that it is always in [0,1) and increases in |t|, so a small rho means a small |t|.",
+    "Invert quickly: rho = t^2/(1+t^2) rearranges to t^2 = rho/(1 - rho) = 0.25/0.75 = 1/3. Memorise that inversion - it saves the whole cross-multiplication.",
+    "Only |theta| is asked because rho depends on theta^2; both +1/sqrt3 and -1/sqrt3 give correlation 0.25."
+  ],
+  "solution": [
+    "Let U = X + theta Z and V = Y + theta Z, with X, Y, Z independent standard normal.",
+    "Var(U) = Var(X) + theta^2 Var(Z) = 1 + theta^2, and similarly Var(V) = 1 + theta^2.",
+    "Cov(U, V) = Cov(X, Y) + theta Cov(X, Z) + theta Cov(Z, Y) + theta^2 Var(Z) = 0 + 0 + 0 + theta^2 = theta^2.",
+    "Therefore rho = theta^2/(1 + theta^2).",
+    "Setting theta^2/(1 + theta^2) = 0.25 gives 4 theta^2 = 1 + theta^2, so 3 theta^2 = 1 and theta^2 = 1/3.",
+    "Hence |theta| = 1/sqrt(3), option (b)."
+  ]
+},
+"2019-Q8": {
+  "answer": 3, "confidence": "high", "type": "Factual",
+  "shortcut": "The expression is Fisher's z-transformation, z = (1/2) log[(1+r)/(1-r)] = arctanh(r). Its asymptotic variance is 1/(n-3).",
+  "tips": [
+    "Fisher's z: mean approximately (1/2)log[(1+rho)/(1-rho)] and variance exactly 1/(n-3). The variance is FREE of rho - that is the entire point of the transformation.",
+    "Do not confuse it with the null-case test statistic r sqrt(n-2)/sqrt(1-r^2) ~ t with n-2 d.f., which is where the tempting 1/(n-2) in option (c) comes from.",
+    "Use z when testing rho = rho0 for a non-zero rho0, or when comparing two independent correlations; use the t-statistic only for rho = 0.",
+    "Remember the pairing 'z goes with n-3' as a fixed unit; the confidence interval for rho is built by transforming, adding +-1.96/sqrt(n-3), and transforming back."
+  ],
+  "solution": [
+    "The statistic (1/2) log_e[(1+r)/(1-r)] is Fisher's z-transformation of the sample correlation coefficient, equal to arctanh(r).",
+    "For samples from a bivariate normal population with correlation rho, z is approximately normally distributed even for moderate n.",
+    "Its asymptotic mean is (1/2) log_e[(1+rho)/(1-rho)] = arctanh(rho).",
+    "Its asymptotic variance is 1/(n - 3), which notably does not depend on rho - this variance-stabilising property is the reason for the transformation.",
+    "Hence the variance is 1/(n-3), option (d)."
+  ]
+},
+"2019-Q9": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "The four points satisfy Y = X - 1 exactly, so r = +1 > 0. But X^2 = 1, 0, 1, 4 against Y^2 = 4, 1, 0, 1 - as X^2 rises Y^2 broadly falls, and the covariance works out to -0.25 per point, so s < 0.",
+  "tips": [
+    "Check for an exact linear relation first: Y = X - 1 here, which forces r = +1 with no arithmetic at all.",
+    "Squaring destroys linearity when the data straddle zero. Both X and Y take negative values, so the squares reverse the order of some pairs - that is why the sign can flip.",
+    "Compute the covariance of X^2 and Y^2 by deviations: both have mean 1.5, giving deviations (-0.5,-1.5,-0.5,2.5) and (2.5,-0.5,-1.5,-0.5) whose products sum to -1. Negative sum, negative s.",
+    "Moral: r measures LINEAR association only; a perfect linear relation between X and Y implies nothing about the correlation between their squares."
+  ],
+  "solution": [
+    "The observations are (-1,-2), (0,-1), (1,0), (2,1). Each satisfies Y = X - 1 exactly.",
+    "A perfect increasing linear relation gives r = +1, so r > 0.",
+    "Now form the squares: X^2 = 1, 0, 1, 4 and Y^2 = 4, 1, 0, 1.",
+    "Both sets have mean (1+0+1+4)/4 = 1.5. Deviations of X^2: -0.5, -1.5, -0.5, 2.5. Deviations of Y^2: 2.5, -0.5, -1.5, -0.5.",
+    "Sum of products of deviations: (-0.5)(2.5) + (-1.5)(-0.5) + (-0.5)(-1.5) + (2.5)(-0.5) = -1.25 + 0.75 + 0.75 - 1.25 = -1.0, so the covariance is negative and s < 0.",
+    "Therefore r > 0 but s < 0, option (a)."
+  ]
+},
+"2019-Q10": {
+  "answer": 3, "confidence": "high", "type": "Numerical",
+  "shortcut": "r = Cov/(s_X s_Y) gives 0.6 = 4.8/(3 s_Y), so 3 s_Y = 8 and s_Y = 8/3 = 2.67.",
+  "tips": [
+    "Rearranged form worth memorising: s_Y = Cov/(r . s_X). One substitution and you are done.",
+    "Take the square root of the variance first: Var(X) = 9 gives s_X = 3, not 9. Using 9 directly yields 0.89 and no matching option.",
+    "The arithmetic is clean: 4.8/0.6 = 8, then 8/3 = 2.67. Look for such cancellations before reaching for a calculator.",
+    "Consistency check: with s_Y = 8/3, Cov = r s_X s_Y = 0.6 x 3 x 2.667 = 4.8, matching the datum exactly."
+  ],
+  "solution": [
+    "The correlation coefficient is defined by r = Cov(X,Y)/(s_X s_Y).",
+    "Given Var(X) = 9, the standard deviation is s_X = 3.",
+    "Substituting the known values: 0.6 = 4.8/(3 s_Y).",
+    "Therefore 3 s_Y = 4.8/0.6 = 8.",
+    "So s_Y = 8/3 = 2.67.",
+    "Hence option (d) is correct."
+  ]
+},
+"2019-Q11": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "Buffon's needle with needle length L and line spacing d (L < d) gives P = 2L/(pi d). With L = l and d = 2l, P = 2l/(2 pi l) = 1/pi.",
+  "tips": [
+    "Buffon's formula: P = 2L/(pi d), valid when the needle is shorter than the gap. Memorise it as 'two L over pi d'.",
+    "The lengths cancel whenever d is a fixed multiple of L, so the answer is a pure number - here 1/pi. Expect pi in the denominator of any Buffon answer.",
+    "The classical case d = L gives P = 2/pi, which is the historical Monte Carlo estimate of pi. Doubling the spacing halves the probability to 1/pi - a useful sanity check.",
+    "Derivation sketch: the distance from the centre to the nearest line is uniform on (0, d/2) and the angle is uniform on (0, pi/2); integrating the intersection condition gives the formula."
+  ],
+  "solution": [
+    "This is Buffon's needle problem. Let the stick have length L = l and let the parallel lines be d = 2l apart, so L < d.",
+    "Let x be the distance from the centre of the stick to the nearest line, uniform on (0, d/2), and let theta be the acute angle the stick makes with the lines, uniform on (0, pi/2), independently.",
+    "The stick crosses a line exactly when x <= (L/2) sin theta.",
+    "P = (integral over theta of (L/2) sin theta d theta) / [(d/2)(pi/2)] = [(L/2)(1)] / [(pi d)/4] = 2L/(pi d).",
+    "Substituting L = l and d = 2l: P = 2l/(pi . 2l) = 1/pi.",
+    "Hence option (c) is correct."
+  ]
+},
+"2019-Q12": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "Firing rates 9 : 10 give priors 9/19 and 10/19; the 19s cancel in Bayes' formula. So the answer is (9)(0.7)/[(9)(0.7) + (10)(0.6)] = 6.3/12.3 = 21/41.",
+  "tips": [
+    "When priors come from a ratio, keep them as raw counts (9 and 10) - the common denominator cancels top and bottom and saves all the fraction work.",
+    "Multiply counts by hit rates to get 'effective hits': 9 x 0.7 = 6.3 from A1 and 10 x 0.6 = 6.0 from A2. The posterior is just 6.3/(6.3 + 6.0).",
+    "Simplify 63/123 by dividing by 3 to reach 21/41 - option (a) 20/41 is the near-miss planted for arithmetic slips.",
+    "Plausibility check: A1 fires slightly fewer but hits slightly more often, so the posterior should be very close to 1/2 and just above it. 21/41 = 0.512 fits; 6/19 = 0.32 does not."
+  ],
+  "solution": [
+    "Cannon A1 fires 9 projectiles in the time A2 fires 10, so a randomly chosen projectile comes from A1 with probability 9/19 and from A2 with probability 10/19.",
+    "The hit probabilities are P(strike | A1) = 7/10 = 0.7 and P(strike | A2) = 6/10 = 0.6.",
+    "Total probability of a strike: P(strike) = (9/19)(0.7) + (10/19)(0.6) = (6.3 + 6.0)/19 = 12.3/19.",
+    "By Bayes' theorem, P(A1 | strike) = (9/19)(0.7)/(12.3/19) = 6.3/12.3.",
+    "Simplifying: 6.3/12.3 = 63/123 = 21/41.",
+    "Hence option (b) is correct."
+  ]
+},
+"2019-Q13": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "Numerator 0.05 x 0.50 = 0.025; other branch 0.95 x 0.30 = 0.285. Posterior = 0.025/0.310 = 0.0806, about 0.08.",
+  "tips": [
+    "Set out the two branches before computing: treated (0.05, recovery 0.50) and untreated (0.95, recovery 0.30). Bayes is then pure arithmetic.",
+    "A small prior is rarely overturned by a modest likelihood gain: 5% prior with only a 5/3 likelihood ratio can only reach about 8%. That intuition eliminates options (c) and (d) instantly.",
+    "Option (a) 0.03 is the JOINT probability 0.025 rounded - the classic error of forgetting to divide by the total.",
+    "Denominator check: 0.025 + 0.285 = 0.310 is the overall recovery rate, 31%, which sensibly sits just above the untreated rate of 30%."
+  ],
+  "solution": [
+    "Let T be the event that the patient received the new treatment and R the event of recovery.",
+    "Given: P(T) = 0.05, P(not T) = 0.95, P(R | T) = 0.50, P(R | not T) = 0.30.",
+    "Joint probabilities: P(T and R) = 0.05 x 0.50 = 0.025 and P(not T and R) = 0.95 x 0.30 = 0.285.",
+    "Total probability of recovery: P(R) = 0.025 + 0.285 = 0.310.",
+    "By Bayes' theorem, P(T | R) = 0.025/0.310 = 0.0806.",
+    "Rounding, the probability is about 0.08, option (b)."
+  ]
+},
+"2019-Q14": {
+  "answer": 3, "confidence": "high", "type": "Numerical",
+  "shortcut": "Take absolute values first: |X| = 1.5, 1, 2.5, 3 with the same probabilities 1/6, 1/4, 1/2, 1/12. The products are 0.25, 0.25, 1.25, 0.25, summing to 2.",
+  "tips": [
+    "E(|X|) is NOT |E(X)| - apply the absolute value to each value before weighting. Here E(X) = 0.75 while E|X| = 2.",
+    "Convert to twelfths at the start: the probabilities are 2/12, 3/12, 6/12, 1/12, which also verifies that they sum to 1.",
+    "The arithmetic is unusually friendly: three of the four products equal 0.25 and the fourth is 1.25, so the total 2 falls out at a glance.",
+    "Option (b) 1/4 is the value of a single term and option (c) 3/2 comes from mishandling the largest-probability term - both punish partial arithmetic."
+  ],
+  "solution": [
+    "The random variable takes the values -1.5, -1, 2.5, 3 with probabilities 1/6, 1/4, 1/2, 1/12. These sum to 2/12 + 3/12 + 6/12 + 1/12 = 1, so the distribution is valid.",
+    "The absolute values are |X| = 1.5, 1, 2.5, 3 with the same respective probabilities.",
+    "E(|X|) = 1.5(1/6) + 1(1/4) + 2.5(1/2) + 3(1/12).",
+    "Term by term: 1.5/6 = 0.25; 1/4 = 0.25; 2.5/2 = 1.25; 3/12 = 0.25.",
+    "Adding: 0.25 + 0.25 + 1.25 + 0.25 = 2.",
+    "Hence E(|X|) = 2, option (d)."
+  ]
+},
+"2019-Q15": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "The 7th child is the 2nd daughter means exactly 1 daughter among the first 6, then a daughter. P = C(6,1)(1/2)^6 x (1/2) = 6/128 = 3/64.",
+  "tips": [
+    "This is the negative binomial pattern: P(the rth success occurs on trial n) = C(n-1, r-1) p^r q^(n-r). Here n = 7, r = 2, p = 1/2, giving C(6,1)(1/2)^7 = 6/128.",
+    "Do not use the plain binomial C(7,2)(1/2)^7 = 21/128 - that answers 'exactly 2 daughters in 7 children', which is planted as option (c) in the equivalent 21/64 form.",
+    "The last trial is FIXED as a success, so the combination is chosen from n - 1 = 6 trials, not from 7. That single distinction is what the item tests.",
+    "6/128 must be reduced to 3/64 to match the options; always reduce before comparing."
+  ],
+  "solution": [
+    "Let a 'success' be the birth of a daughter, with p = 0.5 for each child independently.",
+    "The event is that the 2nd daughter arrives exactly on the 7th child. This requires exactly 1 daughter among the first 6 children, and then a daughter on the 7th.",
+    "P(exactly 1 daughter in 6 children) = C(6,1)(0.5)^1(0.5)^5 = 6 (0.5)^6 = 6/64.",
+    "P(7th child is a daughter) = 0.5, independently of the first six.",
+    "Multiplying: (6/64)(1/2) = 6/128 = 3/64.",
+    "Hence option (a) is correct."
+  ]
+},
+"2019-Q16": {
+  "answer": 0, "confidence": "medium", "type": "Numerical",
+  "shortcut": "Y = X^2 + 3 is one-to-one on the non-negative integers, so X = sqrt(y - 3) and the support is y = 3, 4, 7, 12, 19, ... Substituting k = sqrt(y-3) into the Poisson pmf gives option (a).",
+  "tips": [
+    "For a strictly monotone transformation of a DISCRETE variable, simply invert: P(Y = y) = P(X = g^(-1)(y)). No Jacobian is ever involved for discrete variables.",
+    "Build the support explicitly from k = 0, 1, 2, 3: y = 3, 4, 7, 12. Options (c) and (d) omit y = 3 (the image of k = 0) and are eliminated at once.",
+    "Options (b), (c) and (d) also contain sqrt(3 - y) or a negative exponent, both of which are undefined or wrong for y > 3 - a sign check alone finishes the item.",
+    "The source prints the factorial as sqrt((y-3)!) where (sqrt(y-3))! is meant; the intended reading is k! with k = sqrt(y-3). Read past the typography and match on the support and the exponent."
+  ],
+  "solution": [
+    "X is Poisson with P(X = k) = e^(-lambda) lambda^k / k! for k = 0, 1, 2, ...",
+    "The transformation Y = X^2 + 3 is strictly increasing on the non-negative integers, so it is one-to-one there and can be inverted: X = sqrt(Y - 3).",
+    "The support of Y is obtained from k = 0, 1, 2, 3, ...: y = 0 + 3 = 3, 1 + 3 = 4, 4 + 3 = 7, 9 + 3 = 12, and so on, i.e. y in {3, 4, 7, 12, 19, ...}.",
+    "For each such y, P(Y = y) = P(X = sqrt(y - 3)) = e^(-lambda) lambda^(sqrt(y-3)) / (sqrt(y-3))!.",
+    "Options (c) and (d) exclude y = 3 from the support and use sqrt(3 - y), which is not real for y > 3; option (b) uses a negative exponent on lambda. All three are inadmissible.",
+    "Option (a) has the correct support and the correct exponent sqrt(y-3), so it is the intended key."
+  ]
+},
+"2019-Q17": {
+  "answer": 0, "confidence": "high", "type": "Conceptual",
+  "shortcut": "The number of weekly tickets until the first win is geometric on {1, 2, 3, ...}, whose mean is 1/p.",
+  "tips": [
+    "Two geometric means to keep apart: counting TRIALS until the first success gives 1/p; counting FAILURES before it gives q/p = 1/p - 1 (option b).",
+    "The phrase 'until he wins' includes the winning week itself, so the trial-counting version applies.",
+    "Intuition check: if p = 1/50 you expect about 50 weeks, which is 1/p. If the answer were 1/(1-p) it would be barely more than 1 week - clearly wrong.",
+    "Options (c) and (d) use 1 - p in place of p and correspond to counting until the first LOSS, a different experiment altogether."
+  ],
+  "solution": [
+    "Each week the person buys one ticket, winning with probability p independently of other weeks.",
+    "Let X be the number of weeks up to and including the first win. Then P(X = k) = (1-p)^(k-1) p for k = 1, 2, 3, ...",
+    "This is the geometric distribution on the positive integers.",
+    "Its expectation is E(X) = sum over k >= 1 of k (1-p)^(k-1) p = p . 1/p^2 = 1/p.",
+    "Hence the expected number of weeks required is 1/p.",
+    "Option (a) is correct."
+  ]
+},
+"2019-Q18": {
+  "answer": 2, "confidence": "high", "type": "Theoretical",
+  "shortcut": "Statement 4 fails at once (sums of binomials are binomial only when p is common), and statement 1 gives a^2/(a-b)^2 = 1/p^2, not generally an integer. Statements 2 and 3 both check out, so the answer is 2 and 3 only.",
+  "tips": [
+    "Recover n and p from mean and variance: p = 1 - b/a and n = a/p. For statement 2, a = 3.5 and b = 1.75 give p = 0.5 and n = 7; for statement 3, a = 4 and b = 4/3 give p = 2/3 and n = 6.",
+    "Bimodality test: the binomial is bimodal exactly when (n+1)p is an INTEGER, the modes being (n+1)p and (n+1)p - 1. Here (7+1)(0.5) = 4, so modes 3 and 4. Statement 2 is true.",
+    "For statement 1, note a - b = np - npq = np^2, so a^2/(a-b)^2 = (np)^2/(np^2)^2 = 1/p^2. It is a^2/(a-b) that equals n and is an integer - the squared denominator as printed makes the claim false.",
+    "Sums of independent binomials add only when the success probability is shared: B(m,p) + B(n,p) = B(m+n,p). With different p the sum is not binomial, which kills statement 4 and options (b) and (d)."
+  ],
+  "solution": [
+    "Write a = np and b = npq for the binomial mean and variance, so a - b = np - npq = np(1 - q) = np^2.",
+    "Statement 1: a^2/(a-b)^2 = (np)^2/(np^2)^2 = n^2 p^2/(n^2 p^4) = 1/p^2, which is not an integer for general p (it is a^2/(a-b) that equals n). FALSE.",
+    "Statement 2: a = 3.5, b = 1.75 give q = b/a = 0.5, so p = 0.5 and n = a/p = 7. Since (n+1)p = 8(0.5) = 4 is an integer, the distribution has two modes, 3 and 4 - it is bimodal. TRUE.",
+    "Statement 3: a = 4, b = 4/3 give q = (4/3)/4 = 1/3, so p = 2/3 and n = 4/(2/3) = 6. Then P(X >= 1) = 1 - (1/3)^6 = 1 - 1/729 = 0.99863 > 0.99. TRUE.",
+    "Statement 4: if X ~ B(m, p1) and Y ~ B(n, p2) are independent, X + Y is binomial only when p1 = p2. In general it is not. FALSE.",
+    "Only statements 2 and 3 are correct, option (c)."
+  ]
+},
+"2019-Q19": {
+  "answer": 3, "confidence": "high", "type": "Theoretical",
+  "shortcut": "A linear change of scale multiplies the covariance by a and the standard deviation by |a|, so the correlation is multiplied by a/|a| - the SIGN of a. Hence r(X,Z) = (a/|a|) r.",
+  "tips": [
+    "Rule: correlation is unchanged by a shift, and under scaling it is multiplied by the sign of the multiplier. The magnitude |r| never changes.",
+    "Option (a) is right only when a > 0; the question allows any non-zero a, so the sign factor must appear explicitly.",
+    "Option (b) r|a| is dimensionally impossible - a correlation is bounded by 1, but r|a| could exceed 1 for large a.",
+    "Option (c) uses |r| and so loses the original sign of r; only option (d) preserves r's own sign while applying the sign of a."
+  ],
+  "solution": [
+    "Let Z = aY + b with a not equal to 0.",
+    "Covariance: Cov(X, Z) = Cov(X, aY + b) = a Cov(X, Y).",
+    "Standard deviation: sd(Z) = |a| sd(Y), since the constant b shifts but does not scale.",
+    "Therefore r(X, Z) = a Cov(X,Y) / [sd(X) . |a| sd(Y)] = (a/|a|) . Cov(X,Y)/(sd(X) sd(Y)) = (a/|a|) r.",
+    "So the correlation keeps its magnitude |r| and takes the sign of a times the sign of r.",
+    "Hence option (d) is correct."
+  ]
+},
+"2019-Q20": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "Integrate out y: the integral of 4xy dy from 0 to 1 is 4x(1/2) = 2x. So f_X(x) = 2x on [0,1].",
+  "tips": [
+    "Marginal of X = integrate the joint density over ALL values of y. Here the y-integral of y over (0,1) is 1/2, so the factor 4 halves to 2.",
+    "Normalisation check: the integral of 2x over (0,1) is 1, confirming a valid density. Option (a) integrates to 2 and option (c) to 1/4, so both are invalid densities and can be struck out immediately.",
+    "The joint density factorises as (2x)(2y), so X and Y are independent Beta(2,1) variables - recognising the product form gives both marginals at once.",
+    "Whenever the options are proportional to one another, use the 'integrates to 1' test - it decides the question faster than doing the integral."
+  ],
+  "solution": [
+    "The joint density is f(x, y) = 4xy on the unit square 0 <= x <= 1, 0 <= y <= 1.",
+    "The marginal density of X is f_X(x) = integral over y from 0 to 1 of 4xy dy.",
+    "= 4x [y^2/2] from 0 to 1 = 4x (1/2) = 2x.",
+    "So f_X(x) = 2x for 0 <= x <= 1.",
+    "Check: the integral of 2x from 0 to 1 is [x^2] from 0 to 1 = 1, a valid density.",
+    "Hence option (b) is correct."
+  ]
+}
+}

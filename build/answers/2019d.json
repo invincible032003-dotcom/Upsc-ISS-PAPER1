@@ -1,0 +1,352 @@
+{
+"2019-Q61": {
+  "answer": 0, "confidence": "high", "type": "Factual",
+  "shortcut": "DNS - the Domain Name System - is the internet's directory service, mapping between human-readable names and numeric IP addresses.",
+  "tips": [
+    "Mnemonic: DNS = 'Directory Name Service' - it is the phone book of the internet, translating names to numbers and back.",
+    "DHCP (option c) does something different: it ASSIGNS IP addresses to hosts dynamically. Name-to-number translation versus address allocation is the distinction being tested.",
+    "SMTP and POP are email protocols and have nothing to do with address resolution, so options (b) and (d) are out of category.",
+    "Reverse DNS performs the number-to-name direction described in the stem; both directions are handled by the same Domain Name System."
+  ],
+  "solution": [
+    "Computers route traffic using numeric IP addresses, but users work with readable domain names such as www.example.com.",
+    "The Domain Name System (DNS) is the distributed directory service that maps between the two forms - names to addresses, and addresses back to names by reverse lookup.",
+    "SMTP is the protocol for sending email, and POP is the protocol for retrieving it; neither performs address translation.",
+    "DHCP dynamically allocates IP addresses and configuration parameters to hosts; it does not translate addresses into names.",
+    "Hence the answer is DNS, option (a)."
+  ]
+},
+"2019-Q62": {
+  "answer": 2, "confidence": "high", "type": "Definition",
+  "shortcut": "Content-addressable memory is another name for ASSOCIATIVE memory: it is searched by data content rather than by address.",
+  "tips": [
+    "CAM = Content Addressable Memory = Associative Memory. Learn the three names as one item; they appear interchangeably in question papers.",
+    "Ordinary RAM/ROM is accessed by supplying an ADDRESS; associative memory is accessed by supplying the DATA and asking where (or whether) it is stored.",
+    "Cache memory often USES associative mapping internally, but 'cache' names a role in the hierarchy while 'associative memory' names the addressing scheme - do not confuse the two.",
+    "Typical applications: translation lookaside buffers, network routing tables and database search - all places where a parallel content search is needed."
+  ],
+  "solution": [
+    "Conventional memories (ROM, SRAM, DRAM) are location-addressed: the CPU supplies an address and the memory returns the contents of that location.",
+    "Associative memory, also called content-addressable memory (CAM), is searched by content: a data word is presented and the memory reports, in parallel, whether and where a match exists.",
+    "This parallel search makes it fast but expensive, so it is used for small, search-intensive structures.",
+    "Cache memory is defined by its position in the hierarchy rather than by its addressing scheme, even though it commonly employs associative mapping.",
+    "Hence the content-based addressable memory is associative memory, option (c)."
+  ]
+},
+"2019-Q63": {
+  "answer": 1, "confidence": "high", "type": "Conceptual",
+  "shortcut": "A distributed system is loosely coupled: its processors have their own local memory and communicate over a network, so no common memory or common bus exists.",
+  "tips": [
+    "Coupling is the key idea: tightly coupled (multiprocessor) systems share memory and a bus; loosely coupled (distributed) systems do not and communicate by message passing.",
+    "Batch and multiprogramming are SCHEDULING strategies on a single machine - both still use one common memory and bus, so options (c) and (d) are the wrong category.",
+    "Distributed systems are characterised by resource sharing, scalability and fault tolerance, but also by communication delay - the direct consequence of having no shared bus.",
+    "Symmetric multiprocessing (SMP) is the standard example of a tightly coupled system and is the direct contrast to a distributed one."
+  ],
+  "solution": [
+    "A tightly coupled system (a multiprocessor) has several processors sharing a common main memory and a common system bus, communicating through that shared memory.",
+    "Batch processing and multiprogramming describe how jobs are scheduled on a single computer; the hardware still has one memory and one bus.",
+    "A distributed system consists of autonomous computers, each with its own local memory and its own bus, connected by a communication network.",
+    "Processes in a distributed system communicate by message passing rather than through shared memory, so there is no common memory and no common bus.",
+    "Hence the distributed system is the one that does not share common memory and a common bus, option (b)."
+  ]
+},
+"2019-Q64": {
+  "answer": 2, "confidence": "high", "type": "Factual",
+  "shortcut": "Fibre optic carries light rather than electrical signals, giving by far the highest bandwidth of the four - gigabits and beyond over long distances.",
+  "tips": [
+    "Speed ranking of common media: fibre optic > UTP (twisted pair) > coaxial (thick then thin Ethernet). Fibre wins every 'fastest medium' question.",
+    "Fibre's other advantages worth quoting: immunity to electromagnetic interference, very low attenuation over long runs, and high security since it is hard to tap.",
+    "Thin Ethernet (10Base2) and thick Ethernet (10Base5) are legacy coaxial standards capped around 10 Mbps - historical distractors.",
+    "The identical concept appears again as Q67 in this very paper, so a single fact answers two marks."
+  ],
+  "solution": [
+    "Thin Ethernet (10Base2) and thick Ethernet (10Base5) are coaxial cable standards limited to about 10 Mbps.",
+    "Unshielded twisted pair (UTP) supports higher rates - 100 Mbps to 10 Gbps over short distances in modern categories - but is still limited by electrical attenuation and interference.",
+    "Fibre optic cable transmits data as pulses of light through a glass or plastic core, achieving very high bandwidth with extremely low attenuation over long distances.",
+    "It is also immune to electromagnetic interference, which allows the high rates to be sustained in practice.",
+    "Hence fibre optic cable permits the fastest data transmission, option (c)."
+  ]
+},
+"2019-Q65": {
+  "answer": 2, "confidence": "high", "type": "Definition",
+  "shortcut": "Intercepting a private voice or data transmission in transit - classically by a wiretap - is eavesdropping.",
+  "tips": [
+    "Attack vocabulary: eavesdropping = intercepting data IN TRANSIT; snooping = unauthorised browsing of STORED data; spoofing = impersonating a legitimate identity; piggybacking = riding on someone else's authorised access.",
+    "The words 'wiretap' and 'transmission' point unambiguously to interception of data in motion.",
+    "Eavesdropping is a PASSIVE attack - it breaches confidentiality without altering the data - whereas spoofing is active and breaches authenticity.",
+    "The standard countermeasure is encryption, which leaves the interception possible but the content unreadable."
+  ],
+  "solution": [
+    "Eavesdropping is the unauthorised, real-time interception of a private communication while it is in transit, classically by physically tapping a telephone or network line.",
+    "Snooping refers to unauthorised access to or browsing of another's stored data or files rather than to live interception.",
+    "Spoofing is the falsification of an identity - an IP address, email sender or MAC address - to impersonate a trusted party.",
+    "Piggybacking is gaining access by riding on a legitimate user's authorised session or entry.",
+    "The description of listening to private voice or data transmission using a wiretap matches eavesdropping, option (c)."
+  ]
+},
+"2019-Q66": {
+  "answer": 1, "confidence": "high", "type": "Factual",
+  "shortcut": "NICNET is the nationwide government network built by the National Informatics Centre for Indian government activities.",
+  "tips": [
+    "NICNET = National Informatics Centre NETwork, launched in the 1980s to link central ministries, states and districts for e-governance.",
+    "ARPANET (option a) is the American research network that became the ancestor of the internet - a foreign, historical distractor.",
+    "Related Indian networks worth knowing: ERNET (education and research), INDONET, NKN (National Knowledge Network) and SWAN (State Wide Area Network).",
+    "'Government of India, public interest, government activities' in the stem is the signature of NIC and hence of NICNET."
+  ],
+  "solution": [
+    "NICNET is the nationwide computer communication network established by the National Informatics Centre (NIC) under the Government of India.",
+    "It connects central government ministries and departments with state governments and district administrations, supporting e-governance and public information services.",
+    "ARPANET was the US Defense Department research network of the late 1960s from which the internet evolved, and has no connection with the Government of India.",
+    "'Quicknet' is not an Indian government network.",
+    "Hence the network developed by the Government of India is NICNET, option (b)."
+  ]
+},
+"2019-Q67": {
+  "answer": 2, "confidence": "high", "type": "Factual",
+  "shortcut": "Fibre optic supports by far the highest bandwidth of the listed media.",
+  "tips": [
+    "This restates Q64 of the same paper - the examiner is testing the same ranking twice, so the medium comparison is clearly worth memorising.",
+    "Bandwidth ranking: fibre optic > coaxial > UTP > thin Ethernet in classical textbook terms, with fibre always at the top.",
+    "Fibre carries light rather than electrical current, so its bandwidth is not limited by the resistance, capacitance and interference that cap copper media.",
+    "Modern backbone links and undersea cables are all fibre for exactly this reason - a real-world anchor for the fact."
+  ],
+  "solution": [
+    "The question asks which medium supports the highest internet bandwidth.",
+    "UTP cable and thin Ethernet are copper media whose bandwidth is limited by attenuation and electromagnetic interference.",
+    "Coaxial cable offers more bandwidth than twisted pair but is still an electrical medium subject to the same physical limits.",
+    "Fibre optic cable transmits information as light through a glass core, offering bandwidth orders of magnitude greater than any copper medium and negligible interference.",
+    "Hence fibre optic cable supports the highest internet bandwidth, option (c)."
+  ]
+},
+"2019-Q68": {
+  "answer": 0, "confidence": "medium", "type": "Conceptual",
+  "shortcut": "Paging divides memory into fixed-size frames and pages, allowing non-contiguous allocation - the standard OS technique for efficient management of memory SPACE.",
+  "tips": [
+    "Paging's specific benefit is the elimination of EXTERNAL fragmentation: any free frame can hold any page, so memory space is used efficiently.",
+    "Swapping moves whole processes between memory and disk; it extends capacity but is a coarser mechanism than paging and is usually described as a supplement to it.",
+    "Caching (option c) speeds up ACCESS rather than managing space, and debugging (option d) is a program-development activity, not memory management.",
+    "Related terms to keep straight: paging, segmentation, virtual memory, page fault, page replacement (FIFO, LRU, optimal) and thrashing."
+  ],
+  "solution": [
+    "Memory management is the operating system function that allocates and tracks main memory among competing processes.",
+    "Paging divides physical memory into fixed-size frames and each process's logical address space into pages of the same size, then maps pages to any available frames via a page table.",
+    "Because a process need not occupy contiguous physical memory, paging eliminates external fragmentation and lets the OS use every free frame - the efficient management of memory space the question describes.",
+    "Swapping transfers entire processes between main memory and backing store; caching speeds up access by holding frequently used data in fast memory; debugging is unrelated to memory management.",
+    "Hence the technique is paging, option (a)."
+  ]
+},
+"2019-Q69": {
+  "answer": 3, "confidence": "high", "type": "Factual",
+  "shortcut": "Memory management, device management and security management are all core operating-system functions, so all three are correct.",
+  "tips": [
+    "The standard list of OS functions: process management, memory management, file management, device (I/O) management, security and protection, and user interface. Memorise the six.",
+    "When every listed item is drawn from that standard list, 'all of the above' is almost always the key - verify the least familiar one and move on.",
+    "Device management is exercised through DEVICE DRIVERS and I/O scheduling; security management covers authentication, access control and protection between processes.",
+    "Utilities such as antivirus supplement OS security but do not replace it - the OS itself enforces user accounts, permissions and memory protection."
+  ],
+  "solution": [
+    "An operating system acts as the resource manager and interface between the user and the hardware.",
+    "Memory management: allocating and deallocating main memory, keeping track of which parts are in use, and implementing paging or segmentation and virtual memory. A core OS function.",
+    "Device management: controlling peripheral devices through device drivers, buffering, spooling and I/O scheduling. A core OS function.",
+    "Security management: user authentication, access control, file permissions and protection of one process's memory from another. A core OS function.",
+    "All three listed items are genuine operating-system functions.",
+    "Hence option (d) is correct."
+  ]
+},
+"2019-Q70": {
+  "answer": 1, "confidence": "high", "type": "Factual",
+  "shortcut": "Portable devices need memory that is non-volatile, compact, low-power and electrically rewritable - that is flash memory.",
+  "tips": [
+    "Flash is electrically erasable and rewritable in blocks, non-volatile, solid state (no moving parts) and low power - exactly the requirement list for phones, cameras and music players.",
+    "PROM (option a) can be written only ONCE, so it cannot store photographs or music that change constantly.",
+    "RAM (option c) is volatile: everything would be lost when the device is switched off.",
+    "Optical disks (option d) need a mechanical drive and are far too bulky and fragile for handheld devices."
+  ],
+  "solution": [
+    "Mobile phones, digital cameras and portable music players need storage that retains data with the power off, tolerates being carried about, and can be rewritten many times.",
+    "Programmable ROM can be programmed only once and cannot be updated, so it is unsuitable for user data.",
+    "RAM is volatile - its contents vanish when power is removed - so it cannot serve as the main storage of a portable device.",
+    "Optical disks require a mechanical drive with moving parts, making them unsuitable for compact handheld devices.",
+    "Flash memory is non-volatile, electrically erasable and rewritable, compact, shock-resistant and low-power, which is why it is used in SD cards, USB drives and phone storage.",
+    "Hence the answer is flash memory, option (b)."
+  ]
+},
+"2019-Q71": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "With h = 0.5 the ordinates are 1, 2/3, 1/2. Trapezoidal gives (0.5)[(1 + 0.5)/2 + 2/3] = 0.5(0.75 + 0.6667) = 0.7083 = 17/24.",
+  "tips": [
+    "Trapezoidal with two strips: T = h[(f0 + f2)/2 + f1]. Only the two END ordinates are halved.",
+    "Keep fractions: (1/2)[(1 + 1/2)/2 + 2/3] = (1/2)(3/4 + 2/3) = (1/2)(17/12) = 17/24. Exact fractions beat decimals when the options are fractions.",
+    "1/x is convex, so the trapezoidal rule OVERESTIMATES. The true ln 2 = 0.6931, and 17/24 = 0.7083 is duly larger - a strong confirmation.",
+    "Option (c) 19/24 = 0.7917 is too far above ln 2 to be a two-strip trapezoidal value; the overestimate for such a smooth function is small."
+  ],
+  "solution": [
+    "We approximate the integral of 1/x from 1 to 2 using the trapezoidal rule with n = 2 equal divisions, so h = (2-1)/2 = 0.5.",
+    "The nodes are x = 1, 1.5, 2 with ordinates f0 = 1, f1 = 1/1.5 = 2/3, f2 = 1/2.",
+    "Trapezoidal rule: T = h[(f0 + f2)/2 + f1].",
+    "T = 0.5[(1 + 0.5)/2 + 2/3] = 0.5[3/4 + 2/3].",
+    "3/4 + 2/3 = 9/12 + 8/12 = 17/12, so T = (1/2)(17/12) = 17/24.",
+    "Numerically 17/24 = 0.7083, slightly above the true ln 2 = 0.6931 as expected for a convex integrand. Option (b) is correct."
+  ]
+},
+"2019-Q72": {
+  "answer": 0, "confidence": "high", "type": "Factual",
+  "shortcut": "Simpson's 1/3 rule fits a parabola over each PAIR of strips, so the number of equal-width subintervals must be even.",
+  "tips": [
+    "Rule of thumb: Simpson's 1/3 needs n divisible by 2; Simpson's 3/8 needs n divisible by 3; the trapezoidal rule works for any n.",
+    "The word 'equal' matters too - all these Newton-Cotes formulas assume equally spaced nodes, which eliminates option (d).",
+    "The weight pattern 1, 4, 2, 4, 2, ..., 4, 1 only closes correctly when n is even; with odd n the final strip is left without a partner.",
+    "If n happens to be odd, apply the 3/8 rule to the first three strips and the 1/3 rule to the rest - a standard practical fix worth remembering."
+  ],
+  "solution": [
+    "Simpson's one-third rule is derived by replacing f over each PAIR of adjacent subintervals by the parabola through the three corresponding points.",
+    "Each such parabola therefore consumes exactly two subintervals.",
+    "For the whole interval [a, b] to be covered by complete pairs, the number of subintervals n must be even.",
+    "The derivation also requires the nodes to be equally spaced with h = (b-a)/n, so the subintervals must be of equal width.",
+    "Hence [a, b] must be divided into an even number of subintervals of equal width, option (a)."
+  ]
+},
+"2019-Q73": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "Six strips with h = 1. Composite 3/8 rule: (3/8)[f0 + 3f1 + 3f2 + 2f3 + 3f4 + 3f5 + f6] = (3/8)(128) = 48.",
+  "tips": [
+    "Composite 3/8 weight pattern: 1, 3, 3, 2, 3, 3, 2, ..., 3, 3, 1 - the weight 2 appears at every node where two groups of three strips join.",
+    "Check divisibility first: n = 6 is a multiple of 3, so the 3/8 rule applies cleanly.",
+    "The data are exactly f(x) = x^2 + 1, and Simpson's rules integrate quadratics EXACTLY, so the answer must equal the true value 48 - a decisive cross-check.",
+    "Bracket sum: 2 + 3 + 6 + 10 + 30 + 51 + 26 = 128, and (3/8)(128) = 48. Keeping the weighted terms in a single column reduces slips."
+  ],
+  "solution": [
+    "The tabulated points run from x = -1 to x = 5 with h = 1, giving n = 6 subintervals, which is a multiple of 3 so Simpson's three-eighth rule applies.",
+    "Ordinates: f0 = 2, f1 = 1, f2 = 2, f3 = 5, f4 = 10, f5 = 17, f6 = 26.",
+    "Composite three-eighth rule: I = (3h/8)[f0 + 3f1 + 3f2 + 2f3 + 3f4 + 3f5 + f6].",
+    "Weighted sum: 2 + 3(1) + 3(2) + 2(5) + 3(10) + 3(17) + 26 = 2 + 3 + 6 + 10 + 30 + 51 + 26 = 128.",
+    "With h = 1, I = (3/8)(128) = 48.",
+    "Check: the data satisfy f(x) = x^2 + 1, whose exact integral from -1 to 5 is [x^3/3 + x] = (125/3 + 5) - (-1/3 - 1) = 48. Option (a) is correct."
+  ]
+},
+"2019-Q74": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "At (0,1) the slope is 1 + 0 - 1 = 0, so y(0.1) = 1. At (0.1, 1) the slope is 1 + 0.2 - 1 = 0.2, so y(0.2) = 1 + 0.1(0.2) = 1.020.",
+  "tips": [
+    "Euler's method: y_(n+1) = y_n + h f(x_n, y_n). Two steps of h = 0.1 are needed to reach x = 0.2 - stopping after one step gives 1 and lands on option (b).",
+    "The first slope is exactly zero here, which makes the first step trivial and is clearly deliberate on the examiner's part.",
+    "Note 2x means 2 times x, so at x = 0.1 the term is 0.2, not 0.1. Misreading it gives 1.010 and no matching option.",
+    "The exact solution is y = 2e^x - 2x - 1, giving y(0.2) = 1.0428; Euler's value 1.020 is the expected underestimate for this convex solution."
+  ],
+  "solution": [
+    "Euler's method for y' = f(x, y) is y_(n+1) = y_n + h f(x_n, y_n), with f(x,y) = y + 2x - 1, y(0) = 1 and h = 0.1.",
+    "Step 1 at (x0, y0) = (0, 1): f = 1 + 2(0) - 1 = 0, so y1 = 1 + 0.1(0) = 1, giving y(0.1) = 1.",
+    "Step 2 at (x1, y1) = (0.1, 1): f = 1 + 2(0.1) - 1 = 0.2.",
+    "So y2 = 1 + 0.1(0.2) = 1 + 0.02 = 1.02.",
+    "Hence y(0.2) = 1.020, option (c). (The exact solution y = 2e^x - 2x - 1 gives 1.0428, so Euler slightly underestimates, as expected.)"
+  ]
+},
+"2019-Q75": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "Picard from y0 = 1: y1 = 1 + x + x^2/2; y2 = 1 + x + x^2 + x^3/6; y3 = 1 + x + x^2 + x^3/3 + x^4/24.",
+  "tips": [
+    "Picard iteration: y_(n+1)(x) = y(0) + integral from 0 to x of f(t, y_n(t)) dt. Each round raises the degree by one, so the THIRD approximation is a quartic.",
+    "Degree check alone decides the item: only option (a) has an x^4 term, so it is the only candidate for a third approximation.",
+    "Option (b) is y2, the second approximation - the classic 'one iteration short' trap.",
+    "Cross-check with the exact solution y = 3e^x - x - 1 = 1 + x + x^2 + x^3/3 + x^4/12 + ...; Picard's terms agree up to x^3, as they must after three iterations."
+  ],
+  "solution": [
+    "Picard's method for dy/dx = x + y with y(0) = 1 uses y_(n+1)(x) = 1 + integral from 0 to x of (t + y_n(t)) dt, starting from y0 = 1.",
+    "First approximation: y1 = 1 + integral from 0 to x of (t + 1) dt = 1 + x + x^2/2.",
+    "Second approximation: y2 = 1 + integral from 0 to x of (t + 1 + t + t^2/2) dt = 1 + integral of (1 + 2t + t^2/2) dt = 1 + x + x^2 + x^3/6.",
+    "Third approximation: y3 = 1 + integral from 0 to x of (t + 1 + t + t^2 + t^3/6) dt = 1 + integral of (1 + 2t + t^2 + t^3/6) dt.",
+    "Integrating term by term: y3 = 1 + x + x^2 + x^3/3 + x^4/24.",
+    "Hence option (a) is correct."
+  ]
+},
+"2019-Q76": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "The data are symmetric about x = 4.5 (f(1) = f(8) = 4 and f(2) = f(7) = 5), and the values RISE towards the centre, so the interpolating curve has a maximum at x = 4.5.",
+  "tips": [
+    "Spot the symmetry before computing: matching values at mirror-image abscissae force the interpolating polynomial to be symmetric about the midpoint (1+8)/2 = 4.5.",
+    "In the shifted variable u = x - 4.5 the polynomial is even, so it reduces to a + bu^2. Fitting a + 12.25b = 4 and a + 6.25b = 5 gives b = -1/6 < 0, hence a maximum.",
+    "Direction check without algebra: moving inward from x = 1 to x = 2 the value RISES from 4 to 5, and it falls again from x = 7 to x = 8. Rise then fall means a maximum.",
+    "Option (d) places the turning point at x = -4.5, outside the data range entirely - a sign trap for candidates who mishandle the shift."
+  ],
+  "solution": [
+    "The data are f(1) = 4, f(2) = 5, f(7) = 5, f(8) = 4.",
+    "The abscissae are symmetric about x = (1 + 8)/2 = 4.5, and the paired values are equal: f(1) = f(8) and f(2) = f(7).",
+    "Hence the interpolating polynomial is symmetric about x = 4.5, so in the variable u = x - 4.5 it is an even function; with four data points it takes the form f = a + b u^2.",
+    "At u = +-3.5: a + 12.25b = 4. At u = +-2.5: a + 6.25b = 5. Subtracting gives 6b = -1, so b = -1/6 and a = 5 + 6.25/6 = 6.042.",
+    "Since b < 0, the parabola opens downwards and the turning point at u = 0 is a MAXIMUM.",
+    "Therefore f attains a maximum at x = 4.5, option (a)."
+  ]
+},
+"2019-Q77": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "p = (1.04 - 1)/0.1 = 0.4, so f = 0.301030 + 0.4(0.322219 - 0.301030) = 0.301030 + 0.008476 = 0.309506.",
+  "tips": [
+    "Linear interpolation is Newton's forward formula truncated after the first difference: f = f0 + p (f1 - f0) with p = (x - x0)/h.",
+    "Compute the difference once: 0.322219 - 0.301030 = 0.021189, then take 40% of it. Working with the difference rather than the raw values keeps all six decimals intact.",
+    "Sanity check: the answer must lie between 0.301030 and 0.322219, and nearer the lower end since p = 0.4 < 0.5. Options (b), (c) and (d) all fall outside that range.",
+    "Note that f(x) = log(1 + x), so f(1.04) = log10(2.04); the true value is 0.309630, confirming the interpolation is accurate to four decimals."
+  ],
+  "solution": [
+    "We interpolate f(x) = log10(1 + x) between x0 = 1 and x1 = 1.1, so h = 0.1.",
+    "The tabulated values are f(x0) = log10 2 = 0.301030 and f(x1) = log10 2.1 = 0.322219.",
+    "For x = 1.04, p = (1.04 - 1)/0.1 = 0.4.",
+    "Linear interpolation: f(1.04) = f0 + p(f1 - f0) = 0.301030 + 0.4(0.322219 - 0.301030).",
+    "The first difference is 0.021189, and 0.4 x 0.021189 = 0.0084756.",
+    "So f(1.04) = 0.301030 + 0.008476 = 0.309506, option (a)."
+  ]
+},
+"2019-Q78": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "k1 = 0.1(3 + 1.44) = 0.444; k2 = 0.1(3.3 + 1.644^2) = 0.60027. Then y = 1.2 + (k1 + k2)/2 = 1.2 + 0.5221 = 1.722.",
+  "tips": [
+    "Second-order RK (Heun's method): k1 = h f(x0, y0), k2 = h f(x0 + h, y0 + k1), y1 = y0 + (k1 + k2)/2. Write the three lines out before substituting.",
+    "Option (b) 1.644 is exactly y0 + k1, the plain EULER value - the trap for candidates who stop after k1.",
+    "Watch the square: y0 + k1 = 1.644, and 1.644^2 = 2.7027. Squaring the updated y, not the original, is the essential second step.",
+    "Averaging the two slopes is what makes the method second order; the final increment 0.5221 sits between k1 = 0.444 and k2 = 0.600, as it must."
+  ],
+  "solution": [
+    "The problem is dy/dx = f(x,y) = 3x + y^2 with x0 = 1, y0 = 1.2 and h = 0.1.",
+    "Second-order Runge-Kutta (Heun's form): k1 = h f(x0, y0), k2 = h f(x0 + h, y0 + k1), y1 = y0 + (k1 + k2)/2.",
+    "k1 = 0.1[3(1) + (1.2)^2] = 0.1[3 + 1.44] = 0.1(4.44) = 0.444.",
+    "y0 + k1 = 1.2 + 0.444 = 1.644, so k2 = 0.1[3(1.1) + (1.644)^2] = 0.1[3.3 + 2.7027] = 0.1(6.0027) = 0.60027.",
+    "y1 = 1.2 + (0.444 + 0.60027)/2 = 1.2 + 0.52214 = 1.72214.",
+    "Hence y(1.1) is approximately 1.722, option (a)."
+  ]
+},
+"2019-Q79": {
+  "answer": 2, "confidence": "high", "type": "Theoretical",
+  "shortcut": "Recognise sqrt(1 + delta^2/4) = mu. Then (1/2)delta^2 + delta.mu = (E - 2 + E^-1)/2 + (E - E^-1)/2 = E - 1 = Delta.",
+  "tips": [
+    "Memorise mu = sqrt(1 + delta^2/4) - it is the single identity that unlocks this whole family of questions.",
+    "Work in terms of E^(1/2) and E^(-1/2): delta = E^(1/2) - E^(-1/2) and mu = (E^(1/2) + E^(-1/2))/2, so delta.mu = (E - E^(-1))/2 as a difference of squares.",
+    "delta^2 = E - 2 + E^(-1). Adding half of it to delta.mu makes both E^(-1) terms cancel, leaving E - 1.",
+    "Sanity test on f(x) = x with h = 1: delta^2 x = 0 and delta.mu x = 1, so the expression gives 1, which equals Delta x. Quick numerical checks like this settle operator identities fast."
+  ],
+  "solution": [
+    "Write everything in terms of the shift operator: delta = E^(1/2) - E^(-1/2) and mu = (E^(1/2) + E^(-1/2))/2.",
+    "A standard identity is mu = sqrt(1 + delta^2/4), so the given expression is (1/2)delta^2 + delta.mu.",
+    "delta^2 = (E^(1/2) - E^(-1/2))^2 = E - 2 + E^(-1), so (1/2)delta^2 = (E - 2 + E^(-1))/2.",
+    "delta.mu = (E^(1/2) - E^(-1/2))(E^(1/2) + E^(-1/2))/2 = (E - E^(-1))/2.",
+    "Adding: (E - 2 + E^(-1))/2 + (E - E^(-1))/2 = (2E - 2)/2 = E - 1.",
+    "Since Delta = E - 1, the expression equals Delta, option (c)."
+  ]
+},
+"2019-Q80": {
+  "answer": 3, "confidence": "high", "type": "Conceptual",
+  "shortcut": "The third divided difference of a cubic equals its leading coefficient. For f(x) = x^3 - 2x that coefficient is 1, whatever the nodes.",
+  "tips": [
+    "Rule: the nth divided difference of a degree-n polynomial is its LEADING COEFFICIENT, independent of the arguments chosen.",
+    "The awkward nodes 2, 4, 9, 10 are pure decoration - the answer would be 1 for any four distinct arguments.",
+    "The -2x term contributes nothing: divided differences of order 3 annihilate every term of degree below 3.",
+    "Contrast with the reciprocal case f(x) = 1/x, whose nth divided difference is (-1)^n/(product of nodes) and genuinely depends on the nodes."
+  ],
+  "solution": [
+    "Divided differences are linear, and the kth divided difference of any polynomial of degree less than k is zero.",
+    "Here f(x) = x^3 - 2x, so the term -2x (degree 1) contributes nothing to a third divided difference.",
+    "For x^3, the third divided difference over any four distinct nodes equals the leading coefficient, namely 1.",
+    "This follows from the Newton form of the interpolating polynomial: the coefficient of the highest-degree term is exactly the top divided difference.",
+    "Hence the third divided difference over 2, 4, 9, 10 is 1.",
+    "Option (d) is correct."
+  ]
+}
+}

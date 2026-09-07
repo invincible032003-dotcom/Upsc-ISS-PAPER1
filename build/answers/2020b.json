@@ -1,0 +1,362 @@
+{
+"2020-Q21": {
+  "answer": 0, "confidence": "high", "type": "Conceptual",
+  "shortcut": "Statement 1 is the standard nPr count. Statement 2 is false: the probability that n distinguishable balls fill n cells is n!/n^n, which is far below 1 for n >= 2.",
+  "tips": [
+    "Ordered sampling counts: WITHOUT replacement n(n-1)...(n-r+1) = nPr; WITH replacement n^r. Learn the pair together.",
+    "Total placements of n distinguishable balls in n cells is n^n; favourable ones (one per cell) number n!, so the probability is n!/n^n - for n = 3 that is 6/27 = 0.22, nowhere near 1.",
+    "Any statement asserting that a non-trivial probability equals exactly 1 deserves immediate suspicion; certainty is rare.",
+    "This is the classical occupancy problem, and n!/n^n tends to 0 rapidly - by Stirling it behaves like sqrt(2 pi n) e^(-n)."
+  ],
+  "solution": [
+    "Statement 1: to draw an ordered sample of size r from n elements without replacement, the first element can be chosen in n ways, the second in n-1 ways, and so on down to n - r + 1 ways for the rth.",
+    "The total is n(n-1)(n-2)...(n-r+1) = nPr, exactly as stated. TRUE.",
+    "Statement 2: placing n distinguishable balls into n cells at random gives n^n equally likely arrangements.",
+    "The arrangements in which every cell is occupied are exactly the ones with one ball per cell, and there are n! of them.",
+    "Hence the probability is n!/n^n, which equals 1 only for n = 1; for n = 3 it is 6/27 = 0.222. The claim that it is 1 is FALSE.",
+    "Only statement 1 is correct, option (a)."
+  ]
+},
+"2020-Q22": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "Odd faces have probability 2/9 each and even faces 1/9 each. Then P(B) = P(1) + P(4) = 2/9 + 1/9 = 1/3 (statement 1 true), while P(B|A) = P(4)/P({4,5,6}) = (1/9)/(4/9) = 1/4, not 1/2.",
+  "tips": [
+    "Set up the weights first: 3 odd faces at 2p and 3 even faces at p give 9p = 1, so p = 1/9. Everything else is a two-term sum.",
+    "The perfect squares in 1 to 6 are 1 and 4 only - 9 is out of range. Miscounting this set is the commonest error in the item.",
+    "For the conditional, intersect BEFORE dividing: A = {4,5,6} and B = {1,4}, so A n B = {4} with probability 1/9.",
+    "Sanity check: P(B) = 1/3 while P(B|A) = 1/4, so knowing the number exceeds 3 makes a perfect square LESS likely - reasonable, since the square 1 is excluded by A."
+  ],
+  "solution": [
+    "Let each even face have probability p; then each odd face has probability 2p. Since there are three of each, 3(2p) + 3p = 9p = 1, so p = 1/9.",
+    "Thus P(1) = P(3) = P(5) = 2/9 and P(2) = P(4) = P(6) = 1/9.",
+    "Event A (number greater than 3) = {4, 5, 6}, so P(A) = 1/9 + 2/9 + 1/9 = 4/9.",
+    "Event B (perfect square) = {1, 4}, so P(B) = 2/9 + 1/9 = 3/9 = 1/3. Statement 1 is TRUE.",
+    "A intersect B = {4}, with probability 1/9, so P(B|A) = (1/9)/(4/9) = 1/4.",
+    "Statement 2 claims 1/2 and is therefore FALSE. Only statement 1 holds, option (a)."
+  ]
+},
+"2020-Q23": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "The support is the EVEN integers, so the sum is k(1 + p^2 + p^4 + ...) = k/(1 - p^2) = 1, giving k = 1 - p^2.",
+  "tips": [
+    "Read the support carefully: x = 0, 2, 4, ... means the ratio between consecutive terms is p^2, not p. That single observation is the whole question.",
+    "Geometric series: sum of r^j for j >= 0 is 1/(1 - r). Here r = p^2, so the normaliser is 1 - p^2.",
+    "Option (a) 1 - p is the answer to the SAME question with support 0, 1, 2, 3, ... - the trap for candidates who skim the support.",
+    "Check with p = 1/2: k = 3/4, and the probabilities 3/4, 3/16, 3/64, ... sum to (3/4)/(1 - 1/4) = 1."
+  ],
+  "solution": [
+    "The probability mass function is p(x) = k p^x for x = 0, 2, 4, 6, ..., i.e. only the even non-negative integers.",
+    "Writing x = 2j for j = 0, 1, 2, ..., the masses are k p^(2j) = k (p^2)^j.",
+    "For p(x) to be a valid pmf, the total must be 1: k sum over j >= 0 of (p^2)^j = 1.",
+    "Since 0 < p < 1 we have 0 < p^2 < 1, so the geometric series sums to 1/(1 - p^2).",
+    "Hence k/(1 - p^2) = 1, giving k = 1 - p^2.",
+    "Option (c) is correct."
+  ]
+},
+"2020-Q24": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "Z = X - Y ~ N(1 - 2, 9 + 16) = N(-1, 25), so its median equals its mean -1 and its SD is 5 - statement 1 holds. And P(Z + 1 < 0) = P(Z < -1) = P(Z < median) = 0.5 - statement 2 holds.",
+  "tips": [
+    "Convert SDs to variances before adding: 3 and 4 give 9 and 16, whose sum is 25 and whose square root is 5. Adding the SDs directly would give 7 - the classic error.",
+    "Variances ADD for a difference of independent variables; the minus sign disappears on squaring.",
+    "The normal distribution is symmetric, so mean = median = mode. Statement 2 is then just 'the probability of being below the median is 1/2'.",
+    "Note how statements 1 and 2 reinforce each other: once the median is identified as -1, statement 2 follows without any table look-up."
+  ],
+  "solution": [
+    "X ~ N(1, 3^2) = N(1, 9) and Y ~ N(2, 4^2) = N(2, 16), independent.",
+    "Z = X - Y is normal with mean 1 - 2 = -1 and variance 9 + 16 = 25, so SD(Z) = 5.",
+    "Because the normal distribution is symmetric about its mean, the median of Z equals its mean, -1. Statement 1 is TRUE.",
+    "P(Z + 1 < 0) = P(Z < -1).",
+    "Since -1 is the median of Z, this probability is exactly 0.5. Statement 2 is TRUE.",
+    "Both statements are correct, option (c)."
+  ]
+},
+"2020-Q25": {
+  "answer": 2, "confidence": "high", "type": "Factual",
+  "shortcut": "The lack-of-memory (memoryless) property characterises exactly two distributions: the GEOMETRIC in the discrete case and the EXPONENTIAL in the continuous case.",
+  "tips": [
+    "Memorise the pairing: geometric (discrete) and exponential (continuous) are the ONLY memoryless distributions, and each is uniquely characterised by that property.",
+    "Statement of the property: P(X > s + t | X > s) = P(X > t). Waiting time already spent gives no information about remaining waiting time.",
+    "The exponential is a special Gamma (shape 1), but a general Gamma is NOT memoryless - option (a) is eliminated by that distinction.",
+    "The Cauchy has no mean at all and is defined on the whole real line, so it cannot describe a waiting time and is not memoryless."
+  ],
+  "solution": [
+    "A distribution is memoryless if P(X > s + t | X > s) = P(X > t) for all s, t > 0 - the past duration gives no information about the future.",
+    "For the exponential with rate lambda, P(X > t) = e^(-lambda t), so P(X > s+t)/P(X > s) = e^(-lambda t) = P(X > t). Memoryless, and it is the ONLY continuous distribution with this property.",
+    "For the geometric with success probability p, P(X > k) = (1-p)^k, so the same cancellation occurs. It is the only discrete distribution with the property.",
+    "The Beta distribution has bounded support and the general Gamma has an increasing or decreasing hazard rate, so neither is memoryless.",
+    "The Cauchy is symmetric on the whole real line and is not a waiting-time distribution at all.",
+    "Hence the memoryless distributions are the geometric and the exponential, option (c)."
+  ]
+},
+"2020-Q26": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "Integrate out y to get the marginal f_X(x) = 3(1-x)^2 on (0,1). Then P(X >= 0.4) = the integral from 0.4 to 1 = (0.6)^3 = 0.216, i.e. about 0.21.",
+  "tips": [
+    "Get the marginal first: for a fixed x the y-range is (0, 1-x), and the inner integral of 6(1-x-y) dy is 3(1-x)^2 - a clean, memorable result.",
+    "Recognise f_X(x) = 3(1-x)^2 as the Beta(1,3) density, so P(X > c) = (1 - c)^3 directly. No second integral is needed.",
+    "(0.6)^3 = 0.216 rounds to 0.21 at two decimals; option (b) 0.25 would correspond to (0.63)^3, so keep three decimals before rounding.",
+    "Sanity check: X is concentrated near 0 (its mean is 1/4), so P(X >= 0.4) should be well under a half - which rules out (c) and (d) as too large only marginally, so do the computation."
+  ],
+  "solution": [
+    "The joint density is f(x,y) = 6(1 - x - y) on the triangle x > 0, y > 0, x + y < 1.",
+    "For fixed x in (0,1), y ranges over (0, 1-x), so f_X(x) = the integral from 0 to 1-x of 6(1 - x - y) dy.",
+    "Substituting u = 1 - x - y, the integral is 6 times the integral of u du from 0 to 1-x = 6(1-x)^2/2 = 3(1-x)^2.",
+    "Thus X has the Beta(1,3) density 3(1-x)^2 on (0,1).",
+    "P(X >= 0.4) = the integral from 0.4 to 1 of 3(1-x)^2 dx = [-(1-x)^3] from 0.4 to 1 = 0 + (0.6)^3 = 0.216.",
+    "Rounding, the probability is about 0.21, option (a)."
+  ]
+},
+"2020-Q27": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "12x^2(1-x) is the Beta(3,2) density, whose mean is a/(a+b) = 3/5 = 0.6.",
+  "tips": [
+    "Recognise the Beta kernel x^(a-1)(1-x)^(b-1): here a - 1 = 2 and b - 1 = 1, so a = 3 and b = 2.",
+    "Beta mean = a/(a+b) and variance = ab/[(a+b)^2(a+b+1)]. Recognition beats integration every time.",
+    "Verify the constant: 1/B(3,2) = Gamma(5)/(Gamma(3)Gamma(2)) = 24/(2 x 1) = 12, matching the printed density - a good check that a and b are right.",
+    "Direct integration also works: the integral of 12x^3(1-x) dx over (0,1) = 12(1/4 - 1/5) = 12/20 = 0.6."
+  ],
+  "solution": [
+    "The density is f(x) = 12 x^2 (1 - x) on [0,1].",
+    "Comparing with the Beta density x^(a-1)(1-x)^(b-1)/B(a,b), we read a - 1 = 2 and b - 1 = 1, so a = 3 and b = 2.",
+    "The normalising constant is 1/B(3,2) = Gamma(5)/(Gamma(3) Gamma(2)) = 24/(2 x 1) = 12, confirming the identification.",
+    "For a Beta(a,b) variable the mean is a/(a + b).",
+    "Hence the mean is 3/(3 + 2) = 3/5 = 0.6.",
+    "Option (b) is correct."
+  ]
+},
+"2020-Q28": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "M(t) = the integral over y < 0 of e^(ty) e^y dy = the integral of e^((t+1)y) dy from minus infinity to 0 = 1/(t+1), converging when t + 1 > 0, i.e. t > -1.",
+  "tips": [
+    "Y here is the NEGATIVE of an exponential (Y = -E with E ~ Exp(1)), so its MGF is the exponential MGF with t replaced by -t: 1/(1 + t).",
+    "Convergence direction flips with the sign of the support: for Exp(1) the MGF exists for t < 1, so for -Exp(1) it exists for t > -1.",
+    "Always state the region of convergence - it is what distinguishes option (a) from option (c), since the formulas are mirror images.",
+    "Options (b) and (d) use |t| and are not differentiable at t = 0, so they cannot be MGFs (an MGF must be smooth at 0 to generate moments)."
+  ],
+  "solution": [
+    "The density is f(y) = e^y for y < 0 and 0 otherwise. Check: the integral of e^y from minus infinity to 0 is 1, so f is a valid density.",
+    "M_Y(t) = E(e^(tY)) = the integral from minus infinity to 0 of e^(ty) e^y dy = the integral of e^((t+1)y) dy.",
+    "The antiderivative is e^((t+1)y)/(t+1), evaluated from minus infinity to 0.",
+    "For the lower limit to vanish we need t + 1 > 0, i.e. t > -1; then the value is 1/(t+1) - 0 = 1/(1 + t).",
+    "So M_Y(t) = 1/(1 + t) for t > -1.",
+    "Option (c) is correct."
+  ]
+},
+"2020-Q29": {
+  "answer": 1, "confidence": "high", "type": "Theoretical",
+  "shortcut": "Markov's inequality: for X >= 0, P(X >= a) <= E(X)/a. Putting a = t mu gives P(X >= t mu) <= mu/(t mu) = 1/t.",
+  "tips": [
+    "Markov's inequality needs only non-negativity and a finite mean - exactly the assumptions stated, which is the signal to use it rather than Chebyshev.",
+    "The mu cancels completely, leaving the clean bound 1/t. Any option retaining mu (options (a) and (c)) is therefore structurally wrong.",
+    "Direction check: an upper tail probability must be BOUNDED ABOVE, so the inequality sign must be <=. That eliminates options (a) and (d).",
+    "Chebyshev's inequality is Markov applied to (X - mu)^2; knowing that link lets you derive one from the other under exam pressure."
+  ],
+  "solution": [
+    "Markov's inequality states that for a non-negative random variable X with finite mean, and any a > 0, P(X >= a) <= E(X)/a.",
+    "Here E(X) = mu, which is finite and non-zero, and X >= 0 as required.",
+    "Take a = t mu, which is positive for every t > 0.",
+    "Then P(X >= t mu) <= mu/(t mu) = 1/t.",
+    "The bound is free of mu, as it must be, since scaling X does not change the ratio X/mu.",
+    "Hence P(X >= t mu) <= 1/t, option (b)."
+  ]
+},
+"2020-Q30": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "P(A n B) = P(A)P(B|A) = 1/8 and P(B) = P(A n B)/P(A|B) = 1/2. Statement 1 asks for P(exactly one of A, B) = 1/4 + 1/2 - 2(1/8) = 1/2, not 1/4 - false. Statement 2 is an identity for indicators - true.",
+  "tips": [
+    "Indicators satisfy X^2 = X and Y^2 = Y, so X^2 + Y^2 = 1 means exactly one of the two events occurs, and XY = X^2 Y^2 holds identically.",
+    "Statement 2 needs no numbers at all - recognise it as an algebraic identity for 0/1 variables and it is true with probability 1 whatever the events.",
+    "P(exactly one) = P(A) + P(B) - 2P(A n B). The factor 2 is essential: it removes the intersection from BOTH marginal probabilities.",
+    "Recover P(B) from Bayes in reverse: P(B) = P(A n B)/P(A|B) = (1/8)/(1/4) = 1/2. Chaining the two conditional probabilities is the only computational step in the item."
+  ],
+  "solution": [
+    "From P(A) = 1/4 and P(B|A) = 1/2 we get P(A n B) = P(A) P(B|A) = 1/8.",
+    "From P(A|B) = P(A n B)/P(B) = 1/4 we get P(B) = (1/8)/(1/4) = 1/2.",
+    "X and Y are indicator variables, so X^2 = X and Y^2 = Y.",
+    "Statement 1: X^2 + Y^2 = X + Y = 1 means exactly one of A, B occurs. P(exactly one) = P(A) + P(B) - 2P(A n B) = 1/4 + 1/2 - 2(1/8) = 3/4 - 1/4 = 1/2. The claimed value 1/4 is wrong, so statement 1 is FALSE.",
+    "Statement 2: since X^2 = X and Y^2 = Y identically, XY = X^2 Y^2 always holds, so its probability is 1. TRUE.",
+    "Only statement 2 is correct, option (b)."
+  ]
+},
+"2020-Q31": {
+  "answer": 1, "confidence": "high", "type": "Conceptual",
+  "shortcut": "A bivariate normal has no density exactly when its covariance matrix is singular, i.e. |rho| = 1, i.e. Cov^2 = V(X)V(Y) = 6. So alpha = +-sqrt(6).",
+  "tips": [
+    "Singular covariance matrix means the determinant V(X)V(Y) - Cov^2 = 0, which is the same as rho^2 = 1. Compute the determinant, do not reason about rho separately.",
+    "A singular bivariate normal is concentrated on a LINE in the plane, which has zero area, so no two-dimensional density can exist.",
+    "The Cauchy-Schwarz inequality guarantees |Cov| <= sqrt(V(X)V(Y)) = sqrt6, so |alpha| > 6 in option (d) is impossible for any distribution at all.",
+    "Option (c) |alpha| < sqrt6 is precisely the case where the density DOES exist - the exact opposite of what is asked."
+  ],
+  "solution": [
+    "The bivariate normal density exists if and only if its covariance matrix is positive definite, i.e. non-singular.",
+    "The covariance matrix here is [[2, alpha], [alpha, 3]], with determinant 2(3) - alpha^2 = 6 - alpha^2.",
+    "The density fails to exist exactly when this determinant is zero, that is alpha^2 = 6.",
+    "Hence alpha = +sqrt(6) or -sqrt(6), which corresponds to correlation rho = +-1.",
+    "In that case the distribution is degenerate, concentrated on a straight line in the plane, so no two-dimensional density function exists.",
+    "Option (b) is correct."
+  ]
+},
+"2020-Q32": {
+  "answer": 0, "confidence": "high", "type": "Theoretical",
+  "shortcut": "P(X_n is not 0) = 1/n^2, and the series of these converges, so Borel-Cantelli gives X_n -> 0 with probability one. Also E(X_n^2) = n(1/n^2) = 1/n -> 0, so convergence in mean square holds too.",
+  "tips": [
+    "Two separate computations, one for each mode: P(X_n not 0) for almost-sure convergence, E(X_n^2) for mean-square convergence. Do them independently.",
+    "Borel-Cantelli I: if the sum of P(A_n) converges then P(A_n infinitely often) = 0. Here sum 1/n^2 converges, so eventually X_n is 0 forever.",
+    "E(X_n^2) = (sqrt n)^2 x P(U < 1/n^2) = n x 1/n^2 = 1/n. The value taken grows but its probability shrinks faster, so the second moment still dies.",
+    "Contrast with the classic counterexample X_n = n on (0, 1/n): there P(X_n not 0) = 1/n whose sum DIVERGES and E(X_n^2) = n, so neither mode holds. Changing the exponents changes the answer completely."
+  ],
+  "solution": [
+    "Let A_n be the event {0 < U < 1/n^2}, on which X_n = sqrt(n); elsewhere X_n = 0. Then P(A_n) = 1/n^2.",
+    "The series sum of P(A_n) = sum of 1/n^2 converges (it equals pi^2/6).",
+    "By the first Borel-Cantelli lemma, P(A_n occurs infinitely often) = 0, so with probability one only finitely many A_n occur and X_n = 0 for all large n.",
+    "Hence X_n converges to 0 with probability one.",
+    "For mean-square convergence, E(X_n^2) = n P(A_n) + 0 = n (1/n^2) = 1/n, which tends to 0 as n grows.",
+    "So X_n also converges to 0 in mean square. Both modes hold, option (a)."
+  ]
+},
+"2020-Q33": {
+  "answer": 1, "confidence": "high", "type": "Theoretical",
+  "shortcut": "At x = 1 the first branch reaches 1/2 while the second branch starts at alpha, so no downward jump requires alpha >= 1/2; the middle slope 1 - alpha must be non-negative, so alpha <= 1. Hence 1/2 <= alpha <= 1.",
+  "tips": [
+    "A distribution function must be non-decreasing, right-continuous, and run from 0 to 1. Check each junction point and each branch slope separately.",
+    "Evaluate the middle branch at both ends: at x = 1 it equals alpha, and at x = 2 it equals 2 - 2alpha + 2alpha - 1 = 1 automatically - so the right end never constrains alpha.",
+    "An UPWARD jump is permitted in a general distribution function (it just means positive mass at that point); only a downward move is forbidden. That is why alpha = 1 is admissible.",
+    "The slope condition 1 - alpha >= 0 is easy to overlook; without it, alpha > 1 would make F decrease on [1,2)."
+  ],
+  "solution": [
+    "F must be non-decreasing on the whole line, right-continuous, with F(-infinity) = 0 and F(+infinity) = 1.",
+    "On [0,1) the branch x/2 rises from 0 to a left-limit of 1/2 at x = 1.",
+    "At x = 1 the middle branch takes the value (1-alpha)(1) + 2alpha - 1 = alpha. To avoid a decrease we need alpha >= 1/2 (an upward jump is permissible).",
+    "On [1,2) the middle branch has slope 1 - alpha, which must be non-negative, giving alpha <= 1.",
+    "At x = 2 the middle branch gives (1-alpha)(2) + 2alpha - 1 = 2 - 2alpha + 2alpha - 1 = 1, matching the final branch, so continuity holds there for every alpha.",
+    "Combining, F is a distribution function if and only if 1/2 <= alpha <= 1, option (b)."
+  ]
+},
+"2020-Q34": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "P(3 <= X <= 6) = e^(-3L) - e^(-6L). Put u = e^(-3L) in (0,1), so the probability is u - u^2, maximised at u = 1/2 with value 1/4.",
+  "tips": [
+    "Substituting u = e^(-3 lambda) turns a transcendental maximisation into the elementary quadratic u - u^2 - the key move in this item.",
+    "Note that 6 = 2 x 3, so e^(-6 lambda) = u^2 exactly. The doubling of the endpoints is what makes the substitution work.",
+    "u - u^2 has its maximum at u = 1/2, i.e. e^(-3 lambda) = 1/2 and lambda = (ln 2)/3 = 0.231. The optimal mean is therefore about 4.33, comfortably inside [3,6] - a good plausibility check.",
+    "The maximum value 1/4 is a bound over ALL exponential distributions, so no single choice of parameter can do better - the reason option (a) 1/2 is unattainable."
+  ],
+  "solution": [
+    "For an exponential distribution with rate lambda, P(3 <= X <= 6) = e^(-3 lambda) - e^(-6 lambda).",
+    "Let u = e^(-3 lambda), which ranges over (0, 1) as lambda ranges over (0, infinity). Then e^(-6 lambda) = u^2.",
+    "So the probability is g(u) = u - u^2.",
+    "Differentiating, g'(u) = 1 - 2u = 0 at u = 1/2, and g''(u) = -2 < 0, so this is a maximum.",
+    "The maximum value is g(1/2) = 1/2 - 1/4 = 1/4, attained when e^(-3 lambda) = 1/2, i.e. lambda = (ln 2)/3.",
+    "Hence the maximum possible probability is 1/4, option (c)."
+  ]
+},
+"2020-Q35": {
+  "answer": 3, "confidence": "high", "type": "Numerical",
+  "shortcut": "Poisson PGF is P(s) = e^(lambda(s-1)). At s = 2/3 this is e^(-lambda/3) = e^(-1), so lambda/3 = 1 and lambda = 3. The Poisson mean is lambda = 3.",
+  "tips": [
+    "Poisson PGF: P(s) = e^(lambda(s - 1)); the MGF is e^(lambda(e^t - 1)). Keep the two apart - substituting into the wrong one is the main trap.",
+    "s - 1 = 2/3 - 1 = -1/3, so the exponent is -lambda/3. Equating exponents is faster than taking logarithms.",
+    "For the Poisson, mean = variance = lambda, so once lambda = 3 is found the answer is immediate.",
+    "Check: P(1) = e^0 = 1 for every lambda, as any PGF must satisfy - a quick validity test of the formula you are using."
+  ],
+  "solution": [
+    "The probability generating function of a Poisson variable with parameter lambda is P(s) = E(s^X) = e^(lambda(s - 1)).",
+    "We are told P(2/3) = e^(-1).",
+    "Substituting s = 2/3: P(2/3) = e^(lambda(2/3 - 1)) = e^(-lambda/3).",
+    "Setting e^(-lambda/3) = e^(-1) gives lambda/3 = 1, so lambda = 3.",
+    "For the Poisson distribution the mean equals lambda.",
+    "Hence the mean is 3, option (d)."
+  ]
+},
+"2020-Q36": {
+  "answer": 3, "confidence": "high", "type": "Theoretical",
+  "shortcut": "For a CONTINUOUS variable F must have no jumps. At x = 2 the first branch gives 2/3 and the second gives alpha, so continuity forces alpha = 2/3 exactly.",
+  "tips": [
+    "'Continuous random variable' is a strictly stronger requirement than 'distribution function': every junction must match exactly, with no jump allowed anywhere.",
+    "Evaluate both branches AT the junction: x/3 at x = 2 is 2/3, and (1-alpha)x + 3alpha - 2 at x = 2 is 2 - 2alpha + 3alpha - 2 = alpha. Equate them.",
+    "The junction at x = 3 imposes nothing: (1-alpha)(3) + 3alpha - 2 = 1 identically, so only the x = 2 junction matters.",
+    "Contrast with Q33 of the same paper, where an upward jump was allowed and the answer was an interval. The word 'continuous' is what collapses the interval to a single point here."
+  ],
+  "solution": [
+    "For F to be the distribution function of a CONTINUOUS random variable, F must be continuous everywhere - no jumps are permitted.",
+    "As x approaches 2 from below, the branch x/3 tends to 2/3.",
+    "At x = 2 the middle branch gives (1 - alpha)(2) + 3alpha - 2 = 2 - 2alpha + 3alpha - 2 = alpha.",
+    "Continuity at x = 2 therefore requires alpha = 2/3.",
+    "At x = 3 the middle branch gives (1-alpha)(3) + 3alpha - 2 = 3 - 3alpha + 3alpha - 2 = 1, matching the final branch for every alpha, so this junction imposes no extra condition.",
+    "With alpha = 2/3 the middle slope is 1 - 2/3 = 1/3 > 0, so F is non-decreasing. Hence F is a continuous distribution function if and only if alpha = 2/3, option (d)."
+  ]
+},
+"2020-Q37": {
+  "answer": 0, "confidence": "medium", "type": "Theoretical",
+  "shortcut": "The rectangle (0.2, 0.8] x (0.2, 0.8] has F-measure 1 - 1 - 1 + alpha = alpha - 1, which is negative for every alpha < 1; and alpha = 1 destroys right-continuity along the axes. So no value of alpha works.",
+  "tips": [
+    "A bivariate CDF must satisfy the RECTANGLE inequality F(b,d) - F(b,c) - F(a,d) + F(a,c) >= 0 for all a < b, c < d. Marginal monotonicity alone is not enough - this is the test the examiner is probing.",
+    "Choose the rectangle so that three corners lie in the region x + y >= 1 and one corner in x + y < 1; then the expression collapses to alpha - 1.",
+    "Even alpha = 1 fails: F would be 1 for all x, y > 0 but 0 on the axes, so lim as x decreases to 0 of F(x,y) = 1 while F(0,y) = 0 - right-continuity is violated.",
+    "Lesson: a function that is non-decreasing in each argument separately can still fail to be a joint CDF. Always run the rectangle test on two-dimensional candidates."
+  ],
+  "solution": [
+    "A function F is a bivariate distribution function only if, for all a < b and c < d, the rectangle measure F(b,d) - F(b,c) - F(a,d) + F(a,c) is non-negative.",
+    "Take a = c = 0.2 and b = d = 0.8. Then F(0.8, 0.8) = 1 (since 1.6 >= 1), F(0.8, 0.2) = 1 (since 1.0 >= 1), F(0.2, 0.8) = 1 (since 1.0 >= 1), and F(0.2, 0.2) = alpha (since 0.4 < 1).",
+    "The rectangle measure is 1 - 1 - 1 + alpha = alpha - 1, which would be the probability that (X,Y) lies in that rectangle.",
+    "This is negative whenever alpha < 1, so no alpha below 1 can work. Since F is bounded by 1, alpha cannot exceed 1 either.",
+    "For alpha = 1, F equals 1 on the whole open quadrant and 0 on the axes, so lim as x decreases to 0 of F(x, y) = 1 while F(0, y) = 0 - right-continuity fails and F is still not a distribution function.",
+    "Hence F is a distribution function for no real value of alpha, option (a)."
+  ]
+},
+"2020-Q38": {
+  "answer": 1, "confidence": "high", "type": "Numerical",
+  "shortcut": "The linear map has matrix (1/2)[[1,1,0],[0,1,1],[1,0,1]] with determinant (1/8)(2) = 1/4, so the density picks up the factor 1/|J| = 4. Inverting gives x = u - v + w, y = u + v - w, z = -u + v + w.",
+  "tips": [
+    "For a linear transformation, g(u) = f(A^(-1)u)/|det A|. Compute det A once; here det of [[1,1,0],[0,1,1],[1,0,1]] is 2, and the factor (1/2)^3 gives det A = 1/4.",
+    "Invert cleverly: adding all three equations gives x + y + z = u + v + w, and then each variable follows by subtracting twice one of the new coordinates.",
+    "Check the inverse by substitution: (x + y)/2 = ((u-v+w) + (u+v-w))/2 = u. Do this once and the arguments are confirmed.",
+    "Options (c) and (d) halve the arguments as well, which would correspond to a different transformation entirely - the inverse here has NO factor of 1/2 inside f."
+  ],
+  "solution": [
+    "Write U = (X+Y)/2, V = (Y+Z)/2, W = (Z+X)/2, a linear transformation with matrix A = (1/2)[[1,1,0],[0,1,1],[1,0,1]].",
+    "The determinant of [[1,1,0],[0,1,1],[1,0,1]] is 1(1) - 1(-1) + 0 = 2, so det A = (1/2)^3 (2) = 1/4.",
+    "Invert: from x + y = 2u, y + z = 2v, z + x = 2w, adding gives 2(x+y+z) = 2(u+v+w), so x + y + z = u + v + w.",
+    "Then x = (x+y+z) - (y+z) = (u+v+w) - 2v = u - v + w; y = (x+y+z) - (z+x) = u + v - w; z = (x+y+z) - (x+y) = -u + v + w.",
+    "The density transforms as g(u,v,w) = f(x,y,z)/|det A| = 4 f(u - v + w, u + v - w, -u + v + w).",
+    "Hence option (b) is correct."
+  ]
+},
+"2020-Q39": {
+  "answer": 0, "confidence": "high", "type": "Numerical",
+  "shortcut": "With p = 1/3 the masses are 8/27, 12/27, 6/27, 1/27. Then E[X/(X+1)] = 0 + (1/2)(12/27) + (2/3)(6/27) + (3/4)(1/27) = (6 + 4 + 0.75)/27 = 43/108.",
+  "tips": [
+    "X/(X+1) is a non-linear function, so E[X/(X+1)] is NOT E(X)/(E(X)+1). Compute the sum term by term.",
+    "Keep every mass over the common denominator 27; the weighted terms 6/27, 4/27 and (3/4)/27 then add trivially.",
+    "The final fraction has denominator 108 = 4 x 27, which is why all four options share that denominator - a hint that a quarter appears in the last term.",
+    "Check by bounds: X/(X+1) takes the values 0, 1/2, 2/3, 3/4 with the mass concentrated on the small values, so the answer must be well below 1/2. 43/108 = 0.398 fits."
+  ],
+  "solution": [
+    "X ~ Binomial(3, 1/3), so P(X=0) = (2/3)^3 = 8/27, P(X=1) = 3(1/3)(2/3)^2 = 12/27, P(X=2) = 3(1/3)^2(2/3) = 6/27, P(X=3) = (1/3)^3 = 1/27. These sum to 1.",
+    "The function values are X/(X+1) = 0, 1/2, 2/3, 3/4 for X = 0, 1, 2, 3.",
+    "E[X/(X+1)] = 0(8/27) + (1/2)(12/27) + (2/3)(6/27) + (3/4)(1/27).",
+    "Term by term: (1/2)(12/27) = 6/27; (2/3)(6/27) = 4/27; (3/4)(1/27) = 3/108.",
+    "Converting to 108ths: 24/108 + 16/108 + 3/108 = 43/108.",
+    "Hence E[X/(X+1)] = 43/108, option (a)."
+  ]
+},
+"2020-Q40": {
+  "answer": 2, "confidence": "high", "type": "Numerical",
+  "shortcut": "Branch products: A gives 0.40(0.02) = 0.0080, B gives 0.35(0.04) = 0.0140, C gives 0.25(0.03) = 0.0075. Total 0.0295, so P(A|D) = 0.0080/0.0295 = 0.27.",
+  "tips": [
+    "Lay out a three-row table of (share x defect rate) products before dividing; the denominator is simply their sum.",
+    "Working in units of 1/10000 keeps the arithmetic clean: 80, 140, 75, total 295, so the answer is 80/295 = 0.271.",
+    "The overall defect rate 0.0295 is a useful by-product and is often the next part of such a question - compute it once and keep it.",
+    "Plausibility: A supplies 40% of output but has the LOWEST defect rate, so its share of defectives must fall below 40% - 27% is exactly the expected direction, while option (d) 0.47 goes the wrong way."
+  ],
+  "solution": [
+    "Let D be the event that a bulb is defective. The prior shares are P(A) = 0.40, P(B) = 0.35, P(C) = 0.25.",
+    "The conditional defect rates are P(D|A) = 0.02, P(D|B) = 0.04, P(D|C) = 0.03.",
+    "Joint probabilities: P(A n D) = 0.40(0.02) = 0.0080; P(B n D) = 0.35(0.04) = 0.0140; P(C n D) = 0.25(0.03) = 0.0075.",
+    "Total probability of a defective bulb: P(D) = 0.0080 + 0.0140 + 0.0075 = 0.0295.",
+    "By Bayes' theorem, P(A|D) = 0.0080/0.0295 = 0.2712.",
+    "Rounding, the probability is 0.27, option (c)."
+  ]
+}
+}

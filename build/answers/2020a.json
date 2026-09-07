@@ -1,0 +1,401 @@
+{
+ "2020-Q1": {
+  "answer": 2,
+  "confidence": "high",
+  "type": "Numerical",
+  "shortcut": "Under U(0,2), F0(x) = x/2. Sort the data (0.08, 0.16, 0.16, 0.32, 0.98) and compare the step function with F0; the largest gap occurs just after x = 0.32, where Fn = 0.8 and F0 = 0.16, giving D = 0.64.",
+  "tips": [
+   "Always evaluate the gap on BOTH sides of each jump: |i/n - F0(x_i)| and |(i-1)/n - F0(x_i)|. The maximum of all these is D.",
+   "Handle the tie at 0.16 by jumping the empirical CDF straight from 0.2 to 0.6 - two observations share the point, so the step has height 2/5.",
+   "The uniform CDF on (0,2) is x/2, so the theoretical values 0.04, 0.08, 0.08, 0.16, 0.49 are trivial to write down; most of the work is bookkeeping, not arithmetic.",
+   "The data are heavily concentrated near 0 while U(0,2) spreads to 2, so a LARGE D is expected - options (a) 0.16 and (b) 0.52 understate the mismatch."
+  ],
+  "solution": [
+   "Under H0 the distribution is U(0,2), so F0(x) = x/2 for 0 <= x <= 2.",
+   "Sort the sample: 0.08, 0.16, 0.16, 0.32, 0.98, with theoretical values F0 = 0.04, 0.08, 0.08, 0.16, 0.49.",
+   "The empirical CDF takes the values 0.2 after 0.08, 0.6 after the tied pair at 0.16, 0.8 after 0.32 and 1.0 after 0.98.",
+   "Compute the deviations at each point (both before and after the jump): at 0.08, |0.2 - 0.04| = 0.16; at 0.16, |0.6 - 0.08| = 0.52; at 0.32, |0.8 - 0.16| = 0.64; at 0.98, |1.0 - 0.49| = 0.51.",
+   "The pre-jump deviations (0.04, 0.12, 0.44, 0.31) are all smaller.",
+   "The Kolmogorov-Smirnov statistic is the largest of these, D = 0.64, option (c)."
+  ]
+ },
+ "2020-Q2": {
+  "answer": 0,
+  "confidence": "high",
+  "type": "Numerical",
+  "shortcut": "Row sums give X1 + X2 = 100 and Y = 18. Equal column totals for C and D give X1 + 46 = X2 + 78, i.e. X1 - X2 = 32. Solving, X1 = 66 and X2 = 34.",
+  "tips": [
+   "Extract every equation the table offers BEFORE solving: each row total is one equation and the stated condition is another. Three unknowns need three equations.",
+   "The 'not leaked' row is fully determined except for Y, so Y = 400 - (90 + 46 + 78 + 168) = 18 comes out immediately and independently.",
+   "Sum and difference: X1 + X2 = 100 and X1 - X2 = 32 give X1 = 66 and X2 = 34 by inspection - add and halve.",
+   "Options (a) and (b) differ only by swapping X1 and X2, so pin down which column is C: the larger leaked count goes with the SMALLER not-leaked count (46) to keep the totals equal."
+  ],
+  "solution": [
+   "From the 'leaked' row: 36 + 22 + X1 + X2 + 42 = 200, so X1 + X2 = 200 - 100 = 100.",
+   "From the 'not leaked' row: 90 + Y + 46 + 78 + 168 = 400, so Y = 400 - 382 = 18.",
+   "The column total for material C is X1 + 46 and for material D is X2 + 78; these are stated to be equal.",
+   "Hence X1 + 46 = X2 + 78, giving X1 - X2 = 32.",
+   "Solving X1 + X2 = 100 with X1 - X2 = 32: X1 = 66 and X2 = 34.",
+   "Check: column C total = 66 + 46 = 112 and column D total = 34 + 78 = 112, equal as required. Option (a) is correct."
+  ]
+ },
+ "2020-Q3": {
+  "answer": 2,
+  "confidence": "high",
+  "type": "Conceptual",
+  "shortcut": "Each person receives BOTH creams, one per arm, so the observations are naturally paired within a person. With a continuous response and normality, the paired t-test is the right procedure.",
+  "tips": [
+   "Look for what shares a subject: two measurements on the SAME person are paired, and pairing must be preserved by analysing the within-person differences.",
+   "Pairing removes between-person variation, so the paired t-test is far more powerful here than the two-sample t-test, which wrongly treats the 2n measurements as independent.",
+   "The randomisation of which arm gets which cream protects against a left/right arm effect; it does not turn the design into an independent-samples one.",
+   "If normality could not be assumed, the correct non-parametric analogues would be the Wilcoxon signed-rank test or the sign test - both paired procedures, not the Mann-Whitney."
+  ],
+  "solution": [
+   "Each of the n persons receives cream A on one arm and cream B on the other, so both treatments are observed on the same individual.",
+   "The two responses from one person are therefore dependent - a matched pair - and the natural analysis works with the n within-person differences d_i = A_i - B_i.",
+   "The two-sample Kolmogorov-Smirnov test and the two-sample t-test both assume two INDEPENDENT samples, which is violated here.",
+   "A test for randomness addresses the order of a sequence and is irrelevant to comparing two treatments.",
+   "Given a continuous response and an assumption of normality for the differences, the appropriate procedure is the paired t-test on the d_i.",
+   "Hence option (c) is correct."
+  ]
+ },
+ "2020-Q4": {
+  "answer": 0,
+  "confidence": "high",
+  "type": "Numerical",
+  "shortcut": "E(X) = n/(n-2) = 10/8 = 1.25 > 1, so statement 1 holds. Mode = [(m-2)/m][n/(n+2)] = (3/5)(10/12) = 0.5 < 1, so statement 2 fails.",
+  "tips": [
+   "Two F formulas to memorise: mean = n/(n-2) using only the DENOMINATOR d.f., and mode = [(m-2)/m][n/(n+2)] using both.",
+   "The F distribution is positively skewed, so mode < median < mean. Since the mean is only 1.25, a mode below 1 is entirely expected - that intuition answers statement 2 before any arithmetic.",
+   "The mean of F(m,n) always exceeds 1 whenever n > 2, because n/(n-2) > 1. Statement 1 is therefore true for every admissible F distribution.",
+   "The mode is less than 1 for all m, n, since [(m-2)/m] < 1 and [n/(n+2)] < 1 - a general fact worth carrying."
+  ],
+  "solution": [
+   "For X ~ F(m, n) with m = 5 and n = 10, the mean is E(X) = n/(n - 2), valid for n > 2.",
+   "E(X) = 10/(10 - 2) = 10/8 = 1.25, which is greater than 1. Statement 1 is TRUE.",
+   "The mode of F(m, n) for m > 2 is Mode = [(m - 2)/m] . [n/(n + 2)].",
+   "Substituting: [(5-2)/5][10/12] = (3/5)(5/6) = 1/2 = 0.5.",
+   "Since 0.5 < 1, statement 2 is FALSE.",
+   "Only statement 1 is correct, option (a)."
+  ]
+ },
+ "2020-Q5": {
+  "answer": 1,
+  "confidence": "high",
+  "type": "Numerical",
+  "shortcut": "A run is a maximal block of identical symbols. Count the changeovers: the sequence switches 21 times in 30 tosses, so there are 22 runs.",
+  "tips": [
+   "Runs = number of changes of symbol + 1. Counting CHANGES is faster and far less error-prone than bracketing blocks.",
+   "Mark the sequence in groups as you read: H | TT | H | T | HHH | T | HH | TT | H | T | H | T | HH | T | H | TT | H | T | HH | T | H | T.",
+   "Sanity range: with 30 tosses the number of runs must lie between 2 and 30; a well-mixed fair sequence gives roughly n/2 + 1 = 16 or more, so 22 is plausible while 28 and 30 would be near-perfect alternation.",
+   "For the run test, the expected number of runs is 2 n1 n2/n + 1; here n1 = 16 heads and n2 = 14 tails give about 15.9, so 22 is on the high side, indicating more alternation than chance."
+  ],
+  "solution": [
+   "A run is a maximal unbroken sequence of identical outcomes.",
+   "Reading the 30 tosses in order and grouping: H | TT | H | T | HHH | T | HH | TT | H | T | H | T | HH | T | H | TT | H | T | HH | T | H | T.",
+   "Counting the groups: 1 H, 2 TT, 3 H, 4 T, 5 HHH, 6 T, 7 HH, 8 TT, 9 H, 10 T, 11 H, 12 T, 13 HH, 14 T, 15 H, 16 TT, 17 H, 18 T, 19 HH, 20 T, 21 H, 22 T.",
+   "The group lengths sum to 1+2+1+1+3+1+2+2+1+1+1+1+2+1+1+2+1+1+2+1+1+1 = 30, confirming that every toss has been counted.",
+   "There are therefore 22 runs.",
+   "Option (b) is correct."
+  ]
+ },
+ "2020-Q6": {
+  "answer": 0,
+  "confidence": "high",
+  "type": "Conceptual",
+  "shortcut": "One sample, a hypothesised value for the location (250 hours), and no distributional assumption - that is exactly the one-sample SIGN test.",
+  "tips": [
+   "Match the test to the design: ONE sample against a stated value = sign test (or Wilcoxon signed-rank); TWO independent samples = Mann-Whitney U or median test; fit to a distribution = K-S or chi-square.",
+   "The sign test simply counts how many of the 24 lifetimes exceed 250 and refers that count to a Binomial(24, 0.5) under H0 - no distributional assumption at all.",
+   "Mann-Whitney and the median test both need two samples, so options (b) and (c) are ruled out by the design alone.",
+   "The Kolmogorov-Smirnov test would require a fully specified distribution, not just a claim about one quantile, so option (d) is also inapplicable."
+  ],
+  "solution": [
+   "The manufacturer's claim concerns the location of a single population - that the lifetime typically exceeds 250 hours - and there is only one sample, of 24 observations.",
+   "The sign test is the standard one-sample non-parametric procedure for a hypothesised median or location value: count how many observations exceed 250 and compare that count with Binomial(n, 0.5) under H0.",
+   "The Mann-Whitney U test and the median test both compare TWO independent samples, so they do not apply.",
+   "The Kolmogorov-Smirnov test compares the empirical CDF with a fully specified theoretical distribution, which is not what is claimed here.",
+   "Hence the sign test is appropriate, option (a)."
+  ]
+ },
+ "2020-Q7": {
+  "answer": 1,
+  "confidence": "high",
+  "type": "Theoretical",
+  "shortcut": "The probability integral transform makes F(X) ~ U(0,1). Since F is increasing, it preserves order, so F(X_(r)) is the rth order statistic of a U(0,1) sample.",
+  "tips": [
+   "Probability integral transform: for continuous F, the variable U = F(X) is always Uniform(0,1), whatever the parent distribution. This is the single most useful transformation in order-statistic theory.",
+   "F is non-decreasing, so it maps the rth smallest X to the rth smallest U - order is preserved and the ranks carry over unchanged.",
+   "Consequence worth memorising: F(X_(r)) ~ Beta(r, n - r + 1), which gives E[F(X_(r))] = r/(n+1) - the basis of plotting positions in probability plots.",
+   "The result is distribution-free, which is exactly why non-parametric methods and simulation both rest on it."
+  ],
+  "solution": [
+   "Let X have a continuous CDF F. The probability integral transform states that U = F(X) follows the Uniform(0,1) distribution.",
+   "Indeed, for 0 < u < 1, P(F(X) <= u) = P(X <= F^(-1)(u)) = F(F^(-1)(u)) = u, which is the U(0,1) CDF.",
+   "Applying F to each of X_1, ..., X_n gives a random sample U_1, ..., U_n from U(0,1).",
+   "Because F is non-decreasing, it preserves the ordering of the sample, so the rth smallest of the U values is F applied to the rth smallest X value: U_(r) = F(X_(r)).",
+   "Therefore F(X_(r)) is the rth order statistic of a sample of size n from the Uniform(0,1) distribution.",
+   "Option (b) is correct."
+  ]
+ },
+ "2020-Q8": {
+  "answer": 2,
+  "confidence": "high",
+  "type": "Numerical",
+  "shortcut": "Substitute into r12.3 = (r12 - r13 r23)/sqrt((1-r13^2)(1-r23^2)). The numerator is sin^2 t - sin t cos t and the denominator is |sin t cos t|, so the ratio is tan t - 1.",
+  "tips": [
+   "The denominator simplifies first: (1 - cos^2 t)(1 - sin^2 t) = sin^2 t cos^2 t, whose square root is |sin t cos t| - spotting this collapses the whole expression.",
+   "Factor the numerator as sin t (sin t - cos t) so that the common sin t cancels against the denominator, leaving (sin t - cos t)/cos t = tan t - 1.",
+   "Memorise the partial correlation formula r12.3 = (r12 - r13 r23)/sqrt((1 - r13^2)(1 - r23^2)); every item in this sub-topic is one substitution away from it.",
+   "Options (a), (b) and (d) all involve 2 theta, which never arises from this cancellation - a structural cue that (c) is the intended form."
+  ],
+  "solution": [
+   "The partial correlation formula is r12.3 = (r12 - r13 r23)/sqrt[(1 - r13^2)(1 - r23^2)].",
+   "Substituting r12 = sin^2 t, r13 = cos t, r23 = sin t, the numerator is sin^2 t - (cos t)(sin t) = sin t (sin t - cos t).",
+   "For the denominator, 1 - r13^2 = 1 - cos^2 t = sin^2 t and 1 - r23^2 = 1 - sin^2 t = cos^2 t.",
+   "So the denominator is sqrt(sin^2 t cos^2 t) = |sin t cos t|.",
+   "Taking the principal branch where sin t cos t > 0, r12.3 = sin t (sin t - cos t)/(sin t cos t) = (sin t - cos t)/cos t.",
+   "This equals tan t - 1, option (c)."
+  ]
+ },
+ "2020-Q9": {
+  "answer": 1,
+  "confidence": "high",
+  "type": "Numerical",
+  "shortcut": "With only two individuals the second judge either agrees (d = 0, rho = 1) or reverses (sum d^2 = 2, rho = 1 - 12/6 = -1). No other outcome exists.",
+  "tips": [
+   "Spearman's rho = 1 - 6 sum(d^2)/(n(n^2 - 1)). With n = 2 the denominator is 2(3) = 6, so rho = 1 - sum(d^2).",
+   "Only two rankings of two items are possible, so only two values of rho can occur - enumerate them rather than reasoning abstractly.",
+   "0 is impossible because sum(d^2) would have to be 1, but with n = 2 the differences are either both 0 or both +-1, giving sum(d^2) equal to 0 or 2.",
+   "General principle: for small n the set of attainable rank correlations is discrete, and the gaps between attainable values are large - a reason rank tests need adequate n."
+  ],
+  "solution": [
+   "Spearman's rank correlation is rho = 1 - 6 sum(d_i^2)/(n(n^2 - 1)), where d_i are the differences of ranks.",
+   "With n = 2, n(n^2 - 1) = 2(4 - 1) = 6, so rho = 1 - sum(d_i^2).",
+   "There are only two possible rankings by the second judge. If the judges agree, the ranks are (1,2) and (1,2), so d = (0,0) and sum(d^2) = 0, giving rho = 1.",
+   "If the judges disagree, the ranks are (1,2) and (2,1), so d = (-1, +1) and sum(d^2) = 2, giving rho = 1 - 2 = -1.",
+   "No other configuration exists, so rho can only be -1 or +1; the value 0 is unattainable.",
+   "Option (b) is correct."
+  ]
+ },
+ "2020-Q10": {
+  "answer": 3,
+  "confidence": "high",
+  "type": "Theoretical",
+  "shortcut": "For n = 5 the median is the 3rd order statistic, so the constant is 5!/(2! 2!) = 30 and the density is 30 F^2 (1-F)^2 f.",
+  "tips": [
+   "General order-statistic density: g_r(x) = [n!/((r-1)!(n-r)!)] [F(x)]^(r-1) [1 - F(x)]^(n-r) f(x). Substitute r and n and the whole answer follows.",
+   "For the median of 5 observations, r = 3, so the exponents are r - 1 = 2 and n - r = 2 - symmetric, as the median should be.",
+   "The constant 5!/(2!2!) = 120/4 = 30 is what separates (c) from (d); option (c) has the right shape but the wrong normalising constant.",
+   "Options (a) and (b) are the densities of the MAXIMUM and the MINIMUM respectively - useful to recognise as the r = n and r = 1 special cases."
+  ],
+  "solution": [
+   "For a sample of size n from a continuous distribution, the density of the rth order statistic is g_r(x) = [n!/((r-1)!(n-r)!)] [F(x)]^(r-1) [1-F(x)]^(n-r) f(x).",
+   "With n = 5 observations, the sample median is the third order statistic, so r = 3.",
+   "The exponents are r - 1 = 2 on F(x) and n - r = 2 on 1 - F(x).",
+   "The constant is 5!/(2! 2!) = 120/(2 x 2) = 30.",
+   "Hence the density of the sample median is 30 [F(x)]^2 [1 - F(x)]^2 f(x).",
+   "Option (d) is correct."
+  ]
+ },
+ "2020-Q11": {
+  "answer": 1,
+  "confidence": "high",
+  "type": "Conceptual",
+  "shortcut": "Statement 1 is imprecise: multiplying by a NEGATIVE constant multiplies the mean by it but multiplies the SD by its absolute value. Statements 2 and 3 state the rules correctly.",
+  "tips": [
+   "Scaling rules: mean(cX) = c mean(X) but SD(cX) = |c| SD(X). The absolute value is compulsory because a standard deviation can never be negative.",
+   "Shift rules: mean(X + k) = mean(X) + k but SD(X + k) = SD(X). Dispersion is unaffected by a change of origin.",
+   "Statements 1 and 2 make claims about the same operation, and one is a corrected version of the other - a sure sign that the imprecise one is the false statement.",
+   "Variance scales as c^2: Var(cX) = c^2 Var(X). Taking the square root recovers |c|, which is where the absolute value comes from."
+  ],
+  "solution": [
+   "Let Y = cX for a constant c. Then mean(Y) = c mean(X) and Var(Y) = c^2 Var(X), so SD(Y) = |c| SD(X).",
+   "Statement 1 asserts that both the mean AND the standard deviation are multiplied by the constant. This is true for the mean but false for the SD when c is negative, since a standard deviation is non-negative. FALSE as stated.",
+   "Statement 2 asserts that the SD is multiplied by the ABSOLUTE VALUE of the constant, which is exactly correct. TRUE.",
+   "Statement 3: for Y = X + k, Var(Y) = Var(X), so the SD is unchanged by a change of origin. TRUE.",
+   "Only statements 2 and 3 are correct.",
+   "Option (b) is correct."
+  ]
+ },
+ "2020-Q12": {
+  "answer": 3,
+  "confidence": "high",
+  "type": "Theoretical",
+  "shortcut": "Consistency requires every ultimate class frequency to be non-negative. Each of the three relations makes one such class negative - (AB) > (A) makes (A beta) < 0, (AB) < (A)+(B)-N makes (alpha beta) < 0, and the third makes (alpha beta gamma) < 0. All three signal inconsistency.",
+  "tips": [
+   "Test for consistency by computing the ULTIMATE class frequencies; the data are inconsistent as soon as any of them is negative.",
+   "Two attributes give the standard bounds max(0, (A)+(B)-N) <= (AB) <= min((A),(B)). Statements 1 and 2 are simply violations of the upper and lower bound respectively.",
+   "For three attributes, inclusion-exclusion gives (alpha beta gamma) = N - (A) - (B) - (C) + (AB) + (AC) + (BC) - (ABC). Requiring this to be non-negative gives (ABC) <= (AB)+(AC)+(BC)-(A)-(B)-(C)+N; statement 3 is the violation of that bound.",
+   "When all listed relations are constructed as violations of the same non-negativity principle, expect 'all of them' - but derive at least the three-attribute one, since its sign is easy to get backwards."
+  ],
+  "solution": [
+   "A set of attribute frequencies is CONSISTENT only if every ultimate class frequency is non-negative.",
+   "Statement 1: since the class AB is contained in A, we always have (AB) <= (A); indeed (A beta) = (A) - (AB) >= 0. So (AB) > (A) forces (A beta) < 0 and the data are inconsistent. CORRECT indicator.",
+   "Statement 2: (alpha beta) = N - (A) - (B) + (AB) must be non-negative, which gives (AB) >= (A) + (B) - N. So (AB) < (A) + (B) - N makes (alpha beta) < 0 and the data are inconsistent. CORRECT indicator.",
+   "Statement 3: by inclusion-exclusion, (alpha beta gamma) = N - (A) - (B) - (C) + (AB) + (AC) + (BC) - (ABC).",
+   "Non-negativity of (alpha beta gamma) requires (ABC) <= (AB) + (AC) + (BC) - (A) - (B) - (C) + N. Hence the strict inequality in statement 3 makes (alpha beta gamma) < 0 and signals inconsistency. CORRECT indicator.",
+   "All three relations indicate inconsistency, option (d)."
+  ]
+ },
+ "2020-Q13": {
+  "answer": 2,
+  "confidence": "high",
+  "type": "Conceptual",
+  "shortcut": "In general Var(X - Y) = S_X^2 + S_Y^2 - 2 r S_X S_Y. The given identity removes the cross term, so 2 r S_X S_Y = 0 and hence r = 0.",
+  "tips": [
+   "The variance of a difference carries a MINUS 2rS_X S_Y term; the plain additive formula holds only when that term vanishes.",
+   "Since standard deviations are strictly positive for non-degenerate variables, 2 r S_X S_Y = 0 forces r = 0 exactly - not merely 'small'.",
+   "Note this gives UNCORRELATED, not independent: the same identity would hold for dependent but uncorrelated variables.",
+   "Companion identity: Var(X + Y) = S_X^2 + S_Y^2 + 2 r S_X S_Y, which likewise reduces to the additive form precisely when r = 0."
+  ],
+  "solution": [
+   "For D = X - Y, the general variance formula is S_D^2 = S_X^2 + S_Y^2 - 2 r S_X S_Y, where r is the correlation between X and Y.",
+   "The question states that S_D^2 = S_X^2 + S_Y^2.",
+   "Equating the two expressions gives S_X^2 + S_Y^2 - 2 r S_X S_Y = S_X^2 + S_Y^2.",
+   "Hence 2 r S_X S_Y = 0.",
+   "Since S_X and S_Y are positive for non-degenerate variables, r = 0.",
+   "Hence the correlation is exactly zero, option (c)."
+  ]
+ },
+ "2020-Q14": {
+  "answer": 3,
+  "confidence": "high",
+  "type": "Conceptual",
+  "shortcut": "Y = 20 - X makes X + Y = 20 identically, so (X + Y)X = 20X. The correlation of X with 20X is +1.",
+  "tips": [
+   "Simplify the expression BEFORE computing anything: the sum X + Y collapses to the constant 20, which is the entire content of the question.",
+   "Correlation between a variable and a positive multiple of itself is exactly +1; a negative multiple would give -1.",
+   "The variance sigma^2 is stated only to guarantee that X is non-degenerate so that the correlation is defined - it never enters the answer.",
+   "Option (a) -1 is the correlation between X and Y themselves, the natural trap if you stop at Y = 20 - X without simplifying the product."
+  ],
+  "solution": [
+   "Since Y = 20 - X, the sum X + Y = X + (20 - X) = 20 is a constant.",
+   "Therefore the second variable is (X + Y)X = 20X.",
+   "The correlation between X and 20X is Cov(X, 20X)/(sd(X) . sd(20X)) = 20 Var(X)/(sd(X) . 20 sd(X)) = 1.",
+   "In general, corr(X, aX) equals +1 for a > 0, and here a = 20 > 0.",
+   "The finite variance sigma^2 > 0 ensures the correlation is well defined.",
+   "Hence the correlation is 1, option (d)."
+  ]
+ },
+ "2020-Q15": {
+  "answer": 1,
+  "confidence": "high",
+  "type": "Conceptual",
+  "shortcut": "r^2 = 0.49 gives 49% explained variation, so statement 1 holds. Since r = +0.7 > 0, both regression coefficients share that positive sign, so statement 2 holds and statement 3 fails.",
+  "tips": [
+   "Percentage of variation explained is r^2 x 100, not r x 100. Here 0.7^2 = 0.49, i.e. 49%.",
+   "Sign rule: r, b_yx and b_xy always carry the SAME sign, because r^2 = b_yx b_xy and r = sign(b) sqrt(b_yx b_xy).",
+   "Statements 2 and 3 are direct contradictions, so exactly one of them must be true - decide by the sign of r and both are settled at once.",
+   "Remember 'r^2 explains, r describes': r^2 is the coefficient of determination and r merely indicates strength and direction."
+  ],
+  "solution": [
+   "The correlation coefficient is r = 0.7.",
+   "Statement 1: the proportion of variation in the dependent variable explained by the independent variable is the coefficient of determination r^2 = 0.49, i.e. 49%. TRUE.",
+   "The two regression coefficients satisfy b_yx b_xy = r^2 and both carry the same sign as r.",
+   "Statement 2: since r = +0.7 is positive, both regression coefficients are positive. TRUE.",
+   "Statement 3: this contradicts statement 2 and is therefore FALSE.",
+   "Statements 1 and 2 are correct, option (b)."
+  ]
+ },
+ "2020-Q16": {
+  "answer": 3,
+  "confidence": "high",
+  "type": "Numerical",
+  "shortcut": "R^2 = (r12^2 + r13^2 - 2 r12 r13 r23)/(1 - r23^2) = 2rho^2(1-rho)/[(1-rho)(1+rho)] = 2rho^2/(1+rho). Taking the square root gives sqrt(2) rho/sqrt(1+rho).",
+  "tips": [
+   "Compute R SQUARED first and take the square root only at the very end - working with R directly invites algebraic slips.",
+   "The cancellation of (1 - rho) between numerator and denominator is the whole trick; factor 1 - rho^2 as (1-rho)(1+rho) before simplifying.",
+   "Check the limit rho -> 1: R^2 -> 2/2 = 1, so R -> 1 as the variables become perfectly correlated. Option (d) satisfies this; option (a) gives 1/sqrt2 and fails.",
+   "This is the square root of the 2018 Q29 result - the same identity appears in both papers, once as R^2 and once as R."
+  ],
+  "solution": [
+   "For a trivariate distribution, R^2_(1.23) = (r12^2 + r13^2 - 2 r12 r13 r23)/(1 - r23^2).",
+   "With r12 = r13 = r23 = rho, the numerator is rho^2 + rho^2 - 2rho^3 = 2rho^2(1 - rho).",
+   "The denominator is 1 - rho^2 = (1 - rho)(1 + rho).",
+   "Cancelling (1 - rho), which is non-zero since rho is not 1, gives R^2_(1.23) = 2rho^2/(1 + rho).",
+   "Taking the positive square root: R_(1.23) = sqrt(2) rho/sqrt(1 + rho).",
+   "Hence option (d) is correct."
+  ]
+ },
+ "2020-Q17": {
+  "answer": 3,
+  "confidence": "high",
+  "type": "Theoretical",
+  "shortcut": "X - Y and X + Y are independent N(0,2) variables (their covariance is Var(X) - Var(Y) = 0). So U is the ratio of two independent chi-square(1)/1 quantities, i.e. F(1,1).",
+  "tips": [
+   "For i.i.d. normals, the sum and the difference are INDEPENDENT - a special property of the normal family that this question is built on.",
+   "Cov(X - Y, X + Y) = Var(X) - Var(Y) = 0, and joint normality then upgrades zero correlation to full independence.",
+   "The common variance 2 cancels in the ratio, so no scaling constant survives - the answer is a pure F with 1 and 1 degrees of freedom.",
+   "Equivalently (X-Y)/(X+Y) is a standard Cauchy, and the square of a Cauchy is F(1,1). Both routes give option (d)."
+  ],
+  "solution": [
+   "X and Y are independent N(0,1), so X - Y ~ N(0,2) and X + Y ~ N(0,2).",
+   "Cov(X - Y, X + Y) = Var(X) - Var(Y) = 1 - 1 = 0, and since the pair is jointly normal, X - Y and X + Y are INDEPENDENT.",
+   "Set A = (X - Y)/sqrt(2) and B = (X + Y)/sqrt(2); these are independent N(0,1).",
+   "Then U = ((X-Y)/(X+Y))^2 = A^2/B^2, and A^2 and B^2 are independent chi-square variables each with 1 degree of freedom.",
+   "By definition, the ratio (chi-square_1/1)/(chi-square_1/1) of independent chi-squares follows F(1, 1).",
+   "Hence U ~ F(1,1), option (d)."
+  ]
+ },
+ "2020-Q18": {
+  "answer": 1,
+  "confidence": "high",
+  "type": "Conceptual",
+  "shortcut": "Each sample variance loses one degree of freedom for its estimated mean, so the d.f. are 20 - 1 = 19 and 37 - 1 = 36.",
+  "tips": [
+   "Rule: the variance-ratio F test uses (n1 - 1, n2 - 1) degrees of freedom when both population means are UNKNOWN and estimated from the samples.",
+   "If the means were KNOWN, no degree of freedom would be lost and the d.f. would be n1 and n2 - the reason the question specifies 'unknown means'.",
+   "Order matters only for reading the table: place the larger variance in the numerator so that F >= 1, then use the corresponding d.f. first.",
+   "Option (a) subtracts 2 from each sample size, confusing this with the pooled t-test's n1 + n2 - 2 - keep the two adjustments apart."
+  ],
+  "solution": [
+   "To test the equality of two normal variances we use the ratio of the two sample variances, F = s1^2/s2^2.",
+   "Each sample variance is computed about its own SAMPLE mean, because the population means are unknown, so one degree of freedom is lost per sample.",
+   "For the first sample of size 20, the numerator d.f. is 20 - 1 = 19.",
+   "For the second sample of size 37, the denominator d.f. is 37 - 1 = 36.",
+   "Hence the statistic follows F(19, 36) under the null hypothesis.",
+   "Option (b) is correct."
+  ]
+ },
+ "2020-Q19": {
+  "answer": 3,
+  "confidence": "high",
+  "type": "Numerical",
+  "shortcut": "Under H0 the count of observations above 25 is Binomial(10, 0.6). The size is P(X >= 7) = 0.2150 + 0.1209 + 0.0403 + 0.0060 = 0.382.",
+  "tips": [
+   "The size of a test is the rejection probability computed UNDER H0, so use p = 0.6 (the null quantile), not 0.5.",
+   "Sum all four upper terms: P(7), P(8), P(9) and P(10). Stopping at P(X = 7) = 0.215 gives a badly understated size.",
+   "The supplied hint (0.6)^7 = 0.028 feeds every term: P(7) = 120(0.028)(0.064), P(8) = 45(0.0168)(0.16), and so on.",
+   "Since the mean of Binomial(10, 0.6) is 6, a cut-off of 7 is barely above the mean, so a LARGE size is expected - options (a), (b) and (c) are implausibly small."
+  ],
+  "solution": [
+   "Under H0 the upper 60th percentile equals 25, so P(X > 25) = 0.6 and the number of observations exceeding 25 in a sample of 10 is Binomial(10, 0.6).",
+   "The test rejects H0 when this count is at least 7, so the size is P(B >= 7) with B ~ Binomial(10, 0.6).",
+   "P(B = 7) = C(10,7)(0.6)^7(0.4)^3 = 120(0.02799)(0.064) = 0.2150.",
+   "P(B = 8) = C(10,8)(0.6)^8(0.4)^2 = 45(0.016796)(0.16) = 0.1209; P(B = 9) = 10(0.6)^9(0.4) = 0.0403; P(B = 10) = (0.6)^10 = 0.0060.",
+   "Adding: 0.2150 + 0.1209 + 0.0403 + 0.0060 = 0.3822.",
+   "The size of the test is approximately 0.38, option (d)."
+  ]
+ },
+ "2020-Q20": {
+  "answer": 0,
+  "confidence": "high",
+  "type": "Numerical",
+  "shortcut": "The winner has the MINIMUM time. For U(a,b) with n observations, E[min] = a + (b-a)/(n+1) = 10 + 1/11.",
+  "tips": [
+   "Uniform order-statistic means: E[X_(r)] = a + (b - a) r/(n+1). For the minimum r = 1 and for the maximum r = n - two formulas in one.",
+   "The winner is the FASTEST, i.e. the smallest time, so r = 1. Reading 'winner' as the maximum gives 10 + 10/11 and no matching option.",
+   "The n + 1 in the denominator is the standard 'plotting position' divisor - the n order statistics divide the interval into n + 1 equal expected gaps.",
+   "With 10 runners on a 1-second interval, the expected winning margin below 10 seconds is 1/11 = 0.0909 s - a small, plausible figure."
+  ],
+  "solution": [
+   "The ten finishing times are i.i.d. Uniform(10, 11), and the winner's time is the minimum, X_(1).",
+   "For a sample of size n from U(a, b), the rth order statistic has mean E[X_(r)] = a + (b - a) r/(n + 1).",
+   "For the minimum, r = 1, so E[X_(1)] = a + (b - a)/(n + 1).",
+   "Substituting a = 10, b = 11 and n = 10: E[X_(1)] = 10 + 1/11.",
+   "Numerically this is 10.0909 seconds.",
+   "Hence the expected time of the winner is 10 + 1/11, option (a)."
+  ]
+ }
+}

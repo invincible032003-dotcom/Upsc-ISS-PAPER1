@@ -261,7 +261,7 @@
     "shortcut": "One bit of the n-bit word carries the sign, leaving n - 1 magnitude bits, so the largest integer is $2^{n-1} - 1$.",
     "tips": [
       "This is the general form of the 8-bit result $127 = 2^{7} - 1$; check any general formula against the concrete case you already know.",
-      "Option $(a) 2^{n} - 1$ is the UNSIGNED maximum. The word 'integer' in these papers implies a signed representation, so one bit is lost to the sign.",
+      "Option (a) $2^{n} - 1$ is the UNSIGNED maximum. The word 'integer' in these papers implies a signed representation, so one bit is lost to the sign.",
       "Options (c) and (d) add rather than subtract 1 and are impossible: the count of non-negative patterns is $2^{n-1}$, and the largest of them (starting from 0) must be $2^{n-1} - 1$.",
       "Symmetric fact worth pairing: the minimum is $-2^{n-1}$ in 2's complement, which is one further from zero than the maximum."
     ],

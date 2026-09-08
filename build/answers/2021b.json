@@ -67,8 +67,8 @@
     "tips": [
       "Poisson approximation to the binomial: with n large and p small, $\\text{Binomial}(n,p)$ is approximately $\\text{Poisson}(np)$. Here $np = 20$.",
       "Estimate p from the pilot sample first - 8 out of 200 gives 4%. The city population of 100000 is a distractor and never enters the calculation.",
-      "Option $(c) \\text{Poisson}(8)$ reuses the pilot COUNT instead of rescaling to the new sample size - the commonest error.",
-      "Option $(d) \\text{Poisson}(16/5) = \\text{Poisson}(3.2)$ comes from dividing rather than multiplying by the size ratio $500/200 = 2.5$."
+      "Option (c) $\\text{Poisson}(8)$ reuses the pilot COUNT instead of rescaling to the new sample size - the commonest error.",
+      "Option (d) $\\text{Poisson}(16/5) = \\text{Poisson}(3.2)$ comes from dividing rather than multiplying by the size ratio $500/200 = 2.5$."
     ],
     "solution": [
       "The pilot test of 200 citizens gave 8 positives, so the estimated prevalence is $p = 8/200 = 0.04$.",
@@ -345,7 +345,7 @@
     "type": "Numerical",
     "shortcut": "The $2^{i}$ and $(1/2)^{i}$ cancel, leaving $\\operatorname{E}(X)$ = sum of $(-1)^{i+1}/i!$ for $i \\ge 1 = -[e^{-1} - 1] = 1 - e^{-1}$.",
     "tips": [
-      "Multiply value by probability FIRST: $[(-1)^{i+1} 2^{i}/i!] \\times (1/2)^{i} = (-1)^{i+1}/i$!. The cancellation is the entire design of the question.",
+      "Multiply value by probability FIRST: $[(-1)^{i+1} 2^{i}/i!] \\times (1/2)^{i} = (-1)^{i+1}/i!$. The cancellation is the entire design of the question.",
       "Recognise the exponential series: $\\sum (-1)^{i}/i! = e^{-1}$. The required sum starts at $i = 1$ and has the opposite sign, giving $1 - e^{-1}$.",
       "Check the probabilities sum to 1: sum of $(1/2)^{i}$ for $i \\ge 1 = 1$, so the distribution is valid.",
       "Numerically $1 - e^{-1} = 0.632$, and the first two terms of the sum are $1 - 1/2 = 0.5$ with the next $+1/6 = 0.667$ - the $\\partial$ sums bracket 0.632, confirming the answer."
@@ -353,8 +353,8 @@
     "solution": [
       "X takes the value $(-1)^{i+1} 2^{i}/i!$ with probability $(1/2)^{i}$ for $i = 1, 2, 3, \\ldots$ The probabilities sum to 1, so the distribution is valid.",
       "The contribution of the ith term to the expectation is $[(-1)^{i+1} 2^{i}/i!] (1/2)^{i}$.",
-      "The factors $2^{i}$ and $(1/2)^{i}$ cancel, leaving $(-1)^{i+1}/i$!.",
-      "Hence $\\operatorname{E}(X) = \\sum (-1)^{i+1}/i! = -\\sum (-1)^{i}/i$!.",
+      "The factors $2^{i}$ and $(1/2)^{i}$ cancel, leaving $(-1)^{i+1}/i!$.",
+      "Hence $\\operatorname{E}(X) = \\sum (-1)^{i+1}/i! = -\\sum (-1)^{i}/i!$.",
       "Since $\\sum (-1)^{i}/i! = e^{-1}$, the sum from $i = 1$ equals $e^{-1} - 1$.",
       "Therefore $\\operatorname{E}(X) = -(e^{-1} - 1) = 1 - e^{-1}$, option (d)."
     ]
@@ -368,7 +368,7 @@
       "All measures of DISPERSION (range, MD, $\\operatorname{SD}$, QD) are unchanged by a change of origin and scale by $\\lvert a\\rvert$ under a change of scale. Only the mean and other location measures absorb the +3.",
       "The +3 shifts both the values and their mean by 3, so the deviations are identical - the constant cancels exactly.",
       "Use $\\lvert a\\rvert$, not a: a multiplier of -2 would also give 10, since deviations are measured in absolute value.",
-      "Option $(b) 13 = 2(5) + 3$ is the trap for candidates who apply the whole transformation to the dispersion measure instead of just the scale factor."
+      "Option (b) $13 = 2(5) + 3$ is the trap for candidates who apply the whole transformation to the dispersion measure instead of just the scale factor."
     ],
     "solution": [
       "Let $y = 2x + 3$. Then the mean of y is $\\bar{y} = 2 \\bar{x} + 3$.",

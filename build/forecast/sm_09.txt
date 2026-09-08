@@ -1,0 +1,785 @@
+# FORECAST / AI-GENERATED - Statistical Methods, efficiency and the elite discriminator set
+
+@ FS-320 | Asymptotic Relative Efficiency | Efficiency Comparisons
+Q For a normal population, the asymptotic relative efficiency of the sample median relative to the sample mean is
+O pi/2
+O 2/pi
+O 1
+O 3/pi
+A b
+S The median has asymptotic variance pi sigma^2/(2n) against sigma^2/n for the mean, giving 2/pi = 0.637.
+T Efficiency is the RATIO of variances the other way round: the better estimator has the smaller variance.
+T pi/2 = 1.571 is the reciprocal, planted as option (a).
+X AVar(mean) = sigma^2/n and AVar(median) = pi sigma^2/(2n).
+X The efficiency of the median relative to the mean is the ratio of the mean's variance to the median's.
+X This is 2/pi, option (b).
+
+@ FS-321 | Asymptotic Relative Efficiency | Efficiency Comparisons
+Q For N(mu, sigma^2), the sample mean beats the sample median
+O only if sigma^2 < 1
+O only if mu = 0
+O for every mu and sigma^2
+O only for large n
+A c
+S The efficiency ratio 2/pi is free of both parameters, so the mean always wins under normality.
+T Efficiency comparisons for location estimators depend on the SHAPE of the density, not on its location or scale.
+T For heavy-tailed shapes such as the Laplace the conclusion reverses.
+X The ratio of the asymptotic variances is 2/pi regardless of mu and sigma.
+X Since 2/pi is below 1, the mean is more efficient.
+X This holds for all mu and sigma^2, option (c).
+
+@ FS-322 | Asymptotic Relative Efficiency | Efficiency Comparisons
+Q For the Laplace (double exponential) distribution, the asymptotic relative efficiency of the median relative to the mean is
+O 1/2
+O 2
+O 1
+O pi/2
+A b
+S The Laplace density peaks sharply at the median, making it twice as efficient as the mean.
+T For heavy-tailed symmetric laws the median beats the mean - the Laplace is the classic example.
+T The Laplace median is in fact the maximum-likelihood estimator of its location parameter.
+X For Laplace(0,b), Var(mean) = 2b^2/n and AVar(median) = b^2/n.
+X The efficiency of the median relative to the mean is 2b^2/b^2.
+X This is 2, option (b).
+
+@ FS-323 | Asymptotic Relative Efficiency | Efficiency Comparisons
+Q For a Cauchy population, the sample mean is
+O consistent
+O not consistent, whereas the median is
+O efficient
+O unbiased with a finite variance
+A b
+S The Cauchy sample mean has the same Cauchy law as a single observation, while the median is consistent.
+T No amount of averaging helps a Cauchy; the median, driven by the density at the centre, does.
+T This is the standard demonstration that "the mean is always the best estimator" is false.
+X The average of n independent Cauchy variables is again Cauchy with the same scale.
+X Its distribution does not concentrate, so it is not consistent.
+X The median is consistent, option (b).
+
+@ FS-324 | Asymptotic Relative Efficiency | Efficiency Comparisons
+Q The asymptotic relative efficiency of estimator 1 relative to estimator 2 equals
+O the asymptotic variance of 1 divided by that of 2
+O the asymptotic variance of 2 divided by that of 1
+O the ratio of their variances at n = 1
+O the ratio of their biases
+A b
+S Efficiency is inversely proportional to variance, so the comparison estimator's variance goes on top.
+T Higher efficiency means lower variance, so the ratio must be inverted relative to the naive reading.
+T An ARE above 1 means estimator 1 is the better one.
+X Efficiency measures how much information an estimator extracts, which is inverse to its variance.
+X Hence ARE(1 relative to 2) = AVar(2)/AVar(1).
+X That is option (b).
+
+@ FS-325 | Sampling Distributions and Exact Tests | Constructing t Statistics
+Q X_1, ..., X_6 are independent N(0,1). For C(X_1 + 2X_2)/sqrt(X_3^2 + X_4^2 + X_5^2 + X_6^2) to follow t with 4 degrees of freedom, C must be
+O 2/sqrt(5)
+O 1/sqrt(5)
+O sqrt(5)/2
+O sqrt(2)
+A a
+S Var(X_1 + 2X_2) = 5, so the numerator needs division by sqrt(5), and the 4 degrees of freedom contribute a factor 2.
+T With UNEQUAL weights the numerator variance is the sum of the squared coefficients, not simply the count.
+T Assuming variance 2 out of habit gives sqrt(2) and is exactly the planted trap.
+X X_1 + 2X_2 is N(0, 1 + 4) = N(0,5), so dividing by sqrt(5) standardises it.
+X t_4 = [(X_1+2X_2)/sqrt(5)](2)/sqrt(chi-square with 4 degrees of freedom).
+X Hence C = 2/sqrt(5), option (a).
+
+@ FS-326 | Bivariate Normal Distribution | Moments of the Bivariate Normal
+Q For the standard bivariate normal with correlation rho, what is Var(XY)?
+O 1 + rho^2
+O 1 + 2 rho^2
+O rho^2
+O 1
+A a
+S E(X^2Y^2) = 1 + 2 rho^2 and E(XY) = rho, so the variance is 1 + 2rho^2 - rho^2.
+T Compute the second moment by Isserlis, then subtract the square of the first moment.
+T At rho = 0 the answer is 1, matching Var(XY) = E(X^2)E(Y^2) for independent standard normals.
+X E(X^2Y^2) = 1 + 2 rho^2 and E(XY) = rho.
+X Var(XY) = 1 + 2 rho^2 - rho^2.
+X This is 1 + rho^2, option (a).
+
+@ FS-327 | Bivariate Normal Distribution | Conditional Distributions
+Q For the standard bivariate normal with correlation rho, the conditional law of X given X + Y = s is
+O N(s/2, (1 - rho)/2)
+O N(s/2, 1 - rho^2)
+O N(rho s, 1 - rho^2)
+O N(s, 1 + rho)
+A a
+S The regression slope on the sum is (1+rho)/(2+2rho) = 1/2 and the residual variance is 1 - (1+rho)/2.
+T Conditioning on a linear combination is still a linear regression problem; compute the covariance with the sum.
+T The slope is exactly 1/2 for every rho, which is the surprising part.
+X Cov(X, X+Y) = 1 + rho and Var(X+Y) = 2 + 2 rho, so the slope is 1/2.
+X The conditional variance is 1 - (1+rho)^2/(2+2rho) = 1 - (1+rho)/2 = (1-rho)/2.
+X Hence N(s/2, (1-rho)/2), option (a).
+
+@ FS-328 | Measures of Location, Dispersion, Skewness and Kurtosis | Combined Mean and Variance
+Q Three groups of 10 observations each have means 10, 20 and 30 and variance 4 apiece. What is the combined variance?
+O 212/3
+O 4
+O 200/3
+O 100
+A a
+S Within 4 plus between (100 + 0 + 100)/3 gives 4 + 200/3 = 212/3.
+T Equal group sizes make the between-group term the plain variance of the group means.
+T Ignoring the between term gives 4, planted as option (b).
+X The grand mean is 20, so the deviations of the group means are -10, 0 and 10.
+X The combined variance is 4 + (100 + 0 + 100)/3.
+X This is 4 + 66.67 = 212/3, option (a).
+
+@ FS-329 | Regression Analysis | Angle Between Regression Lines
+Q With r = 0.6 and sigma_x = sigma_y, the tangent of the angle between the two regression lines is
+O 8/15
+O 4/5
+O 3/5
+O 1/2
+A a
+S tan(theta) = [(1-r^2)/r][sigma_x sigma_y/(sigma_x^2 + sigma_y^2)] = (0.64/0.6)(1/2) = 8/15.
+T The formula shows the angle shrinking to 0 as |r| approaches 1 and growing to a right angle at r = 0.
+T With equal standard deviations the second factor is always exactly 1/2.
+X tan(theta) = [(1 - r^2)/r] times sigma_x sigma_y/(sigma_x^2 + sigma_y^2).
+X With equal SDs the second factor is 1/2 and the first is 0.64/0.6.
+X The product is 8/15, option (a).
+
+@ FS-330 | Correlation Analysis | Multiple Correlation
+Q With the squared multiple correlation of variable 1 on 2 and 3 equal to 0.64 and r_12 = 0.6, what is the absolute value of r_13.2?
+O 0.661
+O 0.8
+O 0.5
+O 0.36
+A a
+S 1 - 0.64 = (1 - 0.36)(1 - x^2) gives x^2 = 0.4375, so x = 0.661.
+T Use the factorisation 1 - R^2 = (1 - r_12^2)(1 - r_13.2^2) and solve for the unknown partial.
+T The partial correlation exceeds r_12 here, which is perfectly possible.
+X 0.36 = 0.64(1 - r_13.2^2).
+X Hence 1 - r_13.2^2 = 0.5625 and r_13.2^2 = 0.4375.
+X So |r_13.2| = 0.661, option (a).
+
+@ FS-331 | Correlation Analysis | Sampling Distribution of r
+Q Under the null hypothesis that rho is zero, what is the exact variance of r?
+O 1/(n-1)
+O 1/n
+O (1 - r^2)/n
+O 1/(n-3)
+A a
+S E(r) = 0 and E(r^2) = 1/(n-1), so the variance is 1/(n-1).
+T The exact null variance follows directly from the Beta distribution of r^2.
+T The large-sample formula (1-rho^2)^2/n reduces to 1/n at rho = 0, close but not exact.
+X Under the null, r is symmetric about 0 so E(r) = 0.
+X r^2 is Beta(1/2, (n-2)/2) with mean 1/(n-1).
+X Hence Var(r) = 1/(n-1), option (a).
+
+@ FS-332 | Sampling Distributions and Exact Tests | Independence of Mean and Variance
+Q For n = 6 independent N(0,1) variables with T the sum of squared deviations from the sample mean, what is E(T^3 times the fourth power of the sample mean)?
+O 105/4
+O 315/6
+O 26
+O 15/4
+A a
+S E(T^3) = 5(7)(9) = 315 and E(x_bar^4) = 3/36 = 1/12, so the product is 315/12 = 26.25 = 105/4.
+T For a chi-square with k degrees of freedom, E(X^3) = k(k+2)(k+4).
+T The fourth moment of a normal is 3 sigma^4, and here sigma^2 = 1/6.
+X T is chi-square with 5 degrees of freedom, so E(T^3) = 5(7)(9) = 315.
+X x_bar is N(0, 1/6), so E(x_bar^4) = 3(1/36) = 1/12.
+X By independence the product is 315/12 = 105/4, option (a).
+
+@ FS-333 | Sampling Distributions and Exact Tests | t and F Distributions
+Q For X following F with (6,6) degrees of freedom, what is E(X) times E(1/X)?
+O 9/4
+O 1
+O 3/2
+O 2
+A a
+S Both means are 6/4 = 3/2, so the product is 9/4.
+T Even a symmetric-looking F(n,n) has E(X)E(1/X) well above 1.
+T The reciprocal of F(6,6) is again F(6,6), which is why the two means coincide.
+X E(X) = 6/(6-2) = 3/2.
+X 1/X is also F(6,6), so E(1/X) = 3/2.
+X The product is 9/4, option (a).
+
+@ FS-334 | Non-Parametric Tests | Mann-Whitney Test
+Q For the Mann-Whitney test with n_1 = n_2 = 3, what is the null probability that U equals 0?
+O 1/20
+O 1/10
+O 1/6
+O 1/12
+A a
+S Exactly one of the C(6,3) = 20 arrangements puts all three of one sample below all three of the other.
+T Small-sample rank tests are pure combinatorics: count arrangements out of C(n_1+n_2, n_1).
+T U = 0 is the most extreme outcome, so its probability is the smallest attainable one-tailed size.
+X There are C(6,3) = 20 equally likely arrangements of the labels.
+X Only one gives U = 0.
+X The probability is 1/20, option (a).
+
+@ FS-335 | Non-Parametric Tests | Runs Test
+Q For the runs test with n_1 = n_2 = 3, what is the null probability that the number of runs equals 2?
+O 1/10
+O 1/20
+O 1/5
+O 1/4
+A a
+S Two runs means AAABBB or BBBAAA: 2 of the 20 arrangements.
+T Count the arrangements achieving each run count and divide by C(n_1+n_2, n_1).
+T Two runs is the minimum possible, so it is the extreme left tail of the null distribution.
+X There are C(6,3) = 20 equally likely label arrangements.
+X Exactly 2 of them consist of two blocks.
+X The probability is 2/20 = 1/10, option (a).
+
+@ FS-336 | Non-Parametric Tests | Sign Test
+Q A sign test with n = 7 rejects only when all 7 signs are positive. If the true probability of a positive sign is 0.7, what is the power?
+O 0.082
+O 0.5
+O 0.7
+O 0.35
+A a
+S Power = 0.7^7 = 0.0824.
+T Power is the probability of the rejection region computed under the ALTERNATIVE.
+T An all-or-nothing rejection rule has very low power, which is why n = 7 is inadequate here.
+X The rejection region is "all 7 positive".
+X Under the alternative its probability is 0.7^7.
+X This is 0.082, option (a).
+
+@ FS-337 | Non-Parametric Tests | Kolmogorov-Smirnov Test
+Q For the one-sample Kolmogorov-Smirnov test with n = 100, the approximate 5% critical value is
+O 0.136
+O 0.05
+O 0.196
+O 0.096
+A a
+S 1.36/sqrt(n) = 1.36/10 = 0.136.
+T The asymptotic critical values are 1.36/sqrt(n) at 5% and 1.63/sqrt(n) at 1%.
+T The critical value shrinks only as 1/sqrt(n), so large samples are needed for a sharp test.
+X The 5% asymptotic critical value is 1.36/sqrt(n).
+X With n = 100 this is 1.36/10.
+X The value is 0.136, option (a).
+
+@ FS-338 | Order Statistics | Uniform Order Statistics
+Q For 3 independent U(0,1) variables, what is Cov(X_(1), X_(3))?
+O 1/80
+O 1/16
+O 1/20
+O 1/12
+A a
+S The formula r(n-s+1)/((n+1)^2(n+2)) with r = 1, s = 3 and n = 3 gives 1/80.
+T The covariance of two uniform order statistics is r(n-s+1)/((n+1)^2(n+2)) for r <= s.
+T The extremes are positively but weakly correlated, which the small value reflects.
+X With r = 1 and s = 3, the numerator is 1(3 - 3 + 1) = 1.
+X The denominator is (3+1)^2(3+2) = 16(5) = 80.
+X The covariance is 1/80, option (a).
+
+@ FS-339 | Order Statistics | Range and Spacings
+Q For 2 independent U(0,1) variables, what is the variance of the range?
+O 1/18
+O 1/12
+O 1/24
+O 1/36
+A a
+S The range is Beta(1,2) with variance 2/(9 x 4) = 1/18.
+T For n = 2 the range distribution is Beta(n-1, 2) = Beta(1,2), with density 2(1-r).
+T Its mean is 1/3, matching E(range) = (n-1)/(n+1).
+X The range follows Beta(1,2).
+X Var = ab/((a+b)^2(a+b+1)) = 2/(9 x 4).
+X This is 1/18, option (a).
+
+@ FS-340 | Order Statistics | Exponential Order Statistics
+Q For 3 independent Exp(1) variables, what is the variance of the maximum?
+O 49/36
+O 11/6
+O 1
+O 3
+A a
+S The maximum is a sum of independent exponentials with rates 3, 2 and 1, so the variances add: 1/9 + 1/4 + 1.
+T Renyi's spacing representation turns the maximum into a sum of independent exponentials.
+T The variance is the sum of 1/k^2, which converges to pi^2/6 as n grows.
+X The spacings are independent with rates 3, 2 and 1.
+X Var(max) = 1/9 + 1/4 + 1/1.
+X This is 49/36, option (a).
+
+@ FS-341 | Order Statistics | Uniform Order Statistics
+Q For 7 independent U(0,1) variables, what is the variance of the sample median?
+O 1/36
+O 1/28
+O 1/48
+O 1/64
+A a
+S The median is Beta(4,4) with variance 16/(64 x 9) = 1/36.
+T The general formula for a sample of size n from U(0,1) is 1/(4(n+2)).
+T With n = 5 it gives 1/28 and with n = 7 it gives 1/36 - the values are close together.
+X X_(4) of 7 uniforms is Beta(4,4).
+X Var = 16/(64 x 9).
+X This is 1/36, option (a).
+
+@ FS-342 | Order Statistics | Normal Order Statistics
+Q For 3 independent N(0, sigma^2) variables, the expected value of the maximum is
+O 3 sigma/(2 sqrt(pi))
+O sigma/sqrt(pi)
+O sigma sqrt(2/pi)
+O 2 sigma/sqrt(pi)
+A a
+S The classical constant for n = 3 gives E(max) = 3 sigma/(2 sqrt(pi)) = 0.846 sigma.
+T The expected maxima of a standard normal sample are 0, 0.564 and 0.846 for n = 1, 2 and 3.
+T For n = 2 the value is sigma/sqrt(pi), which is option (b) - read the sample size carefully.
+X For a standard normal sample the expected maximum of 3 observations is 3/(2 sqrt(pi)).
+X Scaling by sigma gives 3 sigma/(2 sqrt(pi)).
+X This is 0.846 sigma, option (a).
+
+@ FS-343 | Standard Errors and Large-Sample Tests | Power of a Test
+Q For a one-sided Z test at the 5% level with power 0.80 and an effect size equal to sigma, the required sample size is
+O 7
+O 6
+O 16
+O 25
+A a
+S n = (1.645 + 0.842)^2 = 6.185, rounded up to 7.
+T The sample-size formula for a one-sided test is (z_alpha + z_beta)^2 divided by the squared effect size in sigma units.
+T z for 80% power is 0.842, the 80th percentile of the standard normal.
+X n = (z_alpha + z_beta)^2 (sigma/delta)^2 with delta = sigma.
+X This is (1.645 + 0.842)^2 = 6.185.
+X Rounding up gives 7, option (a).
+
+@ FS-344 | Correlation Analysis | Testing a Correlation
+Q With n = 12 and r = 0.5, and a critical t value of 2.228 on 10 degrees of freedom, is the correlation significant at 5%?
+O yes
+O no, because t is about 1.83
+O yes, because t exceeds 2.5
+O the test cannot be applied
+A b
+S t = 0.5 sqrt(10)/sqrt(0.75) = 1.826, which is below 2.228.
+T Compute the t statistic before judging: a correlation of 0.5 in a small sample is often not significant.
+T The threshold |r| for n = 12 is about 0.576, which 0.5 does not reach.
+X t = r sqrt(n-2)/sqrt(1-r^2) = 0.5(3.162)/0.866.
+X This is 1.826, below the critical value 2.228.
+X The correlation is not significant, option (b).
+
+@ FS-345 | Correlation Analysis | Multiple Correlation
+Q With r_12 = 0.6, r_13 = 0.8 and r_23 = 0, what is the multiple correlation of variable 1 on variables 2 and 3?
+O 1
+O 0.8
+O 0.64
+O 0.98
+A a
+S With orthogonal predictors R^2 = 0.36 + 0.64 = 1, so variable 1 is an exact linear function of the other two.
+T When r_23 = 0 the squared simple correlations simply add; here they add to exactly 1.
+T An R of 1 means perfect linear prediction, which is admissible but extreme.
+X R^2 = r_12^2 + r_13^2 = 0.36 + 0.64 = 1.
+X Hence R = 1.
+X That is option (a).
+
+@ FS-346 | Association of Attributes | Yule Coefficients
+Q If Yule's Y equals 0.5, what is Yule's Q?
+O 0.8
+O 0.5
+O 0.25
+O 0.9
+A a
+S Q = 2Y/(1+Y^2) = 1/1.25 = 0.8.
+T Apply the conversion formula directly rather than reconstructing the table.
+T Q always exceeds Y in absolute value, which 0.8 against 0.5 confirms.
+X Q = 2Y/(1 + Y^2).
+X With Y = 0.5 this is 1/(1.25).
+X The value is 0.8, option (a).
+
+@ FS-347 | Association of Attributes | Chi-Square and Contingency
+Q For the table a = 10, b = 5, c = 5, d = 10, what is the Yates-corrected chi-square?
+O 2.13
+O 3.33
+O 6.67
+O 1.2
+A a
+S 30(|100 - 25| - 15)^2/(15^4) = 30(3600)/50625 = 2.133.
+T The correction subtracts N/2 from |ad - bc| before squaring in the single-formula version.
+T Without the correction the statistic would be 3.33, so Yates reduces it appreciably.
+X N = 30 and |ad - bc| = 75, so the corrected numerator uses 75 - 15 = 60.
+X chi-square = 30(60)^2/(15 x 15 x 15 x 15) = 108000/50625.
+X This is 2.13, option (a).
+
+@ FS-348 | Measures of Location, Dispersion, Skewness and Kurtosis | Kurtosis
+Q With grouped moments mu_2 = 12 and mu_4 = 400 and class width 6, what is beta_2 after Sheppard's corrections?
+O 2.74
+O 2.78
+O 3.09
+O 2.5
+A a
+S Corrected mu_2 = 9 and mu_4 = 400 - 216 + 37.8 = 221.8, giving 221.8/81 = 2.74.
+T Both moments need correcting: mu_2 loses h^2/12 and mu_4 loses (h^2/2)mu_2 minus 7h^4/240.
+T Correcting only mu_2 would give 400/81 = 4.94, a wildly different answer.
+X Corrected mu_2 = 12 - 36/12 = 9.
+X Corrected mu_4 = 400 - (36/2)(12) + 7(1296)/240 = 400 - 216 + 37.8 = 221.8.
+X beta_2 = 221.8/81 = 2.74, option (a).
+
+@ FS-349 | Measures of Location, Dispersion, Skewness and Kurtosis | Skewness
+Q The ranges of Bowley's and Kelly's coefficients of skewness are respectively
+O -1 to 1 and -1 to 1
+O -3 to 3 and -1 to 1
+O -1 to 1 and -3 to 3
+O both unbounded
+A a
+S Both are quantile-based measures normalised by their own spread, so both lie between -1 and 1.
+T Quantile measures of skewness are always bounded by 1; only Pearson's median form reaches 3.
+T The bounds are attained when the median coincides with one of the two outer quantiles.
+X Bowley's coefficient is (Q_3 + Q_1 - 2M)/(Q_3 - Q_1), whose numerator is bounded by the denominator.
+X Kelly's coefficient has the same structure with P_10 and P_90.
+X Both lie in -1 to 1, option (a).
+
+@ FS-350 | Correlation Analysis | Intraclass Correlation
+Q With k = 3 members per family and all family means equal, the intraclass correlation is
+O -1/2
+O 0
+O 1
+O -1/3
+A a
+S Zero between-family variance drives the coefficient to its floor -1/(k-1) = -1/2.
+T Identical group means means no between-group variation, so the intraclass correlation is minimal, not zero.
+T Zero would require the between variance to equal the within variance divided by k.
+X The intraclass correlation is minimised when the between-family variance is 0.
+X That minimum is -1/(k-1).
+X With k = 3 it is -1/2, option (a).
+
+@ FS-351 | Correlation Analysis | Rank Correlation
+Q With n = 5 and the sum of squared rank differences equal to 40, what is Spearman's rank correlation?
+O -1
+O 0
+O 1
+O -0.5
+A a
+S The maximum sum of d^2 is n(n^2-1)/3 = 40, attained only by a complete reversal.
+T The maximum of the sum of d^2 is n(n^2-1)/3; hitting it means rho = -1.
+T 1 - 6(40)/(5 x 24) = 1 - 2 = -1 confirms it.
+X n(n^2 - 1) = 5(24) = 120.
+X rho = 1 - 6(40)/120 = 1 - 2.
+X The value is -1, option (a).
+
+@ FS-352 | Correlation Analysis | Rank Correlation
+Q The ranks (1,2,3,4) are paired with (2,1,4,3). What is Kendall's tau?
+O 1/3
+O 1/2
+O 2/3
+O 0
+A a
+S Four concordant and two discordant pairs out of six give (4-2)/6 = 1/3.
+T List the C(4,2) = 6 pairs and classify each as concordant or discordant.
+T The two swapped adjacent pairs are the only discordant ones.
+X The pairs (1,2) and (3,4) are discordant; the other four are concordant.
+X tau = (4 - 2)/6.
+X This is 1/3, option (a).
+
+@ FS-353 | Sampling Distributions and Exact Tests | t and F Distributions
+Q X_1, ..., X_4 are independent N(mu, sigma^2). Then (X_1 - X_2) divided by the absolute value of (X_3 - X_4) follows
+O t with 1 degree of freedom, that is Cauchy
+O N(0,1)
+O F with (1,1)
+O t with 2 degrees of freedom
+A a
+S The numerator is N(0, 2 sigma^2) and the denominator is the absolute value of an independent copy, giving a t with 1 degree of freedom.
+T A normal divided by the absolute value of an independent normal with the same variance is always Cauchy.
+T The unknown mu cancels in both differences, which is what makes the statistic pivotal.
+X X_1 - X_2 and X_3 - X_4 are independent N(0, 2 sigma^2).
+X The ratio of one to the absolute value of the other is Z/sqrt(chi-square with 1 degree of freedom).
+X That is t with 1 degree of freedom, the Cauchy, option (a).
+
+@ FS-354 | Sampling Distributions and Exact Tests | t and F Distributions
+Q X is chi-square with 4 degrees of freedom and Y an independent chi-square with 6. What are E(X/Y) and E(X/(X+Y))?
+O 1 and 0.4
+O 1 and 0.5
+O 0.67 and 0.4
+O 1.5 and 0.4
+A a
+S E(X)E(1/Y) = 4(1/4) = 1, and X/(X+Y) is Beta(2,3) with mean 2/5.
+T The ratio to the OTHER variable and the ratio to the TOTAL are different quantities with different answers.
+T E(1/chi-square with 6 degrees of freedom) = 1/4, not 1/6.
+X E(X) = 4 and E(1/Y) = 1/(6-2) = 1/4, so E(X/Y) = 1.
+X X/(X+Y) is Beta(4/2, 6/2) = Beta(2,3) with mean 2/5 = 0.4.
+X Hence option (a).
+
+@ FS-355 | Sampling Distributions and Exact Tests | t and F Distributions
+Q For X following F with (n, n) degrees of freedom, E(X) equals
+O 1
+O n/(n-2), which exceeds 1
+O n/(n+2)
+O 0
+A b
+S Despite the symmetry of the parameters, the mean is n/(n-2), strictly above 1.
+T The F distribution is right-skewed, so its mean exceeds its median even when the two parameters agree.
+T The MEDIAN of F(n,n) is 1, which is what makes the mean's excess surprising.
+X E[F(m,n)] = n/(n-2) for n > 2.
+X With m = n this is n/(n-2), which is greater than 1.
+X Hence option (b).
+
+@ FS-356 | Sampling Distributions and Exact Tests | t and F Distributions
+Q What is P(F with (1,1) degrees of freedom exceeding 1)?
+O 1/2
+O 1/4
+O 1/3
+O 2/3
+A a
+S X and 1/X have the same distribution, so P(X > 1) = P(X < 1) = 1/2.
+T F(n,n) is always median 1 because the reciprocal has the same law.
+T This is the fastest route: no integration and no tables are needed.
+X If X is F(1,1) then 1/X is also F(1,1).
+X Hence P(X > 1) = P(1/X > 1) = P(X < 1).
+X Both equal 1/2, option (a).
+
+@ FS-357 | Bivariate Normal Distribution | Orthant Probabilities
+Q For the standard bivariate normal with rho = 1/2, what is P(X > 0 and Y < 0)?
+O 1/4
+O 1/6
+O 1/3
+O 1/12
+A b
+S 1/4 - arcsin(rho)/(2 pi) = 1/4 - 1/12 = 1/6.
+T The mixed orthant subtracts where the like-sign orthant adds.
+T The four orthant probabilities must total 1, and 1/3 + 1/3 + 1/6 + 1/6 = 1 confirms it.
+X P(X > 0, Y > 0) = 1/4 + arcsin(rho)/(2 pi) = 1/3.
+X By symmetry the mixed orthants share the remaining mass equally.
+X P(X > 0, Y < 0) = 1/2 - 1/3 = 1/6, option (b).
+
+@ FS-358 | Sampling Distributions and Exact Tests | Chi-Square Distribution
+Q What is the coefficient of variation of a chi-square variable with 8 degrees of freedom?
+O 1/2
+O 1/4
+O 1/8
+O 1/sqrt(2)
+A a
+S CV = sqrt(2n)/n = sqrt(2/n) = sqrt(0.25) = 1/2.
+T For a chi-square, the mean is n and the standard deviation is sqrt(2n), so the CV is sqrt(2/n).
+T The CV falls as 1/sqrt(n), which is why the chi-square becomes nearly normal for large n.
+X Mean = 8 and standard deviation = sqrt(16) = 4.
+X CV = 4/8.
+X This is 1/2, option (a).
+
+@ FS-359 | Standard Errors and Large-Sample Tests | Standard Errors
+Q For a normal sample of size 50, the approximate coefficient of variation of the sample standard deviation is
+O 0.1
+O 0.2
+O 0.05
+O 0.14
+A a
+S SE(s) is about sigma/sqrt(2n), so the CV is 1/sqrt(2n) = 1/10.
+T The CV of s depends only on the sample size, not on sigma - the scale cancels.
+T 1/sqrt(100) = 0.1 makes the arithmetic immediate for n = 50.
+X SE(s) is approximately sigma/sqrt(2n) = sigma/10.
+X The CV is SE(s)/sigma = 1/10.
+X This is 0.1, option (a).
+
+@ FS-360 | Non-Parametric Tests | Wilcoxon Signed-Rank Test
+Q For the Wilcoxon signed-rank test with n = 5, rejecting only when the positive rank sum equals 15, what is the size?
+O 1/32
+O 1/16
+O 5/32
+O 1/64
+A a
+S T = 15 requires all five signs positive, which has probability (1/2)^5.
+T The maximum of T is n(n+1)/2 = 15, attained by exactly one sign configuration.
+T Each of the 2^5 sign patterns is equally likely under the null.
+X There are 2^5 = 32 equally likely sign patterns.
+X Only the all-positive pattern gives T = 15.
+X The size is 1/32, option (a).
+
+@ FS-361 | Standard Errors and Large-Sample Tests | Sample Size
+Q Two proportions differ by 0.05 with a pooled proportion of 0.5 and equal sample sizes. What n per group is needed for Z = 1.96?
+O 768
+O 384
+O 1537
+O 500
+A a
+S SE = sqrt(0.5/n) and 0.05/SE = 1.96 gives 0.5/n = 0.000651, so n = 768.
+T Under the null the pooled variance is p(1-p)(1/n + 1/n) = 0.5/n when p = 0.5.
+T The two-group requirement is roughly twice the one-group figure, which is why 384 is planted.
+X SE = sqrt(0.25(2/n)) = sqrt(0.5/n).
+X Setting 0.05/SE = 1.96 gives SE = 0.02551, so 0.5/n = 0.000651.
+X Hence n = 768, option (a).
+
+@ FS-362 | Bivariate Normal Distribution | Regression Lines
+Q In a bivariate normal with b_yx = 0.8 and rho = 0.4, what is the ratio of sigma_2 to sigma_1?
+O 2
+O 0.5
+O 0.32
+O 1
+A a
+S b_yx = rho sigma_2/sigma_1 gives 0.8 = 0.4(ratio), so the ratio is 2.
+T The regression coefficient factorises into the correlation times the ratio of the standard deviations.
+T A regression coefficient can exceed 1 while the correlation cannot - that is the whole point here.
+X b_yx = rho sigma_2/sigma_1.
+X So sigma_2/sigma_1 = 0.8/0.4.
+X The ratio is 2, option (a).
+
+@ FS-363 | Correlation Analysis | Intraclass Correlation
+Q For an intraclass correlation with k = 2, the admissible range is
+O -1 to 1
+O -1/2 to 1
+O 0 to 1
+O -1/3 to 1
+A a
+S The floor -1/(k-1) equals -1 when k = 2.
+T k = 2 is the only case in which the intraclass correlation can reach -1.
+T For every larger k the floor rises towards 0, so the range narrows.
+X The floor is -1/(k-1).
+X With k = 2 this is -1.
+X The range is -1 to 1, option (a).
+
+@ FS-364 | Measures of Location, Dispersion, Skewness and Kurtosis | Combined Mean and Variance
+Q Group 1 has 30 observations with mean 5 and variance 9; group 2 has 70 with mean 15 and variance 16. What is the combined variance?
+O 34.9
+O 25
+O 13.9
+O 12.5
+A a
+S The combined mean is 12, and [30(9 + 49) + 70(16 + 9)]/100 = 3490/100.
+T Compute the combined mean first, then apply the identity with the squared deviations of each group mean.
+T Averaging only the variances gives 13.9, planted as option (c).
+X The combined mean is (150 + 1050)/100 = 12, so the deviations are -7 and 3.
+X The combined variance is [30(9 + 49) + 70(16 + 9)]/100 = (1740 + 1750)/100.
+X This is 34.9, option (a).
+
+@ FS-365 | Measures of Location, Dispersion, Skewness and Kurtosis | Measures of Location
+Q For any set of positive numbers, the correct ordering of the three classical means is
+O AM at most GM at most HM
+O HM at most GM at most AM
+O GM at most HM at most AM
+O they are always equal
+A b
+S The AM-GM-HM inequality holds for every set of positive numbers, with equality only when all are equal.
+T The larger averages give more weight to large values; the harmonic mean is dominated by the small ones.
+T For 2, 4 and 8 the three means are 4.67, 4 and 3.43, illustrating the order.
+X The arithmetic mean weights the values directly, the harmonic mean their reciprocals.
+X By Jensen's inequality, HM <= GM <= AM.
+X Hence option (b).
+
+@ FS-366 | Measures of Location, Dispersion, Skewness and Kurtosis | Measures of Dispersion
+Q Adding a constant c to every observation changes
+O the mean and the variance
+O the mean only
+O the variance only
+O neither
+A b
+S Location measures shift by c; every measure of dispersion is unaffected.
+T Dispersion measures depend only on the differences between observations, which a shift leaves alone.
+T This is why coding a variable by subtracting a constant simplifies the variance computation.
+X Every deviation x_i - x_bar is unchanged when c is added to all observations.
+X So the variance and all other dispersion measures are unchanged, while the mean rises by c.
+X Hence option (b).
+
+@ FS-367 | Association of Attributes | Chi-Square and Contingency
+Q In a chi-square test of independence, the expected frequency of a cell is
+O the row total times the column total divided by the grand total
+O the row total plus the column total
+O the grand total divided by the number of cells
+O the observed frequency
+A a
+S Independence makes the joint proportion the product of the marginal proportions.
+T Compute expected frequencies from the MARGINS, never from the observed cell counts.
+T The chi-square approximation needs each expected frequency to be at least about 5.
+X Under independence, the expected proportion in a cell is the product of the two marginal proportions.
+X Multiplying by the grand total gives (row total)(column total)/(grand total).
+X Hence option (a).
+
+@ FS-368 | Regression Analysis | Residual Variance
+Q The coefficient of determination r^2 measures
+O the proportion of the variance of Y explained by the linear regression on X
+O the proportion of observations lying on the line
+O the slope of the regression line
+O the correlation itself
+A a
+S r^2 is the ratio of the explained sum of squares to the total sum of squares.
+T Report r^2 as a percentage of variance explained; r itself has no such interpretation.
+T r = 0.7 means 49% of the variance is explained, which is why r overstates the strength of a relation.
+X Total sum of squares = explained plus residual.
+X r^2 is the explained fraction of that total.
+X Hence option (a).
+
+@ FS-369 | Sampling Distributions and Exact Tests | Choice of Statistic
+Q A Type I error is
+O rejecting a true null hypothesis
+O accepting a false null hypothesis
+O the probability of a correct decision
+O the same as the power
+A a
+S A Type I error is a false positive: rejecting a null hypothesis that is in fact true.
+T Type I rejects a true null; Type II fails to reject a false one. Power is 1 minus the Type II probability.
+T The significance level alpha is exactly the probability of a Type I error.
+X The null hypothesis is true but the test rejects it.
+X That is the false-positive error.
+X Hence option (a).
+
+@ FS-370 | Standard Errors and Large-Sample Tests | Confidence Intervals
+Q A 95% confidence interval means that
+O the parameter lies in this particular interval with probability 0.95
+O intervals constructed by this procedure contain the parameter 95% of the time in repeated sampling
+O 95% of the observations lie in the interval
+O the estimate is correct 95% of the time
+A b
+S The confidence statement is about the PROCEDURE across repeated samples, not about one realised interval.
+T Once computed, an interval either contains the parameter or does not; the 95% refers to the long-run coverage.
+T Option (c) describes a prediction or tolerance interval, which is a different object entirely.
+X In the frequentist framework the parameter is fixed and the interval is random.
+X The coverage probability refers to the sampling distribution of the interval.
+X Hence option (b).
+
+@ FS-371 | Correlation Analysis | Computing r
+Q Two variables are strongly correlated because both increase with time. This illustrates
+O causation
+O spurious correlation induced by a common cause
+O zero correlation
+O a Type I error
+A b
+S A shared trend produces correlation without any direct link between the two series.
+T Always look for a lurking third variable before reading a correlation causally.
+T Partial correlation, holding the common cause fixed, is the standard diagnostic.
+X Both series are driven by time, which is the common cause.
+X The resulting correlation reflects that shared driver, not a direct relation.
+X This is spurious correlation, option (b).
+
+@ FS-372 | Measures of Location, Dispersion, Skewness and Kurtosis | Kurtosis
+Q A distribution with beta_2 greater than 3 is called
+O platykurtic
+O mesokurtic
+O leptokurtic
+O symmetric
+A c
+S Leptokurtic means more peaked with heavier tails than the normal.
+T Lepto is above 3, platy is below 3 and meso is exactly 3 - the normal is the reference.
+T The Laplace with beta_2 = 6 is leptokurtic; the uniform with 1.8 is platykurtic.
+X The normal has beta_2 = 3 and is mesokurtic.
+X A larger value indicates heavier tails and a sharper peak.
+X Such a distribution is leptokurtic, option (c).
+
+@ FS-373 | Sampling Distributions and Exact Tests | Choice of Statistic
+Q The power of a test is
+O the probability of a Type I error
+O the probability of rejecting a false null hypothesis
+O the significance level
+O 1 minus the significance level
+A b
+S Power is the probability of correctly rejecting when the alternative is true.
+T Power = 1 minus the Type II error probability, and it rises with the sample size and the effect size.
+T Do not confuse it with 1 - alpha, which is the confidence level.
+X Under a specific alternative, the test either rejects or not.
+X The probability that it rejects is the power.
+X Hence option (b).
+
+@ FS-374 | Order Statistics | Range and Spacings
+Q In statistical quality control, the sample range is preferred to the sample standard deviation for small subgroups because
+O it is more efficient
+O it is far easier to compute and nearly as efficient for subgroups of size 5 or less
+O it is unbiased for sigma
+O it is unaffected by outliers
+A b
+S For very small subgroups the range loses little efficiency and is trivial to compute on the shop floor.
+T The efficiency of the range relative to s falls sharply once the subgroup size exceeds about 6.
+T The range must be divided by the constant d_2 to estimate sigma, so it is not unbiased on its own.
+X For subgroups of 5 or fewer, the range retains most of the information about sigma.
+X It requires only a subtraction, which is why control charts use it.
+X Hence option (b).
+
+@ FS-375 | Data Presentation and Measurement Scales | Frequency Distributions
+Q In a symmetric unimodal distribution, the mean, the median and the mode
+O all coincide
+O satisfy mean > median > mode
+O satisfy mode > median > mean
+O are unrelated
+A a
+S Symmetry puts the mean and median at the centre of symmetry, and unimodality puts the mode there too.
+T Symmetry alone gives mean = median; unimodality is needed to bring the mode into line.
+T Any departure from this equality is a signal of skewness, which is how Pearson's coefficients are built.
+X A symmetric distribution has its mean and median at the axis of symmetry.
+X A single mode must also lie there.
+X All three coincide, option (a).

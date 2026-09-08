@@ -124,7 +124,7 @@
     "tips": [
       "Get the limits from the region: $0 < x_{1} < x_{2} < 1$ means $x_{2}$ runs from $x_{1}$ up to 1, a range of length $1 - x_{1}$.",
       "Integrating the constant 2 over that range gives $2(1 - x_{1})$ - a DECREASING density, since small $x_{1}$ leaves more room for $x_{2}$.",
-      "Validity check: the $\\int 2(1-x_{1})$ over $(0,1)$ is $2(1 - 1/2) = 1$. Option $(c) 2 \\times 1$ also integrates to 1, so use the limits, not this test, to choose.",
+      "Validity check: the $\\int 2(1-x_{1})$ over $(0,1)$ is $2(1 - 1/2) = 1$. Option (c) $2 \\times 1$ also integrates to 1, so use the limits, not this test, to choose.",
       "Contrast with $2022 Q_{49}$, where the same density gave $f_{Y}(y) = 2y$ for the OTHER variable - the two marginals are mirror images."
     ],
     "solution": [
@@ -227,7 +227,7 @@
       "All cumulants beyond the second vanish for the normal distribution - a memorable characterisation."
     ],
     "solution": [
-      "Cumulants are defined by the expansion of the cumulant generating function $K(t) = \\log M(t) = \\sum k_{r} t^{r}/r$!.",
+      "Cumulants are defined by the expansion of the cumulant generating function $K(t) = \\log M(t) = \\sum k_{r} t^{r}/r!$.",
       "Statement I: differentiating K once at $t = 0$ gives $K'(0) = M'(0)/M(0) = \\mu_{1}'$, so $k_{1}$ is the mean. TRUE.",
       "Statement II: differentiating twice gives $K''(0) = M''(0)/M(0) - [M'(0)/M(0)]^{2} = \\mu_{2}' - \\mu_{1}'^{2}$, the variance. TRUE.",
       "Statement III: the third derivative yields $k_{3} = \\mu_{3}' - 3 \\mu_{2}' \\mu_{1}' + 2 \\mu_{1}'^{3}$, which is precisely the third CENTRAL moment $\\mu_{3}$ expressed in raw moments. TRUE.",
@@ -277,18 +277,18 @@
     "answer": 2,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "The correlation ratio is invariant under change of origin and scale (I true) and always dominates $r^{2}$ (III true), but it is NOT symmetric: $\\eta_{YX}$ and $\\eta_{XY}$ generally differ (II false).",
+    "shortcut": "The correlation ratio is invariant under change of origin and scale (I true) and always dominates $r^{2}$ (III true), but it is NOT symmetric: $\\eta_{Y}X$ and $\\eta_{X}Y$ generally differ (II false).",
     "tips": [
-      "$\\eta_{YX}^{2}$ measures the proportion of Y's variance explained by ANY function of X, whereas $r^{2}$ measures only the LINEAR part - hence $\\eta^{2} \\ge r^{2}$ always.",
+      "$\\eta_{Y}X^{2}$ measures the proportion of Y's variance explained by ANY function of X, whereas $r^{2}$ measures only the LINEAR part - hence $\\eta^{2} \\ge r^{2}$ always.",
       "Equality $\\eta^{2} = r^{2}$ holds exactly when the regression of Y on X is linear - a useful test for linearity.",
-      "Asymmetry: $\\eta_{YX}$ is built from the conditional means of Y given X, and $\\eta_{XY}$ from those of X given Y. There is no reason for them to agree, unlike r which is symmetric.",
+      "Asymmetry: $\\eta_{Y}X$ is built from the conditional means of Y given X, and $\\eta_{X}Y$ from those of X given Y. There is no reason for them to agree, unlike r which is symmetric.",
       "Invariance under linear transformation follows because $\\eta^{2}$ is a ratio of variances, and both numerator and denominator scale by the same factor."
     ],
     "solution": [
-      "The correlation ratio is defined by $\\eta_{YX}^{2} = \\operatorname{Var}[\\operatorname{E}(Y\\mid X)]/\\operatorname{Var}(Y)$, the proportion of the variance of Y explained by the conditional means.",
+      "The correlation ratio is defined by $\\eta_{Y}X^{2} = \\operatorname{Var}[\\operatorname{E}(Y\\mid X)]/\\operatorname{Var}(Y)$, the proportion of the variance of Y explained by the conditional means.",
       "Statement I: a change of origin or scale in X does not alter the conditioning information, and a change in Y scales both the numerator and the denominator by the same factor. So $\\eta^{2}$ is invariant. TRUE.",
-      "Statement II: $\\eta_{YX}$ is built from $\\operatorname{E}(Y\\mid X)$ while $\\eta_{XY}$ is built from $\\operatorname{E}(X\\mid Y)$; these are different quantities and there is no general reason for them to be equal, unlike the symmetric correlation coefficient r. FALSE.",
-      "Statement III: $r^{2}$ measures only the linear part of the relationship, whereas $\\eta_{YX}^{2}$ captures the whole regression function, so $\\eta_{YX}^{2} \\ge r^{2}$ always, with equality exactly when the regression of Y on X is linear. TRUE.",
+      "Statement II: $\\eta_{Y}X$ is built from $\\operatorname{E}(Y\\mid X)$ while $\\eta_{X}Y$ is built from $\\operatorname{E}(X\\mid Y)$; these are different quantities and there is no general reason for them to be equal, unlike the symmetric correlation coefficient r. FALSE.",
+      "Statement III: $r^{2}$ measures only the linear part of the relationship, whereas $\\eta_{Y}X^{2}$ captures the whole regression function, so $\\eta_{Y}X^{2} \\ge r^{2}$ always, with equality exactly when the regression of Y on X is linear. TRUE.",
       "Only statements I and III are correct.",
       "Hence option (c) is correct."
     ]

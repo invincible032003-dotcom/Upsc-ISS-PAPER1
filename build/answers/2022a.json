@@ -8,7 +8,7 @@
       "Reflection rule: if $X \\sim B(n,p)$ then $n - X \\sim B(n, 1-p)$. Spotting this converts the awkward '$3 - X_{4}'$ into a friendly binomial.",
       "Additive property: independent $B(m,p) + B(n,p) = B(m+n,p)$ - but ONLY when p is common, which is exactly what the reflection arranges here.",
       "Check the mean: $3(1/3) + (3 - 3(2/3)) = 1 + 1 = 2$, and $B(6,1/3)$ has mean 2. A quick confirmation.",
-      "Option $(c) B(6,2/3)$ is the trap for candidates who forget to reflect $X_{4}$ and simply add the two success probabilities."
+      "Option (c) $B(6,2/3)$ is the trap for candidates who forget to reflect $X_{4}$ and simply add the two success probabilities."
     ],
     "solution": [
       "$X_{1}, X_{2}, X_{3}$ are i.i.d. $\\text{Bernoulli}(1/3)$, so their sum $S = X_{1} + X_{2} + X_{3} \\sim \\text{Binomial}(3, 1/3)$.",
@@ -62,12 +62,12 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Multinomial: 6!/$(3!2!1!) \\times (0.5)^{3} (0.3)^{2} (0.2) = 60 \\times 0.125 \\times 0.09 \\times 0.2 = 0.135 = 27/200$.",
+    "shortcut": "Multinomial: $6!/(3!2!1!) \\times (0.5)^{3} (0.3)^{2} (0.2) = 60 \\times 0.125 \\times 0.09 \\times 0.2 = 0.135 = 27/200$.",
     "tips": [
       "Multinomial probability = $[n!/(n_{1}! n_{2}! n_{3}!)] p_{1}^{n1} p_{2}^{n2} p_{3}^{n3}$. Compute the multinomial coefficient first: $720/(6 \\times 2 \\times 1) = 60$.",
       "'No one reads more than one paper' is the phrase that makes the three categories mutually exclusive and exhaustive, hence multinomial rather than independent binomials.",
       "Keep it as a fraction: $60 \\times (1/8)(9/100)(1/5) = 60 \\times 9/4000 = 540/4000 = 27/200$. Fractions avoid decimal drift.",
-      "Option $(c) 27/100$ is exactly double the answer - the trap for candidates who drop a factor of 2 somewhere in the coefficient."
+      "Option (c) $27/100$ is exactly double the answer - the trap for candidates who drop a factor of 2 somewhere in the coefficient."
     ],
     "solution": [
       "Each reader independently reads A, B or C with probabilities 0.5, 0.3 and 0.2, and these are mutually exclusive since no one reads more than one paper.",
@@ -90,7 +90,7 @@
       "General fact worth carrying: $\\operatorname{P}(X = k) = \\operatorname{P}(X = k+1)$ exactly when $\\lambda = k + 1$, so equal consecutive probabilities pinpoint $\\lambda$ at once."
     ],
     "solution": [
-      "For a Poisson variable with parameter $\\lambda, \\operatorname{P}(X = k) = e^{-\\lambda} \\lambda^{k}/k$!.",
+      "For a Poisson variable with parameter $\\lambda, \\operatorname{P}(X = k) = e^{-\\lambda} \\lambda^{k}/k!$.",
       "The condition $\\operatorname{P}(X = 1) = \\operatorname{P}(X = 2)$ gives $e^{-\\lambda} \\lambda = e^{-\\lambda} \\lambda^{2}/2$.",
       "Cancelling $e^{-\\lambda}$ and one factor of $\\lambda$ (which is non-zero): $1 = \\lambda/2$.",
       "Hence $\\lambda = 2$.",
@@ -125,7 +125,7 @@
       "Convert a fractional bound on a DISCRETE difference into an integer one: $X - Y \\le 0.5$ means $X - Y \\le 0$, i.e. $X \\le Y$. This removes all ambiguity.",
       "List the qualifying (x,y) pairs explicitly rather than summing blindly - with only six cells the enumeration is quick and safe.",
       "Verify the pmf first: the six masses $(x+y)/21$ are 2, 3, 3, 4, 4, 5 over 21, which sum to $21/21 = 1$.",
-      "Option $(d) 17/21$ is the complement of the wrong event ($X \\ge Y$ or similar) - always double-check which inequality you are summing over."
+      "Option (d) $17/21$ is the complement of the wrong event ($X \\ge Y$ or similar) - always double-check which inequality you are summing over."
     ],
     "solution": [
       "The joint pmf is $p(x,y) = (x+y)/21$ for $x = 1$,2,3 and $y = 1$,2. The six masses are $2/21, 3/21, 3/21, 4/21, 4/21, 5/21$, summing to 1.",
@@ -246,7 +246,7 @@
       "The parameters in $\\text{BVN}(\\mu_{1}, \\mu_{2}, \\sigma_{1}^{2}, \\sigma_{2}^{2}, \\rho)$ are VARIANCES here, both 100, so each standard deviation is 10.",
       "$\\operatorname{Var}(X+Y) = \\sigma_{1}^{2} + \\sigma_{2}^{2} + 2 \\rho \\sigma_{1} \\sigma_{2} = 100 + 100 + 2(0.5)(10)(10) = 300$. Forgetting the covariance term gives 200 and the wrong answer.",
       "$\\operatorname{E}(e^{W})$ for $W \\sim N(m, v)$ is $\\exp(m + v/2)$ - the MGF at $t = 1$. The halving of the variance is the step most often dropped.",
-      "Arithmetic: $30 + 300/2 = 30 + 150 = 180$. Option $(a) e^{150}$ comes from forgetting the mean; option $(d) e^{220}$ from using v rather than $v/2$ with the wrong variance."
+      "Arithmetic: $30 + 300/2 = 30 + 150 = 180$. Option (a) $e^{150}$ comes from forgetting the mean; option (d) $e^{220}$ from using v rather than $v/2$ with the wrong variance."
     ],
     "solution": [
       "$(X,Y) \\sim \\text{BVN}(10, 20, 100, 100, 0.5)$, so $\\operatorname{E}(X) = 10, \\operatorname{E}(Y) = 20, \\operatorname{Var}(X) = \\operatorname{Var}(Y) = 100$ and $\\rho = 0.5$, giving $\\sigma_{X} = \\sigma_{Y} = 10$.",
@@ -261,7 +261,7 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$\\bar{x} = 6, \\bar{y} = 11, S_{xy} = 300 - 264 = 36, S_{yy} = 572 - 484 = 88$. So $b_{XY} = 36/88 = 0.4091$ and $X = 6 + 0.4091(10 - 11) = 5.59$.",
+    "shortcut": "$\\bar{x} = 6, \\bar{y} = 11, S_{xy} = 300 - 264 = 36, S_{yy} = 572 - 484 = 88$. So $b_{X}Y = 36/88 = 0.4091$ and $X = 6 + 0.4091(10 - 11) = 5.59$.",
     "tips": [
       "Predicting X from Y needs the regression of X ON Y, whose coefficient is $S_{xy}/S_{yy}$ - dividing by $S_{xx}$ instead is the classic reversal error.",
       "Corrected sums: $S_{xy} = \\sum xy - n \\bar{x} \\bar{y}$ and $S_{yy} = \\sum y^{2} - n \\bar{y}^{2}$. Compute the means first (6 and 11) and the rest is arithmetic.",
@@ -272,8 +272,8 @@
       "With $n = 4$: $\\bar{x} = 24/4 = 6$ and $\\bar{y} = 44/4 = 11$.",
       "Corrected sum of products: $S_{xy} = \\sum xy - n \\bar{x} \\bar{y} = 300 - 4(6)(11) = 300 - 264 = 36$.",
       "Corrected sum of squares for Y: $S_{yy} = \\sum y^{2} - n \\bar{y}^{2} = 572 - 4(121) = 572 - 484 = 88$.",
-      "Regression coefficient of X on Y: $b_{XY} = S_{xy}/S_{yy} = 36/88 = 0.40909$.",
-      "The regression line is $X = \\bar{x} + b_{XY} (Y - \\bar{y}) = 6 + 0.40909(Y - 11)$.",
+      "Regression coefficient of X on Y: $b_{X}Y = S_{xy}/S_{yy} = 36/88 = 0.40909$.",
+      "The regression line is $X = \\bar{x} + b_{X}Y (Y - \\bar{y}) = 6 + 0.40909(Y - 11)$.",
       "At $Y = 10$: $X = 6 + 0.40909(-1) = 5.591$, i.e. 5.59, option (d)."
     ]
   },

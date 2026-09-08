@@ -1,0 +1,729 @@
+# FORECAST / AI-GENERATED - Statistical Methods, sampling distributions and exact tests
+
+@ FS-212 | Sampling Distributions and Exact Tests | Independence of Mean and Variance
+Q The independence of the sample mean and the sample variance characterises
+O any symmetric distribution
+O the normal distribution alone
+O the exponential distribution
+O the uniform distribution
+A b
+S The Geary-Lukacs theorem: independence of x_bar and s^2 holds if and only if the population is normal.
+T This is a characterisation, not merely a property - it is the standard "which distribution" item.
+T For any non-normal law the two statistics are dependent, however symmetric the law may be.
+X For a normal sample, x_bar and s^2 are independent.
+X Conversely, the Geary-Lukacs theorem shows that independence forces normality.
+X Hence option (b).
+
+@ FS-213 | Sampling Distributions and Exact Tests | Chi-Square Distribution
+Q For a normal sample of size n, the quantity (n-1)s^2/sigma^2 follows
+O chi-square with n degrees of freedom
+O chi-square with n - 1 degrees of freedom
+O F with (n-1, 1) degrees of freedom
+O t with n - 1 degrees of freedom
+A b
+S Estimating the mean costs one degree of freedom.
+T The divisor n - 1 in s^2 and the n - 1 degrees of freedom go together.
+T If the mean were KNOWN the statistic would have n degrees of freedom instead.
+X The n deviations from the sample mean satisfy one linear constraint.
+X Hence the quadratic form has n - 1 degrees of freedom.
+X That is option (b).
+
+@ FS-214 | Sampling Distributions and Exact Tests | Chi-Square Distribution
+Q If s^2 is defined with divisor n, then E(s^2) equals
+O sigma^2
+O (n-1)sigma^2/n
+O n sigma^2/(n-1)
+O sigma^2/n
+A b
+S The divisor n makes the estimator biased downwards by the factor (n-1)/n.
+T Dividing by n - 1 removes the bias; dividing by n leaves it.
+T The bias vanishes as n grows, which is why the distinction matters only in small samples.
+X Sum of (x_i - x_bar)^2 has expectation (n-1)sigma^2.
+X Dividing by n gives (n-1)sigma^2/n.
+X Hence option (b).
+
+@ FS-215 | Sampling Distributions and Exact Tests | Chi-Square Distribution
+Q For a normal sample with s^2 using divisor n - 1, what is Var(s^2)?
+O 2 sigma^4/n
+O 2 sigma^4/(n-1)
+O sigma^4/(n-1)
+O 2 sigma^2/(n-1)
+A b
+S Var(chi-square with k degrees of freedom) = 2k gives Var(s^2) = 2 sigma^4/(n-1).
+T The variance of the sample variance involves sigma to the FOURTH power.
+T The commonly quoted large-sample form 2 sigma^4/n is the same expression with n - 1 replaced by n.
+X (n-1)s^2/sigma^2 is chi-square with n-1 degrees of freedom, of variance 2(n-1).
+X Hence Var(s^2) = sigma^4 times 2(n-1)/(n-1)^2.
+X This is 2 sigma^4/(n-1), option (b).
+
+@ FS-216 | Sampling Distributions and Exact Tests | Constructing t Statistics
+Q X_1, ..., X_4 are independent N(0,1). For C(X_1 + X_2)/sqrt(X_3^2 + X_4^2) to follow t with 2 degrees of freedom, C must be
+O 1
+O sqrt(2)
+O 1/sqrt(2)
+O 2
+A a
+S Standardise the numerator by sqrt(2) and note that t_2 needs a division by sqrt(chi-square/2); the two factors of sqrt(2) cancel.
+T Write the target as N(0,1) divided by the square root of a chi-square over its degrees of freedom, then match.
+T The cancellation is deliberate; only in this balanced case does C come out as 1.
+X (X_1+X_2)/sqrt(2) is N(0,1) and X_3^2 + X_4^2 is chi-square with 2 degrees of freedom.
+X t_2 = [(X_1+X_2)/sqrt(2)]/sqrt(chi-square/2) = (X_1+X_2)/sqrt(chi-square).
+X Hence C = 1, option (a).
+
+@ FS-217 | Sampling Distributions and Exact Tests | Constructing t Statistics
+Q X_1, ..., X_5 are independent N(0,1). For C(X_1 + X_2)/sqrt(X_3^2 + X_4^2 + X_5^2) to follow t with 3 degrees of freedom, C must be
+O sqrt(3/2)
+O sqrt(2/3)
+O sqrt(3)
+O 1
+A a
+S The numerator needs division by sqrt(2) and the denominator multiplication by sqrt(3), giving C = sqrt(3)/sqrt(2).
+T Always write out the definition of t and read off the constant that reconciles the two sides.
+T The degrees of freedom appear as a square root in the numerator of the constant.
+X (X_1+X_2)/sqrt(2) is N(0,1) and the sum of three squares is chi-square with 3 degrees of freedom.
+X t_3 = [(X_1+X_2)/sqrt(2)] sqrt(3)/sqrt(chi-square).
+X So C = sqrt(3/2), option (a).
+
+@ FS-218 | Sampling Distributions and Exact Tests | Constructing t Statistics
+Q X_1, ..., X_6 are independent N(0,1). For C(X_1 - X_2)/sqrt(X_3^2 + X_4^2 + X_5^2 + X_6^2) to follow t with 4 degrees of freedom, C must be
+O sqrt(2)
+O 2
+O 1/sqrt(2)
+O sqrt(4/3)
+A a
+S The numerator needs division by sqrt(2) and the denominator multiplication by sqrt(4) = 2, so C = 2/sqrt(2) = sqrt(2).
+T A difference of two standard normals has variance 2, exactly like a sum.
+T The four degrees of freedom contribute a factor 2, which does not fully cancel the sqrt(2).
+X (X_1 - X_2)/sqrt(2) is N(0,1) and the four squares give chi-square with 4 degrees of freedom.
+X t_4 = [(X_1-X_2)/sqrt(2)](2)/sqrt(chi-square).
+X So C = 2/sqrt(2) = sqrt(2), option (a).
+
+@ FS-219 | Sampling Distributions and Exact Tests | Constructing t Statistics
+Q X_1, X_2, X_3 are independent N(0,1). For C X_1/sqrt(X_2^2 + X_3^2) to follow t with 2 degrees of freedom, C must be
+O 1
+O sqrt(2)
+O 2
+O 1/sqrt(2)
+A b
+S X_1 is already standard, so only the sqrt(2) from the degrees of freedom is needed.
+T With a single standard normal in the numerator, C is simply the square root of the degrees of freedom.
+T Compare with the earlier item where the numerator was a sum and the factors cancelled.
+X X_1 is N(0,1) and X_2^2 + X_3^2 is chi-square with 2 degrees of freedom.
+X t_2 = X_1 sqrt(2)/sqrt(chi-square).
+X Hence C = sqrt(2), option (b).
+
+@ FS-220 | Sampling Distributions and Exact Tests | t and F Distributions
+Q If T follows the t distribution with n degrees of freedom, then T^2 follows
+O chi-square with 1 degree of freedom
+O F with (1, n) degrees of freedom
+O F with (n, 1) degrees of freedom
+O chi-square with n degrees of freedom
+A b
+S Squaring a t gives the ratio of a chi-square with 1 degree of freedom to a chi-square with n, each divided by its own degrees of freedom.
+T t^2 = F(1, n) is the identity behind the equivalence of the t test and the corresponding F test.
+T The order of the degrees of freedom matters: the numerator has 1, not n.
+X T = Z/sqrt(Y/n) with Z standard normal and Y chi-square with n degrees of freedom.
+X T^2 = (Z^2/1)/(Y/n), a ratio of two independent scaled chi-squares.
+X That is F(1, n), option (b).
+
+@ FS-221 | Sampling Distributions and Exact Tests | t and F Distributions
+Q If X follows F with (m, n) degrees of freedom, then 1/X follows
+O F with (m, n)
+O F with (n, m)
+O the ratio of two chi-squares with n and m
+O a t distribution
+A b
+S Inverting an F swaps the two degrees of freedom.
+T This is how lower-tail F critical values are obtained from upper-tail tables.
+T It also explains why one conventionally puts the larger variance on top.
+X X is a ratio of independent scaled chi-squares with m over n.
+X Its reciprocal reverses the roles.
+X So 1/X is F(n, m), option (b).
+
+@ FS-222 | Sampling Distributions and Exact Tests | t and F Distributions
+Q What is the mean of the F distribution with (5, 10) degrees of freedom?
+O 1
+O 1.25
+O 0.8
+O 1.5
+A b
+S E(F) = n/(n-2) = 10/8 = 1.25.
+T The mean depends only on the DENOMINATOR degrees of freedom and always exceeds 1.
+T The mean exists only for n > 2, which is a standard existence question.
+X E[F(m,n)] = n/(n - 2).
+X With n = 10 this is 10/8.
+X The mean is 1.25, option (b).
+
+@ FS-223 | Sampling Distributions and Exact Tests | t and F Distributions
+Q What is the mode of the F distribution with (5, 10) degrees of freedom?
+O 0.5
+O 1
+O 0.75
+O 0.6
+A a
+S Mode = [(m-2)/m][n/(n+2)] = (3/5)(10/12) = 0.5.
+T The F mode is always below 1 while the mean is above it - the distribution is right-skewed.
+T The mode is 0 when m is at most 2, which is a separate case worth remembering.
+X Mode = [(m-2)/m][n/(n+2)].
+X This is (3/5)(10/12) = 30/60.
+X The mode is 0.5, option (a).
+
+@ FS-224 | Sampling Distributions and Exact Tests | t and F Distributions
+Q X follows F with (4, 6) degrees of freedom. What is E(X) times E(1/X)?
+O 1
+O 3
+O 1.5
+O 2
+A b
+S E(X) = 6/4 = 1.5 and 1/X is F(6,4) with mean 4/2 = 2, so the product is 3.
+T E(X)E(1/X) is never 1 unless X is degenerate - Jensen's inequality guarantees it exceeds 1.
+T The reciprocal has SWAPPED degrees of freedom, which is the whole point of the question.
+X E(X) = n/(n-2) = 6/4 = 1.5.
+X 1/X is F(6,4), so E(1/X) = 4/(4-2) = 2.
+X The product is 3, option (b).
+
+@ FS-225 | Sampling Distributions and Exact Tests | t and F Distributions
+Q For X following F with (m, n) degrees of freedom, E(X) times E(1/X) equals
+O 1
+O mn/((m-2)(n-2))
+O (m-2)(n-2)/(mn)
+O n/(n-2)
+A b
+S E(X) = n/(n-2) and E(1/X) = m/(m-2).
+T The reciprocal of an F(m,n) is F(n,m), so its mean uses m in place of n.
+T The product exceeds 1 for all admissible m and n, exactly as Jensen requires.
+X E[F(m,n)] = n/(n-2).
+X 1/X is F(n,m), so E(1/X) = m/(m-2).
+X The product is mn/((m-2)(n-2)), option (b).
+
+@ FS-226 | Sampling Distributions and Exact Tests | Chi-Square Distribution
+Q What is the mode of the chi-square distribution with n degrees of freedom, for n at least 2?
+O n
+O n - 2
+O n - 1
+O n + 2
+A b
+S The chi-square is Gamma with shape n/2 and rate 1/2, whose mode is (shape - 1)/rate = n - 2.
+T Mean n, mode n - 2, variance 2n - the three numbers worth memorising together.
+T For n < 2 the density is unbounded at 0 and the mode is 0.
+X The chi-square density is proportional to x^(n/2 - 1)e^(-x/2).
+X Setting the derivative of its logarithm to zero gives x = n - 2.
+X Hence option (b).
+
+@ FS-227 | Sampling Distributions and Exact Tests | Chi-Square Distribution
+Q What is the moment generating function of the chi-square distribution with 10 degrees of freedom?
+O (1 - 2t)^(-5)
+O (1 - 2t)^(-10)
+O (1 - t)^(-5)
+O e^(10t)
+A a
+S The chi-square with k degrees of freedom has MGF (1-2t)^(-k/2).
+T Read the exponent as HALF the degrees of freedom - the chi-square is a Gamma with shape k/2.
+T Differentiating twice at 0 recovers the mean 10 and variance 20.
+X The chi-square with k degrees of freedom is Gamma(k/2, rate 1/2).
+X Its MGF is (1 - 2t)^(-k/2).
+X With k = 10 this is (1-2t)^(-5), option (a).
+
+@ FS-228 | Sampling Distributions and Exact Tests | Chi-Square Distribution
+Q What is the expectation of the reciprocal of a chi-square variable with 4 degrees of freedom?
+O 1/4
+O 1/2
+O 1
+O it does not exist
+A b
+S E(1/chi-square with n degrees of freedom) = 1/(n-2) = 1/2.
+T The inverse moment exists only for n > 2 and equals 1/(n-2).
+T 1/E(X) = 1/4 is planted as option (a); Jensen guarantees the true value is larger.
+X E(1/X) for chi-square with n degrees of freedom is 1/(n-2).
+X With n = 4 this is 1/2.
+X Hence option (b).
+
+@ FS-229 | Sampling Distributions and Exact Tests | Chi-Square Distribution
+Q What is the expectation of the reciprocal of a chi-square variable with 2 degrees of freedom?
+O 1/2
+O 1
+O infinite
+O 0
+A c
+S The formula 1/(n-2) fails at n = 2; the integral diverges at the origin.
+T Always check the existence condition n > 2 before quoting the inverse moment.
+T The chi-square with 2 degrees of freedom is exponential, and E(1/X) for an exponential is infinite.
+X The chi-square with 2 degrees of freedom has density (1/2)e^(-x/2).
+X The integral of (1/x)(1/2)e^(-x/2) diverges logarithmically at 0.
+X The expectation is infinite, option (c).
+
+@ FS-230 | Sampling Distributions and Exact Tests | Chi-Square Distribution
+Q For a normal sample of size n, what is the expectation of the reciprocal of S^2?
+O 1/sigma^2
+O (n-1)/((n-3)sigma^2)
+O (n-3)/((n-1)sigma^2)
+O n/((n-2)sigma^2)
+A b
+S Using E(1/chi-square) = 1/(k-2) with k = n-1 gives (n-1)/((n-3)sigma^2).
+T S^2 is unbiased for sigma^2 but 1/S^2 is biased UPWARDS for 1/sigma^2 - a Jensen consequence.
+T The expression requires n > 3, which is the existence condition.
+X (n-1)S^2/sigma^2 is chi-square with n-1 degrees of freedom.
+X E(1/S^2) = ((n-1)/sigma^2) E(1/chi-square) = ((n-1)/sigma^2)(1/(n-3)).
+X This is (n-1)/((n-3)sigma^2), option (b).
+
+@ FS-231 | Sampling Distributions and Exact Tests | Chi-Square Distribution
+Q For a normal sample, the moment generating function of S^2 with divisor n - 1 is
+O (1 - 2 sigma^2 t/(n-1))^(-(n-1)/2)
+O (1 - 2t)^(-(n-1)/2)
+O e^(sigma^2 t)
+O (1 - sigma^2 t)^(-n)
+A a
+S S^2 is sigma^2/(n-1) times a chi-square with n-1 degrees of freedom, and scaling replaces t by ct.
+T To get the MGF of a scaled variable, substitute the scale factor into the argument.
+T At t = 0 the expression is 1, and differentiating once gives sigma^2, as it must.
+X S^2 = (sigma^2/(n-1)) times a chi-square with n-1 degrees of freedom.
+X The chi-square MGF is (1-2t)^(-(n-1)/2), so replacing t by sigma^2 t/(n-1) gives the answer.
+X Hence option (a).
+
+@ FS-232 | Sampling Distributions and Exact Tests | Independence of Mean and Variance
+Q For n = 5 independent N(0,1) variables with T the sum of squared deviations from the sample mean, what is E(T^2 times the square of the sample mean)?
+O 24/5
+O 16/5
+O 8
+O 4
+A a
+S T is chi-square with 4 degrees of freedom and independent of the mean: E(T^2) = 8 + 16 = 24 and E(x_bar^2) = 1/5.
+T Independence of x_bar and s^2 lets the expectation factorise - that is the whole point of the question.
+T E(chi-square squared) = 2k + k^2, not k^2.
+X T is chi-square with 4 degrees of freedom, so E(T^2) = Var + mean^2 = 8 + 16 = 24.
+X x_bar is N(0, 1/5), so E(x_bar^2) = 1/5.
+X By independence the answer is 24/5, option (a).
+
+@ FS-233 | Sampling Distributions and Exact Tests | Independence of Mean and Variance
+Q For n = 4 independent N(0,1) variables with T the sum of squared deviations from the sample mean, what is E(T^2 times the square of the sample mean)?
+O 15/4
+O 9/4
+O 6
+O 3
+A a
+S T is chi-square with 3 degrees of freedom: E(T^2) = 6 + 9 = 15, and E(x_bar^2) = 1/4.
+T The same factorisation as before, with the degrees of freedom reduced by one.
+T Always use k = n - 1 for the deviations from the SAMPLE mean.
+X T is chi-square with 3 degrees of freedom, so E(T^2) = 6 + 9 = 15.
+X x_bar is N(0, 1/4), so E(x_bar^2) = 1/4.
+X The product is 15/4, option (a).
+
+@ FS-234 | Sampling Distributions and Exact Tests | t and F Distributions
+Q An F test compares the variances of two samples of sizes 20 and 37. The degrees of freedom are
+O 20 and 37
+O 19 and 36
+O 36 and 19
+O 19 and 37
+A b
+S Each sample loses one degree of freedom for its estimated mean.
+T The F degrees of freedom are n_1 - 1 and n_2 - 1, in the order numerator then denominator.
+T Using n_1 and n_2 directly is the single most common error in this topic.
+X The sample variances have 19 and 36 degrees of freedom.
+X The F ratio inherits them in that order.
+X Hence option (b).
+
+@ FS-235 | Sampling Distributions and Exact Tests | Choice of Statistic
+Q With sigma known and a small normal sample, testing the mean uses
+O the t distribution
+O the Z distribution
+O the chi-square distribution
+O the F distribution
+A b
+S A known sigma leaves no estimated nuisance parameter, so the statistic is exactly standard normal.
+T The t distribution is needed only because s replaces sigma; a known sigma removes the need entirely.
+T Small n does not by itself force the t distribution - only an estimated sigma does.
+X (x_bar - mu)/(sigma/sqrt(n)) is exactly N(0,1) for a normal sample of any size.
+X No estimation of sigma is involved.
+X So the Z distribution is used, option (b).
+
+@ FS-236 | Sampling Distributions and Exact Tests | Choice of Statistic
+Q The pooled two-sample t test has degrees of freedom
+O n_1 + n_2
+O n_1 + n_2 - 2
+O n_1 + n_2 - 1
+O the smaller of n_1 and n_2 minus 1
+A b
+S Two means are estimated, so two degrees of freedom are lost.
+T Count the estimated parameters: one mean per sample, hence n_1 + n_2 - 2.
+T Welch's version has fractional degrees of freedom, which is a separate procedure.
+X The pooled variance combines two sums of squares with n_1 - 1 and n_2 - 1 degrees of freedom.
+X Their total is n_1 + n_2 - 2.
+X Hence option (b).
+
+@ FS-237 | Sampling Distributions and Exact Tests | Chi-Square Distribution
+Q The sum of two independent chi-square variables with a and b degrees of freedom follows
+O chi-square with a + b degrees of freedom
+O chi-square with ab degrees of freedom
+O F with (a, b) degrees of freedom
+O twice a chi-square
+A a
+S Degrees of freedom add for independent chi-squares, as the MGF product shows.
+T The chi-square is a Gamma with a common rate 1/2, so the additivity is the Gamma additivity.
+T This is the basis of every analysis-of-variance decomposition.
+X The MGFs multiply: (1-2t)^(-a/2)(1-2t)^(-b/2) = (1-2t)^(-(a+b)/2).
+X That is the chi-square MGF with a + b degrees of freedom.
+X Hence option (a).
+
+@ FS-238 | Sampling Distributions and Exact Tests | Chi-Square Distribution
+Q A quadratic form built from a normal sample of size 53 whose residuals satisfy 3 independent linear constraints follows
+O chi-square with 53 degrees of freedom
+O chi-square with 52
+O chi-square with 50
+O chi-square with 49
+A c
+S Each independent linear constraint removes one degree of freedom: 53 - 3 = 50.
+T Degrees of freedom equal the sample size minus the number of independent constraints imposed.
+T Estimating the mean is itself one such constraint, which is why s^2 has n - 1.
+X The residual space has dimension 53 - 3 = 50.
+X A quadratic form on that space is chi-square with 50 degrees of freedom.
+X Hence option (c).
+
+@ FS-239 | Sampling Distributions and Exact Tests | Choice of Statistic
+Q In a one-sample t test, if s^2 doubles while x_bar and n stay fixed, the t statistic becomes
+O half its value
+O its value divided by the square root of 2
+O twice its value
+O its value times the square root of 2
+A b
+S t is inversely proportional to s, and doubling s^2 multiplies s by sqrt(2).
+T Convert the change in the VARIANCE to a change in the standard deviation before adjusting t.
+T Halving the statistic would require the variance to quadruple.
+X t = (x_bar - mu_0)/(s/sqrt(n)) is proportional to 1/s.
+X If s^2 doubles then s is multiplied by sqrt(2).
+X So t is divided by sqrt(2), option (b).
+
+@ FS-240 | Sampling Distributions and Exact Tests | Chi-Square Distribution
+Q If s^2 is defined with divisor n, then n s^2/sigma^2 follows
+O chi-square with n degrees of freedom
+O chi-square with n - 1 degrees of freedom
+O chi-square with n + 1 degrees of freedom
+O the F distribution
+A b
+S n s^2 is the same sum of squared deviations as (n-1)S^2, so the degrees of freedom are still n - 1.
+T The degrees of freedom depend on the CONSTRAINTS, not on the divisor chosen.
+T Changing the divisor changes only the scaling, never the distributional shape.
+X n s^2 equals the sum of (x_i - x_bar)^2.
+X That sum divided by sigma^2 is chi-square with n - 1 degrees of freedom.
+X Hence option (b).
+
+@ FS-241 | Sampling Distributions and Exact Tests | Chi-Square Distribution
+Q As n grows, the standardised chi-square (chi-square minus n) divided by the square root of 2n converges to
+O N(0,1)
+O N(0,2)
+O a t distribution
+O chi-square with 1 degree of freedom
+A a
+S The chi-square with n degrees of freedom is a sum of n independent terms, so the central limit theorem applies.
+T Mean n and variance 2n are exactly the standardising constants.
+T Fisher's sqrt(2 chi-square) approximation converges faster and is the practical alternative.
+X A chi-square with n degrees of freedom is the sum of n independent chi-squares with 1 degree of freedom.
+X Each has mean 1 and variance 2, so the standardised sum tends to N(0,1).
+X Hence option (a).
+
+@ FS-242 | Sampling Distributions and Exact Tests | Chi-Square Distribution
+Q In Fisher's approximation, the square root of twice a chi-square with n degrees of freedom is approximately normal with mean the square root of (2n - 1) and variance
+O 1
+O 2
+O n
+O 1/2
+A a
+S The variance-stabilising square-root transformation makes the variance approximately 1.
+T Fisher's approximation is used for large degrees of freedom where tables stop.
+T The transformation is variance-stabilising, which is exactly why the variance is free of n.
+X The square-root transformation stabilises the variance of a chi-square.
+X The result is approximately N(sqrt(2n-1), 1).
+X The variance is 1, option (a).
+
+@ FS-243 | Sampling Distributions and Exact Tests | Chi-Square Distribution
+Q What is P(chi-square with 4 degrees of freedom exceeds 2)?
+O e^(-1)
+O 2 e^(-1)
+O e^(-2)
+O 1/2
+A b
+S For even degrees of freedom the survival function is elementary: e^(-x/2)(1 + x/2) = e^(-1)(2).
+T Chi-square with an even number of degrees of freedom is a Gamma with an integer shape, so its tail is a finite sum.
+T With 2 degrees of freedom the tail is simply e^(-x/2).
+X For 4 degrees of freedom, P(X > x) = e^(-x/2)(1 + x/2).
+X At x = 2 this is e^(-1)(1 + 1).
+X The value is 2e^(-1), option (b).
+
+@ FS-244 | Sampling Distributions and Exact Tests | Chi-Square Distribution
+Q What is P(chi-square with 2 degrees of freedom exceeds 4)?
+O e^(-2)
+O e^(-4)
+O 1/2
+O e^(-1)
+A a
+S The chi-square with 2 degrees of freedom is exponential with mean 2, so the tail is e^(-x/2).
+T This special case gives exact tail probabilities with no tables at all.
+T The exponent is x/2, not x - forgetting the halving gives option (b).
+X The chi-square with 2 degrees of freedom has survival function e^(-x/2).
+X At x = 4 this is e^(-2).
+X Hence option (a).
+
+@ FS-245 | Sampling Distributions and Exact Tests | t and F Distributions
+Q The t distribution with 1 degree of freedom is
+O N(0,1)
+O the Cauchy distribution
+O the Laplace distribution
+O chi-square with 1 degree of freedom
+A b
+S t with 1 degree of freedom is the ratio of two independent standard normals, which is Cauchy.
+T The t family runs from Cauchy at 1 degree of freedom to normal in the limit.
+T The Cauchy has no mean, which is why E(t_n) requires n > 1.
+X t_1 = Z/sqrt(chi-square with 1 degree of freedom) = Z/|Z'| for independent standard normals.
+X That ratio is standard Cauchy.
+X Hence option (b).
+
+@ FS-246 | Sampling Distributions and Exact Tests | t and F Distributions
+Q What is the variance of the t distribution with 5 degrees of freedom?
+O 1
+O 5/3
+O 5/4
+O 3
+A b
+S Var(t_n) = n/(n-2) = 5/3.
+T The variance exceeds 1 for every finite n and tends to 1 as n grows - the heavy tails of the t.
+T It exists only for n > 2, which is a standard existence item.
+X Var(t_n) = n/(n-2) for n > 2.
+X With n = 5 this is 5/3.
+X Hence option (b).
+
+@ FS-247 | Sampling Distributions and Exact Tests | t and F Distributions
+Q The mean of the t distribution with n degrees of freedom exists for
+O n at least 1
+O n greater than 1
+O n greater than 2
+O all n
+A b
+S t_1 is Cauchy and has no mean; from n = 2 onwards the mean exists and equals 0.
+T Moments of order r exist for the t only when n > r.
+T The variance therefore needs n > 2, which is the companion result.
+X The t density has tails behaving like |x|^(-(n+1)).
+X The first moment integral converges exactly when n > 1.
+X Hence option (b).
+
+@ FS-248 | Sampling Distributions and Exact Tests | t and F Distributions
+Q What is beta_2 for the t distribution with 6 degrees of freedom?
+O 3
+O 6
+O 4.5
+O 9
+A b
+S beta_2 = 3 + 6/(n-4) = 3 + 3 = 6.
+T The t is leptokurtic; its excess kurtosis 6/(n-4) requires n > 4.
+T As n grows the kurtosis falls to 3, matching the normal limit.
+X For the t with n degrees of freedom, beta_2 = 3(n-2)/(n-4) = 3 + 6/(n-4).
+X With n = 6 this is 3 + 3.
+X The value is 6, option (b).
+
+@ FS-249 | Sampling Distributions and Exact Tests | t and F Distributions
+Q Z is standard normal and Y is an independent chi-square with n degrees of freedom. Then Z^2/(Y/n) follows
+O F with (1, n) degrees of freedom
+O F with (n, 1) degrees of freedom
+O chi-square with n + 1 degrees of freedom
+O only the square of a t
+A a
+S Z^2 is chi-square with 1 degree of freedom, so the ratio is F(1, n).
+T An F is the ratio of two independent chi-squares each divided by its own degrees of freedom.
+T This is the same statement as t_n^2 = F(1,n), written directly.
+X Z^2 is chi-square with 1 degree of freedom and is independent of Y.
+X (Z^2/1)/(Y/n) is therefore F(1, n).
+X Hence option (a).
+
+@ FS-250 | Sampling Distributions and Exact Tests | Chi-Square Distribution
+Q X is chi-square with m degrees of freedom and Y an independent chi-square with n. Then X/(X+Y) follows
+O Beta(m, n)
+O Beta(m/2, n/2)
+O F with (m, n)
+O U(0,1)
+A b
+S Chi-squares are Gammas with shapes m/2 and n/2, so the ratio to the total is Beta(m/2, n/2).
+T The Gamma-Beta engine again: halve each degree of freedom to get the Beta parameters.
+T With m = n = 2 this gives Beta(1,1) = U(0,1), a memorable check.
+X X is Gamma(m/2, 1/2) and Y is Gamma(n/2, 1/2), independent with a common rate.
+X Hence X/(X+Y) is Beta(m/2, n/2).
+X That is option (b).
+
+@ FS-251 | Sampling Distributions and Exact Tests | t and F Distributions
+Q X_1 and X_2 are independent N(0, sigma^2). Then (X_1 + X_2)/(X_1 - X_2) follows
+O N(0,1)
+O the Cauchy distribution
+O t with 2 degrees of freedom
+O F with (1,1) degrees of freedom
+A b
+S The sum and the difference are independent normals with equal variances, so their ratio is standard Cauchy.
+T Equal variances make the sum and difference independent, which is what licenses the Cauchy conclusion.
+T The common sigma cancels, so the answer is standard Cauchy regardless of its value.
+X X_1 + X_2 and X_1 - X_2 are both N(0, 2 sigma^2) and are uncorrelated, hence independent.
+X The ratio of two independent centred normals with equal variances is standard Cauchy.
+X Hence option (b).
+
+@ FS-252 | Sampling Distributions and Exact Tests | t and F Distributions
+Q X_1 and X_2 are independent N(0, sigma^2). Then the square of (X_1 + X_2)/(X_1 - X_2) follows
+O F with (1,1) degrees of freedom
+O chi-square with 1 degree of freedom
+O F with (2,2) degrees of freedom
+O t with 1 degree of freedom
+A a
+S The ratio is standard Cauchy, and the square of a Cauchy is F(1,1).
+T Squaring a t with n degrees of freedom always gives F(1,n); here n = 1.
+T P(F(1,1) > 1) = 1/2 by symmetry of the underlying ratio - a useful corollary.
+X The ratio is t with 1 degree of freedom.
+X Squaring a t_n gives F(1,n).
+X With n = 1 this is F(1,1), option (a).
+
+@ FS-253 | Sampling Distributions and Exact Tests | t and F Distributions
+Q For a sample of n independent N(0, sigma^2) variables, n times the square of the sample mean divided by s^2 follows
+O F with (1, n-1) degrees of freedom
+O F with (n-1, 1) degrees of freedom
+O a t distribution
+O chi-square with 1 degree of freedom
+A a
+S The numerator is chi-square with 1 degree of freedom and the denominator an independent chi-square with n-1, each scaled.
+T This is the square of the one-sample t statistic under a zero null mean.
+T Independence of x_bar and s^2 is what makes the F distribution apply.
+X n x_bar^2/sigma^2 is chi-square with 1 degree of freedom.
+X (n-1)s^2/sigma^2 is an independent chi-square with n-1 degrees of freedom.
+X The ratio of the two, each over its degrees of freedom, is F(1, n-1), option (a).
+
+@ FS-254 | Sampling Distributions and Exact Tests | Independence of Mean and Variance
+Q For independent N(0,1) variables, what is the expectation of (X_1 + X_2) divided by (X_3^2 + X_4^2 + X_5^2)?
+O 0
+O 2
+O 1
+O undefined
+A a
+S The numerator has mean 0 and the denominator's reciprocal has finite mean, so independence gives 0.
+T Factorise into E(numerator) times E(1/denominator); both must exist for the product to be valid.
+T E(1/chi-square with 3 degrees of freedom) = 1, which is finite, so the argument is legitimate.
+X The numerator is N(0,2) with mean 0, independent of the denominator.
+X E(1/chi-square with 3 degrees of freedom) = 1/(3-2) = 1, which is finite.
+X The expectation is 0 times 1 = 0, option (a).
+
+@ FS-255 | Sampling Distributions and Exact Tests | Choice of Statistic
+Q A sample of 25 comes from N(mu, 100). What is P(|x_bar - mu| < 4) approximately?
+O 0.68
+O 0.95
+O 0.9544
+O 0.99
+A c
+S SE = 10/5 = 2, so 4 is exactly 2 standard errors and the probability is 0.9544.
+T Convert the tolerance into standard errors first; the rest is a standard normal reading.
+T 0.95 corresponds to 1.96 standard errors, which is not quite the same as 2 - read the options carefully.
+X SE(x_bar) = 10/sqrt(25) = 2.
+X P(|x_bar - mu| < 4) = P(|Z| < 2).
+X This is 0.9544, option (c).
+
+@ FS-256 | Sampling Distributions and Exact Tests | Choice of Statistic
+Q For independent normal samples, the difference of the two sample means follows
+O a normal law with the two variances divided by their own sample sizes and added
+O a t distribution
+O a normal law with the variances added and divided by the total sample size
+O a chi-square distribution
+A a
+S Each mean has variance sigma_i^2/n_i, and independence makes those variances add.
+T Divide each variance by its OWN sample size before adding; pooling the sizes is wrong.
+T Option (c) is that pooling error, which understates the variance whenever the sizes differ.
+X x_bar_1 is N(mu_1, sigma_1^2/n_1) and x_bar_2 is N(mu_2, sigma_2^2/n_2), independent.
+X The difference is normal with mean mu_1 - mu_2 and variance sigma_1^2/n_1 + sigma_2^2/n_2.
+X Hence option (a).
+
+@ FS-257 | Sampling Distributions and Exact Tests | Choice of Statistic
+Q The homogeneity of several variances is tested by
+O Bartlett's test
+O a t test
+O the sign test
+O the run test
+A a
+S Bartlett's test extends the two-sample F test to k samples.
+T For two variances use F; for several use Bartlett, or Levene's test if normality is doubtful.
+T Bartlett's statistic is approximately chi-square with k - 1 degrees of freedom.
+X Testing the equality of k variances requires a k-sample procedure.
+X Bartlett's test is the classical normal-theory procedure for this.
+X Hence option (a).
+
+@ FS-258 | Sampling Distributions and Exact Tests | Choice of Statistic
+Q Two independent normal samples have clearly unequal variances. The appropriate test for the means is
+O the pooled t test
+O Welch's t test
+O an F test
+O a chi-square test
+A b
+S Welch's procedure adjusts the standard error and the degrees of freedom for unequal variances.
+T Pooling is valid only under a common variance; otherwise the pooled t has the wrong size.
+T Welch's degrees of freedom are fractional, computed by the Satterthwaite formula.
+X With unequal variances the pooled estimate is inappropriate.
+X Welch's test uses the separate variances and an adjusted degrees of freedom.
+X Hence option (b).
+
+@ FS-259 | Sampling Distributions and Exact Tests | t and F Distributions
+Q For n = 2, the statistic (x_bar - mu)/(s/sqrt(n)) follows
+O N(0,1)
+O the Cauchy distribution
+O t with 2 degrees of freedom
+O chi-square with 1 degree of freedom
+A b
+S With n = 2 the statistic is t with 1 degree of freedom, which is the Cauchy distribution.
+T The degrees of freedom are n - 1, so n = 2 gives the extreme heavy-tailed case.
+T This is why two observations give almost no useful inference about a mean.
+X The statistic is t with n - 1 = 1 degree of freedom.
+X t with 1 degree of freedom is standard Cauchy.
+X Hence option (b).
+
+@ FS-260 | Sampling Distributions and Exact Tests | Independence of Mean and Variance
+Q Cochran's theorem decomposes the sum of squared deviations from the population mean into an independent chi-square with n - 1 degrees of freedom and
+O chi-square with 1 degree of freedom
+O chi-square with n
+O a standard normal
+O an F variable
+A a
+S The identity splits n degrees of freedom into n - 1 for the residuals and 1 for the mean.
+T The term with 1 degree of freedom is n times the squared deviation of the sample mean.
+T Cochran's theorem also delivers the independence, which is what makes the t statistic work.
+X Sum of (x_i - mu)^2 = sum of (x_i - x_bar)^2 + n(x_bar - mu)^2.
+X Dividing by sigma^2, the two terms are independent chi-squares with n-1 and 1 degrees of freedom.
+X Hence option (a).
+
+@ FS-261 | Sampling Distributions and Exact Tests | Independence of Mean and Variance
+Q For a normal sample, what is Corr(x_bar, s^2)?
+O 1
+O 0
+O 1/n
+O it depends on mu
+A b
+S The two are independent, so their correlation is 0.
+T Independence gives zero correlation; here the independence is exact, not asymptotic.
+T For a skewed population the correlation would be non-zero, which is the contrast being tested.
+X For a normal sample, x_bar and s^2 are independent.
+X Independence implies zero covariance and hence zero correlation.
+X Hence option (b).
+
+@ FS-262 | Sampling Distributions and Exact Tests | t and F Distributions
+Q The variance of the F distribution with (m, n) degrees of freedom is finite if and only if
+O n > 2
+O n > 4
+O m > 4
+O both m and n exceed 2
+A b
+S The F variance requires the denominator degrees of freedom to exceed 4.
+T The mean needs n > 2 and the variance needs n > 4 - the numerator degrees of freedom never restrict either.
+T The heavy right tail of the F comes entirely from the small denominator values.
+X The F variance formula carries (n-2)^2(n-4) in its denominator.
+X It is finite exactly when n > 4.
+X Hence option (b).
+
+@ FS-263 | Sampling Distributions and Exact Tests | t and F Distributions
+Q Consider: 1. the square of a t with 1 degree of freedom is F(1,1), 2. the square of a standard normal is chi-square with 1 degree of freedom, 3. a chi-square with 2 degrees of freedom is exponential. Which are correct?
+O 1 and 2
+O 2 and 3
+O all three
+O 1 only
+A c
+S All three are standard identities linking the exact sampling distributions.
+T These three relations are the connective tissue of the whole topic and are worth memorising as a set.
+T The exponential in statement 3 has mean 2, matching the chi-square mean.
+X t_n^2 = F(1,n), so statement 1 holds with n = 1.
+X Z^2 is chi-square with 1 degree of freedom, and chi-square with 2 degrees of freedom is Gamma(1, 1/2), the exponential with mean 2.
+X All three are correct, option (c).

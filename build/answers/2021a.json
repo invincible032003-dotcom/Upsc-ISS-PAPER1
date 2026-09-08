@@ -43,7 +43,7 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$\\operatorname{E}(X^{2}) = 6 \\Gamma(3)\\Gamma(1)\\Gamma(2)/\\Gamma(6) = 1/10$, so $\\operatorname{Var}(X) = 1/10 - 1/16 = 3/80$ and by symmetry $\\operatorname{Var}(Y) = 3/80$. Then $b_{XY} = (-1/80)/(3/80) = -1/3$, giving $X = 1/4 - (1/3)(Y - 1/4) = (1 - Y)/3$.",
+    "shortcut": "$\\operatorname{E}(X^{2}) = 6 \\Gamma(3)\\Gamma(1)\\Gamma(2)/\\Gamma(6) = 1/10$, so $\\operatorname{Var}(X) = 1/10 - 1/16 = 3/80$ and by symmetry $\\operatorname{Var}(Y) = 3/80$. Then $b_{X}Y = (-1/80)/(3/80) = -1/3$, giving $X = 1/4 - (1/3)(Y - 1/4) = (1 - Y)/3$.",
     "tips": [
       "Regression of X on Y: $X = \\operatorname{E}(X) + [\\operatorname{Cov}/\\operatorname{Var}(Y)](Y - \\operatorname{E}(Y))$. Write the template first and slot in the three numbers.",
       "Both variances equal $3/80$ by symmetry, so the regression coefficient is simply $\\operatorname{Cov}/\\operatorname{Var} = -1/3$ - a clean number that signals the working is right.",
@@ -54,8 +54,8 @@
       "From the previous parts, $\\operatorname{E}(X) = \\operatorname{E}(Y) = 1/4$ and $\\operatorname{Cov}(X,Y) = -1/80$.",
       "$\\operatorname{E}(X^{2}) = 6$ times the Dirichlet integral with $a = 3, b = 1, c = 2$: $6 \\Gamma(3)\\Gamma(1)\\Gamma(2)/\\Gamma(6) = 6(2)/120 = 1/10$.",
       "$\\operatorname{Var}(X) = 1/10 - (1/4)^{2} = 1/10 - 1/16 = 8/80 - 5/80 = 3/80$, and by symmetry $\\operatorname{Var}(Y) = 3/80$.",
-      "Regression coefficient of X on Y: $b_{XY} = \\operatorname{Cov}(X,Y)/\\operatorname{Var}(Y) = (-1/80)/(3/80) = -1/3$.",
-      "The line is $X - \\operatorname{E}(X) = b_{XY} (Y - \\operatorname{E}(Y))$, i.e. $X = 1/4 - (1/3)(Y - 1/4) = 1/4 - Y/3 + 1/12$.",
+      "Regression coefficient of X on Y: $b_{X}Y = \\operatorname{Cov}(X,Y)/\\operatorname{Var}(Y) = (-1/80)/(3/80) = -1/3$.",
+      "The line is $X - \\operatorname{E}(X) = b_{X}Y (Y - \\operatorname{E}(Y))$, i.e. $X = 1/4 - (1/3)(Y - 1/4) = 1/4 - Y/3 + 1/12$.",
       "Since $1/4 + 1/12 = 1/3$, this is $X = 1/3 - Y/3 = (1 - Y)/3$. Option (b) is correct."
     ]
   },
@@ -206,7 +206,7 @@
       "Convert the order-statistic event into a binomial count: $X_{r} > c$ iff at most r - 1 observations are <= c, i.e. at least $n - r + 1$ exceed c. Here $n = 4, r = 3$, so at least 2 must exceed $1/2$.",
       "Compute the complement: it is far quicker to subtract $\\operatorname{P}\\!\\left(\\text{0 exceed}\\right) + \\operatorname{P}\\!\\left(\\text{1 exceeds}\\right)$ than to add three terms.",
       "With $p = 3/4, \\operatorname{P}(0) = (1/4)^{4} = 1/256$ and $\\operatorname{P}(1) = 4(3/4)(1/4)^{3} = 12/256$, totalling $13/256$ - clean numbers that confirm the set-up.",
-      "Option $(a) 15/16$ is the answer to 'at least one exceeds $1/2'$ and option $(c) 1/2$ ignores the density's shape - both are planted for $\\partial$ reasoning."
+      "Option (a) $15/16$ is the answer to 'at least one exceeds $1/2'$ and option (c) $1/2$ ignores the density's shape - both are planted for $\\partial$ reasoning."
     ],
     "solution": [
       "The density $f(x) = 2x$ on $(0,1)$ has CDF $F(x) = x^{2}$, so $F(1/2) = 1/4$ and $p = \\operatorname{P}(X > 1/2) = 3/4$.",
@@ -382,7 +382,7 @@
     "type": "Numerical",
     "shortcut": "The regression of Y on X is $\\operatorname{E}(Y\\mid X=x) = \\mu_{2} + \\rho(s_{2}/s_{1})(x - \\mu_{1}) = -5 + (1/2)(1/2)(x - 7) = 0.25x - 6.75$.",
     "tips": [
-      "Regression coefficient $b_{YX} = \\rho s_{2}/s_{1} = (1/2)(3/4)/(3/2) = 1/4$. Compute this single number first and the line follows.",
+      "Regression coefficient $b_{Y}X = \\rho s_{2}/s_{1} = (1/2)(3/4)/(3/2) = 1/4$. Compute this single number first and the line follows.",
       "The slope of a regression line can never exceed $\\lvert \\rho\\rvert$ times the $\\operatorname{SD}$ ratio, so a slope of 6.75 (options (a), (c), (d)) is impossible here - the answer is identifiable almost by inspection.",
       "Constant term: $-5 - 0.25(7) = -5 - 1.75 = -6.75$. Keep the sign of $\\mu_{2} = -5$, which comes from the $(y + 5)$ in the exponent.",
       "Check that the line passes through the means: at $x = 7, Y = 0.25(7) - 6.75 = -5 = \\mu_{2}$, as every regression line must."
@@ -390,7 +390,7 @@
     "solution": [
       "From the exponent, $\\mu_{1} = 7$ and $\\mu_{2} = -5$; from the earlier parts, $s_{1} = 3/2, s_{2} = 3/4$ and $\\rho = 1/2$.",
       "The regression of Y on X for a bivariate normal is $\\operatorname{E}(Y \\mid X = x) = \\mu_{2} + \\rho (s_{2}/s_{1})(x - \\mu_{1})$.",
-      "The regression coefficient is $b_{YX} = \\rho s_{2}/s_{1} = (1/2)(3/4)/(3/2) = (1/2)(1/2) = 1/4 = 0.25$.",
+      "The regression coefficient is $b_{Y}X = \\rho s_{2}/s_{1} = (1/2)(3/4)/(3/2) = (1/2)(1/2) = 1/4 = 0.25$.",
       "Substituting: $Y = -5 + 0.25(x - 7) = -5 + 0.25x - 1.75$.",
       "So $Y = 0.25x - 6.75$.",
       "Check: at $x = 7$ the line gives -5, the mean of Y, as required. Option (b) is correct."

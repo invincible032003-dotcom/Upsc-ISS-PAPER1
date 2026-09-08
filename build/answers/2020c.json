@@ -369,8 +369,8 @@
       "The hexadecimal system is base 16 and uses exactly sixteen digit symbols: $0, 1, 2, \\ldots, 9, A, B, C, D, E, F$.",
       "Option (a) 12345 uses only the digits 1 to 5, all valid hexadecimal digits.",
       "Option (b) 1AB9F uses 1, A, B, 9 and F, all valid.",
-      "Option $(d) 1A_{3}$BC uses 1, A, 3, B and C, all valid.",
-      "Option $(c) 15F6G$ contains the letter G, which lies beyond F and is not a hexadecimal digit.",
+      "Option (d) $1A_{3}$BC uses 1, A, 3, B and C, all valid.",
+      "Option (c) $15F6G$ contains the letter G, which lies beyond F and is not a hexadecimal digit.",
       "Hence $15F6G$ is not a valid hexadecimal number, option (c)."
     ]
   },

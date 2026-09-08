@@ -64,7 +64,7 @@ const report = await page.evaluate(() => {
     }
   }
 
-  for (const q of window.quizData) {
+  for (const q of window.quizData.concat(window.forecastData || [])) {
     out.questions++;
     check(q.id, 'sharedStem', q.sharedStem);
     check(q.id, 'question', q.question);

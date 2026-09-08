@@ -1,0 +1,631 @@
+# FORECAST / AI-GENERATED - Statistical Methods, regression analysis
+
+@ FS-104 | Regression Analysis | Regression Coefficients
+Q The product of the two regression coefficients b_yx and b_xy equals
+O r
+O r^2
+O 1
+O sigma_y/sigma_x
+A b
+S b_yx b_xy = (r sigma_y/sigma_x)(r sigma_x/sigma_y) = r^2.
+T The product of the regression coefficients is the coefficient of determination - a constant check on any pair.
+T The product can never exceed 1, which is how you decide which line is which.
+X b_yx = r sigma_y/sigma_x and b_xy = r sigma_x/sigma_y.
+X Their product is r^2.
+X Hence option (b).
+
+@ FS-105 | Regression Analysis | Regression Lines
+Q The two regression lines always intersect at
+O the origin
+O the point of means
+O the point of medians
+O the point (0, y_bar)
+A b
+S Both lines pass through (x_bar, y_bar) by construction.
+T Solving the two regression equations simultaneously is the standard way to recover the means.
+T The lines pass through the origin only if both means are zero.
+X The regression of Y on X is y - y_bar = b_yx(x - x_bar), which passes through the point of means.
+X The same holds for the regression of X on Y.
+X Hence they intersect at the point of means, option (b).
+
+@ FS-106 | Regression Analysis | Regression Coefficients
+Q The lines 2x + 3y = 6 and 5x + 7y = 12 are the two regression lines. What is r?
+O -sqrt(14/15)
+O -sqrt(15/14)
+O sqrt(14/15)
+O -14/15
+A a
+S Taking the first as Y on X gives -2/3 and the second as X on Y gives -7/5; the product 14/15 is admissible, so r = -sqrt(14/15).
+T Try both assignments and keep the one whose slope product does not exceed 1.
+T Both coefficients are negative, so r must be negative - that rules out option (c) immediately.
+X As Y on X, b_yx = -2/3; as X on Y, b_xy = -7/5.
+X Their product is 14/15, which is at most 1, so this assignment is correct.
+X r = -sqrt(14/15), option (a).
+
+@ FS-107 | Regression Analysis | Regression Curves
+Q The joint density is f(x,y) = x + y on the unit square. What is E(Y given X = x)?
+O (3x + 2)/(6x + 3)
+O (x + 1)/2
+O x/2
+O 1/2
+A a
+S The conditional mean is (x/2 + 1/3)/(x + 1/2) = (3x+2)/(6x+3).
+T Compute the marginal of X first, then integrate y against the conditional density.
+T The regression is a ratio of linear functions, not a straight line - a useful reminder that regressions need not be linear.
+X f_X(x) = x + 1/2 and the integral of y(x+y) dy = x/2 + 1/3.
+X E(Y | X = x) = (x/2 + 1/3)/(x + 1/2).
+X Multiplying by 6/6 gives (3x+2)/(6x+3), option (a).
+
+@ FS-108 | Regression Analysis | Regression Curves
+Q For f(x,y) = 2 on 0 < x < y < 1, what is E(Y given X = x)?
+O x
+O (1 + x)/2
+O 2x
+O x/2
+A b
+S Given X = x, Y is uniform on (x, 1), whose mean is (1+x)/2.
+T Read the conditional support from the inequality: y runs from x to 1 for a fixed x.
+T A constant joint density over an interval means a uniform conditional law.
+X f(y | x) = 2/(2(1-x)) = 1/(1-x) on (x, 1).
+X That is U(x, 1), with mean (x + 1)/2.
+X Hence option (b).
+
+@ FS-109 | Regression Analysis | Regression Curves
+Q For f(x,y) = 2 on 0 < x < y < 1, what is E(X given Y = y)?
+O y/2
+O y
+O (1 + y)/2
+O y^2
+A a
+S Given Y = y, X is uniform on (0, y), whose mean is y/2.
+T The two conditional means are different because the support is a triangle, not a rectangle.
+T Confusing this with the previous answer is the trap; check which variable is bounded by which.
+X f(x | y) = 2/(2y) = 1/y on (0, y).
+X That is U(0, y), with mean y/2.
+X Hence option (a).
+
+@ FS-110 | Regression Analysis | Regression Coefficients
+Q With n = 5, the sum of x equal to 10, the sum of y equal to 20, the sum of xy equal to 60 and the sum of x^2 equal to 30, the least-squares line is
+O y = 2x
+O y = 2x + 1
+O y = x + 2
+O y = 4
+A a
+S b = (5(60) - 200)/(5(30) - 100) = 100/50 = 2, and a = 4 - 2(2) = 0.
+T Use the raw-sum formulas; the intercept follows from the means once the slope is known.
+T x_bar = 2 and y_bar = 4, so the line must pass through (2,4) - a quick check on all four options.
+X b = (n sum xy - sum x sum y)/(n sum x^2 - (sum x)^2) = (300 - 200)/(150 - 100) = 2.
+X a = y_bar - b x_bar = 4 - 4 = 0.
+X The line is y = 2x, option (a).
+
+@ FS-111 | Regression Analysis | Regression Coefficients
+Q With r = 0.6, sigma_x = 2 and sigma_y = 3, what is b_yx?
+O 0.4
+O 0.9
+O 0.6
+O 1.5
+A b
+S b_yx = r sigma_y/sigma_x = 0.6(3/2) = 0.9.
+T The regression coefficient of Y on X carries sigma_y in the numerator - the response's spread on top.
+T Inverting the ratio gives 0.4, planted as option (a).
+X b_yx = r sigma_y/sigma_x.
+X This is 0.6(1.5).
+X The value is 0.9, option (b).
+
+@ FS-112 | Regression Analysis | Residual Variance
+Q With sigma_y = 5 and r = 0.8, what is the residual variance of Y about the regression line?
+O 9
+O 16
+O 4
+O 25
+A a
+S sigma_y^2(1 - r^2) = 25(0.36) = 9.
+T The unexplained fraction of the variance is 1 - r^2; the explained fraction is r^2.
+T 16 is the EXPLAINED variance 25(0.64), planted as option (b).
+X The residual variance is sigma_y^2(1 - r^2).
+X This is 25(1 - 0.64).
+X The value is 9, option (a).
+
+@ FS-113 | Regression Analysis | Residual Variance
+Q The standard error of estimate in a simple linear regression equals
+O sigma_y(1 - r^2)
+O sigma_y times the square root of (1 - r^2)
+O sigma_y r
+O sigma_y divided by the square root of (1 - r^2)
+A b
+S The residual VARIANCE is sigma_y^2(1-r^2), so the standard error is its square root.
+T Take the square root once: the standard error is a standard deviation, not a variance.
+T Option (a) is the residual variance divided by sigma_y - dimensionally wrong for a standard error.
+X The residual variance is sigma_y^2(1 - r^2).
+X The standard error of estimate is its positive square root.
+X That is sigma_y sqrt(1 - r^2), option (b).
+
+@ FS-114 | Regression Analysis | Regression Coefficients
+Q Which of the following can be a genuine pair of regression coefficients (b_yx, b_xy)?
+O 2 and 0.8
+O 1.6 and 0.4
+O -1 and 0.5
+O 3 and 0.5
+A b
+S Their product must be r^2, hence at most 1, and both must share the sign of r: only 1.6(0.4) = 0.64 qualifies.
+T Two tests: the product must not exceed 1, and the two coefficients must have the same sign.
+T Option (c) fails the sign test and options (a) and (d) fail the product test.
+X b_yx b_xy = r^2 <= 1 and both coefficients carry the sign of r.
+X The products are 1.6, 0.64, -0.5 and 1.5 respectively.
+X Only 1.6 and 0.4 pass both tests, option (b).
+
+@ FS-115 | Regression Analysis | Regression Coefficients
+Q How does the arithmetic mean of the two regression coefficients compare with |r|?
+O it is at most |r|
+O it is at least |r|
+O it equals |r|
+O the two are unrelated
+A b
+S The arithmetic mean of two positive numbers is at least their geometric mean, which is |r| here.
+T Since the geometric mean of the two coefficients is |r|, the AM-GM inequality settles the comparison.
+T Equality holds only when the two coefficients are equal, i.e. when sigma_x = sigma_y.
+X The geometric mean of b_yx and b_xy is sqrt(r^2) = |r|.
+X By the AM-GM inequality the arithmetic mean is at least the geometric mean.
+X Hence the mean is at least |r|, option (b).
+
+@ FS-116 | Regression Analysis | Regression Coefficients
+Q With u = (x - a)/h and v = (y - b)/k, the regression coefficient b_yx equals
+O (h/k) b_vu
+O (k/h) b_vu
+O b_vu
+O hk b_vu
+A b
+S Changing scale multiplies the slope by the ratio of the response scale to the predictor scale.
+T Shifts never affect a regression coefficient; only the two scale factors do.
+T The correlation is completely unaffected by either transformation - only the slope changes.
+X y = kv + b and x = hu + a, so dy/dx picks up a factor k/h.
+X Hence b_yx = (k/h) b_vu.
+X That is option (b).
+
+@ FS-117 | Regression Analysis | Regression Curves
+Q For f(x,y) = e^(-y) on 0 < x < y, what is E(Y given X = x)?
+O x
+O x + 1
+O 2x
+O 1
+A b
+S Given X = x, the conditional density is e^(-(y-x)) on y > x, so the mean is x + 1.
+T This is memorylessness again: the conditional excess of Y over x is standard exponential.
+T The answer must exceed x, which immediately eliminates options (a) and (d).
+X f_X(x) = integral from x to infinity of e^(-y) dy = e^(-x).
+X f(y | x) = e^(-y)/e^(-x) = e^(-(y-x)) for y > x.
+X So E(Y | X = x) = x + 1, option (b).
+
+@ FS-118 | Regression Analysis | Regression Coefficients
+Q For a regression forced through the origin, the least-squares slope is
+O the sum of xy divided by the sum of x^2
+O the sum of y divided by the sum of x
+O the sum of xy divided by the sum of y^2
+O y_bar divided by x_bar
+A a
+S Minimising the sum of (y - bx)^2 gives b = sum(xy)/sum(x^2).
+T No-intercept regression uses raw sums of products, not corrected ones.
+T With no intercept the residuals need not sum to zero, which is a common follow-up statement.
+X Differentiating the sum of (y_i - b x_i)^2 with respect to b gives -2 sum x_i(y_i - b x_i) = 0.
+X Solving, b = sum(x_i y_i)/sum(x_i^2).
+X Hence option (a).
+
+@ FS-119 | Regression Analysis | Residual Variance
+Q A quadratic is fitted by least squares to exactly three points with distinct abscissae. The residual sum of squares is
+O 0
+O 1
+O undefined
+O dependent on the data
+A a
+S Three parameters fit three points exactly, so the curve interpolates and the residuals vanish.
+T When the number of parameters equals the number of observations the fit is exact and uninformative.
+T The residual degrees of freedom are 3 - 3 = 0, so no error variance can be estimated.
+X A quadratic has three coefficients.
+X Three points with distinct abscissae determine those coefficients uniquely.
+X The fit is exact, so the residual sum of squares is 0, option (a).
+
+@ FS-120 | Regression Analysis | Regression Coefficients
+Q The correlation coefficient r equals
+O b_yx sigma_y/sigma_x
+O b_yx sigma_x/sigma_y
+O b_yx
+O b_yx divided by sigma_x
+A b
+S Rearranging b_yx = r sigma_y/sigma_x gives r = b_yx sigma_x/sigma_y.
+T r is the regression coefficient measured in standardised units, so it multiplies by sigma_x/sigma_y.
+T Option (a) inverts the ratio and would produce values above 1.
+X From b_yx = r sigma_y/sigma_x.
+X Multiplying both sides by sigma_x/sigma_y gives r.
+X Hence option (b).
+
+@ FS-121 | Regression Analysis | Regression Curves
+Q The conditional density of Y given X = x is Gamma with shape 2 and scale 1 + x. What is E(Y given X = x)?
+O 1 + x
+O 2(1 + x)
+O (1 + x)/2
+O 2
+A b
+S A Gamma with shape 2 and scale c has mean 2c.
+T Gamma mean = shape times scale, or shape divided by rate; keep track of which parameterisation is in use.
+T The regression is linear in x here, with slope 2 and intercept 2.
+X For Gamma(shape a, scale c) the mean is ac.
+X Here a = 2 and c = 1 + x.
+X So E(Y | X = x) = 2(1+x), option (b).
+
+@ FS-122 | Correlation Analysis | Invariance of Correlation
+Q What is the correlation between X + 3 and Y?
+O r + 3
+O r
+O 3r
+O r/3
+A b
+S A shift changes neither the covariance nor either variance, so r is unchanged.
+T Correlation is invariant under any change of origin; only the SIGN of a scale factor can change it.
+T Additive constants never enter a covariance - a fact worth using aggressively to simplify.
+X Cov(X+3, Y) = Cov(X,Y) and Var(X+3) = Var(X).
+X So every ingredient of r is unchanged.
+X The correlation is r, option (b).
+
+@ FS-123 | Correlation Analysis | Invariance of Correlation
+Q What is the correlation between X and -2Y + 5?
+O -2r
+O -r
+O r
+O 2r
+A b
+S The negative multiplier flips the sign; its magnitude cancels in the standardisation.
+T Correlation changes sign with a negative scale factor but never changes magnitude.
+T Answering -2r forgets that the denominator also carries the factor 2.
+X Cov(X, -2Y+5) = -2 Cov(X,Y) and sd(-2Y+5) = 2 sigma_y.
+X The ratio gives -2 Cov/(2 sigma_x sigma_y).
+X That is -r, option (b).
+
+@ FS-124 | Correlation Analysis | Invariance of Correlation
+Q What is the correlation between 4x - 3 and (7 - 4y)/8?
+O r
+O -r
+O -r/2
+O 2r
+A b
+S One positive and one negative multiplier give an overall sign change and no change in magnitude.
+T Multiply the SIGNS of the two scale factors; the magnitudes always cancel.
+T The second transformation has multiplier -4/8 = -1/2, whose sign is what matters.
+X The multipliers are +4 and -1/2.
+X Their signs are opposite, so the correlation changes sign only.
+X The answer is -r, option (b).
+
+@ FS-125 | Correlation Analysis | Fisher Z Transformation
+Q With n = 28, what is the standard error of Fisher's Z?
+O 0.2
+O 0.19
+O 0.04
+O 0.25
+A a
+S SE(Z) = 1/sqrt(n - 3) = 1/5 = 0.2.
+T The great virtue of Fisher's Z is that its standard error depends on n alone, not on rho.
+T The divisor is n - 3, not n - 1 or n - 2 - a very common slip.
+X SE(Z) = 1/sqrt(n-3).
+X With n = 28 this is 1/sqrt(25).
+X The value is 0.2, option (a).
+
+@ FS-126 | Correlation Analysis | Fisher Z Transformation
+Q With r = 0.6, what is Fisher's Z?
+O log 2
+O log 4
+O 0.6
+O half the log of 1.5
+A a
+S Z = (1/2) log((1+r)/(1-r)) = (1/2) log 4 = log 2.
+T Fisher's Z is the inverse hyperbolic tangent of r; at r = 0.6 the ratio (1.6)/(0.4) = 4 is clean.
+T Forgetting the factor 1/2 gives log 4, planted as option (b).
+X Z = (1/2) log((1 + 0.6)/(1 - 0.6)) = (1/2) log(4).
+X This equals log 2.
+X Hence option (a).
+
+@ FS-127 | Correlation Analysis | Testing a Correlation
+Q With r = 0.6 and n = 27, what is the t statistic for testing that rho is zero?
+O 3.75
+O 3
+O 2.5
+O 4.5
+A a
+S t = r sqrt(n-2)/sqrt(1-r^2) = 0.6(5)/0.8 = 3.75.
+T The test statistic has n - 2 degrees of freedom, matching the two estimated regression parameters.
+T sqrt(1 - 0.36) = 0.8, which makes the arithmetic clean.
+X t = r sqrt(n - 2)/sqrt(1 - r^2).
+X This is 0.6 sqrt(25)/sqrt(0.64) = 3/0.8.
+X The value is 3.75, option (a).
+
+@ FS-128 | Correlation Analysis | Testing a Correlation
+Q With n = 27 and a critical t value of 2.06 on 25 degrees of freedom, the smallest |r| significant at the 5% level is about
+O 0.28
+O 0.38
+O 0.48
+O 0.58
+A b
+S Solving 5r = 2.06 sqrt(1-r^2) gives r^2 = 4.2436/29.2436, so r = 0.381.
+T Invert the t formula: square both sides and solve the resulting linear equation in r^2.
+T With larger n the threshold falls, which is why big samples make small correlations significant.
+X Setting r sqrt(25)/sqrt(1-r^2) = 2.06 gives 25 r^2 = 4.2436(1 - r^2).
+X Hence r^2 = 4.2436/29.2436 = 0.1451.
+X So r = 0.381, option (b).
+
+@ FS-129 | Correlation Analysis | Partial Correlation
+Q With r_12 = 0.8, r_13 = 0.6 and r_23 = 0.5, what is r_12.3 approximately?
+O 0.72
+O 0.50
+O 0.65
+O 0.80
+A a
+S (0.8 - 0.3)/sqrt(0.64 x 0.75) = 0.5/0.6928 = 0.722.
+T The partial correlation formula subtracts the product of the two "through" correlations, then divides by the two residual factors.
+T Removing a common driver usually lowers the correlation, so the answer should be below 0.8.
+X r_12.3 = (r_12 - r_13 r_23)/sqrt((1 - r_13^2)(1 - r_23^2)).
+X The numerator is 0.8 - 0.3 = 0.5 and the denominator is sqrt(0.64 x 0.75) = 0.6928.
+X The value is 0.722, option (a).
+
+@ FS-130 | Correlation Analysis | Partial Correlation
+Q If all three pairwise correlations equal 0.5, what is r_12.3?
+O 1/3
+O 1/2
+O 1/4
+O 2/3
+A a
+S (0.5 - 0.25)/(1 - 0.25) = 0.25/0.75 = 1/3.
+T With equicorrelation the formula collapses to r/(1+r), which is easy to apply.
+T The partial correlation is strictly below the simple one whenever r is positive.
+X Numerator = 0.5 - 0.25 = 0.25 and denominator = sqrt(0.75 x 0.75) = 0.75.
+X The ratio is 1/3.
+X Hence option (a).
+
+@ FS-131 | Correlation Analysis | Partial Correlation
+Q If all three pairwise correlations equal r, then r_12.3 equals
+O r/(1 + r)
+O r/(1 - r)
+O r^2
+O r/(1 + r^2)
+A a
+S (r - r^2)/(1 - r^2) = r(1-r)/((1-r)(1+r)) = r/(1+r).
+T Factor the difference of squares: the (1 - r) cancels and leaves a very clean expression.
+T At r = 1 the partial correlation is 1/2, and at r = 0 it is 0 - both sensible checks.
+X r_12.3 = (r - r^2)/sqrt((1-r^2)(1-r^2)) = r(1-r)/(1-r^2).
+X Cancelling (1-r) gives r/(1+r).
+X Hence option (a).
+
+@ FS-132 | Correlation Analysis | Multiple Correlation
+Q If all three pairwise correlations equal 0.5, what is the squared multiple correlation of variable 1 on variables 2 and 3?
+O 1/3
+O 1/2
+O 2/3
+O 1/4
+A a
+S (0.25 + 0.25 - 2(0.125))/(1 - 0.25) = 0.25/0.75 = 1/3.
+T The formula is (r_12^2 + r_13^2 - 2 r_12 r_13 r_23)/(1 - r_23^2).
+T The answer must be at least max(r_12^2, r_13^2) = 0.25, which 1/3 satisfies.
+X The numerator is 0.25 + 0.25 - 2(0.5)(0.5)(0.5) = 0.5 - 0.25 = 0.25.
+X The denominator is 1 - 0.25 = 0.75.
+X The value is 1/3, option (a).
+
+@ FS-133 | Correlation Analysis | Multiple Correlation
+Q If all three pairwise correlations equal r, the squared multiple correlation of variable 1 on 2 and 3 is
+O 2r^2/(1 + r)
+O 2r/(1 + r)
+O r^2/(1 + r)
+O 2r^2
+A a
+S (2r^2 - 2r^3)/(1 - r^2) = 2r^2(1-r)/((1-r)(1+r)) = 2r^2/(1+r).
+T Factor and cancel exactly as in the partial-correlation version.
+T At r = 1 this gives 1, as it must when all three variables are identical.
+X The numerator is r^2 + r^2 - 2r^3 = 2r^2(1 - r).
+X The denominator is 1 - r^2 = (1-r)(1+r).
+X The ratio is 2r^2/(1+r), option (a).
+
+@ FS-134 | Correlation Analysis | Multiple Correlation
+Q Which relation always holds for the squared multiple correlation of variable 1 on variables 2 and 3?
+O it is at most the smaller of r_12^2 and r_13^2
+O it is at least the larger of r_12^2 and r_13^2
+O it equals r_12^2 + r_13^2
+O it is at most r_12^2
+A b
+S Adding a predictor can never reduce the explained variation, so the multiple R^2 dominates each simple r^2.
+T R^2 is non-decreasing in the number of predictors - a structural fact, not an empirical one.
+T Equality holds when the extra predictor adds nothing, i.e. when its partial correlation is zero.
+X The two-predictor regression includes the one-predictor regression as a special case.
+X Its residual sum of squares can therefore only be smaller.
+X So R^2 is at least the larger simple r^2, option (b).
+
+@ FS-135 | Correlation Analysis | Multiple Correlation
+Q If the multiple correlation of variable 1 on variables 2 and 3 is zero, then
+O r_23 = 0
+O r_12 = r_13 = 0
+O r_12 = r_13
+O nothing follows
+A b
+S Zero explained variation forces both simple correlations to vanish.
+T R = 0 means the best linear predictor is the constant, so neither predictor carries any linear information.
+T Note that r_23 is unrestricted - the two predictors may still be correlated with each other.
+X R^2 = 0 means the numerator r_12^2 + r_13^2 - 2 r_12 r_13 r_23 = 0.
+X Since R^2 is at least the larger of r_12^2 and r_13^2, both must be zero.
+X Hence option (b).
+
+@ FS-136 | Correlation Analysis | Intraclass Correlation
+Q For an intraclass correlation with k = 5 members per family, the admissible range is
+O -1 to 1
+O -1/4 to 1
+O 0 to 1
+O -1/5 to 1
+A b
+S The floor is -1/(k-1) = -1/4.
+T Equicorrelated variables must satisfy 1 + (k-1)rho >= 0, giving the floor -1/(k-1).
+T At k = 2 the floor is -1, which is the only case where the full range is available.
+X The k members are equicorrelated, so the variance of their sum is k[1 + (k-1)rho] sigma^2.
+X Non-negativity gives rho >= -1/(k-1) = -1/4.
+X The range is -1/4 to 1, option (b).
+
+@ FS-137 | Correlation Analysis | Correlation Ratio
+Q Which relation always holds between the correlation ratio eta and the correlation coefficient r?
+O eta^2 <= r^2
+O eta^2 >= r^2
+O eta = r
+O eta^2 = 1 - r^2
+A b
+S The correlation ratio measures all of the between-group variation, of which the linear part is r^2.
+T eta^2 - r^2 is the standard measure of departure from linearity and is never negative.
+T eta^2 = 1 when Y is any exact function of X, linear or not.
+X r^2 measures the variation explained by the best LINEAR predictor.
+X eta^2 measures the variation explained by the best predictor of any form.
+X Hence eta^2 >= r^2, option (b).
+
+@ FS-138 | Correlation Analysis | Correlation Ratio
+Q The correlation ratio of Y on X equals r^2 if and only if
+O rho = 0
+O the regression of Y on X is linear
+O X and Y are independent
+O sigma_x = sigma_y
+A b
+S Equality means the best predictor is already linear, so nothing is lost by restricting to straight lines.
+T eta^2 - r^2 = 0 is the standard TEST for linearity of regression.
+T Independence would make both quantities zero, but that is a special case, not the general condition.
+X eta^2 uses the conditional means and r^2 the best linear fit to them.
+X They agree exactly when the conditional mean function is linear in x.
+X Hence option (b).
+
+@ FS-139 | Correlation Analysis | Correlation Ratio
+Q The correlation ratios of Y on X and of X on Y are
+O always equal
+O generally unequal
+O summing to 1
+O multiplying to r^2
+A b
+S The correlation ratio is asymmetric because it conditions on one variable only.
+T Unlike r, the correlation ratio has a direction; eta_yx and eta_xy answer different questions.
+T Both are bounded below by |r|, but they need not agree with each other.
+X eta_yx compares the variance of E(Y|X) with Var(Y).
+X eta_xy compares the variance of E(X|Y) with Var(X), a different computation.
+X The two are generally unequal, option (b).
+
+@ FS-140 | Correlation Analysis | Rank Correlation
+Q With n = 10 and the sum of squared rank differences equal to 30, what is Spearman's rank correlation?
+O 9/11
+O 0.7
+O 0.9
+O 10/11
+A a
+S 1 - 6(30)/(10 x 99) = 1 - 180/990 = 9/11.
+T The formula is 1 - 6 sum d^2/(n(n^2 - 1)); note n^2 - 1, not n^2.
+T A small sum of squared differences means a high positive rank correlation, so the answer should be near 1.
+X n(n^2 - 1) = 10(99) = 990.
+X rho = 1 - 180/990 = 1 - 2/11.
+X This is 9/11, option (a).
+
+@ FS-141 | Correlation Analysis | Rank Correlation
+Q For n = 2, Spearman's rank correlation can only take the value
+O 0
+O plus or minus 1
+O any value
+O 0.5
+A b
+S With two ranks the two orders are either identical or reversed, giving +1 or -1.
+T With n = 2 there is no room for partial agreement, so the coefficient is degenerate.
+T This is why rank correlations require at least a moderate n to be informative.
+X The only two rank assignments are (1,2) and (2,1) against (1,2).
+X These give sum d^2 = 0 and 2, hence rho = 1 and -1.
+X Only plus or minus 1 is attainable, option (b).
+
+@ FS-142 | Correlation Analysis | Rank Correlation
+Q For n = 3 with no ties, a Spearman rank correlation of exactly 0 is
+O possible
+O impossible
+O possible only with ties
+O always the case
+A b
+S The attainable values are 1, 1/2, -1/2 and -1; zero is not among them.
+T With n = 3 the sum of squared differences can only be 0, 2, 6 or 8, giving four discrete values.
+T Small-sample rank statistics take only finitely many values, which is exactly why exact tables exist.
+X rho = 1 - 6 sum d^2/(3 x 8) = 1 - sum d^2/4.
+X The possible values of sum d^2 are 0, 2, 6 and 8.
+X These give 1, 1/2, -1/2 and -1, so 0 is impossible, option (b).
+
+@ FS-143 | Correlation Analysis | Rank Correlation
+Q The ranks (1,2,3) are paired with (1,3,2). What is Kendall's tau?
+O 1/3
+O 2/3
+O 0
+O 1/2
+A a
+S Two concordant pairs and one discordant pair out of three give (2-1)/3 = 1/3.
+T Count concordant minus discordant pairs and divide by the total number of pairs, C(n,2).
+T Spearman's rho for the same data is 1/2, so the two measures genuinely differ.
+X The three pairs are (1,2), (1,3) and (2,3).
+X The first two are concordant and the last is discordant.
+X tau = (2 - 1)/3 = 1/3, option (a).
+
+@ FS-144 | Correlation Analysis | Sampling Distribution of r
+Q Under the null hypothesis that rho is zero, r^2 follows
+O Beta(1/2, (n-2)/2)
+O Beta(1, n-2)
+O chi-square with 1 degree of freedom
+O U(0,1)
+A a
+S The exact null distribution of r^2 is Beta with parameters 1/2 and (n-2)/2.
+T This follows from t^2 being F(1, n-2) and the Beta-F relationship.
+T Its mean 1/(n-1) is the expected value of r^2 under the null - a useful corollary.
+X Under the null, t = r sqrt(n-2)/sqrt(1-r^2) has the t distribution with n-2 degrees of freedom.
+X Hence t^2 is F(1, n-2), and r^2 = t^2/(t^2 + n - 2) is Beta(1/2, (n-2)/2).
+X That is option (a).
+
+@ FS-145 | Correlation Analysis | Sampling Distribution of r
+Q Under the null hypothesis that rho is zero, what is E(r^2)?
+O 1/n
+O 1/(n-1)
+O 1/(n-2)
+O 0
+A b
+S The Beta(1/2, (n-2)/2) mean is (1/2)/((n-1)/2) = 1/(n-1).
+T Even under the null r^2 has a positive mean, which is why an adjusted R^2 is used in regression.
+T E(r) = 0 by symmetry, but E(r^2) is strictly positive.
+X r^2 is Beta(1/2, (n-2)/2).
+X Its mean is a/(a+b) = (1/2)/((1/2) + (n-2)/2).
+X This is 1/(n-1), option (b).
+
+@ FS-146 | Correlation Analysis | Sampling Distribution of r
+Q Under the null hypothesis that rho is zero, what is the expectation of the reciprocal of (1 - r^2)?
+O (n-2)/(n-3)
+O (n-3)/(n-4)
+O (n-1)/(n-2)
+O 1
+A b
+S With 1 - r^2 following Beta((n-2)/2, 1/2), the inverse moment is (n-3)/(n-4).
+T For a Beta(a,b) variable the inverse moment is (a+b-1)/(a-1), which needs a > 1.
+T The expression requires n > 4, which is the existence condition.
+X 1 - r^2 is Beta((n-2)/2, 1/2).
+X Its inverse moment is (a + b - 1)/(a - 1) = ((n-3)/2)/((n-4)/2).
+X This is (n-3)/(n-4), option (b).
+
+@ FS-147 | Correlation Analysis | Sampling Distribution of r
+Q Under the null hypothesis that rho is zero, the density of r is proportional to
+O (1 - r^2)^((n-4)/2)
+O (1 - r^2)^(n-2)
+O (1 - r^2)^(1/2)
+O e^(-r^2)
+A a
+S The exact null density of r is proportional to (1-r^2)^((n-4)/2) on (-1, 1).
+T The exponent (n-4)/2 makes the density increasingly concentrated at 0 as n grows.
+T At n = 4 the density is uniform on (-1,1), a memorable special case.
+X Transforming the Beta density of r^2 back to r introduces a Jacobian factor.
+X The result is proportional to (1 - r^2)^((n-4)/2).
+X Hence option (a).
+
+@ FS-148 | Correlation Analysis | Standard Error of r
+Q With r = 0.6 and n = 64, what is the large-sample standard error of r?
+O 0.08
+O 0.1
+O 0.075
+O 0.125
+A a
+S SE(r) = (1 - r^2)/sqrt(n) = 0.64/8 = 0.08.
+T The standard error of r is (1-rho^2)/sqrt(n), which shrinks as |rho| approaches 1.
+T Ignoring the (1-r^2) factor gives 0.125, planted as option (d).
+X SE(r) = (1 - r^2)/sqrt(n).
+X This is (1 - 0.36)/8 = 0.64/8.
+X The value is 0.08, option (a).

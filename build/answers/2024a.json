@@ -7,7 +7,7 @@
     "tips": [
       "Memorise: $\\min$ of n i.i.d. $\\text{Exp}(\\lambda)$ is $\\text{Exp}(n \\lambda)$ - the rates ADD, because $\\operatorname{P}\\!\\left(\\text{min > x}\\right) = [e^{-\\lambda x}]^{n} = e^{-n \\lambda x}$.",
       "Options (b) and (c) are cumulative distribution functions, not densities - a density must integrate to 1, and $1 - e^{-2x}$ does not.",
-      "Option $(d) 10 e^{-2x}$ is not a density either: its integral is 5, not 1. Checking normalisation eliminates three options instantly.",
+      "Option (d) $10 e^{-2x}$ is not a density either: its integral is 5, not 1. Checking normalisation eliminates three options instantly.",
       "Companion result: the MAXIMUM of exponentials is NOT exponential; only the minimum inherits the family."
     ],
     "solution": [
@@ -246,7 +246,7 @@
     "tips": [
       "Asymptotic variance of the median: $1/(4n f(m)^{2})$. For the normal, $f(\\mu) = 1/(\\sigma \\sqrt{2 \\pi})$, giving $\\pi \\sigma^{2}/(2n)$.",
       "The median is centred at the population median, which for a symmetric normal equals $\\mu = 1$ - so all four options share that centre.",
-      "Substitute carefully: $\\pi(2)/(2 \\times 20) = \\pi/20$. Option $(a) 1/10$ is the variance of the sample MEAN $(\\sigma^{2}/n = 2/20)$, the standard trap.",
+      "Substitute carefully: $\\pi(2)/(2 \\times 20) = \\pi/20$. Option (a) $1/10$ is the variance of the sample MEAN $(\\sigma^{2}/n = 2/20)$, the standard trap.",
       "The ratio $(\\pi/20)/(1/10) = \\pi/2 = 1.571$ is the reciprocal of the efficiency $2/\\pi$ - a neat consistency check with the ARE result."
     ],
     "solution": [
@@ -282,18 +282,18 @@
     "answer": 1,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "Assigning $8X - 10Y + 66 = 0$ as Y on X gives $b_{YX} = 0.8$, and $40X - 18Y = 214$ as X on Y gives $b_{XY} = 0.45$, whose product 0.36 is admissible so $r = 0.6$. Statement I mislabels 0.8 as $b_{XY}$, so only II and III hold.",
+    "shortcut": "Assigning $8X - 10Y + 66 = 0$ as Y on X gives $b_{Y}X = 0.8$, and $40X - 18Y = 214$ as X on Y gives $b_{X}Y = 0.45$, whose product 0.36 is admissible so $r = 0.6$. Statement I mislabels 0.8 as $b_{X}Y$, so only II and III hold.",
     "tips": [
       "Assign the lines by TESTING: the product of the two regression coefficients must lie in $[0,1]$. The other assignment gives $1.25 \\times 2.222 = 2.78 > 1$ and is impossible.",
-      "$b_{YX}$ is the coefficient of X when Y is the subject; $b_{XY}$ is the coefficient of Y when X is the subject. Statement I attaches 0.8 to the wrong one.",
-      "$r = \\sqrt{b_{YX} b_{X}Y} = \\sqrt{0.36} = 0.6$, positive because both coefficients are positive.",
+      "$b_{Y}X$ is the coefficient of X when Y is the subject; $b_{X}Y$ is the coefficient of Y when X is the subject. Statement I attaches 0.8 to the wrong one.",
+      "$r = \\sqrt{b_{Y}X b_{X}Y} = \\sqrt{0.36} = 0.6$, positive because both coefficients are positive.",
       "For prediction of Y from X use the Y on X line: $Y = 0.8(30) + 6.6 = 30.6$, confirming statement III."
     ],
     "solution": [
-      "Try $8X - 10Y + 66 = 0$ as the regression of Y on X: $10Y = 8X + 66$, so $Y = 0.8X + 6.6$ and $b_{YX} = 0.8$.",
-      "Then $40X - 18Y = 214$ must be the regression of X on Y: $40X = 18Y + 214$, so $X = 0.45Y + 5.35$ and $b_{XY} = 0.45$.",
-      "Check: $b_{YX} b_{XY} = 0.8 \\times 0.45 = 0.36$, which lies in $[0,1]$, so this assignment is admissible. (The opposite assignment gives $1.25 \\times 2.222 = 2.78 > 1$ and is impossible.)",
-      "Statement I: the regression coefficient of X on Y is $b_{XY} = 0.45$, not $0.8 (0.8 is b_{YX})$. FALSE.",
+      "Try $8X - 10Y + 66 = 0$ as the regression of Y on X: $10Y = 8X + 66$, so $Y = 0.8X + 6.6$ and $b_{Y}X = 0.8$.",
+      "Then $40X - 18Y = 214$ must be the regression of X on Y: $40X = 18Y + 214$, so $X = 0.45Y + 5.35$ and $b_{X}Y = 0.45$.",
+      "Check: $b_{Y}X b_{X}Y = 0.8 \\times 0.45 = 0.36$, which lies in $[0,1]$, so this assignment is admissible. (The opposite assignment gives $1.25 \\times 2.222 = 2.78 > 1$ and is impossible.)",
+      "Statement I: the regression coefficient of X on Y is $b_{X}Y = 0.45$, not $0.8 (0.8 is b_{Y}X)$. FALSE.",
       "Statement II: $r = \\sqrt{0.36} = 0.6$, positive since both coefficients are positive. TRUE.",
       "Statement III: predicting Y from X uses the Y on X line, giving $Y = 0.8(30) + 6.6 = 30.6$. TRUE. Only II and III hold, option (b)."
     ]
@@ -386,7 +386,7 @@
       "Density of the minimum: $n[1 - F(x)]^{n-1} f(x)$. Substitute $n = 5, F(1) = 1/2$ and $f = 1/2$.",
       "Careful with the uniform on $[0,2]$: the density is $1/2$, NOT 1, and $F(1) = 1/2$, not 1. Both appear in the formula.",
       "Compute in stages: $(1 - 1/2)^{4} = 1/16$, then $5 \\times (1/16) \\times (1/2) = 5/32$.",
-      "Option $(b) 5/16$ omits the density factor $1/2$ and option $(c) 1/32$ omits the constant 5 - each distractor drops one factor."
+      "Option (b) $5/16$ omits the density factor $1/2$ and option (c) $1/32$ omits the constant 5 - each distractor drops one factor."
     ],
     "solution": [
       "For the Uniform[0,2] distribution the density is $f(x) = 1/2$ and the CDF is $F(x) = x/2$ for $0 \\le x \\le 2$.",

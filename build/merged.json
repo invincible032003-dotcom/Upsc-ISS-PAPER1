@@ -22,8 +22,8 @@
   "issue": "",
   "shortcut": "For independent events never expand inclusion-exclusion. Use $\\operatorname{P}\\!\\left(\\text{none occurs}\\right)$ = product of the complements: $(1/2)(3/4)(7/8)(15/16) = 315/1024$, so the union is $1 - 315/1024 = 709/1024$. Ten seconds.",
   "tips": [
-   "Option $(d) 315/1024$ is the planted trap: it is $\\operatorname{P}\\!\\left(\\text{no event occurs}\\right)$, i.e. the answer you get if you forget to subtract from 1.",
-   "Denominator check: $2 \\times 4 \\times 8 \\times 16 = 1024$, so any correct answer must have 1024 (or a divisor of it) as denominator. That instantly kills $(a) 15/16$ unless it reduces, and it does not.",
+   "Option (d) $315/1024$ is the planted trap: it is $\\operatorname{P}\\!\\left(\\text{no event occurs}\\right)$, i.e. the answer you get if you forget to subtract from 1.",
+   "Denominator check: $2 \\times 4 \\times 8 \\times 16 = 1024$, so any correct answer must have 1024 (or a divisor of it) as denominator. That instantly kills (a) $15/16$ unless it reduces, and it does not.",
    "$1023/1024$ in option (b) equals $1 - 1/1024$, the value you would get if all four probabilities were $1/2$ each - another distractor built from a plausible slip.",
    "Memorise: $\\operatorname{P}\\!\\left(\\text{union of independent events}\\right) = 1 - \\prod(1 - p_{i})$. It is the single most reused one-line identity in this part of the paper."
   ],
@@ -58,10 +58,10 @@
   "issue": "",
   "shortcut": "Split the event: 'exactly 3 defectives among the first 8' AND 'the 9th is the 4th defective'. Hypergeometric x conditional = $[\\binom{4}{3}\\binom{11}{5}/\\binom{15}{8}] \\times (1/7) = (56/195)(1/7) = 8/195$.",
   "tips": [
-   "Option $(a) 56/195$ is exactly the first factor alone - the trap for candidates who stop after the hypergeometric step and forget the 9th draw.",
+   "Option (a) $56/195$ is exactly the first factor alone - the trap for candidates who stop after the hypergeometric step and forget the 9th draw.",
    "After 8 draws, 7 mobiles remain and exactly 1 of them is defective, so the conditional probability of a defective on draw 9 is $1/7$ - no new combinatorics needed.",
    "'The k-th item is the LAST defective' always factors as $\\operatorname{P}\\!\\left(\\text{exactly d-1 defectives in the first k-1}\\right) x \\operatorname{P}\\!\\left(\\text{defective on draw k}\\mid \\text{that}\\right)$. Learn this two-step template.",
-   "Sanity bound: the answer must be small (well under $1/7$), so $(c) 1/7$ and $(d) 24/65 = 0.37$ can be eliminated on size alone."
+   "Sanity bound: the answer must be small (well under $1/7$), so (c) $1/7$ and (d) $24/65 = 0.37$ can be eliminated on size alone."
   ],
   "solution": [
    "Let the lot have $N = 15$ mobiles of which $D = 4$ are defective. We need $\\operatorname{P}\\!\\left(\\text{the 9th mobile examined is the 4th and last defective}\\right)$.",
@@ -317,8 +317,8 @@
   "tips": [
    "Both Gammas must share the same scale parameter $\\beta$ for this to hold - that is why the question states it. If the scales differed the ratio would not be Beta.",
    "Companion results worth memorising together: $X + Y \\sim G(a_{1} + a_{2}, b)$; $X/Y \\sim \\text{Beta}$ second kind $(a_{1}, a_{2})$; and $X/(X+Y)$ is independent of X + Y.",
-   "Range check: $X/(X+Y)$ lies in $(0,1)$, which immediately rules out $(a) G(a_{1}+a_{2}, b)$ and $(d) G(a_{1},a_{2})$ since $\\Gamma$ variables are unbounded above.",
-   "Option $(c) U(0,1)$ is only the special case $a_{1} = a_{2} = 1$, so it is too narrow to be the general answer."
+   "Range check: $X/(X+Y)$ lies in $(0,1)$, which immediately rules out (a) $G(a_{1}+a_{2}, b)$ and (d) $G(a_{1},a_{2})$ since $\\Gamma$ variables are unbounded above.",
+   "Option (c) $U(0,1)$ is only the special case $a_{1} = a_{2} = 1$, so it is too narrow to be the general answer."
   ],
   "solution": [
    "Let $X \\sim \\Gamma(a_{1}, b)$ and $Y \\sim \\Gamma(a_{2}, b)$ be independent, sharing the common scale parameter b.",
@@ -465,7 +465,7 @@
   "tips": [
    "Memorise the competing-risks formula $\\operatorname{P}(X < Y) = \\lambda_{X}/(\\lambda_{X} + \\lambda_{Y})$ for independent exponentials. It converts this whole question into one division.",
    "Read the rates off the exponents, not off the constants: $e^{-x}$ gives rate 1 and $e^{-2y}$ gives rate 2; the leading 2 is only the normalising constant.",
-   "Sanity check: Y has the larger rate, so Y is stochastically smaller and $X < Y$ should have probability less than $1/2$. That alone eliminates $(b) 1/2$.",
+   "Sanity check: Y has the larger rate, so Y is stochastically smaller and $X < Y$ should have probability less than $1/2$. That alone eliminates (b) $1/2$.",
    "The same formula answers 'which component fails first' reliability questions, a recurring ISS theme."
   ],
   "solution": [
@@ -941,7 +941,7 @@
   "tips": [
    "The regression of Y on X IS the conditional mean $\\operatorname{E}(Y\\mid X=x)$. Whenever the joint density factorises as $g(x) e^{-y h(x)}$, the conditional law of Y is $\\text{Exponential}(h(x))$ and the answer is $1/h(x)$ - one line, no integration.",
    "Any multiplicative function of x alone (here $x^{2}/3$) is absorbed into the normalising constant of the conditional density and cannot appear in $\\operatorname{E}(Y\\mid X)$. That rules out options (b) and (d) at a glance.",
-   "Option $(c) y = 1 + x$ inverts the relationship: it is the RATE, not the mean. Reciprocal errors are the standard trap in exponential conditionals.",
+   "Option (c) $y = 1 + x$ inverts the relationship: it is the RATE, not the mean. Reciprocal errors are the standard trap in exponential conditionals.",
    "Note that the printed joint density is not normalisable over the stated range (the $x-\\int x^{2}/(1+x)$ diverges), but the conditional distribution of Y given X - and hence the answer - is unaffected."
   ],
   "solution": [
@@ -1235,7 +1235,7 @@
   "tips": [
    "$\\sqrt{900} = 30$ is the only arithmetic that matters; $2.1/30 = 0.07$ makes the z-score a clean -1.43, which is exactly the value the examiner supplies.",
    "The supplied figure $\\operatorname{P}(0 < Z < 1.43) = 0.4236$ is a CENTRAL area, not a tail. The left tail is $0.5 - 0.4236 = 0.0764$ - subtracting from 0.5, never from 1.",
-   "Option $(b) 0.6408 = 0.5 + 0.1408$ and option (d) 0.7046 are built from misreading the table; option (c) 0.6074 is 0.5 + 0.1074. All assume the wrong tail.",
+   "Option (b) $0.6408 = 0.5 + 0.1408$ and option (d) 0.7046 are built from misreading the table; option (c) 0.6074 is 0.5 + 0.1074. All assume the wrong tail.",
    "Sanity check: the population mean 0.1 is positive and the sample is large, so a negative sample mean should be UNLIKELY - the answer must be well below 0.5, which only (a) is."
   ],
   "solution": [
@@ -2701,7 +2701,7 @@
   "shortcut": "One bit of the n-bit word carries the sign, leaving n - 1 magnitude bits, so the largest integer is $2^{n-1} - 1$.",
   "tips": [
    "This is the general form of the 8-bit result $127 = 2^{7} - 1$; check any general formula against the concrete case you already know.",
-   "Option $(a) 2^{n} - 1$ is the UNSIGNED maximum. The word 'integer' in these papers implies a signed representation, so one bit is lost to the sign.",
+   "Option (a) $2^{n} - 1$ is the UNSIGNED maximum. The word 'integer' in these papers implies a signed representation, so one bit is lost to the sign.",
    "Options (c) and (d) add rather than subtract 1 and are impossible: the count of non-negative patterns is $2^{n-1}$, and the largest of them (starting from 0) must be $2^{n-1} - 1$.",
    "Symmetric fact worth pairing: the minimum is $-2^{n-1}$ in 2's complement, which is one further from zero than the maximum."
   ],
@@ -3140,13 +3140,13 @@
   "shortcut": "$a = r s_{Y}/s_{X}$ and $c = r s_{X}/s_{Y}$. Multiplying gives $ac = r^{2}$, so $r = \\sqrt{ac}$; dividing gives $c/a = (s_{X}/s_{Y})^{2}$, so $s_{X}/s_{Y} = \\sqrt{c/a}$.",
   "tips": [
    "Two moves only: MULTIPLY the regression coefficients to isolate r, DIVIDE them to isolate the ratio of standard deviations. Every question of this type uses that pair.",
-   "Keep the subscripts straight: $b_{YX} = a = r s_{Y}/s_{X}$ carries $s_{Y}$ on top, while $b_{XY} = c = r s_{X}/s_{Y}$ carries $s_{X}$ on top. Getting these the wrong way round turns (a) into (d).",
+   "Keep the subscripts straight: $b_{Y}X = a = r s_{Y}/s_{X}$ carries $s_{Y}$ on top, while $b_{X}Y = c = r s_{X}/s_{Y}$ carries $s_{X}$ on top. Getting these the wrong way round turns (a) into (d).",
    "The intercepts b and d carry no information about r or the standard deviations - they only locate the means. Option (c), which uses bd, is therefore impossible.",
    "Since $c/a = s_{X}^{2}/s_{Y}^{2}$, the ratio $s_{X}/s_{Y}$ is $\\sqrt{c/a}$ - note it is c over a, not a over c, which is the sole difference between options (a) and (d)."
   ],
   "solution": [
-   "The regression of Y on X is $Y = aX + b$, so its slope is the regression coefficient $b_{YX} = a = r (s_{Y}/s_{X})$.",
-   "The regression of X on Y is $X = cY + d$, so its slope is $b_{XY} = c = r (s_{X}/s_{Y})$.",
+   "The regression of Y on X is $Y = aX + b$, so its slope is the regression coefficient $b_{Y}X = a = r (s_{Y}/s_{X})$.",
+   "The regression of X on Y is $X = cY + d$, so its slope is $b_{X}Y = c = r (s_{X}/s_{Y})$.",
    "Multiplying: $ac = r^{2} (s_{Y}/s_{X})(s_{X}/s_{Y}) = r^{2}$, hence $r = \\sqrt{ac}$ (taking the sign common to a and c).",
    "Dividing: $c/a = [r s_{X}/s_{Y}] / [r s_{Y}/s_{X}] = (s_{X}/s_{Y})^{2}$.",
    "Therefore $s_{X}/s_{Y} = \\sqrt{c/a}$.",
@@ -3362,7 +3362,7 @@
   "tips": [
    "When priors come from a ratio, keep them as raw counts (9 and 10) - the common denominator cancels top and bottom and saves all the fraction work.",
    "Multiply counts by hit rates to get 'effective hits': $9 \\times 0.7 = 6.3$ from $A_{1}$ and $10 \\times 0.6 = 6.0$ from $A_{2}$. The posterior is just $6.3/(6.3 + 6.0)$.",
-   "Simplify $63/123$ by dividing by 3 to reach $21/41$ - option $(a) 20/41$ is the near-miss planted for arithmetic slips.",
+   "Simplify $63/123$ by dividing by 3 to reach $21/41$ - option (a) $20/41$ is the near-miss planted for arithmetic slips.",
    "Plausibility check: $A_{1}$ fires slightly fewer but hits slightly more often, so the posterior should be very close to $1/2$ and just above it. $21/41 = 0.512$ fits; $6/19 = 0.32$ does not."
   ],
   "solution": [
@@ -3437,7 +3437,7 @@
    "$\\operatorname{E}(\\lvert X\\rvert )$ is NOT |$\\operatorname{E}(X)$| - apply the absolute value to each value before weighting. Here $\\operatorname{E}(X) = 0.75$ while $\\operatorname{E}\\lvert X\\rvert = 2$.",
    "Convert to twelfths at the start: the probabilities are $2/12, 3/12, 6/12, 1/12$, which also verifies that they sum to 1.",
    "The arithmetic is unusually friendly: three of the four products equal 0.25 and the fourth is 1.25, so the total 2 falls out at a glance.",
-   "Option $(b) 1/4$ is the value of a single term and option $(c) 3/2$ comes from mishandling the largest-probability term - both punish $\\partial$ arithmetic."
+   "Option (b) $1/4$ is the value of a single term and option (c) $3/2$ comes from mishandling the largest-probability term - both punish $\\partial$ arithmetic."
   ],
   "solution": [
    "The random variable takes the values -1.5, -1, 2.5, 3 with probabilities $1/6, 1/4, 1/2, 1/12$. These sum to $2/12 + 3/12 + 6/12 + 1/12 = 1$, so the distribution is valid.",
@@ -3517,7 +3517,7 @@
    "X is Poisson with $\\operatorname{P}(X = k) = e^{-\\lambda} \\lambda^{k} / k!$ for $k = 0, 1, 2, \\ldots$",
    "The transformation $Y = X^{2} + 3$ is strictly increasing on the non-negative integers, so it is one-to-one there and can be inverted: $X = \\sqrt{Y - 3}$.",
    "The support of Y is obtained from $k = 0, 1, 2, 3, \\ldots$: $y = 0 + 3 = 3, 1 + 3 = 4, 4 + 3 = 7, 9 + 3 = 12$, and so on, i.e. y in {$3, 4, 7, 12, 19, \\ldots$}.",
-   "For each such $y, \\operatorname{P}(Y = y) = \\operatorname{P}(X = \\sqrt{y - 3}) = e^{-\\lambda} \\lambda^{\\sqrt{y-3}} / (\\sqrt{y-3})$!.",
+   "For each such $y, \\operatorname{P}(Y = y) = \\operatorname{P}(X = \\sqrt{y - 3}) = e^{-\\lambda} \\lambda^{\\sqrt{y-3}} / (\\sqrt{y-3})!$.",
    "Options (c) and (d) exclude $y = 3$ from the support and use $\\sqrt{3 - y}$, which is not real for $y > 3$; option (b) uses a negative exponent on $\\lambda$. All three are inadmissible.",
    "Option (a) has the correct support and the correct exponent $\\sqrt{y-3}$, so it is the intended key."
   ]
@@ -3621,7 +3621,7 @@
   "tips": [
    "Rule: correlation is unchanged by a shift, and under scaling it is multiplied by the sign of the multiplier. The magnitude $\\lvert r\\rvert$ never changes.",
    "Option (a) is right only when $a > 0$; the question allows any non-zero a, so the sign factor must appear explicitly.",
-   "Option $(b) r\\lvert a\\rvert$ is dimensionally impossible - a correlation is bounded by 1, but $r\\lvert a\\rvert $ could exceed 1 for large a.",
+   "Option (b) $r\\lvert a\\rvert $ is dimensionally impossible - a correlation is bounded by 1, but $r\\lvert a\\rvert $ could exceed 1 for large a.",
    "Option (c) uses $\\lvert r\\rvert$ and so loses the original sign of r; only option (d) preserves r's own sign while applying the sign of a."
   ],
   "solution": [
@@ -3763,7 +3763,7 @@
   "confidence": "high",
   "type": "Theoretical",
   "issue": "",
-  "shortcut": "For independent samples, variances ADD even for a difference: $\\operatorname{Var}\\!\\left(\\text{Xbar1 - Xbar2}\\right) = W_{1}^{2} + W_{2}^{2}$, so the standard error is $\\sqrt{W_{1}^{2} + W_{2}^2}$.",
+  "shortcut": "For independent samples, variances ADD even for a difference: $\\operatorname{Var}(\\bar{X}1 - \\bar{X}2) = W_{1}^{2} + W_{2}^{2}$, so the standard error is $\\sqrt{W_{1}^{2} + W_{2}^2}$.",
   "tips": [
    "The minus sign is squared away: $\\operatorname{Var}(A - B) = \\operatorname{Var}(A) + \\operatorname{Var}(B)$ when A and B are independent. Standard errors never subtract.",
    "Standard errors combine in quadrature, like the sides of a right triangle - never linearly. That kills option (b) at once.",
@@ -3771,9 +3771,9 @@
    "Same formula in raw terms: $\\operatorname{SE} = \\sqrt{s_{1}^{2}/n_{1} + s_{2}^{2}/n2}$, which is exactly $\\sqrt{W_{1}^{2} + W_{2}^2}$."
   ],
   "solution": [
-   "$W_{1}$ and $W_{2}$ are the standard errors of Xbar1 and Xbar2, so $\\operatorname{Var}\\!\\left(\\text{Xbar1}\\right) = W_{1}^{2}$ and $\\operatorname{Var}\\!\\left(\\text{Xbar2}\\right) = W_{2}^{2}$.",
-   "The two samples are independent, so $\\operatorname{Cov}\\!\\left(\\text{Xbar1, Xbar2}\\right) = 0$.",
-   "Hence $\\operatorname{Var}(T) = \\operatorname{Var}\\!\\left(\\text{Xbar1 - Xbar2}\\right) = \\operatorname{Var}\\!\\left(\\text{Xbar1}\\right) + \\operatorname{Var}\\!\\left(\\text{Xbar2}\\right) - 2\\operatorname{Cov} = W_{1}^{2} + W_{2}^{2}$.",
+   "$W_{1}$ and $W_{2}$ are the standard errors of $\\bar{X}1$ and $\\bar{X}2$, so $\\operatorname{Var}(\\bar{X}1) = W_{1}^{2}$ and $\\operatorname{Var}(\\bar{X}2) = W_{2}^{2}$.",
+   "The two samples are independent, so $\\operatorname{Cov}(\\bar{X}1, \\bar{X}2) = 0$.",
+   "Hence $\\operatorname{Var}(T) = \\operatorname{Var}(\\bar{X}1 - \\bar{X}2) = \\operatorname{Var}(\\bar{X}1) + \\operatorname{Var}(\\bar{X}2) - 2\\operatorname{Cov} = W_{1}^{2} + W_{2}^{2}$.",
    "The standard error is the square root of this variance: $\\operatorname{SE}(T) = \\sqrt{W_{1}^{2} + W_{2}^2}$.",
    "Hence option (d) is correct."
   ]
@@ -4024,7 +4024,7 @@
    "For an odd sample size $n = 2m+1$, the median exceeds c exactly when at least $m+1$ of the observations exceed c. Convert the order-statistic question into a binomial one.",
    "Get the CDF first: for $f(x) = 2x$ on $(0,1), F(x) = x^{2}$, so $F(1/2) = 1/4$ and $p = 3/4$ - the single number that drives everything.",
    "Both binomial terms equal $27/64$ here (since $3 \\times (9/16)(1/4) = 27/64$ and $(3/4)^{3} = 27/64$), so the total $54/64 = 27/32$ falls out neatly - a good sign the set-up is right.",
-   "Option $(a) 3/4$ is simply p itself, planted for candidates who forget the 'at least two out of three' step."
+   "Option (a) $3/4$ is simply p itself, planted for candidates who forget the 'at least two out of three' step."
   ],
   "solution": [
    "The density is $f(x) = 2x$ on $(0,1)$, so the CDF is $F(x) = x^{2}$ for $0 < x < 1$.",
@@ -4246,7 +4246,7 @@
    "Identity to memorise: $\\max(a,b) = (a + b + \\lvert a - b\\rvert )/2$. It reduces an order-statistic expectation to a mean absolute deviation.",
    "For $W \\sim N(0, \\tau^{2}), \\operatorname{E}\\lvert W\\rvert = \\tau \\sqrt{2/\\pi}$. Here $\\tau = \\sqrt{2}$, so $\\operatorname{E}\\lvert X-Y\\rvert = 2/\\sqrt{\\pi}$.",
    "General result: for a sample of 2 from $N(\\mu, \\sigma^{2}), \\operatorname{E}[\\max] = \\mu + \\sigma/\\sqrt{\\pi}$ and $\\operatorname{E}[\\min] = \\mu - \\sigma/\\sqrt{\\pi}$. This is the companion of $2018 Q_{39}$.",
-   "Sign and size check: the answer must be positive and modest (about 0.564). Option $(d) 2/\\sqrt{\\pi} = 1.128$ is the value of $\\operatorname{E}\\lvert X - Y\\rvert $, the classic half-way trap."
+   "Sign and size check: the answer must be positive and modest (about 0.564). Option (d) $2/\\sqrt{\\pi} = 1.128$ is the value of $\\operatorname{E}\\lvert X - Y\\rvert $, the classic half-way trap."
   ],
   "solution": [
    "Let X, Y be independent $N(0,1)$ and use $\\max(X, Y) = [(X + Y) + \\lvert X - Y\\rvert ]/2$.",
@@ -4825,9 +4825,9 @@
   "confidence": "high",
   "type": "Numerical",
   "issue": "",
-  "shortcut": "The product has degree $1 + 2 + 3 + 4 = 10$ with leading coefficient $(-a)(-b)(-c)(-d) = abcd$. For $h = 1, \\Delta^{n}$ of a degree-n polynomial is (leading coefficient) $x n!$, so the answer is abcd x 10!.",
+  "shortcut": "The product has degree $1 + 2 + 3 + 4 = 10$ with leading coefficient $(-a)(-b)(-c)(-d) = abcd$. For $h = 1, \\Delta^{n}$ of a degree-n polynomial is (leading coefficient) $x n!$, so the answer is abcd $x 10!$.",
   "tips": [
-   "Key identity: for $h = 1, \\Delta^{n}$ [$a_{n} x^{n}$ + lower terms] = $a_{n} \\cdot n$!. All lower-degree terms are annihilated.",
+   "Key identity: for $h = 1, \\Delta^{n}$ [$a_{n} x^{n}$ + lower terms] = $a_{n} \\cdot n!$. All lower-degree terms are annihilated.",
    "Get the degree by ADDING the degrees of the factors $(1+2+3+4 = 10)$ - do not multiply them out.",
    "The leading coefficient is the product of the leading coefficients: $(-a)(-b)(-c)(-d) = +abcd$. Four negatives give a positive, which is why no minus sign appears.",
    "If the operator order had exceeded the degree the answer would be 0 (option a); here they match exactly, which is what makes the factorial appear."
@@ -4837,7 +4837,7 @@
    "The product is therefore a polynomial of degree $1 + 2 + 3 + 4 = 10$.",
    "Its leading term comes from multiplying the highest-degree term of each factor: $(-ax)(-bx^{2})(-cx^{3})(-dx^{4}) = abcd x^{10}$, so the leading coefficient is abcd.",
    "For an interval of differencing $h = 1$, the standard result is $\\Delta^{n}(x^{n}) = n!$, and all terms of degree below n vanish under $\\Delta^{n}$.",
-   "Hence $\\Delta^{10}$ of the product equals abcd x 10!.",
+   "Hence $\\Delta^{10}$ of the product equals abcd $x 10!$.",
    "Option (c) is correct."
   ]
  },
@@ -5525,7 +5525,7 @@
    "Trapezoidal with two strips: $T = h[(f_{0} + f_{2})/2 + f_{1}]$. Only the two END ordinates are halved.",
    "Keep fractions: $(1/2)[(1 + 1/2)/2 + 2/3] = (1/2)(3/4 + 2/3) = (1/2)(17/12) = 17/24$. Exact fractions beat decimals when the options are fractions.",
    "$1/x$ is convex, so the trapezoidal rule OVERESTIMATES. The true $\\ln 2 = 0.6931$, and $17/24 = 0.7083$ is duly larger - a strong confirmation.",
-   "Option $(c) 19/24 = 0.7917$ is too far above $\\ln 2$ to be a two-strip trapezoidal value; the overestimate for such a smooth function is small."
+   "Option (c) $19/24 = 0.7917$ is too far above $\\ln 2$ to be a two-strip trapezoidal value; the overestimate for such a smooth function is small."
   ],
   "solution": [
    "We approximate the $\\int 1/x$ from 1 to 2 using the trapezoidal rule with $n = 2$ equal divisions, so $h = (2-1)/2 = 0.5$.",
@@ -6220,18 +6220,18 @@
   "confidence": "high",
   "type": "Theoretical",
   "issue": "",
-  "shortcut": "For $n = 5$ the median is the 3rd order statistic, so the constant is 5!/$(2! 2!) = 30$ and the density is $30 F^{2} (1-F)^{2} f$.",
+  "shortcut": "For $n = 5$ the median is the 3rd order statistic, so the constant is $5!/(2! 2!) = 30$ and the density is $30 F^{2} (1-F)^{2} f$.",
   "tips": [
    "General order-statistic density: $g_{r}(x) = [n!/((r-1)!(n-r)!)] [F(x)]^{r-1} [1 - F(x)]^{n-r} f(x)$. Substitute r and n and the whole answer follows.",
    "For the median of 5 observations, $r = 3$, so the exponents are $r - 1 = 2$ and $n - r = 2$ - symmetric, as the median should be.",
-   "The constant 5!/$(2!2!) = 120/4 = 30$ is what separates (c) from (d); option (c) has the right shape but the wrong normalising constant.",
+   "The constant $5!/(2!2!) = 120/4 = 30$ is what separates (c) from (d); option (c) has the right shape but the wrong normalising constant.",
    "Options (a) and (b) are the densities of the MAXIMUM and the MINIMUM respectively - useful to recognise as the $r = n$ and $r = 1$ special cases."
   ],
   "solution": [
    "For a sample of size n from a continuous distribution, the density of the rth order statistic is $g_{r}(x) = [n!/((r-1)!(n-r)!)] [F(x)]^{r-1} [1-F(x)]^{n-r} f(x)$.",
    "With $n = 5$ observations, the sample median is the third order statistic, so $r = 3$.",
    "The exponents are $r - 1 = 2$ on $F(x)$ and $n - r = 2$ on $1 - F(x)$.",
-   "The constant is 5!/$(2! 2!) = 120/(2 \\times 2) = 30$.",
+   "The constant is $5!/(2! 2!) = 120/(2 \\times 2) = 30$.",
    "Hence the density of the sample median is $30 [F(x)]^{2} [1 - F(x)]^{2} f(x)$.",
    "Option (d) is correct."
   ]
@@ -6627,19 +6627,19 @@
   "confidence": "high",
   "type": "Conceptual",
   "issue": "",
-  "shortcut": "Statement 1 is the standard nPr count. Statement 2 is false: the probability that n distinguishable balls fill n cells is n!/$n^{n}$, which is far below 1 for $n \\ge 2$.",
+  "shortcut": "Statement 1 is the standard nPr count. Statement 2 is false: the probability that n distinguishable balls fill n cells is $n!/n^{n}$, which is far below 1 for $n \\ge 2$.",
   "tips": [
    "Ordered sampling counts: WITHOUT replacement $n(n-1)\\ldots(n-r+1)$ = nPr; WITH replacement $n^{r}$. Learn the pair together.",
-   "Total placements of n distinguishable balls in n cells is $n^{n}$; favourable ones (one per cell) number n!, so the probability is n!/$n^{n}$ - for $n = 3$ that is $6/27 = 0.22$, nowhere near 1.",
+   "Total placements of n distinguishable balls in n cells is $n^{n}$; favourable ones (one per cell) number n!, so the probability is $n!/n^{n}$ - for $n = 3$ that is $6/27 = 0.22$, nowhere near 1.",
    "Any statement asserting that a non-trivial probability equals exactly 1 deserves immediate suspicion; certainty is rare.",
-   "This is the classical occupancy problem, and n!/$n^{n}$ tends to 0 rapidly - by Stirling it behaves like $\\sqrt{2 \\pi n} e^{-n}$."
+   "This is the classical occupancy problem, and $n!/n^{n}$ tends to 0 rapidly - by Stirling it behaves like $\\sqrt{2 \\pi n} e^{-n}$."
   ],
   "solution": [
    "Statement 1: to draw an ordered sample of size r from n elements without replacement, the first element can be chosen in n ways, the second in $n-1$ ways, and so on down to $n - r + 1$ ways for the rth.",
    "The total is $n(n-1)(n-2)\\ldots(n-r+1)$ = nPr, exactly as stated. TRUE.",
    "Statement 2: placing n distinguishable balls into n cells at random gives $n^{n}$ equally likely arrangements.",
    "The arrangements in which every cell is occupied are exactly the ones with one ball per cell, and there are n! of them.",
-   "Hence the probability is n!/$n^{n}$, which equals 1 only for $n = 1$; for $n = 3$ it is $6/27 = 0.222$. The claim that it is 1 is FALSE.",
+   "Hence the probability is $n!/n^{n}$, which equals 1 only for $n = 1$; for $n = 3$ it is $6/27 = 0.222$. The claim that it is 1 is FALSE.",
    "Only statement 1 is correct, option (a)."
   ]
  },
@@ -7002,7 +7002,7 @@
    "Singular covariance matrix means the determinant $\\operatorname{V}(X)\\operatorname{V}(Y) - \\operatorname{Cov}^{2} = 0$, which is the same as $\\rho^{2} = 1$. Compute the determinant, do not reason about $\\rho$ separately.",
    "A singular bivariate normal is concentrated on a LINE in the plane, which has zero area, so no two-dimensional density can exist.",
    "The Cauchy-Schwarz inequality guarantees $\\lvert \\operatorname{Cov}\\rvert \\le \\sqrt{V(X)\\operatorname{V}(Y)} = \\sqrt{6}$, so $\\lvert \\alpha\\rvert > 6$ in option (d) is impossible for any distribution at all.",
-   "Option $(c) \\mid \\alpha$| < $\\sqrt{6}$ is precisely the case where the density DOES exist - the exact opposite of what is asked."
+   "Option (c) $\\lvert \\alpha\\rvert < \\sqrt{6}$ is precisely the case where the density DOES exist - the exact opposite of what is asked."
   ],
   "solution": [
    "The bivariate normal density exists if and only if its covariance matrix is positive definite, i.e. non-singular.",
@@ -7113,7 +7113,7 @@
    "Substituting $u = e^{-3 \\lambda}$ turns a transcendental maximisation into the elementary quadratic $u - u^{2}$ - the key move in this item.",
    "Note that $6 = 2 \\times 3$, so $e^{-6 \\lambda} = u^{2}$ exactly. The doubling of the endpoints is what makes the substitution work.",
    "$u - u^{2}$ has its maximum at $u = 1/2$, i.e. $e^{-3 \\lambda} = 1/2$ and $\\lambda = (\\ln 2)/3 = 0.231$. The optimal mean is therefore about 4.33, comfortably inside $[3,6]$ - a good plausibility check.",
-   "The maximum value $1/4$ is a bound over ALL exponential distributions, so no single choice of parameter can do better - the reason option $(a) 1/2$ is unattainable."
+   "The maximum value $1/4$ is a bound over ALL exponential distributions, so no single choice of parameter can do better - the reason option (a) $1/2$ is unattainable."
   ],
   "solution": [
    "For an exponential distribution with rate $\\lambda, \\operatorname{P}(3 \\le X \\le 6) = e^{-3 \\lambda} - e^{-6 \\lambda}$.",
@@ -8039,8 +8039,8 @@
    "The hexadecimal system is base 16 and uses exactly sixteen digit symbols: $0, 1, 2, \\ldots, 9, A, B, C, D, E, F$.",
    "Option (a) 12345 uses only the digits 1 to 5, all valid hexadecimal digits.",
    "Option (b) 1AB9F uses 1, A, B, 9 and F, all valid.",
-   "Option $(d) 1A_{3}$BC uses 1, A, 3, B and C, all valid.",
-   "Option $(c) 15F6G$ contains the letter G, which lies beyond F and is not a hexadecimal digit.",
+   "Option (d) $1A_{3}$BC uses 1, A, 3, B and C, all valid.",
+   "Option (c) $15F6G$ contains the letter G, which lies beyond F and is not a hexadecimal digit.",
    "Hence $15F6G$ is not a valid hexadecimal number, option (c)."
   ]
  },
@@ -8914,7 +8914,7 @@
   "confidence": "high",
   "type": "Numerical",
   "issue": "",
-  "shortcut": "$\\operatorname{E}(X^{2}) = 6 \\Gamma(3)\\Gamma(1)\\Gamma(2)/\\Gamma(6) = 1/10$, so $\\operatorname{Var}(X) = 1/10 - 1/16 = 3/80$ and by symmetry $\\operatorname{Var}(Y) = 3/80$. Then $b_{XY} = (-1/80)/(3/80) = -1/3$, giving $X = 1/4 - (1/3)(Y - 1/4) = (1 - Y)/3$.",
+  "shortcut": "$\\operatorname{E}(X^{2}) = 6 \\Gamma(3)\\Gamma(1)\\Gamma(2)/\\Gamma(6) = 1/10$, so $\\operatorname{Var}(X) = 1/10 - 1/16 = 3/80$ and by symmetry $\\operatorname{Var}(Y) = 3/80$. Then $b_{X}Y = (-1/80)/(3/80) = -1/3$, giving $X = 1/4 - (1/3)(Y - 1/4) = (1 - Y)/3$.",
   "tips": [
    "Regression of X on Y: $X = \\operatorname{E}(X) + [\\operatorname{Cov}/\\operatorname{Var}(Y)](Y - \\operatorname{E}(Y))$. Write the template first and slot in the three numbers.",
    "Both variances equal $3/80$ by symmetry, so the regression coefficient is simply $\\operatorname{Cov}/\\operatorname{Var} = -1/3$ - a clean number that signals the working is right.",
@@ -8925,8 +8925,8 @@
    "From the previous parts, $\\operatorname{E}(X) = \\operatorname{E}(Y) = 1/4$ and $\\operatorname{Cov}(X,Y) = -1/80$.",
    "$\\operatorname{E}(X^{2}) = 6$ times the Dirichlet integral with $a = 3, b = 1, c = 2$: $6 \\Gamma(3)\\Gamma(1)\\Gamma(2)/\\Gamma(6) = 6(2)/120 = 1/10$.",
    "$\\operatorname{Var}(X) = 1/10 - (1/4)^{2} = 1/10 - 1/16 = 8/80 - 5/80 = 3/80$, and by symmetry $\\operatorname{Var}(Y) = 3/80$.",
-   "Regression coefficient of X on Y: $b_{XY} = \\operatorname{Cov}(X,Y)/\\operatorname{Var}(Y) = (-1/80)/(3/80) = -1/3$.",
-   "The line is $X - \\operatorname{E}(X) = b_{XY} (Y - \\operatorname{E}(Y))$, i.e. $X = 1/4 - (1/3)(Y - 1/4) = 1/4 - Y/3 + 1/12$.",
+   "Regression coefficient of X on Y: $b_{X}Y = \\operatorname{Cov}(X,Y)/\\operatorname{Var}(Y) = (-1/80)/(3/80) = -1/3$.",
+   "The line is $X - \\operatorname{E}(X) = b_{X}Y (Y - \\operatorname{E}(Y))$, i.e. $X = 1/4 - (1/3)(Y - 1/4) = 1/4 - Y/3 + 1/12$.",
    "Since $1/4 + 1/12 = 1/3$, this is $X = 1/3 - Y/3 = (1 - Y)/3$. Option (b) is correct."
   ]
  },
@@ -9213,7 +9213,7 @@
    "Convert the order-statistic event into a binomial count: $X_{r} > c$ iff at most r - 1 observations are <= c, i.e. at least $n - r + 1$ exceed c. Here $n = 4, r = 3$, so at least 2 must exceed $1/2$.",
    "Compute the complement: it is far quicker to subtract $\\operatorname{P}\\!\\left(\\text{0 exceed}\\right) + \\operatorname{P}\\!\\left(\\text{1 exceeds}\\right)$ than to add three terms.",
    "With $p = 3/4, \\operatorname{P}(0) = (1/4)^{4} = 1/256$ and $\\operatorname{P}(1) = 4(3/4)(1/4)^{3} = 12/256$, totalling $13/256$ - clean numbers that confirm the set-up.",
-   "Option $(a) 15/16$ is the answer to 'at least one exceeds $1/2'$ and option $(c) 1/2$ ignores the density's shape - both are planted for $\\partial$ reasoning."
+   "Option (a) $15/16$ is the answer to 'at least one exceeds $1/2'$ and option (c) $1/2$ ignores the density's shape - both are planted for $\\partial$ reasoning."
   ],
   "solution": [
    "The density $f(x) = 2x$ on $(0,1)$ has CDF $F(x) = x^{2}$, so $F(1/2) = 1/4$ and $p = \\operatorname{P}(X > 1/2) = 3/4$.",
@@ -9542,7 +9542,7 @@
   "issue": "",
   "shortcut": "The regression of Y on X is $\\operatorname{E}(Y\\mid X=x) = \\mu_{2} + \\rho(s_{2}/s_{1})(x - \\mu_{1}) = -5 + (1/2)(1/2)(x - 7) = 0.25x - 6.75$.",
   "tips": [
-   "Regression coefficient $b_{YX} = \\rho s_{2}/s_{1} = (1/2)(3/4)/(3/2) = 1/4$. Compute this single number first and the line follows.",
+   "Regression coefficient $b_{Y}X = \\rho s_{2}/s_{1} = (1/2)(3/4)/(3/2) = 1/4$. Compute this single number first and the line follows.",
    "The slope of a regression line can never exceed $\\lvert \\rho\\rvert$ times the $\\operatorname{SD}$ ratio, so a slope of 6.75 (options (a), (c), (d)) is impossible here - the answer is identifiable almost by inspection.",
    "Constant term: $-5 - 0.25(7) = -5 - 1.75 = -6.75$. Keep the sign of $\\mu_{2} = -5$, which comes from the $(y + 5)$ in the exponent.",
    "Check that the line passes through the means: at $x = 7, Y = 0.25(7) - 6.75 = -5 = \\mu_{2}$, as every regression line must."
@@ -9550,7 +9550,7 @@
   "solution": [
    "From the exponent, $\\mu_{1} = 7$ and $\\mu_{2} = -5$; from the earlier parts, $s_{1} = 3/2, s_{2} = 3/4$ and $\\rho = 1/2$.",
    "The regression of Y on X for a bivariate normal is $\\operatorname{E}(Y \\mid X = x) = \\mu_{2} + \\rho (s_{2}/s_{1})(x - \\mu_{1})$.",
-   "The regression coefficient is $b_{YX} = \\rho s_{2}/s_{1} = (1/2)(3/4)/(3/2) = (1/2)(1/2) = 1/4 = 0.25$.",
+   "The regression coefficient is $b_{Y}X = \\rho s_{2}/s_{1} = (1/2)(3/4)/(3/2) = (1/2)(1/2) = 1/4 = 0.25$.",
    "Substituting: $Y = -5 + 0.25(x - 7) = -5 + 0.25x - 1.75$.",
    "So $Y = 0.25x - 6.75$.",
    "Check: at $x = 7$ the line gives -5, the mean of Y, as required. Option (b) is correct."
@@ -9692,8 +9692,8 @@
   "tips": [
    "Poisson approximation to the binomial: with n large and p small, $\\text{Binomial}(n,p)$ is approximately $\\text{Poisson}(np)$. Here $np = 20$.",
    "Estimate p from the pilot sample first - 8 out of 200 gives 4%. The city population of 100000 is a distractor and never enters the calculation.",
-   "Option $(c) \\text{Poisson}(8)$ reuses the pilot COUNT instead of rescaling to the new sample size - the commonest error.",
-   "Option $(d) \\text{Poisson}(16/5) = \\text{Poisson}(3.2)$ comes from dividing rather than multiplying by the size ratio $500/200 = 2.5$."
+   "Option (c) $\\text{Poisson}(8)$ reuses the pilot COUNT instead of rescaling to the new sample size - the commonest error.",
+   "Option (d) $\\text{Poisson}(16/5) = \\text{Poisson}(3.2)$ comes from dividing rather than multiplying by the size ratio $500/200 = 2.5$."
   ],
   "solution": [
    "The pilot test of 200 citizens gave 8 positives, so the estimated prevalence is $p = 8/200 = 0.04$.",
@@ -10207,7 +10207,7 @@
   "issue": "",
   "shortcut": "The $2^{i}$ and $(1/2)^{i}$ cancel, leaving $\\operatorname{E}(X)$ = sum of $(-1)^{i+1}/i!$ for $i \\ge 1 = -[e^{-1} - 1] = 1 - e^{-1}$.",
   "tips": [
-   "Multiply value by probability FIRST: $[(-1)^{i+1} 2^{i}/i!] \\times (1/2)^{i} = (-1)^{i+1}/i$!. The cancellation is the entire design of the question.",
+   "Multiply value by probability FIRST: $[(-1)^{i+1} 2^{i}/i!] \\times (1/2)^{i} = (-1)^{i+1}/i!$. The cancellation is the entire design of the question.",
    "Recognise the exponential series: $\\sum (-1)^{i}/i! = e^{-1}$. The required sum starts at $i = 1$ and has the opposite sign, giving $1 - e^{-1}$.",
    "Check the probabilities sum to 1: sum of $(1/2)^{i}$ for $i \\ge 1 = 1$, so the distribution is valid.",
    "Numerically $1 - e^{-1} = 0.632$, and the first two terms of the sum are $1 - 1/2 = 0.5$ with the next $+1/6 = 0.667$ - the $\\partial$ sums bracket 0.632, confirming the answer."
@@ -10215,8 +10215,8 @@
   "solution": [
    "X takes the value $(-1)^{i+1} 2^{i}/i!$ with probability $(1/2)^{i}$ for $i = 1, 2, 3, \\ldots$ The probabilities sum to 1, so the distribution is valid.",
    "The contribution of the ith term to the expectation is $[(-1)^{i+1} 2^{i}/i!] (1/2)^{i}$.",
-   "The factors $2^{i}$ and $(1/2)^{i}$ cancel, leaving $(-1)^{i+1}/i$!.",
-   "Hence $\\operatorname{E}(X) = \\sum (-1)^{i+1}/i! = -\\sum (-1)^{i}/i$!.",
+   "The factors $2^{i}$ and $(1/2)^{i}$ cancel, leaving $(-1)^{i+1}/i!$.",
+   "Hence $\\operatorname{E}(X) = \\sum (-1)^{i+1}/i! = -\\sum (-1)^{i}/i!$.",
    "Since $\\sum (-1)^{i}/i! = e^{-1}$, the sum from $i = 1$ equals $e^{-1} - 1$.",
    "Therefore $\\operatorname{E}(X) = -(e^{-1} - 1) = 1 - e^{-1}$, option (d)."
   ]
@@ -10247,7 +10247,7 @@
    "All measures of DISPERSION (range, MD, $\\operatorname{SD}$, QD) are unchanged by a change of origin and scale by $\\lvert a\\rvert$ under a change of scale. Only the mean and other location measures absorb the +3.",
    "The +3 shifts both the values and their mean by 3, so the deviations are identical - the constant cancels exactly.",
    "Use $\\lvert a\\rvert$, not a: a multiplier of -2 would also give 10, since deviations are measured in absolute value.",
-   "Option $(b) 13 = 2(5) + 3$ is the trap for candidates who apply the whole transformation to the dispersion measure instead of just the scale factor."
+   "Option (b) $13 = 2(5) + 3$ is the trap for candidates who apply the whole transformation to the dispersion measure instead of just the scale factor."
   ],
   "solution": [
    "Let $y = 2x + 3$. Then the mean of y is $\\bar{y} = 2 \\bar{x} + 3$.",
@@ -11793,7 +11793,7 @@
    "Reflection rule: if $X \\sim B(n,p)$ then $n - X \\sim B(n, 1-p)$. Spotting this converts the awkward '$3 - X_{4}'$ into a friendly binomial.",
    "Additive property: independent $B(m,p) + B(n,p) = B(m+n,p)$ - but ONLY when p is common, which is exactly what the reflection arranges here.",
    "Check the mean: $3(1/3) + (3 - 3(2/3)) = 1 + 1 = 2$, and $B(6,1/3)$ has mean 2. A quick confirmation.",
-   "Option $(c) B(6,2/3)$ is the trap for candidates who forget to reflect $X_{4}$ and simply add the two success probabilities."
+   "Option (c) $B(6,2/3)$ is the trap for candidates who forget to reflect $X_{4}$ and simply add the two success probabilities."
   ],
   "solution": [
    "$X_{1}, X_{2}, X_{3}$ are i.i.d. $\\text{Bernoulli}(1/3)$, so their sum $S = X_{1} + X_{2} + X_{3} \\sim \\text{Binomial}(3, 1/3)$.",
@@ -11898,12 +11898,12 @@
   "confidence": "high",
   "type": "Numerical",
   "issue": "",
-  "shortcut": "Multinomial: 6!/$(3!2!1!) \\times (0.5)^{3} (0.3)^{2} (0.2) = 60 \\times 0.125 \\times 0.09 \\times 0.2 = 0.135 = 27/200$.",
+  "shortcut": "Multinomial: $6!/(3!2!1!) \\times (0.5)^{3} (0.3)^{2} (0.2) = 60 \\times 0.125 \\times 0.09 \\times 0.2 = 0.135 = 27/200$.",
   "tips": [
    "Multinomial probability = $[n!/(n_{1}! n_{2}! n_{3}!)] p_{1}^{n1} p_{2}^{n2} p_{3}^{n3}$. Compute the multinomial coefficient first: $720/(6 \\times 2 \\times 1) = 60$.",
    "'No one reads more than one paper' is the phrase that makes the three categories mutually exclusive and exhaustive, hence multinomial rather than independent binomials.",
    "Keep it as a fraction: $60 \\times (1/8)(9/100)(1/5) = 60 \\times 9/4000 = 540/4000 = 27/200$. Fractions avoid decimal drift.",
-   "Option $(c) 27/100$ is exactly double the answer - the trap for candidates who drop a factor of 2 somewhere in the coefficient."
+   "Option (c) $27/100$ is exactly double the answer - the trap for candidates who drop a factor of 2 somewhere in the coefficient."
   ],
   "solution": [
    "Each reader independently reads A, B or C with probabilities 0.5, 0.3 and 0.2, and these are mutually exclusive since no one reads more than one paper.",
@@ -11943,7 +11943,7 @@
    "General fact worth carrying: $\\operatorname{P}(X = k) = \\operatorname{P}(X = k+1)$ exactly when $\\lambda = k + 1$, so equal consecutive probabilities pinpoint $\\lambda$ at once."
   ],
   "solution": [
-   "For a Poisson variable with parameter $\\lambda, \\operatorname{P}(X = k) = e^{-\\lambda} \\lambda^{k}/k$!.",
+   "For a Poisson variable with parameter $\\lambda, \\operatorname{P}(X = k) = e^{-\\lambda} \\lambda^{k}/k!$.",
    "The condition $\\operatorname{P}(X = 1) = \\operatorname{P}(X = 2)$ gives $e^{-\\lambda} \\lambda = e^{-\\lambda} \\lambda^{2}/2$.",
    "Cancelling $e^{-\\lambda}$ and one factor of $\\lambda$ (which is non-zero): $1 = \\lambda/2$.",
    "Hence $\\lambda = 2$.",
@@ -12012,7 +12012,7 @@
    "Convert a fractional bound on a DISCRETE difference into an integer one: $X - Y \\le 0.5$ means $X - Y \\le 0$, i.e. $X \\le Y$. This removes all ambiguity.",
    "List the qualifying (x,y) pairs explicitly rather than summing blindly - with only six cells the enumeration is quick and safe.",
    "Verify the pmf first: the six masses $(x+y)/21$ are 2, 3, 3, 4, 4, 5 over 21, which sum to $21/21 = 1$.",
-   "Option $(d) 17/21$ is the complement of the wrong event ($X \\ge Y$ or similar) - always double-check which inequality you are summing over."
+   "Option (d) $17/21$ is the complement of the wrong event ($X \\ge Y$ or similar) - always double-check which inequality you are summing over."
   ],
   "solution": [
    "The joint pmf is $p(x,y) = (x+y)/21$ for $x = 1$,2,3 and $y = 1$,2. The six masses are $2/21, 3/21, 3/21, 4/21, 4/21, 5/21$, summing to 1.",
@@ -12234,7 +12234,7 @@
    "The parameters in $\\text{BVN}(\\mu_{1}, \\mu_{2}, \\sigma_{1}^{2}, \\sigma_{2}^{2}, \\rho)$ are VARIANCES here, both 100, so each standard deviation is 10.",
    "$\\operatorname{Var}(X+Y) = \\sigma_{1}^{2} + \\sigma_{2}^{2} + 2 \\rho \\sigma_{1} \\sigma_{2} = 100 + 100 + 2(0.5)(10)(10) = 300$. Forgetting the covariance term gives 200 and the wrong answer.",
    "$\\operatorname{E}(e^{W})$ for $W \\sim N(m, v)$ is $\\exp(m + v/2)$ - the MGF at $t = 1$. The halving of the variance is the step most often dropped.",
-   "Arithmetic: $30 + 300/2 = 30 + 150 = 180$. Option $(a) e^{150}$ comes from forgetting the mean; option $(d) e^{220}$ from using v rather than $v/2$ with the wrong variance."
+   "Arithmetic: $30 + 300/2 = 30 + 150 = 180$. Option (a) $e^{150}$ comes from forgetting the mean; option (d) $e^{220}$ from using v rather than $v/2$ with the wrong variance."
   ],
   "solution": [
    "$(X,Y) \\sim \\text{BVN}(10, 20, 100, 100, 0.5)$, so $\\operatorname{E}(X) = 10, \\operatorname{E}(Y) = 20, \\operatorname{Var}(X) = \\operatorname{Var}(Y) = 100$ and $\\rho = 0.5$, giving $\\sigma_{X} = \\sigma_{Y} = 10$.",
@@ -12266,7 +12266,7 @@
   "confidence": "high",
   "type": "Numerical",
   "issue": "",
-  "shortcut": "$\\bar{x} = 6, \\bar{y} = 11, S_{xy} = 300 - 264 = 36, S_{yy} = 572 - 484 = 88$. So $b_{XY} = 36/88 = 0.4091$ and $X = 6 + 0.4091(10 - 11) = 5.59$.",
+  "shortcut": "$\\bar{x} = 6, \\bar{y} = 11, S_{xy} = 300 - 264 = 36, S_{yy} = 572 - 484 = 88$. So $b_{X}Y = 36/88 = 0.4091$ and $X = 6 + 0.4091(10 - 11) = 5.59$.",
   "tips": [
    "Predicting X from Y needs the regression of X ON Y, whose coefficient is $S_{xy}/S_{yy}$ - dividing by $S_{xx}$ instead is the classic reversal error.",
    "Corrected sums: $S_{xy} = \\sum xy - n \\bar{x} \\bar{y}$ and $S_{yy} = \\sum y^{2} - n \\bar{y}^{2}$. Compute the means first (6 and 11) and the rest is arithmetic.",
@@ -12277,8 +12277,8 @@
    "With $n = 4$: $\\bar{x} = 24/4 = 6$ and $\\bar{y} = 44/4 = 11$.",
    "Corrected sum of products: $S_{xy} = \\sum xy - n \\bar{x} \\bar{y} = 300 - 4(6)(11) = 300 - 264 = 36$.",
    "Corrected sum of squares for Y: $S_{yy} = \\sum y^{2} - n \\bar{y}^{2} = 572 - 4(121) = 572 - 484 = 88$.",
-   "Regression coefficient of X on Y: $b_{XY} = S_{xy}/S_{yy} = 36/88 = 0.40909$.",
-   "The regression line is $X = \\bar{x} + b_{XY} (Y - \\bar{y}) = 6 + 0.40909(Y - 11)$.",
+   "Regression coefficient of X on Y: $b_{X}Y = S_{xy}/S_{yy} = 36/88 = 0.40909$.",
+   "The regression line is $X = \\bar{x} + b_{X}Y (Y - \\bar{y}) = 6 + 0.40909(Y - 11)$.",
    "At $Y = 10$: $X = 6 + 0.40909(-1) = 5.591$, i.e. 5.59, option (d)."
   ]
  },
@@ -12530,7 +12530,7 @@
    "Memorise the composite error terms: trapezoidal $-(b-a)h^{2} f''/12$; Simpson's $1/3 -(b-a)h^{4} f''''/180$. The DERIVATIVE ORDER identifies the rule.",
    "Trapezoidal error involves the SECOND derivative, so options (a) and (d) with f' and $f'''$ are eliminated before any arithmetic.",
    "Compute h first: $h = (2-0)/10 = 0.2$, so $h^{2} = 0.04$ and $(2)(0.04)/12 = 0.08/12 = 1/150$.",
-   "Option $(c) -1/300$ comes from using $(b-a) = 1$ or from halving twice - keep $(b-a) = 2$ explicitly in the formula."
+   "Option (c) $-1/300$ comes from using $(b-a) = 1$ or from halving twice - keep $(b-a) = 2$ explicitly in the formula."
   ],
   "solution": [
    "The composite trapezoidal rule on [a,b] with n equal subintervals has error $E = -(b - a) h^{2} f''(t)/12$ for some t in [a,b], where $h = (b-a)/n$.",
@@ -13377,7 +13377,7 @@
    "With EQUAL priors, Bayes reduces to the ratio of likelihoods: 1 : $1/4$, i.e. 4 : 1, giving $4/5$ directly.",
    "Two heads is four times more likely under the two-headed coin, so the posterior must exceed the prior $1/2$ substantially - options (b) and (c) are below $1/2$ and can be dismissed.",
    "Extend the pattern: with k heads the posterior is $1/(1 + 2^{-k}) = 2^{k}/(2^{k} + 1)$, which tends to 1 - a useful generalisation.",
-   "Option $(a) 1/2$ is the PRIOR, the trap for candidates who forget to update on the evidence."
+   "Option (a) $1/2$ is the PRIOR, the trap for candidates who forget to update on the evidence."
   ],
   "solution": [
    "Let T be the event that the two-headed coin was chosen and F that the fair coin was chosen, with $\\operatorname{P}(T) = \\operatorname{P}(F) = 1/2$.",
@@ -13599,7 +13599,7 @@
    "A linear CDF means a UNIFORM distribution; probabilities are then proportional to interval length, with no integration needed.",
    "$\\operatorname{P}(a \\le X \\le b) = F(b) - F(a) = 2.5/5 - 1.5/5 = 0.5 - 0.3 = 0.2$ - the direct route if you prefer the CDF.",
    "For a continuous variable the endpoints carry no mass, so <= and < give the same answer - the closed interval in the stem is a distractor.",
-   "Option $(c) 2/5$ is the trap for candidates who use the interval length 1 over the half-range, or who mis-subtract 0.5 - 0.1."
+   "Option (c) $2/5$ is the trap for candidates who use the interval length 1 over the half-range, or who mis-subtract 0.5 - 0.1."
   ],
   "solution": [
    "The distribution function $F(x) = x/5$ for $0 \\le x \\le 5$ is that of a $\\text{Uniform}(0,5)$ random variable, with density $1/5$ on that range.",
@@ -13930,8 +13930,8 @@
   "tips": [
    "Convert the variance to a standard deviation first: 25 gives $\\sigma = 5$, not 25. Using the variance directly inflates the interval enormously.",
    "$\\operatorname{SE} = \\sigma/\\sqrt{n} = 5/10 = 0.5$. The clean numbers are deliberate - the margin $1.96 \\times 0.5 = 0.98$ is exact.",
-   "The interval must be SYMMETRIC about the sample mean 5.96; check that 5.96 is the midpoint of your chosen option. For $(b), (4.98 + 6.94)/2 = 5.96$ exactly.",
-   "Option $(a) [5.47, 6.45]$ has the right midpoint but a margin of 0.49 - the result of forgetting a factor of 2 or halving the SE."
+   "The interval must be SYMMETRIC about the sample mean 5.96; check that 5.96 is the midpoint of your chosen option. For (b), $(4.98 + 6.94)/2 = 5.96$ exactly.",
+   "Option (a) $[5.47, 6.45]$ has the right midpoint but a margin of 0.49 - the result of forgetting a factor of 2 or halving the SE."
   ],
   "solution": [
    "The population is $N(\\mu, 25)$, so $\\sigma = \\sqrt{25} = 5$, and the sample size is $n = 100$.",
@@ -15291,7 +15291,7 @@
   "tips": [
    "Since X takes only the values -1 and +1 here, $X^{2} = 1$ with certainty, so $\\operatorname{E}(X^{2} \\mid Y = 2) = 1$ without any computation.",
    "$\\operatorname{E}(X\\mid Y=2) = -1(1/3) + 1(2/3) = 1/3$ - the same conditional distribution as the previous part, so reuse it.",
-   "Variance = $1 - (1/3)^{2} = 8/9$. Option $(a) 1/3$ is the conditional MEAN, the classic mis-selection.",
+   "Variance = $1 - (1/3)^{2} = 8/9$. Option (a) $1/3$ is the conditional MEAN, the classic mis-selection.",
    "A two-point variable on {-1, 1} with probability p on +1 has variance $4p(1-p) = 4(2/3)(1/3) = 8/9$ - a fast cross-check."
   ],
   "solution": [
@@ -15327,7 +15327,7 @@
   "tips": [
    "Conditioning on $Y = 2$ makes Y a CONSTANT inside the expectation, so it can be pulled straight out - no joint computation is needed.",
    "Reuse $\\operatorname{E}(X \\mid Y = 2) = 1/3$ from the previous part; these three items are deliberately chained.",
-   "Option $(b) 1/3$ is $\\operatorname{E}(X\\mid Y=2)$ itself, the trap for candidates who forget to multiply by 2.",
+   "Option (b) $1/3$ is $\\operatorname{E}(X\\mid Y=2)$ itself, the trap for candidates who forget to multiply by 2.",
    "General rule: $\\operatorname{E}(g(Y) h(X) \\mid Y = y) = g(y) \\operatorname{E}(h(X) \\mid Y = y)$ - worth stating as a formula, since it appears constantly."
   ],
   "solution": [
@@ -16516,7 +16516,7 @@
    "The factors have degrees 1, 2 and 3, so the product is a polynomial of degree $1 + 2 + 3 = 6$.",
    "Its leading term comes from multiplying the highest-degree term of each factor: $(-x)(-3x^{2})(-4x^{3}) = -12 x^{6}$.",
    "So the leading coefficient is -12.",
-   "For an interval of differencing $1, \\Delta^{n}$ annihilates every term of degree below n and maps the leading term $a_{n} x^{n}$ to $a_{n} n$!.",
+   "For an interval of differencing $1, \\Delta^{n}$ annihilates every term of degree below n and maps the leading term $a_{n} x^{n}$ to $a_{n} n!$.",
    "Hence $\\Delta^{6}$ of the product = $-12 \\times 6! = -12 \\times 720 = -8640$, option (d)."
   ]
  },
@@ -17683,7 +17683,7 @@
   "tips": [
    "Memorise: $\\min$ of n i.i.d. $\\text{Exp}(\\lambda)$ is $\\text{Exp}(n \\lambda)$ - the rates ADD, because $\\operatorname{P}\\!\\left(\\text{min > x}\\right) = [e^{-\\lambda x}]^{n} = e^{-n \\lambda x}$.",
    "Options (b) and (c) are cumulative distribution functions, not densities - a density must integrate to 1, and $1 - e^{-2x}$ does not.",
-   "Option $(d) 10 e^{-2x}$ is not a density either: its integral is 5, not 1. Checking normalisation eliminates three options instantly.",
+   "Option (d) $10 e^{-2x}$ is not a density either: its integral is 5, not 1. Checking normalisation eliminates three options instantly.",
    "Companion result: the MAXIMUM of exponentials is NOT exponential; only the minimum inherits the family."
   ],
   "solution": [
@@ -18126,7 +18126,7 @@
   "tips": [
    "Asymptotic variance of the median: $1/(4n f(m)^{2})$. For the normal, $f(\\mu) = 1/(\\sigma \\sqrt{2 \\pi})$, giving $\\pi \\sigma^{2}/(2n)$.",
    "The median is centred at the population median, which for a symmetric normal equals $\\mu = 1$ - so all four options share that centre.",
-   "Substitute carefully: $\\pi(2)/(2 \\times 20) = \\pi/20$. Option $(a) 1/10$ is the variance of the sample MEAN $(\\sigma^{2}/n = 2/20)$, the standard trap.",
+   "Substitute carefully: $\\pi(2)/(2 \\times 20) = \\pi/20$. Option (a) $1/10$ is the variance of the sample MEAN $(\\sigma^{2}/n = 2/20)$, the standard trap.",
    "The ratio $(\\pi/20)/(1/10) = \\pi/2 = 1.571$ is the reciprocal of the efficiency $2/\\pi$ - a neat consistency check with the ARE result."
   ],
   "solution": [
@@ -18196,18 +18196,18 @@
   "confidence": "high",
   "type": "Numerical",
   "issue": "",
-  "shortcut": "Assigning $8X - 10Y + 66 = 0$ as Y on X gives $b_{YX} = 0.8$, and $40X - 18Y = 214$ as X on Y gives $b_{XY} = 0.45$, whose product 0.36 is admissible so $r = 0.6$. Statement I mislabels 0.8 as $b_{XY}$, so only II and III hold.",
+  "shortcut": "Assigning $8X - 10Y + 66 = 0$ as Y on X gives $b_{Y}X = 0.8$, and $40X - 18Y = 214$ as X on Y gives $b_{X}Y = 0.45$, whose product 0.36 is admissible so $r = 0.6$. Statement I mislabels 0.8 as $b_{X}Y$, so only II and III hold.",
   "tips": [
    "Assign the lines by TESTING: the product of the two regression coefficients must lie in $[0,1]$. The other assignment gives $1.25 \\times 2.222 = 2.78 > 1$ and is impossible.",
-   "$b_{YX}$ is the coefficient of X when Y is the subject; $b_{XY}$ is the coefficient of Y when X is the subject. Statement I attaches 0.8 to the wrong one.",
-   "$r = \\sqrt{b_{YX} b_{X}Y} = \\sqrt{0.36} = 0.6$, positive because both coefficients are positive.",
+   "$b_{Y}X$ is the coefficient of X when Y is the subject; $b_{X}Y$ is the coefficient of Y when X is the subject. Statement I attaches 0.8 to the wrong one.",
+   "$r = \\sqrt{b_{Y}X b_{X}Y} = \\sqrt{0.36} = 0.6$, positive because both coefficients are positive.",
    "For prediction of Y from X use the Y on X line: $Y = 0.8(30) + 6.6 = 30.6$, confirming statement III."
   ],
   "solution": [
-   "Try $8X - 10Y + 66 = 0$ as the regression of Y on X: $10Y = 8X + 66$, so $Y = 0.8X + 6.6$ and $b_{YX} = 0.8$.",
-   "Then $40X - 18Y = 214$ must be the regression of X on Y: $40X = 18Y + 214$, so $X = 0.45Y + 5.35$ and $b_{XY} = 0.45$.",
-   "Check: $b_{YX} b_{XY} = 0.8 \\times 0.45 = 0.36$, which lies in $[0,1]$, so this assignment is admissible. (The opposite assignment gives $1.25 \\times 2.222 = 2.78 > 1$ and is impossible.)",
-   "Statement I: the regression coefficient of X on Y is $b_{XY} = 0.45$, not $0.8 (0.8 is b_{YX})$. FALSE.",
+   "Try $8X - 10Y + 66 = 0$ as the regression of Y on X: $10Y = 8X + 66$, so $Y = 0.8X + 6.6$ and $b_{Y}X = 0.8$.",
+   "Then $40X - 18Y = 214$ must be the regression of X on Y: $40X = 18Y + 214$, so $X = 0.45Y + 5.35$ and $b_{X}Y = 0.45$.",
+   "Check: $b_{Y}X b_{X}Y = 0.8 \\times 0.45 = 0.36$, which lies in $[0,1]$, so this assignment is admissible. (The opposite assignment gives $1.25 \\times 2.222 = 2.78 > 1$ and is impossible.)",
+   "Statement I: the regression coefficient of X on Y is $b_{X}Y = 0.45$, not $0.8 (0.8 is b_{Y}X)$. FALSE.",
    "Statement II: $r = \\sqrt{0.36} = 0.6$, positive since both coefficients are positive. TRUE.",
    "Statement III: predicting Y from X uses the Y on X line, giving $Y = 0.8(30) + 6.6 = 30.6$. TRUE. Only II and III hold, option (b)."
   ]
@@ -18385,7 +18385,7 @@
    "Density of the minimum: $n[1 - F(x)]^{n-1} f(x)$. Substitute $n = 5, F(1) = 1/2$ and $f = 1/2$.",
    "Careful with the uniform on $[0,2]$: the density is $1/2$, NOT 1, and $F(1) = 1/2$, not 1. Both appear in the formula.",
    "Compute in stages: $(1 - 1/2)^{4} = 1/16$, then $5 \\times (1/16) \\times (1/2) = 5/32$.",
-   "Option $(b) 5/16$ omits the density factor $1/2$ and option $(c) 1/32$ omits the constant 5 - each distractor drops one factor."
+   "Option (b) $5/16$ omits the density factor $1/2$ and option (c) $1/32$ omits the constant 5 - each distractor drops one factor."
   ],
   "solution": [
    "For the Uniform[0,2] distribution the density is $f(x) = 1/2$ and the CDF is $F(x) = x/2$ for $0 \\le x \\le 2$.",
@@ -18570,7 +18570,7 @@
    "Condition and then average: $\\operatorname{E}[e^{-t^{2} Z^{2}/2}]$ is the $\\chi^{2}_{1}$ moment generating function evaluated at the NEGATIVE argument $-t^{2}/2$.",
    "$\\chi^{2}_{1}$ MGF is $(1 - 2s)^{-1/2}$; with $s = -t^{2}/2$ the bracket becomes $1 + t^{2}$ and the exponent $-1/2$.",
    "The product of two independent standard normals has heavier tails than a normal but lighter than a Cauchy - a square-root singularity is exactly right.",
-   "Option $(b) 1/(1+t^{2})$ is the Laplace characteristic function, which would correspond to the product being a difference of exponentials - close, but the exponent is wrong."
+   "Option (b) $1/(1+t^{2})$ is the Laplace characteristic function, which would correspond to the product being a difference of exponentials - close, but the exponent is wrong."
   ],
   "solution": [
    "Condition on $X_{2} = z$. Given this, $X_{1} z$ is normal with mean 0 and variance $z^{2}$, so its characteristic function is $e^{-t^{2} z^{2}/2}$.",
@@ -18868,8 +18868,8 @@
    "Tower property: $\\operatorname{E}(X) = \\operatorname{E}(Y)/2 = 2/2 = 1$. Statement II is confirmed without touching the joint sum again."
   ],
   "solution": [
-   "Write the joint pmf as $\\operatorname{P}(X=x, Y=y) = e^{-2}/(x!(y-x)!) = [e^{-2}/y!] * y$!/$(x!(y-x)!) = [e^{-2}/y!] \\binom{y}{x}$.",
-   "Summing over $x = 0, 1, \\ldots, y$ and using the binomial identity sum $\\binom{y}{x} = 2^{y}$ gives $\\operatorname{P}(Y = y) = e^{-2} 2^{y}/y$!.",
+   "Write the joint pmf as $\\operatorname{P}(X=x, Y=y) = e^{-2}/(x!(y-x)!) = [e^{-2}/y!] * y!/(x!(y-x)!) = [e^{-2}/y!] \\binom{y}{x}$.",
+   "Summing over $x = 0, 1, \\ldots, y$ and using the binomial identity sum $\\binom{y}{x} = 2^{y}$ gives $\\operatorname{P}(Y = y) = e^{-2} 2^{y}/y!$.",
    "This is the Poisson distribution with parameter 2, not $1/2$. Statement I is FALSE.",
    "Dividing the joint pmf by this marginal gives $\\operatorname{P}(X = x \\mid Y = y) = \\binom{y}{x}/2^{y}$, i.e. $X \\mid Y = y \\sim \\text{Binomial}(y, 1/2)$.",
    "Hence $\\operatorname{E}(X \\mid Y) = Y/2$, and by the tower property $\\operatorname{E}(X) = \\operatorname{E}(Y)/2 = 2/2 = 1$. Statement II is TRUE.",
@@ -20851,7 +20851,7 @@
   "tips": [
    "Get the limits from the region: $0 < x_{1} < x_{2} < 1$ means $x_{2}$ runs from $x_{1}$ up to 1, a range of length $1 - x_{1}$.",
    "Integrating the constant 2 over that range gives $2(1 - x_{1})$ - a DECREASING density, since small $x_{1}$ leaves more room for $x_{2}$.",
-   "Validity check: the $\\int 2(1-x_{1})$ over $(0,1)$ is $2(1 - 1/2) = 1$. Option $(c) 2 \\times 1$ also integrates to 1, so use the limits, not this test, to choose.",
+   "Validity check: the $\\int 2(1-x_{1})$ over $(0,1)$ is $2(1 - 1/2) = 1$. Option (c) $2 \\times 1$ also integrates to 1, so use the limits, not this test, to choose.",
    "Contrast with $2022 Q_{49}$, where the same density gave $f_{Y}(y) = 2y$ for the OTHER variable - the two marginals are mirror images."
   ],
   "solution": [
@@ -21039,7 +21039,7 @@
    "All cumulants beyond the second vanish for the normal distribution - a memorable characterisation."
   ],
   "solution": [
-   "Cumulants are defined by the expansion of the cumulant generating function $K(t) = \\log M(t) = \\sum k_{r} t^{r}/r$!.",
+   "Cumulants are defined by the expansion of the cumulant generating function $K(t) = \\log M(t) = \\sum k_{r} t^{r}/r!$.",
    "Statement I: differentiating K once at $t = 0$ gives $K'(0) = M'(0)/M(0) = \\mu_{1}'$, so $k_{1}$ is the mean. TRUE.",
    "Statement II: differentiating twice gives $K''(0) = M''(0)/M(0) - [M'(0)/M(0)]^{2} = \\mu_{2}' - \\mu_{1}'^{2}$, the variance. TRUE.",
    "Statement III: the third derivative yields $k_{3} = \\mu_{3}' - 3 \\mu_{2}' \\mu_{1}' + 2 \\mu_{1}'^{3}$, which is precisely the third CENTRAL moment $\\mu_{3}$ expressed in raw moments. TRUE.",
@@ -21140,18 +21140,18 @@
   "confidence": "high",
   "type": "Theoretical",
   "issue": "",
-  "shortcut": "The correlation ratio is invariant under change of origin and scale (I true) and always dominates $r^{2}$ (III true), but it is NOT symmetric: $\\eta_{YX}$ and $\\eta_{XY}$ generally differ (II false).",
+  "shortcut": "The correlation ratio is invariant under change of origin and scale (I true) and always dominates $r^{2}$ (III true), but it is NOT symmetric: $\\eta_{Y}X$ and $\\eta_{X}Y$ generally differ (II false).",
   "tips": [
-   "$\\eta_{YX}^{2}$ measures the proportion of Y's variance explained by ANY function of X, whereas $r^{2}$ measures only the LINEAR part - hence $\\eta^{2} \\ge r^{2}$ always.",
+   "$\\eta_{Y}X^{2}$ measures the proportion of Y's variance explained by ANY function of X, whereas $r^{2}$ measures only the LINEAR part - hence $\\eta^{2} \\ge r^{2}$ always.",
    "Equality $\\eta^{2} = r^{2}$ holds exactly when the regression of Y on X is linear - a useful test for linearity.",
-   "Asymmetry: $\\eta_{YX}$ is built from the conditional means of Y given X, and $\\eta_{XY}$ from those of X given Y. There is no reason for them to agree, unlike r which is symmetric.",
+   "Asymmetry: $\\eta_{Y}X$ is built from the conditional means of Y given X, and $\\eta_{X}Y$ from those of X given Y. There is no reason for them to agree, unlike r which is symmetric.",
    "Invariance under linear transformation follows because $\\eta^{2}$ is a ratio of variances, and both numerator and denominator scale by the same factor."
   ],
   "solution": [
-   "The correlation ratio is defined by $\\eta_{YX}^{2} = \\operatorname{Var}[\\operatorname{E}(Y\\mid X)]/\\operatorname{Var}(Y)$, the proportion of the variance of Y explained by the conditional means.",
+   "The correlation ratio is defined by $\\eta_{Y}X^{2} = \\operatorname{Var}[\\operatorname{E}(Y\\mid X)]/\\operatorname{Var}(Y)$, the proportion of the variance of Y explained by the conditional means.",
    "Statement I: a change of origin or scale in X does not alter the conditioning information, and a change in Y scales both the numerator and the denominator by the same factor. So $\\eta^{2}$ is invariant. TRUE.",
-   "Statement II: $\\eta_{YX}$ is built from $\\operatorname{E}(Y\\mid X)$ while $\\eta_{XY}$ is built from $\\operatorname{E}(X\\mid Y)$; these are different quantities and there is no general reason for them to be equal, unlike the symmetric correlation coefficient r. FALSE.",
-   "Statement III: $r^{2}$ measures only the linear part of the relationship, whereas $\\eta_{YX}^{2}$ captures the whole regression function, so $\\eta_{YX}^{2} \\ge r^{2}$ always, with equality exactly when the regression of Y on X is linear. TRUE.",
+   "Statement II: $\\eta_{Y}X$ is built from $\\operatorname{E}(Y\\mid X)$ while $\\eta_{X}Y$ is built from $\\operatorname{E}(X\\mid Y)$; these are different quantities and there is no general reason for them to be equal, unlike the symmetric correlation coefficient r. FALSE.",
+   "Statement III: $r^{2}$ measures only the linear part of the relationship, whereas $\\eta_{Y}X^{2}$ captures the whole regression function, so $\\eta_{Y}X^{2} \\ge r^{2}$ always, with equality exactly when the regression of Y on X is linear. TRUE.",
    "Only statements I and III are correct.",
    "Hence option (c) is correct."
   ]
@@ -21398,7 +21398,7 @@
   "confidence": "high",
   "type": "Numerical",
   "issue": "",
-  "shortcut": "$\\Delta^{n}(1/x) = (-1)^{n} n$!/$[x(x+1)\\ldots(x+n)]$. With $n = 5$ and $x = 2$ this is $-120/(2.3.4.5.6.7) = -120/5040 = -1/42$.",
+  "shortcut": "$\\Delta^{n}(1/x) = (-1)^{n} n!/[x(x+1)\\ldots(x+n)]$. With $n = 5$ and $x = 2$ this is $-120/(2.3.4.5.6.7) = -120/5040 = -1/42$.",
   "tips": [
    "Memorise $\\Delta^{n}(1/x) = (-1)^{n} n! h^{n}/[x(x+h)\\ldots(x+nh)]$ - it converts a five-fold difference into one fraction.",
    "Build it from the first step: $\\Delta(1/x) = 1/(x+1) - 1/x = -1/[x(x+1)]$, and the pattern of alternating signs and factorials follows.",
@@ -21408,7 +21408,7 @@
   "solution": [
    "With unit interval, $\\Delta(1/x) = 1/(x+1) - 1/x = -1/[x(x+1)]$.",
    "Applying $\\Delta$ again gives $\\Delta^{2}(1/x) = 2/[x(x+1)(x+2)]$, and the pattern continues.",
-   "In general $\\Delta^{n}(1/x) = (-1)^{n} n$!/$[x(x+1)(x+2)\\ldots(x+n)]$.",
+   "In general $\\Delta^{n}(1/x) = (-1)^{n} n!/[x(x+1)(x+2)\\ldots(x+n)]$.",
    "For $n = 5$ and $x = 2$: the denominator is $2 \\times 3 \\times 4 \\times 5 \\times 6 \\times 7 = 5040$ and the numerator is $(-1)^{5} 5! = -120$.",
    "So $\\Delta^{5}(1/x)$ at $x = 2 = -120/5040 = -1/42$, option (d)."
   ]
@@ -22249,7 +22249,7 @@
    "Recognise the compound structure: $M_{S}(t) = G_{N}(M_{X}(t))$ for a random sum, and $G_{N}(s) = M_{N}(\\log s)$, so $M_{S}(t) = M_{N}(\\log M_{X}(t))$ - exactly the given relation.",
    "Wald's identity: $\\operatorname{E}(S) = \\operatorname{E}(N)\\operatorname{E}(X)$. With both $\\text{Poisson}(\\lambda)$, that is $\\lambda^{2}$.",
    "Direct differentiation also works: $M_{Z}'(0) = M_{Y}'(0) \\times M_{X}'(0)/M_{X}(0) = \\lambda x \\lambda$, since every MGF equals 1 at $t = 0$.",
-   "Option $(c) \\lambda^{2} + \\lambda$ is the VARIANCE-style answer; keep mean and variance apart across the three parts of this stem."
+   "Option (c) $\\lambda^{2} + \\lambda$ is the VARIANCE-style answer; keep mean and variance apart across the three parts of this stem."
   ],
   "solution": [
    "For a random sum $S = X_{1} + \\ldots + X_{N}$ with the $X_{i}$ i.i.d. and independent of N, the moment generating function is $M_{S}(t) = M_{N}(\\log M_{X}(t))$.",
@@ -22404,8 +22404,8 @@
    "Substituting $Y = X - \\theta$ gives the standard density $e^{-y}$ on $y > 0$, so $Y \\sim \\text{Exponential}(1)$ with $\\operatorname{E}(Y) = 1$.",
    "Hence $\\operatorname{E}(X) = \\theta + \\operatorname{E}(Y) = \\theta + 1$, which is finite.",
    "The $X_{i}$ are independent and identically distributed with this finite mean.",
-   "By the weak law of large numbers, $\\text{Xbar}_{n}$ converges in probability to $\\operatorname{E}(X)$.",
-   "Therefore $\\text{Xbar}_{n}$ converges in probability to $1 + \\theta$, option (b)."
+   "By the weak law of large numbers, $\\bar{X}_{n}$ converges in probability to $\\operatorname{E}(X)$.",
+   "Therefore $\\bar{X}_{n}$ converges in probability to $1 + \\theta$, option (b)."
   ]
  },
  {
@@ -22765,7 +22765,7 @@
   "tips": [
    "$t = N(0,1)/\\sqrt{\\chi^{2}_{v}/v}$. Identify the two pieces and their degrees of freedom before doing any algebra.",
    "$X_{4} + X_{5}$ has variance 2, so it needs a $\\sqrt{2}$ divisor; the three squared normals give $v = 3$, so a $\\sqrt{3}$ multiplier appears.",
-   "Combining: $C = \\sqrt{3}/\\sqrt{2} = \\sqrt{3/2} = 1.2247$. Option $(b) \\sqrt{3}/2 = 0.866$ takes the square root of 3 but not of 2.",
+   "Combining: $C = \\sqrt{3}/\\sqrt{2} = \\sqrt{3/2} = 1.2247$. Option (b) $\\sqrt{3}/2 = 0.866$ takes the square root of 3 but not of 2.",
    "This is a repeat of $2018 Q_{35}$ and $2019 Q_{28}$ with the variables relabelled - the construction is clearly a favourite."
   ],
   "solution": [
@@ -22847,8 +22847,8 @@
    "Basic differences: $\\Delta x^{3} = (x+1)^{3} - x^{3} = 3x^{2} + 3x + 1$; $\\Delta x^{2} = (x+1)^{2} - x^{2} = 2x + 1$; $\\Delta x = 1$.",
    "Try $F(x) = x^{3} - x^{2} + 4x + \\lambda$ (option d).",
    "$\\Delta F = (3x^{2} + 3x + 1) - (2x + 1) + 4(1) = 3x^{2} + 3x + 1 - 2x - 1 + 4 = 3x^{2} + x + 4$. This is exactly the required first difference.",
-   "Cross-check $(b) F = 2x^{3} + x^{2} + \\lambda$: $\\Delta F = 2(3x^{2}+3x+1) + (2x+1) = 6x^{2} + 8x + 3$, which is wrong.",
-   "Cross-check $(c) F = 2x^{3} + x^{2} + 8x + \\lambda$: $\\Delta F = 6x^{2} + 8x + 3 + 8 = 6x^{2} + 8x + 11$, also wrong.",
+   "Cross-check (b) $F = 2x^{3} + x^{2} + \\lambda$: $\\Delta F = 2(3x^{2}+3x+1) + (2x+1) = 6x^{2} + 8x + 3$, which is wrong.",
+   "Cross-check (c) $F = 2x^{3} + x^{2} + 8x + \\lambda$: $\\Delta F = 6x^{2} + 8x + 3 + 8 = 6x^{2} + 8x + 11$, also wrong.",
    "Option (a) is a quadratic, whose first difference is linear, so it cannot equal a quadratic.",
    "Hence option (d) is correct."
   ]
@@ -23059,19 +23059,19 @@
   "confidence": "high",
   "type": "Numerical",
   "issue": "",
-  "shortcut": "$\\Delta^{n}$ applied to $x^{n}$ with $h = 1$ gives the constant n!, so $\\Delta^{100} x^{100} = 100$!. Dividing by E means applying $E^{-1}$, and shifting a constant leaves it unchanged. Answer $100!$, option (a).",
+  "shortcut": "$\\Delta^{n}$ applied to $x^{n}$ with $h = 1$ gives the constant n!, so $\\Delta^{100} x^{100} = 100!$. Dividing by E means applying $E^{-1}$, and shifting a constant leaves it unchanged. Answer $100!$, option (a).",
   "tips": [
    "Key fact: for a monic degree-n polynomial and $h = 1, \\Delta^{n}$ gives exactly n! and $\\Delta^{n+1}$ gives 0.",
    "Operators that are polynomials in E commute, so $\\Delta^{100}/E$ may be read as $E^{-1}\\Delta^{100}$ or $\\Delta^{100} E^{-1}$ - both give the same result.",
-   "A shift never changes a constant: $E^{-1}(c) = c$. That is why the answer is clean rather than $100! - 99$!.",
+   "A shift never changes a constant: $E^{-1}(c) = c$. That is why the answer is clean rather than $100! - 99!$.",
    "Distractors like $100! - 99!$ are built by wrongly treating $E^{-1}$ as though it subtracted a lower factorial; check by testing the identity on a small case such as $\\Delta^{2}/E$ applied to $x^{2}$, which gives $2! = 2$."
   ],
   "solution": [
    "Take the interval of differencing $h = 1$.",
-   "For a polynomial of degree n with leading coefficient 1, the n-th forward difference is the constant $n! * h^{n}$. With $n = 100$ and $h = 1, \\Delta^{100} (x^{100}) = 100$!.",
+   "For a polynomial of degree n with leading coefficient 1, the n-th forward difference is the constant $n! * h^{n}$. With $n = 100$ and $h = 1, \\Delta^{100} (x^{100}) = 100!$.",
    "The expression $\\Delta^{100}/E$ means the operator $E^{-1}$ composed with $\\Delta^{100}$ (all these operators are polynomials in E, hence commute).",
    "Applying $E^{-1}$ to the constant $100!$ gives $E^{-1}(100!) = 100!$, since shifting the argument of a constant function changes nothing.",
-   "Equivalently, computing in the other order: $E^{-1}(x^{100}) = (x-1)^{100}$, and $\\Delta^{100}$ of the monic degree-100 polynomial $(x-1)^{100}$ is again 100!.",
+   "Equivalently, computing in the other order: $E^{-1}(x^{100}) = (x-1)^{100}$, and $\\Delta^{100}$ of the monic degree-100 polynomial $(x-1)^{100}$ is again $100!$.",
    "Hence option (a) is correct."
   ]
  },
@@ -24553,7 +24553,7 @@
    "Key identity: $1 - R^{2}_{1.23} = (1 - r_{12}^{2})(1 - r^{2}_{13.2})$. Almost every multiple-correlation inequality follows from it in one step.",
    "Correlations are unit-free, so any formula for $R^{2}$ containing $\\sigma_{1}^{2} \\sigma_{2}^{2}$ must be wrong - reject statement I on sight.",
    "The correct formula is $R^{2}_{1.23} = (r_{12}^{2} + r_{13}^{2} - 2 r_{12} r_{13} r_{23})/(1 - r_{23}^{2})$.",
-   "Remember the ordering $0 \\le R^{2}_{1.23} \\le 1$ and $R_{1.23} \\ge \\lvert r_{1j}\\rvert$ for every j: adding a regressor can never reduce the multiple correlation."
+   "Remember the ordering $0 \\le R^{2}_{1.23} \\le 1$ and $R_{1.23} \\ge \\lvert r_{1}j\\rvert$ for every j: adding a regressor can never reduce the multiple correlation."
   ],
   "solution": [
    "Statement I: $R^{2}_{1.23} = \\sigma_{1}^{2} \\sigma_{2}^{2} (1 - r_{12}^{2})(1 - r_{13})^{2}$. This is false. $R^{2}$ is a unit-free quantity lying in $[0,1]$, so it cannot involve the variances; the correct expression is $R^{2}_{1.23} = (r_{12}^{2} + r_{13}^{2} - 2 r_{12} r_{13} r_{23})/(1 - r_{23}^{2})$.",
@@ -24707,11 +24707,11 @@
    "Exam convention: 'in all probability' (or 'practically certain') means within 3 standard errors, covering about 99.7% of the sampling distribution; 'probable error' would instead be $0.6745 \\operatorname{SE}$."
   ],
   "solution": [
-   "Let $\\sigma_{1} = \\sigma$ and $\\sigma_{2} = 2 \\sigma$, with $n_{1} = n_{2} = 2000$, and equal population means so $\\operatorname{E}(\\text{xbar}_{1} - \\text{xbar}_{2}) = 0$.",
-   "$\\operatorname{V}(\\text{xbar}_{1} - \\text{xbar}_{2}) = \\sigma_{1}^{2}/n_{1} + \\sigma_{2}^{2}/n_{2} = \\sigma^{2}/2000 + 4 \\sigma^{2}/2000 = 5 \\sigma^{2}/2000 = \\sigma^{2}/400$.",
+   "Let $\\sigma_{1} = \\sigma$ and $\\sigma_{2} = 2 \\sigma$, with $n_{1} = n_{2} = 2000$, and equal population means so $\\operatorname{E}(\\bar{x}_{1} - \\bar{x}_{2}) = 0$.",
+   "$\\operatorname{V}(\\bar{x}_{1} - \\bar{x}_{2}) = \\sigma_{1}^{2}/n_{1} + \\sigma_{2}^{2}/n_{2} = \\sigma^{2}/2000 + 4 \\sigma^{2}/2000 = 5 \\sigma^{2}/2000 = \\sigma^{2}/400$.",
    "Standard error = $\\sigma/20 = 0.05 \\sigma$.",
    "By the central limit theorem the difference of sample means is approximately normal with mean 0 and $\\operatorname{SE} 0.05 \\sigma$.",
-   "'In all probability' means within three standard errors: |$\\text{xbar}_{1} - \\text{xbar}_{2}$| < $3(0.05 \\sigma) = 0.15 \\sigma$, an event of probability about 0.997.",
+   "'In all probability' means within three standard errors: |$\\bar{x}_{1} - \\bar{x}_{2}$| < $3(0.05 \\sigma) = 0.15 \\sigma$, an event of probability about 0.997.",
    "Hence the difference is in all probability less than $0.15 \\sigma$, and option (b) is correct."
   ]
  },
@@ -24745,7 +24745,7 @@
   ],
   "solution": [
    "Observed difference of means: $d = 68.2 - 67.5 = 0.7$ inches, held fixed as n changes.",
-   "With equal sample sizes n in each group, $\\operatorname{SE}(\\text{xbar}_{1} - \\text{xbar}_{2}) = \\sqrt{s_{1}^{2}/n + s_{2}^{2}/n} = \\sqrt{(6.25 + 7.84)/n} = \\sqrt{14.09/n}$.",
+   "With equal sample sizes n in each group, $\\operatorname{SE}(\\bar{x}_{1} - \\bar{x}_{2}) = \\sqrt{s_{1}^{2}/n + s_{2}^{2}/n} = \\sqrt{(6.25 + 7.84)/n} = \\sqrt{14.09/n}$.",
    "Test statistic: $Z = 0.7 / \\sqrt{14.09/n} = 0.7 \\sqrt{n}/\\sqrt{14.09} = 0.7 \\sqrt{n}/3.7537$.",
    "Significance at the 5% level (one-tailed, critical value 1.645) requires $0.7 \\sqrt{n}/3.7537 \\ge 1.645$.",
    "So $\\sqrt{n} \\ge 1.645 \\cdot 3.7537/0.7 = 6.1748/0.7 = 8.8211$, giving $n \\ge 77.81$.",
@@ -24888,7 +24888,7 @@
   "shortcut": "t is inversely proportional to the sample standard deviation s. Doubling the variance multiplies s by $\\sqrt{2}$, so t becomes $3/\\sqrt{2}$.",
   "tips": [
    "Write $t = (\\bar{x} - \\mu) \\sqrt{n}/s$ and note that only s changes - the numerator, n and $\\mu$ are untouched.",
-   "Doubling the VARIANCE multiplies the $\\operatorname{SD}$ by $\\sqrt{2}$, not by 2; option $(b) 3/2$ is the trap for those who halve instead.",
+   "Doubling the VARIANCE multiplies the $\\operatorname{SD}$ by $\\sqrt{2}$, not by 2; option (b) $3/2$ is the trap for those who halve instead.",
    "Option (a) 6 comes from multiplying rather than dividing - always check the direction: more variability means a smaller (less significant) t.",
    "General scaling rule: if $s^{2}$ is multiplied by k, then t is divided by $\\sqrt{k}$."
   ],

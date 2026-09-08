@@ -103,7 +103,7 @@
     "tips": [
       "The regression of Y on X IS the conditional mean $\\operatorname{E}(Y\\mid X=x)$. Whenever the joint density factorises as $g(x) e^{-y h(x)}$, the conditional law of Y is $\\text{Exponential}(h(x))$ and the answer is $1/h(x)$ - one line, no integration.",
       "Any multiplicative function of x alone (here $x^{2}/3$) is absorbed into the normalising constant of the conditional density and cannot appear in $\\operatorname{E}(Y\\mid X)$. That rules out options (b) and (d) at a glance.",
-      "Option $(c) y = 1 + x$ inverts the relationship: it is the RATE, not the mean. Reciprocal errors are the standard trap in exponential conditionals.",
+      "Option (c) $y = 1 + x$ inverts the relationship: it is the RATE, not the mean. Reciprocal errors are the standard trap in exponential conditionals.",
       "Note that the printed joint density is not normalisable over the stated range (the $x-\\int x^{2}/(1+x)$ diverges), but the conditional distribution of Y given X - and hence the answer - is unaffected."
     ],
     "solution": [
@@ -261,7 +261,7 @@
     "tips": [
       "$\\sqrt{900} = 30$ is the only arithmetic that matters; $2.1/30 = 0.07$ makes the z-score a clean -1.43, which is exactly the value the examiner supplies.",
       "The supplied figure $\\operatorname{P}(0 < Z < 1.43) = 0.4236$ is a CENTRAL area, not a tail. The left tail is $0.5 - 0.4236 = 0.0764$ - subtracting from 0.5, never from 1.",
-      "Option $(b) 0.6408 = 0.5 + 0.1408$ and option (d) 0.7046 are built from misreading the table; option (c) 0.6074 is 0.5 + 0.1074. All assume the wrong tail.",
+      "Option (b) $0.6408 = 0.5 + 0.1408$ and option (d) 0.7046 are built from misreading the table; option (c) 0.6074 is 0.5 + 0.1074. All assume the wrong tail.",
       "Sanity check: the population mean 0.1 is positive and the sample is large, so a negative sample mean should be UNLIKELY - the answer must be well below 0.5, which only (a) is."
     ],
     "solution": [

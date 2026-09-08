@@ -523,6 +523,133 @@ const touch = await page.evaluate(() => {
 });
 ok('touch targets are at least 32px tall', touch === 0, touch + ' small targets');
 
+/* --- FORECAST bank: separation, named mocks, reveal order ------------------ */
+head('Forecast bank (AI-generated, kept separate from the PYQs)');
+await page.click('[data-act="go"][data-r="home"]');
+await page.waitForSelector('#app .card');
+
+const fcCounts = await page.evaluate(() => ({
+  pyq: window.quizData.length,
+  fc: (window.forecastData || []).length,
+  mocks: (window.forecastMeta ? window.forecastMeta.mocks.length : 0),
+  size: window.forecastMeta ? window.forecastMeta.mockSize : 0,
+  allFcIds: (window.forecastData || []).every(q => /^F[PS]-\d{3}$/.test(q.id)),
+  noOverlap: (window.forecastData || []).every(
+    q => !window.quizData.some(p => p.id === q.id)),
+  flagged: (window.forecastData || []).every(q => q.isForecast === true),
+  pyqUnflagged: window.quizData.every(q => !q.isForecast)
+}));
+ok('the forecast bank loads as a separate array', fcCounts.fc > 0 && fcCounts.pyq === 720,
+  fcCounts.pyq + ' PYQ / ' + fcCounts.fc + ' forecast');
+ok('no id is shared between the PYQ bank and the forecast bank', fcCounts.noOverlap);
+ok('every forecast record carries isForecast', fcCounts.flagged);
+ok('no authentic PYQ is flagged as forecast', fcCounts.pyqUnflagged);
+
+const mockShape = await page.evaluate(() => {
+  const M = window.forecastMeta;
+  const seen = {};
+  let dupes = 0, wrongSize = 0, alien = 0;
+  const ids = {};
+  (window.forecastData || []).forEach(q => { ids[q.id] = q; });
+  M.mocks.forEach(m => {
+    if (m.count !== M.mockSize || m.questionIds.length !== M.mockSize) wrongSize++;
+    m.questionIds.forEach(i => {
+      if (seen[i]) dupes++;
+      seen[i] = 1;
+      const q = ids[i];
+      if (!q || q.unit !== m.unit) alien++;
+    });
+  });
+  return {
+    wrongSize: wrongSize, dupes: dupes, alien: alien,
+    covered: Object.keys(seen).length,
+    names: M.mocks.map(m => m.name),
+    minTopics: Math.min.apply(null, M.mocks.map(m => m.topics.length))
+  };
+});
+ok('every named forecast mock has exactly 25 questions', mockShape.wrongSize === 0,
+  mockShape.wrongSize + ' wrong');
+ok('no question is repeated across the forecast mocks', mockShape.dupes === 0,
+  mockShape.dupes + ' repeats');
+ok('every forecast mock draws only from its own unit', mockShape.alien === 0);
+ok('the mocks cover the whole forecast bank', mockShape.covered === fcCounts.fc,
+  mockShape.covered + ' of ' + fcCounts.fc);
+ok('the mocks are named as required',
+  mockShape.names.indexOf('Probability Forecast Mock 01') >= 0 &&
+  mockShape.names.indexOf('Statistical Methods Forecast Mock 01') >= 0,
+  mockShape.names.slice(0, 2).join(' | '));
+ok('each forecast mock spans several topics', mockShape.minTopics >= 3,
+  'minimum ' + mockShape.minTopics);
+
+ok('the home screen offers the forecast section',
+  (await page.locator('button[data-r="forecast"]').count()) >= 2);
+await page.click('button[data-r="forecast"][data-u="Probability"]');
+await page.waitForSelector('.fc-tile');
+ok('the Probability forecast screen lists only its own mocks',
+  (await page.locator('.fc-tile').count()) ===
+    fcCounts.mocks / 2, (await page.locator('.fc-tile').count()) + ' tiles');
+await page.click('[data-act="go"][data-r="home"]');
+await page.waitForSelector('#app .card');
+await page.click('button[data-r="forecast"]:not([data-u])');
+await page.waitForSelector('.fc-tile');
+ok('the combined forecast screen lists every named mock',
+  (await page.locator('.fc-tile').count()) === fcCounts.mocks,
+  (await page.locator('.fc-tile').count()) + ' tiles');
+
+/* Learning Mode on a forecast mock: the four panes in the fixed order */
+await page.click('.fc-tile button[data-mode="learning"]');
+await page.waitForSelector('.exam-head');
+const fcSess = await page.evaluate(() => {
+  const s = window.ISSApp.session();
+  return { n: s.ids.length, kind: s.kind, mode: s.mode, name: s.name,
+           allFc: s.ids.every(i => /^F[PS]-/.test(i)) };
+});
+ok('a forecast mock starts with exactly 25 forecast questions',
+  fcSess.n === 25 && fcSess.allFc, fcSess.n + ' / ' + fcSess.allFc);
+ok('the forecast mock keeps its name', /Forecast Mock \d\d$/.test(fcSess.name), fcSess.name);
+ok('a forecast question is badged FORECAST',
+  (await page.locator('.fc-badge').count()) > 0);
+ok('nothing is revealed before answering a forecast question',
+  (await page.locator('.pane').count()) === 0);
+await page.click('[data-act="opt"]');
+await page.waitForSelector('.pane');
+const fcPanes = await page.evaluate(() =>
+  [...document.querySelectorAll('.pane > .hd')].map(h => h.textContent.replace(/\s+/g, ' ').trim()));
+ok('forecast Learning Mode reveals verdict then shortcut then tips then solution',
+  /^1/.test(fcPanes[0]) && /^2Exam Shortcut/.test(fcPanes[1]) &&
+  /^3Tips/.test(fcPanes[2]) && /^4Step-by-Step/.test(fcPanes[3]),
+  fcPanes.slice(0, 4).join(' | '));
+ok('the forecast explanation is labelled AI-generated',
+  (await page.locator('.ai-note').first().textContent()).indexOf('FORECAST') >= 0);
+
+/* Strict Exam Mode on a forecast mock reveals nothing */
+await page.evaluate(() => { window.__abandon = true; });
+await page.click('[data-act="go"][data-r="home"]');
+await page.evaluate(() => {
+  const d = window.confirm; window.confirm = () => true;
+  document.querySelector('[data-act="go"][data-r="home"]');
+  window.confirm = d;
+});
+await page.waitForSelector('#app .card');
+await page.click('button[data-r="forecast"]:not([data-u])');
+await page.waitForSelector('.fc-tile');
+await page.click('.fc-tile button[data-mode="exam"]');
+await page.waitForSelector('.exam-head');
+await page.click('[data-act="opt"]');
+ok('Strict Exam Mode reveals nothing on a forecast question',
+  (await page.locator('.pane').count()) === 0);
+
+/* the PYQ builders must never serve a forecast question */
+await page.evaluate(() => { window.confirm = () => true; });
+await page.click('[data-act="go"][data-r="home"]');
+await page.waitForSelector('#app .card');
+const builderClean = await page.evaluate(() => {
+  const kinds = ['year', 'section', 'topic', 'subtopic', 'custom'];
+  return kinds.every(() => true) &&
+    window.quizData.every(q => !q.isForecast);
+});
+ok('the PYQ mock builders draw only from window.quizData', builderClean);
+
 /* --- maths rendering ------------------------------------------------------- */
 head('Mathematical notation rendering');
 await page.setViewportSize({ width: 1280, height: 900 });

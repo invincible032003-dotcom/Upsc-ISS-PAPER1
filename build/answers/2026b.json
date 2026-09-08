@@ -129,7 +129,7 @@
       "Key identity: $1 - R^{2}_{1.23} = (1 - r_{12}^{2})(1 - r^{2}_{13.2})$. Almost every multiple-correlation inequality follows from it in one step.",
       "Correlations are unit-free, so any formula for $R^{2}$ containing $\\sigma_{1}^{2} \\sigma_{2}^{2}$ must be wrong - reject statement I on sight.",
       "The correct formula is $R^{2}_{1.23} = (r_{12}^{2} + r_{13}^{2} - 2 r_{12} r_{13} r_{23})/(1 - r_{23}^{2})$.",
-      "Remember the ordering $0 \\le R^{2}_{1.23} \\le 1$ and $R_{1.23} \\ge \\lvert r_{1j}\\rvert$ for every j: adding a regressor can never reduce the multiple correlation."
+      "Remember the ordering $0 \\le R^{2}_{1.23} \\le 1$ and $R_{1.23} \\ge \\lvert r_{1}j\\rvert$ for every j: adding a regressor can never reduce the multiple correlation."
     ],
     "solution": [
       "Statement I: $R^{2}_{1.23} = \\sigma_{1}^{2} \\sigma_{2}^{2} (1 - r_{12}^{2})(1 - r_{13})^{2}$. This is false. $R^{2}$ is a unit-free quantity lying in $[0,1]$, so it cannot involve the variances; the correct expression is $R^{2}_{1.23} = (r_{12}^{2} + r_{13}^{2} - 2 r_{12} r_{13} r_{23})/(1 - r_{23}^{2})$.",
@@ -215,11 +215,11 @@
       "Exam convention: 'in all probability' (or 'practically certain') means within 3 standard errors, covering about 99.7% of the sampling distribution; 'probable error' would instead be $0.6745 \\operatorname{SE}$."
     ],
     "solution": [
-      "Let $\\sigma_{1} = \\sigma$ and $\\sigma_{2} = 2 \\sigma$, with $n_{1} = n_{2} = 2000$, and equal population means so $\\operatorname{E}(\\text{xbar}_{1} - \\text{xbar}_{2}) = 0$.",
-      "$\\operatorname{V}(\\text{xbar}_{1} - \\text{xbar}_{2}) = \\sigma_{1}^{2}/n_{1} + \\sigma_{2}^{2}/n_{2} = \\sigma^{2}/2000 + 4 \\sigma^{2}/2000 = 5 \\sigma^{2}/2000 = \\sigma^{2}/400$.",
+      "Let $\\sigma_{1} = \\sigma$ and $\\sigma_{2} = 2 \\sigma$, with $n_{1} = n_{2} = 2000$, and equal population means so $\\operatorname{E}(\\bar{x}_{1} - \\bar{x}_{2}) = 0$.",
+      "$\\operatorname{V}(\\bar{x}_{1} - \\bar{x}_{2}) = \\sigma_{1}^{2}/n_{1} + \\sigma_{2}^{2}/n_{2} = \\sigma^{2}/2000 + 4 \\sigma^{2}/2000 = 5 \\sigma^{2}/2000 = \\sigma^{2}/400$.",
       "Standard error = $\\sigma/20 = 0.05 \\sigma$.",
       "By the central limit theorem the difference of sample means is approximately normal with mean 0 and $\\operatorname{SE} 0.05 \\sigma$.",
-      "'In all probability' means within three standard errors: |$\\text{xbar}_{1} - \\text{xbar}_{2}$| < $3(0.05 \\sigma) = 0.15 \\sigma$, an event of probability about 0.997.",
+      "'In all probability' means within three standard errors: |$\\bar{x}_{1} - \\bar{x}_{2}$| < $3(0.05 \\sigma) = 0.15 \\sigma$, an event of probability about 0.997.",
       "Hence the difference is in all probability less than $0.15 \\sigma$, and option (b) is correct."
     ]
   },
@@ -236,7 +236,7 @@
     ],
     "solution": [
       "Observed difference of means: $d = 68.2 - 67.5 = 0.7$ inches, held fixed as n changes.",
-      "With equal sample sizes n in each group, $\\operatorname{SE}(\\text{xbar}_{1} - \\text{xbar}_{2}) = \\sqrt{s_{1}^{2}/n + s_{2}^{2}/n} = \\sqrt{(6.25 + 7.84)/n} = \\sqrt{14.09/n}$.",
+      "With equal sample sizes n in each group, $\\operatorname{SE}(\\bar{x}_{1} - \\bar{x}_{2}) = \\sqrt{s_{1}^{2}/n + s_{2}^{2}/n} = \\sqrt{(6.25 + 7.84)/n} = \\sqrt{14.09/n}$.",
       "Test statistic: $Z = 0.7 / \\sqrt{14.09/n} = 0.7 \\sqrt{n}/\\sqrt{14.09} = 0.7 \\sqrt{n}/3.7537$.",
       "Significance at the 5% level (one-tailed, critical value 1.645) requires $0.7 \\sqrt{n}/3.7537 \\ge 1.645$.",
       "So $\\sqrt{n} \\ge 1.645 \\cdot 3.7537/0.7 = 6.1748/0.7 = 8.8211$, giving $n \\ge 77.81$.",
@@ -311,7 +311,7 @@
     "shortcut": "t is inversely proportional to the sample standard deviation s. Doubling the variance multiplies s by $\\sqrt{2}$, so t becomes $3/\\sqrt{2}$.",
     "tips": [
       "Write $t = (\\bar{x} - \\mu) \\sqrt{n}/s$ and note that only s changes - the numerator, n and $\\mu$ are untouched.",
-      "Doubling the VARIANCE multiplies the $\\operatorname{SD}$ by $\\sqrt{2}$, not by 2; option $(b) 3/2$ is the trap for those who halve instead.",
+      "Doubling the VARIANCE multiplies the $\\operatorname{SD}$ by $\\sqrt{2}$, not by 2; option (b) $3/2$ is the trap for those who halve instead.",
       "Option (a) 6 comes from multiplying rather than dividing - always check the direction: more variability means a smaller (less significant) t.",
       "General scaling rule: if $s^{2}$ is multiplied by k, then t is divided by $\\sqrt{k}$."
     ],

@@ -23,7 +23,7 @@
     "answer": 3,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$\\Delta^{n}(1/x) = (-1)^{n} n$!/$[x(x+1)\\ldots(x+n)]$. With $n = 5$ and $x = 2$ this is $-120/(2.3.4.5.6.7) = -120/5040 = -1/42$.",
+    "shortcut": "$\\Delta^{n}(1/x) = (-1)^{n} n!/[x(x+1)\\ldots(x+n)]$. With $n = 5$ and $x = 2$ this is $-120/(2.3.4.5.6.7) = -120/5040 = -1/42$.",
     "tips": [
       "Memorise $\\Delta^{n}(1/x) = (-1)^{n} n! h^{n}/[x(x+h)\\ldots(x+nh)]$ - it converts a five-fold difference into one fraction.",
       "Build it from the first step: $\\Delta(1/x) = 1/(x+1) - 1/x = -1/[x(x+1)]$, and the pattern of alternating signs and factorials follows.",
@@ -33,7 +33,7 @@
     "solution": [
       "With unit interval, $\\Delta(1/x) = 1/(x+1) - 1/x = -1/[x(x+1)]$.",
       "Applying $\\Delta$ again gives $\\Delta^{2}(1/x) = 2/[x(x+1)(x+2)]$, and the pattern continues.",
-      "In general $\\Delta^{n}(1/x) = (-1)^{n} n$!/$[x(x+1)(x+2)\\ldots(x+n)]$.",
+      "In general $\\Delta^{n}(1/x) = (-1)^{n} n!/[x(x+1)(x+2)\\ldots(x+n)]$.",
       "For $n = 5$ and $x = 2$: the denominator is $2 \\times 3 \\times 4 \\times 5 \\times 6 \\times 7 = 5040$ and the numerator is $(-1)^{5} 5! = -120$.",
       "So $\\Delta^{5}(1/x)$ at $x = 2 = -120/5040 = -1/42$, option (d)."
     ]

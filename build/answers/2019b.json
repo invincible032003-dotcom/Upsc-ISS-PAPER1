@@ -43,7 +43,7 @@
     "answer": 3,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "For independent samples, variances ADD even for a difference: $\\operatorname{Var}\\!\\left(\\text{Xbar1 - Xbar2}\\right) = W_{1}^{2} + W_{2}^{2}$, so the standard error is $\\sqrt{W_{1}^{2} + W_{2}^2}$.",
+    "shortcut": "For independent samples, variances ADD even for a difference: $\\operatorname{Var}(\\bar{X}1 - \\bar{X}2) = W_{1}^{2} + W_{2}^{2}$, so the standard error is $\\sqrt{W_{1}^{2} + W_{2}^2}$.",
     "tips": [
       "The minus sign is squared away: $\\operatorname{Var}(A - B) = \\operatorname{Var}(A) + \\operatorname{Var}(B)$ when A and B are independent. Standard errors never subtract.",
       "Standard errors combine in quadrature, like the sides of a right triangle - never linearly. That kills option (b) at once.",
@@ -51,9 +51,9 @@
       "Same formula in raw terms: $\\operatorname{SE} = \\sqrt{s_{1}^{2}/n_{1} + s_{2}^{2}/n2}$, which is exactly $\\sqrt{W_{1}^{2} + W_{2}^2}$."
     ],
     "solution": [
-      "$W_{1}$ and $W_{2}$ are the standard errors of Xbar1 and Xbar2, so $\\operatorname{Var}\\!\\left(\\text{Xbar1}\\right) = W_{1}^{2}$ and $\\operatorname{Var}\\!\\left(\\text{Xbar2}\\right) = W_{2}^{2}$.",
-      "The two samples are independent, so $\\operatorname{Cov}\\!\\left(\\text{Xbar1, Xbar2}\\right) = 0$.",
-      "Hence $\\operatorname{Var}(T) = \\operatorname{Var}\\!\\left(\\text{Xbar1 - Xbar2}\\right) = \\operatorname{Var}\\!\\left(\\text{Xbar1}\\right) + \\operatorname{Var}\\!\\left(\\text{Xbar2}\\right) - 2\\operatorname{Cov} = W_{1}^{2} + W_{2}^{2}$.",
+      "$W_{1}$ and $W_{2}$ are the standard errors of $\\bar{X}1$ and $\\bar{X}2$, so $\\operatorname{Var}(\\bar{X}1) = W_{1}^{2}$ and $\\operatorname{Var}(\\bar{X}2) = W_{2}^{2}$.",
+      "The two samples are independent, so $\\operatorname{Cov}(\\bar{X}1, \\bar{X}2) = 0$.",
+      "Hence $\\operatorname{Var}(T) = \\operatorname{Var}(\\bar{X}1 - \\bar{X}2) = \\operatorname{Var}(\\bar{X}1) + \\operatorname{Var}(\\bar{X}2) - 2\\operatorname{Cov} = W_{1}^{2} + W_{2}^{2}$.",
       "The standard error is the square root of this variance: $\\operatorname{SE}(T) = \\sqrt{W_{1}^{2} + W_{2}^2}$.",
       "Hence option (d) is correct."
     ]
@@ -186,7 +186,7 @@
       "For an odd sample size $n = 2m+1$, the median exceeds c exactly when at least $m+1$ of the observations exceed c. Convert the order-statistic question into a binomial one.",
       "Get the CDF first: for $f(x) = 2x$ on $(0,1), F(x) = x^{2}$, so $F(1/2) = 1/4$ and $p = 3/4$ - the single number that drives everything.",
       "Both binomial terms equal $27/64$ here (since $3 \\times (9/16)(1/4) = 27/64$ and $(3/4)^{3} = 27/64$), so the total $54/64 = 27/32$ falls out neatly - a good sign the set-up is right.",
-      "Option $(a) 3/4$ is simply p itself, planted for candidates who forget the 'at least two out of three' step."
+      "Option (a) $3/4$ is simply p itself, planted for candidates who forget the 'at least two out of three' step."
     ],
     "solution": [
       "The density is $f(x) = 2x$ on $(0,1)$, so the CDF is $F(x) = x^{2}$ for $0 < x < 1$.",
@@ -307,7 +307,7 @@
       "Identity to memorise: $\\max(a,b) = (a + b + \\lvert a - b\\rvert )/2$. It reduces an order-statistic expectation to a mean absolute deviation.",
       "For $W \\sim N(0, \\tau^{2}), \\operatorname{E}\\lvert W\\rvert = \\tau \\sqrt{2/\\pi}$. Here $\\tau = \\sqrt{2}$, so $\\operatorname{E}\\lvert X-Y\\rvert = 2/\\sqrt{\\pi}$.",
       "General result: for a sample of 2 from $N(\\mu, \\sigma^{2}), \\operatorname{E}[\\max] = \\mu + \\sigma/\\sqrt{\\pi}$ and $\\operatorname{E}[\\min] = \\mu - \\sigma/\\sqrt{\\pi}$. This is the companion of $2018 Q_{39}$.",
-      "Sign and size check: the answer must be positive and modest (about 0.564). Option $(d) 2/\\sqrt{\\pi} = 1.128$ is the value of $\\operatorname{E}\\lvert X - Y\\rvert $, the classic half-way trap."
+      "Sign and size check: the answer must be positive and modest (about 0.564). Option (d) $2/\\sqrt{\\pi} = 1.128$ is the value of $\\operatorname{E}\\lvert X - Y\\rvert $, the classic half-way trap."
     ],
     "solution": [
       "Let X, Y be independent $N(0,1)$ and use $\\max(X, Y) = [(X + Y) + \\lvert X - Y\\rvert ]/2$.",

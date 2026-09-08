@@ -1,0 +1,701 @@
+# FORECAST / AI-GENERATED - Probability, forecast batch 1 (items 51-100)
+
+@ FP-051 | Random Vectors and Joint Distributions | Independence and Covariance
+Q X and Y are independent N(0,1). With U = X + Y and V = X - Y, which statement is correct?
+O U and V are uncorrelated but dependent
+O U and V are independent
+O Cov(U, V) = 2
+O V follows N(0,1)
+A b
+S (U,V) is jointly normal and Cov(U,V) = Var(X) - Var(Y) = 0, and for a joint normal zero covariance means independence.
+T Zero covariance implies independence only inside a JOINT normal - and a linear map of independent normals is joint normal.
+T Cov(X+Y, X-Y) = Var(X) - Var(Y), so the two are uncorrelated exactly when the variances are equal.
+X Cov(U,V) = Var(X) - Var(Y) = 1 - 1 = 0.
+X (U,V) is a linear transformation of a bivariate normal, hence itself bivariate normal.
+X For a bivariate normal, zero covariance implies independence, option (b).
+
+@ FP-052 | Random Vectors and Joint Distributions | Functions of Random Variables
+Q (X, Y, Z) has joint density f. If U = 2X, V = 2Y and W = 2Z, the joint density of (U, V, W) is
+O 8 f(u/2, v/2, w/2)
+O f(u/2, v/2, w/2)/8
+O f(2u, 2v, 2w)/8
+O 2 f(u/2, v/2, w/2)
+A b
+S The Jacobian of the inverse map is (1/2)^3 = 1/8, so the new density is f at the halved arguments divided by 8.
+T Density transforms carry |J| of the INVERSE map; stretching a variable must lower the density, never raise it.
+T Sanity check by integration: a factor 8 would make the total mass 64, not 1.
+X The inverse map is x = u/2, y = v/2, z = w/2.
+X Its Jacobian determinant is (1/2)(1/2)(1/2) = 1/8.
+X Hence g(u,v,w) = f(u/2, v/2, w/2)/8, option (b).
+
+@ FP-053 | Random Vectors and Joint Distributions | Joint and Marginal Distributions
+Q The joint density is f(x,y) = 6x on 0 < x < y < 1. The marginal distribution of X is
+O Beta(2, 2)
+O the density 3x^2
+O U(0, 1)
+O Beta(1, 2)
+A a
+S Integrating y from x to 1 gives 6x(1 - x), which is the Beta(2,2) density.
+T The Beta(2,2) density is 6x(1-x) - recognising the constant 6 identifies the law instantly.
+T 3x^2 is the marginal you would get if the inequality ran the other way; check which variable is the upper limit.
+X f_X(x) = integral from x to 1 of 6x dy = 6x(1 - x).
+X This is x^(2-1)(1-x)^(2-1)/B(2,2) with B(2,2) = 1/6.
+X So X follows Beta(2,2), option (a).
+
+@ FP-054 | Random Vectors and Joint Distributions | Joint and Marginal Distributions
+Q For f(x,y) = 6x on 0 < x < y < 1, what is P(X > 1/2)?
+O 1/4
+O 1/2
+O 3/4
+O 1/8
+A b
+S X is Beta(2,2), which is symmetric about 1/2, so P(X > 1/2) = 1/2.
+T Beta(a,a) is always symmetric about 1/2 - no integration is needed for a median question.
+T If you do integrate, integral from 1/2 to 1 of 6x(1-x) dx = 1/2 confirms it in one line.
+X From the marginal, X follows Beta(2,2) with density 6x(1-x).
+X That density is symmetric about x = 1/2.
+X Hence P(X > 1/2) = 1/2, option (b).
+
+@ FP-055 | Random Vectors and Joint Distributions | Compound and Mixture Distributions
+Q X given Y = y is Poisson(y) and Y is Exp(1). What is the marginal P(X = k)?
+O 1/2^(k+1)
+O e^(-1)/k!
+O 1/(k+1)!
+O (1/2)^k
+A a
+S Integrating e^(-y) y^k/k! times e^(-y) gives k!/(k! 2^(k+1)) = 1/2^(k+1): geometric on {0,1,...} with p = 1/2.
+T A Poisson whose rate is exponential becomes geometric - the Gamma integral does all the work.
+T Check the total: the sum of 1/2^(k+1) over k >= 0 is 1, which confirms the normalisation.
+X P(X = k) = integral from 0 to infinity of e^(-y) y^k/k! times e^(-y) dy.
+X The integral of y^k e^(-2y) dy is k!/2^(k+1).
+X Hence P(X = k) = 1/2^(k+1), option (a).
+
+@ FP-056 | Random Vectors and Joint Distributions | Compound and Mixture Distributions
+Q X given Y = y is Poisson(y) and Y is Exp(1). What is Var(X)?
+O 1
+O 2
+O 3
+O 1/2
+A b
+S Var(X) = E[Var(X|Y)] + Var(E(X|Y)) = E(Y) + Var(Y) = 1 + 1 = 2.
+T For a Poisson mixture both the conditional mean and the conditional variance equal Y, so the answer is E(Y) + Var(Y).
+T Answering 1 forgets the variance of the mixing variable, which is exactly the over-dispersion the question is testing.
+X E(X | Y) = Y and Var(X | Y) = Y.
+X Var(X) = E(Y) + Var(Y) = 1 + 1.
+X Hence Var(X) = 2, option (b).
+
+@ FP-057 | Random Vectors and Joint Distributions | Functions of Random Variables
+Q X and Y are independent U(0,1). What is the density of Z = X + Y at z = 1/2?
+O 1/2
+O 1
+O 1/4
+O 3/2
+A a
+S The sum of two independent uniforms is triangular with density z on (0,1), so f(1/2) = 1/2.
+T The triangular density rises as z on (0,1) and falls as 2 - z on (1,2), peaking at 1.
+T The maximum value of the density is 1 at z = 1, so any answer above 1 is impossible; that rules out (d).
+X The convolution gives f_Z(z) = z for 0 < z < 1.
+X At z = 1/2 this is 1/2.
+X That is option (a).
+
+@ FP-058 | Distribution Functions and Transformations | Probability Integral Transform
+Q X is U(0, 1) and Y = -log X. Then Y follows
+O Exp(1)
+O an exponential with mean 2
+O U(0, infinity)
+O Gamma(2, 1)
+A a
+S P(Y > y) = P(X < e^(-y)) = e^(-y), the standard exponential survival function.
+T -log U is the standard exponential - the basis of exponential random-number generation.
+T -2 log U would be Exp(mean 2); the factor in front is what sets the mean.
+X P(Y > y) = P(-log X > y) = P(X < e^(-y)).
+X Since X is uniform this equals e^(-y) for y > 0.
+X So Y follows Exp(1), option (a).
+
+@ FP-059 | Random Vectors and Joint Distributions | Functions of Random Variables
+Q X and Y are independent with X following Exp(lambda) and Y following Exp(mu). What is P(X < Y)?
+O lambda/(lambda + mu)
+O mu/(lambda + mu)
+O 1/2
+O lambda mu/(lambda + mu)
+A a
+S The race between two exponentials is won by the faster rate: lambda/(lambda + mu).
+T Competing risks: the probability that a given cause acts first is its own rate over the total rate.
+T If lambda is very large, X is tiny and P(X < Y) should tend to 1 - that eliminates (b) at once.
+X P(X < Y) = integral from 0 to infinity of lambda e^(-lambda x) e^(-mu x) dx.
+X This equals lambda/(lambda + mu).
+X That is option (a).
+
+@ FP-060 | Random Vectors and Joint Distributions | Joint and Marginal Distributions
+Q The joint density is the constant c on the triangle x > 0, y > 0, x + y < 2. What are c and E(X)?
+O 1/2 and 2/3
+O 1/2 and 1
+O 1/4 and 1
+O 1 and 2/3
+A a
+S The triangle has area 2, so c = 1/2; the centroid of a right triangle with legs 2 gives E(X) = 2/3.
+T A uniform density on a region is the reciprocal of its area, and its mean is the centroid.
+T The centroid of a triangle with vertices (0,0), (2,0), (0,2) is at (2/3, 2/3), not at (1,1).
+X The area of the triangle is (1/2)(2)(2) = 2, so c = 1/2.
+X By the centroid formula the mean of X is (0 + 2 + 0)/3 = 2/3.
+X Hence c = 1/2 and E(X) = 2/3, option (a).
+
+@ FP-061 | Mathematical and Conditional Expectation | Tail-Sum Formula
+Q X takes non-negative integer values with P(X > x) = 1/2^(x+1) for x = 0, 1, 2, ... What is E(X)?
+O 1/2
+O 1
+O 2
+O 3/2
+A b
+S Tail sum: E(X) = sum over x >= 0 of P(X > x) = sum of 1/2^(x+1) = 1.
+T For a non-negative integer variable, E(X) is the sum of the tail probabilities starting at x = 0.
+T Here P(X > 0) = 1/2, so X is geometric on {0,1,...} with p = 1/2, whose mean q/p = 1 confirms the answer.
+X E(X) = sum from x = 0 to infinity of P(X > x).
+X This is the geometric series 1/2 + 1/4 + 1/8 + ... = 1.
+X Hence E(X) = 1, option (b).
+
+@ FP-062 | Mathematical and Conditional Expectation | Conditional Expectation
+Q A miner is at a fork with three doors, chosen with equal probability each time. Door 1 leads to safety in 2 hours, door 2 returns him to the fork after 3 hours and door 3 returns him after 5 hours. What is the expected time to safety?
+O 10/3
+O 10
+O 15
+O 12
+A b
+S Condition on the first door: E = (2 + 3 + 5)/3 + (2/3)E, giving E = 10.
+T Set up a one-line recursion and solve; the returns restart the problem with the same expected value.
+T 10/3 is the answer if you forget that two of the three doors send him back - it is the average travel time only.
+X Conditioning on the first choice, E = (1/3)(2) + (1/3)(3 + E) + (1/3)(5 + E).
+X This is E = 10/3 + (2/3)E, so E/3 = 10/3.
+X Hence E = 10 hours, option (b).
+
+@ FP-063 | Mathematical and Conditional Expectation | Expectation and Moments
+Q A fair coin is tossed until the first head appears. What is the expected number of tails?
+O 1
+O 2
+O 1/2
+O 3/2
+A a
+S The number of tosses has mean 1/p = 2, so the number of tails is q/p = 1.
+T Read the question carefully: tosses have mean 1/p, failures before the first success have mean q/p.
+T The two differ by exactly 1, which is why 2 is planted as option (b).
+X The number of tosses N is geometric on {1,2,...} with mean 1/p = 2.
+X The number of tails is N - 1.
+X Hence the expected number of tails is 2 - 1 = 1, option (a).
+
+@ FP-064 | Mathematical and Conditional Expectation | Tail-Sum Formula
+Q X is a non-negative integer variable with E(X) = 3 and Var(X) = 4. What is the sum over x >= 0 of x P(X > x)?
+O 5
+O 10
+O 6
+O 8
+A a
+S The identity gives (E(X^2) - E(X))/2 = (13 - 3)/2 = 5.
+T Sum x P(X > x) = (E(X^2) - E(X))/2 - the weighted twin of the plain tail-sum formula.
+T Compute E(X^2) = Var + mean^2 = 4 + 9 = 13 first; using the variance alone gives the wrong answer.
+X E(X^2) = Var(X) + [E(X)]^2 = 4 + 9 = 13.
+X The identity sum over x of x P(X > x) = (E(X^2) - E(X))/2 applies.
+X This gives (13 - 3)/2 = 5, option (a).
+
+@ FP-065 | Mathematical and Conditional Expectation | Expectation and Moments
+Q If E(X) = 2, E(X^2) = 5 and E(X^3) = 14, what is the third central moment?
+O 0
+O 2
+O -2
+O 4
+A a
+S mu_3 = 14 - 3(2)(5) + 2(8) = 14 - 30 + 16 = 0.
+T mu_3 = mu_3' - 3 mu_1' mu_2' + 2 (mu_1')^3 - the one conversion worth memorising exactly.
+T A zero third central moment means the distribution is symmetric in the skewness sense; do not read it as "no moment".
+X mu_3 = E(X^3) - 3 E(X) E(X^2) + 2 [E(X)]^3.
+X Substituting, mu_3 = 14 - 3(2)(5) + 2(2)^3 = 14 - 30 + 16.
+X Hence mu_3 = 0, option (a).
+
+@ FP-066 | Mathematical and Conditional Expectation | Expectation and Moments
+Q X is U(0,1). What is E[min(X, 1 - X)]?
+O 1/2
+O 1/4
+O 1/3
+O 1/8
+A b
+S min(X, 1-X) is U(0, 1/2), whose mean is 1/4.
+T The map x to min(x, 1-x) folds the unit interval onto (0, 1/2) and doubles the density there.
+T The maximum possible value of the minimum is 1/2, so its mean must be well below 1/2 - option (a) is impossible.
+X For 0 < t < 1/2, P(min(X, 1-X) > t) = P(t < X < 1-t) = 1 - 2t.
+X That is the survival function of U(0, 1/2).
+X Its mean is 1/4, option (b).
+
+@ FP-067 | Mathematical and Conditional Expectation | Conditional Expectation
+Q Y is Bernoulli(1/2). Given Y = 0, X is N(0,1); given Y = 1, X is N(2,1). What is Var(X)?
+O 1
+O 2
+O 3
+O 5
+A b
+S Var(X) = E[Var(X|Y)] + Var(E(X|Y)) = 1 + Var(2Y) = 1 + 4(1/4) = 2.
+T The variance decomposition splits into a within-group part and a between-group part; a mixture always has both.
+T Answering 1 uses only the within-group variance and ignores the separation between the two centres.
+X E[Var(X | Y)] = 1 since both components have unit variance.
+X E(X | Y) = 2Y, whose variance is 4 Var(Y) = 4(1/4) = 1.
+X Var(X) = 1 + 1 = 2, option (b).
+
+@ FP-068 | Mathematical and Conditional Expectation | Expectation and Moments
+Q What is the sum over n >= 1 of n (1/3)^(n-1)?
+O 3/2
+O 9/4
+O 3
+O 9/2
+A b
+S The series sum of n x^(n-1) is 1/(1-x)^2; at x = 1/3 this is 1/(2/3)^2 = 9/4.
+T Differentiating the geometric series term by term turns sum x^n into sum n x^(n-1) = 1/(1-x)^2.
+T The related sum of n x^n is x/(1-x)^2 = 3/4 here; read the exponent carefully.
+X Sum over n >= 1 of n x^(n-1) = d/dx [1/(1-x)] = 1/(1-x)^2 for |x| < 1.
+X At x = 1/3 this is 1/(2/3)^2.
+X Hence the sum is 9/4, option (b).
+
+@ FP-069 | Characteristic Function, MGF and PGF | Moment Generating Function
+Q A random variable has M(t) = (1/3 + (2/3) e^t)^5. What is Var(X)?
+O 10/3
+O 10/9
+O 5/9
+O 20/9
+A b
+S Recognise Binomial(5, 2/3): variance npq = 5(2/3)(1/3) = 10/9.
+T (q + p e^t)^n is the binomial MGF; read n from the power and p from the coefficient of e^t.
+T The mean is 10/3, planted as option (a) - the question asks for the variance.
+X The MGF matches (q + p e^t)^n with n = 5, p = 2/3 and q = 1/3.
+X For the binomial, Var = npq = 5(2/3)(1/3).
+X Hence Var(X) = 10/9, option (b).
+
+@ FP-070 | Characteristic Function, MGF and PGF | Moment Generating Function
+Q X is N(1, 4) and Y is N(2, 9), independent, and Z = 2X - Y. What is P(Z > 5)?
+O 0.5
+O 0.1587
+O 0.0228
+O 0.3085
+A b
+S Z is N(0, 25), so P(Z > 5) = P(standard normal > 1) = 0.1587.
+T Linear combinations of independent normals are normal: means combine linearly, variances combine with the SQUARED coefficients.
+T Using 2 x 4 instead of 4 x 4 for the variance of 2X gives Var = 17 and lands on a different tail.
+X E(Z) = 2(1) - 2 = 0 and Var(Z) = 4(4) + 9 = 25.
+X So Z is N(0,25) and (5 - 0)/5 = 1.
+X P(Z > 5) = 0.1587, option (b).
+
+@ FP-071 | Characteristic Function, MGF and PGF | Characteristic Function
+Q Which characteristic function belongs to a distribution with no finite mean?
+O sin t / t
+O 1/(1 + t^2)
+O e^(-|t|)
+O e^(-t^2/2)
+A c
+S e^(-|t|) is the Cauchy characteristic function; it is not differentiable at 0, so no mean exists.
+T A finite mean exists exactly when the characteristic function is differentiable at the origin.
+T (a) is U(-1,1), (b) is Laplace and (d) is standard normal - all have every moment.
+X sin t/t, 1/(1+t^2) and e^(-t^2/2) are the characteristic functions of U(-1,1), Laplace and N(0,1).
+X e^(-|t|) is the standard Cauchy characteristic function and has a corner at t = 0.
+X So the answer is option (c).
+
+@ FP-072 | Characteristic Function, MGF and PGF | Compound Distributions
+Q N is Poisson(lambda) and X_1, X_2, ... are independent Bernoulli(p) variables independent of N. The sum S of the first N of them follows
+O Binomial(lambda, p)
+O Poisson(lambda p)
+O Poisson(lambda)
+O a negative binomial distribution
+A b
+S Compounding gives exp(lambda(P_X(s) - 1)) = exp(lambda p (s - 1)), the Poisson(lambda p) PGF.
+T Poisson thinning: keeping each Poisson event with probability p leaves a Poisson with the rate multiplied by p.
+T The discarded events form an independent Poisson(lambda(1-p)) - independence of the two streams is the classic follow-up.
+X The PGF of S is P_N(P_X(s)) with P_X(s) = q + ps.
+X This gives exp(lambda(q + ps - 1)) = exp(lambda p (s - 1)).
+X That is the Poisson(lambda p) PGF, option (b).
+
+@ FP-073 | Characteristic Function, MGF and PGF | Compound Distributions
+Q N is geometric on {1, 2, ...} with success probability p, and X_1, X_2, ... are independent Exp(theta) variables independent of N. What is the MGF of the sum Z of the first N of them?
+O p theta/(p theta - t)
+O theta/(theta - t)
+O (theta/(theta - t))^(1/p)
+O p theta/(theta - t)
+A a
+S Composing the geometric PGF with the exponential MGF gives p theta/(p theta - t): Z is Exp(p theta).
+T A geometric number of exponential steps is again exponential, with the rate multiplied by p.
+T Check at t = 0: any MGF must equal 1 there, which immediately kills option (d).
+X The geometric PGF on {1,2,...} is ps/(1 - qs), and M_X(t) = theta/(theta - t).
+X Substituting gives p theta/(theta - t) divided by (1 - q theta/(theta - t)) = p theta/(p theta - t).
+X That is the Exp(p theta) MGF, option (a).
+
+@ FP-074 | Characteristic Function, MGF and PGF | Characteristic Function
+Q Which statement about a characteristic function phi is FALSE?
+O phi(0) = 1
+O |phi(t)| <= 1 for all t
+O phi is unchanged by a change of origin
+O phi(-t) is the complex conjugate of phi(t)
+A c
+S Shifting X to X + b multiplies phi by e^(itb), so the characteristic function is not origin-invariant.
+T Only the MODULUS of the characteristic function is unchanged by a shift; the function itself picks up a phase.
+T The other three properties hold for every characteristic function without exception.
+X phi_{X+b}(t) = E[e^(it(X+b))] = e^(itb) phi_X(t).
+X This differs from phi_X(t) unless b = 0, so statement (c) fails.
+X The false statement is option (c).
+
+@ FP-075 | Characteristic Function, MGF and PGF | Moment Generating Function
+Q A random variable has M(t) = e^(t^2). What is Var(X)?
+O 1
+O 2
+O 1/2
+O 4
+A b
+S The normal MGF is exp(mu t + sigma^2 t^2/2), so sigma^2/2 = 1 and the variance is 2.
+T Match the coefficient of t^2: it is always half the variance, never the variance itself.
+T Reading e^(t^2) as the standard normal MGF gives 1 and is exactly the trap; the standard normal MGF is e^(t^2/2).
+X Comparing e^(t^2) with exp(mu t + sigma^2 t^2/2) gives mu = 0 and sigma^2/2 = 1.
+X Hence sigma^2 = 2.
+X Var(X) = 2, option (b).
+
+@ FP-076 | Characteristic Function, MGF and PGF | Moment Generating Function
+Q A random variable has M(t) = (1 - t/2)^(-3) for t < 2. What are its mean and variance?
+O 3/2 and 3/4
+O 6 and 12
+O 3/2 and 3/2
+O 3 and 3/4
+A a
+S Gamma with shape 3 and rate 2: mean 3/2, variance 3/4.
+T The Gamma MGF is (1 - t/rate)^(-shape); read the shape off the exponent and the rate off the denominator.
+T Mean = shape/rate and variance = shape/rate^2, so the variance is the mean divided by the rate.
+X Matching (1 - t/lambda)^(-alpha) gives alpha = 3 and lambda = 2.
+X Mean = alpha/lambda = 3/2 and variance = alpha/lambda^2 = 3/4.
+X That is option (a).
+
+@ FP-077 | Modes of Convergence and 0-1 Laws | Almost Sure Convergence
+Q U is U(0,1) and X_n = n times the indicator that U < 1/n. Which statement holds?
+O X_n converges to 0 almost surely and in mean
+O X_n converges to 0 almost surely but not in mean
+O X_n converges to 0 in probability but not almost surely
+O none of these
+A b
+S For each fixed U > 0 eventually 1/n < U, so X_n goes to 0 pointwise, yet E(X_n) = n(1/n) = 1 for every n.
+T This is the standard counterexample showing almost sure convergence does not imply convergence in mean.
+T The mass escapes to infinity: the height n exactly cancels the shrinking probability 1/n.
+X For any fixed u in (0,1), X_n(u) = 0 once n > 1/u, so X_n goes to 0 almost surely.
+X But E(X_n) = n P(U < 1/n) = 1 does not go to 0.
+X So convergence holds almost surely but not in mean, option (b).
+
+@ FP-078 | Modes of Convergence and 0-1 Laws | Borel-Cantelli Lemmas
+Q A_1, A_2, ... are independent events with P(A_n) = 1/n. What is P(A_n occurs infinitely often)?
+O 0
+O 1
+O 1/2
+O it cannot be determined
+A b
+S The harmonic series diverges and the events are independent, so the second Borel-Cantelli lemma gives probability 1.
+T Always compute the sum of the probabilities first: divergence plus independence gives 1, convergence alone gives 0.
+T Independence is needed only for the divergent case; the first lemma needs no independence at all.
+X The sum of 1/n over n >= 1 diverges.
+X The events are independent, so the second Borel-Cantelli lemma applies.
+X Hence P(A_n infinitely often) = 1, option (b).
+
+@ FP-079 | Modes of Convergence and 0-1 Laws | Borel-Cantelli Lemmas
+Q A_1, A_2, ... are independent events with P(A_n) = 1/n^2. What is P(A_n occurs infinitely often)?
+O 0
+O 1
+O pi^2/6
+O it cannot be determined
+A a
+S The sum of 1/n^2 converges, so the first Borel-Cantelli lemma gives probability 0.
+T The first lemma needs only convergence of the sum; independence is irrelevant to it.
+T pi^2/6 is the value of the sum, planted for candidates who confuse the sum with the answer - a probability cannot exceed 1.
+X The sum of 1/n^2 converges to pi^2/6, which is finite.
+X By the first Borel-Cantelli lemma, P(A_n infinitely often) = 0.
+X That is option (a).
+
+@ FP-080 | Modes of Convergence and 0-1 Laws | Convergence in Probability and Distribution
+Q X_n follows U(-n, n). The limiting distribution of X_n is
+O uniform on the whole real line
+O degenerate at 0
+O non-existent
+O N(0, 1)
+A c
+S F_n(x) tends to 1/2 for every fixed x, and the constant 1/2 is not a distribution function.
+T A limit of distribution functions is a distribution function only if it rises from 0 to 1; here the mass escapes to both infinities.
+T There is no uniform distribution on the whole line, so option (a) is not even a candidate.
+X F_n(x) = (x + n)/(2n) for |x| <= n, which tends to 1/2 as n grows, for every fixed x.
+X The limit function is identically 1/2, so it does not go to 0 at minus infinity nor to 1 at plus infinity.
+X No limiting distribution exists, option (c).
+
+@ FP-081 | Modes of Convergence and 0-1 Laws | Convergence in Probability and Distribution
+Q X_n converges in distribution to the constant c. Then
+O X_n converges to c in probability
+O X_n converges to c almost surely
+O X_n converges to c in mean square
+O none of these follows
+A a
+S Convergence in distribution to a CONSTANT is equivalent to convergence in probability to that constant.
+T This is the one case where the weakest mode upgrades: a degenerate limit removes the usual gap.
+T Almost sure and mean-square convergence remain strictly stronger and do not follow.
+X If X_n converges in distribution to the degenerate law at c, then P(|X_n - c| > e) tends to 0 for every e > 0.
+X That is exactly convergence in probability.
+X The stronger modes need not hold, so the answer is option (a).
+
+@ FP-082 | Modes of Convergence and 0-1 Laws | Kolmogorov Zero-One Law
+Q For a sequence of independent random variables, the event that the series of the X_n converges has probability
+O possibly strictly between 0 and 1
+O exactly 0 or exactly 1
+O always 1
+O always 0
+A b
+S Convergence of the series is a tail event of an independent sequence, so Kolmogorov's zero-one law forces probability 0 or 1.
+T Any event unchanged by altering finitely many terms is a tail event; convergence of a series is the standard example.
+T The law says the probability is 0 or 1, not which one - deciding that needs the three-series theorem.
+X Changing finitely many X_n does not affect whether the series converges, so the event lies in the tail sigma field.
+X For independent variables Kolmogorov's zero-one law makes every tail event trivial.
+X Hence the probability is 0 or 1, option (b).
+
+@ FP-083 | Probability Inequalities | Chebyshev Inequality
+Q Weekly sales have mean 50 and variance 25. What lower bound does Chebyshev's inequality give for P(40 < X < 60)?
+O 3/4
+O 1/4
+O 8/9
+O 0.9544
+A a
+S The half-width 10 is k = 2 standard deviations, so the bound is 1 - 1/4 = 3/4.
+T Convert the interval to units of sigma first; the bound is always 1 - 1/k^2.
+T 0.9544 is the exact normal answer - Chebyshev makes no normality assumption and is far weaker.
+X sigma = 5, so the interval 40 to 60 is mu plus or minus 2 sigma.
+X Chebyshev gives P(|X - mu| < k sigma) >= 1 - 1/k^2 = 1 - 1/4.
+X The bound is 3/4, option (a).
+
+@ FP-084 | Probability Inequalities | Chebyshev Inequality
+Q Chebyshev's inequality gives P(|X - mu| < 3 sigma) >=
+O 1/9
+O 8/9
+O 3/4
+O 0.9973
+A b
+S 1 - 1/9 = 8/9.
+T Chebyshev's three-sigma bound is 8/9, while the normal three-sigma probability is 0.9973 - the gap is the price of assuming nothing.
+T 1/9 is the bound on the TAIL, not on the central interval; read the direction of the inequality.
+X Chebyshev states P(|X - mu| >= k sigma) <= 1/k^2.
+X With k = 3 the tail bound is 1/9.
+X Hence the central probability is at least 8/9, option (b).
+
+@ FP-085 | Probability Inequalities | Chebyshev Inequality
+Q X has mean 20, and the Chebyshev bound gives P(|X - 20| >= 5) <= 0.16. What is E(X^2)?
+O 404
+O 425
+O 416
+O 400
+A a
+S sigma^2/25 = 0.16 gives sigma^2 = 4, so E(X^2) = 4 + 400 = 404.
+T Run Chebyshev backwards: the bound itself determines the variance when it is stated as an equality.
+T Do not stop at the variance - the question asks for the raw second moment, so add the square of the mean.
+X Chebyshev gives P(|X - 20| >= 5) <= sigma^2/25, and this equals 0.16.
+X Hence sigma^2 = 4.
+X E(X^2) = Var(X) + [E(X)]^2 = 4 + 400 = 404, option (a).
+
+@ FP-086 | Probability Inequalities | Markov Inequality
+Q X is non-negative with E(X) = 2. What upper bound does Markov's inequality give for P(X >= 8)?
+O 1/2
+O 1/4
+O 1/8
+O 1/16
+A b
+S Markov: P(X >= a) <= E(X)/a = 2/8 = 1/4.
+T Markov needs only non-negativity and the mean - no variance and no distributional shape.
+T The bound is useless whenever a is below the mean, since it then exceeds 1.
+X Markov's inequality states P(X >= a) <= E(X)/a for non-negative X.
+X With a = 8, the bound is 2/8.
+X That is 1/4, option (b).
+
+@ FP-087 | Probability Inequalities | Chebyshev Inequality
+Q A Bernoulli(p) sample is used to estimate p. By Chebyshev's inequality, what is the smallest n guaranteeing P(|p_hat - p| < 0.1) >= 0.9 for every p?
+O 100
+O 250
+O 1000
+O 25
+A b
+S pq <= 1/4, so the bound is 1 - 25/n >= 0.9, giving n >= 250.
+T Always use the worst case pq = 1/4 when p is unknown; that is what makes the guarantee uniform in p.
+T Chebyshev demands 250 where the central limit theorem needs only about 68 - a good illustration of how loose the bound is.
+X Var(p_hat) = pq/n <= 1/(4n).
+X Chebyshev gives P(|p_hat - p| < 0.1) >= 1 - pq/(n(0.01)) >= 1 - 25/n.
+X Requiring 1 - 25/n >= 0.9 gives n >= 250, option (b).
+
+@ FP-088 | Laws of Large Numbers and Central Limit Theorem | Central Limit Theorem
+Q For 300 independent U(0, 2) variables, what is the approximate value of P(sum > 310)?
+O 0.1587
+O 0.0228
+O 0.3085
+O 0.5
+A a
+S Mean 300 and variance 300(1/3) = 100, so z = 10/10 = 1 and the tail is 0.1587.
+T For U(a,b) the variance is (b-a)^2/12; here that is 4/12 = 1/3 per observation.
+T The standard deviation is 10, so 310 is exactly one sigma above the mean - recognise 0.1587 without a table.
+X E(sum) = 300(1) = 300 and Var(sum) = 300(4/12) = 100.
+X By the central limit theorem the sum is approximately N(300, 100).
+X P(sum > 310) is approximately 1 - Phi(1) = 0.1587, option (a).
+
+@ FP-089 | Laws of Large Numbers and Central Limit Theorem | Central Limit Theorem
+Q 1200 round-off errors are independent U(-0.5, 0.5). What is the approximate value of P(|sum| <= 20)?
+O 0.6826
+O 0.9544
+O 0.9973
+O 0.50
+A b
+S Variance 1200/12 = 100, so 20 is two standard deviations and the central probability is 0.9544.
+T The variance of U(-1/2, 1/2) is exactly 1/12, so n errors give variance n/12 - a very common exam setup.
+T The mean is 0 by symmetry, so the interval is symmetric and the two-sided normal value applies directly.
+X Var(sum) = 1200(1/12) = 100, so the standard deviation is 10.
+X P(|sum| <= 20) is approximately P(|Z| <= 2).
+X That is 0.9544, option (b).
+
+@ FP-090 | Laws of Large Numbers and Central Limit Theorem | Weak and Strong Laws
+Q Statement I: the strong law of large numbers for independent and identically distributed variables requires a finite variance. Statement II: the sample mean of independent Cauchy(0,1) variables converges to 0 in probability. Which is correct?
+O Both statements are true
+O Both statements are false
+O I is true, II is false
+O I is false, II is true
+A b
+S Kolmogorov's strong law needs only a finite mean, and the Cauchy sample mean is again Cauchy, so it converges to nothing.
+T For identically distributed variables E|X| < infinity is necessary AND sufficient for the strong law.
+T The Cauchy mean has the same distribution as a single observation, so averaging achieves nothing at all.
+X Statement I is false: a finite first absolute moment suffices, and no variance is needed.
+X Statement II is false: the average of n independent Cauchy(0,1) variables is again Cauchy(0,1).
+X Both statements fail, option (b).
+
+@ FP-091 | Laws of Large Numbers and Central Limit Theorem | Central Limit Theorem
+Q For a random sample from U(-3, 3), the large-sample distribution of sqrt(n) times the sample mean is
+O N(0, 1)
+O N(0, 3)
+O N(0, 9)
+O U(-3, 3)
+A b
+S The variance is 36/12 = 3, so sqrt(n) X_bar tends to N(0, 3).
+T The central limit theorem gives N(0, sigma^2) for sqrt(n)(X_bar - mu) - the limiting variance is sigma^2, not sigma or sigma^2/n.
+T The range 6 gives variance 3, not 9; squaring the half-width is the planted error.
+X E(X) = 0 and Var(X) = (3 - (-3))^2/12 = 3.
+X By the central limit theorem, sqrt(n)(X_bar - 0) tends in distribution to N(0, 3).
+X That is option (b).
+
+@ FP-092 | Laws of Large Numbers and Central Limit Theorem | Central Limit Theorem
+Q X_1, X_2, ... are independent and identically distributed with mean 0 and variance sigma^2. Which normalisation converges in distribution to a non-degenerate limit?
+O the sum divided by n
+O the sum divided by sqrt(n)
+O the sum divided by n^(1/4)
+O the sum divided by n^2
+A b
+S Only the sqrt(n) scaling keeps the variance constant; the answer is the central limit theorem normalisation.
+T Divide by n and you get the law of large numbers limit 0; divide by more than sqrt(n) and everything collapses to 0.
+T Divide by less than sqrt(n) and the variance explodes, so no limit law exists.
+X Var(sum/n^a) = n^(1-2a) sigma^2.
+X This is constant in n exactly when a = 1/2.
+X So the sum divided by sqrt(n) is the right normalisation, option (b).
+
+@ FP-093 | Laws of Large Numbers and Central Limit Theorem | Central Limit Theorem
+Q X is Poisson(100). Using the central limit theorem without a continuity correction, P(X <= 110) is approximately
+O Phi(1)
+O Phi(0.1)
+O Phi(10)
+O Phi(1.1)
+A a
+S Mean and variance are both 100, so the standard deviation is 10 and z = 10/10 = 1.
+T For the Poisson the variance equals the mean, so sigma = sqrt(lambda) = 10 here.
+T Dividing by lambda instead of sqrt(lambda) gives Phi(0.1), planted as option (b).
+X E(X) = 100 and Var(X) = 100, so sigma = 10.
+X z = (110 - 100)/10 = 1.
+X P(X <= 110) is approximately Phi(1), option (a).
+
+@ FP-094 | Distribution Functions and Transformations | Distribution Function Properties
+Q F(x) is 0 for x < 0, alpha x for 0 <= x < 1 and 1 for x >= 1. This is a valid distribution function if and only if
+O alpha = 1
+O 0 <= alpha <= 1
+O alpha > 0
+O alpha >= 1
+A b
+S F only has to be non-decreasing and bounded by 1, so alpha >= 0 and alpha <= 1; a jump at x = 1 is perfectly legal.
+T A distribution function may jump; it need not be continuous, so F(1-) < 1 is allowed.
+T Insisting on alpha = 1 is the trap - that would be the extra condition of continuity, which is not required.
+X F is non-decreasing on (0,1) exactly when alpha >= 0.
+X We also need F(1-) = alpha <= 1, so that F does not exceed 1 before the jump.
+X Hence 0 <= alpha <= 1, option (b).
+
+@ FP-095 | Distribution Functions and Transformations | Distribution Function Properties
+Q F(x) is 0 for x < 0, 1/4 + alpha x for 0 <= x < 1 and 1 for x >= 1. What is the admissible range of alpha?
+O 0 <= alpha <= 3/4
+O alpha = 3/4
+O 0 <= alpha <= 1
+O -1/4 <= alpha <= 3/4
+A a
+S Non-decreasing needs alpha >= 0 and F(1-) = 1/4 + alpha <= 1 needs alpha <= 3/4.
+T Two conditions always: monotonicity fixes the lower end and F(1-) <= 1 fixes the upper end.
+T The value 1/4 at x = 0 is an atom at the origin; that is allowed and does not force alpha to any single value.
+X Monotonicity on (0,1) requires alpha >= 0.
+X F(1-) = 1/4 + alpha must not exceed 1, giving alpha <= 3/4.
+X Hence 0 <= alpha <= 3/4, option (a).
+
+@ FP-096 | Distribution Functions and Transformations | Probability Integral Transform
+Q F is a continuous distribution function and X has that distribution. Then -2 log F(X) follows
+O Exp(1)
+O an exponential with mean 2
+O U(0, 2)
+O N(0, 1)
+A b
+S F(X) is U(0,1), and -2 log U is exponential with mean 2.
+T The probability integral transform turns any continuous variable into a standard uniform, after which standard tricks apply.
+T -2 log U is also chi-square with 2 degrees of freedom, which is the same as an exponential with mean 2.
+X By the probability integral transform, F(X) is U(0,1).
+X For U uniform, P(-2 log U > y) = P(U < e^(-y/2)) = e^(-y/2).
+X That is the exponential with mean 2, option (b).
+
+@ FP-097 | Distribution Functions and Transformations | Distribution Function Properties
+Q F_1 and F_2 are distribution functions. Which of the following need NOT be a distribution function?
+O the product of F_1 and F_2
+O F_1 + F_2 - F_1 F_2
+O the average of F_1 and F_2
+O F_1 - F_2
+A d
+S A difference of distribution functions can be negative and does not tend to 1, so it fails.
+T The product is the maximum of two independent variables and the second expression is the minimum; both are genuine.
+T The average is a 50-50 mixture, which is always a distribution function.
+X The product is the distribution function of the maximum of two independent variables.
+X F_1 + F_2 - F_1F_2 is the distribution function of the minimum, and the average is a mixture.
+X F_1 - F_2 tends to 0 at both ends and can be negative, so it is not a distribution function, option (d).
+
+@ FP-098 | Distribution Functions and Transformations | Distribution Function Properties
+Q F(x) = 1/2 + (1/pi) arctan x. What is P(X > 1)?
+O 1/2
+O 1/4
+O 3/4
+O 1/pi
+A b
+S This is the standard Cauchy distribution function; F(1) = 1/2 + 1/4 = 3/4, so the upper tail is 1/4.
+T arctan 1 = pi/4, so the (1/pi) factor makes the contribution exactly 1/4.
+T 3/4 is F(1) itself, planted as option (c) for candidates who forget to subtract from 1.
+X F(1) = 1/2 + (1/pi)(pi/4) = 3/4.
+X P(X > 1) = 1 - F(1).
+X This is 1/4, option (b).
+
+@ FP-099 | Distribution Functions and Transformations | Distribution Function Properties
+Q How many jump points does F(x) = 1 - e^(-x) for x >= 0, and 0 otherwise, have?
+O none
+O one, at x = 0
+O infinitely many
+O one, at x = 1
+A a
+S F(0) = 0 = F(0-), so there is no jump anywhere; the exponential distribution function is continuous.
+T A jump point is a value where F(c) exceeds F(c-); check the join of the pieces first.
+T The exponential density is discontinuous at 0, but the DISTRIBUTION FUNCTION is not - do not confuse them.
+X For x < 0, F(x) = 0, and F(0) = 1 - e^0 = 0.
+X So F(0) = F(0-) and F is continuous everywhere else as well.
+X There are no jump points, option (a).
+
+@ FP-100 | Distribution Functions and Transformations | Distribution Function Properties
+Q Statement I: a distribution function must be continuous. Statement II: a distribution function must be right-continuous. Which is correct?
+O Both statements are true
+O I is false, II is true
+O I is true, II is false
+O Both statements are false
+A b
+S Discrete variables have jumps, so continuity fails; right-continuity is part of the definition.
+T Right-continuity is a convention that fixes F at a jump to include the atom: F(c) = P(X <= c).
+T Every distribution function has at most countably many jumps, so continuity is the exception, not the rule.
+X A Bernoulli variable has a distribution function with two jumps, so Statement I is false.
+X Right-continuity holds for every distribution function by definition, so Statement II is true.
+X The answer is option (b).

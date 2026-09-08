@@ -3,19 +3,19 @@
     "answer": 0,
     "confidence": "high",
     "type": "Conceptual",
-    "shortcut": "Statement 1 is the standard nPr count. Statement 2 is false: the probability that n distinguishable balls fill n cells is n!/$n^{n}$, which is far below 1 for $n \\ge 2$.",
+    "shortcut": "Statement 1 is the standard nPr count. Statement 2 is false: the probability that n distinguishable balls fill n cells is $n!/n^{n}$, which is far below 1 for $n \\ge 2$.",
     "tips": [
       "Ordered sampling counts: WITHOUT replacement $n(n-1)\\ldots(n-r+1)$ = nPr; WITH replacement $n^{r}$. Learn the pair together.",
-      "Total placements of n distinguishable balls in n cells is $n^{n}$; favourable ones (one per cell) number n!, so the probability is n!/$n^{n}$ - for $n = 3$ that is $6/27 = 0.22$, nowhere near 1.",
+      "Total placements of n distinguishable balls in n cells is $n^{n}$; favourable ones (one per cell) number n!, so the probability is $n!/n^{n}$ - for $n = 3$ that is $6/27 = 0.22$, nowhere near 1.",
       "Any statement asserting that a non-trivial probability equals exactly 1 deserves immediate suspicion; certainty is rare.",
-      "This is the classical occupancy problem, and n!/$n^{n}$ tends to 0 rapidly - by Stirling it behaves like $\\sqrt{2 \\pi n} e^{-n}$."
+      "This is the classical occupancy problem, and $n!/n^{n}$ tends to 0 rapidly - by Stirling it behaves like $\\sqrt{2 \\pi n} e^{-n}$."
     ],
     "solution": [
       "Statement 1: to draw an ordered sample of size r from n elements without replacement, the first element can be chosen in n ways, the second in $n-1$ ways, and so on down to $n - r + 1$ ways for the rth.",
       "The total is $n(n-1)(n-2)\\ldots(n-r+1)$ = nPr, exactly as stated. TRUE.",
       "Statement 2: placing n distinguishable balls into n cells at random gives $n^{n}$ equally likely arrangements.",
       "The arrangements in which every cell is occupied are exactly the ones with one ball per cell, and there are n! of them.",
-      "Hence the probability is n!/$n^{n}$, which equals 1 only for $n = 1$; for $n = 3$ it is $6/27 = 0.222$. The claim that it is 1 is FALSE.",
+      "Hence the probability is $n!/n^{n}$, which equals 1 only for $n = 1$; for $n = 3$ it is $6/27 = 0.222$. The claim that it is 1 is FALSE.",
       "Only statement 1 is correct, option (a)."
     ]
   },
@@ -208,7 +208,7 @@
       "Singular covariance matrix means the determinant $\\operatorname{V}(X)\\operatorname{V}(Y) - \\operatorname{Cov}^{2} = 0$, which is the same as $\\rho^{2} = 1$. Compute the determinant, do not reason about $\\rho$ separately.",
       "A singular bivariate normal is concentrated on a LINE in the plane, which has zero area, so no two-dimensional density can exist.",
       "The Cauchy-Schwarz inequality guarantees $\\lvert \\operatorname{Cov}\\rvert \\le \\sqrt{V(X)\\operatorname{V}(Y)} = \\sqrt{6}$, so $\\lvert \\alpha\\rvert > 6$ in option (d) is impossible for any distribution at all.",
-      "Option $(c) \\mid \\alpha$| < $\\sqrt{6}$ is precisely the case where the density DOES exist - the exact opposite of what is asked."
+      "Option (c) $\\lvert \\alpha\\rvert < \\sqrt{6}$ is precisely the case where the density DOES exist - the exact opposite of what is asked."
     ],
     "solution": [
       "The bivariate normal density exists if and only if its covariance matrix is positive definite, i.e. non-singular.",
@@ -268,7 +268,7 @@
       "Substituting $u = e^{-3 \\lambda}$ turns a transcendental maximisation into the elementary quadratic $u - u^{2}$ - the key move in this item.",
       "Note that $6 = 2 \\times 3$, so $e^{-6 \\lambda} = u^{2}$ exactly. The doubling of the endpoints is what makes the substitution work.",
       "$u - u^{2}$ has its maximum at $u = 1/2$, i.e. $e^{-3 \\lambda} = 1/2$ and $\\lambda = (\\ln 2)/3 = 0.231$. The optimal mean is therefore about 4.33, comfortably inside $[3,6]$ - a good plausibility check.",
-      "The maximum value $1/4$ is a bound over ALL exponential distributions, so no single choice of parameter can do better - the reason option $(a) 1/2$ is unattainable."
+      "The maximum value $1/4$ is a bound over ALL exponential distributions, so no single choice of parameter can do better - the reason option (a) $1/2$ is unattainable."
     ],
     "solution": [
       "For an exponential distribution with rate $\\lambda, \\operatorname{P}(3 \\le X \\le 6) = e^{-3 \\lambda} - e^{-6 \\lambda}$.",

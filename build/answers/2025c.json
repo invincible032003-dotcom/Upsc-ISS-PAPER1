@@ -87,7 +87,7 @@
       "Recognise the compound structure: $M_{S}(t) = G_{N}(M_{X}(t))$ for a random sum, and $G_{N}(s) = M_{N}(\\log s)$, so $M_{S}(t) = M_{N}(\\log M_{X}(t))$ - exactly the given relation.",
       "Wald's identity: $\\operatorname{E}(S) = \\operatorname{E}(N)\\operatorname{E}(X)$. With both $\\text{Poisson}(\\lambda)$, that is $\\lambda^{2}$.",
       "Direct differentiation also works: $M_{Z}'(0) = M_{Y}'(0) \\times M_{X}'(0)/M_{X}(0) = \\lambda x \\lambda$, since every MGF equals 1 at $t = 0$.",
-      "Option $(c) \\lambda^{2} + \\lambda$ is the VARIANCE-style answer; keep mean and variance apart across the three parts of this stem."
+      "Option (c) $\\lambda^{2} + \\lambda$ is the VARIANCE-style answer; keep mean and variance apart across the three parts of this stem."
     ],
     "solution": [
       "For a random sum $S = X_{1} + \\ldots + X_{N}$ with the $X_{i}$ i.i.d. and independent of N, the moment generating function is $M_{S}(t) = M_{N}(\\log M_{X}(t))$.",
@@ -174,8 +174,8 @@
       "Substituting $Y = X - \\theta$ gives the standard density $e^{-y}$ on $y > 0$, so $Y \\sim \\text{Exponential}(1)$ with $\\operatorname{E}(Y) = 1$.",
       "Hence $\\operatorname{E}(X) = \\theta + \\operatorname{E}(Y) = \\theta + 1$, which is finite.",
       "The $X_{i}$ are independent and identically distributed with this finite mean.",
-      "By the weak law of large numbers, $\\text{Xbar}_{n}$ converges in probability to $\\operatorname{E}(X)$.",
-      "Therefore $\\text{Xbar}_{n}$ converges in probability to $1 + \\theta$, option (b)."
+      "By the weak law of large numbers, $\\bar{X}_{n}$ converges in probability to $\\operatorname{E}(X)$.",
+      "Therefore $\\bar{X}_{n}$ converges in probability to $1 + \\theta$, option (b)."
     ]
   },
   "2025-Q50": {
@@ -365,7 +365,7 @@
     "tips": [
       "$t = N(0,1)/\\sqrt{\\chi^{2}_{v}/v}$. Identify the two pieces and their degrees of freedom before doing any algebra.",
       "$X_{4} + X_{5}$ has variance 2, so it needs a $\\sqrt{2}$ divisor; the three squared normals give $v = 3$, so a $\\sqrt{3}$ multiplier appears.",
-      "Combining: $C = \\sqrt{3}/\\sqrt{2} = \\sqrt{3/2} = 1.2247$. Option $(b) \\sqrt{3}/2 = 0.866$ takes the square root of 3 but not of 2.",
+      "Combining: $C = \\sqrt{3}/\\sqrt{2} = \\sqrt{3/2} = 1.2247$. Option (b) $\\sqrt{3}/2 = 0.866$ takes the square root of 3 but not of 2.",
       "This is a repeat of $2018 Q_{35}$ and $2019 Q_{28}$ with the variables relabelled - the construction is clearly a favourite."
     ],
     "solution": [

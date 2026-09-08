@@ -67,7 +67,7 @@
       "With EQUAL priors, Bayes reduces to the ratio of likelihoods: 1 : $1/4$, i.e. 4 : 1, giving $4/5$ directly.",
       "Two heads is four times more likely under the two-headed coin, so the posterior must exceed the prior $1/2$ substantially - options (b) and (c) are below $1/2$ and can be dismissed.",
       "Extend the pattern: with k heads the posterior is $1/(1 + 2^{-k}) = 2^{k}/(2^{k} + 1)$, which tends to 1 - a useful generalisation.",
-      "Option $(a) 1/2$ is the PRIOR, the trap for candidates who forget to update on the evidence."
+      "Option (a) $1/2$ is the PRIOR, the trap for candidates who forget to update on the evidence."
     ],
     "solution": [
       "Let T be the event that the two-headed coin was chosen and F that the fair coin was chosen, with $\\operatorname{P}(T) = \\operatorname{P}(F) = 1/2$.",
@@ -187,7 +187,7 @@
       "A linear CDF means a UNIFORM distribution; probabilities are then proportional to interval length, with no integration needed.",
       "$\\operatorname{P}(a \\le X \\le b) = F(b) - F(a) = 2.5/5 - 1.5/5 = 0.5 - 0.3 = 0.2$ - the direct route if you prefer the CDF.",
       "For a continuous variable the endpoints carry no mass, so <= and < give the same answer - the closed interval in the stem is a distractor.",
-      "Option $(c) 2/5$ is the trap for candidates who use the interval length 1 over the half-range, or who mis-subtract 0.5 - 0.1."
+      "Option (c) $2/5$ is the trap for candidates who use the interval length 1 over the half-range, or who mis-subtract 0.5 - 0.1."
     ],
     "solution": [
       "The distribution function $F(x) = x/5$ for $0 \\le x \\le 5$ is that of a $\\text{Uniform}(0,5)$ random variable, with density $1/5$ on that range.",
@@ -365,8 +365,8 @@
     "tips": [
       "Convert the variance to a standard deviation first: 25 gives $\\sigma = 5$, not 25. Using the variance directly inflates the interval enormously.",
       "$\\operatorname{SE} = \\sigma/\\sqrt{n} = 5/10 = 0.5$. The clean numbers are deliberate - the margin $1.96 \\times 0.5 = 0.98$ is exact.",
-      "The interval must be SYMMETRIC about the sample mean 5.96; check that 5.96 is the midpoint of your chosen option. For $(b), (4.98 + 6.94)/2 = 5.96$ exactly.",
-      "Option $(a) [5.47, 6.45]$ has the right midpoint but a margin of 0.49 - the result of forgetting a factor of 2 or halving the SE."
+      "The interval must be SYMMETRIC about the sample mean 5.96; check that 5.96 is the midpoint of your chosen option. For (b), $(4.98 + 6.94)/2 = 5.96$ exactly.",
+      "Option (a) $[5.47, 6.45]$ has the right midpoint but a margin of 0.49 - the result of forgetting a factor of 2 or halving the SE."
     ],
     "solution": [
       "The population is $N(\\mu, 25)$, so $\\sigma = \\sqrt{25} = 5$, and the sample size is $n = 100$.",

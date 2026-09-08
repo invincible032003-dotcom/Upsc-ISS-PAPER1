@@ -1,0 +1,659 @@
+# FORECAST / AI-GENERATED - Probability, forecast batch 3 (expectation, MGF, convergence, inequalities, CLT, CDFs)
+
+@ FP-307 | Mathematical and Conditional Expectation | Conditional Expectation
+Q X is geometric on {1, 2, ...} with success probability p. What is E(X | X > 1)?
+O 1/p
+O 1 + 1/p
+O 2/p
+O 1/p - 1
+A b
+S By memorylessness the excess beyond the first failure is again geometric, so the answer is 1 + 1/p.
+T The geometric forgets the past, so conditioning on X > k adds exactly k to the mean.
+T Answering 1/p ignores the conditioning altogether, which is the planted trap.
+X Given X > 1, the variable X - 1 is again geometric on {1,2,...} with the same p.
+X Hence E(X | X > 1) = 1 + E(X) = 1 + 1/p.
+X That is option (b).
+
+@ FP-308 | Mathematical and Conditional Expectation | Expectation and Moments
+Q What is the expected number of draws needed to collect all four of four equally likely coupons?
+O 8
+O 25/3
+O 10
+O 12
+A b
+S Coupon collector with n = 4: 4(1 + 1/2 + 1/3 + 1/4) = 4(25/12) = 25/3.
+T The waiting time for the k-th new coupon is geometric with mean n/(n-k+1); sum them.
+T n H_n grows like n log n, so the answer must exceed n = 4 substantially but stay well below n^2.
+X The waits are geometric with means 4/4, 4/3, 4/2 and 4/1.
+X Their sum is 4(1 + 1/2 + 1/3 + 1/4) = 4(25/12).
+X This is 25/3, option (b).
+
+@ FP-309 | Mathematical and Conditional Expectation | Expectation and Moments
+Q What is the variance of the sum of n independent fair dice?
+O 35n/12
+O 35n^2/12
+O 91n/12
+O 3.5n
+A a
+S A single die has variance (36-1)/12 = 35/12, and variances add for independent dice.
+T The discrete uniform on 1 to N has variance (N^2 - 1)/12, which is 35/12 for N = 6.
+T Variances scale with n, not n^2 - that would be the variance of n times a single die.
+X Var(one die) = (6^2 - 1)/12 = 35/12.
+X For n independent dice the variances add.
+X Hence the total variance is 35n/12, option (a).
+
+@ FP-310 | Mathematical and Conditional Expectation | Conditional Expectation
+Q Given Y, the variable X is Binomial(Y, 1/2), and Y is Poisson(4). What is Var(X)?
+O 1
+O 2
+O 4
+O 3
+A b
+S Thinning gives X as Poisson(2), so the variance is 2.
+T Thinning a Poisson count by an independent binomial selection leaves a Poisson with the rate multiplied.
+T The decomposition confirms it: E(Y/4) + Var(Y/2) = 1 + 1 = 2.
+X X is a thinned Poisson with rate 4(1/2) = 2.
+X For a Poisson the variance equals the mean.
+X Hence Var(X) = 2, option (b).
+
+@ FP-311 | Mathematical and Conditional Expectation | Tail-Sum Formula
+Q X is Exp(lambda) and c > 0. What is E[min(X, c)]?
+O 1/lambda - c
+O (1 - e^(-lambda c))/lambda
+O c e^(-lambda c)
+O c/2
+A b
+S Integrating the survival function up to c gives (1 - e^(-lambda c))/lambda.
+T For a non-negative variable, E[min(X,c)] is the integral of the survival function from 0 to c.
+T As c grows the answer tends to 1/lambda, and as c shrinks it tends to c - two quick sanity checks.
+X E[min(X,c)] = integral from 0 to c of P(X > x) dx.
+X This is the integral of e^(-lambda x) from 0 to c.
+X The value is (1 - e^(-lambda c))/lambda, option (b).
+
+@ FP-312 | Mathematical and Conditional Expectation | Conditional Expectation
+Q A fair gambler starts with 2 units against an opponent with 1 unit, and each play moves one unit either way until someone is ruined. What is the expected number of plays?
+O 3
+O 2
+O 1
+O 6
+A b
+S The classical duration formula gives a(N - a) = 2(1) = 2.
+T For a fair random walk absorbed at 0 and N, the expected duration from a is a(N-a).
+T The total stake N = 3 here, so the answer is 2 x 1, not 3.
+X The total stake is N = 3 and the starting position is a = 2.
+X The expected duration of a symmetric random walk is a(N - a).
+X This gives 2, option (b).
+
+@ FP-313 | Mathematical and Conditional Expectation | Conditional Expectation
+Q A fair coin is tossed. What are the expected numbers of tosses until the pattern HT and until the pattern HH first appear?
+O 4 and 4
+O 4 and 6
+O 6 and 6
+O 6 and 4
+A b
+S HT takes 4 and HH takes 6; the self-overlap of HH costs the extra two tosses.
+T Non-overlapping patterns are reached faster; a pattern that overlaps itself must restart further back after a failure.
+T This is Conway's leading-numbers phenomenon and is a favourite examiner trap.
+X For HT, after the first head every tail completes the pattern, giving 2 + 2 = 4.
+X For HH, a failure after one head wastes that head entirely, and the recursion gives 6.
+X The pair is 4 and 6, option (b).
+
+@ FP-314 | Mathematical and Conditional Expectation | Expectation and Moments
+Q A fair die is rolled until a face repeats the face shown immediately before it. What is the expected number of rolls?
+O 6
+O 7
+O 36
+O 12
+A b
+S After the first roll each further roll matches the previous with probability 1/6, so the wait is 1 + 6 = 7.
+T Reduce to a geometric: the first roll costs 1 and then each trial has success probability 1/6.
+T The answer must exceed 6 because the first roll can never end the experiment.
+X The first roll cannot produce a repeat.
+X Thereafter each roll repeats the previous with probability 1/6, giving a geometric wait of mean 6.
+X The total is 1 + 6 = 7, option (b).
+
+@ FP-315 | Mathematical and Conditional Expectation | Expectation and Moments
+Q What is the expected number of distinct faces seen in 6 rolls of a fair die?
+O 6(1 - (5/6)^6)
+O 3.5
+O 6
+O 5
+A a
+S Indicators: each face is missed with probability (5/6)^6, so the expected count is 6(1 - (5/6)^6) = 3.99.
+T Indicator sums need no independence - linearity of expectation handles the overlaps for free.
+T The answer is about 4, not 6; six rolls rarely cover all six faces.
+X Let I_k indicate that face k appears at least once, so P(I_k = 1) = 1 - (5/6)^6.
+X The expected number of distinct faces is the sum of these six probabilities.
+X This is 6(1 - (5/6)^6), option (a).
+
+@ FP-316 | Mathematical and Conditional Expectation | Tail-Sum Formula
+Q For a non-negative continuous variable X, E(X^2) equals
+O the integral of x P(X > x) dx
+O twice the integral of x P(X > x) dx
+O the integral of P(X > x)^2 dx
+O the integral of x^2 P(X > x) dx
+A b
+S Integrating by parts gives E(X^2) = 2 times the integral of x P(X > x) dx.
+T The general tail formula is E(X^r) = r times the integral of x^(r-1) P(X > x) dx.
+T Check with Exp(1): 2 times the integral of x e^(-x) dx = 2, which is the correct second moment.
+X Writing X^2 as the integral of 2t dt from 0 to X and exchanging the order gives the result.
+X Hence E(X^2) = 2 times the integral of x P(X > x) dx.
+X That is option (b).
+
+@ FP-317 | Characteristic Function, MGF and PGF | Moment Generating Function
+Q A random variable has M(t) = (1 - t)^(-1/2) for t < 1. What are its mean and variance?
+O 1/2 and 1/2
+O 1/2 and 1/4
+O 1 and 2
+O 2 and 4
+A a
+S Gamma with shape 1/2 and rate 1: mean 1/2 and variance 1/2.
+T Read the shape off the exponent and the rate off the coefficient of t inside the bracket.
+T This is the chi-square with one degree of freedom, whose mean is 1 and variance 2 - but only after doubling the scale, so check carefully.
+X Matching (1 - t/lambda)^(-alpha) gives alpha = 1/2 and lambda = 1.
+X Mean = alpha/lambda = 1/2 and variance = alpha/lambda^2 = 1/2.
+X That is option (a).
+
+@ FP-318 | Characteristic Function, MGF and PGF | Moment Generating Function
+Q A random variable has M(t) = 1/3 + (2/3) e^(2t). What values does it take, and with what probabilities?
+O 0 and 2 with probabilities 1/3 and 2/3
+O 1 and 2 with probabilities 1/3 and 2/3
+O 0 and 1 with probabilities 1/3 and 2/3
+O the value 2 with probability one
+A a
+S Each term c e^(at) in an MGF is an atom of size c at the point a.
+T A finite sum of exponentials in the MGF means a discrete law; the coefficients are the probabilities.
+T The term 1/3 is 1/3 times e^(0t), which is an atom at 0, not at 1.
+X M(t) = (1/3)e^(0t) + (2/3)e^(2t).
+X So X takes 0 with probability 1/3 and 2 with probability 2/3.
+X That is option (a).
+
+@ FP-319 | Characteristic Function, MGF and PGF | Characteristic Function
+Q Which of the following is NOT a characteristic function?
+O cos t
+O e^(-|t|)
+O e^(-t^2)
+O e^(-t^4)
+A d
+S By Marcinkiewicz's theorem, exp(a polynomial) is a characteristic function only if the polynomial has degree at most 2.
+T A characteristic function of the form exp(-|t|^a) requires 0 < a <= 2 - the stable-law range.
+T cos t belongs to the plus-or-minus-1 law and e^(-t^2) to a normal, so both are genuine.
+X cos t is the characteristic function of a variable taking plus and minus 1 with equal probability.
+X e^(-|t|) is Cauchy and e^(-t^2) is N(0,2).
+X e^(-t^4) violates Marcinkiewicz's theorem, so it is option (d).
+
+@ FP-320 | Characteristic Function, MGF and PGF | Characteristic Function
+Q A characteristic function is phi(t) = sin t / t. What is Var(X)?
+O 1/3
+O 1/12
+O 1
+O 2/3
+A a
+S sin t/t is the U(-1,1) characteristic function, whose variance is 4/12 = 1/3.
+T U(-1,1) has range 2, so the variance is 2^2/12 = 1/3, not 1/12.
+T The expansion sin t/t = 1 - t^2/6 + ... gives E(X^2) = 2!/6 = 1/3 directly.
+X The characteristic function of U(-a,a) is sin(at)/(at); here a = 1.
+X Var(U(-1,1)) = (1 - (-1))^2/12 = 1/3.
+X Hence the variance is 1/3, option (a).
+
+@ FP-321 | Characteristic Function, MGF and PGF | Characteristic Function
+Q For a characteristic function phi of X, the squared modulus of phi(t) is the characteristic function of
+O 2X
+O X plus an independent copy of X
+O X minus an independent copy of X
+O X^2
+A c
+S The squared modulus equals phi(t) phi(-t), the characteristic function of the difference of two independent copies.
+T The symmetrised variable X - X' always has a real, non-negative characteristic function.
+T The SUM would give the square of phi(t), not its squared modulus - the conjugate is what flips the sign.
+X The squared modulus is phi(t) times the conjugate of phi(t), which equals phi(t) phi(-t).
+X phi(-t) is the characteristic function of -X'.
+X So the squared modulus belongs to X - X', option (c).
+
+@ FP-322 | Characteristic Function, MGF and PGF | Moment Generating Function
+Q X is Binomial(n, p). What is the moment generating function of n - X?
+O (q + p e^(-t))^n
+O (p + q e^t)^n
+O e^(nt)(q + p e^t)^n
+O (q + p e^t)^(-n)
+A b
+S n - X is Binomial(n, q), so its MGF is (p + q e^t)^n.
+T Failures and successes swap roles: n - X counts the failures, which are binomial with probability q.
+T Any MGF must equal 1 at t = 0; option (a) gives 1 as well, so use the structural argument, not the check.
+X X counts successes, so n - X counts failures.
+X The number of failures is Binomial(n, q).
+X Its MGF is (p + q e^t)^n, option (b).
+
+@ FP-323 | Characteristic Function, MGF and PGF | Probability Generating Function
+Q For a probability generating function P(s), the k-th derivative at s = 1 equals
+O E(X^k)
+O E[X(X-1)...(X-k+1)]
+O k! times P(X = k)
+O the variance when k = 2
+A b
+S Differentiating k times and setting s = 1 produces the k-th factorial moment.
+T Derivatives at s = 1 give factorial moments; derivatives at s = 0 give the probabilities.
+T Option (c) is the derivative at 0, a genuine identity but for a different point.
+X P(s) = sum of p_j s^j, so its k-th derivative is the sum of j(j-1)...(j-k+1)p_j s^(j-k).
+X Setting s = 1 gives E[X(X-1)...(X-k+1)].
+X That is option (b).
+
+@ FP-324 | Modes of Convergence and 0-1 Laws | Almost Sure Convergence
+Q U is U(0,1) and X_n = n U^n. In what sense does X_n converge to 0?
+O almost surely and in mean
+O almost surely but not in mean
+O in mean but not almost surely
+O in neither sense
+A b
+S n u^n tends to 0 for every u < 1, but E(X_n) = n/(n+1) tends to 1.
+T Exponential decay beats any polynomial factor pointwise, yet the expectation can still refuse to vanish.
+T The mass again escapes: the density near u = 1 is not small enough for the integral to follow.
+X For fixed u in (0,1), n u^n tends to 0, so X_n tends to 0 almost surely.
+X E(X_n) = n integral from 0 to 1 of u^n du = n/(n+1), which tends to 1.
+X So convergence holds almost surely but not in mean, option (b).
+
+@ FP-325 | Modes of Convergence and 0-1 Laws | Almost Sure Convergence
+Q U is U(0,1) and X_n = U^n. In what sense does X_n converge to 0?
+O almost surely and in mean
+O almost surely only
+O in probability only
+O in distribution only
+A a
+S u^n tends to 0 pointwise and E(U^n) = 1/(n+1) tends to 0 as well.
+T Compare with n U^n: removing the factor n makes the sequence uniformly integrable and mean convergence follows.
+T Bounded by 1, so dominated convergence applies immediately.
+X For every u in (0,1), u^n tends to 0.
+X E(U^n) = 1/(n+1), which tends to 0.
+X Both modes hold, option (a).
+
+@ FP-326 | Modes of Convergence and 0-1 Laws | Borel-Cantelli Lemmas
+Q X_n are independent with P(X_n = 1) = n^(-p) and P(X_n = 0) = 1 - n^(-p). Then X_n tends to 0 almost surely if and only if
+O p > 0
+O p > 1
+O p >= 1
+O p > 2
+A b
+S The sum of n^(-p) converges exactly when p > 1, and Borel-Cantelli then forces only finitely many ones.
+T Convergence in probability holds for every p > 0; almost sure convergence is strictly stronger and needs the summability.
+T At p = 1 the harmonic series diverges, so ones occur infinitely often and convergence fails.
+X By the first Borel-Cantelli lemma, summability of n^(-p) gives finitely many ones almost surely.
+X By the second lemma, divergence plus independence gives infinitely many ones.
+X The sum converges exactly when p > 1, option (b).
+
+@ FP-327 | Modes of Convergence and 0-1 Laws | Convergence in Probability and Distribution
+Q X_n is degenerate at 1/n, so X_n tends to 0 in distribution, yet F_n(0) = 0 while F(0) = 1. This is
+O a contradiction
+O allowed, because 0 is a discontinuity point of the limiting distribution function
+O impossible for degenerate limits
+O a failure of the central limit theorem
+A b
+S Weak convergence requires F_n(x) to converge to F(x) only at continuity points of F.
+T The definition of convergence in distribution deliberately excludes the jump points of the limit.
+T Without that exclusion even the simplest degenerate sequences would fail to converge.
+X F is the degenerate distribution function at 0, which jumps at x = 0.
+X Convergence of F_n to F is required only where F is continuous.
+X So the observation is allowed, option (b).
+
+@ FP-328 | Modes of Convergence and 0-1 Laws | Almost Sure Convergence
+Q The typewriter sequence sets X_n as the indicator that U lies in I_n, where the intervals I_n sweep across (0,1) with lengths tending to 0. Then X_n tends to 0
+O almost surely
+O in probability and in mean but not almost surely
+O in distribution only
+O in mean square but not in probability
+A b
+S P(X_n = 1) is the length of I_n and tends to 0, but every point is covered infinitely often, so no pointwise limit exists.
+T This is the standard example separating convergence in probability from almost sure convergence.
+T A subsequence does converge almost surely, exactly as the general theory promises.
+X P(|X_n| > e) = length of I_n, which tends to 0, so convergence holds in probability and in mean.
+X Every u in (0,1) lies in infinitely many I_n, so X_n(u) equals 1 infinitely often.
+X Almost sure convergence fails, option (b).
+
+@ FP-329 | Modes of Convergence and 0-1 Laws | Convergence in Probability and Distribution
+Q X_n converges in distribution to X and |X_n| <= M for all n. Then
+O E(X_n) converges to E(X)
+O E(X_n) need not converge
+O X_n converges to X in probability
+O X_n converges to X almost surely
+A a
+S Uniform boundedness supplies uniform integrability, so the expectations converge.
+T Convergence in distribution plus uniform boundedness gives convergence of all bounded continuous functionals, including the mean.
+T Nothing stronger than distributional convergence can be inferred about the variables themselves.
+X A uniformly bounded sequence is uniformly integrable.
+X Convergence in distribution together with uniform integrability gives convergence of the expectations.
+X Hence option (a).
+
+@ FP-330 | Modes of Convergence and 0-1 Laws | Almost Sure Convergence
+Q If X_n converges to X in probability, then there exists a subsequence converging
+O in mean
+O almost surely
+O uniformly
+O in no guaranteed sense
+A b
+S Choosing n_k so that P(|X_{n_k} - X| > 2^(-k)) < 2^(-k) makes Borel-Cantelli apply.
+T Convergence in probability always hides an almost surely convergent subsequence - a standard and quotable result.
+T Mean convergence needs integrability, which is not assumed here, so option (a) fails.
+X Pick n_k with P(|X_{n_k} - X| > 2^(-k)) less than 2^(-k).
+X The sum of these probabilities converges, so by Borel-Cantelli only finitely many deviations occur.
+X That subsequence converges almost surely, option (b).
+
+@ FP-331 | Probability Inequalities | Chebyshev Inequality
+Q X is Poisson(lambda). What bound does Chebyshev's inequality give for P(|X - lambda| >= lambda)?
+O 1/lambda
+O 1/lambda^2
+O lambda
+O 1/2
+A a
+S Var = lambda and the deviation is lambda, so the bound is lambda/lambda^2 = 1/lambda.
+T Chebyshev in raw form is Var/deviation^2 - no need to convert to units of sigma.
+T The Poisson variance equals the mean, which is what makes the bound collapse to 1/lambda.
+X Chebyshev gives P(|X - mu| >= a) <= Var(X)/a^2.
+X Here mu = Var = lambda and a = lambda.
+X The bound is 1/lambda, option (a).
+
+@ FP-332 | Probability Inequalities | Chebyshev Inequality
+Q The population standard deviation is 2. By Chebyshev's inequality, what is the smallest n making P(|sample mean - mu| < 0.5) at least 0.95?
+O 64
+O 320
+O 80
+O 160
+A b
+S 4/n divided by 0.25 must not exceed 0.05, giving n >= 320.
+T Write the bound as sigma^2/(n a^2) and solve for n; the arithmetic is one division.
+T The central limit theorem would need only about 62, so Chebyshev is roughly five times as demanding.
+X Chebyshev gives P(|X_bar - mu| >= 0.5) <= (4/n)/0.25 = 16/n.
+X Requiring 16/n <= 0.05 gives n >= 320.
+X The smallest n is 320, option (b).
+
+@ FP-333 | Probability Inequalities | One-Sided and Other Inequalities
+Q X takes values in [0, 1] with mean mu. Which bound is valid for every such X?
+O Var(X) <= mu(1 - mu)
+O Var(X) <= mu^2
+O P(X >= 1/2) >= 2 mu
+O Var(X) >= mu(1 - mu)
+A a
+S X^2 <= X on [0,1] gives E(X^2) <= mu, hence Var <= mu - mu^2.
+T Bounded variables have bounded variance; the Bernoulli attains the maximum mu(1-mu).
+T The extreme case is the two-point law on 0 and 1, which is exactly when equality holds.
+X For 0 <= x <= 1 we have x^2 <= x, so E(X^2) <= E(X) = mu.
+X Var(X) = E(X^2) - mu^2 <= mu - mu^2.
+X Hence Var(X) <= mu(1-mu), option (a).
+
+@ FP-334 | Probability Inequalities | Chebyshev Inequality
+Q X is Binomial(100, 1/2). What bound does Chebyshev's inequality give for P(|X - 50| >= 10)?
+O 1/4
+O 1/10
+O 1/100
+O 1/2
+A a
+S Var = 25, so the bound is 25/100 = 1/4, while the exact probability is only about 0.057.
+T Chebyshev is extremely loose for a nearly normal variable - the exact answer is four times smaller.
+T The deviation is exactly 2 sigma, so 1/k^2 = 1/4 without any arithmetic.
+X Var(X) = 100(1/2)(1/2) = 25.
+X Chebyshev gives P(|X - 50| >= 10) <= 25/100.
+X The bound is 1/4, option (a).
+
+@ FP-335 | Probability Inequalities | One-Sided and Other Inequalities
+Q The bound P(X >= a) <= e^(-ta) M_X(t), valid for every t > 0, is
+O Chebyshev's inequality
+O Markov's inequality applied to e^(tX), the Chernoff bound
+O Jensen's inequality
+O Cantelli's inequality
+A b
+S Applying Markov to the positive variable e^(tX) and then optimising over t is the Chernoff device.
+T Chernoff bounds decay exponentially, far faster than the polynomial decay of Chebyshev.
+T The bound holds for every t > 0, so the useful version minimises the right-hand side over t.
+X P(X >= a) = P(e^(tX) >= e^(ta)) for t > 0.
+X Markov's inequality gives P(e^(tX) >= e^(ta)) <= E(e^(tX))/e^(ta).
+X That is the Chernoff bound, option (b).
+
+@ FP-336 | Probability Inequalities | One-Sided and Other Inequalities
+Q The one-sided lower-tail bound P(X - mu <= -k sigma) is at most
+O 1/k^2
+O 1/(1 + k^2)
+O 1/(2k^2)
+O 1/k
+A b
+S Cantelli's inequality applied to -X gives 1/(1+k^2).
+T Cantelli is the one-sided sharpening of Chebyshev and applies to either tail by symmetry of the argument.
+T It is always strictly better than 1/k^2 and than the naive halving 1/(2k^2) when k >= 1.
+X Cantelli's inequality gives P(X - mu >= k sigma) <= 1/(1+k^2).
+X Applying it to -X, which has the same variance, gives the lower-tail version.
+X Hence the bound is 1/(1+k^2), option (b).
+
+@ FP-337 | Laws of Large Numbers and Central Limit Theorem | Central Limit Theorem
+Q Twelve independent U(0,1) variables are summed. What is the approximate value of P(sum > 7)?
+O 0.1587
+O 0.0228
+O 0.5
+O 0.3085
+A a
+S Mean 6 and variance exactly 12/12 = 1, so z = 1 and the tail is 0.1587.
+T Twelve uniforms have variance exactly 1 - the basis of the classical normal random-number generator.
+T The clean variance is the point of choosing n = 12, so the arithmetic needs no calculator.
+X E(sum) = 12(1/2) = 6 and Var(sum) = 12(1/12) = 1.
+X z = (7 - 6)/1 = 1.
+X P(sum > 7) is approximately 0.1587, option (a).
+
+@ FP-338 | Laws of Large Numbers and Central Limit Theorem | Delta Method
+Q X_i are independent Exp(rate lambda). Then sqrt(n) times (the reciprocal of the sample mean minus lambda) tends to N(0, v). What is v?
+O lambda^2
+O 1/lambda^2
+O lambda
+O lambda^4
+A a
+S Delta method with g(x) = 1/x at x = 1/lambda: g'(1/lambda)^2 times 1/lambda^2 = lambda^4/lambda^2 = lambda^2.
+T Apply the delta method at the true mean 1/lambda, not at lambda - the commonest slip in this family.
+T The derivative of 1/x at 1/lambda is -lambda^2, whose square is lambda^4.
+X The sample mean has asymptotic variance Var(X) = 1/lambda^2.
+X g(x) = 1/x has g'(1/lambda) = -lambda^2.
+X Hence v = lambda^4 (1/lambda^2) = lambda^2, option (a).
+
+@ FP-339 | Laws of Large Numbers and Central Limit Theorem | Weak and Strong Laws
+Q The X_i have unit variance and Cov(X_i, X_j) = rho > 0 for every pair. What does Var(sample mean) tend to?
+O 0
+O rho
+O 1
+O 1/n
+A b
+S Var(X_bar) = 1/n + (n-1)rho/n, which tends to rho, not 0.
+T Persistent equal correlation destroys the law of large numbers: the average keeps a residual variance.
+T Only when rho decays with the separation does the usual consistency return.
+X Var(X_bar) = (1/n^2)[n + n(n-1)rho].
+X This equals 1/n + (n-1)rho/n.
+X The limit is rho, option (b).
+
+@ FP-340 | Laws of Large Numbers and Central Limit Theorem | Central Limit Theorem
+Q For a proportion with a worst-case p, the sample sizes giving P(|p_hat - p| <= 0.02) at least 0.95 by the central limit theorem and by Chebyshev's inequality are approximately
+O 2401 and 12500
+O 2401 and 2401
+O 9604 and 12500
+O 1000 and 5000
+A a
+S CLT: (1.96/0.02)^2 (1/4) = 2401. Chebyshev: (1/4)/(0.0004 x 0.05) = 12500.
+T The two differ by a factor of about 5 - the price of assuming nothing about the shape.
+T Use pq <= 1/4 in both, since p is unknown and the guarantee must be uniform.
+X By the central limit theorem, n = z^2 pq/E^2 = 3.8416(0.25)/0.0004 = 2401.
+X By Chebyshev, n = pq/(E^2 alpha) = 0.25/(0.0004 x 0.05) = 12500.
+X The pair is 2401 and 12500, option (a).
+
+@ FP-341 | Laws of Large Numbers and Central Limit Theorem | Central Limit Theorem
+Q Fifty independent exponential variables with mean 2 are summed. What is the approximate value of P(sum > 120)?
+O 0.08
+O 0.16
+O 0.02
+O 0.5
+A a
+S Mean 100 and variance 50(4) = 200, so z = 20/14.14 = 1.41 and the tail is about 0.08.
+T For Exp(mean m) the variance is m^2, so n observations give variance n m^2.
+T Using variance 50 x 2 = 100 instead of 200 would give z = 2 and the wrong tail 0.023.
+X E(sum) = 50(2) = 100 and Var(sum) = 50(2^2) = 200.
+X z = (120 - 100)/sqrt(200) = 20/14.14 = 1.414.
+X The tail probability is about 0.08, option (a).
+
+@ FP-342 | Laws of Large Numbers and Central Limit Theorem | Weak and Strong Laws
+Q X_i are independent and identically distributed with a finite variance. The average of the X_i squared converges almost surely to
+O Var(X)
+O E(X^2)
+O the square of E(X)
+O nothing
+A b
+S Apply the strong law to the variables X_i^2, whose common mean is E(X^2).
+T The strong law applies to any function of the observations, provided that function has a finite mean.
+T Var(X) would be the limit of the sample variance, not of the average of the squares.
+X The variables X_i^2 are independent and identically distributed with mean E(X^2), which is finite.
+X By the strong law their average converges almost surely to E(X^2).
+X That is option (b).
+
+@ FP-343 | Laws of Large Numbers and Central Limit Theorem | Central Limit Theorem
+Q The statistic sqrt(n)(X_bar - mu)/S, with S the sample standard deviation, tends to N(0,1). The justification is
+O the central limit theorem alone
+O the central limit theorem together with Slutsky's theorem, since S tends to sigma in probability
+O the strong law alone
+O Chebyshev's inequality
+A b
+S The numerator needs the central limit theorem and the random denominator needs Slutsky's theorem.
+T Whenever an unknown parameter is replaced by a consistent estimator, Slutsky is the tool that licenses it.
+T The central limit theorem alone handles only the known-sigma version of the statistic.
+X sqrt(n)(X_bar - mu)/sigma tends to N(0,1) by the central limit theorem.
+X S/sigma tends to 1 in probability by the law of large numbers.
+X Slutsky's theorem combines the two, option (b).
+
+@ FP-344 | Laws of Large Numbers and Central Limit Theorem | Central Limit Theorem
+Q X_i are independent Bernoulli(p). What does the variance of sqrt(n)(sample mean minus p) tend to?
+O 0
+O p(1 - p)
+O 1
+O n p(1 - p)
+A b
+S The variance is exactly p(1-p) for every n, so the limit is p(1-p).
+T Multiplying by sqrt(n) exactly cancels the 1/n in Var(X_bar) - that is the whole point of the scaling.
+T The answer is exact, not asymptotic, which is a useful reassurance about the normalisation.
+X Var(X_bar) = p(1-p)/n.
+X Multiplying by n gives Var(sqrt(n) X_bar) = p(1-p).
+X The limit is p(1-p), option (b).
+
+@ FP-345 | Distribution Functions and Transformations | Distribution Function Properties
+Q F(x) = 1 - x^(-2) for x >= 1. What are the mean and the variance?
+O 2 and infinite
+O 2 and 4
+O 1 and infinite
+O both infinite
+A a
+S The density is 2x^(-3), so the mean is 2 but the second moment integral diverges logarithmically.
+T A Pareto tail x^(-a) supports moments strictly below order a; here a = 2 so only the mean exists.
+T Check by integrating: E(X) = the integral of 2x^(-2) = 2, while E(X^2) = the integral of 2/x diverges.
+X f(x) = 2x^(-3) for x >= 1.
+X E(X) = integral from 1 to infinity of 2x^(-2) dx = 2.
+X E(X^2) = integral of 2x^(-1) dx, which diverges, so the variance is infinite, option (a).
+
+@ FP-346 | Distribution Functions and Transformations | Distribution Function Properties
+Q F(x) = exp(-e^(-x)) for all real x. What is the median?
+O 0
+O -log(log 2)
+O log 2
+O 1
+A b
+S Solving exp(-e^(-m)) = 1/2 gives e^(-m) = log 2, so m = -log(log 2).
+T The Gumbel distribution function is a double exponential; invert it one layer at a time.
+T log 2 is less than 1, so its logarithm is negative and the median is positive - a useful sign check.
+X Setting F(m) = 1/2 gives -e^(-m) = log(1/2) = -log 2.
+X Hence e^(-m) = log 2 and m = -log(log 2).
+X That is option (b).
+
+@ FP-347 | Distribution Functions and Transformations | Functions of Random Variables
+Q Y is Exp(1) and X = sqrt(Y). What are the distribution function and the mean of X?
+O 1 - e^(-x^2) and sqrt(pi)/2
+O 1 - e^(-x) and 1
+O 1 - e^(-x^2) and 1
+O 1 - e^(-sqrt(x)) and 2
+A a
+S P(X <= x) = P(Y <= x^2) = 1 - e^(-x^2); the mean is E(sqrt Y) = Gamma(3/2) = sqrt(pi)/2.
+T Fractional moments of an exponential are Gamma function values: E(Y^r) = Gamma(1+r).
+T This X is the Rayleigh distribution, whose mean sqrt(pi)/2 is about 0.886.
+X P(X <= x) = P(Y <= x^2) = 1 - e^(-x^2) for x > 0.
+X E(X) = E(Y^(1/2)) = Gamma(3/2) = sqrt(pi)/2.
+X Hence option (a).
+
+@ FP-348 | Distribution Functions and Transformations | Probability Integral Transform
+Q The quantile function is Q(u) = u^(1/alpha) for alpha > 0. The distribution is
+O Beta(alpha, 1)
+O Beta(1, alpha)
+O Exp(alpha)
+O U(0,1)
+A a
+S Inverting gives F(x) = x^alpha on (0,1), which is the Beta(alpha, 1) distribution function.
+T The quantile function is the inverse of F; invert it back to identify the law.
+T Beta(alpha,1) has density alpha x^(alpha-1); the density of Beta(1,alpha) would involve (1-x) instead.
+X Q(u) = u^(1/alpha) inverts to F(x) = x^alpha on (0,1).
+X The density is alpha x^(alpha-1).
+X That is Beta(alpha, 1), option (a).
+
+@ FP-349 | Distribution Functions and Transformations | Distribution Function Properties
+Q F(x) = (1/2)(1 + x/sqrt(1 + x^2)). Which statement is correct?
+O it is not a distribution function
+O it is a distribution function with mean 0 and infinite variance
+O it is a distribution function with mean 0 and variance 1
+O it is a distribution function whose mean is undefined
+A b
+S The density is (1/2)(1+x^2)^(-3/2), whose tail behaves like x^(-3): the mean converges but the variance does not.
+T Match the tail exponent: a density decaying like x^(-(a+1)) supports moments strictly below order a.
+T Here a = 2, so the first moment exists by symmetry but the second does not.
+X Differentiating gives f(x) = (1/2)(1+x^2)^(-3/2), which is a symmetric density.
+X E|X| converges because the integrand behaves like x^(-2) at infinity.
+X E(X^2) diverges because the integrand behaves like 1/x, so the variance is infinite, option (b).
+
+@ FP-350 | Distribution Functions and Transformations | Mixed Distributions
+Q F(x) is 0 for x < 0, 1/2 for 0 <= x < 1, and 1 - (1/2)e^(-(x-1)) for x >= 1. What are the atoms and E(X)?
+O an atom of 1/2 at 0 only, and E(X) = 1
+O atoms at 0 and 1, and E(X) = 3/2
+O no atoms, and E(X) = 1
+O an atom at 0, and E(X) = 2
+A a
+S F(1) = 1/2 = F(1-), so the only atom is 1/2 at the origin; the continuous half is 1 + Exp(1) with mean 2.
+T Check every join for a jump: here the exponential piece starts exactly at the value the flat piece had.
+T The mean is (1/2)(0) + (1/2)(2) = 1, the mixture of an atom at 0 and a shifted exponential.
+X F(0) - F(0-) = 1/2, so there is an atom of 1/2 at the origin.
+X At x = 1, F(1) = 1 - 1/2 = 1/2 = F(1-), so there is no atom there.
+X E(X) = (1/2)(0) + (1/2)E(1 + Exp(1)) = (1/2)(2) = 1, option (a).
+
+@ FP-351 | Distribution Functions and Transformations | Functions of Random Variables
+Q X is continuous and symmetric about 0 with distribution function F. For x >= 0, the distribution function of |X| is
+O F(x)
+O 2F(x) - 1
+O 1 - F(x)
+O F(x)^2
+A b
+S P(|X| <= x) = F(x) - F(-x) = F(x) - (1 - F(x)) = 2F(x) - 1.
+T Symmetry gives F(-x) = 1 - F(x) for a continuous law, which collapses the two-sided probability.
+T Check at x = 0: 2F(0) - 1 = 0, exactly as it must be.
+X P(|X| <= x) = F(x) - F(-x).
+X Symmetry gives F(-x) = 1 - F(x).
+X Hence the answer is 2F(x) - 1, option (b).
+
+@ FP-352 | Distribution Functions and Transformations | Distribution Function Properties
+Q F and G are distribution functions. The composition x maps to F(G(x)) is a distribution function
+O always
+O if and only if F(0) = 0 and F(1) = 1
+O never
+O if and only if G is continuous
+A b
+S As x tends to minus infinity, G tends to 0 and the composition tends to F(0); the limits must be 0 and 1.
+T Composition preserves monotonicity and right-continuity automatically; only the two limits need checking.
+T F(0) = 0 and F(1) = 1 means F is concentrated on the interval (0, 1].
+X F(G(x)) is non-decreasing and right-continuous because both factors are.
+X Its limits at minus and plus infinity are F(0) and F(1).
+X These must be 0 and 1, option (b).
+
+@ FP-353 | Distribution Functions and Transformations | Probability Integral Transform
+Q For a general distribution function F, define the generalised inverse as the infimum of the x with F(x) at least u. If U is U(0,1), the variable obtained by applying it to U has distribution function
+O F
+O the uniform distribution function
+O F, only if F is continuous
+O F, only if F is strictly increasing
+A a
+S The generalised inverse transform works for EVERY distribution function, discrete or mixed included.
+T The key equivalence is that the generalised inverse at u is at most x exactly when u is at most F(x).
+T This is how discrete random variables are actually generated in software.
+X By definition, the generalised inverse at u is at most x if and only if u <= F(x).
+X Hence P(generalised inverse of U <= x) = P(U <= F(x)) = F(x).
+X So the construction works for every F, option (a).

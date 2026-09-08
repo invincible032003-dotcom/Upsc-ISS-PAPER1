@@ -1,0 +1,20 @@
+[
+ {
+  "file": "Probability_Forecast.pdf",
+  "unit": "Probability",
+  "kb": 1347.8154296875,
+  "questions": 375,
+  "topics": 11,
+  "subtopics": 43,
+  "mocks": 15
+ },
+ {
+  "file": "Statistical_Methods_Forecast.pdf",
+  "unit": "Statistical Methods",
+  "kb": 1303.6484375,
+  "questions": 375,
+  "topics": 13,
+  "subtopics": 69,
+  "mocks": 15
+ }
+]

@@ -200,7 +200,7 @@
       "Trapezoidal with two strips: $T = h[(f_{0} + f_{2})/2 + f_{1}]$. Only the two END ordinates are halved.",
       "Keep fractions: $(1/2)[(1 + 1/2)/2 + 2/3] = (1/2)(3/4 + 2/3) = (1/2)(17/12) = 17/24$. Exact fractions beat decimals when the options are fractions.",
       "$1/x$ is convex, so the trapezoidal rule OVERESTIMATES. The true $\\ln 2 = 0.6931$, and $17/24 = 0.7083$ is duly larger - a strong confirmation.",
-      "Option $(c) 19/24 = 0.7917$ is too far above $\\ln 2$ to be a two-strip trapezoidal value; the overestimate for such a smooth function is small."
+      "Option (c) $19/24 = 0.7917$ is too far above $\\ln 2$ to be a two-strip trapezoidal value; the overestimate for such a smooth function is small."
     ],
     "solution": [
       "We approximate the $\\int 1/x$ from 1 to 2 using the trapezoidal rule with $n = 2$ equal divisions, so $h = (2-1)/2 = 0.5$.",

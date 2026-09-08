@@ -1,0 +1,351 @@
+# FORECAST / AI-GENERATED - Statistical Methods, association of attributes and curve fitting
+
+@ FS-039 | Association of Attributes | Yule Coefficients
+Q A two-way table has a = 9, b = 1, c = 1 and d = 9. What is Yule's coefficient of association Q?
+O 0.8
+O 40/41
+O 1
+O 0.9
+A b
+S Q = (ad - bc)/(ad + bc) = (81 - 1)/(81 + 1) = 40/41.
+T Q depends only on the cross-product ratio ad/bc, so any row or column scaling leaves it unchanged.
+T Q reaches 1 only when bc = 0; here bc = 1, so the value is just short of 1.
+X ad = 81 and bc = 1.
+X Q = (81 - 1)/(81 + 1).
+X This is 40/41, option (b).
+
+@ FS-040 | Association of Attributes | Yule Coefficients
+Q For the table a = 9, b = 1, c = 1, d = 9, what is Yule's coefficient of colligation Y?
+O 0.8
+O 40/41
+O 0.9
+O 0.64
+A a
+S Y = (sqrt(ad) - sqrt(bc))/(sqrt(ad) + sqrt(bc)) = (9-1)/(9+1) = 0.8.
+T Y uses the square roots of the cross-products; it is always closer to 0 than Q.
+T Q = 40/41 = 0.976 while Y = 0.8, which illustrates how much larger Q is.
+X sqrt(ad) = 9 and sqrt(bc) = 1.
+X Y = (9 - 1)/(9 + 1).
+X The value is 0.8, option (a).
+
+@ FS-041 | Association of Attributes | Yule Coefficients
+Q Which relation connects Yule's Q and Yule's Y?
+O Q = 2Y/(1 + Y^2)
+O Y = 2Q/(1 + Q^2)
+O Q = Y^2
+O Q = Y
+A a
+S Writing t = sqrt(ad/bc), Q = (t^2-1)/(t^2+1) and Y = (t-1)/(t+1), which gives Q = 2Y/(1+Y^2).
+T The relation is the double-angle formula in disguise: with Y = tanh(u), Q = tanh(2u).
+T Since |Q| >= |Y| always, the map must expand, which the formula does.
+X Put t = sqrt(ad/bc), so Y = (t-1)/(t+1) and Q = (t^2-1)/(t^2+1).
+X Substituting t = (1+Y)/(1-Y) into Q gives 2Y/(1+Y^2).
+X Hence option (a).
+
+@ FS-042 | Association of Attributes | Yule Coefficients
+Q Which inequality always holds between Yule's Q and Yule's Y?
+O |Q| <= |Y|
+O |Q| >= |Y|
+O Q = -Y
+O Q + Y = 1
+A b
+S Q = 2Y/(1+Y^2) and 1 + Y^2 <= 2 for |Y| <= 1, so |Q| >= |Y|.
+T Q always exaggerates the association relative to Y - a standard comparison question.
+T Equality holds only at Y = 0 and |Y| = 1.
+X From Q = 2Y/(1+Y^2) and 1 + Y^2 <= 2, we get |Q| >= |Y|.
+X Equality occurs only when Y = 0 or |Y| = 1.
+X Hence option (b).
+
+@ FS-043 | Association of Attributes | Yule Coefficients
+Q Yule's Q equals 1 if and only if
+O ad = 0
+O bc = 0
+O ad = bc
+O a = d
+A b
+S Q = (ad - bc)/(ad + bc) equals 1 exactly when bc = 0.
+T A zero cell gives complete association; Q hits its bound whenever either b or c vanishes.
+T ad = 0 would give Q = -1, which is complete negative association - option (a) is that mirror.
+X Q = 1 requires ad - bc = ad + bc.
+X This forces bc = 0.
+X Hence option (b).
+
+@ FS-044 | Association of Attributes | Consistency of Data
+Q With N = 100, (A) = 60, (B) = 70 and (AB) = 25, the data are
+O consistent
+O inconsistent, since a derived class frequency is negative
+O independent
+O positively associated
+A b
+S (AB) must be at least 60 + 70 - 100 = 30, so 25 is impossible.
+T Check the Bonferroni floor (A) + (B) - N before doing anything else with a contingency table.
+T A negative derived frequency such as (alpha beta) is the standard signature of inconsistency.
+X The minimum possible (AB) is (A) + (B) - N = 30.
+X The stated value 25 is below that, so the frequency of "neither A nor B" would be negative.
+X The data are inconsistent, option (b).
+
+@ FS-045 | Association of Attributes | Consistency of Data
+Q With (A) = 40, (B) = 50, N = 200 and (AB) = 15, the attributes are
+O independent
+O positively associated
+O negatively associated
+O inconsistent
+A b
+S The independence value is 40(50)/200 = 10, and 15 exceeds it.
+T Compare the observed (AB) with (A)(B)/N: above means positive association, below means negative.
+T The Bonferroni floor here is negative, so there is no consistency problem.
+X Under independence, (AB) would be (A)(B)/N = 10.
+X The observed value 15 is larger.
+X So the association is positive, option (b).
+
+@ FS-046 | Association of Attributes | Yule Coefficients
+Q The coefficient of colligation is
+O Yule's Q
+O Yule's Y
+O Pearson's C
+O the phi coefficient
+A b
+S Yule named Y the coefficient of colligation and Q the coefficient of association.
+T Q for association, Y for colligation - a pure terminology question that appears regularly.
+T Both are functions of the cross-product ratio only.
+X Yule introduced two measures based on ad and bc.
+X Q = (ad-bc)/(ad+bc) is the coefficient of association and Y the coefficient of colligation.
+X Hence option (b).
+
+@ FS-047 | Association of Attributes | Chi-Square and Contingency
+Q With a chi-square value of 25 and N = 100, what is Pearson's coefficient of contingency C?
+O 0.5
+O 0.447
+O 0.25
+O 0.2
+A b
+S C = sqrt(chi-square/(chi-square + N)) = sqrt(25/125) = 0.447.
+T C is always below 1 and its maximum depends on the table size, which limits its comparability.
+T Using sqrt(chi-square/N) = 0.5 instead is the planted error.
+X C = sqrt(25/(25 + 100)) = sqrt(0.2).
+X This is 0.447.
+X Hence option (b).
+
+@ FS-048 | Association of Attributes | Chi-Square and Contingency
+Q What is the maximum possible value of Pearson's C for a 2 by 2 table?
+O 1
+O 1/sqrt(2)
+O 1/2
+O sqrt(2)
+A b
+S The maximum is sqrt((k-1)/k) with k = 2, giving 1/sqrt(2) = 0.707.
+T C can never reach 1, which is exactly why corrected versions such as Cramer's V are preferred.
+T For a 3 by 3 table the ceiling rises to sqrt(2/3) = 0.816.
+X For a k by k table the maximum of C is sqrt((k-1)/k).
+X With k = 2 this is sqrt(1/2).
+X The maximum is 1/sqrt(2), option (b).
+
+@ FS-049 | Association of Attributes | Chi-Square and Contingency
+Q A two-way table has rows (30, 20) and (60, 40). What is the chi-square statistic?
+O 0
+O 1
+O 2.5
+O 10
+A a
+S The rows are exactly proportional, so ad = bc and chi-square is 0.
+T Proportional rows mean perfect independence; the sample size is irrelevant.
+T The trap is that the frequencies are large and unequal, which suggests association where there is none.
+X ad = 30(40) = 1200 and bc = 20(60) = 1200.
+X Since ad = bc, every observed frequency equals its expected value.
+X The chi-square statistic is 0, option (a).
+
+@ FS-050 | Association of Attributes | Chi-Square and Contingency
+Q For the table a = 10, b = 20, c = 20, d = 10, what is the chi-square statistic?
+O 20/3
+O 10
+O 5
+O 3
+A a
+S N(ad - bc)^2 divided by the four marginal products: 60(300)^2/(30^4) = 20/3.
+T Use the single-formula version for a 2 by 2 table; there is no need to build the expected table.
+T All four margins are 30 here, so the denominator is 30^4 = 810000.
+X ad - bc = 100 - 400 = -300 and N = 60.
+X chi-square = 60(300)^2/(30 x 30 x 30 x 30) = 5400000/810000.
+X This is 20/3, option (a).
+
+@ FS-051 | Association of Attributes | Yule Coefficients
+Q If all four cell frequencies of a 2 by 2 table are equal, Yule's Q is
+O 1
+O -1
+O 0
+O 1/2
+A c
+S ad = bc, so the numerator of Q vanishes.
+T Equal cells mean complete independence, and every association measure is then 0.
+T Q = 0 does not require large frequencies - only equality of the cross-products.
+X With a = b = c = d, ad = bc.
+X Hence Q = (ad - bc)/(ad + bc) = 0.
+X That is option (c).
+
+@ FS-052 | Association of Attributes | Yule Coefficients
+Q Yule's Q is invariant under
+O multiplying a whole row by a constant
+O adding a constant to every cell
+O interchanging a and b
+O none of these
+A a
+S Q depends only on the ratio ad/bc, and scaling a row multiplies both products equally.
+T Row and column scaling cancel in the cross-product ratio, which is what makes Q a margin-free measure.
+T Adding a constant changes the ratio and therefore changes Q.
+X Multiplying the first row by k sends a to ka and b to kb.
+X Then ad/bc becomes kad/(kbc) = ad/bc, so Q is unchanged.
+X Hence option (a).
+
+@ FS-053 | Association of Attributes | Consistency of Data
+Q For three attributes, the total number of class frequencies of all orders is
+O 8
+O 9
+O 27
+O 6
+A c
+S Each attribute is present, absent or ignored, giving 3^3 = 27 class frequencies.
+T Every attribute contributes three states, so the count is 3^n, not 2^n.
+T For two attributes the answer would be 9, which is planted as option (b).
+X Each of the three attributes may appear as A, as its complement, or not at all.
+X That gives 3 choices per attribute.
+X The total is 3^3 = 27, option (c).
+
+@ FS-054 | Association of Attributes | Consistency of Data
+Q With (A) = 50, (B) = 60 and N = 100, what is the admissible range of (AB)?
+O 0 to 50
+O 10 to 50
+O 10 to 60
+O 0 to 60
+A b
+S The lower bound is (A) + (B) - N = 10 and the upper bound is min(50, 60) = 50.
+T These are the Frechet bounds for a two-way table, exactly as for two events.
+T The upper bound is the smaller marginal, never the larger.
+X (AB) cannot exceed either marginal, so it is at most 50.
+X It cannot be below (A) + (B) - N = 10.
+X The range is 10 to 50, option (b).
+
+@ FS-055 | Association of Attributes | Consistency of Data
+Q If (AB)/(A) = 0.6 while (B)/N = 0.5, the attributes are
+O independent
+O positively associated
+O negatively associated
+O inconsistent
+A b
+S The conditional proportion 0.6 exceeds the unconditional 0.5, so A raises the chance of B.
+T Compare the conditional proportion with the marginal proportion; equality means independence.
+T This is the same criterion as (AB) versus (A)(B)/N, written in proportions.
+X Independence would require (AB)/(A) = (B)/N.
+X Here 0.6 > 0.5, so A makes B more likely.
+X The association is positive, option (b).
+
+@ FS-056 | Association of Attributes | Chi-Square and Contingency
+Q For a 2 by 2 table, the phi coefficient equals
+O the square root of chi-square divided by N
+O chi-square divided by N
+O the square root of chi-square divided by (chi-square + N)
+O chi-square divided by (N - 1)
+A a
+S phi = sqrt(chi-square/N), which for a 2 by 2 table equals the Pearson correlation of the two indicators.
+T phi ranges over -1 to 1 for a 2 by 2 table and coincides with the product-moment correlation of the two 0-1 variables.
+T Option (c) is Pearson's C, a different measure with a different ceiling.
+X For a 2 by 2 table, chi-square = N phi^2.
+X Hence phi = sqrt(chi-square/N).
+X That is option (a).
+
+@ FS-057 | Curve Fitting and Orthogonal Polynomials | Orthogonal Polynomials
+Q The fourth-degree Hermite polynomial associated with the standard normal distribution is
+O x^4 - 6x^2 + 3
+O x^4 - 3x^2
+O x^4 - 6x^2
+O x^4 - 4x^2 + 2
+A a
+S The probabilists' Hermite polynomials are 1, x, x^2 - 1, x^3 - 3x, x^4 - 6x^2 + 3.
+T Each He_n has expectation zero under the standard normal; check by using E(X^4) = 3 and E(X^2) = 1.
+T These polynomials are orthogonal with the normal density as weight, which is why they appear in Edgeworth expansions.
+X He_4(x) = x^4 - 6x^2 + 3.
+X Its expectation under N(0,1) is 3 - 6(1) + 3 = 0, as required for orthogonality with the constant.
+X Hence option (a).
+
+@ FS-058 | Curve Fitting and Orthogonal Polynomials | Curve Fitting
+Q To fit y = a b^x by least squares, one linearises by regressing
+O log y on x
+O log y on log x
+O y on 1/x
+O 1/y on x
+A a
+S Taking logarithms gives log y = log a + x log b, which is linear in x.
+T An exponential becomes linear on a semi-log plot; a power law becomes linear on a log-log plot.
+T The fitted constants must be back-transformed, and the least-squares fit is then on the log scale, not the original.
+X log y = log a + (log b)x.
+X This is linear in x with intercept log a and slope log b.
+X So regress log y on x, option (a).
+
+@ FS-059 | Curve Fitting and Orthogonal Polynomials | Curve Fitting
+Q To fit y = a x^b by least squares, one linearises by regressing
+O log y on x
+O log y on log x
+O y on x^2
+O sqrt(y) on x
+A b
+S Taking logarithms gives log y = log a + b log x, which is linear in log x.
+T Power law means log-log; exponential means semi-log. The distinction is a standard one-mark question.
+T The exponent b becomes the slope directly, so it needs no back-transformation.
+X log y = log a + b log x.
+X This is linear in log x.
+X So regress log y on log x, option (b).
+
+@ FS-060 | Curve Fitting and Orthogonal Polynomials | Curve Fitting
+Q Model E_1 has residual sum of squares 12 and model E_2 has 8, with the same number of parameters. For prediction one prefers
+O E_1
+O E_2
+O either
+O it cannot be decided
+A b
+S With the same complexity, the smaller residual sum of squares means the better fit.
+T Residual sums of squares are comparable only when the models have the same number of parameters and the same response.
+T Adding parameters always lowers the residual sum of squares, which is why the caveat matters.
+X Both models estimate the same number of parameters.
+X E_2 leaves less unexplained variation.
+X Hence E_2 is preferred, option (b).
+
+@ FS-061 | Curve Fitting and Orthogonal Polynomials | Curve Fitting
+Q Fitting a polynomial of degree k by least squares requires how many normal equations?
+O k
+O k + 1
+O 2k
+O k - 1
+A b
+S A degree-k polynomial has k + 1 coefficients, hence k + 1 normal equations.
+T Count the coefficients, including the constant term - that is always the number of normal equations.
+T A straight line, k = 1, needs 2 equations, which is the familiar case.
+X The polynomial has coefficients for x^0 through x^k.
+X That is k + 1 unknowns, each giving one normal equation.
+X Hence option (b).
+
+@ FS-062 | Curve Fitting and Orthogonal Polynomials | Orthogonal Polynomials
+Q The advantage of using orthogonal polynomials in curve fitting is that
+O fewer data points are needed
+O adding a higher-degree term leaves the earlier coefficients unchanged
+O no normal equations arise
+O the residuals become zero
+A b
+S Orthogonality decouples the normal equations, so each coefficient is computed independently of the others.
+T With ordinary powers, adding a term forces every coefficient to be recomputed; orthogonal polynomials avoid that entirely.
+T The design must be equally spaced for the standard orthogonal polynomial tables to apply.
+X Orthogonality makes the cross-product sums vanish.
+X The normal equations then become diagonal, so each coefficient depends only on its own polynomial.
+X Adding a higher term therefore leaves the earlier coefficients unchanged, option (b).
+
+@ FS-063 | Curve Fitting and Orthogonal Polynomials | Curve Fitting
+Q A least-squares line fitted with an intercept always satisfies
+O the sum of the residuals is zero
+O the sum of x times the residuals is zero
+O both of these
+O the sum of the squared residuals is zero
+A c
+S The two normal equations are exactly these two orthogonality conditions.
+T The residuals are orthogonal to the constant vector and to x - that is what the normal equations say.
+T The intercept is essential: without it the residuals need not sum to zero.
+X The normal equations from minimising the sum of squares are the sum of residuals = 0 and the sum of x times residuals = 0.
+X Both therefore hold for any least-squares line with an intercept.
+X Hence option (c).

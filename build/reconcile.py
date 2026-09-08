@@ -80,8 +80,12 @@ mg_unit = Counter(r['unit'] for r in merged)
 
 # ---------------------------------------------------------------- stage 5
 qjs = open(os.path.join(ROOT, 'questions.js'), encoding='utf-8').read()
-m = re.search(r'window\.quizData = \[\n(.*)\n\];\n?$', qjs, re.S)
+m = re.search(r'window\.quizData = \[\n(.*?)\n\];\n', qjs, re.S)
 data = json.loads('[' + m.group(1) + ']')
+mf = re.search(r'window\.forecastData = \[\n(.*)\n\];\n?$', qjs, re.S)
+fdata = json.loads('[' + mf.group(1) + ']') if mf else []
+mfm = re.search(r'window\.forecastMeta = (\{.*?\});\n', qjs, re.S)
+fmeta = json.loads(mfm.group(1)) if mfm else None
 js_year = Counter(q['year'] for q in data)
 js_unit = Counter(q['unit'] for q in data)
 
@@ -194,6 +198,54 @@ print('  Source issues (flagged, preserved): %d'
       % sum(1 for q in data if q['sourceIssue']))
 print('  Excluded from scoring (no valid option in source): %d'
       % sum(1 for q in data if q['correctAnswer'] is None))
+
+# ======================================================================
+#   FORECAST bank — separate, complete, and never mixed with the PYQs
+# ======================================================================
+if fmeta:
+    fbank = json.load(open(os.path.join(B, 'forecast-merged.json'),
+                           encoding='utf-8'))
+    fsum = json.load(open(os.path.join(B, 'forecast-pdf-summary.json'),
+                          encoding='utf-8'))
+    print('\n-- Forecast bank (AI-GENERATED, not PYQ) -----------------------------')
+    ok('forecast source bank matches questions.js',
+       len(fbank['questions']) == len(fdata) == fmeta['total'],
+       '%d / %d / %d' % (len(fbank['questions']), len(fdata), fmeta['total']))
+    fids = set(q['id'] for q in fdata)
+    ok('forecast ids are unique', len(fids) == len(fdata))
+    ok('no id is shared with the authentic PYQ bank', not (fids & ids_js))
+    ok('every forecast record is flagged isForecast',
+       all(q.get('isForecast') for q in fdata))
+    ok('no authentic record is flagged isForecast',
+       not any(q.get('isForecast') for q in data))
+    ok('every forecast record has 4 options and a key',
+       all(len(q['options']) == 4 and q['correctAnswer'] in (0, 1, 2, 3)
+           for q in fdata))
+    ok('every forecast record has a shortcut, tips and a solution',
+       all(q['examShortcut'] and q['tipsTricks'] and q['solution']
+           for q in fdata))
+    per_unit = Counter(q['unit'] for q in fdata)
+    for u in sorted(per_unit):
+        print('  %-22s %4d questions' % (u, per_unit[u]))
+    used = Counter()
+    for mk in fmeta['mocks']:
+        used.update(mk['questionIds'])
+    ok('every named mock holds exactly %d questions' % fmeta['mockSize'],
+       all(mk['count'] == fmeta['mockSize'] and
+           len(mk['questionIds']) == fmeta['mockSize'] for mk in fmeta['mocks']))
+    ok('no forecast question is used twice across the mocks',
+       all(c == 1 for c in used.values()))
+    ok('the mocks cover the whole forecast bank',
+       set(used) == fids, '%d of %d' % (len(used), len(fids)))
+    ok('mock questions never cross units',
+       all(all(next(q for q in fdata if q['id'] == i)['unit'] == mk['unit']
+               for i in mk['questionIds']) for mk in fmeta['mocks']))
+    pdf_total = sum(x['questions'] for x in fsum)
+    ok('the two forecast PDFs carry the whole bank', pdf_total == len(fdata),
+       '%d in PDFs vs %d in the bank' % (pdf_total, len(fdata)))
+    for x in fsum:
+        print('  %-34s %4d questions  %3d topics  %2d named mocks'
+              % (x['file'], x['questions'], x['topics'], x['mocks']))
 
 print('\n' + '=' * 74)
 if failures:

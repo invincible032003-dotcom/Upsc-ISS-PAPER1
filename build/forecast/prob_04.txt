@@ -1,0 +1,827 @@
+# FORECAST / AI-GENERATED - Probability, forecast batch 2 (items 61-119)
+
+@ FP-161 | Random Vectors and Joint Distributions | Independence and Covariance
+Q X_1, X_2 and X_3 have unit variances and a common pairwise correlation rho. What is the feasible range of rho?
+O -1 to 1
+O -1/2 to 1
+O 0 to 1
+O -1/3 to 1
+A b
+S Var(X_1 + X_2 + X_3) = 3 + 6 rho must be non-negative, so rho >= -1/2.
+T A correlation matrix must be non-negative definite; testing the sum of all the variables is the fastest necessary condition.
+T For k equicorrelated variables the floor is -1/(k-1), so it tightens as k grows.
+X Var(X_1 + X_2 + X_3) = 3(1) + 6 rho.
+X Non-negativity forces rho >= -1/2, and rho <= 1 always.
+X The range is -1/2 to 1, option (b).
+
+@ FP-162 | Random Vectors and Joint Distributions | Independence and Covariance
+Q X_1, X_2, X_3 have unit variances and common pairwise correlation rho. What is Corr(X_1, X_1 + X_2 + X_3)?
+O 1/sqrt(3)
+O sqrt((1 + 2 rho)/3)
+O (1 + 2 rho)/3
+O 1/3
+A b
+S Cov = 1 + 2 rho and Var(sum) = 3 + 6 rho, so the correlation is sqrt((1+2rho)/3).
+T Compute the covariance and both variances separately; the square root at the end is where marks are lost.
+T At rho = 0 the answer reduces to 1/sqrt(3), which is the familiar independent case and a good check.
+X Cov(X_1, X_1+X_2+X_3) = 1 + rho + rho = 1 + 2 rho.
+X Var(X_1+X_2+X_3) = 3 + 6 rho = 3(1 + 2 rho).
+X Corr = (1+2rho)/sqrt(3(1+2rho)) = sqrt((1+2rho)/3), option (b).
+
+@ FP-163 | Random Vectors and Joint Distributions | Conditional Distributions
+Q X and Y are independent U(0,1). What is P(Y > X^2 given Y > X)?
+O 2/3
+O 1/2
+O 1
+O 5/6
+A c
+S On (0,1) we have x^2 <= x, so Y > X already implies Y > X^2 and the conditional probability is 1.
+T Compare the two curves on the unit interval before integrating anything: squaring shrinks numbers below 1.
+T This is a containment question dressed up as a computation - no areas are needed at all.
+X For 0 < x < 1, x^2 <= x.
+X Hence the event Y > X is contained in the event Y > X^2.
+X The conditional probability is 1, option (c).
+
+@ FP-164 | Random Vectors and Joint Distributions | Independence and Covariance
+Q X and Y each take values 0 and 1 with P(X=1) = P(Y=1) = 1/2 and P(X=Y=1) = a. What is Corr(X, Y)?
+O 4a - 1
+O 2a - 1
+O a - 1/4
+O 4a
+A a
+S Cov = a - 1/4 and each variance is 1/4, so the correlation is 4a - 1.
+T For 0-1 variables the covariance is the joint probability minus the product of the marginals.
+T The admissible range of a is 0 to 1/2, which maps exactly onto correlations -1 to 1 - a useful consistency check.
+X E(XY) = P(X=Y=1) = a and E(X)E(Y) = 1/4.
+X Var(X) = Var(Y) = (1/2)(1/2) = 1/4.
+X Corr = (a - 1/4)/(1/4) = 4a - 1, option (a).
+
+@ FP-165 | Mathematical and Conditional Expectation | Expectation and Moments
+Q X is U(0,1). What is E[max(X, 1/2)]?
+O 1/2
+O 5/8
+O 3/4
+O 2/3
+A b
+S Split at 1/2: (1/2)(1/2) + integral from 1/2 to 1 of x dx = 1/4 + 3/8 = 5/8.
+T Split the range at the kink and integrate each branch; the maximum is constant on the lower half.
+T The answer must lie strictly between 1/2 and 3/4, which already eliminates (a), (c) and (d).
+X For x < 1/2 the maximum is 1/2, contributing (1/2)(1/2) = 1/4.
+X For x > 1/2 it is x, contributing integral from 1/2 to 1 of x dx = 3/8.
+X The total is 5/8, option (b).
+
+@ FP-166 | Mathematical and Conditional Expectation | Conditional Expectation
+Q A fair die is rolled until a 6 appears. What is the expected total of all the faces shown, including the final 6?
+O 18
+O 21
+O 15
+O 24
+A b
+S The non-six rolls number N - 1 with mean 5 and average face 3, so the total is 15 + 6 = 21.
+T Split the sum into the final 6 and the earlier rolls, whose values are uniform on 1 to 5 with mean 3.
+T Using the overall mean 3.5 for the earlier rolls gives 17.5 + 6 and is the standard error here.
+X N is geometric with mean 6, so there are on average 5 non-six rolls.
+X Each non-six roll is uniform on {1,...,5} with mean 3, giving 15.
+X Adding the final 6 gives 21, option (b).
+
+@ FP-167 | Mathematical and Conditional Expectation | Conditional Expectation
+Q A fair coin is tossed until two consecutive heads appear. What is the expected number of tosses?
+O 4
+O 6
+O 8
+O 3
+A b
+S The pattern formula (1+p)/p^2 gives (1.5)/(0.25) = 6.
+T Set up states by how many heads are currently in hand and solve two linear equations - the standard Markov recursion.
+T HH needs 6 tosses but HT needs only 4; self-overlapping patterns always take longer.
+X Let a be the expected time from no heads and b from one head.
+X Then a = 1 + (1/2)b + (1/2)a and b = 1 + (1/2)(0) + (1/2)a.
+X Solving gives a = 6, option (b).
+
+@ FP-168 | Mathematical and Conditional Expectation | Tail-Sum Formula
+Q X is positive with P(X > x) = (1 + x)^(-2). Which statement is correct?
+O the mean is 1 and the variance is 1
+O the mean is 1 and the variance is infinite
+O the mean is infinite
+O the mean is 2 and the variance is infinite
+A b
+S The tail integral gives E(X) = 1, but the second moment integral diverges like the harmonic integral.
+T A Pareto-type tail x^(-a) has finite moments only up to order a - 1; here a = 2 so only the mean survives.
+T Use E(X) = the integral of the survival function and E(X^2) = twice the integral of x times the survival function.
+X E(X) = integral from 0 to infinity of (1+x)^(-2) dx = 1.
+X E(X^2) = 2 integral of x(1+x)^(-2) dx, whose integrand behaves like 2/x at infinity and diverges.
+X So the mean is 1 and the variance is infinite, option (b).
+
+@ FP-169 | Characteristic Function, MGF and PGF | Compound Distributions
+Q The number of customers N is Poisson(lambda) and each spends an amount with mean mu and variance sigma^2, independently. What is the variance of the total spend?
+O lambda sigma^2
+O lambda(sigma^2 + mu^2)
+O lambda mu^2
+O lambda^2 sigma^2
+A b
+S For a compound Poisson, Var(S) = lambda E(X^2) = lambda(sigma^2 + mu^2).
+T The compound Poisson variance is the rate times the SECOND RAW moment - not the variance of a single claim.
+T Answering lambda sigma^2 forgets the randomness of N, which is exactly what the question is testing.
+X Var(S) = E(N)Var(X) + Var(N)[E(X)]^2.
+X For a Poisson, E(N) = Var(N) = lambda, so this is lambda(sigma^2 + mu^2).
+X That is option (b).
+
+@ FP-170 | Mathematical and Conditional Expectation | Conditional Expectation
+Q X is U(-1,1) and Y = X^2. What are the best mean-square predictor of Y from X and the best LINEAR predictor?
+O X^2 and X
+O X^2 and 1/3
+O 1/3 and 1/3
+O X and X
+A b
+S The best predictor is E(Y|X) = X^2; since Cov(X,Y) = 0 the best linear predictor is the constant E(Y) = 1/3.
+T The best predictor overall is always the conditional expectation; the best LINEAR one uses only the covariance.
+T Zero covariance forces the linear predictor to collapse to a constant, even though the true relation is exact.
+X E(Y | X) = X^2 is the minimum mean-square predictor.
+X Cov(X, X^2) = E(X^3) = 0, so the linear regression slope is 0.
+X The best linear predictor is E(Y) = 1/3, option (b).
+
+@ FP-171 | Mathematical and Conditional Expectation | Expectation and Moments
+Q E(X^2) = 4 and E(Y^2) = 9. What is the largest possible value of |E(XY)|?
+O 36
+O 6
+O 13
+O 12
+A b
+S Cauchy-Schwarz gives the bound sqrt(4 x 9) = 6 for the absolute value of E(XY).
+T The Cauchy-Schwarz bound is the geometric mean of the second moments, attained when Y is a multiple of X.
+T 36 is the product and 13 the sum - both are planted for candidates who skip the square root.
+X By the Cauchy-Schwarz inequality, the square of E(XY) is at most E(X^2) E(Y^2).
+X This gives the square of E(XY) at most 36.
+X So the absolute value of E(XY) is at most 6, option (b).
+
+@ FP-172 | Mathematical and Conditional Expectation | Expectation and Moments
+Q X is U(1,2). Comparing E(1/X) with 1/E(X):
+O they are equal
+O log 2 is greater than 2/3
+O log 2 is less than 2/3
+O the comparison is undefined
+A b
+S E(1/X) = log 2 = 0.693 and 1/E(X) = 2/3 = 0.667, and Jensen guarantees the first is larger.
+T 1/x is convex, so Jensen's inequality gives E(1/X) >= 1/E(X) with equality only for a degenerate X.
+T The gap is small here, so compute both numbers rather than guessing the direction.
+X E(1/X) = integral from 1 to 2 of (1/x) dx = log 2 = 0.693.
+X E(X) = 1.5, so 1/E(X) = 2/3 = 0.667.
+X Hence log 2 exceeds 2/3, option (b).
+
+@ FP-173 | Mathematical and Conditional Expectation | Expectation and Moments
+Q For n >= 2, n hats are returned to their owners at random. What is the variance of the number of correct returns?
+O 1
+O 1 - 1/n
+O n
+O 1/n
+A a
+S The count has mean 1 and variance 1 for every n >= 2 - a striking exact result.
+T Write the count as a sum of indicators and use the covariance of a pair, which is 1/(n^2(n-1)).
+T The number of matches is approximately Poisson(1) for large n, and its mean and variance are both 1.
+X Let S be the number of matches, a sum of n indicators each with mean 1/n.
+X Var(S) = n(1/n)(1 - 1/n) + n(n-1)[1/(n(n-1)) - 1/n^2] = 1 - 1/n + 1/n.
+X Hence Var(S) = 1 for every n >= 2, option (a).
+
+@ FP-174 | Mathematical and Conditional Expectation | Expectation and Moments
+Q X and Y are independent U(0,1). What is E|X - Y|?
+O 1/2
+O 1/3
+O 1/4
+O 1/6
+A b
+S The density of |X-Y| is 2(1-u) on (0,1), whose mean is 1/3.
+T The expected distance between two uniform points on (0,1) is 1/3 - worth memorising outright.
+T The maximum possible distance is 1 and the mean must be well below 1/2, which eliminates option (a).
+X P(|X-Y| > u) = (1-u)^2, so the density is 2(1-u).
+X E|X-Y| = integral from 0 to 1 of 2u(1-u) du = 1 - 2/3.
+X This is 1/3, option (b).
+
+@ FP-175 | Mathematical and Conditional Expectation | Expectation and Moments
+Q "Every symmetric distribution has all its odd central moments equal to zero." This statement is
+O always true
+O true only when the relevant moments exist
+O false for the Laplace distribution
+O false for the normal distribution
+A b
+S Symmetry gives vanishing odd moments only when they exist; the Cauchy is symmetric with no moments at all.
+T Always check existence before invoking symmetry - the integral must converge before its value can be 0.
+T The Laplace and the normal both satisfy the claim; it is the heavy-tailed symmetric laws that break it.
+X For a symmetric law the odd central moment integrand is odd, so the integral is 0 whenever it converges.
+X The standard Cauchy is symmetric about 0 yet has no finite first moment.
+X So the statement holds only when the moments exist, option (b).
+
+@ FP-176 | Characteristic Function, MGF and PGF | Moment Generating Function
+Q A random variable has M(t) = 1/(1 - t^2) for |t| < 1. What is Var(X)?
+O 1
+O 2
+O 1/2
+O 4
+A b
+S The series 1 + t^2 + t^4 + ... has coefficient 1 at t^2, so E(X^2) = 2! = 2 and the mean is 0.
+T Read moments off the MGF series: the coefficient of t^k is E(X^k)/k!.
+T This is the standard Laplace MGF, and Var = 2b^2 = 2 confirms it independently.
+X M(t) = 1 + t^2 + t^4 + ... so the coefficient of t is 0 and of t^2 is 1.
+X Hence E(X) = 0 and E(X^2) = 2!(1) = 2.
+X Var(X) = 2, option (b).
+
+@ FP-177 | Characteristic Function, MGF and PGF | Probability Generating Function
+Q A probability generating function is P(s) = s/(2 - s). What are the mean and the variance?
+O 2 and 2
+O 1 and 1
+O 2 and 4
+O 1/2 and 1/4
+A a
+S Rewrite as (s/2)/(1 - s/2): geometric on {1,2,...} with p = 1/2, mean 2 and variance q/p^2 = 2.
+T Put a PGF into the standard form ps/(1-qs) to identify a geometric instantly.
+T Check P(1) = 1, which every PGF must satisfy - here 1/(2-1) = 1, so the form is legitimate.
+X P(s) = (1/2)s/(1 - s/2) matches the geometric PGF ps/(1-qs) with p = q = 1/2.
+X The mean is 1/p = 2 and the variance is q/p^2 = 2.
+X That is option (a).
+
+@ FP-178 | Characteristic Function, MGF and PGF | Characteristic Function
+Q A characteristic function is phi(t) = cos^2 t. What is the distribution of X?
+O plus or minus 1 with probability 1/2 each
+O 0 with probability 1/2 and plus or minus 2 with probability 1/4 each
+O U(-1, 1)
+O plus or minus 2 with probability 1/2 each
+A b
+S cos^2 t = (1 + cos 2t)/2, which is the characteristic function of a mass 1/2 at 0 and 1/4 at each of 2 and -2.
+T Use the identity cos u = (e^(iu) + e^(-iu))/2 to read a lattice distribution straight off a trigonometric characteristic function.
+T cos^2 t is the square of cos t, so X is the sum of two independent plus-or-minus-1 variables - an equally quick route.
+X cos^2 t = (1 + cos 2t)/2 = 1/2 + (1/4)e^(2it) + (1/4)e^(-2it).
+X This is the characteristic function of a variable taking 0, 2 and -2 with probabilities 1/2, 1/4 and 1/4.
+X That is option (b).
+
+@ FP-179 | Characteristic Function, MGF and PGF | Moment Generating Function
+Q A random variable has M(t) = exp(2(e^t - 1)) times (1/2 + e^t/2)^3. What is Var(X)?
+O 2
+O 11/4
+O 7/2
+O 3
+A b
+S The product is Poisson(2) plus an independent Binomial(3, 1/2): variance 2 + 3/4 = 11/4.
+T A product of MGFs means a sum of independent variables; identify each factor separately.
+T Variances add for independent summands, but only variances - never standard deviations.
+X exp(2(e^t - 1)) is the Poisson(2) MGF and (1/2 + e^t/2)^3 is the Binomial(3, 1/2) MGF.
+X The two components are independent, so the variances add: 2 + 3(1/2)(1/2).
+X Var(X) = 2 + 3/4 = 11/4, option (b).
+
+@ FP-180 | Characteristic Function, MGF and PGF | Characteristic Function
+Q X_1, ..., X_n are independent standard Cauchy variables. What is the characteristic function of their sample mean?
+O e^(-|t|/n)
+O e^(-|t|)
+O e^(-n|t|)
+O e^(-|t|/sqrt(n))
+A b
+S Each term contributes e^(-|t|/n) and there are n of them, so the product is e^(-|t|) again.
+T The Cauchy is a stable law with index 1: averaging leaves the distribution completely unchanged.
+T This is why the law of large numbers fails for the Cauchy - no amount of data reduces the spread.
+X phi_{X/n}(t) = phi_X(t/n) = e^(-|t|/n).
+X The mean is the sum of n such independent terms, so its characteristic function is the n-th power.
+X That is e^(-|t|), option (b).
+
+@ FP-181 | Characteristic Function, MGF and PGF | Moment Generating Function
+Q A random variable has M(t) = (e^t - 1)/t. What is E(X^2)?
+O 1/2
+O 1/3
+O 1/6
+O 1/12
+A b
+S This is the U(0,1) MGF, so E(X^2) = 1/3.
+T Expand: (e^t - 1)/t = 1 + t/2 + t^2/6 + ..., and the coefficient of t^2 is E(X^2)/2!.
+T The mean is 1/2, so the answer 1/3 is greater than the square of the mean, as it must be.
+X (e^t - 1)/t = sum over k >= 0 of t^k/(k+1)!.
+X The coefficient of t^2 is 1/6, so E(X^2) = 2!(1/6) = 1/3.
+X Hence E(X^2) = 1/3, option (b).
+
+@ FP-182 | Characteristic Function, MGF and PGF | Compound Distributions
+Q N is Poisson(lambda), the X_i are independent Exp(theta) variables, and S is the sum of the first N of them. What is Var(S)?
+O lambda/theta^2
+O 2 lambda/theta^2
+O lambda/theta
+O lambda^2/theta^2
+A b
+S Var(S) = lambda E(X^2) = lambda(2/theta^2).
+T For a compound Poisson the variance is always the rate times the second RAW moment of a single term.
+T For the exponential E(X^2) = 2/theta^2, twice the square of the mean - the factor 2 is the whole question.
+X For a compound Poisson, Var(S) = lambda E(X^2).
+X For Exp(theta), E(X^2) = 2/theta^2.
+X Hence Var(S) = 2 lambda/theta^2, option (b).
+
+@ FP-183 | Characteristic Function, MGF and PGF | Moment Generating Function
+Q The cumulant generating function is K(t) = lambda(e^t - 1). Every cumulant equals
+O lambda^r
+O lambda
+O r! lambda
+O zero beyond the second
+A b
+S Every derivative of lambda e^t at t = 0 is lambda, so all cumulants equal lambda.
+T The Poisson is the law whose cumulants are all equal - mean, variance, third cumulant, all lambda.
+T This immediately gives skewness 1/sqrt(lambda) and excess kurtosis 1/lambda.
+X K(t) = lambda(e^t - 1) has r-th derivative lambda e^t for every r >= 1.
+X At t = 0 this equals lambda.
+X So every cumulant is lambda, option (b).
+
+@ FP-184 | Characteristic Function, MGF and PGF | Characteristic Function
+Q Which statement is FALSE?
+O equal moment generating functions on an interval around 0 imply equal distributions
+O equal moment sequences imply equal distributions
+O the characteristic function always exists
+O the characteristic function is uniformly continuous
+A b
+S The lognormal has infinitely many distinct competitors with the same moments, so moments alone do not determine a law.
+T The moment problem is determinate only under a growth condition such as Carleman's; the lognormal famously fails it.
+T An MGF finite on a neighbourhood of 0 IS determining - that is why statement (a) is true and (b) is not.
+X The characteristic function always exists and is uniformly continuous, so (c) and (d) are true.
+X An MGF finite near 0 determines the law, so (a) is true.
+X The lognormal is moment-indeterminate, so (b) is false.
+
+@ FP-185 | Characteristic Function, MGF and PGF | Characteristic Function
+Q The characteristic function of X is real-valued for every t if and only if
+O X is non-negative
+O X is symmetric about 0
+O X has a finite mean
+O X is bounded
+A b
+S phi is real exactly when phi(t) equals its conjugate phi(-t), i.e. when X and -X have the same law.
+T Realness of the characteristic function is exactly symmetry about the origin - a definition in disguise.
+T Boundedness and finite moments are irrelevant; the Cauchy is unbounded with no mean yet has the real phi = e^(-|t|).
+X phi(-t) is always the complex conjugate of phi(t).
+X phi is real for all t exactly when phi(t) = phi(-t), i.e. when X and -X share a distribution.
+X That is symmetry about 0, option (b).
+
+@ FP-186 | Characteristic Function, MGF and PGF | Probability Generating Function
+Q For a probability generating function P(s), P(X is even) equals
+O P(1/2)
+O [P(1) + P(-1)]/2
+O P(0)
+O [P(1) - P(-1)]/2
+A b
+S Averaging P at s = 1 and s = -1 cancels the odd terms and doubles the even ones.
+T The same "even part" device works for any power series; the odd part uses the difference instead.
+T P(0) = P(X = 0), which is a single term, not the whole even part.
+X P(1) = sum of all p_k and P(-1) = sum of (-1)^k p_k.
+X Their average is the sum over even k of p_k.
+X So P(X even) = [P(1) + P(-1)]/2, option (b).
+
+@ FP-187 | Modes of Convergence and 0-1 Laws | Convergence in Probability and Distribution
+Q X_n is geometric on {1,2,...} with success probability p_n, where n p_n tends to lambda. Then X_n/n converges in distribution to
+O Poisson(lambda)
+O an exponential with rate lambda
+O the constant 1/lambda
+O nothing
+A b
+S P(X_n/n > x) = (1-p_n)^(nx), which tends to e^(-lambda x).
+T The geometric is the discrete exponential, and rescaling by the mean sends one to the other.
+T The limit is a continuous law even though every X_n is discrete - that is exactly what weak convergence permits.
+X P(X_n > nx) = (1 - p_n)^(floor of nx).
+X Taking logarithms, this behaves like exp(-n p_n x), which tends to e^(-lambda x).
+X So X_n/n tends to the exponential with rate lambda, option (b).
+
+@ FP-188 | Modes of Convergence and 0-1 Laws | Almost Sure Convergence
+Q X is N(0,1) and X_n = (-1)^n X. In what sense does X_n converge?
+O almost surely
+O in probability
+O in distribution only
+O in mean square
+A c
+S Every X_n is N(0,1) so the distributions never change, but the sequence oscillates and never settles.
+T Convergence in distribution is about the LAWS, not about the values; identical laws converge trivially.
+T Here |X_n - X_{n+1}| = 2|X|, which is bounded away from 0, so no stronger mode can hold.
+X Each X_n has the N(0,1) distribution, so the distribution functions are constant in n and converge.
+X But |X_n - X_{n+1}| = 2|X| does not go to 0 for any outcome with X not equal to 0.
+X So convergence holds only in distribution, option (c).
+
+@ FP-189 | Modes of Convergence and 0-1 Laws | Convergence in Probability and Distribution
+Q X_n converges in distribution to X and Y_n converges in distribution to Y. The product X_nY_n converges in distribution to XY when
+O always
+O X or Y is a constant
+O X and Y are independent
+O never
+A b
+S Slutsky's theorem needs one of the two limits to be degenerate; otherwise the joint behaviour is not determined.
+T Convergence in distribution controls each sequence separately but says nothing about their joint law.
+T A counterexample: X_n = Z and Y_n = (-1)^n Z both converge in distribution, but the product does not.
+X Marginal convergence in distribution does not determine the joint limit.
+X Slutsky's theorem restores the conclusion when one limit is a constant.
+X Hence the answer is option (b).
+
+@ FP-190 | Modes of Convergence and 0-1 Laws | Borel-Cantelli Lemmas
+Q X_1, X_2, ... are independent Exp(1). What are P(X_n > log n infinitely often) and P(X_n > n infinitely often)?
+O 1 and 1
+O 0 and 0
+O 1 and 0
+O 0 and 1
+A c
+S P(X_n > log n) = 1/n sums to infinity so the answer is 1; P(X_n > n) = e^(-n) sums finitely so the answer is 0.
+T Compute the sum of the probabilities first, then decide which Borel-Cantelli lemma applies.
+T Independence matters only for the divergent case; the convergent case needs no assumption.
+X P(X_n > log n) = e^(-log n) = 1/n, whose sum diverges, and the events are independent, so the second lemma gives 1.
+X P(X_n > n) = e^(-n), whose sum converges, so the first lemma gives 0.
+X The pair is 1 and 0, option (c).
+
+@ FP-191 | Modes of Convergence and 0-1 Laws | Convergence in Probability and Distribution
+Q X_n converges in distribution to X and g is continuous. Then g(X_n) converges to g(X)
+O in distribution
+O in probability
+O almost surely
+O not necessarily at all
+A a
+S The continuous mapping theorem preserves the mode of convergence, so the conclusion is again in distribution.
+T Continuous functions preserve all three modes - but only the mode you started with, never a stronger one.
+T Since X_n itself converges only in distribution, no stronger statement about g(X_n) is available.
+X The continuous mapping theorem states that convergence in distribution is preserved by continuous g.
+X Nothing stronger can follow, because the X_n need not even be defined on a common space.
+X Hence g(X_n) converges in distribution, option (a).
+
+@ FP-192 | Modes of Convergence and 0-1 Laws | Almost Sure Convergence
+Q Which implication is FALSE in general?
+O convergence in mean square implies convergence in mean
+O convergence in mean implies convergence in probability
+O almost sure convergence implies convergence in mean
+O almost sure convergence implies convergence in probability
+A c
+S n times the indicator that U < 1/n converges almost surely to 0 but has mean 1 throughout.
+T Almost sure convergence controls the values, not their integrals; uniform integrability is what bridges the gap.
+T The other three implications are standard and always hold.
+X The variable n times the indicator that U < 1/n tends to 0 almost surely.
+X Its expectation is 1 for every n, so it does not converge in mean.
+X Hence option (c) is the false implication.
+
+@ FP-193 | Modes of Convergence and 0-1 Laws | Kolmogorov Zero-One Law
+Q X_1, X_2, ... are independent N(0,1). What is P(the limit superior of X_n is plus infinity)?
+O 0
+O 1
+O 1/2
+O it depends on the sequence
+A b
+S For every M the sum of P(X_n > M) diverges, so by Borel-Cantelli the sequence exceeds M infinitely often.
+T Independent identically distributed variables with unbounded support always have limit superior equal to the right endpoint.
+T The event is a tail event, so Kolmogorov's law already restricts the answer to 0 or 1.
+X For any fixed M, P(X_n > M) is a positive constant, so the sum diverges.
+X By the second Borel-Cantelli lemma, X_n > M infinitely often with probability 1.
+X Since M is arbitrary, the limit superior is plus infinity almost surely, option (b).
+
+@ FP-194 | Probability Inequalities | One-Sided and Other Inequalities
+Q X has mean 100 and standard deviation 10. What is the sharpest guaranteed bound on P(X >= 120)?
+O 1/4
+O 1/5
+O 1/8
+O 1/2
+A b
+S Cantelli's one-sided bound 1/(1+k^2) with k = 2 gives 1/5, beating Chebyshev's two-sided 1/4.
+T For a ONE-SIDED tail always use Cantelli: 1/(1+k^2) is strictly sharper than 1/k^2.
+T Chebyshev would give 1/4 by splitting the two tails evenly, which wastes half the bound.
+X The deviation is k = 2 standard deviations above the mean.
+X Cantelli's inequality gives P(X - mu >= k sigma) <= 1/(1 + k^2) = 1/5.
+X This is sharper than Chebyshev's 1/4, so the answer is option (b).
+
+@ FP-195 | Probability Inequalities | Chebyshev Inequality
+Q Chebyshev's bound P(|X - mu| >= k sigma) <= 1/k^2 is attained by
+O no distribution
+O the normal distribution
+O the three-point law taking -k, 0 and k with probabilities 1/(2k^2), 1 - 1/k^2 and 1/(2k^2)
+O the uniform distribution
+A c
+S That three-point law has mean 0, variance 1 and puts exactly 1/k^2 outside k sigma.
+T Chebyshev is SHARP: a bound that cannot be improved without extra assumptions, and this law proves it.
+T For the normal the bound is very loose, which is why it is planted as a distractor.
+X The stated law has mean 0 and variance k^2(1/k^2) = 1.
+X P(|X| >= k) = 2(1/(2k^2)) = 1/k^2, so the bound holds with equality.
+X Hence the bound is attained, option (c).
+
+@ FP-196 | Probability Inequalities | Markov Inequality
+Q X is non-negative with E(X^2) = 4. What is the best Markov-type bound on P(X >= 4)?
+O 1/2
+O 1/4
+O 1/16
+O 1
+A b
+S Apply Markov to X^2: P(X^2 >= 16) <= 4/16 = 1/4.
+T Applying Markov to a power sharpens the bound; the second moment is the natural choice when it is given.
+T Using the first moment would need E(X), which is not given and is at most 2 by Jensen.
+X X >= 4 is the same event as X^2 >= 16.
+X Markov gives P(X^2 >= 16) <= E(X^2)/16 = 4/16.
+X The bound is 1/4, option (b).
+
+@ FP-197 | Probability Inequalities | Chebyshev Inequality
+Q X_1, ..., X_100 are independent with mean 0 and variance 1. What bound does Chebyshev give for P(|sum| >= 50)?
+O 1/25
+O 1/4
+O 1/2
+O 1/50
+A a
+S Var(sum) = 100, so the bound is 100/2500 = 1/25.
+T Variances add for independent variables; the standard deviation of the sum is 10 here.
+T 50 is 5 standard deviations away, and 1/5^2 = 1/25 confirms the answer instantly.
+X Var(sum) = 100(1) = 100.
+X Chebyshev gives P(|sum| >= 50) <= 100/50^2.
+X This is 1/25, option (a).
+
+@ FP-198 | Probability Inequalities | Markov Inequality
+Q X is non-negative with E(X) = 5. The Markov bound on P(X >= 3) is
+O 3/5
+O 5/3, which carries no information
+O 0.6
+O 2/5
+A b
+S Markov gives 5/3, which exceeds 1 and is therefore vacuous.
+T Markov is informative only when the threshold exceeds the mean; below it the bound is useless.
+T 3/5 inverts the ratio - the bound is always E(X)/a, not a/E(X).
+X Markov's inequality gives P(X >= a) <= E(X)/a = 5/3.
+X A probability can never exceed 1, so the bound says nothing.
+X The answer is option (b).
+
+@ FP-199 | Probability Inequalities | One-Sided and Other Inequalities
+Q As a function of r > 0, the quantity (E|X|^r)^(1/r) is
+O decreasing
+O non-decreasing
+O constant
+O unimodal
+A b
+S Lyapunov's inequality says the norms increase with the order r.
+T Higher-order norms weight the tails more heavily, so they can only be larger.
+T This gives E|X| <= sqrt(E(X^2)) as the r = 1 and r = 2 case, which is Cauchy-Schwarz.
+X Lyapunov's inequality states that for 0 < r < s, (E|X|^r)^(1/r) <= (E|X|^s)^(1/s).
+X So the map is non-decreasing in r.
+X That is option (b).
+
+@ FP-200 | Laws of Large Numbers and Central Limit Theorem | Central Limit Theorem
+Q X_1, ..., X_100 are independent Exp(1). What is the approximate value of P(sum > 110)?
+O 0.1587
+O 0.0228
+O 0.3085
+O 0.5
+A a
+S Mean 100 and variance 100, so z = 1 and the tail is 0.1587.
+T For Exp(1) both the mean and the variance are 1, so n observations give mean n and variance n.
+T The exact answer uses a Gamma(100,1) distribution; the normal approximation is what the question wants.
+X E(sum) = 100 and Var(sum) = 100, so the standard deviation is 10.
+X z = (110 - 100)/10 = 1.
+X P(sum > 110) is approximately 0.1587, option (a).
+
+@ FP-201 | Laws of Large Numbers and Central Limit Theorem | Central Limit Theorem
+Q X_i are independent with density 2x on (0,1). Then sqrt(n) times (the sample mean minus 2/3) tends to N(0, v). What is v?
+O 1/12
+O 1/18
+O 1/9
+O 2/9
+A b
+S E(X^2) = 1/2 and the mean is 2/3, so the variance is 1/2 - 4/9 = 1/18.
+T The limiting variance in the central limit theorem is just the population variance - compute it directly.
+T The mean 2/3 is already given, so only the second moment is needed.
+X E(X) = integral of 2x^2 dx = 2/3 and E(X^2) = integral of 2x^3 dx = 1/2.
+X Var(X) = 1/2 - 4/9 = (9 - 8)/18.
+X Hence v = 1/18, option (b).
+
+@ FP-202 | Laws of Large Numbers and Central Limit Theorem | Delta Method
+Q For a Bernoulli(p) sample, sqrt(n) times (X_bar(1 - X_bar) minus p(1-p)) tends to N(0, v). At p = 1/2, what is v?
+O 1/4
+O 1/16
+O 0
+O 1/2
+A c
+S The delta-method factor is g'(p)^2 pq = (1-2p)^2 pq, which vanishes at p = 1/2.
+T Always check whether g'(theta) is zero: a vanishing derivative makes the first-order limit degenerate.
+T When the first-order term dies, the correct scaling becomes n rather than sqrt(n), and the limit is chi-square.
+X g(p) = p(1-p) has g'(p) = 1 - 2p.
+X The asymptotic variance is g'(p)^2 p(1-p), which at p = 1/2 is 0.
+X Hence v = 0, option (c).
+
+@ FP-203 | Laws of Large Numbers and Central Limit Theorem | Weak and Strong Laws
+Q X_k are independent with common mean mu and Var(X_k) = k. Does the sample mean converge to mu in probability?
+O yes, by Chebyshev
+O yes, by the strong law
+O not guaranteed; the variance of the sample mean tends to 1/2
+O yes, for normal variables
+A c
+S Var(X_bar) = (1/n^2) times the sum of k = (n+1)/(2n), which tends to 1/2 rather than 0.
+T Chebyshev proves consistency only when Var(X_bar) tends to 0 - check that before invoking it.
+T The variances grow linearly, which is exactly fast enough to defeat the 1/n^2 factor.
+X Var(X_bar) = (1/n^2) sum from k = 1 to n of k = n(n+1)/(2n^2).
+X This tends to 1/2, not to 0.
+X So Chebyshev gives no consistency here, option (c).
+
+@ FP-204 | Laws of Large Numbers and Central Limit Theorem | Central Limit Theorem
+Q A fair coin is tossed 400 times. What is the approximate probability that the number of heads lies between 180 and 220 inclusive?
+O 0.6827
+O 0.9544
+O 0.9973
+O 0.75
+A b
+S Mean 200 and standard deviation 10, so the interval is the mean plus or minus 2 sigma: 0.9544.
+T For a binomial, sigma = sqrt(npq) = sqrt(100) = 10 here - the arithmetic is deliberately clean.
+T A continuity correction would widen the interval slightly, but the intended answer is the plain two-sigma value.
+X E(X) = 200 and Var(X) = 400(1/2)(1/2) = 100.
+X The interval 180 to 220 is 200 plus or minus 2 sigma.
+X The probability is approximately 0.9544, option (b).
+
+@ FP-205 | Laws of Large Numbers and Central Limit Theorem | Weak and Strong Laws
+Q For a sample from U(0, theta), which estimator is strongly consistent for theta by the strong law alone?
+O the sample mean
+O twice the sample mean
+O half the sample mean
+O the square of the sample mean
+A b
+S E(X) = theta/2, so the sample mean converges almost surely to theta/2 and twice it converges to theta.
+T The strong law gives convergence to the population MEAN; invert the relation between the mean and the parameter.
+T The sample maximum is also consistent, but that needs an order-statistic argument, not the strong law.
+X By the strong law the sample mean converges almost surely to E(X) = theta/2.
+X Multiplying by 2 gives almost sure convergence to theta.
+X Hence twice the sample mean, option (b).
+
+@ FP-206 | Laws of Large Numbers and Central Limit Theorem | Delta Method
+Q X_i are independent with mean mu and variance sigma^2. Then sqrt(n) times (the square of the sample mean minus mu^2) tends to N(0, v). What is v?
+O sigma^2
+O 4 mu^2 sigma^2
+O 2 mu sigma^2
+O sigma^4
+A b
+S Delta method with g(x) = x^2: v = g'(mu)^2 sigma^2 = 4 mu^2 sigma^2.
+T The delta method multiplies the asymptotic variance by the SQUARE of the derivative at the true value.
+T At mu = 0 the limit degenerates, which is the same phenomenon as in the Bernoulli variance question.
+X g(x) = x^2 has g'(mu) = 2 mu.
+X The delta method gives the limiting variance g'(mu)^2 Var(X).
+X Hence v = 4 mu^2 sigma^2, option (b).
+
+@ FP-207 | Laws of Large Numbers and Central Limit Theorem | Central Limit Theorem
+Q A central limit theorem for independent but not identically distributed summands holds under
+O finite variances alone
+O the Lindeberg or Liapounov conditions
+O no circumstances
+O identical means
+A b
+S Finite variances are not enough; the Lindeberg condition rules out any single term dominating the sum.
+T Liapounov's condition is a convenient sufficient version of Lindeberg's and is easier to check.
+T The point of the conditions is uniform smallness: no individual summand may carry a fixed share of the total variance.
+X Independence and finite variances alone do not give asymptotic normality.
+X The Lindeberg condition, or the stronger Liapounov condition, supplies the missing uniform smallness.
+X Hence option (b).
+
+@ FP-208 | Laws of Large Numbers and Central Limit Theorem | Central Limit Theorem
+Q X_i are independent Poisson(1) and n = 100. Using the central limit theorem without a continuity correction, the probability that the sum is at most 90 is approximately
+O Phi(-1)
+O Phi(-0.1)
+O Phi(-10)
+O 1/2
+A a
+S Mean 100 and variance 100, so z = -10/10 = -1 and the answer is Phi(-1).
+T The sum of independent Poissons is Poisson with the summed rate: Poisson(100) here.
+T The mean and the variance of a Poisson coincide, so sigma = 10, not 100.
+X The sum is Poisson(100) with mean 100 and standard deviation 10.
+X z = (90 - 100)/10 = -1.
+X The required probability is approximately Phi(-1), option (a).
+
+@ FP-209 | Distribution Functions and Transformations | Mixed Distributions
+Q F(x) is 0 for x < 0, (x+1)/4 for 0 <= x < 1 and 1 for x >= 1. What are P(X = 0) and P(X = 1)?
+O 0 and 0
+O 1/4 and 1/2
+O 1/4 and 1/4
+O 0 and 1/2
+A b
+S The jumps are F(0) - F(0-) = 1/4 and F(1) - F(1-) = 1 - 1/2 = 1/2.
+T For any piecewise distribution function, list the jumps first: a jump size is exactly the atom's probability.
+T The continuous part carries the remaining mass 1/4, so the three pieces correctly total 1.
+X F(0) = 1/4 while F(0-) = 0, giving an atom of 1/4 at the origin.
+X F(1-) = 2/4 = 1/2 while F(1) = 1, giving an atom of 1/2 at 1.
+X The atoms are 1/4 and 1/2, option (b).
+
+@ FP-210 | Distribution Functions and Transformations | Mixed Distributions
+Q For F(x) = (x+1)/4 on 0 <= x < 1, with F = 0 below 0 and 1 from 1 onwards, what is E(X)?
+O 1/2
+O 5/8
+O 3/4
+O 9/16
+A b
+S The atom at 1 contributes 1/2, and the continuous density 1/4 on (0,1) contributes 1/8.
+T For a mixed law add the atoms first and integrate the continuous part separately.
+T The atom at 0 contributes nothing to the mean but does affect the variance - a common follow-up.
+X The atom at 1 contributes 1 times 1/2 = 1/2.
+X The density on (0,1) is F'(x) = 1/4, contributing integral of x/4 dx = 1/8.
+X E(X) = 1/2 + 1/8 = 5/8, option (b).
+
+@ FP-211 | Distribution Functions and Transformations | Distribution Function Properties
+Q F(x) is 0 for x < 0, alpha + (1 - alpha)x for 0 <= x < 1 and 1 for x >= 1. This is a valid distribution function if and only if
+O alpha = 0
+O 0 <= alpha <= 1
+O alpha > 0
+O 0 < alpha < 1
+A b
+S alpha is the atom at 0, so any value in 0 to 1 works; the endpoints give a degenerate atom and a pure uniform.
+T Read alpha as P(X = 0): a mixture of a point mass and a uniform is always legitimate.
+T The slope 1 - alpha stays non-negative on the same range, so no extra condition appears.
+X F(0) = alpha and F(0-) = 0, so alpha is the probability of the atom at 0 and must lie in 0 to 1.
+X F is non-decreasing since 1 - alpha >= 0, and F(1-) = 1.
+X Hence 0 <= alpha <= 1, option (b).
+
+@ FP-212 | Distribution Functions and Transformations | Distribution Function Properties
+Q For the logistic distribution function F(x) = 1/(1 + e^(-x)), the density equals
+O F(1 - F)
+O F^2
+O e^(-x)
+O 1 - F
+A a
+S Differentiating gives e^(-x)/(1+e^(-x))^2 = F(1 - F).
+T The logistic satisfies the differential equation F' = F(1-F), which is what makes it the logistic growth curve.
+T The density is symmetric with median 0, and its maximum value is 1/4 at x = 0.
+X F'(x) = e^(-x)/(1 + e^(-x))^2.
+X Since 1 - F = e^(-x)/(1+e^(-x)), the product F(1-F) equals the same expression.
+X Hence the density is F(1-F), option (a).
+
+@ FP-213 | Distribution Functions and Transformations | Probability Integral Transform
+Q X is Bernoulli(1/2) with distribution function F. What values does F(X) take?
+O it is U(0,1)
+O 1/2 and 1 with probability 1/2 each
+O 0 and 1
+O 0 and 1/2
+A b
+S F(0) = 1/2 and F(1) = 1, so F(X) is a two-point variable, not uniform.
+T The probability integral transform needs a CONTINUOUS distribution function; for a discrete law it fails outright.
+T The values of F(X) are exactly the cumulative probabilities at the atoms.
+X F(0) = P(X <= 0) = 1/2 and F(1) = 1.
+X X takes 0 and 1 with probability 1/2 each.
+X So F(X) takes 1/2 and 1 with probability 1/2 each, option (b).
+
+@ FP-214 | Distribution Functions and Transformations | Probability Integral Transform
+Q U is U(0,1). Which transform gives the standard Cauchy distribution?
+O -log(1 - U)
+O tan(pi(U - 1/2))
+O the ceiling of log U divided by log q
+O the square root of U
+A b
+S The Cauchy quantile function is tan(pi(u - 1/2)).
+T Inverse-transform sampling: apply the quantile function of the target law to a uniform variable.
+T (a) gives Exp(1), (c) gives a geometric and (d) gives Beta(2,1) - each is a standard construction in its own right.
+X The standard Cauchy distribution function is 1/2 + (1/pi) arctan x.
+X Inverting, x = tan(pi(u - 1/2)).
+X So tan(pi(U - 1/2)) is standard Cauchy, option (b).
+
+@ FP-215 | Distribution Functions and Transformations | Hazard and Survival
+Q The survival function is S(x) = (1 + x)^(-2) for x > 0. What is the hazard rate?
+O 2/(1 + x)
+O 2(1 + x)^(-3)
+O 1/(1 + x)
+O the constant 2
+A a
+S h = f/S = 2(1+x)^(-3)/(1+x)^(-2) = 2/(1+x).
+T The hazard is the density divided by the survival function - always differentiate S first.
+T A decreasing hazard is the signature of a heavy tail; a constant hazard would mean the exponential.
+X f(x) = -S'(x) = 2(1+x)^(-3).
+X h(x) = f(x)/S(x) = 2(1+x)^(-3)/(1+x)^(-2).
+X This is 2/(1+x), option (a).
+
+@ FP-216 | Distribution Functions and Transformations | Functions of Random Variables
+Q X has distribution function F. Then G(x) = F(sqrt(x)) for x >= 0 and 0 otherwise is the distribution function of X^2
+O always
+O only if X is non-negative with probability one
+O only if X is symmetric
+O never
+A b
+S In general P(X^2 <= x) = F(sqrt x) - F(-sqrt x minus), so the left tail must be empty for the formula to hold.
+T Squaring folds the line, so both branches contribute unless the negative half carries no mass.
+T For a symmetric X the correct answer is 2F(sqrt x) - 1, not F(sqrt x) - option (c) is the trap.
+X P(X^2 <= x) = P(-sqrt x <= X <= sqrt x) = F(sqrt x) - F(-sqrt x minus).
+X This reduces to F(sqrt x) exactly when P(X < 0) = 0.
+X Hence option (b).
+
+@ FP-217 | Distribution Functions and Transformations | Distribution Function Properties
+Q g is strictly increasing and X is continuous. Which statement is correct?
+O both the mean and the median of g(X) are g of the corresponding quantity
+O only the median transforms in that way
+O only the mean transforms in that way
+O neither transforms in that way
+A b
+S Quantiles commute with strictly increasing maps; expectations do not, by Jensen's inequality.
+T Order statistics and quantiles pass through monotone maps unchanged - that is a fact about ordering, not about integration.
+T The mean of log X is not the log of the mean; the gap is exactly what Jensen's inequality measures.
+X If m is the median of X then P(g(X) <= g(m)) = P(X <= m) = 1/2, so g(m) is the median of g(X).
+X For a strictly convex or concave g, E[g(X)] differs from g(E(X)).
+X So only the median transforms, option (b).
+
+@ FP-218 | Distribution Functions and Transformations | Distribution Function Properties
+Q The set of discontinuity points of a distribution function is
+O finite
+O at most countable
+O possibly uncountable
+O empty
+A b
+S Jumps larger than 1/n number at most n, and a countable union of finite sets is countable.
+T Total mass 1 caps the number of large jumps, which is the whole argument.
+T Some laws have infinitely many atoms - the Poisson has one at every non-negative integer - so "finite" is wrong.
+X A jump of size at least 1/n uses up at least 1/n of the total mass 1, so there are at most n of them.
+X The set of all jumps is the union over n of these finite sets.
+X A countable union of finite sets is countable, option (b).
+
+@ FP-219 | Random Vectors and Joint Distributions | Independence and Covariance
+Q X and Y are independent Exp(1). Which pair of statements about U = X + Y and V = X/Y is correct?
+O U and V are independent
+O U and V are dependent with Corr(U,V) = 1/2
+O V is U(0,1)
+O U is Exp(2)
+A a
+S X/Y is a function of X/(X+Y), which is independent of the total under the Gamma-Beta factorisation.
+T Anything that depends only on the RATIO is independent of the total for Gammas with a common scale.
+T V has density 1/(1+v)^2 on the positive half-line, not U(0,1) - option (c) confuses the ratio with the proportion.
+X By the Gamma-Beta factorisation, X/(X+Y) is independent of X+Y.
+X V = X/Y is a one-to-one function of X/(X+Y), so it too is independent of U.
+X Hence U and V are independent, option (a).

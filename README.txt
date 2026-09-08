@@ -14,7 +14,8 @@ connection needed, no server, no app store, no account.
 Keep these four files together in one folder:
 
     index.html      the application (includes the LaTeX typesetting engine)
-    questions.js    the 720-question database
+    questions.js    the question database - 720 authentic PYQs plus a
+                    separate bank of 750 AI-generated 2027 forecast problems
     styles.css      the styling
     README.txt      this file
 
@@ -74,8 +75,47 @@ problem is described on the question itself and listed in full under
 Home > Data Audit. Two of them have no valid option at all; those two are
 excluded from scoring rather than guessed.
 
-This build contains NO artificially generated practice questions. All 720
-items are real PYQs.
+The 720 PYQ items are all real. Nothing in that bank is generated, padded or
+invented.
+
+
+THE 2027 FORECAST BANK - AI-GENERATED, NOT PYQs
+-----------------------------------------------
+Alongside the 720 authentic PYQs the app carries a SECOND, SEPARATE bank of
+750 forecast problems written for the 2027 attempt:
+
+    Probability                                375
+    Statistical Methods                        375
+    ------------------------------------------------
+    Total                                      750
+
+THESE ARE NOT PREVIOUS-YEAR QUESTIONS. Every stem, every option, every
+answer and every exam shortcut in the forecast bank was written for this
+project. Nothing there is reproduced from a UPSC paper and no official UPSC
+key exists for any of it.
+
+The separation is enforced, not merely stated:
+
+  - the two banks live in different arrays inside questions.js
+    (window.quizData for the PYQs, window.forecastData for the forecast);
+  - forecast ids look like FP-001 and FS-001, never like 2023-Q12;
+  - a forecast question is badged FORECAST - AI-generated wherever it
+    appears, and its explanations say so again;
+  - Full Year, Sectional, Topic, Subtopic and Custom mocks are built only
+    from the PYQ bank and can never serve a forecast question;
+  - the four PYQ PDFs contain no forecast item and the two forecast PDFs
+    contain no PYQ.
+
+FORECAST MOCKS   Home > Forecast practice. Thirty named mocks:
+
+    Probability Forecast Mock 01 ... 15
+    Statistical Methods Forecast Mock 01 ... 15
+
+Each holds EXACTLY 25 questions, each question appears in exactly one mock,
+and every mock is spread across as many topics as the bank allows. Each can
+be started in Learning Mode or in Strict Exam Mode, and both modes behave
+exactly as they do for the PYQ mocks - including the fixed Learning Mode
+reveal order.
 
 
 THE MAIN MODES
@@ -148,9 +188,11 @@ ATTEMPT HISTORY Every mock you have submitted, and your progress across
 BOOKMARKS       Flag any question with the star button and find it again
                 under My Bookmarks.
 
-SEARCH          Search all 720 questions by text, year, unit, topic,
-                subtopic or question id ("Bayes", "2023", "Regression",
-                "Runge-Kutta", "2026-Q12").
+SEARCH          Search all 1,470 questions - the 720 PYQs and the 750
+                forecast problems - by text, year, unit, topic, subtopic or
+                question id ("Bayes", "2023", "Regression", "Runge-Kutta",
+                "2026-Q12", "FP-041"). Forecast hits carry the FORECAST
+                badge so the two are never confused.
 
 
 SETTINGS AND YOUR DATA
@@ -214,11 +256,12 @@ The app looks cramped on a phone
 
 MATHEMATICS
 -----------
-Every formula in this app - in the questions, in the options, and in all the
-shortcuts, tips and solutions - is written in LaTeX and typeset properly, the
-way a textbook sets it: real fractions with rules, real integral and summation
-signs, proper subscripts and superscripts, stretchy brackets, Greek letters
-and the correct spacing around operators.
+Every formula in this app - in the authentic questions, in the forecast
+questions, in the options, and in all the shortcuts, tips and solutions - is
+written in LaTeX and typeset properly, the way a textbook sets it: real
+fractions with rules, real integral and summation signs, proper subscripts and
+superscripts, stretchy brackets, Greek letters and the correct spacing around
+operators. The same is true of the six PDF volumes.
 
 The typesetting engine is KaTeX. It is not downloaded when you open the app -
 the engine, its stylesheet and all twenty of its mathematical fonts are

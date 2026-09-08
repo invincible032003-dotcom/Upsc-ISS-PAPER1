@@ -1,0 +1,841 @@
+# FORECAST / AI-GENERATED - Probability, forecast batch 2 (items 1-60)
+
+@ FP-101 | Classical and Axiomatic Probability | Combinatorial Probability
+Q A fair die is rolled four times. What is the probability that the four outcomes are strictly increasing?
+O 15/1296
+O 1/54
+O 5/324
+O 1/24
+A a
+S Each 4-subset of the six faces gives exactly one increasing order: C(6,4)/6^4 = 15/1296.
+T "Strictly increasing" means choose the values, then the order is forced - so count subsets, never permutations.
+T 15/1296 equals 5/432; option (c) 5/324 is the near-miss for a wrong denominator.
+X There are 6^4 = 1296 equally likely outcome sequences.
+X A strictly increasing sequence is determined by its set of four distinct values: C(6,4) = 15 of them.
+X The probability is 15/1296, option (a).
+
+@ FP-102 | Classical and Axiomatic Probability | Combinatorial Probability
+Q Eight people including one couple sit at random in a row. What is the probability that the couple sit together and neither of them is at an end?
+O 1/4
+O 5/28
+O 3/14
+O 5/14
+A b
+S Five interior adjacent slots, two internal orders, 6! for the rest: 5(2)(6!)/8! = 10/56 = 5/28.
+T Treat the couple as a block, then count only the block positions that avoid both end seats.
+T Ignoring the end restriction gives 7 blocks and the answer 1/4, which is planted as option (a).
+X The adjacent pairs that use no end seat are positions (2,3) through (6,7): 5 of them.
+X Each admits 2 internal orders and 6! arrangements of the others, so 5(2)(720) = 7200 favourable orders.
+X The probability is 7200/40320 = 5/28, option (b).
+
+@ FP-103 | Classical and Axiomatic Probability | Geometric Probability
+Q A point is chosen uniformly in the unit disc. What is the probability that it is nearer to the centre than to the boundary?
+O 1/2
+O 1/4
+O 1/pi
+O 1/sqrt(2)
+A b
+S Nearer to the centre means r < 1 - r, i.e. r < 1/2, an area ratio of (1/2)^2 = 1/4.
+T For a uniform point in a disc, probabilities are ratios of AREAS, so they scale with the square of the radius.
+T Answering 1/2 uses the radius ratio instead of the area ratio - the single most common error here.
+X The distance to the boundary is 1 - r, so the condition is r < 1 - r, i.e. r < 1/2.
+X The favourable area is pi(1/2)^2 and the total area is pi.
+X The probability is 1/4, option (b).
+
+@ FP-104 | Classical and Axiomatic Probability | Combinatorial Probability
+Q An integer is drawn uniformly from 1 to 100. What is the probability that it is divisible by 2, 3 or 5?
+O 0.70
+O 0.74
+O 0.76
+O 0.66
+A b
+S Inclusion-exclusion: 50 + 33 + 20 - 16 - 10 - 6 + 3 = 74, so the probability is 0.74.
+T Use floor division for each count; the triple intersection is the multiples of 30.
+T Adding 50 + 33 + 20 = 103 alone exceeds 100, which shows immediately that the overlaps must be removed.
+X Multiples of 2, 3, 5 number 50, 33, 20; of 6, 10, 15 number 16, 10, 6; of 30 number 3.
+X Inclusion-exclusion gives 50 + 33 + 20 - 16 - 10 - 6 + 3 = 74.
+X The probability is 0.74, option (b).
+
+@ FP-105 | Classical and Axiomatic Probability | Combinatorial Probability
+Q A hand of 5 cards is dealt from a standard pack of 52. What is the probability that exactly two suits appear?
+O C(4,2) C(26,5)/C(52,5)
+O C(4,2)[C(26,5) - 2 C(13,5)]/C(52,5)
+O 2 C(26,5)/C(52,5)
+O C(4,2) C(13,5)^2/C(52,5)
+A b
+S Choose the two suits, count all hands inside them, then subtract the two single-suit hands.
+T "Exactly k" always means "at most k" minus the lower cases; C(26,5) alone counts one-suit hands too.
+T Option (a) is the at-most-two count and therefore over-counts; it is the standard trap.
+X Choose the pair of suits in C(4,2) ways.
+X Hands drawn from those 26 cards number C(26,5), of which 2 C(13,5) use only one suit.
+X The probability is C(4,2)[C(26,5) - 2C(13,5)]/C(52,5), option (b).
+
+@ FP-106 | Conditional Probability and Bayes Theorem | Total Probability
+Q Two fair dice are thrown. What is P(sum = 7 given that at least one die shows 3)?
+O 1/6
+O 2/11
+O 1/11
+O 1/3
+A b
+S The conditioning event has 11 outcomes, of which (3,4) and (4,3) give a sum of 7.
+T Count the conditioning set explicitly: "at least one 3" is 6 + 6 - 1 = 11 outcomes, not 12.
+T Reporting 1/6 answers the unconditional question and ignores the information given.
+X The event "at least one 3" contains 11 of the 36 outcomes.
+X Of these, the sum is 7 for (3,4) and (4,3).
+X The conditional probability is 2/11, option (b).
+
+@ FP-107 | Random Vectors and Joint Distributions | Joint and Marginal Distributions
+Q X and Y are independent U(0,1). What is P(|X - Y| < 1/4 and X + Y > 1)?
+O 7/16
+O 7/32
+O 1/8
+O 3/16
+A b
+S The band |X-Y| < 1/4 has area 1 - (3/4)^2 = 7/16, and the map (x,y) to (1-x,1-y) splits it in half.
+T Exploit the symmetry of the square about its centre: it preserves the band and swaps the two sides of x + y = 1.
+T Multiplying the two probabilities as if independent gives 7/32 by accident here, but the events are NOT independent - the symmetry is the honest route.
+X The band |X - Y| < 1/4 has area 1 - (1 - 1/4)^2 = 7/16.
+X The reflection (x,y) to (1-x,1-y) maps the band onto itself and exchanges X+Y > 1 with X+Y < 1.
+X So exactly half the band qualifies: 7/32, option (b).
+
+@ FP-108 | Conditional Probability and Bayes Theorem | Bayes Theorem
+Q Three dice are available: a fair one, one with faces 1,2,3,4,6,6 and one with faces 1,2,3,6,6,6. One is chosen at random and rolled twice, giving two sixes. What is the probability that the fair die was chosen?
+O 1/3
+O 1/14
+O 1/9
+O 2/7
+A b
+S Likelihoods 1/36, 4/36 and 9/36 give posterior weights 1 : 4 : 9, so the fair die has probability 1/14.
+T With equal priors the posterior is proportional to the likelihood alone - keep a common denominator and read the integers off.
+T The likelihood grows with the SQUARE of the number of sixes on the die, which is why the ratios are 1 : 4 : 9.
+X P(two sixes) is (1/6)^2, (2/6)^2 and (3/6)^2 for the three dice, i.e. 1/36, 4/36 and 9/36.
+X The posterior weights are proportional to 1, 4 and 9, summing to 14.
+X P(fair | two sixes) = 1/14, option (b).
+
+@ FP-109 | Conditional Probability and Bayes Theorem | Bayes Theorem
+Q 30% of mail is spam. A word W appears in 60% of spam and 5% of legitimate mail. Two independent messages each contain W. What is the probability that both are spam?
+O (36/43)^2
+O 36/43
+O 0.36
+O (18/43)^2
+A a
+S P(spam | W) = 0.18/(0.18 + 0.035) = 36/43, and independence squares it.
+T Compute the posterior for one message first, then use independence - never apply Bayes to the pair at once.
+T (18/43)^2 forgets to normalise the numerator and is planted as option (d).
+X P(W) = 0.3(0.6) + 0.7(0.05) = 0.18 + 0.035 = 0.215.
+X P(spam | W) = 0.18/0.215 = 36/43.
+X For two independent messages the answer is (36/43)^2, option (a).
+
+@ FP-110 | Conditional Probability and Bayes Theorem | Bayes Theorem
+Q An urn holds 3 balls; the number of white balls is 0, 1, 2 or 3 with equal prior probability. Two draws with replacement are both white. What is the probability that all three balls are white?
+O 9/14
+O 3/4
+O 1/2
+O 9/16
+A a
+S Likelihood (k/3)^2 gives weights 0, 1, 4, 9, so the answer is 9/14.
+T With replacement the draws are conditionally independent given k, so the likelihood is a clean square.
+T The k = 0 case has likelihood 0 and drops out; the weights 1 : 4 : 9 are the same pattern as the three-dice problem.
+X The likelihood of two whites given k white balls is (k/3)^2.
+X Unnormalised posterior weights are 0, 1/9, 4/9 and 9/9, in the ratio 0 : 1 : 4 : 9.
+X P(k = 3 | data) = 9/14, option (a).
+
+@ FP-111 | Conditional Probability and Bayes Theorem | Bayes Theorem
+Q A bit 0 or 1 is sent with equal probability over a channel that flips each transmitted bit independently with probability 0.1. The same bit is sent twice and the receiver observes 1 then 0. What is the probability that the bit sent was 1?
+O 0.9
+O 0.1
+O 1/2
+O 0.81/0.82
+A c
+S Both hypotheses give the same likelihood 0.9(0.1), so the data are uninformative and the posterior equals the prior.
+T When the likelihood is the same under every hypothesis, Bayes returns the prior unchanged - no computation is needed.
+T One agreeing and one disagreeing observation always cancel for a symmetric binary channel.
+X Given the bit was 1, P(observe 1 then 0) = 0.9(0.1) = 0.09.
+X Given the bit was 0, P(observe 1 then 0) = 0.1(0.9) = 0.09.
+X The likelihoods are equal, so the posterior stays at 1/2, option (c).
+
+@ FP-112 | Conditional Probability and Bayes Theorem | Bayes Theorem
+Q The success probability p of a coin is U(0,1). The coin is tossed twice and both tosses are heads. What is the probability that a third toss is a head?
+O 2/3
+O 3/4
+O 1/2
+O 4/5
+A b
+S Laplace's rule: E(p^3)/E(p^2) = (1/4)/(1/3) = 3/4, which is (k+1)/(n+2) with k = n = 2.
+T The predictive probability is a ratio of moments of the prior, not the posterior mean of a single toss.
+T Laplace's rule of succession (k+1)/(n+2) gives 3/4 directly and is worth memorising.
+X The posterior is proportional to p^2, so the predictive probability is E(p^3)/E(p^2).
+X For a uniform prior these are 1/4 and 1/3.
+X The answer is 3/4, option (b).
+
+@ FP-113 | Standard Discrete Distributions | Binomial Distribution
+Q X is Binomial(4, 1/3). What is P(X is even)?
+O 1/2
+O 41/81
+O 40/81
+O 17/27
+A b
+S The parity formula gives [1 + (1 - 2p)^n]/2 = (1 + 1/81)/2 = 41/81.
+T P(even) = [1 + (q - p)^n]/2 comes from averaging the PGF at s = 1 and s = -1.
+T The answer must exceed 1/2 when p < 1/2, which eliminates option (c) immediately.
+X P(X even) = [P(1) + P(-1)]/2 for the PGF P(s) = (q + ps)^n.
+X This is [1 + (1/3 - 2/3)^4... more precisely [1 + (q-p)^n]/2 = [1 + (1/3)^4]/2.
+X The value is (1 + 1/81)/2 = 41/81, option (b).
+
+@ FP-114 | Standard Discrete Distributions | Poisson Distribution
+Q X is Poisson(lambda). What is E[X(X-1)(X-2)]?
+O lambda^3 + 3 lambda^2 + lambda
+O lambda^3
+O lambda^3 - lambda
+O lambda^2
+A b
+S Factorial moments of the Poisson are pure powers: the r-th factorial moment is lambda^r.
+T Never expand X(X-1)(X-2); recognise it as the third factorial moment and write lambda^3 at once.
+T Option (a) is E(X^3), the answer to the question candidates think they were asked.
+X The r-th factorial moment of a Poisson is the r-th derivative of the PGF at s = 1.
+X For P(s) = exp(lambda(s-1)) this derivative is lambda^r.
+X Hence E[X(X-1)(X-2)] = lambda^3, option (b).
+
+@ FP-115 | Standard Discrete Distributions | Poisson Distribution
+Q X is Poisson(lambda). What is P(X is even)?
+O 1/2
+O (1 + e^(-lambda))/2
+O (1 + e^(-2 lambda))/2
+O e^(-lambda) sinh(lambda)
+A c
+S [P(1) + P(-1)]/2 with P(s) = exp(lambda(s-1)) gives (1 + e^(-2 lambda))/2.
+T The even-part trick works for every PGF: average its values at s = 1 and s = -1.
+T Option (d) is e^(-lambda) sinh(lambda) = P(X odd), the complement - read the parity asked for.
+X P(X even) = [P(1) + P(-1)]/2 where P(s) = exp(lambda(s - 1)).
+X P(1) = 1 and P(-1) = e^(-2 lambda).
+X Hence P(X even) = (1 + e^(-2 lambda))/2, option (c).
+
+@ FP-116 | Standard Discrete Distributions | Geometric and Negative Binomial
+Q X is geometric on {0, 1, 2, ...} with p = 1/2. What is E(X^2)?
+O 2
+O 3
+O 4
+O 1
+A b
+S Mean 1 and variance q/p^2 = 2, so E(X^2) = 2 + 1 = 3.
+T On {0,1,...} the geometric has mean q/p and variance q/p^2 - both differ from the {1,2,...} version.
+T Answering 2 gives the variance, not the second moment; the square of the mean must be added.
+X For the geometric on {0,1,...} with p = 1/2, E(X) = q/p = 1 and Var(X) = q/p^2 = 2.
+X E(X^2) = Var(X) + [E(X)]^2 = 2 + 1.
+X Hence E(X^2) = 3, option (b).
+
+@ FP-117 | Standard Discrete Distributions | Geometric and Negative Binomial
+Q For the negative binomial distribution counting failures before the r-th success, the ratio of variance to mean is
+O 1
+O p
+O 1/p
+O r/p
+A c
+S Var/mean = (rq/p^2)/(rq/p) = 1/p, which always exceeds 1.
+T The negative binomial is always over-dispersed: the ratio 1/p is greater than 1 for every p < 1.
+T Compare with the binomial, where the ratio is q < 1, and the Poisson, where it is exactly 1.
+X The mean is rq/p and the variance is rq/p^2.
+X Their ratio is 1/p.
+X That is option (c).
+
+@ FP-118 | Standard Discrete Distributions | Hypergeometric Distribution
+Q Comparing Hypergeometric(N, K, n) with Binomial(n, K/N), which statement is TRUE?
+O the variances are equal
+O the hypergeometric variance is smaller whenever n >= 2
+O the hypergeometric variance is larger
+O it depends on K
+A b
+S The two differ by the factor (N-n)/(N-1), which is below 1 as soon as n >= 2.
+T Sampling without replacement always reduces variability; the correction factor is never above 1.
+T At n = 1 the two coincide exactly, which is why the statement is restricted to n >= 2.
+X Var(hypergeometric) = n p(1-p)(N-n)/(N-1) with p = K/N.
+X The factor (N-n)/(N-1) is less than 1 exactly when n >= 2.
+X So the hypergeometric variance is smaller, option (b).
+
+@ FP-119 | Standard Discrete Distributions | Multinomial Distribution
+Q Twelve fair dice are thrown and X_i counts the dice showing face i. What is Corr(X_1, X_2)?
+O -1/6
+O -1/36
+O -1/5
+O 0
+A c
+S The multinomial correlation is -sqrt(p_1 p_2/(q_1 q_2)) = -(1/6)/(5/6) = -1/5.
+T The multinomial correlation does not depend on n at all - only on the cell probabilities.
+T -1/6 is p_1 itself and -1/36 is the product; neither is the correlation.
+X Cov = -n p_1 p_2 and Var(X_i) = n p_i q_i.
+X Corr = -n p_1 p_2/sqrt(n p_1 q_1 n p_2 q_2) = -sqrt(p_1 p_2/(q_1 q_2)).
+X With p_1 = p_2 = 1/6 this is -(1/6)/(5/6) = -1/5, option (c).
+
+@ FP-120 | Standard Discrete Distributions | Binomial Distribution
+Q X is Binomial(2, 1/2) and Y is Binomial(1, 1/4), independent. Is X + Y binomial?
+O yes, Binomial(3, 5/12)
+O yes, Binomial(3, 3/8)
+O no
+O yes, Binomial(3, 1/2)
+A c
+S P(S=0) = 3/16 and P(S=3) = 1/16, and no single p can produce both q^3 = 3/16 and p^3 = 1/16.
+T Binomials add only when they share the SAME success probability; different p breaks the family.
+T Matching the mean gives p = 3/8 and matching the variance gives something else - the inconsistency is the proof.
+X P(S = 0) = (1/4)(3/4) = 3/16 and P(S = 3) = (1/4)(1/4) = 1/16.
+X A Binomial(3,p) would need q^3 = 3/16 and p^3 = 1/16, giving q = 0.5724 and p = 0.3969, which do not sum to 1.
+X So the sum is not binomial, option (c).
+
+@ FP-121 | Standard Discrete Distributions | Binomial Distribution
+Q X is Binomial(10, p) with P(X = 3) = P(X = 4). What is p?
+O 1/3
+O 4/11
+O 3/10
+O 7/11
+A b
+S The ratio condition (n-k)p = (k+1)q with k = 3 gives 7p = 4q, so p = 4/11.
+T P(X=k+1)/P(X=k) = [(n-k)/(k+1)][p/q]; setting it to 1 gives the equal-probability condition in one line.
+T The answer must lie between 3/10 and 4/10 because the mode sits between 3 and 4 - a quick sanity filter.
+X P(X=4)/P(X=3) = [(10-3)/4](p/q) = 1.
+X Hence 7p = 4q = 4(1-p), so 11p = 4.
+X p = 4/11, option (b).
+
+@ FP-122 | Standard Discrete Distributions | Poisson Distribution
+Q Events occur as a Poisson process of rate lambda. Given exactly one event in (0, t], the time of that event is
+O exponential truncated to (0, t]
+O U(0, t)
+O a scaled Beta(1, 2)
+O degenerate at t/2
+A b
+S Conditioning a Poisson process on one event in an interval makes its position uniform on that interval.
+T The Poisson process has no memory and no preferred location, so a single conditioned point is uniform.
+T With n events in (0,t] the ordered times behave like the order statistics of n uniforms - the same principle.
+X P(T <= s | N(t) = 1) = P(one event in (0,s], none in (s,t])/P(N(t) = 1).
+X This equals [lambda s e^(-lambda s)][e^(-lambda(t-s))]/[lambda t e^(-lambda t)] = s/t.
+X So the time is U(0, t), option (b).
+
+@ FP-123 | Mathematical and Conditional Expectation | Expectation and Moments
+Q What is the expected number of rolls of a fair die needed to see all six faces at least once?
+O 6
+O 36
+O 14.7
+O 12
+A c
+S Coupon collector: 6(1 + 1/2 + 1/3 + 1/4 + 1/5 + 1/6) = 6(2.45) = 14.7.
+T Break the wait into stages: after k distinct faces the wait for a new one is geometric with mean 6/(6-k).
+T The answer is n H_n, which grows like n log n - never n or n^2.
+X The waiting times for each new face are independent geometrics with means 6/6, 6/5, ..., 6/1.
+X Their sum is 6(1 + 1/2 + 1/3 + 1/4 + 1/5 + 1/6) = 6(49/20).
+X This is 14.7, option (c).
+
+@ FP-124 | Standard Discrete Distributions | Binomial Distribution
+Q X is uniform on {1, 2, ..., 7}. What is Var(X)?
+O 4
+O 49/12
+O 16/3
+O 3.5
+A a
+S The discrete uniform variance is (N^2 - 1)/12 = 48/12 = 4.
+T Memorise (N^2-1)/12 for the discrete uniform on 1 to N; the continuous analogue would be N^2/12.
+T 3.5 is the mean, planted as option (d).
+X For the discrete uniform on 1 to N, Var(X) = (N^2 - 1)/12.
+X With N = 7 this is 48/12.
+X Var(X) = 4, option (a).
+
+@ FP-125 | Standard Continuous Distributions | Exponential Distribution
+Q X is exponential with rate 2. What is E(X | X > 3)?
+O 3
+O 3.5
+O 5
+O 0.5
+A b
+S Memorylessness: E(X | X > a) = a + 1/rate = 3 + 0.5 = 3.5.
+T The exponential forgets the past entirely, so the conditional expectation is the threshold plus the unconditional mean.
+T The answer must exceed 3 - option (d) 0.5 is the unconditional mean and cannot be right here.
+X Given X > 3, the excess X - 3 is again Exp(2).
+X So E(X | X > 3) = 3 + E(Exp(2)) = 3 + 1/2.
+X This is 3.5, option (b).
+
+@ FP-126 | Standard Continuous Distributions | Gamma and Beta Distributions
+Q X follows Gamma with shape 3 and rate 2. What is E(1/X)?
+O 2/3
+O 1
+O 1/2
+O it does not exist
+A b
+S E(1/X) = rate/(shape - 1) = 2/2 = 1.
+T The inverse moment exists only when the shape exceeds 1; check that before computing.
+T 1/E(X) = 2/3 is planted as option (a) - Jensen's inequality guarantees E(1/X) is strictly larger.
+X E(1/X) = integral of x^(-1) lambda^a x^(a-1) e^(-lambda x)/Gamma(a) dx.
+X This reduces to lambda Gamma(a-1)/Gamma(a) = lambda/(a-1) = 2/2.
+X Hence E(1/X) = 1, option (b).
+
+@ FP-127 | Standard Continuous Distributions | Lognormal Distribution
+Q If log X follows N(0, 1), what is E(X^2)?
+O e
+O e^2
+O e^(1/2)
+O e^2 - e
+A b
+S E(X^k) = exp(k mu + k^2 sigma^2/2), so E(X^2) = e^2.
+T Read moments of the lognormal off the normal MGF at t = k; the exponent is quadratic in k, not linear.
+T e^2 - e is Var(X), planted as option (d) for a variance-versus-moment mix-up.
+X E(X^2) = E(e^(2 log X)) = M(2) for the standard normal MGF.
+X M(t) = e^(t^2/2), so M(2) = e^2.
+X Hence E(X^2) = e^2, option (b).
+
+@ FP-128 | Standard Continuous Distributions | Gamma and Beta Distributions
+Q X follows Beta of the first kind with parameters a and b. What is E[X(1 - X)]?
+O ab/(a+b)^2
+O ab/((a+b)(a+b+1))
+O the variance of X
+O ab/((a+b)^2 (a+b+1))
+A b
+S The ratio B(a+1, b+1)/B(a,b) equals ab/((a+b)(a+b+1)).
+T Any E[X^r(1-X)^s] for a Beta is a ratio of Beta functions - shift the parameters and divide.
+T Option (d) is Var(X), which is smaller; the check a = b = 1 gives 1/6 for E[X(1-X)] but 1/12 for the variance.
+X E[X(1-X)] = B(a+1, b+1)/B(a, b).
+X Expanding the Gamma functions gives ab/((a+b)(a+b+1)).
+X With a = b = 1 this is 1/6, matching 1/2 - 1/3 directly, option (b).
+
+@ FP-129 | Standard Continuous Distributions | Normal Distribution
+Q X follows N(0,1). What is E(X^4)?
+O 1
+O 2
+O 3
+O 6
+A c
+S The standard normal moments are 1, 3, 15, ... : E(X^(2k)) = (2k-1)!! so E(X^4) = 3.
+T Memorise E(X^2) = 1, E(X^4) = 3, E(X^6) = 15 - they run as the double factorials.
+T E(X^4) = 3 is exactly why the normal kurtosis is 3 and the excess kurtosis is 0.
+X For N(0,1), E(X^(2k)) = (2k-1)(2k-3)...1.
+X With k = 2 this is 3 x 1.
+X Hence E(X^4) = 3, option (c).
+
+@ FP-130 | Standard Continuous Distributions | Cauchy and Laplace
+Q X is standard Cauchy. Which of the following is NOT also standard Cauchy?
+O 1/X
+O -X
+O the average of X and an independent copy
+O X^2
+A d
+S The Cauchy is closed under reciprocal, sign change and averaging, but its square is a positive variable and cannot be Cauchy.
+T The Cauchy is stable: any average of independent copies has exactly the same law.
+T X^2 is Beta of the second kind with parameters 1/2 and 1/2, supported on the positive half-line only.
+X 1/X and -X are standard Cauchy by direct transformation.
+X The characteristic function e^(-|t|) shows the average of independent copies is again standard Cauchy.
+X X^2 is non-negative, so it cannot be Cauchy, option (d).
+
+@ FP-131 | Standard Continuous Distributions | Cauchy and Laplace
+Q X follows Laplace(0, b). Then |X| follows
+O an exponential with rate b
+O an exponential with rate 1/b
+O Gamma(2, 1/b)
+O a half-normal distribution
+A b
+S Folding the Laplace gives the exponential with the same scale b, i.e. rate 1/b.
+T Rate and scale are reciprocals - the most common place to lose a mark in this family.
+T This gives E|X| = b immediately, which is the Laplace mean deviation.
+X P(|X| > x) = e^(-x/b) for x > 0 by symmetry of the Laplace density.
+X That is the exponential survival function with scale b.
+X So |X| is exponential with rate 1/b, option (b).
+
+@ FP-132 | Standard Continuous Distributions | Uniform Distribution
+Q X is U(0,1). What is Var(X^2)?
+O 1/12
+O 4/45
+O 1/45
+O 1/5
+A b
+S E(X^4) - [E(X^2)]^2 = 1/5 - 1/9 = 4/45.
+T Moments of a uniform on (0,1) are 1/(k+1) - the whole computation is two fractions.
+T 1/12 is Var(X), not Var(X^2); squaring changes the spread.
+X E(X^2) = 1/3 and E(X^4) = 1/5.
+X Var(X^2) = 1/5 - 1/9 = (9 - 5)/45.
+X Hence Var(X^2) = 4/45, option (b).
+
+@ FP-133 | Random Vectors and Joint Distributions | Functions of Random Variables
+Q X and Y are independent Exp(lambda). What is P(X > 2Y)?
+O 1/2
+O 1/3
+O 1/4
+O 2/3
+A b
+S Condition on Y: the integral of e^(-2 lambda y) lambda e^(-lambda y) dy = 1/3.
+T For a ratio of independent exponentials, P(X > cY) = 1/(1+c) regardless of the common rate.
+T The rate cancels entirely, so any option depending on lambda would be wrong by inspection.
+X P(X > 2Y) = integral from 0 to infinity of P(X > 2y) lambda e^(-lambda y) dy.
+X This is the integral of lambda e^(-3 lambda y) dy = 1/3.
+X Hence the probability is 1/3, option (b).
+
+@ FP-134 | Standard Continuous Distributions | Gamma and Beta Distributions
+Q What is the mode of the Gamma distribution with shape 2 and rate 1?
+O 2
+O 1
+O 0
+O 1/2
+A b
+S The Gamma mode is (shape - 1)/rate = 1.
+T The Gamma mode is (a-1)/lambda for a >= 1 and 0 for a < 1; the mean a/lambda is always larger.
+T The mean here is 2, planted as option (a) - a right-skewed density has its mode below its mean.
+X The Gamma density is proportional to x^(a-1) e^(-lambda x).
+X Differentiating the logarithm gives (a-1)/x - lambda = 0, so x = (a-1)/lambda.
+X With a = 2 and lambda = 1 the mode is 1, option (b).
+
+@ FP-135 | Standard Continuous Distributions | Normal Distribution
+Q For X following N(mu, sigma^2), what is P(|X - mu| < 0.6745 sigma)?
+O 0.6827
+O 0.5
+O 0.75
+O 0.9
+A b
+S 0.6745 sigma is the quartile deviation, so the interval covers exactly the middle half.
+T 0.6745 is the 75th percentile of the standard normal - the probable error constant.
+T 0.6827 belongs to one sigma, not to 0.6745 sigma; the two constants are routinely swapped.
+X The 0.75 quantile of the standard normal is 0.6745.
+X So P(-0.6745 < Z < 0.6745) = 0.75 - 0.25.
+X This is 0.5, option (b).
+
+@ FP-136 | Standard Continuous Distributions | Gamma and Beta Distributions
+Q X follows Beta of the first kind with parameters 2 and 3, and Y = X/(1 - X). What is E(Y)?
+O 2/3
+O 1
+O 2
+O 1/2
+A b
+S The odds transform of Beta I(a,b) is Beta II(a,b), whose mean is a/(b-1) = 2/2 = 1.
+T X/(1-X) converts Beta of the first kind into Beta of the second kind with the same parameters.
+T E(X)/(1 - E(X)) = (2/5)/(3/5) = 2/3 is the tempting wrong answer, planted as option (a).
+X If X is Beta I(2,3) then X/(1-X) is Beta II(2,3).
+X The mean of Beta II(a,b) is a/(b-1).
+X Hence E(Y) = 2/2 = 1, option (b).
+
+@ FP-137 | Standard Continuous Distributions | Uniform Distribution
+Q X is U(0,1). Compare P(X > 0.7 | X > 0.5) with P(X > 0.2).
+O 0.6 and 0.8
+O 0.8 and 0.8
+O 0.7 and 0.2
+O 0.3 and 0.8
+A a
+S The conditional probability is 0.3/0.5 = 0.6, whereas P(X > 0.2) = 0.8; the uniform is not memoryless.
+T Only the exponential is memoryless among continuous laws - never assume it for a uniform.
+T If the uniform were memoryless the two numbers would agree; they do not, which is the whole point.
+X P(X > 0.7 | X > 0.5) = 0.3/0.5 = 0.6.
+X P(X > 0.2) = 0.8.
+X The pair is 0.6 and 0.8, option (a).
+
+@ FP-138 | Standard Continuous Distributions | Lognormal Distribution
+Q For the lognormal distribution, the correct ordering of mode, median and mean is
+O mean < median < mode
+O mode < median < mean
+O all three are equal
+O median < mode < mean
+A b
+S They are e^(mu - sigma^2), e^mu and e^(mu + sigma^2/2), which increase in that order.
+T The lognormal is right-skewed, so mode < median < mean - the standard order for positive skewness.
+T The three exponents -sigma^2, 0 and sigma^2/2 are strictly increasing, which settles the order without any numbers.
+X The mode is e^(mu - sigma^2), the median is e^mu and the mean is e^(mu + sigma^2/2).
+X Since -sigma^2 < 0 < sigma^2/2, the exponents increase in that order.
+X Hence mode < median < mean, option (b).
+
+@ FP-139 | Random Vectors and Joint Distributions | Functions of Random Variables
+Q X and Y are independent Gamma variables with shapes a_1 and a_2 and a common rate. Then X/Y follows
+O Beta of the first kind with parameters a_1 and a_2
+O Beta of the second kind with parameters a_1 and a_2
+O a Gamma distribution with shape a_1 - a_2
+O a Cauchy distribution
+A b
+S The ratio of independent Gammas with a common scale is Beta of the second kind, with mean a_1/(a_2 - 1).
+T Ratio to the TOTAL gives Beta I; ratio to the OTHER variable gives Beta II. Keep the two apart.
+T The two are linked by Y = X/(1-X): applying it to Beta I(a_1,a_2) produces Beta II(a_1,a_2).
+X With a common scale, X/(X+Y) is Beta I(a_1, a_2).
+X Writing X/Y = [X/(X+Y)]/[1 - X/(X+Y)] converts it to Beta II(a_1, a_2).
+X That is option (b).
+
+@ FP-140 | Random Vectors and Joint Distributions | Functions of Random Variables
+Q X and Y are independent Exp(1). What is P(X > 3Y)?
+O 1/3
+O 1/4
+O 1/2
+O e^(-3)
+A b
+S P(X > cY) = 1/(1+c) = 1/4 for c = 3.
+T Z = X/Y has density 1/(1+z)^2, so P(Z > c) = 1/(1+c) - one formula covers every such question.
+T The exponential decay e^(-3) is planted as option (d); the answer is algebraic, not exponential.
+X P(X > 3Y) = integral of e^(-3y) e^(-y) dy.
+X This equals 1/4.
+X Hence the probability is 1/4, option (b).
+
+@ FP-141 | Random Vectors and Joint Distributions | Functions of Random Variables
+Q X and Y are independent N(0,1). What is P(X^2 + Y^2 <= 2 log 2)?
+O 1/4
+O 1/2
+O log 2
+O 1 - 1/e
+A b
+S X^2 + Y^2 is exponential with mean 2, so the probability is 1 - e^(-log 2) = 1/2.
+T The chi-square with 2 degrees of freedom is exactly the exponential with mean 2 - the most useful special case in the family.
+T The threshold 2 log 2 is chosen so that e^(-x/2) becomes exactly 1/2.
+X X^2 + Y^2 has the chi-square distribution with 2 degrees of freedom, i.e. Exp(mean 2).
+X P(X^2 + Y^2 <= c) = 1 - e^(-c/2) = 1 - e^(-log 2).
+X This is 1 - 1/2 = 1/2, option (b).
+
+@ FP-142 | Random Vectors and Joint Distributions | Conditional Distributions
+Q X is U(0,1) and, given X = x, Y is U(0, x). What is the marginal density of Y on (0,1)?
+O 1
+O -log y
+O 2(1 - y)
+O 1/y
+A b
+S Integrating 1/x from y to 1 gives -log y.
+T Write the joint density as f(x) f(y|x) = 1 times 1/x on the triangle, then integrate out x.
+T The density is unbounded at 0 but still integrates to 1 - unboundedness is not a contradiction.
+X The joint density is 1/x on 0 < y < x < 1.
+X f_Y(y) = integral from y to 1 of (1/x) dx = -log y.
+X That is option (b).
+
+@ FP-143 | Random Vectors and Joint Distributions | Conditional Distributions
+Q X is U(0,1) and, given X = x, Y is U(0, x). What is E(X | Y = y)?
+O (1 + y)/2
+O (1 - y)/(-log y)
+O y
+O 2y/3
+A b
+S Divide integral from y to 1 of x(1/x) dx = 1 - y by the marginal -log y.
+T The conditional density of X given Y is proportional to 1/x on (y,1), not uniform - the weighting matters.
+T Answering (1+y)/2 assumes a uniform conditional, which is exactly the trap.
+X f(x | y) = (1/x)/(-log y) on (y, 1).
+X E(X | Y=y) = integral from y to 1 of x(1/x) dx divided by -log y = (1-y)/(-log y).
+X That is option (b).
+
+@ FP-144 | Random Vectors and Joint Distributions | Functions of Random Variables
+Q X and Y are independent U(0,1), with U = X + Y and V = X - Y. What is the joint density of (U, V) on its support?
+O 1
+O 2
+O 1/2
+O u
+A c
+S The Jacobian of the inverse map is 1/2, so the density is the constant 1/2 on the rotated square.
+T For U = X+Y and V = X-Y the Jacobian is always 2, so the new density carries a factor 1/2.
+T The support is a diamond with |v| <= min(u, 2-u), not a square - the density is constant but the region is not.
+X x = (u+v)/2 and y = (u-v)/2, whose Jacobian determinant has absolute value 1/2.
+X The original density is 1 on the unit square.
+X So the new density is 1/2 on the image diamond, option (c).
+
+@ FP-145 | Random Vectors and Joint Distributions | Independence and Covariance
+Q The joint density is f(x,y) = c xy on 0 < y < x < 1. What is c, and are X and Y independent?
+O 4 and yes
+O 8 and no
+O 8 and yes
+O 4 and no
+A b
+S The integral of xy over the triangle is 1/8, so c = 8; the support is not a rectangle, so they are dependent.
+T A product-form density means independence only when the SUPPORT is a rectangle; a triangle always destroys it.
+T Knowing X < 1/2 forces Y < 1/2, which is a direct proof of dependence with no algebra at all.
+X The integral of xy over 0 < y < x < 1 is the integral of x(x^2/2) dx = 1/8, so c = 8.
+X The range of Y depends on the value of X, so the support is not a product set.
+X Hence c = 8 and X and Y are dependent, option (b).
+
+@ FP-146 | Random Vectors and Joint Distributions | Conditional Distributions
+Q X and Y are independent Exp(1). What is Var(X | X + Y = s)?
+O s/2
+O s^2/12
+O s^2/4
+O 1
+A b
+S Given the total s, X is U(0, s), whose variance is s^2/12.
+T For two independent exponentials with the same rate, the split of their total is uniform.
+T s/2 is the conditional MEAN; the question asks for the variance.
+X The conditional density of X given X + Y = s is constant on (0, s).
+X A U(0,s) variable has variance s^2/12.
+X Hence Var(X | X+Y = s) = s^2/12, option (b).
+
+@ FP-147 | Random Vectors and Joint Distributions | Independence and Covariance
+Q X is Binomial(2, 1/2) and Y = |X - 1|. Which statement is correct?
+O Cov(X,Y) = 0 and they are independent
+O Cov(X,Y) = 0 but they are dependent
+O Cov(X,Y) = 1/4
+O Cov(X,Y) = -1/4
+A b
+S E(XY) = 1/2 = E(X)E(Y), so the covariance vanishes, yet Y is a function of X.
+T A symmetric non-linear function of a symmetric variable is always uncorrelated with it but never independent.
+T Check dependence directly: P(Y=0 | X=1) = 1, which differs from P(Y=0) = 1/2.
+X E(X) = 1, and Y takes 1, 0, 1 with probabilities 1/4, 1/2, 1/4, so E(Y) = 1/2.
+X E(XY) = 0(1/4) + 1(0)(1/2) + 2(1)(1/4) = 1/2 = E(X)E(Y), so the covariance is 0.
+X Y is an exact function of X, so they are dependent, option (b).
+
+@ FP-148 | Random Vectors and Joint Distributions | Functions of Random Variables
+Q X is Exp(1). The integer part of X follows
+O Poisson(1)
+O a geometric distribution on {0,1,...} with p = 1 - e^(-1)
+O a geometric distribution with p = e^(-1)
+O no standard distribution
+A b
+S P(floor(X) = k) = e^(-k) - e^(-(k+1)) = e^(-k)(1 - e^(-1)), a geometric with failure probability e^(-1).
+T Discretising the exponential gives the geometric - the discrete-continuous memoryless pair.
+T The success probability is 1 - e^(-1), not e^(-1); option (c) swaps them.
+X P(floor(X) = k) = P(k <= X < k+1) = e^(-k) - e^(-(k+1)).
+X This factorises as (e^(-1))^k (1 - e^(-1)).
+X That is geometric on {0,1,...} with p = 1 - e^(-1), option (b).
+
+@ FP-149 | Random Vectors and Joint Distributions | Functions of Random Variables
+Q X is uniform on (-pi/2, pi/2). Then tan X follows
+O N(0,1)
+O a Laplace distribution
+O the standard Cauchy distribution
+O the uniform distribution on the whole line
+A c
+S A uniform angle through the tangent gives exactly the standard Cauchy.
+T This is the standard construction of the Cauchy: a needle at a uniformly random angle hitting a line.
+T It is also the fastest way to see that P(|C| < 1) = 1/2, since |tan x| < 1 on half the angle range.
+X P(tan X <= t) = P(X <= arctan t) = (arctan t + pi/2)/pi.
+X Differentiating gives 1/(pi(1+t^2)).
+X That is the standard Cauchy density, option (c).
+
+@ FP-150 | Random Vectors and Joint Distributions | Joint and Marginal Distributions
+Q The joint density is f(x,y) = c(x + y) e^(-(x+y)) for x > 0 and y > 0. What is c?
+O 1
+O 1/2
+O 2
+O 1/4
+A b
+S The double integral of (x+y)e^(-(x+y)) is 2, so c = 1/2.
+T Split it: the integral of x e^(-x) times the integral of e^(-y) is 1, and by symmetry the y term gives another 1.
+T The sum X+Y here is Gamma(3,1), not Gamma(2,1) - the extra factor (x+y) raises the shape.
+X The double integral of x e^(-x) e^(-y) over the quadrant is 1, and the same for the y term.
+X So the total integral is 2 and c(2) = 1.
+X Hence c = 1/2, option (b).
+
+@ FP-151 | Random Vectors and Joint Distributions | Independence and Covariance
+Q For f(x,y) = (1/2)(x + y) e^(-(x+y)) on the positive quadrant, what is Cov(X, Y)?
+O 0
+O -1/4
+O 1/4
+O -1/2
+A b
+S E(XY) = 2 and E(X) = E(Y) = 3/2, so Cov = 2 - 9/4 = -1/4.
+T Expand the bracket and use the Gamma integrals: each term reduces to a factorial.
+T The density looks symmetric and "product-like", but the factor (x+y) creates a negative dependence.
+X E(X) = (1/2)[integral of x^2 e^(-x) dx + integral of x e^(-x) dx times 1] = (1/2)(2 + 1) = 3/2.
+X E(XY) = (1/2)[integral of x^2 e^(-x) times integral of y e^(-y) + the mirror term] = (1/2)(2 + 2) = 2.
+X Cov = 2 - (3/2)^2 = -1/4, option (b).
+
+@ FP-152 | Random Vectors and Joint Distributions | Functions of Random Variables
+Q X is U(0,1) and Y = X(1 - X). What is P(Y <= 3/16)?
+O 3/16
+O 1/4
+O 1/2
+O 3/4
+A c
+S x(1-x) <= 3/16 means (4x-1)(4x-3) >= 0, i.e. x <= 1/4 or x >= 3/4, of total length 1/2.
+T For a non-monotone quadratic map, solve the inequality for x and add the lengths of the pieces.
+T The maximum of x(1-x) is 1/4 at x = 1/2, so the event is a genuine two-sided region, not a single interval.
+X Y <= 3/16 means x - x^2 <= 3/16, i.e. 16x^2 - 16x + 3 >= 0.
+X Factorising, (4x-1)(4x-3) >= 0, so x <= 1/4 or x >= 3/4.
+X The total length is 1/2, option (c).
+
+@ FP-153 | Random Vectors and Joint Distributions | Functions of Random Variables
+Q X and Y are independent N(0,1). What is P(X > |Y|)?
+O 1/2
+O 1/4
+O 1/8
+O 1/pi
+A b
+S The pair is rotationally symmetric, and X > |Y| is a sector of angle pi/2 out of 2pi.
+T Independent standard normals give a circularly symmetric joint density, so any angular event is just its angle over 2 pi.
+T Equivalently P(X > |Y|) = P(X > 0)P(|Y| < X | X > 0) - but the angle argument is instant.
+X The joint density depends only on x^2 + y^2, so the angle is uniform on (0, 2pi).
+X The region x > |y| is the sector between -pi/4 and pi/4, of angle pi/2.
+X The probability is (pi/2)/(2 pi) = 1/4, option (b).
+
+@ FP-154 | Random Vectors and Joint Distributions | Conditional Distributions
+Q X is Poisson(2) and Y is Poisson(3), independent. What is E(X | X + Y = 10)?
+O 5
+O 4
+O 2
+O 6
+A b
+S Given the total, X is Binomial(10, 2/5), whose mean is 4.
+T Conditioning independent Poissons on their sum always gives a binomial split in proportion to the rates.
+T Answering 5 splits the total evenly and ignores that the two rates differ.
+X Given X + Y = n, X follows Binomial(n, lambda_1/(lambda_1+lambda_2)).
+X Here p = 2/5 and n = 10.
+X E(X | X+Y = 10) = 10(2/5) = 4, option (b).
+
+@ FP-155 | Random Vectors and Joint Distributions | Compound and Mixture Distributions
+Q X is Binomial(n, p) and, given X = x, Y is Binomial(x, r). The marginal distribution of Y is
+O Binomial(n, pr)
+O Binomial(n, p + r - pr)
+O hypergeometric
+O Poisson
+A a
+S Two-stage thinning multiplies the probabilities: each of the n trials contributes to Y with probability pr.
+T Compose the PGFs: substituting one binomial PGF into another gives a binomial with the product probability.
+T p + r - pr is the probability of "p OR r", which is not what a two-stage filter does.
+X The PGF of Y is P_X(P_Y|X(s)) = (q + p(1 - r + rs))^n.
+X This simplifies to (1 - pr + pr s)^n.
+X That is the Binomial(n, pr) PGF, option (a).
+
+@ FP-156 | Random Vectors and Joint Distributions | Functions of Random Variables
+Q X is U(0,1) and Y is Exp(1), independent. What is the density of Z = X + Y at z = 1?
+O e^(-1)
+O 1 - e^(-1)
+O 1
+O e - 1
+A b
+S For 0 < z < 1 the convolution is 1 - e^(-z); at z = 1 this is 1 - e^(-1).
+T Convolve by integrating the exponential density over the overlap of the uniform support with (0,z).
+T Both branches agree at z = 1, so the density is continuous there - a useful self-check.
+X f_Z(z) = integral from max(0, z-1) to min(1, z) of e^(-(z-x)) dx.
+X For 0 < z <= 1 this is integral from 0 to z of e^(-(z-x)) dx = 1 - e^(-z).
+X At z = 1 the value is 1 - e^(-1), option (b).
+
+@ FP-157 | Random Vectors and Joint Distributions | Independence and Covariance
+Q Var(X) = Var(Y) = 4 and Corr(X, Y) = 0.5. What is Cov(X + Y, X - Y)?
+O 2
+O 0
+O 4
+O -2
+A b
+S Cov(X+Y, X-Y) = Var(X) - Var(Y) = 0, whatever the correlation is.
+T The cross terms cancel identically, so the answer depends only on the two variances.
+T The correlation 0.5 is a deliberate red herring - it plays no part at all.
+X Cov(X+Y, X-Y) = Var(X) - Cov(X,Y) + Cov(Y,X) - Var(Y).
+X The middle terms cancel, leaving Var(X) - Var(Y) = 4 - 4.
+X Hence the covariance is 0, option (b).
+
+@ FP-158 | Random Vectors and Joint Distributions | Independence and Covariance
+Q X is U(0,1). What is Corr(X, X^2)?
+O 0
+O 1
+O sqrt(15)/4
+O 1/sqrt(12)
+A c
+S Cov = 1/12, Var(X) = 1/12 and Var(X^2) = 4/45, giving a correlation of sqrt(15)/4 = 0.968.
+T A monotone but non-linear relation gives a correlation close to, but strictly below, 1.
+T Zero correlation would need symmetry about the mean, which the squaring map on (0,1) does not have.
+X Cov(X, X^2) = E(X^3) - E(X)E(X^2) = 1/4 - 1/6 = 1/12.
+X Var(X) = 1/12 and Var(X^2) = 1/5 - 1/9 = 4/45.
+X Corr = (1/12)/sqrt((1/12)(4/45)) = sqrt(15)/4, option (c).
+
+@ FP-159 | Random Vectors and Joint Distributions | Joint and Marginal Distributions
+Q The joint density is f(x,y) = 1/x on 0 < y < x < 1. What is P(Y > 1/2)?
+O 1/2
+O (1 - log 2)/2
+O log 2
+O 1/4
+A b
+S The marginal of Y is -log y, and integrating it from 1/2 to 1 gives (1 - log 2)/2.
+T Get the marginal first; integrating -log y is a single integration by parts.
+T The answer must be below 1/2 because Y is stochastically smaller than X - that eliminates (a) and (c).
+X f_Y(y) = integral from y to 1 of (1/x) dx = -log y.
+X Integrating, the antiderivative of -log y is y - y log y.
+X Evaluating from 1/2 to 1 gives 1 - (1/2 + (1/2) log 2) = (1 - log 2)/2, option (b).
+
+@ FP-160 | Random Vectors and Joint Distributions | Independence and Covariance
+Q X and Y are independent, each with variance 1. With U = X cos t + Y sin t and V = -X sin t + Y cos t, which holds for every t?
+O U and V are independent
+O U and V are uncorrelated
+O Var(U) = cos^2 t
+O Cov(U,V) = sin 2t
+A b
+S The rotation makes the covariance -cos t sin t + sin t cos t = 0, but independence needs normality.
+T A rotation always removes the correlation between two variables of equal variance; that is the principal-components idea.
+T Independence follows only in the joint normal case - the trap is to assume it in general.
+X Cov(U,V) = -cos t sin t Var(X) + cos t sin t Var(Y) = 0 since the variances are equal.
+X Var(U) = cos^2 t + sin^2 t = 1, so option (c) fails.
+X Uncorrelatedness holds but independence need not, option (b).

@@ -88,7 +88,7 @@
       "Condition and then average: $\\operatorname{E}[e^{-t^{2} Z^{2}/2}]$ is the $\\chi^{2}_{1}$ moment generating function evaluated at the NEGATIVE argument $-t^{2}/2$.",
       "$\\chi^{2}_{1}$ MGF is $(1 - 2s)^{-1/2}$; with $s = -t^{2}/2$ the bracket becomes $1 + t^{2}$ and the exponent $-1/2$.",
       "The product of two independent standard normals has heavier tails than a normal but lighter than a Cauchy - a square-root singularity is exactly right.",
-      "Option $(b) 1/(1+t^{2})$ is the Laplace characteristic function, which would correspond to the product being a difference of exponentials - close, but the exponent is wrong."
+      "Option (b) $1/(1+t^{2})$ is the Laplace characteristic function, which would correspond to the product being a difference of exponentials - close, but the exponent is wrong."
     ],
     "solution": [
       "Condition on $X_{2} = z$. Given this, $X_{1} z$ is normal with mean 0 and variance $z^{2}$, so its characteristic function is $e^{-t^{2} z^{2}/2}$.",
@@ -250,8 +250,8 @@
       "Tower property: $\\operatorname{E}(X) = \\operatorname{E}(Y)/2 = 2/2 = 1$. Statement II is confirmed without touching the joint sum again."
     ],
     "solution": [
-      "Write the joint pmf as $\\operatorname{P}(X=x, Y=y) = e^{-2}/(x!(y-x)!) = [e^{-2}/y!] * y$!/$(x!(y-x)!) = [e^{-2}/y!] \\binom{y}{x}$.",
-      "Summing over $x = 0, 1, \\ldots, y$ and using the binomial identity sum $\\binom{y}{x} = 2^{y}$ gives $\\operatorname{P}(Y = y) = e^{-2} 2^{y}/y$!.",
+      "Write the joint pmf as $\\operatorname{P}(X=x, Y=y) = e^{-2}/(x!(y-x)!) = [e^{-2}/y!] * y!/(x!(y-x)!) = [e^{-2}/y!] \\binom{y}{x}$.",
+      "Summing over $x = 0, 1, \\ldots, y$ and using the binomial identity sum $\\binom{y}{x} = 2^{y}$ gives $\\operatorname{P}(Y = y) = e^{-2} 2^{y}/y!$.",
       "This is the Poisson distribution with parameter 2, not $1/2$. Statement I is FALSE.",
       "Dividing the joint pmf by this marginal gives $\\operatorname{P}(X = x \\mid Y = y) = \\binom{y}{x}/2^{y}$, i.e. $X \\mid Y = y \\sim \\text{Binomial}(y, 1/2)$.",
       "Hence $\\operatorname{E}(X \\mid Y) = Y/2$, and by the tower property $\\operatorname{E}(X) = \\operatorname{E}(Y)/2 = 2/2 = 1$. Statement II is TRUE.",

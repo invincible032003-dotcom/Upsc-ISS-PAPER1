@@ -356,6 +356,7 @@ hr.sep { border: 0; border-top: 1px solid var(--line); margin: 16px 0; }
   background: var(--surface-2); color: var(--ink-2);
 }
 .banner.info { background: var(--warn-bg); border-color: var(--warn-line); color: var(--warn); }
+.banner.warn { background: var(--bad-bg); border-color: var(--bad-line); color: var(--bad); }
 
 .empty { text-align: center; padding: 34px 14px; color: var(--ink-3); }
 
@@ -441,3 +442,17 @@ table.qtbl th { background: var(--surface-2); font-weight: 650; }
   .exam-layout { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 14px; align-items: start; }
   .exam-side { position: sticky; top: 120px; }
 }
+
+
+/* ---------------------------------------------------------- forecast bank
+   AI-generated 2027 practice, kept visually distinct from authentic PYQs. */
+.fc-badge{display:inline-block;padding:1px 7px;border-radius:999px;
+  background:var(--warn-bg,#fff4e5);color:var(--warn,#8a5300);
+  border:1px solid var(--warn-line,#f0d0a0);
+  font-size:11px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+.pyq-badge{display:inline-block;padding:1px 7px;border-radius:999px;
+  background:var(--surface-3);color:var(--muted);border:1px solid var(--line);
+  font-size:11px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+.fc-tile{cursor:default}
+.fc-tile .fc-actions{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.fc-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}

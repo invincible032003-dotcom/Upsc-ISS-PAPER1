@@ -1,0 +1,785 @@
+# FORECAST / AI-GENERATED - Statistical Methods, non-parametric tests
+
+@ FS-264 | Non-Parametric Tests | Sign Test
+Q Under the null hypothesis, the sign test statistic follows
+O Binomial(n, 1/2)
+O N(0,1)
+O a chi-square distribution
+O U(0,1)
+A a
+S Each difference is equally likely to be positive or negative under the null, so the count of positives is binomial with p = 1/2.
+T The sign test uses only the DIRECTION of each difference, discarding all magnitude information.
+T Zero differences are discarded and n is reduced accordingly.
+X Under the null the median difference is 0.
+X Each of the n signs is independently positive with probability 1/2.
+X The count is Binomial(n, 1/2), option (a).
+
+@ FS-265 | Non-Parametric Tests | Sign Test
+Q A sign test with n = 7 rejects only when all 7 signs are positive. What is its size?
+O 1/128
+O 1/64
+O 7/128
+O 1/256
+A a
+S (1/2)^7 = 1/128.
+T The size is the null probability of the rejection region, computed directly from the binomial.
+T Discrete tests rarely achieve exactly 5%, which is why exact sizes such as 1/128 are quoted.
+X Under the null, P(all 7 positive) = (1/2)^7.
+X This is 1/128.
+X Hence option (a).
+
+@ FS-266 | Non-Parametric Tests | Sign Test
+Q A sign test with n = 10 rejects when the number of plus signs is 0, 1, 9 or 10. What is its size approximately?
+O 0.0215
+O 0.109
+O 0.05
+O 0.002
+A a
+S (1 + 10 + 10 + 1)/1024 = 22/1024 = 0.0215.
+T Add the binomial probabilities of the whole rejection region; both tails count.
+T The nominal 5% cannot be reached exactly, so the achievable sizes jump from 0.0215 to 0.109.
+X The counts of favourable outcomes are C(10,0), C(10,1), C(10,9) and C(10,10).
+X Their total is 22 out of 1024.
+X The size is 0.0215, option (a).
+
+@ FS-267 | Non-Parametric Tests | Runs Test
+Q With n_1 = n_2 = 10, what is the expected number of runs?
+O 10
+O 11
+O 20
+O 9
+A b
+S E(R) = 2 n_1 n_2/(n_1 + n_2) + 1 = 200/20 + 1 = 11.
+T The formula always adds 1 at the end - a term that is easy to drop.
+T For equal group sizes n, the expected number of runs is n + 1.
+X E(R) = 2(10)(10)/20 + 1.
+X This is 10 + 1.
+X The expected number is 11, option (b).
+
+@ FS-268 | Non-Parametric Tests | Runs Test
+Q With n_1 = n_2 = 10, what is the variance of the number of runs approximately?
+O 4.74
+O 5.26
+O 10
+O 2.5
+A a
+S The formula gives 200(180)/(400 x 19) = 36000/7600 = 4.74.
+T The variance formula is 2 n_1 n_2 (2 n_1 n_2 - n_1 - n_2) divided by (n_1+n_2)^2 (n_1+n_2-1).
+T The standard deviation is about 2.2, so runs counts of 7 to 15 are unremarkable.
+X 2 n_1 n_2 = 200 and 2 n_1 n_2 - n_1 - n_2 = 180.
+X Var(R) = 200(180)/(20^2 x 19) = 36000/7600.
+X This is 4.74, option (a).
+
+@ FS-269 | Non-Parametric Tests | Runs Test
+Q How many runs are there in the sequence H H T H T T T H H T?
+O 5
+O 6
+O 7
+O 4
+A b
+S The blocks are HH, T, H, TTT, HH, T - six runs.
+T A run is a maximal block of identical symbols; count the changes and add one.
+T There are 5 changes of symbol, so 6 runs - a quick cross-check.
+X Reading the sequence: HH | T | H | TTT | HH | T.
+X That is six maximal blocks.
+X The number of runs is 6, option (b).
+
+@ FS-270 | Non-Parametric Tests | Mann-Whitney Test
+Q With X = {1, 3, 5} and Y = {2, 4, 6}, what is the Mann-Whitney U counting pairs with an X below a Y?
+O 6
+O 3
+O 9
+O 4.5
+A a
+S Counting: 1 beats three, 3 beats two, 5 beats one, giving 6.
+T U counts the pairs in which one sample's observation is smaller - a direct enumeration for small samples.
+T The maximum is n_1 n_2 = 9 and the null mean is 4.5, so 6 is a mild excess.
+X For x = 1 there are 3 larger y values, for x = 3 there are 2 and for x = 5 there is 1.
+X The total is 3 + 2 + 1 = 6.
+X Hence U = 6, option (a).
+
+@ FS-271 | Non-Parametric Tests | Mann-Whitney Test
+Q With n_1 = 15 and n_2 = 20, what is Var(U) under the null?
+O 900
+O 150
+O 1050
+O 300
+A a
+S n_1 n_2 (n_1 + n_2 + 1)/12 = 300(36)/12 = 900.
+T The variance formula uses the TOTAL sample size plus one in the numerator.
+T The mean is n_1 n_2/2 = 150, planted as option (b).
+X Var(U) = n_1 n_2 (n_1 + n_2 + 1)/12.
+X This is 15(20)(36)/12 = 10800/12.
+X The variance is 900, option (a).
+
+@ FS-272 | Non-Parametric Tests | Mann-Whitney Test
+Q With n_1 = 6 and n_2 = 8, what are E(U) and Var(U)?
+O 24 and 60
+O 24 and 48
+O 48 and 60
+O 24 and 30
+A a
+S E(U) = 48/2 = 24 and Var(U) = 48(15)/12 = 60.
+T The mean is half the maximum n_1 n_2, by the symmetry of the null distribution.
+T The variance uses n_1 + n_2 + 1 = 15 here.
+X E(U) = n_1 n_2/2 = 48/2 = 24.
+X Var(U) = 6(8)(15)/12 = 720/12 = 60.
+X Hence option (a).
+
+@ FS-273 | Non-Parametric Tests | Wilcoxon Signed-Rank Test
+Q For the Wilcoxon signed-rank test with n = 10, what is the null expectation of the positive rank sum?
+O 27.5
+O 55
+O 25
+O 30
+A a
+S E(T) = n(n+1)/4 = 110/4 = 27.5.
+T The total of all ranks is n(n+1)/2, and under the null each is equally likely to carry either sign, so the mean is half of it.
+T 55 is the total rank sum, planted as option (b).
+X The ranks 1 to 10 total 55.
+X Under the null each rank is positive with probability 1/2, so E(T) = 55/2.
+X This is 27.5, option (a).
+
+@ FS-274 | Non-Parametric Tests | Wilcoxon Signed-Rank Test
+Q For the Wilcoxon signed-rank test with n = 10, what is the null variance of the positive rank sum?
+O 96.25
+O 192.5
+O 55
+O 82.5
+A a
+S n(n+1)(2n+1)/24 = 10(11)(21)/24 = 2310/24 = 96.25.
+T The variance is the sum of the squared ranks divided by 4, which gives the stated formula.
+T The divisor is 24, not 12 - the signed-rank and rank-sum formulas differ.
+X Var(T) = n(n+1)(2n+1)/24.
+X This is 2310/24.
+X The variance is 96.25, option (a).
+
+@ FS-275 | Non-Parametric Tests | Kolmogorov-Smirnov Test
+Q The Kolmogorov-Smirnov one-sample statistic is
+O the sum of (observed minus expected) squared over expected
+O the supremum of the absolute difference between the empirical and the hypothesised distribution functions
+O the integral of the squared difference of the distribution functions
+O the maximum rank
+A b
+S The statistic is the largest vertical gap between the two distribution functions.
+T KS uses a supremum; the Cramer-von Mises statistic uses the integral instead.
+T Because it is distribution-free, its critical values do not depend on the hypothesised law.
+X The empirical distribution function is compared with the hypothesised one at every point.
+X The statistic is the supremum of the absolute difference.
+X Hence option (b).
+
+@ FS-276 | Non-Parametric Tests | Kolmogorov-Smirnov Test
+Q The non-parametric analogue of the chi-square goodness-of-fit test for continuous data is
+O the sign test
+O the Kolmogorov-Smirnov test
+O the run test
+O the Mann-Whitney test
+A b
+S KS compares the whole distribution function without any grouping into classes.
+T Chi-square needs arbitrary class intervals; KS avoids them and so is more powerful for continuous data.
+T KS is exact for a fully specified continuous null, which chi-square is not.
+X The chi-square goodness-of-fit test groups the data into classes.
+X The Kolmogorov-Smirnov test compares the distribution functions directly.
+X Hence option (b).
+
+@ FS-277 | Non-Parametric Tests | Kolmogorov-Smirnov Test
+Q For the sample 0.1, 0.4, 0.7 tested against U(0,1), what is the Kolmogorov-Smirnov statistic?
+O 0.3
+O 0.267
+O 0.233
+O 0.1
+A a
+S The largest gap is at 0.7 just after the jump: |1 - 0.7| = 0.3.
+T Evaluate the gap immediately BEFORE and immediately AFTER each observation; the supremum is attained at one of them.
+T The gap after the last observation is 1 - x_(n), which is often the largest.
+X At each point the empirical distribution function jumps by 1/3.
+X The gaps just after the jumps are |1/3 - 0.1| = 0.233, |2/3 - 0.4| = 0.267 and |1 - 0.7| = 0.3.
+X The maximum is 0.3, option (a).
+
+@ FS-278 | Non-Parametric Tests | Runs Test
+Q The Wald-Wolfowitz test examines
+O location only
+O whether two samples come from identical distributions, using runs on the pooled ordered data
+O the randomness of a single sample
+O symmetry
+A b
+S Pooling, ordering and counting runs of sample labels tests the equality of the two whole distributions.
+T Too few runs means the two samples separate, which signals any difference in location or spread.
+T The one-sample runs test for randomness is a different procedure with the same name for the statistic.
+X The two samples are pooled and ordered, and each observation is labelled by its sample.
+X Few runs indicate clustering by sample, so the null of identical distributions is rejected.
+X Hence option (b).
+
+@ FS-279 | Non-Parametric Tests | Kruskal-Wallis Test
+Q Under the null, the Kruskal-Wallis statistic H is approximately
+O chi-square with k degrees of freedom
+O chi-square with k - 1 degrees of freedom
+O F distributed
+O standard normal
+A b
+S With k groups the statistic has k - 1 degrees of freedom, exactly as in a one-way analysis of variance.
+T The degrees of freedom are the number of groups minus one, never the number of observations.
+T The approximation needs each group to have at least about five observations.
+X H compares k rank means against the overall rank mean.
+X This involves k - 1 free contrasts.
+X So H is approximately chi-square with k - 1 degrees of freedom, option (b).
+
+@ FS-280 | Non-Parametric Tests | Kruskal-Wallis Test
+Q The Kruskal-Wallis test coincides with a one-way analysis of variance when
+O the data are normal
+O the observations are replaced by their ranks
+O k = 2
+O the group sizes are equal
+A b
+S Kruskal-Wallis is precisely the analysis of variance applied to the ranks.
+T Rank-based tests are their parametric counterparts computed on ranks - a general and useful principle.
+T Normality is irrelevant: the whole point of the rank test is that it does not require it.
+X Replacing the observations by their ranks and applying the usual between-groups statistic yields H.
+X So the two procedures agree on ranked data.
+X Hence option (b).
+
+@ FS-281 | Non-Parametric Tests | Friedman Test
+Q The non-parametric analogue of a randomised block design is
+O Friedman's test
+O the Kruskal-Wallis test
+O the Kolmogorov-Smirnov test
+O the sign test
+A a
+S Friedman's test ranks within each block and compares the treatment rank totals.
+T Kruskal-Wallis is the analogue of one-way analysis of variance; Friedman is the analogue of the two-way blocked design.
+T Ranking WITHIN blocks is what removes the block effect.
+X A randomised block design has one observation per treatment per block.
+X Friedman's test ranks the treatments within each block and compares the rank sums.
+X Hence option (a).
+
+@ FS-282 | Non-Parametric Tests | Wilcoxon Signed-Rank Test
+Q Compared with the sign test, the Wilcoxon signed-rank test additionally uses
+O the magnitudes of the differences, through their ranks
+O the sample mean
+O the sample variance
+O nothing extra
+A a
+S The signed-rank test ranks the absolute differences, so larger deviations count for more.
+T Using magnitude information makes Wilcoxon more powerful than the sign test whenever it is applicable.
+T Wilcoxon requires a symmetric difference distribution; the sign test does not.
+X The sign test uses only the direction of each difference.
+X Wilcoxon ranks the absolute differences and sums the ranks of the positive ones.
+X Hence option (a).
+
+@ FS-283 | Non-Parametric Tests | Mann-Whitney Test
+Q If W is the rank sum of the first sample, then U equals
+O W minus n_1(n_1 + 1)/2
+O W
+O W/2
+O n_1 n_2 minus W
+A a
+S Subtracting the minimum possible rank sum converts W into U.
+T The minimum rank sum for a sample of size n_1 is 1 + 2 + ... + n_1 = n_1(n_1+1)/2.
+T This identity is why the Mann-Whitney and Wilcoxon rank-sum tests are equivalent.
+X If the first sample occupied the lowest ranks, W would be n_1(n_1+1)/2.
+X U measures the excess of W over that minimum.
+X Hence U = W - n_1(n_1+1)/2, option (a).
+
+@ FS-284 | Non-Parametric Tests | Runs Test
+Q The runs test tests
+O location
+O randomness
+O variance
+O normality
+A b
+S Too few or too many runs indicate a departure from randomness in the sequence order.
+T The runs test is about ORDER, not about the values themselves.
+T Too few runs suggests clustering; too many suggests systematic alternation.
+X A random sequence should produce a moderate number of runs.
+X Extreme counts in either direction indicate non-randomness.
+X Hence option (b).
+
+@ FS-285 | Non-Parametric Tests | Runs Test
+Q With n_1 = n_2 = n, what is the maximum possible number of runs?
+O 2n
+O 2n - 1
+O 2n + 1
+O n
+A a
+S Perfect alternation gives 2n runs when the two counts are equal.
+T The maximum is 2 min(n_1, n_2) + 1 in general, but exactly 2n when the counts are equal.
+T The minimum is always 2, when the two groups form two blocks.
+X Perfect alternation ABAB...AB uses all 2n symbols in separate runs.
+X That gives 2n runs.
+X Hence option (a).
+
+@ FS-286 | Non-Parametric Tests | Asymptotic Relative Efficiency
+Q Under normality, the asymptotic relative efficiency of the Wilcoxon test relative to the t test is
+O 2/pi
+O 3/pi
+O 1
+O pi/3
+A b
+S 3/pi = 0.955, so Wilcoxon loses less than 5% of the efficiency even in the t test's ideal setting.
+T 3/pi for Wilcoxon and 2/pi for the sign test - the two efficiencies worth memorising.
+T For heavy-tailed populations Wilcoxon can be MORE efficient than the t test.
+X The ARE of the Wilcoxon signed-rank test relative to t under normality is 3/pi.
+X Numerically this is 0.955.
+X Hence option (b).
+
+@ FS-287 | Non-Parametric Tests | Asymptotic Relative Efficiency
+Q Under normality, the asymptotic relative efficiency of the sign test relative to the t test is
+O 2/pi
+O 3/pi
+O 1
+O 1/2
+A a
+S 2/pi = 0.637, the same as the efficiency of the median relative to the mean.
+T The sign test is the median test in disguise, so it inherits the median's efficiency.
+T The gap between 2/pi and 3/pi is the price of discarding the magnitudes entirely.
+X The sign test is based on the sample median.
+X Its ARE relative to t under normality is 2/pi.
+X Hence option (a).
+
+@ FS-288 | Non-Parametric Tests | Chi-Square Tests
+Q A chi-square goodness-of-fit test fits a Poisson distribution with lambda estimated, using 6 classes. The degrees of freedom are
+O 5
+O 4
+O 6
+O 3
+A b
+S 6 classes minus 1 for the total minus 1 for the estimated lambda gives 4.
+T Subtract one for the constraint that the frequencies total n, and one more for each estimated parameter.
+T If lambda were specified in advance the degrees of freedom would be 5.
+X The number of classes is 6.
+X One degree of freedom is lost for the total and one for the estimated lambda.
+X The degrees of freedom are 4, option (b).
+
+@ FS-289 | Non-Parametric Tests | Chi-Square Tests
+Q A chi-square test of independence in a 3 by 4 contingency table has degrees of freedom
+O 12
+O 6
+O 11
+O 7
+A b
+S (3-1)(4-1) = 6.
+T The degrees of freedom for independence are (rows - 1)(columns - 1).
+T 11 would be the goodness-of-fit degrees of freedom for 12 cells with no structure.
+X The table has 3 rows and 4 columns.
+X The degrees of freedom are (3-1)(4-1).
+X This is 6, option (b).
+
+@ FS-290 | Non-Parametric Tests | Chi-Square Tests
+Q Yates' continuity correction replaces the absolute difference between observed and expected by
+O that difference minus 0.5
+O that difference plus 0.5
+O half that difference
+O the squared difference
+A a
+S Subtracting 0.5 shrinks each discrepancy and lowers the statistic, correcting for the discreteness.
+T The correction is used for 2 by 2 tables with small expected frequencies.
+T It always reduces the statistic, making the test more conservative.
+X Yates' correction replaces |O - E| by |O - E| - 0.5 before squaring.
+X This compensates for approximating a discrete distribution by a continuous one.
+X Hence option (a).
+
+@ FS-291 | Non-Parametric Tests | Median Test
+Q The median test uses
+O a 2 by 2 chi-square test on counts above and below the combined median
+O a t test
+O a runs test
+O the sum of ranks
+A a
+S Each observation is classified as above or below the pooled median, and the resulting table is tested.
+T The median test is the crudest of the two-sample rank procedures and has ARE 2/pi under normality.
+T Mann-Whitney uses the full ranking and is correspondingly more powerful.
+X The two samples are pooled and their common median computed.
+X Counts above and below form a 2 by 2 table, tested by chi-square.
+X Hence option (a).
+
+@ FS-292 | Order Statistics | Densities of Order Statistics
+Q The density of the sample minimum is
+O n F^(n-1) f
+O n (1 - F)^(n-1) f
+O F^n
+O (1 - F)^n
+A b
+S P(min > x) = (1-F)^n, and differentiating gives n(1-F)^(n-1)f.
+T The minimum is driven by the SURVIVAL function; the maximum by the distribution function.
+T Option (a) is the density of the maximum, the standard mirror-image trap.
+X P(X_(1) > x) = [1 - F(x)]^n.
+X Differentiating the distribution function 1 - [1-F]^n gives n[1-F]^(n-1) f.
+X Hence option (b).
+
+@ FS-293 | Order Statistics | Densities of Order Statistics
+Q The density of the sample maximum is
+O n F^(n-1) f
+O n (1 - F)^(n-1) f
+O n F^n
+O f^n
+A a
+S P(max <= x) = F^n, and differentiating gives n F^(n-1) f.
+T All n observations must fall below x, so the distribution function is simply F^n.
+T The two extremes are mirror images: swap F for 1 - F to move between them.
+X P(X_(n) <= x) = F(x)^n.
+X Differentiating gives n F(x)^(n-1) f(x).
+X Hence option (a).
+
+@ FS-294 | Order Statistics | Exponential Order Statistics
+Q For 5 independent exponential variables with rate 2, the minimum follows
+O an exponential with rate 2
+O an exponential with rate 10
+O an exponential with rate 2/5
+O Gamma(5, 2)
+A b
+S Rates add for the minimum of independent exponentials: 5(2) = 10.
+T The minimum of independent exponentials is exponential with the SUM of the rates.
+T The mean therefore shrinks by the factor n, from 1/2 to 1/10.
+X P(min > x) = product of e^(-2x) over 5 variables = e^(-10x).
+X That is the exponential survival function with rate 10.
+X Hence option (b).
+
+@ FS-295 | Order Statistics | Exponential Order Statistics
+Q For 3 independent Exp(1) variables, what is the expected value of the maximum?
+O 1
+O 11/6
+O 3
+O 3/2
+A b
+S The expected maximum is 1 + 1/2 + 1/3 = 11/6.
+T The maximum of n independent Exp(1) variables has mean H_n, the n-th harmonic number.
+T This comes from writing the maximum as a sum of independent exponential spacings.
+X The spacings between order statistics are independent exponentials with rates 3, 2 and 1.
+X The maximum is their sum, with mean 1/3 + 1/2 + 1.
+X This is 11/6, option (b).
+
+@ FS-296 | Order Statistics | Uniform Order Statistics
+Q For 4 independent U(0,1) variables, what is the expected value of the maximum?
+O 3/4
+O 4/5
+O 1/2
+O 1
+A b
+S E(max) = n/(n+1) = 4/5.
+T The uniform order statistics divide (0,1) into n+1 equal expected gaps.
+T The minimum has mean 1/(n+1) = 1/5, the mirror image.
+X X_(n) is Beta(n, 1) with mean n/(n+1).
+X With n = 4 this is 4/5.
+X Hence option (b).
+
+@ FS-297 | Order Statistics | Uniform Order Statistics
+Q For n independent U(0,1) variables, what is the expected value of the minimum?
+O 1/n
+O 1/(n+1)
+O 1/(n-1)
+O 0
+A b
+S The minimum is Beta(1, n) with mean 1/(n+1).
+T The n order statistics cut the interval into n+1 gaps, each of expected length 1/(n+1).
+T Answering 1/n forgets the gap above the maximum.
+X X_(1) is Beta(1, n).
+X Its mean is 1/(1 + n).
+X Hence option (b).
+
+@ FS-298 | Order Statistics | Range and Spacings
+Q For n independent U(0,1) variables, the density of the range is
+O n(n-1) r^(n-2)(1 - r)
+O n r^(n-1)
+O (1 - r)^n
+O n(n-1) r(1-r)^(n-2)
+A a
+S The range follows Beta(n-1, 2), whose density is n(n-1)r^(n-2)(1-r).
+T The range of a uniform sample is Beta(n-1, 2), a result worth memorising directly.
+T Its mean (n-1)/(n+1) follows immediately from the Beta mean.
+X The joint density of the minimum and maximum integrates to give the range density.
+X The result is the Beta(n-1, 2) density n(n-1)r^(n-2)(1-r).
+X Hence option (a).
+
+@ FS-299 | Order Statistics | Range and Spacings
+Q For 5 independent U(0,1) variables, what is the expected range?
+O 2/3
+O 4/5
+O 1/2
+O 5/7
+A a
+S The range is Beta(4,2) with mean 4/6 = 2/3.
+T E(range) = (n-1)/(n+1), which approaches 1 as n grows.
+T It is also E(max) - E(min) = 5/6 - 1/6 = 2/3, a useful cross-check.
+X The range follows Beta(n-1, 2) = Beta(4, 2).
+X Its mean is 4/(4+2).
+X This is 2/3, option (a).
+
+@ FS-300 | Order Statistics | Uniform Order Statistics
+Q The r-th order statistic of a sample of size n from U(0,1) follows
+O Beta(r, n - r)
+O Beta(r, n - r + 1)
+O Beta(n, r)
+O U(0,1)
+A b
+S The two Beta parameters count the observations at or below and strictly above the r-th.
+T Beta(r, n-r+1) has mean r/(n+1), which matches the equal-spacing picture.
+T Getting the second parameter wrong by one is the standard slip.
+X P(X_(r) <= x) is the probability of at least r successes in n Bernoulli(x) trials.
+X Differentiating gives the Beta(r, n-r+1) density.
+X Hence option (b).
+
+@ FS-301 | Order Statistics | Uniform Order Statistics
+Q For 5 independent U(0,1) variables, what is the variance of the sample median?
+O 1/28
+O 1/20
+O 1/12
+O 1/25
+A a
+S The median is Beta(3,3) with variance 9/(36 x 7) = 1/28.
+T The median of a sample of size 2m+1 from U(0,1) is Beta(m+1, m+1).
+T Its variance 1/(4(n+2)) gives 1/28 directly for n = 5.
+X X_(3) is Beta(3,3).
+X Var = ab/((a+b)^2(a+b+1)) = 9/(36 x 7).
+X This is 1/28, option (a).
+
+@ FS-302 | Order Statistics | Uniform Order Statistics
+Q For 5 independent U(0,1) variables, the density of the sample median is
+O 30 x^2 (1-x)^2
+O 20 x^2 (1-x)^2
+O 5 x^4
+O 6x(1-x)
+A a
+S Beta(3,3) has normalising constant 1/B(3,3) = 30.
+T B(3,3) = 2!2!/5! = 1/30, so the density constant is 30.
+T Integrating 30x^2(1-x)^2 over (0,1) gives 1, which confirms the constant.
+X The median is Beta(3,3) with density x^2(1-x)^2/B(3,3).
+X B(3,3) = 1/30.
+X The density is 30x^2(1-x)^2, option (a).
+
+@ FS-303 | Order Statistics | Uniform Order Statistics
+Q For 3 independent U(0,1) variables, what is P(the median exceeds 1/2)?
+O 1/2
+O 1/4
+O 3/8
+O 1/8
+A a
+S The median is Beta(2,2), which is symmetric about 1/2.
+T Any Beta(a,a) is symmetric about 1/2, so the median question answers itself.
+T Equivalently, P(at least 2 of 3 exceed 1/2) = 1/2 by symmetry of the binomial with p = 1/2.
+X The median of 3 uniforms is Beta(2,2), symmetric about 1/2.
+X Hence P(median > 1/2) = 1/2.
+X That is option (a).
+
+@ FS-304 | Order Statistics | Order Statistics via the Binomial
+Q A sample of size 4 comes from the density 2x on (0,1). What is P(the third order statistic exceeds 1/2)?
+O 243/256
+O 189/256
+O 27/64
+O 1/2
+A a
+S F(1/2) = 1/4, so the answer is P(at most 2 of 4 are below 1/2) = (81 + 108 + 54)/256.
+T Convert every order-statistic tail into a binomial tail: X_(r) > c means fewer than r observations are at most c.
+T F(x) = x^2 here, so F(1/2) = 1/4, not 1/2 - the density is not uniform.
+X F(x) = x^2, so F(1/2) = 1/4.
+X P(X_(3) > 1/2) = P(at most 2 of 4 below 1/2) = sum over k = 0 to 2 of C(4,k)(1/4)^k(3/4)^(4-k).
+X This is (81 + 108 + 54)/256 = 243/256, option (a).
+
+@ FS-305 | Order Statistics | Order Statistics via the Binomial
+Q For a continuous distribution function F, the variable F applied to the r-th order statistic is
+O U(0,1)
+O the r-th order statistic of a uniform sample of the same size
+O Beta(1, n)
+O a constant
+A b
+S The probability integral transform is monotone, so it maps order statistics to order statistics.
+T This is why every uniform order-statistic result transfers to any continuous law.
+T Only the r = 1 and r = n cases give the extreme Beta laws; the general one is Beta(r, n-r+1).
+X F is non-decreasing, so it preserves the ordering of the sample.
+X Each F(X_i) is U(0,1), so F(X_(r)) is the r-th order statistic of a uniform sample.
+X Hence option (b).
+
+@ FS-306 | Order Statistics | Uniform Order Statistics
+Q For 3 independent U(10, 11) variables, what is the expected value of the minimum?
+O 10.25
+O 10.33
+O 10.5
+O 10.2
+A a
+S The minimum of 3 standard uniforms has mean 1/4, and the shift adds 10.
+T Location and scale transformations pass straight through order statistics.
+T 1/(n+1) = 1/4 here, so the answer is 10 + 0.25.
+X Writing X = 10 + U with U uniform on (0,1), the minimum is 10 + min(U).
+X E(min U) = 1/(3+1) = 0.25.
+X The answer is 10.25, option (a).
+
+@ FS-307 | Order Statistics | Uniform Order Statistics
+Q For n independent U(0, theta) variables, P(the minimum exceeds x) equals
+O (x/theta)^n
+O (1 - x/theta)^n
+O 1 - (x/theta)^n
+O n(1 - x/theta)
+A b
+S All n observations must exceed x, each with probability 1 - x/theta.
+T Take the survival function to the power n for a minimum, and the distribution function for a maximum.
+T Option (a) is P(maximum at most x), the mirror image.
+X P(min > x) = P(every observation exceeds x).
+X Each has probability (theta - x)/theta = 1 - x/theta.
+X So the answer is (1 - x/theta)^n, option (b).
+
+@ FS-308 | Order Statistics | Exponential Order Statistics
+Q For n independent Exp(lambda) variables, the distribution function of the minimum is
+O 1 - e^(-n lambda x)
+O (1 - e^(-lambda x))^n
+O e^(-n lambda x)
+O 1 - e^(-lambda x/n)
+A a
+S The minimum is exponential with rate n lambda.
+T Rates add for the minimum; option (b) is the distribution function of the MAXIMUM.
+T The memorylessness of the exponential is preserved by taking minima.
+X P(min > x) = e^(-n lambda x).
+X The distribution function is 1 minus that.
+X Hence option (a).
+
+@ FS-309 | Order Statistics | Asymptotic Distribution of the Median
+Q For a large sample from N(mu, sigma^2), the asymptotic variance of the sample median is
+O sigma^2/n
+O pi sigma^2/(2n)
+O 2 sigma^2/(pi n)
+O sigma^2/(4n)
+A b
+S 1/(4 n f(m)^2) with f(m) = 1/(sigma sqrt(2 pi)) gives pi sigma^2/(2n).
+T The general formula is 1/(4 n f_m^2) with f_m the density height at the median.
+T pi/2 = 1.571, so the median is about 57% less efficient than the mean.
+X The density at the median is 1/(sigma sqrt(2 pi)).
+X The asymptotic variance is 1/(4n f^2) = 2 pi sigma^2/(4n).
+X This is pi sigma^2/(2n), option (b).
+
+@ FS-310 | Order Statistics | Asymptotic Distribution of the Median
+Q In general, the asymptotic variance of the sample median is
+O 1/(4 n f(m)^2)
+O 1/(n f(m))
+O f(m)^2/(4n)
+O 1/(2 n f(m))
+A a
+S The median's precision depends on the density height at the median.
+T A sharply peaked density gives a precise median; a flat one gives a poor one.
+T The same formula with the appropriate quantile density applies to any sample quantile.
+X The sample median is asymptotically normal about the population median m.
+X Its asymptotic variance is 1/(4 n f(m)^2).
+X Hence option (a).
+
+@ FS-311 | Order Statistics | Discrete Order Statistics
+Q The minimum of n independent geometric variables with success probability p is geometric with success probability
+O p^n
+O 1 - (1-p)^n
+O a binomial expression
+O a Poisson expression
+A b
+S P(min > k) = (1-p)^(nk), so the failure probability is (1-p)^n.
+T The geometric minimum mirrors the exponential minimum: the failure probabilities multiply.
+T Option (a) is the probability that all n succeed at once, a different event.
+X P(min > k) = [P(X > k)]^n = [(1-p)^k]^n.
+X That is [(1-p)^n]^k, a geometric survival function.
+X The success probability is 1 - (1-p)^n, option (b).
+
+@ FS-312 | Order Statistics | Exponential Order Statistics
+Q For the shifted exponential density e^(-(x - theta)) on x > theta with n observations and M the minimum, the variable 2n(M - theta) follows
+O chi-square with 2n degrees of freedom
+O chi-square with 2 degrees of freedom
+O chi-square with 1 degree of freedom
+O an exponential with rate n
+A b
+S M - theta is exponential with rate n, so n(M - theta) is Exp(1) and twice it is chi-square with 2 degrees of freedom.
+T Twice a standard exponential is exactly a chi-square with 2 degrees of freedom - the key to exact intervals for theta.
+T The companion result is that twice the sum of (X_i - theta) is chi-square with 2n degrees of freedom.
+X The minimum of n shifted exponentials has M - theta exponential with rate n.
+X So n(M - theta) is Exp(1).
+X Twice an Exp(1) is chi-square with 2 degrees of freedom, option (b).
+
+@ FS-313 | Order Statistics | Densities of Order Statistics
+Q The joint density of the minimum and the maximum is
+O n(n-1)[F(y) - F(x)]^(n-2) f(x) f(y)
+O n^2 F^(n-1)(1-F)^(n-1)
+O n! f(x) f(y)
+O F(y) - F(x)
+A a
+S Two observations are fixed at the extremes and the remaining n - 2 lie between them.
+T Count the ways: n choices for the minimum, n-1 for the maximum, and the rest fall in the gap.
+T Integrating this density recovers the range distribution.
+X Fix X_(1) = x and X_(n) = y with x < y.
+X The remaining n - 2 observations must lie in (x, y), each with probability F(y) - F(x).
+X The joint density is n(n-1)[F(y)-F(x)]^(n-2)f(x)f(y), option (a).
+
+@ FS-314 | Order Statistics | Densities of Order Statistics
+Q The joint density of all n order statistics is
+O the product of the individual densities
+O n! times that product
+O n times that product
+O (n-1)! times that product
+A b
+S Every one of the n! orderings of the sample maps to the same ordered vector.
+T The factor n! is the number of permutations that produce a given ordered sample.
+T This joint density is supported only on the ordered region x_1 < x_2 < ... < x_n.
+X The unordered sample has density equal to the product of the marginals.
+X Each ordered configuration arises from n! equally likely arrangements.
+X The joint density is n! times the product, option (b).
+
+@ FS-315 | Order Statistics | Normal Order Statistics
+Q For 2 independent N(0, sigma^2) variables, what is the expected value of the minimum?
+O -sigma/sqrt(pi)
+O -sigma/sqrt(2 pi)
+O -sigma/2
+O 0
+A a
+S E(min) = -E|X_1 - X_2|/2 = -(sigma sqrt(2)) sqrt(2/pi)/2 = -sigma/sqrt(pi).
+T Use min(a,b) = (a + b - |a-b|)/2 and the half-normal mean.
+T The maximum has the mirror value +sigma/sqrt(pi), so the expected range is 2 sigma/sqrt(pi).
+X min(X_1,X_2) = [(X_1+X_2) - |X_1-X_2|]/2.
+X E(X_1+X_2) = 0 and X_1 - X_2 is N(0, 2 sigma^2), so E|X_1-X_2| = sigma sqrt(2) sqrt(2/pi) = 2 sigma/sqrt(pi).
+X Hence E(min) = -sigma/sqrt(pi), option (a).
+
+@ FS-316 | Order Statistics | Normal Order Statistics
+Q For 2 independent N(0, sigma^2) variables, what is the expected range?
+O sigma/sqrt(pi)
+O 2 sigma/sqrt(pi)
+O sigma sqrt(2)
+O sigma
+A b
+S The range is |X_1 - X_2|, whose mean is sigma sqrt(2) times sqrt(2/pi) = 2 sigma/sqrt(pi).
+T For two observations the range is simply the absolute difference.
+T The constant 2/sqrt(pi) = 1.128 is the classical d_2 factor for a subgroup of size 2.
+X The range is |X_1 - X_2| and X_1 - X_2 is N(0, 2 sigma^2).
+X E|Z| for N(0, tau^2) is tau sqrt(2/pi), with tau = sigma sqrt(2).
+X This gives 2 sigma/sqrt(pi), option (b).
+
+@ FS-317 | Order Statistics | Uniform Order Statistics
+Q For a sample from U(0, theta), an unbiased estimator based on the sample maximum is
+O the maximum itself
+O (n+1)/n times the maximum
+O n/(n+1) times the maximum
+O twice the maximum
+A b
+S E(max) = n theta/(n+1), so multiplying by (n+1)/n removes the bias.
+T The maximum always underestimates theta, so the correction factor must exceed 1.
+T This estimator has variance of order theta^2/n^2, far better than the moment estimator 2 x_bar.
+X E(X_(n)) = n theta/(n+1).
+X Multiplying by (n+1)/n gives expectation theta.
+X Hence option (b).
+
+@ FS-318 | Order Statistics | Exponential Order Statistics
+Q For 3 independent Exp(1) variables, what is P(the minimum exceeds 1)?
+O e^(-1)
+O e^(-3)
+O 1 - e^(-3)
+O 3 e^(-1)
+A b
+S The minimum is Exp(3), so P(min > 1) = e^(-3).
+T All three must exceed 1, so the probabilities multiply.
+T Answering e^(-1) forgets that there are three variables.
+X P(min > 1) = [P(X > 1)]^3 = (e^(-1))^3.
+X This is e^(-3).
+X Hence option (b).
+
+@ FS-319 | Order Statistics | Range and Spacings
+Q For an Exp(lambda) sample, the spacing between the k-th and the (k+1)-th order statistics follows
+O an exponential with rate lambda
+O an exponential with rate (n-k) lambda
+O an exponential with rate k lambda
+O Gamma(k, lambda)
+A b
+S After the k-th order statistic, n - k observations remain, each restarting by memorylessness.
+T Renyi's representation: the exponential spacings are independent exponentials with rates n, n-1, ..., 1 times lambda.
+T This is what makes E(max) = H_n/lambda a one-line computation.
+X By memorylessness, once k observations have been passed, the remaining n - k restart afresh.
+X The minimum of n - k independent Exp(lambda) variables is Exp((n-k)lambda).
+X Hence option (b).

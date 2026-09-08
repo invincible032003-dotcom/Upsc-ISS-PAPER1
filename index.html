@@ -26,7 +26,7 @@
   <div class="topline">
     <div class="brand">
       ISS Statistics Paper-I
-      <small>2018–2026 PYQ Mock Engine · 100% offline</small>
+      <small>2018–2026 PYQ Mock Engine · 2027 Forecast Bank · 100% offline</small>
     </div>
     <div class="spacer"></div>
     <button type="button" data-act="go" data-r="search" title="Search (S)">Search</button>
@@ -51,7 +51,10 @@
 (function () {
 'use strict';
 
-var DATA = window.quizData || [];
+var DATA = window.quizData || [];          /* 720 AUTHENTIC PYQs only */
+var FDATA = window.forecastData || [];     /* FORECAST / AI-GENERATED  */
+var FMETA = window.forecastMeta || null;
+var ALL = DATA.concat(FDATA);
 var META = window.quizMeta || {};
 var DEFAULT_CFG = window.quizConfig || {};
 var app = document.getElementById('app');
@@ -341,11 +344,12 @@ var Store = (function () {
    3.  INDEXES + HELPERS
    ====================================================================== */
 var BY_ID = {};
-DATA.forEach(function (q) { BY_ID[q.id] = q; });
+ALL.forEach(function (q) { BY_ID[q.id] = q; });
 
-var SEARCH_INDEX = DATA.map(function (q) {
-  return (q.id + ' ' + q.year + ' ' + q.unit + ' ' + q.topic + ' ' + q.subtopic + ' ' +
-          q.questionType + ' ' + ML.strip(q.sharedStem) + ' ' + ML.strip(q.question) + ' ' +
+var SEARCH_INDEX = ALL.map(function (q) {
+  return (q.id + ' ' + (q.isForecast ? 'forecast 2027' : q.year) + ' ' + q.unit + ' ' +
+          q.topic + ' ' + q.subtopic + ' ' + q.questionType + ' ' +
+          ML.strip(q.sharedStem) + ' ' + ML.strip(q.question) + ' ' +
           (q.options || []).map(ML.strip).join(' ')).toLowerCase();
 });
 
@@ -656,7 +660,7 @@ function persistAttempt(sess) {
 var ROUTE = { name: 'home' };
 var BUILDER = null;
 var REVIEW = { idx: 0, filter: 'all' };
-var SEARCH = { q: '', unit: '', year: '' };
+var SEARCH = { q: '', unit: '', year: '', bank: '' };
 var STUDY = { qid: null, back: 'home' };
 
 function go(name, params) {
@@ -684,7 +688,10 @@ function provenanceBanner() {
 }
 
 function qMetaLine(q) {
-  return '<div class="qmeta"><span>' + E(q.id) + '</span><span>' + E(q.unit) +
+  return '<div class="qmeta">' +
+    (q.isForecast ? '<span class="fc-badge">FORECAST &middot; AI-generated</span>'
+                  : '<span class="pyq-badge">Authentic PYQ</span>') +
+    '<span>' + E(q.id) + '</span><span>' + E(q.unit) +
     '</span><span>' + E(q.topic) + '</span><span>' + E(q.subtopic) +
     '</span><span>' + E(q.questionType) + '</span></div>';
 }
@@ -724,25 +731,25 @@ function revealPanes(q, chosenOriginal, opts) {
   h += '</div></div>';
 
   /* 2 — Exam Shortcut */
+  var aiNote = q.isForecast
+    ? '<div class="ai-note">FORECAST / AI-GENERATED. This is not a previous-year ' +
+      'question and there is no official UPSC solution for it.</div>'
+    : '<div class="ai-note">AI-derived explanation. Not an official UPSC solution.</div>';
   h += '<div class="pane"><div class="hd"><span class="step">2</span>Exam Shortcut ' +
        '<span class="chip">~30 sec</span></div><div class="bd">' +
-       R(q.examShortcut) +
-       '<div class="ai-note">AI-derived explanation. Not an official UPSC solution.</div>' +
-       '</div></div>';
+       R(q.examShortcut) + aiNote + '</div></div>';
 
   /* 3 — Tips & Tricks */
   h += '<div class="pane"><div class="hd"><span class="step">3</span>Tips &amp; Tricks</div>' +
        '<div class="bd"><ul>';
   (q.tipsTricks || []).forEach(function (t) { h += '<li>' + R(t) + '</li>'; });
-  h += '</ul><div class="ai-note">AI-derived explanation. Not an official UPSC solution.</div>' +
-       '</div></div>';
+  h += '</ul>' + aiNote + '</div></div>';
 
   /* 4 — Step-by-Step Solution */
   h += '<div class="pane"><div class="hd"><span class="step">4</span>Step-by-Step Solution</div>' +
        '<div class="bd"><ol>';
   (q.solution || []).forEach(function (s) { h += '<li>' + R(s.text) + '</li>'; });
-  h += '</ol><div class="ai-note">AI-derived explanation. Not an official UPSC solution.</div>' +
-       '</div></div>';
+  h += '</ol>' + aiNote + '</div></div>';
 
   if (opts.topic !== false) {
     var ti = (META.topicIntel || {})[q.topicCode];
@@ -833,6 +840,30 @@ V.home = function () {
     nMis + ' incorrect · ' + nSkip + ' skipped');
   h += '</div>';
 
+  if (FMETA) {
+    var fp = FMETA.perUnit['Probability'] || 0;
+    var fs = FMETA.perUnit['Statistical Methods'] || 0;
+    var fpm = FMETA.mocks.filter(function (m) { return m.unit === 'Probability'; }).length;
+    var fsm = FMETA.mocks.length - fpm;
+    h += '<h2 class="mt">Forecast practice <span class="fc-badge">AI-GENERATED &middot; NOT PYQ</span></h2>';
+    h += '<div class="banner warn"><b>These are not previous-year questions.</b> The ' +
+      FMETA.total + ' forecast items below were written for the 2027 attempt and are kept ' +
+      'in a separate bank from the ' + META.totalQuestions + ' authentic PYQs. They never ' +
+      'appear in a year, sectional, topic, subtopic or custom mock, and they are excluded ' +
+      'from the PYQ analytics.</div>';
+    h += '<div class="grid g3">';
+    h += tile('go', { r: 'forecast', u: 'Probability' }, 'Probability Forecast Mocks',
+      'Named sectional mocks of exactly ' + FMETA.mockSize + ' questions each, spread across the topic grid.',
+      fpm + ' mocks \u00b7 ' + fp + ' questions');
+    h += tile('go', { r: 'forecast', u: 'Statistical Methods' }, 'Statistical Methods Forecast Mocks',
+      'Named sectional mocks of exactly ' + FMETA.mockSize + ' questions each, spread across the topic grid.',
+      fsm + ' mocks \u00b7 ' + fs + ' questions');
+    h += tile('go', { r: 'forecast' }, 'All Forecast Mocks',
+      'Every named forecast mock in one list, with its topic coverage.',
+      FMETA.mocks.length + ' mocks \u00b7 ' + FMETA.total + ' questions');
+    h += '</div>';
+  }
+
   h += '<h2 class="mt">Review &amp; track</h2><div class="grid g3">';
   h += tile('go', { r: 'analytics' }, 'Analytics',
     'Accuracy by year, unit, topic, subtopic and question type; weak-area engine.',
@@ -842,7 +873,8 @@ V.home = function () {
   h += tile('go', { r: 'bookmarks' }, 'My Bookmarks',
     'Questions you flagged to come back to.', nBm + ' bookmarked');
   h += tile('go', { r: 'search' }, 'Search the Question Bank',
-    'Find questions by text, year, unit, topic or subtopic.', 'All ' + META.totalQuestions + ' questions');
+    'Find questions by text, year, unit, topic, subtopic or id. Forecast hits are badged.',
+    META.totalQuestions + ' PYQs' + (FMETA ? ' + ' + FMETA.total + ' forecast' : ''));
   h += tile('go', { r: 'audit' }, 'Data Audit',
     'Automatic validation report, counts and flagged source issues.',
     AUDIT.ok ? 'All checks passed' : AUDIT.errors.length + ' error(s)');
@@ -868,6 +900,65 @@ V.home = function () {
 
   return h;
 };
+
+V.forecast = function (p) {
+  var want = (p && p.u) || '';
+  var h = crumb(['Home', 'Forecast practice' + (want ? ' \u00b7 ' + want : '')]);
+  if (!FMETA) {
+    return h + '<div class="card"><h1>No forecast bank loaded</h1></div>';
+  }
+  h += '<div class="card"><h1>Forecast Mocks <span class="fc-badge">AI-GENERATED</span></h1>' +
+    '<p class="card-sub">' + FMETA.total + ' forecast questions for the 2027 attempt, dealt into ' +
+    FMETA.mocks.length + ' named mocks of exactly ' + FMETA.mockSize + ' questions each. Every ' +
+    'question appears in exactly one mock, and each mock is spread across as many topics as ' +
+    'the bank allows.</p>' +
+    '<div class="banner warn"><b>Provenance.</b> ' + E(FMETA.provenance.questions) + '</div>' +
+    '</div>';
+
+  var units = want ? [want] : ['Probability', 'Statistical Methods'];
+  units.forEach(function (u) {
+    var ms = FMETA.mocks.filter(function (m) { return m.unit === u; });
+    if (!ms.length) return;
+    h += '<h2 class="mt">' + E(u) + ' <span class="muted tiny">' +
+      (FMETA.perUnit[u] || 0) + ' questions \u00b7 ' + ms.length + ' mocks</span></h2>';
+    h += '<div class="grid g3">';
+    ms.forEach(function (m) {
+      h += '<div class="tile fc-tile"><span class="t">' + E(m.name) + '</span>' +
+        '<span class="d">' + m.count + ' questions \u00b7 ' + m.topics.length +
+        ' topic(s)</span><span class="n">' + E(m.topics.slice(0, 3).join(' \u00b7 ')) +
+        (m.topics.length > 3 ? ' \u00b7 \u2026' : '') + '</span>' +
+        '<span class="fc-actions">' +
+        '<button type="button" class="btn sm primary" data-act="fcStart" data-m="' + E(m.id) +
+        '" data-mode="learning">Learning</button> ' +
+        '<button type="button" class="btn sm" data-act="fcStart" data-m="' + E(m.id) +
+        '" data-mode="exam">Strict Exam</button></span></div>';
+    });
+    h += '</div>';
+  });
+  return h;
+};
+
+function startForecastMock(mockId, mode) {
+  if (!FMETA) return;
+  var m = null;
+  FMETA.mocks.forEach(function (x) { if (x.id === mockId) m = x; });
+  if (!m) return;
+  var qs = m.questionIds.map(function (i) { return BY_ID[i]; }).filter(Boolean);
+  if (!qs.length) { window.alert('That forecast mock is empty.'); return; }
+  var st = Store.d().settings;
+  buildSession({
+    kind: 'forecast',
+    name: m.name,
+    desc: 'FORECAST / AI-GENERATED \u00b7 ' + qs.length + ' questions \u00b7 ' + m.unit +
+          ' \u00b7 mode: ' + (mode === 'exam' ? 'Strict Exam' : 'Learning'),
+    mode: mode === 'exam' ? 'exam' : 'learn',
+    questions: qs,
+    shuffleQ: false, shuffleO: false,
+    timed: st.timerOn,
+    minutes: Math.round(qs.length * st.minutesPerQuestion),
+    authentic: false
+  });
+}
 
 function tile(act, params, title, desc, note) {
   var attrs = '';
@@ -1652,11 +1743,13 @@ V.search = function () {
   var h = crumb(['Home', 'Search']);
   h += '<div class="card"><h1>Search the question bank</h1>' +
     '<p class="card-sub">Searches question text, options, year, unit, topic, subtopic and ' +
-    'question id across all ' + META.totalQuestions + ' PYQs.</p>';
+    'question id across all ' + META.totalQuestions + ' authentic PYQs' +
+    (FMETA ? ' and all ' + FMETA.total + ' forecast problems. Forecast hits carry the ' +
+      'FORECAST badge and are never mixed into a PYQ mock.' : '.') + '</p>';
   h += '<label class="f"><span>Query</span><input type="search" id="sq" autocomplete="off" ' +
     'placeholder="Bayes, 2023, Regression, Runge-Kutta, 2026-Q12\u2026" value="' + E(SEARCH.q) +
     '" data-act="searchInput"></label>';
-  h += '<div class="grid g2">';
+  h += '<div class="grid ' + (FMETA ? 'g3' : 'g2') + '">';
   h += '<label class="f"><span>Unit</span><select data-act="searchUnit"><option value="">All units</option>';
   META.units.forEach(function (u) {
     h += '<option value="' + E(u) + '"' + (SEARCH.unit === u ? ' selected' : '') + '>' + E(u) + '</option>';
@@ -1666,15 +1759,27 @@ V.search = function () {
   META.years.forEach(function (y) {
     h += '<option value="' + y + '"' + (SEARCH.year == y ? ' selected' : '') + '>' + y + '</option>';
   });
-  h += '</select></label></div>';
+  h += '</select></label>';
+  if (FMETA) {
+    h += '<label class="f"><span>Bank</span><select data-act="searchBank">' +
+      '<option value=""' + (SEARCH.bank ? '' : ' selected') + '>Both banks</option>' +
+      '<option value="pyq"' + (SEARCH.bank === 'pyq' ? ' selected' : '') +
+        '>Authentic PYQs only</option>' +
+      '<option value="fc"' + (SEARCH.bank === 'fc' ? ' selected' : '') +
+        '>Forecast (AI-generated) only</option></select></label>';
+  }
+  h += '</div>';
 
   var qq = SEARCH.q.trim().toLowerCase();
   var terms = qq ? qq.split(/\s+/) : [];
   var hits = [];
-  for (var i = 0; i < DATA.length; i++) {
-    var q = DATA[i];
+  for (var i = 0; i < ALL.length; i++) {
+    var q = ALL[i];
+    if (SEARCH.bank === 'pyq' && q.isForecast) continue;
+    if (SEARCH.bank === 'fc' && !q.isForecast) continue;
     if (SEARCH.unit && q.unit !== SEARCH.unit) continue;
-    if (SEARCH.year && String(q.year) !== String(SEARCH.year)) continue;
+    if (SEARCH.year && !q.isForecast && String(q.year) !== String(SEARCH.year)) continue;
+    if (SEARCH.year && q.isForecast) continue;
     var idx = SEARCH_INDEX[i], ok = true;
     for (var t = 0; t < terms.length; t++) {
       if (idx.indexOf(terms[t]) < 0) { ok = false; break; }
@@ -1686,8 +1791,10 @@ V.search = function () {
       'Practise these ' + Math.min(hits.length, 200) + '</button>' : '') + '</div>';
   h += '<ul class="list">';
   hits.slice(0, 60).forEach(function (q) {
-    h += '<li><div class="top"><span class="id">' + E(q.id) + '</span>' +
-      '<span class="chip">' + E(META.taxonomy[q.unit].short) + '</span>' +
+    h += '<li><div class="top">' +
+      (q.isForecast ? '<span class="fc-badge">FORECAST</span>' : '') +
+      '<span class="id">' + E(q.id) + '</span>' +
+      '<span class="chip">' + E(META.taxonomy[q.unit] ? META.taxonomy[q.unit].short : q.unit) + '</span>' +
       '<span class="chip">' + E(q.topic) + '</span>' +
       '<span class="chip">' + E(q.subtopic) + '</span></div>' +
       '<div class="small">' + R(q.question) + '</div>' +
@@ -1845,7 +1952,7 @@ function row2(a, b) {
    ====================================================================== */
 function render() {
   var fn = V[ROUTE.name] || V.home;
-  app.innerHTML = fn();
+  app.innerHTML = fn(ROUTE);
 }
 
 function startFromBuilder() {
@@ -1905,7 +2012,12 @@ app.addEventListener('click', function (ev) {
         if (!window.confirm('Leave the mock in progress? Your answers will be lost.')) return;
         stopTick(); S = null;
       }
-      go(t.getAttribute('data-r'));
+      go(t.getAttribute('data-r'),
+         t.getAttribute('data-u') ? { u: t.getAttribute('data-u') } : null);
+      return;
+
+    case 'fcStart':
+      startForecastMock(t.getAttribute('data-m'), t.getAttribute('data-mode'));
       return;
 
     case 'setup':
@@ -2083,6 +2195,7 @@ app.addEventListener('change', function (ev) {
 
     case 'searchUnit': SEARCH.unit = t.value; render(); focusSearch(); return;
     case 'searchYear': SEARCH.year = t.value; render(); focusSearch(); return;
+    case 'searchBank': SEARCH.bank = t.value; render(); focusSearch(); return;
 
     case 'importFile': {
       var f = t.files && t.files[0];
@@ -2259,6 +2372,7 @@ if (!DATA.length) {
     session: function () {
       return S ? { ids: S.items.map(function (i) { return i.qid; }),
                    order: S.items.map(function (i) { return i.order; }),
+                   name: S.name, kind: S.kind,
                    cur: S.cur, mode: S.mode, finished: S.finished } : null;
     }
   };

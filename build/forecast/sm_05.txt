@@ -1,0 +1,463 @@
+# FORECAST / AI-GENERATED - Statistical Methods, correlation analysis (continued)
+
+@ FS-149 | Correlation Analysis | Standard Error of r
+Q With r = 0.6 and n = 64, what is the probable error of r?
+O 0.054
+O 0.08
+O 0.027
+O 0.1
+A a
+S PE = 0.6745 times SE = 0.6745(0.08) = 0.054.
+T The probable error is 0.6745 times the standard error - the quartile-deviation constant again.
+T A correlation is conventionally called significant when it exceeds six times its probable error.
+X SE(r) = (1 - 0.36)/8 = 0.08.
+X PE = 0.6745(0.08).
+X This is 0.054, option (a).
+
+@ FS-150 | Correlation Analysis | Standard Error of r
+Q By the classical rule of thumb, a correlation is regarded as significant if r exceeds
+O its probable error
+O six times its probable error
+O three times its probable error
+O twice its probable error
+A b
+S The traditional criterion is r greater than 6 PE.
+T Six probable errors is about four standard errors, a deliberately conservative threshold.
+T The rule is a rough convention, not a formal test - the t test is the proper procedure.
+X PE = 0.6745 SE, so 6 PE is about 4.05 SE.
+X The classical rule declares significance when r exceeds 6 PE.
+X Hence option (b).
+
+@ FS-151 | Correlation Analysis | Computing r
+Q With Cov(X,Y) = 12, Var(X) = 16 and Var(Y) = 25, what is r?
+O 0.6
+O 0.48
+O 0.75
+O 0.03
+A a
+S r = 12/sqrt(16 x 25) = 12/20 = 0.6.
+T Divide the covariance by the product of the two standard deviations, not the variances.
+T Dividing by the product of variances gives 0.03, planted as option (d).
+X sigma_x = 4 and sigma_y = 5.
+X r = 12/(4 x 5).
+X The value is 0.6, option (a).
+
+@ FS-152 | Correlation Analysis | Invariance of Correlation
+Q X is U(-1, 1). What is Corr(X, X^2)?
+O 1
+O 0
+O 1/2
+O 1/sqrt(3)
+A b
+S Cov(X, X^2) = E(X^3) = 0 by symmetry.
+T Symmetry about zero kills all odd moments, so a symmetric variable is uncorrelated with its square.
+T The relation is exact and yet the correlation is zero - the standard warning about r.
+X Cov(X, X^2) = E(X^3) - E(X)E(X^2).
+X Both E(X) and E(X^3) vanish by symmetry.
+X Hence the correlation is 0, option (b).
+
+@ FS-153 | Correlation Analysis | Computing r
+Q X, Y and Z are independent and identically distributed. What is Corr(X + Y, Y + Z)?
+O 1/2
+O 1/sqrt(2)
+O 1/3
+O 0
+A a
+S The only shared variance is that of Y, giving sigma^2/(2 sigma^2) = 1/2.
+T Sums sharing one of two independent components correlate at exactly 1/2.
+T If they shared two of three components the correlation would be 2/3, and so on.
+X Cov(X+Y, Y+Z) = Var(Y) = sigma^2.
+X Var(X+Y) = Var(Y+Z) = 2 sigma^2.
+X Corr = sigma^2/(2 sigma^2) = 1/2, option (a).
+
+@ FS-154 | Correlation Analysis | Invariance of Correlation
+Q What is Corr(aX + b, cX + d) for non-zero a and c?
+O 1
+O the sign of ac
+O ac
+O 0
+A b
+S Both are exact linear functions of the same X, so the correlation is plus or minus 1 according to the sign of ac.
+T Perfect linear dependence gives |r| = 1; only the sign of the product of the slopes is in question.
+T The magnitudes of a and c cancel entirely in the standardisation.
+X Cov(aX+b, cX+d) = ac Var(X) and the standard deviations are |a| sigma and |c| sigma.
+X The ratio is ac/|ac|.
+X That is the sign of ac, option (b).
+
+@ FS-155 | Correlation Analysis | Admissible Correlation Matrices
+Q With r_12 = 0.6 and r_13 = 0.8, what is the admissible range of r_23?
+O -1 to 1
+O 0 to 0.96
+O 0.48 to 1
+O -0.48 to 0.48
+A b
+S The bound is r_12 r_13 plus or minus sqrt((1-r_12^2)(1-r_13^2)) = 0.48 plus or minus 0.48.
+T The determinant of the correlation matrix must be non-negative, which produces exactly this interval.
+T Two variables both positively correlated with a third cannot be strongly negatively correlated with each other.
+X The condition is r_23 between r_12 r_13 - sqrt((1-r_12^2)(1-r_13^2)) and r_12 r_13 + the same quantity.
+X Here r_12 r_13 = 0.48 and sqrt(0.64 x 0.36) = 0.48.
+X The range is 0 to 0.96, option (b).
+
+@ FS-156 | Correlation Analysis | Admissible Correlation Matrices
+Q Three variables have a common pairwise correlation r. This is admissible if and only if
+O r >= 0
+O r >= -1/2
+O |r| <= 1/2
+O r >= -1/3
+A b
+S The variance of the sum is 3(1 + 2r) sigma^2, which must be non-negative.
+T The equicorrelation floor is -1/(k-1); for k = 3 that is -1/2.
+T Positive r is always admissible, so the binding constraint is only on the negative side.
+X Var(X_1 + X_2 + X_3) = 3 sigma^2 + 6 r sigma^2.
+X Non-negativity requires 1 + 2r >= 0.
+X So r >= -1/2, option (b).
+
+@ FS-157 | Correlation Analysis | Partial Correlation
+Q With r_12 = r_13 = r_23 = 0.5, what is r_12.3?
+O 1/3
+O 1/2
+O 0
+O 1/4
+A a
+S The equicorrelation formula r/(1+r) gives 0.5/1.5 = 1/3.
+T With all three correlations equal, the partial correlation is always r/(1+r).
+T Removing the common factor reduces the apparent association from 0.5 to 1/3.
+X r_12.3 = (0.5 - 0.25)/(1 - 0.25) = 0.25/0.75.
+X This is 1/3.
+X Hence option (a).
+
+@ FS-158 | Correlation Analysis | Multiple Correlation
+Q Which identity holds for the multiple correlation of variable 1 on variables 2 and 3?
+O 1 - R^2 equals (1 - r_12^2)(1 - r_13.2^2)
+O R^2 equals the product of r_12^2 and r_13^2
+O 1 - R^2 equals 1 - r_12^2 - r_13^2
+O none of these
+A a
+S The unexplained variation multiplies: first remove variable 2, then remove variable 3 from what is left.
+T This factorisation is how multiple correlations are built up one predictor at a time.
+T It also proves that R^2 is at least r_12^2, since the second factor is at most 1.
+X Regressing on variable 2 leaves a fraction 1 - r_12^2 of the variance.
+X Regressing the residual on variable 3 removes a further fraction r_13.2^2 of THAT.
+X Hence 1 - R^2 = (1 - r_12^2)(1 - r_13.2^2), option (a).
+
+@ FS-159 | Correlation Analysis | Partial Correlation
+Q If r_12.3 = 0, then
+O r_12 = 0
+O r_12 = r_13 r_23
+O r_13 = 0
+O r_23 = 0
+A b
+S The numerator of the partial correlation vanishes exactly when r_12 equals the product of the other two.
+T A zero partial correlation means the whole association between 1 and 2 runs through variable 3.
+T r_12 itself can be large; it is the spurious part that matches r_13 r_23 exactly.
+X r_12.3 = 0 requires r_12 - r_13 r_23 = 0.
+X Hence r_12 = r_13 r_23.
+X That is option (b).
+
+@ FS-160 | Correlation Analysis | Rank Correlation
+Q For 10 pairs of observations there are 9 pairs of consecutive deviations, of which 7 are concurrent. What is the coefficient of concurrent deviations?
+O 0.745
+O 0.4
+O 0.55
+O 0.67
+A a
+S The formula gives the square root of (2c - m)/m with m = 9 and c = 7: sqrt(5/9) = 0.745.
+T Use m = n - 1, the number of pairs of DEVIATIONS, not the number of observations.
+T The sign of 2c - m determines the sign of the coefficient; here it is positive.
+X m = 9 pairs of deviations and c = 7 concurrent ones.
+X (2c - m)/m = (14 - 9)/9 = 5/9.
+X The coefficient is +sqrt(5/9) = 0.745, option (a).
+
+@ FS-161 | Correlation Analysis | Invariance of Correlation
+Q Two variables have r = 0. Which conclusion is warranted?
+O they are independent
+O there is no linear association between them
+O there is no association of any kind between them
+O one is a constant
+A b
+S A zero correlation rules out linear association only; any curved relation may still be present.
+T Read r as a measure of straight-line association and nothing more.
+T A perfect parabolic relation can give r = 0, which is exactly why option (c) fails.
+X r is the standardised covariance and measures only the linear component of the dependence.
+X X uniform on (-1,1) with Y = X^2 has r = 0 yet an exact functional relation.
+X Only the absence of LINEAR association follows, option (b).
+
+@ FS-162 | Correlation Analysis | Fisher Z Transformation
+Q Testing the hypothesis that rho equals 0.5 with r = 0.7 and n = 28 gives a z statistic of about
+O 1.59
+O 2.5
+O 0.8
+O 3.1
+A a
+S Z(0.7) = 0.8673 and Z(0.5) = 0.5493, and dividing the difference by 0.2 gives 1.59.
+T Transform both the observed and the hypothesised correlation, then divide by 1/sqrt(n-3).
+T The plain t test only handles rho = 0; any other null needs Fisher's Z.
+X Z_r = (1/2)log(1.7/0.3) = 0.8673 and Z_rho = (1/2)log(1.5/0.5) = 0.5493.
+X SE = 1/sqrt(25) = 0.2.
+X z = (0.8673 - 0.5493)/0.2 = 1.59, option (a).
+
+@ FS-163 | Correlation Analysis | Fisher Z Transformation
+Q For two independent samples each of size 28, what is the standard error of the difference of the two Fisher Z values?
+O 0.2
+O 0.283
+O 0.4
+O 0.1
+A b
+S sqrt(1/25 + 1/25) = sqrt(0.08) = 0.283.
+T Variances add for independent samples, so the standard errors combine in quadrature.
+T Simply adding 0.2 + 0.2 = 0.4 is the planted error.
+X Each Z has variance 1/(n-3) = 1/25.
+X The difference has variance 2/25 = 0.08.
+X The standard error is 0.283, option (b).
+
+@ FS-164 | Correlation Analysis | Computing r
+Q The coefficient of alienation equals
+O 1 - r^2
+O the square root of (1 - r^2)
+O 1 - r
+O 1/r
+A b
+S The coefficient of alienation is sqrt(1 - r^2), the standardised residual standard deviation.
+T 1 - r^2 is the coefficient of NON-determination; its square root is the coefficient of alienation.
+T The two are routinely confused, which is exactly what the question tests.
+X The residual standard deviation is sigma_y sqrt(1 - r^2).
+X Expressed as a fraction of sigma_y this is sqrt(1 - r^2).
+X Hence option (b).
+
+@ FS-165 | Correlation Analysis | Computing r
+Q With b_yx = 0.5 and sigma_y = 2 sigma_x, what is r?
+O 1
+O 0.25
+O 0.5
+O 0.125
+A b
+S r = b_yx sigma_x/sigma_y = 0.5(1/2) = 0.25.
+T Convert a regression coefficient to a correlation by multiplying by sigma_x/sigma_y.
+T Reporting 0.5 treats the slope as the correlation, which is valid only when the two SDs are equal.
+X r = b_yx sigma_x/sigma_y.
+X With sigma_y = 2 sigma_x this is 0.5(1/2).
+X The value is 0.25, option (b).
+
+@ FS-166 | Correlation Analysis | Correlation Ratio
+Q The squared correlation ratio of Y on X equals
+O the variance of E(Y given X) divided by Var(Y)
+O the expectation of Var(Y given X) divided by Var(Y)
+O the squared covariance divided by the product of the variances
+O Var(Y) divided by Var(X)
+A a
+S It is the between-group share of the total variance.
+T Total variance splits as between plus within; the correlation ratio is the between share.
+T Option (b) is the WITHIN share, which is 1 minus the correlation ratio.
+X Var(Y) = Var(E(Y|X)) + E(Var(Y|X)).
+X The correlation ratio is the first term as a fraction of the total.
+X Hence option (a).
+
+@ FS-167 | Correlation Analysis | Correlation Ratio
+Q The squared correlation ratio of Y on X equals 1 if and only if
+O Y is an exact function of X
+O X and Y are independent
+O r = 1
+O X is an exact function of Y
+A a
+S A unit correlation ratio means the within-group variance vanishes, so Y is determined by X.
+T eta = 1 means perfect predictability, not perfect linearity - r = 1 is the stronger linear statement.
+T Y = X^2 with X uniform gives eta_yx = 1 but r = 0.
+X eta^2 = 1 means E[Var(Y|X)] = 0.
+X A non-negative quantity with zero mean is zero almost surely, so Y is determined by X.
+X Hence option (a).
+
+@ FS-168 | Correlation Analysis | Intraclass Correlation
+Q The intraclass correlation attains its minimum value when
+O the group variance equals the total variance
+O the between-group variance is zero
+O the total variance is zero
+O k equals 2
+A b
+S The coefficient decreases as the between-group variance falls, reaching -1/(k-1) at zero.
+T The intraclass correlation is essentially a rescaled ratio of between to total variance.
+T At the minimum the group means are identical and only the within-group spread remains.
+X The intraclass correlation is (k times the between variance minus the total)/((k-1) times the total).
+X It is increasing in the between-group variance.
+X The minimum occurs when that variance is 0, option (b).
+
+@ FS-169 | Correlation Analysis | Multiple Correlation
+Q With all three pairwise correlations equal to 0.7, what is the squared multiple correlation of variable 1 on 2 and 3?
+O 0.576
+O 0.49
+O 0.7
+O 0.98
+A a
+S 2r^2/(1+r) = 2(0.49)/1.7 = 0.576.
+T Use the equicorrelation shortcut rather than the general formula.
+T The answer must lie between r^2 = 0.49 and 1, which rules out options (b) and (c).
+X R^2 = 2r^2/(1 + r) with r = 0.7.
+X This is 0.98/1.7.
+X The value is 0.576, option (a).
+
+@ FS-170 | Correlation Analysis | Multiple Correlation
+Q If r_23 = 0, the squared multiple correlation of variable 1 on 2 and 3 equals
+O r_12^2 + r_13^2
+O r_12^2
+O 0
+O r_12 r_13
+A a
+S Orthogonal predictors contribute independently, so the explained fractions simply add.
+T This is the only case in which R^2 decomposes cleanly into individual contributions.
+T With correlated predictors the contributions overlap and cannot be separated this way.
+X R^2 = (r_12^2 + r_13^2 - 2 r_12 r_13 r_23)/(1 - r_23^2).
+X Setting r_23 = 0 removes both the cross term and the denominator correction.
+X Hence R^2 = r_12^2 + r_13^2, option (a).
+
+@ FS-171 | Correlation Analysis | Partial Correlation
+Q If r_13 = r_23 = 0, then r_12.3 equals
+O 0
+O r_12
+O 1
+O undefined
+A b
+S With variable 3 unrelated to both others, controlling for it changes nothing.
+T Partialling out an irrelevant variable leaves the simple correlation untouched.
+T This is the sanity check that any partial-correlation formula must satisfy.
+X r_12.3 = (r_12 - 0)/sqrt((1-0)(1-0)).
+X This is r_12.
+X Hence option (b).
+
+@ FS-172 | Correlation Analysis | Computing r
+Q The pairs (1,2), (2,4) and (3,6) are observed. What is r?
+O 1
+O 0.5
+O 2
+O 0
+A a
+S The points lie exactly on y = 2x, so the correlation is 1.
+T Perfect linear dependence with a positive slope gives r = 1 regardless of the slope's magnitude.
+T A correlation can never exceed 1, so option (c) is impossible by definition.
+X Each y is exactly twice the corresponding x.
+X That is an exact increasing linear relation.
+X Hence r = 1, option (a).
+
+@ FS-173 | Correlation Analysis | Computing r
+Q The pairs (-1,1), (0,0) and (1,1) are observed. What is r?
+O 1
+O 0
+O -1
+O 0.5
+A b
+S The configuration is symmetric about x = 0, so the covariance vanishes.
+T A symmetric V-shaped scatter has zero correlation despite a perfect functional relation.
+T This is the discrete version of the X uniform, Y = X^2 counterexample.
+X x_bar = 0 and the products x times y are -1, 0 and 1.
+X Their sum is 0, so the covariance is 0.
+X Hence r = 0, option (b).
+
+@ FS-174 | Correlation Analysis | Fisher Z Transformation
+Q With r = 0.6 and n = 28, an approximate 95% confidence interval for rho is
+O 0.29 to 0.80
+O 0.4 to 0.8
+O 0.5 to 0.7
+O 0.2 to 1.0
+A a
+S Work on the Z scale: 0.6931 plus or minus 1.96(0.2) gives 0.301 to 1.085, which maps back to 0.29 to 0.80.
+T Build the interval in Z, then transform each endpoint back with the inverse hyperbolic tangent.
+T The interval is asymmetric about r, which is exactly why Fisher's transformation is needed.
+X Z = (1/2)log(1.6/0.4) = 0.6931 and SE = 1/5 = 0.2.
+X The Z interval is 0.6931 plus or minus 0.392, i.e. 0.301 to 1.085.
+X Transforming back gives 0.29 to 0.80, option (a).
+
+@ FS-175 | Correlation Analysis | Fisher Z Transformation
+Q Fisher's Z transformation is preferred because
+O it is exact for small samples
+O its variance is almost free of rho
+O it is unbiased
+O it needs no normality assumption
+A b
+S The variance 1/(n-3) does not involve rho, which makes tests and intervals straightforward.
+T The raw r has variance (1-rho^2)^2/n, which depends heavily on the unknown rho.
+T The transformation also makes the sampling distribution close to normal, even for moderate n.
+X Var(r) depends on rho, so a test based on r needs the unknown parameter.
+X Fisher's Z has variance 1/(n-3), free of rho.
+X Hence option (b).
+
+@ FS-176 | Correlation Analysis | Partial Correlation
+Q Comparing the partial correlation r_12.3 with the simple correlation r_12,
+O the partial is always at most the simple in absolute value
+O the partial can exceed the simple
+O they are always equal
+O they always have opposite signs
+A b
+S Controlling for a suppressor variable can raise the association considerably.
+T Partialling out a variable can either reveal or conceal an association; there is no general inequality.
+T The suppressor case is a favourite examiner statement precisely because the intuition is wrong.
+X Take r_12 = 0, r_13 = 0.6 and r_23 = -0.6.
+X Then r_12.3 = 0.36/0.64 = 0.5625, which exceeds r_12 = 0.
+X So the partial can exceed the simple, option (b).
+
+@ FS-177 | Correlation Analysis | Multiple Correlation
+Q In a standardised regression of Y on X_2 and X_3 with beta weights beta_2 and beta_3, the squared multiple correlation equals
+O beta_2 r_12 + beta_3 r_13
+O beta_2^2 + beta_3^2
+O beta_2 beta_3
+O r_12 + r_13
+A a
+S R^2 is the sum of the beta weights times the corresponding simple correlations.
+T This decomposition is the standard way of splitting R^2 into predictor contributions.
+T The individual terms can be negative when a suppressor is present, which is why they are not variances.
+X In standardised form, R^2 = the sum of beta_j times the correlation of Y with X_j.
+X Here that is beta_2 r_12 + beta_3 r_13.
+X Hence option (a).
+
+@ FS-178 | Correlation Analysis | Rank Correlation
+Q With n = 4 and the sum of squared rank differences equal to 20, what is Spearman's rank correlation?
+O 0
+O -1
+O 1
+O 0.5
+A b
+S 1 - 6(20)/(4 x 15) = 1 - 2 = -1, the maximum possible sum of squared differences.
+T The maximum of the sum of d^2 is n(n^2-1)/3, which is exactly 20 here.
+T Hitting that maximum means a complete reversal of the ranking.
+X n(n^2 - 1) = 4(15) = 60.
+X rho = 1 - 120/60 = 1 - 2.
+X This is -1, option (b).
+
+@ FS-179 | Correlation Analysis | Rank Correlation
+Q Kendall's tau and Spearman's rho are
+O always equal
+O generally different, both lying between -1 and 1
+O such that tau is at least rho
+O related by rho equal to tau squared
+A b
+S They measure concordance differently and generally take different values on the same data.
+T Both are bounded by 1 in absolute value and agree in sign, but rarely in magnitude.
+T For bivariate normal data tau is systematically smaller than rho in absolute value.
+X tau counts concordant minus discordant pairs; rho uses squared rank differences.
+X These are different functionals of the same ranking.
+X They generally differ, both lying in -1 to 1, option (b).
+
+@ FS-180 | Correlation Analysis | Computing r
+Q Consider: 1. r is free of units, 2. r measures any form of dependence, 3. |r| = 1 if and only if there is an exact linear relation. Which are correct?
+O 1 and 3
+O 1 and 2
+O all three
+O 2 only
+A a
+S r is unit-free and characterises exact linear relations, but it captures only the linear part of any dependence.
+T The single most examined property of r is that it is blind to non-linear association.
+T Statement 3 is an if-and-only-if, which is what makes |r| = 1 so informative.
+X Standardising removes the units, so statement 1 holds.
+X Statement 3 is the equality case of the Cauchy-Schwarz inequality.
+X Statement 2 fails, as Y = X^2 with symmetric X shows, so the answer is option (a).
+
+@ FS-181 | Correlation Analysis | Standard Error of r
+Q For large n, the variance of the sample correlation is approximately
+O (1 - rho^2)^2/n
+O (1 - rho^2)/n
+O 1/n
+O rho^2/n
+A a
+S The asymptotic variance of r is (1 - rho^2)^2/n.
+T The factor is SQUARED, which is why the variance collapses so quickly as |rho| approaches 1.
+T Taking the square root gives the familiar SE(r) = (1-rho^2)/sqrt(n).
+X The delta method applied to the sample moments gives Var(r) = (1-rho^2)^2/n to first order.
+X Hence the standard error is (1-rho^2)/sqrt(n).
+X The variance is (1-rho^2)^2/n, option (a).

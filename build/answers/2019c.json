@@ -221,9 +221,9 @@
     "answer": 2,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "The product has degree $1 + 2 + 3 + 4 = 10$ with leading coefficient $(-a)(-b)(-c)(-d) = abcd$. For $h = 1, \\Delta^{n}$ of a degree-n polynomial is (leading coefficient) $x n!$, so the answer is abcd x 10!.",
+    "shortcut": "The product has degree $1 + 2 + 3 + 4 = 10$ with leading coefficient $(-a)(-b)(-c)(-d) = abcd$. For $h = 1, \\Delta^{n}$ of a degree-n polynomial is (leading coefficient) $x n!$, so the answer is abcd $x 10!$.",
     "tips": [
-      "Key identity: for $h = 1, \\Delta^{n}$ [$a_{n} x^{n}$ + lower terms] = $a_{n} \\cdot n$!. All lower-degree terms are annihilated.",
+      "Key identity: for $h = 1, \\Delta^{n}$ [$a_{n} x^{n}$ + lower terms] = $a_{n} \\cdot n!$. All lower-degree terms are annihilated.",
       "Get the degree by ADDING the degrees of the factors $(1+2+3+4 = 10)$ - do not multiply them out.",
       "The leading coefficient is the product of the leading coefficients: $(-a)(-b)(-c)(-d) = +abcd$. Four negatives give a positive, which is why no minus sign appears.",
       "If the operator order had exceeded the degree the answer would be 0 (option a); here they match exactly, which is what makes the factorial appear."
@@ -233,7 +233,7 @@
       "The product is therefore a polynomial of degree $1 + 2 + 3 + 4 = 10$.",
       "Its leading term comes from multiplying the highest-degree term of each factor: $(-ax)(-bx^{2})(-cx^{3})(-dx^{4}) = abcd x^{10}$, so the leading coefficient is abcd.",
       "For an interval of differencing $h = 1$, the standard result is $\\Delta^{n}(x^{n}) = n!$, and all terms of degree below n vanish under $\\Delta^{n}$.",
-      "Hence $\\Delta^{10}$ of the product equals abcd x 10!.",
+      "Hence $\\Delta^{10}$ of the product equals abcd $x 10!$.",
       "Option (c) is correct."
     ]
   },

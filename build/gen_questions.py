@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 """Generate questions.js — the offline question database consumed by index.html.
 
-Exposes three globals, all plain assignments (no modules, no fetch, no network):
-    window.quizMeta   build metadata, unit/topic taxonomy, topic intelligence
-    window.quizData   the 720 authentic PYQ records
-    window.quizConfig default marking / timing configuration (kept separate
-                      from the question data, per master prompt section 16)
+Exposes five globals, all plain assignments (no modules, no fetch, no network):
+    window.quizMeta      build metadata, unit/topic taxonomy, topic intelligence
+    window.quizData      the 720 authentic PYQ records
+    window.quizConfig    default marking / timing configuration (kept separate
+                         from the question data, per master prompt section 16)
+    window.forecastData  the AI-GENERATED 2027 forecast records - a SEPARATE
+                         array, never mixed into window.quizData
+    window.forecastMeta  the named forecast mocks and their provenance
 """
 import json
 import os
@@ -40,6 +43,8 @@ UNIT_SHORT = {
 }
 
 merged = json.load(open(os.path.join(B, 'merged.json')))
+fpath = os.path.join(B, 'forecast-merged.json')
+forecast = json.load(open(fpath, encoding='utf-8')) if os.path.exists(fpath) else None
 intel = json.load(open(os.path.join(B, 'topicintel.json')))
 subs = json.load(open(os.path.join(B, 'subtopics.json')))
 
@@ -70,6 +75,76 @@ for i, r in enumerate(merged, 1):
     rec['sourceQuestionNumber'] = r['qno']
     rec['sourceFile'] = SOURCE_FILES[r['year']]
     records.append(rec)
+
+# ------------------------------------------------------- forecast records
+frecords = []
+fmeta = None
+if forecast:
+    for i, r in enumerate(forecast['questions'], 1):
+        rec = OrderedDict()
+        rec['id'] = r['id']
+        rec['globalId'] = 100000 + i
+        rec['isForecast'] = True
+        rec['provenance'] = 'FORECAST / AI-GENERATED'
+        rec['year'] = 2027
+        rec['questionNumber'] = i
+        rec['unit'] = r['unit']
+        rec['topicCode'] = 'FC'
+        rec['topic'] = r['topic']
+        rec['subtopic'] = r['subtopic']
+        rec['form'] = 'standalone'
+        rec['sharedStem'] = ''
+        rec['question'] = r['question']
+        rec['options'] = r['options']
+        rec['correctAnswer'] = r['answer']
+        rec['questionType'] = 'Forecast'
+        rec['answerConfidence'] = 'verified'
+        rec['sourceIssue'] = ''
+        rec['examShortcut'] = r['shortcut']
+        rec['tipsTricks'] = r['tips']
+        rec['solution'] = [{'step': n, 'text': t}
+                           for n, t in enumerate(r['solution'], 1)]
+        rec['sourceYear'] = None
+        rec['sourceQuestionNumber'] = None
+        rec['sourceFile'] = 'build/forecast/*.txt (AI-generated)'
+        frecords.append(rec)
+
+    ftax = OrderedDict()
+    for u in ('Probability', 'Statistical Methods'):
+        tp = OrderedDict()
+        for r in frecords:
+            if r['unit'] != u:
+                continue
+            t = tp.setdefault(r['topic'], OrderedDict([('count', 0),
+                                                       ('subtopics', {})]))
+            t['count'] += 1
+            t['subtopics'][r['subtopic']] = t['subtopics'].get(r['subtopic'], 0) + 1
+        for t in tp.values():
+            t['subtopics'] = OrderedDict(sorted(t['subtopics'].items()))
+        ftax[u] = OrderedDict([('count', sum(t['count'] for t in tp.values())),
+                               ('topics', OrderedDict(sorted(tp.items())))])
+
+    fmeta = OrderedDict([
+        ('label', 'FORECAST / AI-GENERATED'),
+        ('total', len(frecords)),
+        ('mockSize', forecast['mockSize']),
+        ('perUnit', {u: ftax[u]['count'] for u in ftax}),
+        ('taxonomy', ftax),
+        ('mocks', forecast['mocks']),
+        ('provenance', OrderedDict([
+            ('questions',
+             'FORECAST / AI-GENERATED. These are NOT previous-year questions. '
+             'Every stem, option, answer, Exam Shortcut, Tips & Tricks entry '
+             'and Step-by-Step Solution was written for this project as '
+             'practice for the 2027 attempt. They are kept in a separate array '
+             '(window.forecastData) and are never mixed into the 720 authentic '
+             'PYQs in window.quizData.'),
+            ('answers',
+             'Every forecast answer was worked out and independently '
+             're-verified during the build. They are study aids, not official '
+             'keys, and no official key exists for a forecast question.'),
+        ])),
+    ])
 
 # ------------------------------------------------------------------ taxonomy
 years = sorted({r['year'] for r in records})
@@ -130,8 +205,10 @@ meta = OrderedDict([
          'by matching each question against phrases taken verbatim from the '
          'official syllabus text.'),
         ('syntheticQuestions',
-         'NONE. This build contains no AI-generated practice questions. Every one '
-         'of the 720 items is an authentic PYQ.'),
+         'window.quizData contains NONE: every one of its 720 items is an '
+         'authentic PYQ. AI-generated 2027 forecast practice lives in the '
+         'separate window.forecastData array and is labelled FORECAST / '
+         'AI-GENERATED wherever it appears.'),
     ])),
 ])
 
@@ -170,6 +247,17 @@ with open(out, 'w', encoding='utf-8') as fh:
         fh.write(json.dumps(rec, ensure_ascii=False, separators=(',', ':')))
         fh.write(',\n' if i < len(records) - 1 else '\n')
     fh.write('];\n')
+    if fmeta:
+        fh.write('\n/* ---- FORECAST / AI-GENERATED - NOT previous-year questions ----\n')
+        fh.write(' * Kept strictly separate from window.quizData above.\n */\n')
+        fh.write('window.forecastMeta = ')
+        fh.write(json.dumps(fmeta, ensure_ascii=False, indent=1))
+        fh.write(';\n\n')
+        fh.write('window.forecastData = [\n')
+        for i, rec in enumerate(frecords):
+            fh.write(json.dumps(rec, ensure_ascii=False, separators=(',', ':')))
+            fh.write(',\n' if i < len(frecords) - 1 else '\n')
+        fh.write('];\n')
 
 size = os.path.getsize(out)
 print('wrote %s' % out)
@@ -179,3 +267,6 @@ print('  units     : %d' % len(tax))
 print('  topics    : %d' % sum(len(v['topics']) for v in tax.values()))
 print('  subtopics : %d' % len({r['subtopic'] for r in records}))
 print('  years     : %s' % ', '.join(str(y) for y in years))
+if fmeta:
+    print('  forecast  : %d questions, %d named mocks of %d'
+          % (fmeta['total'], len(fmeta['mocks']), fmeta['mockSize']))

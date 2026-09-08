@@ -5,8 +5,8 @@
     "type": "Numerical",
     "shortcut": "For independent events never expand inclusion-exclusion. Use $\\operatorname{P}\\!\\left(\\text{none occurs}\\right)$ = product of the complements: $(1/2)(3/4)(7/8)(15/16) = 315/1024$, so the union is $1 - 315/1024 = 709/1024$. Ten seconds.",
     "tips": [
-      "Option $(d) 315/1024$ is the planted trap: it is $\\operatorname{P}\\!\\left(\\text{no event occurs}\\right)$, i.e. the answer you get if you forget to subtract from 1.",
-      "Denominator check: $2 \\times 4 \\times 8 \\times 16 = 1024$, so any correct answer must have 1024 (or a divisor of it) as denominator. That instantly kills $(a) 15/16$ unless it reduces, and it does not.",
+      "Option (d) $315/1024$ is the planted trap: it is $\\operatorname{P}\\!\\left(\\text{no event occurs}\\right)$, i.e. the answer you get if you forget to subtract from 1.",
+      "Denominator check: $2 \\times 4 \\times 8 \\times 16 = 1024$, so any correct answer must have 1024 (or a divisor of it) as denominator. That instantly kills (a) $15/16$ unless it reduces, and it does not.",
       "$1023/1024$ in option (b) equals $1 - 1/1024$, the value you would get if all four probabilities were $1/2$ each - another distractor built from a plausible slip.",
       "Memorise: $\\operatorname{P}\\!\\left(\\text{union of independent events}\\right) = 1 - \\prod(1 - p_{i})$. It is the single most reused one-line identity in this part of the paper."
     ],
@@ -24,10 +24,10 @@
     "type": "Numerical",
     "shortcut": "Split the event: 'exactly 3 defectives among the first 8' AND 'the 9th is the 4th defective'. Hypergeometric x conditional = $[\\binom{4}{3}\\binom{11}{5}/\\binom{15}{8}] \\times (1/7) = (56/195)(1/7) = 8/195$.",
     "tips": [
-      "Option $(a) 56/195$ is exactly the first factor alone - the trap for candidates who stop after the hypergeometric step and forget the 9th draw.",
+      "Option (a) $56/195$ is exactly the first factor alone - the trap for candidates who stop after the hypergeometric step and forget the 9th draw.",
       "After 8 draws, 7 mobiles remain and exactly 1 of them is defective, so the conditional probability of a defective on draw 9 is $1/7$ - no new combinatorics needed.",
       "'The k-th item is the LAST defective' always factors as $\\operatorname{P}\\!\\left(\\text{exactly d-1 defectives in the first k-1}\\right) x \\operatorname{P}\\!\\left(\\text{defective on draw k}\\mid \\text{that}\\right)$. Learn this two-step template.",
-      "Sanity bound: the answer must be small (well under $1/7$), so $(c) 1/7$ and $(d) 24/65 = 0.37$ can be eliminated on size alone."
+      "Sanity bound: the answer must be small (well under $1/7$), so (c) $1/7$ and (d) $24/65 = 0.37$ can be eliminated on size alone."
     ],
     "solution": [
       "Let the lot have $N = 15$ mobiles of which $D = 4$ are defective. We need $\\operatorname{P}\\!\\left(\\text{the 9th mobile examined is the 4th and last defective}\\right)$.",
@@ -165,8 +165,8 @@
     "tips": [
       "Both Gammas must share the same scale parameter $\\beta$ for this to hold - that is why the question states it. If the scales differed the ratio would not be Beta.",
       "Companion results worth memorising together: $X + Y \\sim G(a_{1} + a_{2}, b)$; $X/Y \\sim \\text{Beta}$ second kind $(a_{1}, a_{2})$; and $X/(X+Y)$ is independent of X + Y.",
-      "Range check: $X/(X+Y)$ lies in $(0,1)$, which immediately rules out $(a) G(a_{1}+a_{2}, b)$ and $(d) G(a_{1},a_{2})$ since $\\Gamma$ variables are unbounded above.",
-      "Option $(c) U(0,1)$ is only the special case $a_{1} = a_{2} = 1$, so it is too narrow to be the general answer."
+      "Range check: $X/(X+Y)$ lies in $(0,1)$, which immediately rules out (a) $G(a_{1}+a_{2}, b)$ and (d) $G(a_{1},a_{2})$ since $\\Gamma$ variables are unbounded above.",
+      "Option (c) $U(0,1)$ is only the special case $a_{1} = a_{2} = 1$, so it is too narrow to be the general answer."
     ],
     "solution": [
       "Let $X \\sim \\Gamma(a_{1}, b)$ and $Y \\sim \\Gamma(a_{2}, b)$ be independent, sharing the common scale parameter b.",
@@ -245,7 +245,7 @@
     "tips": [
       "Memorise the competing-risks formula $\\operatorname{P}(X < Y) = \\lambda_{X}/(\\lambda_{X} + \\lambda_{Y})$ for independent exponentials. It converts this whole question into one division.",
       "Read the rates off the exponents, not off the constants: $e^{-x}$ gives rate 1 and $e^{-2y}$ gives rate 2; the leading 2 is only the normalising constant.",
-      "Sanity check: Y has the larger rate, so Y is stochastically smaller and $X < Y$ should have probability less than $1/2$. That alone eliminates $(b) 1/2$.",
+      "Sanity check: Y has the larger rate, so Y is stochastically smaller and $X < Y$ should have probability less than $1/2$. That alone eliminates (b) $1/2$.",
       "The same formula answers 'which component fails first' reliability questions, a recurring ISS theme."
     ],
     "solution": [

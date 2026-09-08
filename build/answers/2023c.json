@@ -174,7 +174,7 @@
       "The factors have degrees 1, 2 and 3, so the product is a polynomial of degree $1 + 2 + 3 = 6$.",
       "Its leading term comes from multiplying the highest-degree term of each factor: $(-x)(-3x^{2})(-4x^{3}) = -12 x^{6}$.",
       "So the leading coefficient is -12.",
-      "For an interval of differencing $1, \\Delta^{n}$ annihilates every term of degree below n and maps the leading term $a_{n} x^{n}$ to $a_{n} n$!.",
+      "For an interval of differencing $1, \\Delta^{n}$ annihilates every term of degree below n and maps the leading term $a_{n} x^{n}$ to $a_{n} n!$.",
       "Hence $\\Delta^{6}$ of the product = $-12 \\times 6! = -12 \\times 720 = -8640$, option (d)."
     ]
   },

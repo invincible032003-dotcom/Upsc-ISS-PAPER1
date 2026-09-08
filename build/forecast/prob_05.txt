@@ -1,0 +1,589 @@
+# FORECAST / AI-GENERATED - Probability, forecast batch 3 (joint-pdf mini-sets, Beta-II, compound sums, statement pairs)
+
+@ FP-220 | Random Vectors and Joint Distributions | Joint and Marginal Distributions
+Q The joint density is f(x,y) = c y on 0 < y < x < 1. What is c?
+O 2
+O 3
+O 6
+O 4
+A c
+S The integral of y over the triangle is the integral of x^2/2 dx = 1/6, so c = 6.
+T Integrate the inner variable first; the inner integral of y from 0 to x is x^2/2 every time.
+T A density on a triangle of area 1/2 must have average height 2, so a constant times y peaking at 6 is plausible.
+X The double integral of y over 0 < y < x < 1 is integral from 0 to 1 of x^2/2 dx.
+X This equals 1/6, so c(1/6) = 1.
+X Hence c = 6, option (c).
+
+@ FP-221 | Random Vectors and Joint Distributions | Joint and Marginal Distributions
+Q For f(x,y) = 6y on 0 < y < x < 1, the marginal distributions of X and Y are respectively
+O Beta(3,1) and Beta(2,2)
+O Beta(2,1) and Beta(1,2)
+O U(0,1) and Beta(2,2)
+O Beta(3,1) and Beta(1,3)
+A a
+S f_X = 3x^2 is Beta(3,1) and f_Y = 6y(1-y) is Beta(2,2).
+T Integrate out the other variable and match the result against the standard Beta shapes.
+T The constant 6 in 6y(1-y) is the Beta(2,2) normaliser, and 3 in 3x^2 is the Beta(3,1) one.
+X f_X(x) = integral from 0 to x of 6y dy = 3x^2, which is Beta(3,1).
+X f_Y(y) = integral from y to 1 of 6y dx = 6y(1-y), which is Beta(2,2).
+X Hence option (a).
+
+@ FP-222 | Random Vectors and Joint Distributions | Independence and Covariance
+Q For f(x,y) = 6y on 0 < y < x < 1, what are P(X + Y < 1) and Corr(X, Y)?
+O 1/4 and 1/sqrt(3)
+O 1/2 and 1/2
+O 1/4 and 1/2
+O 1/8 and 1/sqrt(3)
+A a
+S Two pieces of 1/8 give 1/4; Cov = 2/5 - 3/8 = 1/40 with variances 3/80 and 1/20 gives 1/sqrt(3).
+T Split the region at x = 1/2, where the binding constraint changes from y < x to y < 1 - x.
+T Use the Beta marginals for the variances: Beta(3,1) has variance 3/80 and Beta(2,2) has 1/20.
+X For x < 1/2 the constraint is y < x, giving integral of 3x^2 dx = 1/8; for x > 1/2 it is y < 1-x, giving another 1/8.
+X E(XY) = integral from 0 to 1 of 6x(x^3/3) dx = 2/5, so Cov = 2/5 - (3/4)(1/2) = 1/40.
+X Corr = (1/40)/sqrt((3/80)(1/20)) = 1/sqrt(3), option (a).
+
+@ FP-223 | Random Vectors and Joint Distributions | Joint and Marginal Distributions
+Q The joint density is f(x,y) = c e^(-2x) on 0 < y < x < infinity. What is c?
+O 1
+O 2
+O 4
+O 1/2
+A c
+S The integral of x e^(-2x) is 1/4, so c = 4.
+T Integrating out the inner variable multiplies the density by the length x of the inner range.
+T The Gamma integral of x e^(-2x) equals 1!/2^2 = 1/4 - a one-line evaluation.
+X The double integral is integral from 0 to infinity of x e^(-2x) dx.
+X This equals 1/4.
+X Hence c = 4, option (c).
+
+@ FP-224 | Random Vectors and Joint Distributions | Conditional Distributions
+Q For f(x,y) = 4 e^(-2x) on 0 < y < x, what are the marginal of Y and the conditional law of Y given X = x?
+O Exp(rate 2) and U(0, x)
+O Gamma(2, 2) and U(0, x)
+O Exp(rate 1) and Exp(rate 2)
+O Exp(rate 2) and Exp(rate x)
+A a
+S Integrating x from y upwards gives 2e^(-2y); dividing by the Gamma(2,2) marginal of X leaves the constant 1/x.
+T When the joint density does not depend on the inner variable, the conditional law of that variable is uniform.
+T X here is Gamma(2, rate 2), not exponential - the extra factor x from the integration raises the shape.
+X f_Y(y) = integral from y to infinity of 4 e^(-2x) dx = 2 e^(-2y), which is Exp(2).
+X f_X(x) = 4x e^(-2x), so f(y | x) = 4e^(-2x)/(4x e^(-2x)) = 1/x on (0, x).
+X Hence Exp(2) and U(0,x), option (a).
+
+@ FP-225 | Random Vectors and Joint Distributions | Independence and Covariance
+Q For f(x,y) = 4 e^(-2x) on 0 < y < x, what are Corr(X, Y) and the law of X - Y?
+O 1/2 and Gamma(2,2)
+O 1/sqrt(2) and Exp(rate 2)
+O 1/sqrt(2) and U(0,1)
+O 1/sqrt(3) and Exp(rate 2)
+A b
+S Cov = 3/4 - 1/2 = 1/4 with variances 1/2 and 1/4, so the correlation is 1/sqrt(2); X - Y is Exp(2) by symmetry with Y.
+T Y and X - Y have the same conditional law given X, namely U(0,X), so they share the same marginal.
+T Do not guess the correlation: compute E(XY) from the conditional mean E(Y|X) = X/2.
+X E(XY) = E[X E(Y|X)] = E(X^2/2) = (1/2)(1/2 + 1) = 3/4, and E(X)E(Y) = 1(1/2) = 1/2, so Cov = 1/4.
+X Var(X) = 2/4 = 1/2 and Var(Y) = 1/4, giving Corr = (1/4)/sqrt(1/8) = 1/sqrt(2).
+X Given X, both Y and X - Y are U(0,X), so X - Y is Exp(2) as well, option (b).
+
+@ FP-226 | Random Vectors and Joint Distributions | Joint and Marginal Distributions
+Q The joint pmf is p(x,y) = c (1/2)^x for integers 1 <= y <= x. What is c?
+O 1
+O 1/2
+O 1/4
+O 2
+A b
+S Summing over y gives x(1/2)^x, and the sum of x(1/2)^x over x >= 1 is 2, so c = 1/2.
+T Sum the inner index first: it simply multiplies by the number of admissible values, here x.
+T The identity sum of x r^x = r/(1-r)^2 gives 2 at r = 1/2 - worth having at your fingertips.
+X Summing y from 1 to x gives x c (1/2)^x.
+X The sum over x >= 1 of x(1/2)^x is (1/2)/(1/4) = 2.
+X Hence 2c = 1 and c = 1/2, option (b).
+
+@ FP-227 | Random Vectors and Joint Distributions | Joint and Marginal Distributions
+Q For p(x,y) = (1/2)(1/2)^x on integers 1 <= y <= x, the marginal distribution of Y is
+O geometric on {1,2,...} with p = 1/2
+O Poisson(1)
+O uniform on {1,...,x}
+O not a standard distribution
+A a
+S Summing (1/2)^(x+1) over x >= y gives (1/2)^y, the geometric survival pattern.
+T A geometric tail sum reproduces a geometric pmf - the sum of a geometric series is itself geometric in the lower limit.
+T The marginal of Y cannot involve x, so option (c) is not even a distribution.
+X P(Y = y) = sum over x >= y of (1/2)^(x+1).
+X This is (1/2)^(y+1) times 2 = (1/2)^y.
+X That is geometric on {1,2,...} with p = 1/2, option (a).
+
+@ FP-228 | Random Vectors and Joint Distributions | Joint and Marginal Distributions
+Q For p(x,y) = (1/2)(1/2)^x on integers 1 <= y <= x, what are P(X = Y) and E(X)?
+O 1/2 and 3
+O 1/4 and 2
+O 1/2 and 2
+O 1/3 and 3
+A a
+S P(X=Y) is the sum of (1/2)^(x+1) = 1/2, and E(X) = (1/2) sum of x^2 (1/2)^x = 3.
+T The marginal of X is x(1/2)^(x+1), so E(X) needs the second moment of a geometric.
+T Cross-check with E(Y) = E[(X+1)/2] = 2, which matches the geometric mean of Y - a strong consistency test.
+X P(X = Y) = sum over x >= 1 of (1/2)(1/2)^x = 1/2.
+X The marginal of X is x(1/2)^(x+1), so E(X) = (1/2) sum of x^2(1/2)^x = (1/2)(6).
+X Hence P(X=Y) = 1/2 and E(X) = 3, option (a).
+
+@ FP-229 | Random Vectors and Joint Distributions | Compound and Mixture Distributions
+Q The joint density is f(x,y) = (1/y) e^(-x/y) e^(-y) for x > 0 and y > 0. What are the marginal of Y and the conditional law of X given Y = y?
+O Exp(1) and Exp(rate 1/y)
+O Gamma(2,1) and Exp(rate y)
+O Exp(1) and Exp(rate y)
+O U(0,1) and Exp(1)
+A a
+S Integrating x out leaves e^(-y), and the first factor is the exponential density with mean y.
+T Factorise the joint density as f(y) f(x|y) by inspection - the piece that integrates to 1 in x is the conditional.
+T The mean of X given Y is y, so the RATE is 1/y, not y; option (c) inverts it.
+X Integrating (1/y)e^(-x/y) over x > 0 gives 1, leaving f_Y(y) = e^(-y).
+X So Y is Exp(1) and the remaining factor is the Exp(1/y) density in x.
+X Hence option (a).
+
+@ FP-230 | Random Vectors and Joint Distributions | Compound and Mixture Distributions
+Q For f(x,y) = (1/y) e^(-x/y) e^(-y) on the positive quadrant, what is Var(X)?
+O 1
+O 2
+O 3
+O 4
+A c
+S Var(X) = E[Var(X|Y)] + Var(E(X|Y)) = E(Y^2) + Var(Y) = 2 + 1 = 3.
+T For an exponential mixture both the conditional mean and the conditional standard deviation equal Y, so the conditional variance is Y^2.
+T E(Y^2) = 2 for Exp(1), not 1 - forgetting the factor 2 lands on option (b).
+X E(X | Y) = Y and Var(X | Y) = Y^2.
+X Var(X) = E(Y^2) + Var(Y) = 2 + 1.
+X Hence Var(X) = 3, option (c).
+
+@ FP-231 | Random Vectors and Joint Distributions | Compound and Mixture Distributions
+Q For f(x,y) = (1/y) e^(-x/y) e^(-y) on the positive quadrant, what are Cov(X, Y) and P(X > Y)?
+O 1 and e^(-1)
+O 0 and 1/2
+O 1 and 1/2
+O 2 and e^(-1)
+A a
+S E(XY) = E(Y^2) = 2 so Cov = 1; and P(X > Y | Y) = e^(-Y/Y) = e^(-1) for every Y.
+T Use the tower property: E(XY) = E[Y E(X|Y)] turns a double integral into a single moment.
+T P(X > y | Y = y) = e^(-y/y) is free of y, which is what makes the answer exactly e^(-1).
+X E(XY) = E[Y E(X | Y)] = E(Y^2) = 2, and E(X)E(Y) = 1, so Cov = 1.
+X P(X > Y | Y = y) = e^(-y/y) = e^(-1) for every y > 0.
+X Hence Cov = 1 and P(X > Y) = e^(-1), option (a).
+
+@ FP-232 | Random Vectors and Joint Distributions | Joint and Marginal Distributions
+Q The joint density is f(x,y) = 1 on 0 < x < 1 and x < y < x + 1. The marginal of Y is
+O U(0,2)
+O triangular on (0,2) with peak at 1
+O U(1,2)
+O a scaled Beta(2,2)
+A b
+S For each y the admissible x range has length y on (0,1) and 2 - y on (1,2).
+T With a unit density the marginal is just the LENGTH of the cross-section at each value.
+T The support is a slanted band, so the cross-sections grow and then shrink, giving a triangle.
+X For 0 < y < 1 the x range is (0, y), of length y.
+X For 1 < y < 2 it is (y-1, 1), of length 2 - y.
+X That is the triangular density on (0,2), option (b).
+
+@ FP-233 | Random Vectors and Joint Distributions | Independence and Covariance
+Q For f(x,y) = 1 on 0 < x < 1, x < y < x + 1, the variable Y - X is
+O U(0,1) and independent of X
+O U(0,1) but dependent on X
+O triangular
+O degenerate
+A a
+S Given X = x, Y - x is U(0,1) for every x, so the difference is uniform and free of X.
+T If the conditional law of a function is the same for every value of the conditioning variable, the two are independent.
+T Y itself is triangular, but the DIFFERENCE is uniform - the shift removes all the dependence.
+X Given X = x, Y is uniform on (x, x+1), so Y - x is U(0,1).
+X This conditional law does not depend on x.
+X Hence Y - X is U(0,1) and independent of X, option (a).
+
+@ FP-234 | Random Vectors and Joint Distributions | Independence and Covariance
+Q For f(x,y) = 1 on 0 < x < 1, x < y < x + 1, what is Corr(X, Y)?
+O 1/2
+O 1/sqrt(2)
+O 1/sqrt(3)
+O 1
+A b
+S Writing Y = X + U with U independent U(0,1) gives Cov = Var(X) = 1/12 and Var(Y) = 1/6.
+T Decompose into independent parts first; correlations then follow from variances alone.
+T Corr = sd(X)/sd(Y) = sqrt((1/12)/(1/6)) = 1/sqrt(2), a clean structural answer.
+X Y = X + U with U independent U(0,1), so Cov(X,Y) = Var(X) = 1/12.
+X Var(Y) = 1/12 + 1/12 = 1/6.
+X Corr = (1/12)/sqrt((1/12)(1/6)) = 1/sqrt(2), option (b).
+
+@ FP-235 | Distribution Functions and Transformations | Functions of Random Variables
+Q X is U(0,1) and Y = 4X(1 - X). What is the density of Y on (0,1)?
+O 1/(4 sqrt(1 - y))
+O 1/(2 sqrt(1 - y))
+O 1/(2 sqrt(y))
+O 2(1 - y)
+A b
+S Two branches x = (1 plus or minus sqrt(1-y))/2, each contributing 1/(4 sqrt(1-y)).
+T For a two-branch transformation add the contributions of both inverse branches.
+T Halving the total by mistake gives option (a) - the classic single-branch error.
+X Solving y = 4x(1-x) gives x = (1 plus or minus sqrt(1-y))/2.
+X Each branch has |dx/dy| = 1/(4 sqrt(1-y)).
+X Adding the two gives 1/(2 sqrt(1-y)), option (b).
+
+@ FP-236 | Distribution Functions and Transformations | Functions of Random Variables
+Q X is U(0,1) and Y = 4X(1 - X). Then Y follows
+O Beta(1/2, 1)
+O Beta(1, 1/2)
+O U(0,1)
+O the arcsine distribution
+A b
+S The density is proportional to y^0 (1-y)^(-1/2), which is Beta(1, 1/2).
+T Match the density against x^(a-1)(1-x)^(b-1): the exponent of y gives a - 1 and of (1-y) gives b - 1.
+T Check the mean: E(Y) = 4(1/2 - 1/3) = 2/3, and Beta(1,1/2) has mean 1/(1+1/2) = 2/3.
+X The density 1/(2 sqrt(1-y)) is proportional to y^(1-1)(1-y)^(1/2 - 1).
+X Hence a = 1 and b = 1/2.
+X Y follows Beta(1, 1/2), option (b).
+
+@ FP-237 | Distribution Functions and Transformations | Functions of Random Variables
+Q X is U(0,1) and Y = 4X(1 - X). What is P(Y > 3/4)?
+O 1/4
+O 1/2
+O 3/4
+O 1/sqrt(2)
+A b
+S 4x(1-x) > 3/4 gives 1/4 < x < 3/4, an interval of length 1/2.
+T Solve the quadratic inequality in x rather than integrating the density of Y.
+T The parabola peaks at x = 1/2 with value 1, so the solution set is a symmetric interval about 1/2.
+X 4x(1-x) > 3/4 rearranges to 16x^2 - 16x + 3 < 0, i.e. (4x-1)(4x-3) < 0.
+X This holds for 1/4 < x < 3/4.
+X The probability is 1/2, option (b).
+
+@ FP-238 | Standard Continuous Distributions | Gamma and Beta Distributions
+Q A density is f(x) = k sqrt(x)/(1 + x)^3 for x > 0. What is k?
+O 8/pi
+O 4/pi
+O 2/pi
+O 16/pi
+A a
+S Beta II with a = 3/2 and b = 3/2; B(3/2,3/2) = pi/8, so k = 8/pi.
+T Fractional exponents still follow the Beta II template; use Gamma(1/2) = sqrt(pi) to evaluate the Beta function.
+T B(3/2,3/2) = Gamma(3/2)^2/Gamma(3) = (pi/4)/2 = pi/8, so the constant is 8/pi.
+X Matching x^(a-1)/(1+x)^(a+b) gives a - 1 = 1/2 and a + b = 3, so a = b = 3/2.
+X B(3/2,3/2) = Gamma(3/2)^2/Gamma(3) = (sqrt(pi)/2)^2/2 = pi/8.
+X Hence k = 8/pi, option (a).
+
+@ FP-239 | Standard Continuous Distributions | Gamma and Beta Distributions
+Q For the density f(x) proportional to sqrt(x)/(1 + x)^3 on x > 0, the mean and the variance are
+O 3 and 3
+O 3 and non-existent
+O 1 and non-existent
+O 3/2 and 3/4
+A b
+S Beta II(3/2, 3/2): the mean is a/(b-1) = 3, and the variance needs b > 2, which fails.
+T For Beta II the mean needs b > 1 and the variance needs b > 2 - check the exponent before computing.
+T The tail here decays like x^(-5/2), so the second moment integral diverges - a direct confirmation.
+X The law is Beta II with a = b = 3/2.
+X The mean is (3/2)/(1/2) = 3.
+X Since b = 3/2 is not greater than 2, the variance does not exist, option (b).
+
+@ FP-240 | Standard Continuous Distributions | Gamma and Beta Distributions
+Q A density is f(x) = k/(sqrt(x)(1 + x)) for x > 0. What are k and the identity of this law?
+O 1/pi, the square of a standard Cauchy variable
+O 2/pi, the square of a standard normal variable
+O 1/pi, an exponential distribution
+O 1/2, Beta of the second kind with parameters 1 and 1
+A a
+S Beta II(1/2, 1/2) with B(1/2,1/2) = pi, and tan^2 of a uniform angle gives exactly this law.
+T a - 1 = -1/2 and a + b = 1 immediately give a = b = 1/2, so B = Gamma(1/2)^2/Gamma(1) = pi.
+T The square of a standard normal would be chi-square with one degree of freedom, whose density has e^(-x/2) - not this.
+X Matching gives a = 1/2 and b = 1/2, so k = 1/B(1/2,1/2) = 1/pi.
+X If C is standard Cauchy then C = tan(theta) for a uniform angle, and C^2 has exactly this density.
+X Hence k = 1/pi and X is the square of a standard Cauchy, option (a).
+
+@ FP-241 | Standard Continuous Distributions | Gamma and Beta Distributions
+Q For the density f(x) = 1/(pi sqrt(x)(1 + x)) on x > 0, what is P(X > 1)?
+O 1/4
+O 1/2
+O 1/pi
+O 1/3
+A b
+S X is the square of a standard Cauchy C, and P(|C| > 1) = 1/2.
+T Recognise the law as a square and translate the event back to the original variable.
+T Direct integration also works: the antiderivative is (2/pi) arctan(sqrt x).
+X X = C^2 for a standard Cauchy C, so P(X > 1) = P(|C| > 1).
+X P(|C| > 1) = 1 - (2/pi) arctan 1 = 1 - 1/2.
+X Hence P(X > 1) = 1/2, option (b).
+
+@ FP-242 | Standard Continuous Distributions | Gamma and Beta Distributions
+Q A density is f(x) = k/(sqrt(x)(1 + x)^2) for x > 0. What are k and E(X)?
+O 2/pi and 1
+O 1/pi and 1
+O 2/pi and 1/2
+O 4/pi and 2
+A a
+S Beta II(1/2, 3/2): B = sqrt(pi)(sqrt(pi)/2) = pi/2 so k = 2/pi, and the mean is (1/2)/(1/2) = 1.
+T Read a from the numerator exponent and a + b from the denominator exponent, then use Gamma(1/2) = sqrt(pi).
+T The mean exists here because b = 3/2 exceeds 1, but the variance does not because b is below 2.
+X Matching gives a = 1/2 and a + b = 2, so b = 3/2.
+X B(1/2, 3/2) = Gamma(1/2)Gamma(3/2)/Gamma(2) = sqrt(pi)(sqrt(pi)/2) = pi/2, so k = 2/pi.
+X The mean is a/(b-1) = 1, option (a).
+
+@ FP-243 | Standard Continuous Distributions | Gamma and Beta Distributions
+Q A density is f(x) = k x^2/(1 + 3x)^5 for x > 0. What are k and E(X)?
+O 27 and 1
+O 324 and 1
+O 108 and 1/3
+O 324 and 3
+A b
+S Substituting u = 3x turns it into Beta II(3,2); the integral is B(3,2)/27 = 1/324, so k = 324 and E(X) = E(U)/3 = 1.
+T A factor b inside the bracket is removed by the substitution u = bx; remember the Jacobian and the powers of b.
+T E(U) = a/(b-1) = 3 for Beta II(3,2), and dividing by 3 gives the mean of X.
+X With u = 3x, the integral of x^2/(1+3x)^5 dx becomes (1/27) integral of u^2/(1+u)^5 du = B(3,2)/27.
+X B(3,2) = 2!1!/4! = 1/12, so the integral is 1/324 and k = 324.
+X U is Beta II(3,2) with mean 3, so E(X) = 1, option (b).
+
+@ FP-244 | Characteristic Function, MGF and PGF | Compound Distributions
+Q N is Binomial(n, p) and X_1, X_2, ... are independent Bernoulli(r) variables independent of N. The sum of the first N of them follows
+O Binomial(n, pr)
+O Binomial(np, r)
+O Poisson(npr)
+O Binomial(n, p + r - pr)
+A a
+S Composing the two PGFs gives (q + p(1 - r + rs))^n = (1 - pr + pr s)^n.
+T A binomial number of binomial trials thins to a single binomial with the product probability.
+T The parameter n cannot change - only the success probability does, which rules out option (b).
+X P_S(s) = P_N(P_X(s)) with P_X(s) = 1 - r + rs.
+X This gives (1 - p + p(1 - r + rs))^n = (1 - pr + pr s)^n.
+X Hence S is Binomial(n, pr), option (a).
+
+@ FP-245 | Characteristic Function, MGF and PGF | Compound Distributions
+Q N is geometric on {0,1,2,...} with success probability p and the X_i are independent Exp(theta). The randomly stopped sum S is
+O Exp(p theta)
+O 0 with probability p, and otherwise Exp(p theta)
+O Gamma(1/p, theta)
+O Exp(theta/p)
+A b
+S M_S(t) = p(theta - t)/(p theta - t) = p + q times p theta/(p theta - t): an atom at 0 plus an exponential.
+T On {0,1,...} the geometric puts mass p at zero, so the sum has an atom at 0 - the distribution is mixed.
+T On {1,2,...} the same construction gives a pure Exp(p theta) with no atom.
+X P_N(s) = p/(1 - qs), and substituting M_X(t) = theta/(theta - t) gives p(theta-t)/(p theta - t).
+X Writing theta - t = (p theta - t) + q theta, this equals p + pq theta/(p theta - t).
+X So S is 0 with probability p and Exp(p theta) otherwise, option (b).
+
+@ FP-246 | Characteristic Function, MGF and PGF | Compound Distributions
+Q N is Poisson(lambda) and the X_i are independent Poisson(mu). What are E(S) and Var(S) for the randomly stopped sum?
+O lambda mu and lambda mu
+O lambda mu and lambda mu(1 + mu)
+O lambda mu and lambda mu^2
+O lambda + mu and lambda + mu
+A b
+S E(S) = lambda mu and Var(S) = lambda E(X^2) = lambda(mu + mu^2).
+T For a compound Poisson the variance is the rate times the second RAW moment of one summand.
+T For a Poisson summand E(X^2) = mu + mu^2, so the answer is strictly larger than the mean - the sum is over-dispersed.
+X E(S) = E(N)E(X) = lambda mu.
+X Var(S) = lambda E(X^2) = lambda(Var(X) + [E(X)]^2) = lambda(mu + mu^2).
+X That is option (b).
+
+@ FP-247 | Characteristic Function, MGF and PGF | Compound Distributions
+Q N is Poisson(lambda) and each X_i is 1 or -1 with probability 1/2. What is the characteristic function of the randomly stopped sum?
+O exp(lambda(cos t - 1))
+O exp(lambda(e^(it) - 1))
+O cos^lambda t
+O exp(-lambda t^2/2)
+A a
+S The summand has characteristic function cos t, and compounding gives exp(lambda(cos t - 1)).
+T For a compound Poisson, substitute the summand's characteristic function into exp(lambda(phi - 1)).
+T The result is real because the summand law is symmetric, which is a useful sanity check.
+X phi_X(t) = (e^(it) + e^(-it))/2 = cos t.
+X The compound Poisson characteristic function is exp(lambda(phi_X(t) - 1)).
+X This gives exp(lambda(cos t - 1)), option (a).
+
+@ FP-248 | Characteristic Function, MGF and PGF | Compound Distributions
+Q For a randomly stopped sum S of independent identically distributed X_i with N independent of them, Var(S) equals
+O E(N) Var(X)
+O E(N) Var(X) + Var(N) [E(X)]^2
+O Var(N) Var(X)
+O E(N) E(X^2)
+A b
+S The variance decomposition gives a within-term part and a between-count part.
+T Var(S) = E(N)Var(X) + Var(N)[E(X)]^2 is the general formula; the compound Poisson is only its special case.
+T Option (d) is that Poisson special case, valid only when E(N) = Var(N).
+X E(S | N) = N E(X) and Var(S | N) = N Var(X).
+X Var(S) = E[N Var(X)] + Var[N E(X)].
+X This is E(N)Var(X) + Var(N)[E(X)]^2, option (b).
+
+@ FP-249 | Characteristic Function, MGF and PGF | Compound Distributions
+Q N is Poisson(lambda) and each of the N items is labelled type A independently with probability p. The counts of type A and type B are
+O negatively correlated
+O independent Poisson(lambda p) and Poisson(lambda(1-p))
+O Binomial(N, p) and Binomial(N, 1-p)
+O positively correlated
+A b
+S Poisson thinning splits a Poisson stream into two INDEPENDENT Poisson streams.
+T This is the one place where two counts summing to a random total are independent - the Poisson makes it work.
+T For a fixed total the counts would be negatively correlated; it is the randomness of N that removes the dependence.
+X The joint pmf of the two counts factorises into Poisson(lambda p) and Poisson(lambda(1-p)) pmfs.
+X Hence they are independent Poissons.
+X That is option (b).
+
+@ FP-250 | Characteristic Function, MGF and PGF | Compound Distributions
+Q The X_i are independent Exp(1) and N is Poisson(lambda), independent of them. What is the variance of the randomly stopped sum?
+O lambda
+O 2 lambda
+O lambda^2
+O lambda + lambda^2
+A b
+S Var(S) = lambda E(X^2) = 2 lambda.
+T The compound Poisson variance uses the second raw moment, and for Exp(1) that is 2.
+T The mean is only lambda, so the sum is heavily over-dispersed - a signature of compounding.
+X For Exp(1), E(X^2) = 2.
+X Var(S) = lambda E(X^2) = 2 lambda.
+X That is option (b).
+
+@ FP-251 | Mathematical and Conditional Expectation | Conditional Expectation
+Q Wald's identity E(S_N) = E(N)E(X) requires
+O only that N is independent of the X_i
+O that N is a stopping time with a finite mean and that E|X| is finite
+O that the X_i are non-negative
+O that N is bounded
+A b
+S Wald holds far beyond independence: N need only be a stopping time with finite mean, with integrable summands.
+T A stopping time may depend on the past of the sequence but not on its future - that is what makes the identity work.
+T Independence of N is sufficient but not necessary, so option (a) is too strong a requirement.
+X Wald's identity is proved by writing S_N as a sum of X_i times the indicator that N >= i.
+X That indicator is determined by X_1, ..., X_{i-1}, so it is independent of X_i.
+X The conditions are a stopping time with E(N) finite and E|X| finite, option (b).
+
+@ FP-252 | Modes of Convergence and 0-1 Laws | Convergence in Probability and Distribution
+Q Statement I: convergence in probability implies convergence of the expectations. Statement II: convergence in probability implies convergence in distribution. Choose the correct code: (a) both true and II explains I, (b) both true but II does not explain I, (c) I true and II false, (d) I false and II true.
+O both true, II explains I
+O both true, II does not explain I
+O I true, II false
+O I false, II true
+A d
+S Expectations can fail to converge, as n times the indicator that U < 1/n shows; but convergence in probability always implies convergence in distribution.
+T Convergence of expectations needs uniform integrability on top of convergence in probability.
+T The implication chain runs almost sure to probability to distribution, never back up.
+X n times the indicator that U < 1/n tends to 0 in probability but has expectation 1 throughout, so Statement I is false.
+X Convergence in probability always implies convergence in distribution, so Statement II is true.
+X The code is option (d).
+
+@ FP-253 | Characteristic Function, MGF and PGF | Characteristic Function
+Q Statement I: if two variables have the same characteristic function they have the same distribution. Statement II: the inversion theorem shows that a characteristic function determines its distribution uniquely. Choose the correct code.
+O both true, II explains I
+O both true, II does not explain I
+O I true, II false
+O I false, II true
+A a
+S Both statements are true and the inversion theorem is precisely the reason for the first.
+T Uniqueness of the characteristic function is the workhorse behind every "identify the distribution" question.
+T Unlike moments, the characteristic function always exists and always determines the law.
+X The inversion theorem recovers the distribution function from the characteristic function.
+X Hence equal characteristic functions force equal distributions.
+X Statement II explains Statement I, option (a).
+
+@ FP-254 | Characteristic Function, MGF and PGF | Characteristic Function
+Q Statement I: if the characteristic function of X + Y factorises as the product of those of X and Y, then X and Y are independent. Statement II: taking X standard Cauchy and Y = X gives a factorisation without independence. Choose the correct code.
+O both true, II explains I
+O both true, II does not explain I
+O I true, II false
+O I false, II true
+A d
+S The factorisation is necessary but not sufficient; the Cauchy pair X and Y = X is the standard counterexample.
+T Independence implies factorisation, never the converse - a classic direction trap.
+T For X Cauchy and Y = X, X + Y = 2X has characteristic function e^(-2|t|), which is exactly the product.
+X If X is standard Cauchy and Y = X then X + Y = 2X has characteristic function e^(-2|t|).
+X The product of the two individual characteristic functions is e^(-|t|) times e^(-|t|) = e^(-2|t|), so the factorisation holds.
+X Yet X and Y are perfectly dependent, so Statement I is false and Statement II is true, option (d).
+
+@ FP-255 | Modes of Convergence and 0-1 Laws | Convergence in Probability and Distribution
+Q Statement I: if X_n and Y_n converge in distribution then X_n + Y_n converges in distribution to the sum of the limits. Statement II: Slutsky's theorem requires one of the two limits to be a constant. Choose the correct code.
+O both true, II explains I
+O both true, II does not explain I
+O I true, II false
+O I false, II true
+A d
+S Marginal convergence says nothing about the joint law, so the sum need not converge; Slutsky's constant assumption is exactly the repair.
+T Convergence in distribution is a statement about marginals only - never add two such limits without justification.
+T Take X_n = Z and Y_n = -Z: both converge, but the sum is identically 0 while the "sum of the limits" is not degenerate.
+X Statement I is false, as the counterexample X_n = Z and Y_n = -Z shows.
+X Statement II correctly states the extra hypothesis in Slutsky's theorem.
+X The code is option (d).
+
+@ FP-256 | Modes of Convergence and 0-1 Laws | Almost Sure Convergence
+Q Statement I: almost sure convergence implies convergence in distribution. Statement II: almost sure convergence implies convergence in probability, which in turn implies convergence in distribution. Choose the correct code.
+O both true, II explains I
+O both true, II does not explain I
+O I true, II false
+O I false, II true
+A a
+S The implication chain in Statement II is exactly the proof of Statement I.
+T Memorise the hierarchy: almost sure implies probability implies distribution, and mean square implies probability as well.
+T No arrow in this chain can be reversed without extra conditions.
+X Almost sure convergence implies convergence in probability.
+X Convergence in probability implies convergence in distribution.
+X So Statement II explains Statement I, option (a).
+
+@ FP-257 | Modes of Convergence and 0-1 Laws | Kolmogorov Zero-One Law
+Q Statement I: for an independent sequence, the event that the limit superior of X_n/n is positive has probability 0 or 1. Statement II: that event is a tail event of an independent sequence. Choose the correct code.
+O both true, II explains I
+O both true, II does not explain I
+O I true, II false
+O I false, II true
+A a
+S Changing finitely many terms cannot affect the limit superior, so the event is a tail event and Kolmogorov's law applies.
+T Any statement about limiting behaviour that ignores finitely many terms is a tail event.
+T The law gives 0 or 1 but not which; that requires the Borel-Cantelli lemmas or the three-series theorem.
+X Altering X_1, ..., X_k leaves the limit superior of X_n/n unchanged.
+X So the event lies in the tail sigma field of an independent sequence.
+X Kolmogorov's zero-one law gives probability 0 or 1, option (a).
+
+@ FP-258 | Laws of Large Numbers and Central Limit Theorem | Weak and Strong Laws
+Q Statement I: if the X_n are independent and identically distributed with E|X_1| infinite, then the sample mean cannot converge almost surely to a finite constant. Statement II: an infinite first absolute moment forces the limit superior of |X_n|/n to be infinite almost surely. Choose the correct code.
+O both true, II explains I
+O both true, II does not explain I
+O I true, II false
+O I false, II true
+A a
+S If the mean converged, X_n/n would tend to 0, contradicting the Borel-Cantelli consequence in Statement II.
+T The sum of P(|X_1| > n) is comparable to E|X_1|, so an infinite mean makes that sum diverge.
+T This is the converse half of Kolmogorov's strong law: a finite mean is necessary as well as sufficient.
+X E|X_1| infinite makes the sum of P(|X_n| > n) diverge, so by Borel-Cantelli |X_n| > n infinitely often.
+X If the sample mean converged, then X_n/n = (n X_bar_n - (n-1)X_bar_{n-1})/n would tend to 0, a contradiction.
+X So Statement II explains Statement I, option (a).
+
+@ FP-259 | Random Vectors and Joint Distributions | Independence and Covariance
+Q Statement I: if X and Y each have normal marginals then (X, Y) is jointly normal. Statement II: with X standard normal and Y equal to X when |X| is at most c and to -X otherwise, Y is also standard normal. Choose the correct code.
+O both true, II explains I
+O both true, II does not explain I
+O I true, II false
+O I false, II true
+A d
+S Statement II is a construction with normal marginals whose joint law is not normal, refuting Statement I.
+T Normal marginals never imply joint normality; only "every linear combination is normal" does.
+T The pair in Statement II has a joint distribution supported on two lines, which no bivariate normal density can produce.
+X Reflecting the tail of a standard normal leaves the marginal standard normal, so Statement II is true.
+X The resulting pair puts all its mass on the lines y = x and y = -x, so it has no joint density and is not bivariate normal.
+X Statement I is false, option (d).
+
+@ FP-260 | Mathematical and Conditional Expectation | Expectation and Moments
+Q Statement I: E(X - a)^2 is minimised at a = E(X). Statement II: E|X - a| is minimised at any median of X. Choose the correct code.
+O both true, II explains I
+O both true, II does not explain I
+O I true, II false
+O I false, II true
+A b
+S Both are true, but they are separate optimality results - one for the mean, one for the median.
+T Squared loss picks the mean; absolute loss picks the median. That single sentence answers a whole family of questions.
+T Statement II does not explain Statement I: neither implies the other.
+X Expanding E(X-a)^2 = Var(X) + (E(X) - a)^2 shows the minimum is at a = E(X).
+X Differentiating E|X - a| gives P(X < a) - P(X > a) = 0, satisfied at any median.
+X Both are true but unrelated, option (b).
+
+@ FP-261 | Modes of Convergence and 0-1 Laws | Convergence in Probability and Distribution
+Q Statement I: if the densities f_n converge pointwise to a density f, then the corresponding variables converge in distribution. Statement II: Scheffe's lemma upgrades pointwise convergence of densities to convergence in total variation. Choose the correct code.
+O both true, II explains I
+O both true, II does not explain I
+O I true, II false
+O I false, II true
+A a
+S Scheffe's lemma gives convergence in total variation, which is strictly stronger than convergence in distribution.
+T Pointwise convergence of densities is a strong hypothesis; the lemma converts it into a very strong conclusion.
+T The converse fails: variables can converge in distribution without their densities converging anywhere.
+X Scheffe's lemma states that pointwise convergence of densities implies convergence of the integrals in total variation.
+X Total variation convergence implies convergence in distribution.
+X So Statement II explains Statement I, option (a).

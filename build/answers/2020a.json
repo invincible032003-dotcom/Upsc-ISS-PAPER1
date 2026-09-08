@@ -182,18 +182,18 @@
     "answer": 3,
     "confidence": "high",
     "type": "Theoretical",
-    "shortcut": "For $n = 5$ the median is the 3rd order statistic, so the constant is 5!/$(2! 2!) = 30$ and the density is $30 F^{2} (1-F)^{2} f$.",
+    "shortcut": "For $n = 5$ the median is the 3rd order statistic, so the constant is $5!/(2! 2!) = 30$ and the density is $30 F^{2} (1-F)^{2} f$.",
     "tips": [
       "General order-statistic density: $g_{r}(x) = [n!/((r-1)!(n-r)!)] [F(x)]^{r-1} [1 - F(x)]^{n-r} f(x)$. Substitute r and n and the whole answer follows.",
       "For the median of 5 observations, $r = 3$, so the exponents are $r - 1 = 2$ and $n - r = 2$ - symmetric, as the median should be.",
-      "The constant 5!/$(2!2!) = 120/4 = 30$ is what separates (c) from (d); option (c) has the right shape but the wrong normalising constant.",
+      "The constant $5!/(2!2!) = 120/4 = 30$ is what separates (c) from (d); option (c) has the right shape but the wrong normalising constant.",
       "Options (a) and (b) are the densities of the MAXIMUM and the MINIMUM respectively - useful to recognise as the $r = n$ and $r = 1$ special cases."
     ],
     "solution": [
       "For a sample of size n from a continuous distribution, the density of the rth order statistic is $g_{r}(x) = [n!/((r-1)!(n-r)!)] [F(x)]^{r-1} [1-F(x)]^{n-r} f(x)$.",
       "With $n = 5$ observations, the sample median is the third order statistic, so $r = 3$.",
       "The exponents are $r - 1 = 2$ on $F(x)$ and $n - r = 2$ on $1 - F(x)$.",
-      "The constant is 5!/$(2! 2!) = 120/(2 \\times 2) = 30$.",
+      "The constant is $5!/(2! 2!) = 120/(2 \\times 2) = 30$.",
       "Hence the density of the sample median is $30 [F(x)]^{2} [1 - F(x)]^{2} f(x)$.",
       "Option (d) is correct."
     ]

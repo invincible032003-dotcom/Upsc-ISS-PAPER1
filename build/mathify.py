@@ -174,7 +174,7 @@ def phrase_rules(t):
     def _bar(m):
         stats['bar'] += 1
         return protect(r'\bar{%s}' % m.group(1))
-    t = re.sub(r'\b([A-Za-z])[- ]?bar\b', _bar, t)
+    t = re.sub(r'\b([A-Za-z])[-_ ]?bar(?![A-Za-z])', _bar, t)
 
     t = re.sub(r'\binfinity\b', lambda m: protect(r'\infty'), t, flags=re.I)
     t = re.sub(r'\blim\s+sup\b', 'limsup', t)
@@ -541,7 +541,7 @@ def match_atom(s, i, after_arith=False, juxta=False, allow_sign=False):
                     break
                 j = k + m.end()
             signal = True
-        elif s[j] == '!' and (j + 1 >= n or s[j + 1] in ' ,)='):
+        elif s[j] == '!' and not (j + 1 < n and s[j + 1] == '='):
             j += 1
             signal = True
         else:
@@ -727,8 +727,11 @@ def to_latex(x):
     x = x.replace('|', r'\mid ')
 
     x = rewrite_scripts(x)
-    x = re.sub(r'\^(-?[A-Za-z0-9]+)(?![}])', lambda m: '^{%s}' % m.group(1), x)
-    x = re.sub(r'_(-?[A-Za-z0-9]+)(?![}])', lambda m: '_{%s}' % m.group(1), x)
+    # an exponent is digits, or a name with an optional index - never a
+    # digit run glued to a letter run, or X^2Y^2 would become X^{2Y}^{2}
+    SCR = r'(-?\d+|-?[a-z]+\d*|-?[A-Z]\d*)'
+    x = re.sub(r'\^' + SCR + r'(?![}])', lambda m: '^{%s}' % m.group(1), x)
+    x = re.sub(r'_' + SCR + r'(?![}])', lambda m: '_{%s}' % m.group(1), x)
     # y0, y1, A1, X2 are indexed variables in this corpus
     x = re.sub(r'(?<![\\A-Za-z_^])([A-Za-z])(\d+)(?![A-Za-z0-9}])',
                lambda m: '%s_{%s}' % (m.group(1), m.group(2)), x)
@@ -822,6 +825,10 @@ def convert(text):
         if re.fullmatch(r'[A-Z]/[A-Z]', expr):
             out.append(expr)           # I/O, A/D, R/W - acronyms, not ratios
             i = end
+            continue
+        if re.match(r'^\([a-d]\)', expr):
+            out.append(s[i:i + 3])     # "option (d) 13/24" - an option label
+            i += 3
             continue
         if re.match(r'^[aAI] (?![-+*/=<>~|,])', expr):
             out.append(s[i:i + 2])     # "a chi-square test" - an article

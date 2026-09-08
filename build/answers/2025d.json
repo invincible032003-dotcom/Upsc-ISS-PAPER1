@@ -15,8 +15,8 @@
       "Basic differences: $\\Delta x^{3} = (x+1)^{3} - x^{3} = 3x^{2} + 3x + 1$; $\\Delta x^{2} = (x+1)^{2} - x^{2} = 2x + 1$; $\\Delta x = 1$.",
       "Try $F(x) = x^{3} - x^{2} + 4x + \\lambda$ (option d).",
       "$\\Delta F = (3x^{2} + 3x + 1) - (2x + 1) + 4(1) = 3x^{2} + 3x + 1 - 2x - 1 + 4 = 3x^{2} + x + 4$. This is exactly the required first difference.",
-      "Cross-check $(b) F = 2x^{3} + x^{2} + \\lambda$: $\\Delta F = 2(3x^{2}+3x+1) + (2x+1) = 6x^{2} + 8x + 3$, which is wrong.",
-      "Cross-check $(c) F = 2x^{3} + x^{2} + 8x + \\lambda$: $\\Delta F = 6x^{2} + 8x + 3 + 8 = 6x^{2} + 8x + 11$, also wrong.",
+      "Cross-check (b) $F = 2x^{3} + x^{2} + \\lambda$: $\\Delta F = 2(3x^{2}+3x+1) + (2x+1) = 6x^{2} + 8x + 3$, which is wrong.",
+      "Cross-check (c) $F = 2x^{3} + x^{2} + 8x + \\lambda$: $\\Delta F = 6x^{2} + 8x + 3 + 8 = 6x^{2} + 8x + 11$, also wrong.",
       "Option (a) is a quadratic, whose first difference is linear, so it cannot equal a quadratic.",
       "Hence option (d) is correct."
     ]
@@ -125,19 +125,19 @@
     "answer": 0,
     "confidence": "high",
     "type": "Numerical",
-    "shortcut": "$\\Delta^{n}$ applied to $x^{n}$ with $h = 1$ gives the constant n!, so $\\Delta^{100} x^{100} = 100$!. Dividing by E means applying $E^{-1}$, and shifting a constant leaves it unchanged. Answer $100!$, option (a).",
+    "shortcut": "$\\Delta^{n}$ applied to $x^{n}$ with $h = 1$ gives the constant n!, so $\\Delta^{100} x^{100} = 100!$. Dividing by E means applying $E^{-1}$, and shifting a constant leaves it unchanged. Answer $100!$, option (a).",
     "tips": [
       "Key fact: for a monic degree-n polynomial and $h = 1, \\Delta^{n}$ gives exactly n! and $\\Delta^{n+1}$ gives 0.",
       "Operators that are polynomials in E commute, so $\\Delta^{100}/E$ may be read as $E^{-1}\\Delta^{100}$ or $\\Delta^{100} E^{-1}$ - both give the same result.",
-      "A shift never changes a constant: $E^{-1}(c) = c$. That is why the answer is clean rather than $100! - 99$!.",
+      "A shift never changes a constant: $E^{-1}(c) = c$. That is why the answer is clean rather than $100! - 99!$.",
       "Distractors like $100! - 99!$ are built by wrongly treating $E^{-1}$ as though it subtracted a lower factorial; check by testing the identity on a small case such as $\\Delta^{2}/E$ applied to $x^{2}$, which gives $2! = 2$."
     ],
     "solution": [
       "Take the interval of differencing $h = 1$.",
-      "For a polynomial of degree n with leading coefficient 1, the n-th forward difference is the constant $n! * h^{n}$. With $n = 100$ and $h = 1, \\Delta^{100} (x^{100}) = 100$!.",
+      "For a polynomial of degree n with leading coefficient 1, the n-th forward difference is the constant $n! * h^{n}$. With $n = 100$ and $h = 1, \\Delta^{100} (x^{100}) = 100!$.",
       "The expression $\\Delta^{100}/E$ means the operator $E^{-1}$ composed with $\\Delta^{100}$ (all these operators are polynomials in E, hence commute).",
       "Applying $E^{-1}$ to the constant $100!$ gives $E^{-1}(100!) = 100!$, since shifting the argument of a constant function changes nothing.",
-      "Equivalently, computing in the other order: $E^{-1}(x^{100}) = (x-1)^{100}$, and $\\Delta^{100}$ of the monic degree-100 polynomial $(x-1)^{100}$ is again 100!.",
+      "Equivalently, computing in the other order: $E^{-1}(x^{100}) = (x-1)^{100}$, and $\\Delta^{100}$ of the monic degree-100 polynomial $(x-1)^{100}$ is again $100!$.",
       "Hence option (a) is correct."
     ]
   },

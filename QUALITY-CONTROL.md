@@ -1,6 +1,7 @@
 # Final Quality-Control Record
 
 UPSC ISS Statistics Paper-I (Objective) — 2018–2026 PYQ Offline Mock Engine
+plus the 2027 AI-generated forecast bank
 
 Everything below was executed, not asserted. The commands that produce each
 result are named so any claim can be re-run.
@@ -8,6 +9,36 @@ result are named so any claim can be re-run.
 ```
 sh build/run_all.sh          # rebuilds and re-validates the whole project
 ```
+
+---
+
+## 0. The two banks
+
+The project ships **two separate question banks** and they are never mixed.
+
+| | Authentic | Forecast |
+|---|---|---|
+| What it is | previous-year questions | AI-generated 2027 practice |
+| Count | 720 | 750 |
+| Coverage | 4 units, 2018–2026 | Probability 375, Statistical Methods 375 |
+| Id shape | `2023-Q12` | `FP-041`, `FS-207` |
+| Global in `questions.js` | `window.quizData` | `window.forecastData` |
+| Mocks | year, sectional, topic, subtopic, custom | 30 named mocks of exactly 25 |
+| PDFs | 4 unit volumes | `Probability_Forecast.pdf`, `Statistical_Methods_Forecast.pdf` |
+| Per-question layout in the PDF | 6 sections | 4 sections |
+
+Separation is **enforced and tested**, not merely asserted:
+
+- `python3 build/reconcile.py` proves no id is shared, that every forecast
+  record carries `isForecast` and no authentic record does, that the 30 mocks
+  hold exactly 25 questions each, that no forecast question is used twice and
+  that the mocks cover the whole forecast bank.
+- `node build/test_dashboard.mjs` drives the browser and proves the PYQ mock
+  builders read only `window.quizData`, that a forecast mock starts with 25
+  forecast questions, and that the forecast reveal order and badging are right.
+- `python3 build/verify_forecast_pdf.py` proves **no authentic PYQ id appears
+  anywhere** in either forecast volume, and `python3 build/verify_pdf.py`
+  proves the four PYQ volumes contain exactly the 720 authentic items.
 
 ---
 
@@ -92,13 +123,13 @@ screen, and under the question in the PDF.
 
 ## 3. Strict LaTeX typesetting
 
-`node build/test_katex.mjs` — **14,524 formulas, 0 parse errors**
+`node build/test_katex.mjs` — **22,127 formulas, 0 parse errors**
 
 | | |
 |---|---|
 | Engine | KaTeX 0.16.22, vendored and **inlined** into `index.html` |
-| Formulas in the dataset | 14,524 (14,463 inline, 61 display) |
-| Text fields scanned | 11,479, across all 720 questions |
+| Formulas in the dataset | 22,127 (22,066 inline, 61 display) |
+| Text fields scanned | 19,729, across all 1,470 questions (720 PYQ + 750 forecast) |
 | Parse failures | **0** — every formula compiles under `throwOnError` |
 | Formulas rendering empty | 0 |
 | Embedded math fonts | 20 WOFF2 faces, all loading |
@@ -144,7 +175,7 @@ identical in both.
 | File | Size |
 |---|---|
 | `index.html` | 726 KB (includes the inlined KaTeX engine and its 20 math fonts) |
-| `questions.js` | 1625 KB |
+| `questions.js` | 2574 KB |
 | `styles.css` | 18 KB |
 | `README.txt` | 10 KB |
 
@@ -173,8 +204,8 @@ must match exactly — 20 and 20.
 
 ## 5. Rendering sweep
 
-`node build/test_render.mjs` — **11,479 text fields across all 720 questions**
-rendered inside a 360 px container:
+`node build/test_render.mjs` — **19,729 text fields across all 1,470
+questions** (720 authentic + 750 forecast) rendered inside a 360 px container:
 
 - no leftover LaTeX commands — PASS
 - no stray `$` delimiters — PASS
@@ -186,7 +217,7 @@ rendered inside a 360 px container:
 
 ## 6. Functional test suite
 
-`node build/test_dashboard.mjs` — **89 assertions, 89 passed, 0 failed**,
+`node build/test_dashboard.mjs` — **110 assertions, 110 passed, 0 failed**,
 driven over `file://`.
 
 | Master-prompt test | Result |
@@ -243,6 +274,67 @@ Verified per PDF, mechanically:
 
 ---
 
+## 7b. The two forecast PDFs
+
+`node build/gen_forecast_pdf.mjs` then `python3 build/verify_forecast_pdf.py`
+— **all checks passed**
+
+| PDF | Questions | Topics | Named mocks | Pages | Size |
+|---|---|---|---|---|---|
+| `Probability_Forecast.pdf` | 375 | 11 | 15 | 194 | 1.3 MB |
+| `Statistical_Methods_Forecast.pdf` | 375 | 13 | 15 | 194 | 1.3 MB |
+| **Total** | **750** | **24** | **30** | **388** | |
+
+Verified per PDF, mechanically:
+
+- the text splits into exactly one block per forecast question of that unit — 375/375
+- no duplicated block, none missing, nothing from the other unit leaking in
+- **no authentic PYQ id appears anywhere in either volume**
+- every block carries the four sections **in the exact required order**:
+  QUESTION → OPTIONS → ANSWER → EXAM SHORTCUT
+- the stem is reproduced with **zero characters lost**, compared against the
+  renderer's own output, and its prose appears in document order
+- all four options reproduced with zero characters lost
+- the printed answer letter and text match the database key for every question
+- every block is stamped FORECAST; the cover carries the AI-GENERATED stamp
+  and says these are not previous-year questions; the running footer repeats
+  the provenance on all 194 pages of each volume
+- every named forecast mock for the unit is listed in the contents
+
+---
+
+## 7c. The forecast bank itself
+
+`python3 build/forecast_build.py` — parses `build/forecast/*.txt`, validates,
+converts to LaTeX and deals the named mocks.
+
+| | |
+|---|---|
+| Forecast questions | 750 (Probability 375, Statistical Methods 375) |
+| Topics | 24 |
+| Concepts | 112 |
+| Named mocks | 30, of **exactly 25** questions each |
+| Questions left out of every mock | **0** |
+| Questions used in more than one mock | **0** |
+
+Every record is rejected at build time unless it has a well-formed id, exactly
+four options with no two identical, a key in a–d, an Exam Shortcut, at least
+two Tips & Tricks entries, at least two solution steps and a topic and
+subtopic. Stems are compared against each other so no question can be
+duplicated, and the final solution step must name the keyed option.
+
+Answers were verified rather than transcribed. Where the supplied material
+carried a defect it was corrected and the correction is recorded here:
+
+| Item | Defect in the supplied material | What was done |
+|---|---|---|
+| urn / total-probability item | two options printed the same value (9/15 and 3/5) | option (a) changed to 8/15 so the four options are distinct |
+| Poisson parity item | options (c) and (d) were the same quantity, `(1+e^(-2λ))/2` and `e^(-λ)cosh λ` | option (d) changed to `e^(-λ)sinh λ`, which is the odd-parity complement |
+| uniform range item | options (a) 2/3 and (d) 4/6 were the same number | option (d) replaced |
+| concurrent-deviations item | the stem said "n = 10 pairs" but the key used 9 pairs of deviations | stem restated as 10 observations giving 9 pairs of deviations |
+
+---
+
 ## 8. Master-prompt final checklist (§42)
 
 | Item | Evidence |
@@ -276,7 +368,12 @@ Verified per PDF, mechanically:
 | Bookmarks work | round-tripped through local storage |
 | Attempt history works | history length asserted after submission |
 | Export/import works | JSON round trip |
-| Search works | query returns results and can be practised |
+| Search works | query returns results and can be practised; forecast hits are badged |
+| Forecast bank imported and labelled | 750 items, separate array, `isForecast` on every record, FORECAST badge in the UI and on every PDF entry |
+| Forecast answers verified | every key re-derived during the build; four defects in the supplied material corrected and recorded |
+| Forecast exam shortcut on every item | 750/750, enforced by `build/forecast_build.py` |
+| Named forecast sectional mocks | 30 mocks, exactly 25 questions each, no repetition, whole bank covered |
+| Forecast PDFs | 2 volumes, 750 questions, QUESTION → OPTIONS → ANSWER → EXAM SHORTCUT |
 | No duplicate questions in generated mocks | test D checks all 196 ids |
 | Source fidelity preserved | reconcile.py finds zero stem/option drift; PDFs lose zero characters |
 | No runtime network dependencies | check_offline.py + live interception |
@@ -286,7 +383,7 @@ Verified per PDF, mechanically:
 | No Python/Node/npm requirement | the four delivered files contain no such reference; the tooling is build-time only |
 | `file://` target works | the entire suite runs over `file://` |
 | Mobile responsive design works | five viewports, no overflow, no small touch targets |
-| Mathematical notation readable offline | 11,479 fields swept; 14,524 formulas compiled by the embedded KaTeX engine with zero parse errors and zero network requests |
+| Mathematical notation readable offline | 19,729 fields swept; 22,127 formulas compiled by the embedded KaTeX engine with zero parse errors and zero network requests |
 
 ---
 

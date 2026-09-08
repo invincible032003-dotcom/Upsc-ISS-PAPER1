@@ -1,0 +1,533 @@
+# FORECAST / AI-GENERATED - Statistical Methods, data presentation and descriptive measures
+
+@ FS-001 | Data Presentation and Measurement Scales | Scales of Measurement
+Q Temperature measured in degrees Celsius is on which scale?
+O nominal
+O ordinal
+O interval
+O ratio
+A c
+S Differences are meaningful but the zero is arbitrary, so the scale is interval, not ratio.
+T A ratio scale needs a true zero; 0 degrees Celsius does not mean "no temperature".
+T Kelvin IS a ratio scale, which is the standard companion question.
+X Celsius supports order and equal differences, so it is at least interval.
+X Its zero point is conventional, so ratios such as "twice as hot" are meaningless.
+X The scale is interval, option (c).
+
+@ FS-002 | Data Presentation and Measurement Scales | Scales of Measurement
+Q For nominal data, the only permissible average is the
+O arithmetic mean
+O median
+O mode
+O geometric mean
+A c
+S Nominal categories have no order, so only the most frequent category is meaningful.
+T Each scale permits the averages of all weaker scales: nominal gives the mode, ordinal adds the median, interval adds the mean.
+T Computing a mean of postal codes is the classic illustration of a meaningless statistic.
+X Nominal data carry no order and no distance.
+X The median needs order and the mean needs distance, so neither is available.
+X Only the mode remains, option (c).
+
+@ FS-003 | Data Presentation and Measurement Scales | Frequency Distributions
+Q Which of the following condense raw data: 1. an array, 2. a frequency distribution, 3. a histogram, 4. an ogive?
+O 2 only
+O 2 and 3
+O 2, 3 and 4
+O all four
+A d
+S Every one of them replaces the raw list by a more compact summary, an ordered array included.
+T An array is already a condensation: it discards the order in which the data arrived.
+T Histograms and ogives are graphical condensations of the frequency distribution.
+X An array orders the data, discarding the collection sequence.
+X A frequency distribution groups them, and the histogram and ogive display that grouping.
+X All four condense the data, option (d).
+
+@ FS-004 | Data Presentation and Measurement Scales | Frequency Distributions
+Q The median and the quartiles are read graphically from
+O a histogram
+O a frequency polygon
+O an ogive
+O a bar chart
+A c
+S The ogive is the cumulative curve, so any quantile is read off at the corresponding cumulative frequency.
+T Positional averages come from the CUMULATIVE curve; the mode comes from the histogram.
+T Two ogives, less-than and more-than, intersect at the median - a favourite diagram question.
+X The ogive plots cumulative frequency against the variable.
+X Reading across at N/2, N/4 and 3N/4 gives the median and the quartiles.
+X Hence option (c).
+
+@ FS-005 | Data Presentation and Measurement Scales | Frequency Distributions
+Q In a histogram with unequal class widths the heights of the bars must be proportional to
+O the frequency
+O the frequency density
+O the cumulative frequency
+O the relative frequency
+A b
+S Area must represent frequency, so the height is the frequency divided by the class width.
+T With unequal widths, plotting raw frequencies distorts the picture; the frequency density restores it.
+T The total area of a correctly drawn histogram is the total frequency.
+X In a histogram the AREA of each bar represents the frequency of the class.
+X Area = height times width, so height = frequency/width.
+X That is the frequency density, option (b).
+
+@ FS-006 | Data Presentation and Measurement Scales | Scales of Measurement
+Q The Kelvin temperature scale is
+O interval
+O ratio
+O ordinal
+O nominal
+A b
+S Kelvin has an absolute zero, so ratios are meaningful and the scale is ratio.
+T The presence of a true zero is exactly what separates ratio from interval.
+T 200 K really is twice 100 K, whereas 20 degrees Celsius is not twice 10 degrees Celsius.
+X Kelvin measures from absolute zero, at which molecular motion ceases.
+X Ratios of Kelvin temperatures are therefore meaningful.
+X The scale is ratio, option (b).
+
+@ FS-007 | Data Presentation and Measurement Scales | Frequency Distributions
+Q By Sturges' rule, the number of classes for n = 1000 observations is approximately
+O 8
+O 10
+O 11
+O 13
+A c
+S 1 + 3.322 log_10(1000) = 1 + 9.97 = 10.97, so about 11 classes.
+T Sturges' rule is 1 + 3.322 log_10 n; for powers of 10 the logarithm is immediate.
+T The rule grows only logarithmically, so even n = 10000 needs just 14 classes.
+X Sturges' rule gives k = 1 + 3.322 log_10(n).
+X With n = 1000, log_10(n) = 3, so k = 1 + 9.966.
+X This rounds to 11, option (c).
+
+@ FS-008 | Data Presentation and Measurement Scales | Scales of Measurement
+Q Consider: 1. Likert scores are ordinal, 2. postal index numbers are on a ratio scale, 3. income is on a ratio scale. Which are correct?
+O 1 only
+O 1 and 3
+O 2 and 3
+O all three
+A b
+S Likert scores are ordered categories and income has a true zero; postal codes are mere labels and are nominal.
+T A numeral is not a number: postal codes, jersey numbers and telephone numbers are all nominal.
+T Likert differences are not equal, so treating the scores as interval is an approximation, not a fact.
+X Likert scores are ordered but unequally spaced, so they are ordinal.
+X Postal index numbers are labels with no order, hence nominal.
+X Income has a true zero and meaningful ratios, so statements 1 and 3 hold, option (b).
+
+@ FS-009 | Data Presentation and Measurement Scales | Frequency Distributions
+Q In a pie chart with total frequency 360, a class of frequency 45 occupies a sector of
+O 12.5 degrees
+O 45 degrees
+O 90 degrees
+O 30 degrees
+A b
+S The angle is 360 times 45/360 = 45 degrees.
+T The sector angle is always 360 times the relative frequency.
+T The coincidence that the total is 360 makes the angle numerically equal to the frequency here.
+X The relative frequency is 45/360 = 1/8.
+X The angle is 360 times 1/8.
+X That is 45 degrees, option (b).
+
+@ FS-010 | Data Presentation and Measurement Scales | Frequency Distributions
+Q A frequency polygon is obtained by joining
+O the lower class limits
+O the midpoints of the tops of the histogram bars
+O the cumulative frequencies
+O the upper class limits
+A b
+S The polygon connects the class midpoints at the corresponding frequencies.
+T Frequency polygon uses midpoints and frequencies; the ogive uses class boundaries and cumulative frequencies.
+T Extending the polygon to the midpoints of the adjacent empty classes closes it onto the axis.
+X The frequency polygon plots frequency against the class midpoint.
+X Joining those points gives the polygon, which is the tops of the histogram bars joined at their midpoints.
+X Hence option (b).
+
+@ FS-011 | Measures of Location, Dispersion, Skewness and Kurtosis | Skewness
+Q The mean is 50, the median 48 and the standard deviation 6. What is Pearson's coefficient of skewness in its median form?
+O 0.33
+O 1
+O 0.5
+O 2
+A b
+S 3(50 - 48)/6 = 1.
+T The median form carries the compulsory factor 3; the mode form does not.
+T Dropping the 3 gives 0.33, planted as option (a).
+X Pearson's median coefficient is 3(mean - median)/standard deviation.
+X This is 3(2)/6.
+X The value is 1, option (b).
+
+@ FS-012 | Measures of Location, Dispersion, Skewness and Kurtosis | Skewness
+Q The mode is 40, the mean 46 and Pearson's coefficient of skewness is 0.5. What is the standard deviation?
+O 6
+O 12
+O 3
+O 24
+A b
+S The mode form gives (46 - 40)/SD = 0.5, so SD = 12.
+T When the MODE is supplied use (mean - mode)/SD with no factor 3.
+T Inserting the factor 3 by mistake gives 36, and halving gives 6 - both are planted.
+X Pearson's coefficient in mode form is (mean - mode)/SD.
+X So 0.5 = 6/SD.
+X Hence SD = 12, option (b).
+
+@ FS-013 | Measures of Location, Dispersion, Skewness and Kurtosis | Combined Mean and Variance
+Q Group 1 has 40 observations with mean 60 and group 2 has 60 observations with mean 70. What is the combined mean?
+O 65
+O 66
+O 64
+O 67
+A b
+S (40 x 60 + 60 x 70)/100 = 6600/100 = 66.
+T The combined mean is the weighted average with the group sizes as weights - never the simple average.
+T The plain average 65 is planted as option (a); the answer must be pulled towards the larger group.
+X The combined total is 40(60) + 60(70) = 2400 + 4200 = 6600.
+X Dividing by 100 gives the combined mean.
+X This is 66, option (b).
+
+@ FS-014 | Measures of Location, Dispersion, Skewness and Kurtosis | Combined Mean and Variance
+Q Two groups of 50 observations each have means 10 and 20 and standard deviations 3 and 4. What is the combined variance?
+O 12.5
+O 25
+O 37.5
+O 50
+A c
+S Within part (9 + 16)/2 = 12.5 plus between part 25 gives 37.5.
+T The combined variance is the average within-group variance PLUS the variance of the group means.
+T Forgetting the between-group term gives 12.5, planted as option (a).
+X The combined mean is 15, so the deviations of the group means are -5 and +5.
+X The combined variance is [50(9 + 25) + 50(16 + 25)]/100 = (1700 + 2050)/100.
+X This is 37.5, option (c).
+
+@ FS-015 | Measures of Location, Dispersion, Skewness and Kurtosis | Combined Mean and Variance
+Q A combined sample of 100 has mean 50 and variance 100. The first group has 60 observations with mean 45 and variance 40. What is the variance of the second group?
+O 96.25
+O 60
+O 190
+O 100
+A a
+S The second mean is 57.5; solving 10000 = 60(40 + 25) + 40(v + 56.25) gives v = 96.25.
+T Reverse the combined-variance identity: recover the missing mean first, then the missing variance.
+T Both deviation terms are essential; dropping them gives an impossible answer.
+X The second group has mean (100 x 50 - 60 x 45)/40 = 57.5, so the deviations are -5 and 7.5.
+X The identity gives 100(100) = 60(40 + 25) + 40(v + 56.25).
+X Solving, 40v = 3850 and v = 96.25, option (a).
+
+@ FS-016 | Measures of Location, Dispersion, Skewness and Kurtosis | Measures of Dispersion
+Q If Var(X) = 4, what is Var(3X - 5)?
+O 7
+O 12
+O 36
+O 31
+A c
+S Variance scales with the square of the multiplier and ignores the shift: 9(4) = 36.
+T Var(aX + b) = a^2 Var(X); the additive constant never appears.
+T Answering 12 multiplies by 3 instead of 9, which is the planted error.
+X Var(3X - 5) = 3^2 Var(X).
+X This is 9(4).
+X The variance is 36, option (c).
+
+@ FS-017 | Measures of Location, Dispersion, Skewness and Kurtosis | Measures of Dispersion
+Q Height has mean 160 and standard deviation 8; weight has mean 60 and standard deviation 6. Weight is how many times as variable as height?
+O 0.75
+O 1.33
+O 2
+O 0.5
+A c
+S Coefficients of variation are 5% and 10%, so weight is twice as variable.
+T Comparisons across different units must use the coefficient of variation, never the raw standard deviation.
+T The raw standard deviations 8 and 6 point the wrong way, which is the trap.
+X CV for height = 8/160 = 5% and for weight = 6/60 = 10%.
+X The ratio is 10/5.
+X Weight is twice as variable, option (c).
+
+@ FS-018 | Measures of Location, Dispersion, Skewness and Kurtosis | Measures of Dispersion
+Q The mean deviation is a minimum when taken about the
+O mean
+O median
+O mode
+O origin
+A b
+S The sum of absolute deviations is minimised at the median.
+T Absolute loss picks the median; squared loss picks the mean. One sentence settles the pair.
+T This is why the median is the robust centre and the mean is the least-squares centre.
+X Differentiating the sum of |x_i - a| gives the count below a minus the count above a.
+X Setting that to zero puts a at the median.
+X Hence option (b).
+
+@ FS-019 | Measures of Location, Dispersion, Skewness and Kurtosis | Measures of Dispersion
+Q The root-mean-square deviation is a minimum when taken about the
+O mean
+O median
+O mode
+O upper quartile
+A a
+S The sum of squared deviations is minimised at the arithmetic mean.
+T The identity sum of (x - a)^2 = sum of (x - x_bar)^2 + n(x_bar - a)^2 makes it obvious.
+T This is the companion result to "mean deviation is least about the median".
+X Sum of (x_i - a)^2 = sum of (x_i - x_bar)^2 + n(x_bar - a)^2.
+X The second term is non-negative and vanishes only at a = x_bar.
+X So the minimum is at the mean, option (a).
+
+@ FS-020 | Measures of Location, Dispersion, Skewness and Kurtosis | Measures of Dispersion
+Q For a normal distribution the ratio of quartile deviation to mean deviation to standard deviation is approximately
+O 2 : 3 : 4
+O 10 : 12 : 15
+O 1 : 2 : 3
+O 3 : 4 : 5
+A b
+S 0.6745 : 0.7979 : 1 scales to about 10 : 12 : 15.
+T Memorise QD = (2/3)sigma and MD = (4/5)sigma for the normal; the ratio 10 : 12 : 15 follows.
+T The ordering QD < MD < SD holds for every distribution with these quantities defined.
+X For a normal law, QD = 0.6745 sigma and MD = 0.7979 sigma.
+X Dividing by sigma/15 gives 10.1 : 12.0 : 15.
+X The ratio is 10 : 12 : 15, option (b).
+
+@ FS-021 | Measures of Location, Dispersion, Skewness and Kurtosis | Kurtosis
+Q What is the value of beta_2 for the uniform distribution on (0,1)?
+O 3
+O 1.8
+O 2.4
+O 1.2
+A b
+S mu_4 = 1/80 and mu_2 = 1/12, so beta_2 = (1/80)(144) = 1.8.
+T The uniform is platykurtic with beta_2 = 1.8, well below the normal's 3.
+T Its flat top and sharp shoulders are exactly what low kurtosis describes.
+X For U(0,1), mu_2 = 1/12 and mu_4 = 1/80.
+X beta_2 = mu_4/mu_2^2 = (1/80)/(1/144).
+X This is 1.8, option (b).
+
+@ FS-022 | Measures of Location, Dispersion, Skewness and Kurtosis | Kurtosis
+Q Which relation always holds between beta_1 and beta_2?
+O beta_2 >= beta_1
+O beta_2 >= beta_1 + 1
+O beta_2 <= beta_1 + 1
+O beta_2 = beta_1 + 3
+A b
+S The Cauchy-Schwarz inequality applied to the second and third central moments gives beta_2 >= beta_1 + 1.
+T This is the fundamental moment inequality; a table failing it has an arithmetic error.
+T For the normal, beta_1 = 0 and beta_2 = 3, comfortably satisfying it.
+X By Cauchy-Schwarz, mu_3^2 <= mu_2 mu_4 - mu_2^3 rearranges to mu_4 mu_2 >= mu_3^2 + mu_2^3.
+X Dividing by mu_2^3 gives beta_2 >= beta_1 + 1.
+X Hence option (b).
+
+@ FS-023 | Measures of Location, Dispersion, Skewness and Kurtosis | Skewness
+Q If mean > median > mode, the distribution is
+O symmetric
+O negatively skewed
+O positively skewed
+O mesokurtic
+A c
+S The mean is dragged furthest by the long right tail, so the ordering signals positive skewness.
+T For a moderately skewed law the three centres line up in the direction of the longer tail.
+T The empirical relation mean - mode = 3(mean - median) is the quantitative version.
+X A long right tail pulls the mean above the median, which in turn exceeds the mode.
+X That ordering is the signature of positive skewness.
+X Hence option (c).
+
+@ FS-024 | Measures of Location, Dispersion, Skewness and Kurtosis | Skewness
+Q With Q_1 = 10, Q_3 = 30 and median 18, what is Bowley's coefficient of skewness?
+O 0.2
+O 0.4
+O -0.2
+O 0.1
+A a
+S (30 + 10 - 36)/(30 - 10) = 4/20 = 0.2.
+T Bowley's coefficient is (Q_3 + Q_1 - 2 median)/(Q_3 - Q_1) and always lies between -1 and 1.
+T The median is nearer the lower quartile here, so the skewness is positive.
+X The numerator is Q_3 + Q_1 - 2M = 40 - 36 = 4.
+X The denominator is the interquartile range 20.
+X The coefficient is 0.2, option (a).
+
+@ FS-025 | Measures of Location, Dispersion, Skewness and Kurtosis | Skewness
+Q Kelly's coefficient of skewness is based on
+O the quartiles
+O the 10th and 90th percentiles
+O the 2nd and 8th deciles
+O the 5th and 95th percentiles
+A b
+S Kelly's measure uses P_10, P_50 and P_90, widening Bowley's quartile-based measure.
+T Bowley uses the quartiles; Kelly uses the 10th and 90th percentiles and so covers 80% of the data.
+T Both are bounded between -1 and 1 and both are positional, not moment-based.
+X Kelly's coefficient is (P_90 + P_10 - 2 P_50)/(P_90 - P_10).
+X It therefore rests on the 10th and 90th percentiles.
+X Hence option (b).
+
+@ FS-026 | Measures of Location, Dispersion, Skewness and Kurtosis | Measures of Location
+Q What is the harmonic mean of 2, 4 and 8?
+O 4
+O 24/7
+O 14/3
+O 3
+A b
+S 3/(1/2 + 1/4 + 1/8) = 3/(7/8) = 24/7.
+T The harmonic mean is n divided by the sum of the reciprocals - never the reciprocal of the mean of the values.
+T HM <= GM <= AM always, and here 24/7 = 3.43 is below the geometric mean 4.
+X The reciprocals are 1/2, 1/4 and 1/8, summing to 7/8.
+X HM = 3/(7/8).
+X This is 24/7, option (b).
+
+@ FS-027 | Measures of Location, Dispersion, Skewness and Kurtosis | Measures of Location
+Q For two positive numbers, which identity holds?
+O AM times HM equals GM squared
+O AM times GM equals HM squared
+O GM times HM equals AM squared
+O none of these
+A a
+S For two numbers a and b, AM x HM = [(a+b)/2][2ab/(a+b)] = ab, which is the square of the GM.
+T The identity holds only for TWO numbers; it fails for three or more.
+T It gives an instant check: knowing any two of the three averages determines the third.
+X AM = (a+b)/2 and HM = 2ab/(a+b).
+X Their product is ab, which is the square of the geometric mean.
+X Hence option (a).
+
+@ FS-028 | Measures of Location, Dispersion, Skewness and Kurtosis | Measures of Dispersion
+Q What is the variance of the first 10 natural numbers?
+O 8.25
+O 9.17
+O 5.5
+O 33
+A a
+S (N^2 - 1)/12 = 99/12 = 8.25.
+T For 1 to N the variance is (N^2-1)/12 - the discrete uniform formula.
+T 5.5 is the mean, planted as option (c).
+X Var = (N^2 - 1)/12 with N = 10.
+X This is 99/12.
+X The variance is 8.25, option (a).
+
+@ FS-029 | Measures of Location, Dispersion, Skewness and Kurtosis | Measures of Dispersion
+Q Every observation is multiplied by -2. The standard deviation becomes
+O -2 sigma
+O 2 sigma
+O 4 sigma
+O sigma
+A b
+S The standard deviation uses |a|, so it becomes 2 sigma, not -2 sigma.
+T A standard deviation can never be negative; the multiplier enters through its absolute value.
+T The VARIANCE would be multiplied by 4, which is option (c) - read which measure is asked for.
+X Var(aX) = a^2 Var(X) = 4 sigma^2.
+X The standard deviation is the positive square root, 2 sigma.
+X Hence option (b).
+
+@ FS-030 | Measures of Location, Dispersion, Skewness and Kurtosis | Measures of Dispersion
+Q Sheppard's correction to the second moment for a grouped distribution with class width h is
+O add h^2/12
+O subtract h^2/12
+O subtract h^2/24
+O add h/12
+A b
+S Grouping inflates the variance, so the correction subtracts h^2/12.
+T The correction subtracts, because assuming all values sit at the midpoint spreads them too widely.
+T The fourth-moment correction is mu_4 - (h^2/2)mu_2 + 7h^4/240, a standard follow-up.
+X Grouping replaces each value by its class midpoint, adding a spurious uniform spread of variance h^2/12.
+X Sheppard's correction removes it.
+X So subtract h^2/12, option (b).
+
+@ FS-031 | Measures of Location, Dispersion, Skewness and Kurtosis | Moments
+Q With the first three raw moments 2, 6 and 20, what is the third central moment?
+O 0
+O 4
+O -4
+O 8
+A a
+S 20 - 3(2)(6) + 2(8) = 20 - 36 + 16 = 0.
+T mu_3 = mu_3' - 3 mu_1' mu_2' + 2 (mu_1')^3 - memorise this conversion exactly.
+T A zero third central moment means the distribution is symmetric in the moment sense.
+X Apply mu_3 = mu_3' - 3 mu_1' mu_2' + 2(mu_1')^3.
+X This is 20 - 36 + 16.
+X The value is 0, option (a).
+
+@ FS-032 | Measures of Location, Dispersion, Skewness and Kurtosis | Skewness
+Q With mu_2 = 4 and mu_3 = 8, what is beta_1?
+O 2
+O 1
+O 0.5
+O 4
+A b
+S beta_1 = mu_3^2/mu_2^3 = 64/64 = 1.
+T beta_1 uses the SQUARE of mu_3 and the CUBE of mu_2, so it is always non-negative.
+T The signed measure is gamma_1 = mu_3/mu_2^(3/2) = 1 here as well, by coincidence.
+X beta_1 = mu_3^2/mu_2^3.
+X This is 8^2/4^3 = 64/64.
+X The value is 1, option (b).
+
+@ FS-033 | Measures of Location, Dispersion, Skewness and Kurtosis | Skewness
+Q Pearson's coefficient of skewness lies in the range
+O -1 to 1
+O -3 to 3
+O 0 to 1
+O it is unbounded
+A b
+S The mode form is bounded by 1 in absolute value, so the median form, being three times a quantity bounded by 1, lies in -3 to 3.
+T Bowley's and Kelly's coefficients lie in -1 to 1; Pearson's median form has the wider range -3 to 3.
+T In practice values beyond 1 are rare, but the theoretical bound is 3.
+X The mode form (mean - mode)/sigma lies between -1 and 1.
+X The median form is 3(mean - median)/sigma and is bounded by 3 in absolute value.
+X The range is -3 to 3, option (b).
+
+@ FS-034 | Measures of Location, Dispersion, Skewness and Kurtosis | Measures of Location
+Q With N = 100, a median class of 20 to 30, a cumulative frequency of 35 below it and a class frequency of 30, what is the median?
+O 25
+O 24
+O 26
+O 22
+A a
+S 20 + (50 - 35)(10)/30 = 20 + 5 = 25.
+T The median formula is L + ((N/2 - cf)/f) times the class width.
+T Use N/2 = 50, not (N+1)/2, for a grouped continuous distribution.
+X The median position is N/2 = 50.
+X Interpolating, median = 20 + (50 - 35)/30 times 10 = 20 + 5.
+X The median is 25, option (a).
+
+@ FS-035 | Measures of Location, Dispersion, Skewness and Kurtosis | Measures of Location
+Q With a modal class of 30 to 40, a preceding frequency of 10, a modal frequency of 20 and a following frequency of 14, what is the mode?
+O 35
+O 36.25
+O 34
+O 37.5
+A b
+S 30 + [(20-10)/((20-10) + (20-14))](10) = 30 + 100/16 = 36.25.
+T The mode formula is L + (d_1/(d_1 + d_2)) times the class width, with d_1 and d_2 the two gaps.
+T The mode leans towards the neighbour with the larger frequency, here the one below.
+X d_1 = 20 - 10 = 10 and d_2 = 20 - 14 = 6.
+X Mode = 30 + (10/16)(10) = 30 + 6.25.
+X The mode is 36.25, option (b).
+
+@ FS-036 | Measures of Location, Dispersion, Skewness and Kurtosis | Measures of Dispersion
+Q What is the standard deviation of just two numbers a and b?
+O |a - b|
+O |a - b|/2
+O |a - b|/sqrt(2)
+O (a + b)/2
+A b
+S Each deviates from the mean by |a-b|/2, so the standard deviation is |a-b|/2.
+T For two observations the standard deviation is exactly half the range - a useful shortcut.
+T The RANGE is |a - b|, planted as option (a).
+X The mean is (a+b)/2 and each deviation is plus or minus (a-b)/2.
+X The variance is the average of the two squared deviations, namely (a-b)^2/4.
+X The standard deviation is |a-b|/2, option (b).
+
+@ FS-037 | Measures of Location, Dispersion, Skewness and Kurtosis | Kurtosis
+Q For a Poisson distribution with mean 4, what is beta_2?
+O 3
+O 3.25
+O 4
+O 7
+A b
+S beta_2 = 3 + 1/lambda = 3 + 0.25.
+T The Poisson has excess kurtosis 1/lambda and skewness 1/sqrt(lambda); both vanish as lambda grows.
+T This is why the Poisson approaches normality for large lambda.
+X For the Poisson, mu_4 = lambda + 3 lambda^2, so beta_2 = (lambda + 3 lambda^2)/lambda^2.
+X This is 3 + 1/lambda = 3 + 1/4.
+X The value is 3.25, option (b).
+
+@ FS-038 | Measures of Location, Dispersion, Skewness and Kurtosis | Measures of Dispersion
+Q Consider: 1. the mean deviation never exceeds the standard deviation, 2. the sum of squared deviations about any constant A is at least the sum about the mean, 3. the range is unaffected by extreme values. Which are correct?
+O 1 and 2
+O 1 only
+O 2 and 3
+O all three
+A a
+S Statements 1 and 2 are standard results; the range is determined entirely by the two extremes.
+T The range is the most extreme-sensitive measure of all, which is exactly why it is rarely used.
+T MD <= SD follows from the Cauchy-Schwarz inequality applied to the absolute deviations.
+X Statement 1 follows from Cauchy-Schwarz and statement 2 from the least-squares identity.
+X The range is the largest value minus the smallest, so extreme values determine it completely.
+X Only 1 and 2 hold, option (a).

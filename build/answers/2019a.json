@@ -105,13 +105,13 @@
     "shortcut": "$a = r s_{Y}/s_{X}$ and $c = r s_{X}/s_{Y}$. Multiplying gives $ac = r^{2}$, so $r = \\sqrt{ac}$; dividing gives $c/a = (s_{X}/s_{Y})^{2}$, so $s_{X}/s_{Y} = \\sqrt{c/a}$.",
     "tips": [
       "Two moves only: MULTIPLY the regression coefficients to isolate r, DIVIDE them to isolate the ratio of standard deviations. Every question of this type uses that pair.",
-      "Keep the subscripts straight: $b_{YX} = a = r s_{Y}/s_{X}$ carries $s_{Y}$ on top, while $b_{XY} = c = r s_{X}/s_{Y}$ carries $s_{X}$ on top. Getting these the wrong way round turns (a) into (d).",
+      "Keep the subscripts straight: $b_{Y}X = a = r s_{Y}/s_{X}$ carries $s_{Y}$ on top, while $b_{X}Y = c = r s_{X}/s_{Y}$ carries $s_{X}$ on top. Getting these the wrong way round turns (a) into (d).",
       "The intercepts b and d carry no information about r or the standard deviations - they only locate the means. Option (c), which uses bd, is therefore impossible.",
       "Since $c/a = s_{X}^{2}/s_{Y}^{2}$, the ratio $s_{X}/s_{Y}$ is $\\sqrt{c/a}$ - note it is c over a, not a over c, which is the sole difference between options (a) and (d)."
     ],
     "solution": [
-      "The regression of Y on X is $Y = aX + b$, so its slope is the regression coefficient $b_{YX} = a = r (s_{Y}/s_{X})$.",
-      "The regression of X on Y is $X = cY + d$, so its slope is $b_{XY} = c = r (s_{X}/s_{Y})$.",
+      "The regression of Y on X is $Y = aX + b$, so its slope is the regression coefficient $b_{Y}X = a = r (s_{Y}/s_{X})$.",
+      "The regression of X on Y is $X = cY + d$, so its slope is $b_{X}Y = c = r (s_{X}/s_{Y})$.",
       "Multiplying: $ac = r^{2} (s_{Y}/s_{X})(s_{X}/s_{Y}) = r^{2}$, hence $r = \\sqrt{ac}$ (taking the sign common to a and c).",
       "Dividing: $c/a = [r s_{X}/s_{Y}] / [r s_{Y}/s_{X}] = (s_{X}/s_{Y})^{2}$.",
       "Therefore $s_{X}/s_{Y} = \\sqrt{c/a}$.",
@@ -225,7 +225,7 @@
     "tips": [
       "When priors come from a ratio, keep them as raw counts (9 and 10) - the common denominator cancels top and bottom and saves all the fraction work.",
       "Multiply counts by hit rates to get 'effective hits': $9 \\times 0.7 = 6.3$ from $A_{1}$ and $10 \\times 0.6 = 6.0$ from $A_{2}$. The posterior is just $6.3/(6.3 + 6.0)$.",
-      "Simplify $63/123$ by dividing by 3 to reach $21/41$ - option $(a) 20/41$ is the near-miss planted for arithmetic slips.",
+      "Simplify $63/123$ by dividing by 3 to reach $21/41$ - option (a) $20/41$ is the near-miss planted for arithmetic slips.",
       "Plausibility check: $A_{1}$ fires slightly fewer but hits slightly more often, so the posterior should be very close to $1/2$ and just above it. $21/41 = 0.512$ fits; $6/19 = 0.32$ does not."
     ],
     "solution": [
@@ -266,7 +266,7 @@
       "$\\operatorname{E}(\\lvert X\\rvert )$ is NOT |$\\operatorname{E}(X)$| - apply the absolute value to each value before weighting. Here $\\operatorname{E}(X) = 0.75$ while $\\operatorname{E}\\lvert X\\rvert = 2$.",
       "Convert to twelfths at the start: the probabilities are $2/12, 3/12, 6/12, 1/12$, which also verifies that they sum to 1.",
       "The arithmetic is unusually friendly: three of the four products equal 0.25 and the fourth is 1.25, so the total 2 falls out at a glance.",
-      "Option $(b) 1/4$ is the value of a single term and option $(c) 3/2$ comes from mishandling the largest-probability term - both punish $\\partial$ arithmetic."
+      "Option (b) $1/4$ is the value of a single term and option (c) $3/2$ comes from mishandling the largest-probability term - both punish $\\partial$ arithmetic."
     ],
     "solution": [
       "The random variable takes the values -1.5, -1, 2.5, 3 with probabilities $1/6, 1/4, 1/2, 1/12$. These sum to $2/12 + 3/12 + 6/12 + 1/12 = 1$, so the distribution is valid.",
@@ -312,7 +312,7 @@
       "X is Poisson with $\\operatorname{P}(X = k) = e^{-\\lambda} \\lambda^{k} / k!$ for $k = 0, 1, 2, \\ldots$",
       "The transformation $Y = X^{2} + 3$ is strictly increasing on the non-negative integers, so it is one-to-one there and can be inverted: $X = \\sqrt{Y - 3}$.",
       "The support of Y is obtained from $k = 0, 1, 2, 3, \\ldots$: $y = 0 + 3 = 3, 1 + 3 = 4, 4 + 3 = 7, 9 + 3 = 12$, and so on, i.e. y in {$3, 4, 7, 12, 19, \\ldots$}.",
-      "For each such $y, \\operatorname{P}(Y = y) = \\operatorname{P}(X = \\sqrt{y - 3}) = e^{-\\lambda} \\lambda^{\\sqrt{y-3}} / (\\sqrt{y-3})$!.",
+      "For each such $y, \\operatorname{P}(Y = y) = \\operatorname{P}(X = \\sqrt{y - 3}) = e^{-\\lambda} \\lambda^{\\sqrt{y-3}} / (\\sqrt{y-3})!$.",
       "Options (c) and (d) exclude $y = 3$ from the support and use $\\sqrt{3 - y}$, which is not real for $y > 3$; option (b) uses a negative exponent on $\\lambda$. All three are inadmissible.",
       "Option (a) has the correct support and the correct exponent $\\sqrt{y-3}$, so it is the intended key."
     ]
@@ -365,7 +365,7 @@
     "tips": [
       "Rule: correlation is unchanged by a shift, and under scaling it is multiplied by the sign of the multiplier. The magnitude $\\lvert r\\rvert$ never changes.",
       "Option (a) is right only when $a > 0$; the question allows any non-zero a, so the sign factor must appear explicitly.",
-      "Option $(b) r\\lvert a\\rvert$ is dimensionally impossible - a correlation is bounded by 1, but $r\\lvert a\\rvert $ could exceed 1 for large a.",
+      "Option (b) $r\\lvert a\\rvert $ is dimensionally impossible - a correlation is bounded by 1, but $r\\lvert a\\rvert $ could exceed 1 for large a.",
       "Option (c) uses $\\lvert r\\rvert$ and so loses the original sign of r; only option (d) preserves r's own sign while applying the sign of a."
     ],
     "solution": [

@@ -46,7 +46,7 @@ const report = await page.evaluate(async () => {
   document.body.appendChild(box);
 
   const fields = [];
-  for (const q of window.quizData) {
+  for (const q of window.quizData.concat(window.forecastData || [])) {
     const push = (label, txt) => { if (txt) fields.push([q.id, label, txt]); };
     push('sharedStem', q.sharedStem);
     push('question', q.question);

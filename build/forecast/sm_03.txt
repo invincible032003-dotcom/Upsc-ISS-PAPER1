@@ -1,0 +1,561 @@
+# FORECAST / AI-GENERATED - Statistical Methods, bivariate normal distribution
+
+@ FS-064 | Bivariate Normal Distribution | Moments of the Bivariate Normal
+Q For the standard bivariate normal with correlation rho, what is E(X^2 Y^2)?
+O 1
+O 1 + rho^2
+O 1 + 2 rho^2
+O 2 rho^2
+A c
+S Isserlis' theorem gives E(X^2Y^2) = E(X^2)E(Y^2) + 2[E(XY)]^2 = 1 + 2 rho^2.
+T For zero-mean normals, moments factor into sums over pairings - that is Isserlis' or Wick's theorem.
+T At rho = 0 the answer reduces to 1, and at rho = 1 to 3 = E(X^4), both correct checks.
+X By Isserlis' theorem, E(X^2Y^2) = E(X^2)E(Y^2) + 2[E(XY)]^2.
+X With unit variances and E(XY) = rho this is 1 + 2 rho^2.
+X Hence option (c).
+
+@ FS-065 | Bivariate Normal Distribution | Conditional Distributions
+Q In a bivariate normal with sigma_2 = 4 and rho = 0.6, what is Var(Y given X = x)?
+O 6.4
+O 10.24
+O 16
+O 9.6
+A b
+S 16(1 - 0.36) = 10.24.
+T The conditional variance is sigma_2^2(1 - rho^2) and does not depend on x at all.
+T Using sigma_2 instead of sigma_2^2 gives 2.56 - always square the standard deviation first.
+X Var(Y | X = x) = sigma_2^2 (1 - rho^2).
+X This is 16(0.64).
+X The value is 10.24, option (b).
+
+@ FS-066 | Bivariate Normal Distribution | Exponent Matching
+Q A bivariate density is f(x,y) = lambda exp[-(x^2 - xy + y^2)]. What is Var(X)?
+O 1
+O 2/3
+O 1/2
+O 3/2
+A b
+S Matching the quadratic form gives sigma^2 = 2/3 with rho = 1/2.
+T Compare the exponent with the standard form and solve the coefficient equations for sigma and rho together.
+T The coefficients of x^2 and y^2 are equal, so the two variances must be equal.
+X The standard exponent is -[x^2/sigma_1^2 - 2 rho xy/(sigma_1 sigma_2) + y^2/sigma_2^2]/(2(1-rho^2)).
+X Equal x^2 and y^2 coefficients force sigma_1 = sigma_2 = sigma, and matching gives 1/(2 sigma^2(1-rho^2)) = 1 and rho/(sigma^2(1-rho^2)) = 1.
+X Dividing, 2 rho = 1 so rho = 1/2, and then sigma^2 = 2/3, option (b).
+
+@ FS-067 | Bivariate Normal Distribution | Exponent Matching
+Q For f(x,y) = lambda exp[-(x^2 - xy + y^2)], what is rho?
+O 1/2
+O -1/2
+O 1/4
+O 0
+A a
+S The ratio of the xy coefficient to the x^2 coefficient gives 2 rho = 1.
+T The sign of the correlation is opposite to the sign of the xy term inside the bracket; here -xy gives positive rho.
+T Only the RATIO of the coefficients is needed for rho - the overall scale cancels.
+X Matching, the x^2 coefficient is 1/(2 sigma^2(1-rho^2)) and the xy coefficient is rho/(sigma^2(1-rho^2)).
+X Their ratio is 2 rho, and in the given exponent it is 1/1 = 1.
+X Hence rho = 1/2, option (a).
+
+@ FS-068 | Bivariate Normal Distribution | Exponent Matching
+Q For f(x,y) = lambda exp[-(x^2 - xy + y^2)], what is lambda?
+O 1/(2 pi)
+O sqrt(3)/(2 pi)
+O 1/(pi sqrt(3))
+O 3/(2 pi)
+A b
+S lambda = 1/(2 pi sigma_1 sigma_2 sqrt(1 - rho^2)) = 1/(2 pi (2/3) sqrt(3)/2) = sqrt(3)/(2 pi).
+T Find sigma and rho first; the normalising constant then follows from the standard formula.
+T sqrt(1 - 1/4) = sqrt(3)/2, which is where the sqrt(3) comes from.
+X With sigma_1^2 = sigma_2^2 = 2/3 and rho = 1/2, sigma_1 sigma_2 = 2/3 and sqrt(1-rho^2) = sqrt(3)/2.
+X lambda = 1/(2 pi (2/3)(sqrt(3)/2)) = 3/(2 pi sqrt(3)).
+X This equals sqrt(3)/(2 pi), option (b).
+
+@ FS-069 | Bivariate Normal Distribution | Regression Lines
+Q For f(x,y) = lambda exp[-(x^2 - xy + y^2)], the regression of Y on X is
+O y = x
+O y = x/2
+O y = 2x
+O y = -x/2
+A b
+S The slope is rho sigma_2/sigma_1 = 1/2 since the two variances are equal.
+T With equal variances the regression slope equals the correlation itself.
+T Both means are 0, so the line passes through the origin.
+X The regression of Y on X has slope rho sigma_2/sigma_1.
+X Here rho = 1/2 and sigma_1 = sigma_2.
+X So y = x/2, option (b).
+
+@ FS-070 | Bivariate Normal Distribution | Exponent Matching
+Q For f(x,y) = lambda exp[-(2/3)(x^2 - xy + y^2)], what is lambda?
+O 1/(pi sqrt(3))
+O sqrt(3)/(2 pi)
+O 1/(2 pi)
+O 1/pi
+A a
+S Here rho = 1/2 again and sigma^2 = 1, so lambda = 1/(2 pi sqrt(3)/2) = 1/(pi sqrt(3)).
+T The rho is unchanged by an overall factor; only sigma changes with it.
+T Scaling the exponent by 2/3 multiplies the variances by 3/2, taking 2/3 to 1.
+X The ratio of coefficients again gives rho = 1/2.
+X Matching 1/(2 sigma^2(3/4)) = 2/3 gives sigma^2 = 1.
+X lambda = 1/(2 pi (1) sqrt(3)/2) = 1/(pi sqrt(3)), option (a).
+
+@ FS-071 | Bivariate Normal Distribution | Exponent Matching
+Q For f(x,y) = lambda exp[-(4x^2 + y^2)/2], what is lambda?
+O 1/(2 pi)
+O 1/pi
+O 2/pi
+O 1/(4 pi)
+A b
+S No cross term means rho = 0 with sigma_1^2 = 1/4 and sigma_2^2 = 1, so lambda = 1/(2 pi (1/2)(1)) = 1/pi.
+T Absence of an xy term means independence for a bivariate normal, and the constant is then the product of the two.
+T sigma_1 = 1/2, not 1/4 - take the square root before multiplying.
+X Matching 4x^2/2 with x^2/(2 sigma_1^2) gives sigma_1^2 = 1/4, and sigma_2^2 = 1.
+X lambda = 1/(2 pi sigma_1 sigma_2) = 1/(2 pi (1/2)).
+X This is 1/pi, option (b).
+
+@ FS-072 | Bivariate Normal Distribution | Marginal Distributions
+Q In a bivariate normal with parameters mu_1, mu_2, sigma_1^2, sigma_2^2 and rho, the marginal of X is
+O N(mu_1, sigma_1^2(1 - rho^2))
+O N(mu_1, sigma_1^2)
+O N(mu_1 + rho sigma_1, sigma_1^2)
+O not normal
+A b
+S Marginals of a bivariate normal keep the full variance; only CONDITIONAL variances are shrunk by 1 - rho^2.
+T Marginal means marginal: the correlation never enters the marginal law.
+T Option (a) is the conditional variance, the single most common confusion in this topic.
+X Integrating the bivariate normal density over y returns the N(mu_1, sigma_1^2) density.
+X The factor 1 - rho^2 appears only in the conditional distribution.
+X Hence option (b).
+
+@ FS-073 | Bivariate Normal Distribution | Independence and Linear Combinations
+Q For a bivariate normal, X + Y and X - Y are independent if and only if
+O rho = 0
+O sigma_1 = sigma_2
+O mu_1 = mu_2
+O always
+A b
+S Cov(X+Y, X-Y) = sigma_1^2 - sigma_2^2, which vanishes exactly when the variances are equal.
+T The pair is jointly normal, so zero covariance is equivalent to independence here.
+T The correlation rho cancels entirely and plays no part in the condition.
+X Cov(X+Y, X-Y) = Var(X) - Var(Y) = sigma_1^2 - sigma_2^2.
+X For a jointly normal pair, zero covariance means independence.
+X So the condition is sigma_1 = sigma_2, option (b).
+
+@ FS-074 | Bivariate Normal Distribution | Marginal Distributions
+Q If X and Y each have normal marginals, then (X, Y) is bivariate normal
+O always
+O never
+O not necessarily
+O only if rho = 0
+A c
+S Normal marginals are far weaker than joint normality; standard counterexamples exist.
+T Joint normality requires every linear combination to be normal, not merely the two coordinates.
+T The classic counterexample reflects the tail of one normal, keeping both marginals normal.
+X Take X standard normal and Y = X when |X| <= c, with Y = -X otherwise.
+X Both marginals are standard normal, but the joint law is not bivariate normal.
+X Hence option (c).
+
+@ FS-075 | Bivariate Normal Distribution | Independence and Linear Combinations
+Q A pair (X, Y) is bivariate normal if and only if
+O X and Y are each normal
+O aX + bY is normal for every a and b
+O X + Y is normal
+O XY is normal
+A b
+S Joint normality is equivalent to normality of every linear combination - the Cramer-Wold device.
+T A single combination is not enough; the condition must hold for ALL coefficient pairs.
+T This characterisation is what makes linear transformations of normals so easy to handle.
+X By the Cramer-Wold theorem, the joint law is determined by the laws of all linear combinations.
+X If every aX + bY is normal, the joint characteristic function is that of a bivariate normal.
+X Hence option (b).
+
+@ FS-076 | Bivariate Normal Distribution | Independence and Linear Combinations
+Q Zero correlation implies independence
+O for any bivariate distribution
+O only for the bivariate normal
+O never
+O only when sigma_1 = sigma_2
+A b
+S The implication is a special property of joint normality, not a general fact.
+T Independence always gives zero correlation; the converse needs joint normality.
+T X uniform on (-1,1) with Y = X^2 is the standard counterexample outside the normal family.
+X If (X,Y) is bivariate normal with rho = 0, the density factorises into the two marginals.
+X For other joint laws zero correlation carries no such implication.
+X Hence option (b).
+
+@ FS-077 | Bivariate Normal Distribution | Moments of the Bivariate Normal
+Q For the standard bivariate normal with correlation rho, what is E(e^(X+Y))?
+O e
+O e^(1 + rho)
+O e^(2 + 2 rho)
+O e^rho
+A b
+S X + Y is N(0, 2 + 2 rho), so the MGF at 1 is exp((2+2rho)/2) = e^(1+rho).
+T For a normal variable, E(e^Z) = exp(mean + variance/2); compute the variance of the sum first.
+T Var(X+Y) = 2 + 2 rho, not 2 - the covariance term is doubled.
+X X + Y is normal with mean 0 and variance 1 + 1 + 2 rho.
+X E(e^(X+Y)) = exp(0 + (2 + 2 rho)/2).
+X This is e^(1+rho), option (b).
+
+@ FS-078 | Bivariate Normal Distribution | Independence and Linear Combinations
+Q With sigma_1 = 3, sigma_2 = 4 and rho = 0.5, what is Var(X + Y)?
+O 25
+O 37
+O 13
+O 31
+A b
+S 9 + 16 + 2(0.5)(3)(4) = 25 + 12 = 37.
+T Var(X+Y) = sigma_1^2 + sigma_2^2 + 2 rho sigma_1 sigma_2 - the covariance term uses the product of the SDs.
+T 25 is the independent answer, planted as option (a).
+X Cov(X,Y) = rho sigma_1 sigma_2 = 0.5(12) = 6.
+X Var(X+Y) = 9 + 16 + 2(6).
+X This is 37, option (b).
+
+@ FS-079 | Bivariate Normal Distribution | Independence and Linear Combinations
+Q For the standard bivariate normal with correlation rho, what is Var(2X - 3Y)?
+O 13
+O 13 - 12 rho
+O 13 + 12 rho
+O 5
+A b
+S 4 + 9 - 2(2)(3)rho = 13 - 12 rho.
+T The covariance term carries the product of the coefficients, including their signs.
+T A negative coefficient flips the sign of the covariance contribution, which is the whole point here.
+X Var(2X - 3Y) = 4 Var(X) + 9 Var(Y) - 12 Cov(X,Y).
+X With unit variances and Cov = rho this is 13 - 12 rho.
+X Hence option (b).
+
+@ FS-080 | Bivariate Normal Distribution | Regression Lines
+Q For the standard bivariate normal, what is Cov(Y - rho X, X)?
+O rho
+O 1 - rho^2
+O 0
+O rho^2
+A c
+S Cov(Y,X) - rho Var(X) = rho - rho = 0.
+T The residual from the regression is always uncorrelated with the predictor - that is what least squares delivers.
+T Here rho is the regression slope precisely because both variances are 1.
+X Cov(Y - rho X, X) = Cov(Y,X) - rho Var(X).
+X This is rho - rho(1) = 0.
+X Hence option (c).
+
+@ FS-081 | Bivariate Normal Distribution | Regression Lines
+Q For a general bivariate normal, what is Cov(Y - b_yx X, X), where b_yx is the regression coefficient of Y on X?
+O 0
+O rho sigma_1 sigma_2
+O sigma_2^2(1 - rho^2)
+O rho sigma_1^2
+A a
+S By construction the regression residual is uncorrelated with the predictor.
+T b_yx = rho sigma_2/sigma_1 is defined exactly so that this covariance vanishes.
+T The residual VARIANCE is sigma_2^2(1-rho^2), which is option (c) - a different quantity.
+X Cov(Y - b_yx X, X) = rho sigma_1 sigma_2 - b_yx sigma_1^2.
+X With b_yx = rho sigma_2/sigma_1 this is rho sigma_1 sigma_2 - rho sigma_1 sigma_2.
+X The covariance is 0, option (a).
+
+@ FS-082 | Bivariate Normal Distribution | Conditional Distributions
+Q With mu_1 = 10, mu_2 = 20, sigma_1 = 2, sigma_2 = 5 and rho = 0.8, what is E(Y given X = 12)?
+O 22
+O 24
+O 23
+O 25
+A b
+S 20 + 0.8(5/2)(2) = 20 + 4 = 24.
+T The conditional mean is mu_2 + rho(sigma_2/sigma_1)(x - mu_1); the ratio of SDs is essential.
+T Using rho alone as the slope gives 21.6, and using sigma_2/sigma_1 alone gives 25.
+X The regression coefficient is rho sigma_2/sigma_1 = 0.8(2.5) = 2.
+X E(Y | X = 12) = 20 + 2(12 - 10).
+X This is 24, option (b).
+
+@ FS-083 | Bivariate Normal Distribution | Conditional Distributions
+Q With sigma_2 = 5 and rho = 0.8, what is Var(Y given X)?
+O 9
+O 16
+O 25
+O 4
+A a
+S 25(1 - 0.64) = 9.
+T The conditional variance is constant in x - the bivariate normal is homoscedastic by construction.
+T Note that the answer is a perfect square here, so the conditional SD is exactly 3.
+X Var(Y | X) = sigma_2^2(1 - rho^2).
+X This is 25(0.36).
+X The value is 9, option (a).
+
+@ FS-084 | Bivariate Normal Distribution | Conditional Distributions
+Q With mu_1 = 10, mu_2 = 20, sigma_1 = 2, sigma_2 = 5, rho = 0.8, what is P(Y > 20 given X = 12) approximately?
+O 0.09
+O 0.50
+O 0.91
+O 0.68
+A c
+S The conditional law is N(24, 9), so z = (20-24)/3 = -1.33 and the upper tail is about 0.91.
+T Get the conditional mean and variance first, then treat it as an ordinary normal probability.
+T Ignoring the conditioning would give 0.5, planted as option (b).
+X Given X = 12, Y is N(24, 9).
+X z = (20 - 24)/3 = -1.333.
+X P(Y > 20) = P(Z > -1.333) = 0.909, option (c).
+
+@ FS-085 | Bivariate Normal Distribution | Quadratic Forms
+Q For the standard bivariate normal with correlation rho, the quantity (X^2 + Y^2 - 2 rho XY)/(1 - rho^2) follows
+O chi-square with 1 degree of freedom
+O chi-square with 2 degrees of freedom
+O N(0,1)
+O F(1,1)
+A b
+S This is the Mahalanobis quadratic form of a bivariate normal, which is chi-square with 2 degrees of freedom.
+T A p-variate normal quadratic form with its own inverse covariance matrix is chi-square with p degrees of freedom.
+T Setting rho = 0 reduces it to X^2 + Y^2, which is visibly chi-square with 2 degrees of freedom.
+X The exponent of the bivariate normal density is minus half this quantity.
+X A quadratic form in a normal vector with the inverse covariance matrix is chi-square with 2 degrees of freedom.
+X Hence option (b).
+
+@ FS-086 | Bivariate Normal Distribution | Quadratic Forms
+Q For the standard bivariate normal, what is the MGF of X^2 + Y^2 - 2 rho XY?
+O (1 - 2t)^(-1)
+O [1 - 2(1 - rho^2)t]^(-1)
+O (1 - 2t)^(-2)
+O e^(t(1 - rho^2))
+A b
+S The quantity is (1 - rho^2) times a chi-square with 2 degrees of freedom, whose MGF is (1-2t)^(-1).
+T Scaling a chi-square by c replaces t by ct in the MGF.
+T At rho = 0 the answer reduces to (1-2t)^(-1), the chi-square with 2 degrees of freedom.
+X From the previous result, X^2 + Y^2 - 2 rho XY = (1 - rho^2) times a chi-square with 2 degrees of freedom.
+X The chi-square MGF with 2 degrees of freedom is (1-2t)^(-1).
+X Substituting the scale gives [1 - 2(1-rho^2)t]^(-1), option (b).
+
+@ FS-087 | Bivariate Normal Distribution | Quadratic Forms
+Q For an independent standard bivariate normal pair, X^2 + Y^2 follows
+O an exponential with mean 1
+O an exponential with mean 2
+O chi-square with 1 degree of freedom
+O N(2, 4)
+A b
+S Chi-square with 2 degrees of freedom is exactly the exponential with mean 2.
+T The chi-square with 2 degrees of freedom is the only chi-square that is also exponential.
+T This underlies the Box-Muller transformation for generating normal variables.
+X X^2 and Y^2 are each chi-square with 1 degree of freedom and independent.
+X Their sum is chi-square with 2 degrees of freedom, i.e. Gamma(1, rate 1/2).
+X That is the exponential with mean 2, option (b).
+
+@ FS-088 | Bivariate Normal Distribution | Regression Lines
+Q The two regression lines are perpendicular when
+O r = plus or minus 1
+O r = 0
+O sigma_1 = sigma_2
+O never
+A b
+S At r = 0 the lines become y = y_bar and x = x_bar, which are at right angles.
+T As |r| grows the two lines close together; at |r| = 1 they coincide, and at r = 0 they are perpendicular.
+T The angle between the lines is therefore a direct visual measure of the strength of the correlation.
+X The regression of Y on X is horizontal and that of X on Y is vertical when r = 0.
+X Those two lines are perpendicular.
+X Hence option (b).
+
+@ FS-089 | Bivariate Normal Distribution | Regression Lines
+Q The two regression lines coincide when
+O r = 0
+O r = plus or minus 1
+O mu_1 = mu_2
+O sigma_1 = sigma_2
+A b
+S Perfect correlation makes both lines the same exact linear relation.
+T b_yx b_xy = r^2, so the product of the slopes is 1 exactly when |r| = 1 and the lines are inverses.
+T Coincidence means the scatter is a straight line with no residual variation at all.
+X If |r| = 1 then Y is an exact linear function of X.
+X Both regressions then reproduce that same line.
+X Hence option (b).
+
+@ FS-090 | Bivariate Normal Distribution | Conditional Distributions
+Q In a bivariate normal, Var(Y given X = x) as a function of x is
+O increasing in x
+O decreasing in x
+O constant in x
+O dependent on mu_1
+A c
+S The conditional variance sigma_2^2(1 - rho^2) does not involve x at all.
+T Homoscedasticity is a defining feature of the bivariate normal and is regularly tested as a statement.
+T Heteroscedasticity would show as a fan-shaped scatter, which a bivariate normal never produces.
+X The conditional density of Y given X = x is normal with variance sigma_2^2(1 - rho^2).
+X That expression is free of x.
+X Hence the variance is constant, option (c).
+
+@ FS-091 | Bivariate Normal Distribution | Independence and Linear Combinations
+Q X and Y are independent N(0,1). What is Corr(X, X + Y)?
+O 1/2
+O 1/sqrt(2)
+O 1
+O 0
+A b
+S Cov = 1 and Var(X+Y) = 2, so the correlation is 1/sqrt(2).
+T A variable is correlated with a sum containing it at level sd(X)/sd(sum).
+T Answering 1/2 forgets the square root in the denominator.
+X Cov(X, X+Y) = Var(X) = 1.
+X Var(X + Y) = 2, so the denominator is sqrt(1 x 2).
+X Corr = 1/sqrt(2), option (b).
+
+@ FS-092 | Bivariate Normal Distribution | Independence and Linear Combinations
+Q With rho = 0 but sigma_1 not equal to sigma_2, what is Corr(X + Y, X - Y)?
+O 0
+O (sigma_1^2 - sigma_2^2)/(sigma_1^2 + sigma_2^2)
+O 1
+O sigma_1 sigma_2/(sigma_1^2 + sigma_2^2)
+A b
+S Cov = sigma_1^2 - sigma_2^2 and both variances are sigma_1^2 + sigma_2^2.
+T Unequal variances leave a residual correlation between the sum and the difference even under independence.
+T The expression is 0 only when the variances match, which is the previous question's condition.
+X Cov(X+Y, X-Y) = sigma_1^2 - sigma_2^2.
+X Var(X+Y) = Var(X-Y) = sigma_1^2 + sigma_2^2.
+X The correlation is (sigma_1^2 - sigma_2^2)/(sigma_1^2 + sigma_2^2), option (b).
+
+@ FS-093 | Bivariate Normal Distribution | Moments of the Bivariate Normal
+Q For a general bivariate normal, E(XY) equals
+O mu_1 mu_2
+O rho sigma_1 sigma_2
+O mu_1 mu_2 + rho sigma_1 sigma_2
+O rho
+A c
+S E(XY) = Cov(X,Y) + E(X)E(Y).
+T The covariance is rho sigma_1 sigma_2; the raw product moment adds the product of the means.
+T Option (b) is the covariance, correct only when both means are zero.
+X Cov(X,Y) = E(XY) - E(X)E(Y) = rho sigma_1 sigma_2.
+X Rearranging, E(XY) = mu_1 mu_2 + rho sigma_1 sigma_2.
+X Hence option (c).
+
+@ FS-094 | Bivariate Normal Distribution | Orthant Probabilities
+Q For the standard bivariate normal with rho = 1/2, what is P(X > 0 and Y > 0)?
+O 1/4
+O 1/3
+O 1/2
+O 1/6
+A b
+S The orthant formula 1/4 + arcsin(rho)/(2 pi) gives 1/4 + (pi/6)/(2 pi) = 1/3.
+T Memorise P(both positive) = 1/4 + arcsin(rho)/(2 pi) - it converts a two-dimensional integral into an angle.
+T arcsin(1/2) = pi/6, so the correction is exactly 1/12.
+X The orthant probability is 1/4 + arcsin(rho)/(2 pi).
+X With rho = 1/2, arcsin(rho) = pi/6, so the correction is 1/12.
+X The answer is 1/4 + 1/12 = 1/3, option (b).
+
+@ FS-095 | Bivariate Normal Distribution | Orthant Probabilities
+Q For the standard bivariate normal with rho = 0, what is P(X > 0 and Y > 0)?
+O 1/4
+O 1/2
+O 1/3
+O 0
+A a
+S Independence gives (1/2)(1/2) = 1/4, which is also the orthant formula with arcsin(0) = 0.
+T At rho = 0 the general orthant formula must reduce to 1/4, which is a good way to remember it.
+T For rho = 1 the formula gives 1/2, as it must, since the two events coincide.
+X With rho = 0 the two variables are independent.
+X P(X > 0 and Y > 0) = (1/2)(1/2).
+X This is 1/4, option (a).
+
+@ FS-096 | Bivariate Normal Distribution | Regression Lines
+Q The lines 4x - 5y + 33 = 0 and 20x - 9y = 107 are the two regression lines. What is the point of means?
+O (13, 17)
+O (17, 13)
+O (11, 15)
+O (12, 16)
+A a
+S Solving the two equations simultaneously gives x = 13 and y = 17.
+T The regression lines always intersect at the point of means, so simply solve them together.
+T Watch the order of the coordinates: option (b) is the same pair reversed.
+X From 4x - 5y = -33 and 20x - 9y = 107, multiply the first by 5 and subtract.
+X This gives 16y = 272, so y = 17, and then 4x = 52 so x = 13.
+X The point of means is (13, 17), option (a).
+
+@ FS-097 | Bivariate Normal Distribution | Regression Lines
+Q For the regression lines 4x - 5y + 33 = 0 and 20x - 9y = 107, what is r?
+O 0.6
+O 0.36
+O 0.8
+O -0.6
+A a
+S Taking the first as Y on X gives b_yx = 4/5 and the second as X on Y gives b_xy = 9/20; the product 0.36 gives r = 0.6.
+T Assign the roles so that the product of the coefficients does not exceed 1 - that identifies which line is which.
+T r takes the sign of the regression coefficients, which are both positive here.
+X As Y on X, b_yx = 4/5; as X on Y, b_xy = 9/20.
+X The product is 36/100 = 0.36, which is admissible.
+X r = +sqrt(0.36) = 0.6, option (a).
+
+@ FS-098 | Bivariate Normal Distribution | Regression Lines
+Q For the regression lines 4x - 5y + 33 = 0 and 20x - 9y = 107 with the variance of X equal to 9, what is the standard deviation of Y?
+O 3
+O 4
+O 5
+O 2.4
+A b
+S b_yx = r sigma_y/sigma_x gives 0.8 = 0.6 sigma_y/3, so sigma_y = 4.
+T Once r and one standard deviation are known, the regression coefficient determines the other.
+T sigma_x = 3, not 9 - take the square root of the variance first.
+X sigma_x = 3 and r = 0.6.
+X b_yx = 4/5 = 0.6 sigma_y/3.
+X Hence sigma_y = 4, option (b).
+
+@ FS-099 | Bivariate Normal Distribution | Conditional Distributions
+Q For the standard bivariate normal, what is E(X^2 given Y = y)?
+O rho^2 y^2
+O 1 - rho^2 + rho^2 y^2
+O 1
+O rho y
+A b
+S E(X^2 | Y) = Var(X|Y) + [E(X|Y)]^2 = (1 - rho^2) + (rho y)^2.
+T A conditional second moment is the conditional variance plus the square of the conditional mean.
+T Forgetting the variance term gives option (a), which fails even at y = 0.
+X E(X | Y = y) = rho y and Var(X | Y = y) = 1 - rho^2.
+X E(X^2 | Y = y) = (1 - rho^2) + rho^2 y^2.
+X Hence option (b).
+
+@ FS-100 | Bivariate Normal Distribution | Moments of the Bivariate Normal
+Q For the standard bivariate normal, what is Corr(X^2, Y^2)?
+O rho
+O rho^2
+O 2 rho^2
+O 1 + 2 rho^2
+A b
+S Cov(X^2,Y^2) = 2 rho^2 and Var(X^2) = 2, so the correlation is rho^2.
+T Squaring both variables squares the correlation - a clean and memorable result.
+T At rho = 0 the squares are independent and the correlation is 0, as the formula gives.
+X E(X^2Y^2) = 1 + 2 rho^2, so Cov(X^2, Y^2) = 2 rho^2.
+X Var(X^2) = E(X^4) - 1 = 2, and the same for Y^2.
+X Corr = 2 rho^2/2 = rho^2, option (b).
+
+@ FS-101 | Bivariate Normal Distribution | Regression Lines
+Q In a bivariate normal, X and the residual Y - E(Y given X) are
+O uncorrelated but dependent
+O independent
+O perfectly correlated
+O identically distributed
+A b
+S The residual is a linear combination of jointly normal variables and is uncorrelated with X, hence independent of it.
+T Inside a joint normal family, uncorrelated upgrades to independent - that is the whole reason the decomposition is so useful.
+T This is exactly why the conditional variance does not depend on x.
+X The residual Y - mu_2 - b_yx(X - mu_1) is a linear function of X and Y, hence jointly normal with X.
+X Its covariance with X is 0.
+X For jointly normal variables that means independence, option (b).
+
+@ FS-102 | Bivariate Normal Distribution | Independence and Linear Combinations
+Q X is N(0,1) and Z is N(0,3), independent, and Y = X + Z. What is Corr(X, Y)?
+O 1/4
+O 1/2
+O 1/sqrt(3)
+O 1/3
+A b
+S Cov = 1 and Var(Y) = 4, so the correlation is 1/2.
+T Adding independent noise reduces the correlation to sd(signal)/sd(total).
+T The variances add, so Var(Y) = 4 and sd(Y) = 2 - not sqrt(3).
+X Cov(X, Y) = Var(X) = 1.
+X Var(Y) = 1 + 3 = 4.
+X Corr = 1/sqrt(1 x 4) = 1/2, option (b).
+
+@ FS-103 | Bivariate Normal Distribution | Marginal Distributions
+Q If rho equals plus or minus 1 in a bivariate normal, then
+O the joint density still exists
+O the distribution is degenerate and has no joint density
+O X and Y are independent
+O rho is undefined
+A b
+S The covariance matrix becomes singular, so the mass concentrates on a line and no two-dimensional density exists.
+T The normalising constant carries 1/sqrt(1 - rho^2), which blows up as |rho| tends to 1.
+T The distribution still exists - it is simply singular, supported on a straight line.
+X At |rho| = 1 the determinant of the covariance matrix is 0.
+X The distribution then puts all its mass on a line in the plane.
+X There is no joint density, option (b).

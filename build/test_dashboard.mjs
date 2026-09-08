@@ -105,6 +105,26 @@ ok('starts at Q1', /Q 1 \/ 80/.test(examInfo.pos), examInfo.pos);
 ok('timer present', examInfo.hasTimer);
 ok('labelled as an authentic paper', examInfo.chips.join(' ').includes('Authentic'));
 
+/* Next/Previous live in the sticky top header, not below a long reveal panel */
+const navInHead = await page.evaluate(() => ({
+  prev: !!document.querySelector('.exam-head [data-act="prevQ"]'),
+  next: !!document.querySelector('.exam-head [data-act="nextQ"]'),
+  prevDisabled: document.querySelector('.exam-head [data-act="prevQ"]').disabled,
+  onlyOneNextButton: document.querySelectorAll('[data-act="nextQ"]').length === 1
+}));
+ok('Previous button lives in the sticky top header', navInHead.prev);
+ok('Next button lives in the sticky top header', navInHead.next);
+ok('Previous is disabled on question 1', navInHead.prevDisabled);
+ok('there is exactly one Next button (moved, not duplicated)', navInHead.onlyOneNextButton);
+await page.click('.exam-head [data-act="nextQ"]');
+const posAfterHeaderNext = await page.textContent('.qpos');
+ok('clicking the header Next button advances the question',
+  /Q 2 \//.test(posAfterHeaderNext), posAfterHeaderNext);
+await page.click('.exam-head [data-act="prevQ"]');
+const posAfterHeaderPrev = await page.textContent('.qpos');
+ok('clicking the header Previous button goes back',
+  /Q 1 \//.test(posAfterHeaderPrev), posAfterHeaderPrev);
+
 /* original paper order preserved */
 /* verify order by walking the first five questions */
 const seen = [];
@@ -293,19 +313,19 @@ ok('every question carries the selected topic', badT === 0, badT + ' offenders')
 ok('the topic mock spans multiple papers', yrsSeen.size >= 5,
   'years: ' + [...yrsSeen].sort().join(','));
 
-/* --- Test D: 2018–2026 → Probability, no duplicates ----------------------- */
-head('Test D — cross-year Probability, duplicate check');
+/* --- Test D: cross-year Probability sectional defaults to 25, no dupes ---- */
+head('Test D — cross-year Probability sectional (default 25), duplicate check');
 await page.click('[data-act="go"][data-r="home"]');
 await page.click('[data-act="setup"][data-k="section"]');
 await page.waitForSelector('input[data-act="tgUnit"][value="Probability"]');
+const defaultCount = await page.inputValue('input[data-act="setCount"]');
+ok('a Sectional Mock defaults its question count to 25', defaultCount === '25', defaultCount);
 await page.check('input[data-act="tgUnit"][value="Probability"]');
 await page.check('input[data-act="setMode"][value="learn"]');
 await page.click('[data-act="startMock"]');
 await page.waitForSelector('.exam-head');
 const nProb = await page.evaluate(() => document.querySelectorAll('.pal').length);
-const expectProb = await page.evaluate(() =>
-  window.quizData.filter(q => q.unit === 'Probability').length);
-ok('all Probability PYQs present', nProb === expectProb, nProb + ' vs ' + expectProb);
+ok('a cross-year sectional mock is capped at 25 questions', nProb === 25, String(nProb));
 
 /* uniqueness: collect ids across the session by visiting each question */
 const ids = [];
@@ -318,6 +338,32 @@ ok('no duplicate questions in the generated mock',
   new Set(ids).size === ids.length, ids.length - new Set(ids).size + ' duplicates');
 ok('every id is a real dataset id',
   await page.evaluate(list => list.every(i => window.quizData.some(q => q.id === i)), ids));
+
+/* --- Test D2: single year + unit sectional is NOT padded to 25 ------------ */
+head('Test D2 — single-year Probability sectional keeps its true, smaller count');
+await page.click('[data-act="go"][data-r="home"]');
+await page.click('[data-act="setup"][data-k="section"]');
+await page.waitForSelector('input[data-act="tgYear"][value="2018"]');
+await page.check('input[data-act="tgYear"][value="2018"]');
+await page.check('input[data-act="tgUnit"][value="Probability"]');
+const expect2018 = await page.evaluate(() =>
+  window.quizData.filter(q => q.year === 2018 && q.unit === 'Probability').length);
+ok('2018 Probability has fewer than 25 real questions to begin with',
+  expect2018 > 0 && expect2018 < 25, String(expect2018));
+await page.check('input[data-act="setMode"][value="learn"]');
+await page.click('[data-act="startMock"]');
+await page.waitForSelector('.exam-head');
+const n2018 = await page.evaluate(() => document.querySelectorAll('.pal').length);
+ok('a single-year+unit sectional mock is the real count, not padded to 25',
+  n2018 === expect2018, n2018 + ' vs ' + expect2018);
+const allFrom2018 = await page.evaluate(() => {
+  const s = window.ISSApp.session();
+  return s.ids.every(id => {
+    const q = window.quizData.find(x => x.id === id);
+    return q && q.year === 2018;
+  });
+});
+ok('every question in that mock is actually from 2018', allFrom2018);
 
 /* --- Test E: topic mock ---------------------------------------------------- */
 head("Test E — topic mock (Probability → Bayes' Theorem subtopic)");

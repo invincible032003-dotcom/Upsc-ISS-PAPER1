@@ -241,6 +241,8 @@ table.dt td.num, table.dt th.num { text-align: right; font-variant-numeric: tabu
   font-variant-numeric: tabular-nums;
 }
 .timer.low { background: var(--bad-bg); color: var(--bad); border-color: var(--bad-line); }
+.navpair { display: flex; gap: 6px; }
+.navpair .btn { min-height: 34px; padding: 5px 12px; }
 
 .progbar { height: 5px; background: var(--surface-3); border-radius: 3px; overflow: hidden; width: 100%; }
 .progbar > i { display: block; height: 100%; background: var(--brand); }
@@ -5452,7 +5454,13 @@ function newBuilder(kind) {
   return {
     kind: kind,
     years: [], units: [], topics: [], subtopics: [],
-    count: 0, mode: st.defaultMode, timed: st.timerOn,
+    /* Sectional Mocks default to a practice-length 25 questions; the count
+       field still caps at whatever the year+unit filters actually match,
+       so a single-year selection shows only that paper's real count rather
+       than being padded up to 25. Every other mock kind still defaults to
+       "all matching questions" (0). */
+    count: kind === 'section' ? 25 : 0,
+    mode: st.defaultMode, timed: st.timerOn,
     minutes: 0, shuffleQ: false, shuffleO: false
   };
 }
@@ -5667,6 +5675,12 @@ V.exam = function () {
     '<span class="chip ok">' + answered + ' answered</span>' +
     '<span class="chip mark">' + markedN + ' marked</span>' +
     '<span id="timer" class="timer">' + tdisp + '</span>' +
+    '<span class="navpair">' +
+    '<button type="button" class="btn sm" data-act="prevQ" title="Previous question"' +
+    (S.cur === 0 ? ' disabled' : '') + '>&larr;</button>' +
+    '<button type="button" class="btn sm primary" data-act="nextQ" title="Next question"' +
+    (S.cur === S.items.length - 1 ? ' disabled' : '') + '>&rarr;</button>' +
+    '</span>' +
     '</div>';
 
   h += '<div class="progbar"><i style="width:' +
@@ -5709,10 +5723,6 @@ V.exam = function () {
   h += '</div>';
 
   h += '<div class="btnrow">' +
-    '<button type="button" class="btn" data-act="prevQ"' + (S.cur === 0 ? ' disabled' : '') + '>&larr; Previous</button>' +
-    '<button type="button" class="btn" data-act="nextQ"' +
-    (S.cur === S.items.length - 1 ? ' disabled' : '') + '>Next &rarr;</button>' +
-    '<span style="flex:1"></span>' +
     '<button type="button" class="btn primary" data-act="submitMock">Submit</button>' +
     '<button type="button" class="btn danger" data-act="abandon">Abandon</button>' +
     '</div>';

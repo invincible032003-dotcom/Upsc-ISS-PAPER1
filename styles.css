@@ -233,6 +233,8 @@ table.dt td.num, table.dt th.num { text-align: right; font-variant-numeric: tabu
   font-variant-numeric: tabular-nums;
 }
 .timer.low { background: var(--bad-bg); color: var(--bad); border-color: var(--bad-line); }
+.navpair { display: flex; gap: 6px; }
+.navpair .btn { min-height: 34px; padding: 5px 12px; }
 
 .progbar { height: 5px; background: var(--surface-3); border-radius: 3px; overflow: hidden; width: 100%; }
 .progbar > i { display: block; height: 100%; background: var(--brand); }

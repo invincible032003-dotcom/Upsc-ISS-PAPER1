@@ -125,30 +125,36 @@ const posAfterHeaderPrev = await page.textContent('.qpos');
 ok('clicking the header Previous button goes back',
   /Q 1 \//.test(posAfterHeaderPrev), posAfterHeaderPrev);
 
-/* original paper order preserved */
-/* verify order by walking the first five questions */
-const seen = [];
-for (let i = 0; i < 5; i++) {
-  await page.click(`.pal[data-i="${i}"]`);
-  seen.push(await page.evaluate(() => document.querySelector('.qmeta').textContent.trim()));
-}
-ok('question order is the printed paper order',
-  seen.every((s, i) => s.indexOf('Question ' + (i + 1)) === 0), seen.join(' | '));
+/* original paper order preserved - checked against the data model, since the
+   live attempt screen intentionally shows no classification text to scrape */
+const orderCheck = await page.evaluate(() => {
+  const s = window.ISSApp.session();
+  return s.ids.slice(0, 5).map((id, i) => {
+    const q = window.quizData.find(x => x.id === id);
+    return q && q.questionNumber === i + 1;
+  });
+});
+ok('question order is the printed paper order', orderCheck.every(Boolean), JSON.stringify(orderCheck));
 
-/* strict mode must not reveal anything */
+/* the live attempt screen never shows classification labels or the answer,
+   in either mode - only a provenance badge (Authentic PYQ / FORECAST) */
 const leak = await page.evaluate(() => {
   const t = document.querySelector('#app').innerHTML;
+  const qm = document.querySelector('.qmeta').textContent;
   return {
     solution: /Step-by-Step Solution/.test(t),
     shortcut: /Exam Shortcut/.test(t),
     correctCls: document.querySelectorAll('.opt.correct').length,
-    metaLeak: /Probability|Numerical Analysis/.test(document.querySelector('.qmeta').textContent)
+    metaLeak: /Probability|Numerical Analysis/.test(qm),
+    onlyBadge: qm.trim() === 'Authentic PYQ'
   };
 });
 ok('strict mode hides the solution', !leak.solution);
 ok('strict mode hides the exam shortcut', !leak.shortcut);
 ok('strict mode does not highlight a correct option', leak.correctCls === 0);
 ok('strict mode hides classification metadata', !leak.metaLeak);
+ok('the live attempt screen shows only the provenance badge, no other label',
+  leak.onlyBadge, JSON.stringify(leak));
 
 /* answer 40 questions deliberately: 25 right, 15 wrong; mark a few */
 const plan = await page.evaluate(() => {
@@ -214,6 +220,29 @@ ok('review shows the user answer and the correct answer',
 ok('AI-derived labelling present on explanations',
   (await page.evaluate(() => document.querySelectorAll('.ai-note').length)) >= 3);
 
+/* Topic Intelligence is the last pane shown after the Step-by-Step Solution;
+   its Examiner's pattern / Must-know text must render through KaTeX like
+   every other pane, not as raw, un-typeset text */
+const intelCheck = await page.evaluate(() => {
+  const panes = [...document.querySelectorAll('.reveal .pane')];
+  const intel = panes.find(p => (p.querySelector('.hd') || {}).textContent
+    .indexOf('Topic intelligence') >= 0);
+  if (!intel) return { found: false };
+  const body = intel.querySelector('.bd');
+  return {
+    found: true,
+    isLast: panes.indexOf(intel) === panes.length - 1,
+    hasKatex: intel.querySelectorAll('.katex').length > 0,
+    rawDollar: /\$/.test(body.textContent || ''),
+    rawBackslash: /\\[a-zA-Z]{2,}/.test(body.textContent || '')
+  };
+});
+ok('the Topic Intelligence pane is present', intelCheck.found);
+ok('Topic Intelligence is the last pane on an authentic-PYQ reveal', intelCheck.isLast);
+ok('Topic Intelligence formulas render through KaTeX, not as raw text', intelCheck.hasKatex);
+ok('no stray $ delimiters in Topic Intelligence', !intelCheck.rawDollar);
+ok('no leftover LaTeX commands in Topic Intelligence', !intelCheck.rawBackslash);
+
 /* --- Test C: 2023 → Probability sectional --------------------------------- */
 head('Test C — 2023 Probability sectional');
 await page.click('[data-act="go"][data-r="home"]');
@@ -230,13 +259,14 @@ const expect2023Prob = await page.evaluate(() =>
   window.quizData.filter(q => q.year === 2023 && q.unit === 'Probability').length);
 ok('sectional length equals the dataset count', c1.n === expect2023Prob,
   c1.n + ' vs ' + expect2023Prob);
-/* verify by sampling every question's meta line (learn mode shows it) */
-let bad2023 = 0;
-for (let i = 0; i < c1.n; i++) {
-  await page.click(`.pal[data-i="${i}"]`);
-  const m = await page.textContent('.qmeta');
-  if (!/2023-Q/.test(m) || !/Probability/.test(m)) bad2023++;
-}
+/* verify against the data model - the live attempt screen shows no unit/year */
+const bad2023 = await page.evaluate(() => {
+  const s = window.ISSApp.session();
+  return s.ids.filter(id => {
+    const q = window.quizData.find(x => x.id === id);
+    return !q || q.year !== 2023 || q.unit !== 'Probability';
+  }).length;
+});
 ok('every question is a 2023 Probability question', bad2023 === 0, bad2023 + ' offenders');
 
 /* learning mode reveal order */
@@ -272,12 +302,13 @@ const expSM = await page.evaluate(() =>
   window.quizData.filter(q => q.year === 2023 && q.unit === 'Statistical Methods').length);
 ok('2023 Statistical Methods sectional has the right length', nSM === expSM,
   nSM + ' vs ' + expSM);
-let badSM = 0;
-for (let i = 0; i < nSM; i++) {
-  await page.click(`.pal[data-i="${i}"]`);
-  const m = await page.textContent('.qmeta');
-  if (!/2023-Q/.test(m) || !/Statistical Methods/.test(m)) badSM++;
-}
+const badSM = await page.evaluate(() => {
+  const s = window.ISSApp.session();
+  return s.ids.filter(id => {
+    const q = window.quizData.find(x => x.id === id);
+    return !q || q.year !== 2023 || q.unit !== 'Statistical Methods';
+  }).length;
+});
 ok('every question is a 2023 Statistical Methods question', badSM === 0, badSM + ' offenders');
 
 /* --- cross-year TOPIC mock ------------------------------------------------ */
@@ -300,18 +331,18 @@ await page.waitForSelector('.exam-head');
 const nT = await page.evaluate(() => document.querySelectorAll('.pal').length);
 const expT = await page.evaluate(t => window.quizData.filter(q => q.topic === t).length, topicVal);
 ok('cross-year topic mock pulls the whole topic', nT === expT, nT + ' vs ' + expT);
-const yrsSeen = new Set();
-let badT = 0;
-for (let i = 0; i < nT; i++) {
-  await page.click(`.pal[data-i="${i}"]`);
-  const m = await page.textContent('.qmeta');
-  const y = (m.match(/(\d{4})-Q/) || [])[1];
-  if (y) yrsSeen.add(y);
-  if (m.indexOf(topicVal) < 0) badT++;
-}
-ok('every question carries the selected topic', badT === 0, badT + ' offenders');
-ok('the topic mock spans multiple papers', yrsSeen.size >= 5,
-  'years: ' + [...yrsSeen].sort().join(','));
+const topicComposition = await page.evaluate(t => {
+  const s = window.ISSApp.session();
+  const qs = s.ids.map(id => window.quizData.find(x => x.id === id));
+  return {
+    badT: qs.filter(q => !q || q.topic !== t).length,
+    years: [...new Set(qs.map(q => q && q.year))]
+  };
+}, topicVal);
+ok('every question carries the selected topic', topicComposition.badT === 0,
+  topicComposition.badT + ' offenders');
+ok('the topic mock spans multiple papers', topicComposition.years.length >= 5,
+  'years: ' + topicComposition.years.sort().join(','));
 
 /* --- Test D: cross-year Probability sectional defaults to 25, no dupes ---- */
 head('Test D — cross-year Probability sectional (default 25), duplicate check');
@@ -327,13 +358,8 @@ await page.waitForSelector('.exam-head');
 const nProb = await page.evaluate(() => document.querySelectorAll('.pal').length);
 ok('a cross-year sectional mock is capped at 25 questions', nProb === 25, String(nProb));
 
-/* uniqueness: collect ids across the session by visiting each question */
-const ids = [];
-for (let i = 0; i < nProb; i++) {
-  await page.click(`.pal[data-i="${i}"]`);
-  const m = await page.textContent('.qmeta');
-  ids.push((m.match(/\d{4}-Q\d{2}/) || [''])[0]);
-}
+/* uniqueness: read the ids straight from the session's data model */
+const ids = await page.evaluate(() => window.ISSApp.session().ids);
 ok('no duplicate questions in the generated mock',
   new Set(ids).size === ids.length, ids.length - new Set(ids).size + ' duplicates');
 ok('every id is a real dataset id',
@@ -384,12 +410,13 @@ if (hasBayes) {
   const expectB = await page.evaluate(() =>
     window.quizData.filter(q => q.subtopic === "Bayes' Theorem").length);
   ok('topic filter returns exactly the matching questions', nb === expectB, nb + ' vs ' + expectB);
-  let badB = 0;
-  for (let i = 0; i < nb; i++) {
-    await page.click(`.pal[data-i="${i}"]`);
-    const m = await page.textContent('.qmeta');
-    if (!/Bayes/.test(m)) badB++;
-  }
+  const badB = await page.evaluate(() => {
+    const s = window.ISSApp.session();
+    return s.ids.filter(id => {
+      const q = window.quizData.find(x => x.id === id);
+      return !q || q.subtopic !== "Bayes' Theorem";
+    }).length;
+  });
   ok('every question carries the selected subtopic', badB === 0, badB + ' offenders');
 }
 

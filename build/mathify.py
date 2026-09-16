@@ -398,6 +398,11 @@ def match_group(s, i):
         return -1
     raw = s[i + 1:j - 1]
     inner = re.sub(PROT + r'[^' + PROT_END + r']*' + PROT_END, ' ', raw)
+    if re.fullmatch(r'ii|iii|iv|vi|vii|viii|ix', inner.strip()):
+        return -1                     # "(ii)", "(iii)", ... - a list marker,
+                                       # too short for WORDY to catch below;
+                                       # bare "(i)"/"(v)"/"(x)" are still fine
+                                       # since those are common variable names
     for w in WORDY.findall(inner):    # reject prose: "(see below)", "(WiGig)"
         if w not in IDENTS and not product_run(w):
             return -1                 # "(npq)", "(abc)" are products, though
@@ -424,7 +429,11 @@ SHORT_WORDS = set(
     'ref iff obs est raw hex dec oct abs sqr sim ols mle mvu ucp asy '
     'cpu gpu ram rom sql xml csv gui usb dns tcp udp ftp ssl www alu isp lan '
     'wan url http nic dma cui gis rle jpg png gif txt zip '
-    'dll exe obj src lib dat doc ppt xls bat sys ini log tmp'.split())
+    'dll exe obj src lib dat doc ppt xls bat sys ini log tmp '
+    # lower-case roman numerals: a "(ii)", "(iii)" list marker is prose, never
+    # a product of variables i*i, i*i*i - so it must not bridge a formula
+    # scan into the next list item, e.g. "...f(x), (ii) act with..."
+    'ii iii iv vi vii ix'.split())
 
 
 def product_run(w):

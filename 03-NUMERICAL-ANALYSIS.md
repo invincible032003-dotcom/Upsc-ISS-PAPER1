@@ -92,7 +92,7 @@ These are still *examinable*. Learn the single headline result for each and stop
 
 **Weight:** 62 questions (34.4% of Numerical Analysis) · appeared in **9 of 9** papers · peak year 2022 (11)
 
-**Examiner's pattern.** The single largest topic in the entire paper (62 items, roughly 7 per paper). Separation of symbols is the engine: everything reduces to E = 1 + Delta. Recurring drills are (i) evaluate (Delta^2/E) f(x), (ii) act with 1/(E - a) on a^x-type functions, (iii) Delta^n applied to a product of linear/polynomial factors — the answer is n! * (leading coefficient) * h^n, or 0 if the degree is below n, (iv) differences of zero Delta^n 0^m, (v) factorial-polynomial conversion, (vi) delta and mu operator identities, (vii) missing-term problems in an equal-interval table.
+**Examiner's pattern.** The single largest topic in the entire paper (62 items, roughly 7 per paper). Separation of symbols is the engine: everything reduces to E = 1 + Delta. Recurring drills: first, evaluate (Delta^2/E) f(x); second, act with 1/(E - a) on a^x-type functions; third, apply Delta^n to a product of linear/polynomial factors — the answer is n! * (leading coefficient) * h^n, or 0 if the degree is below n; fourth, take differences of zero Delta^n 0^m; fifth, factorial-polynomial conversion; sixth, delta and mu operator identities; seventh, missing-term problems in an equal-interval table.
 
 **Must-know.** E = e^(hD); Delta = E - 1; nabla = 1 - E^(-1); delta = E^(1/2) - E^(-1/2); mu = (E^(1/2) + E^(-1/2))/2; Delta - nabla = Delta*nabla; Delta^n(a^x) = a^x (a^h - 1)^n; for degree-n poly, Delta^n f = n! a_n h^n and Delta^(n+1) f = 0; Delta x^(n) = n h x^(n-1).
 
@@ -427,7 +427,7 @@ What is $f(4)$?
 
 **Examiner's pattern.** Forward formula for the head of a table, backward for the tail, and one step of extrapolation beyond the last entry. Also: the linear-interpolation error bound and choosing a step size to hit a target accuracy. The f(20)=512, f(30)=439, f(40)=346, f(50)=243 table was reused verbatim in 2020 and 2022.
 
-**Must-know.** Forward: y = y0 + p*Dy0 + p(p-1)/2! * D^2 y0 + ... with p = (x - x0)/h. Backward uses p = (x - xn)/h and nabla. Linear interpolation error <= (h^2/8) * max|f''|.
+**Must-know.** Forward: y = y0 + p*Delta y0 + p(p-1)/2! * Delta^2 y0 + ... with p = (x - x0)/h. Backward uses p = (x - xn)/h and nabla. Linear interpolation error <= (h^2/8) * max(|f''|).
 
 ### Questions (14)
 
@@ -728,7 +728,7 @@ What is the approximate $f''(6.3)$ with error $O(h^2)$ using the central differe
 
 **Examiner's pattern.** Only two appearances (2019, 2025). One was a direct table inversion, the other inverted a Lagrange form. Method: swap the roles of x and y and re-apply Lagrange, or iterate the forward formula.
 
-**Must-know.** Inverse interpolation by Lagrange: x = sum over i of [prod_(j != i) (y - yj)/(yi - yj)] * xi. Successive approximation from Newton forward is the alternative.
+**Must-know.** Inverse interpolation by Lagrange: swap the roles of x and y, then apply the standard Lagrange interpolation formula to get x as a function of y. Successive approximation from the Newton forward formula is the alternative method.
 
 ### Questions (2)
 

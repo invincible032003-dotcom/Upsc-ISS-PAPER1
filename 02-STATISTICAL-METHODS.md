@@ -604,7 +604,7 @@ Which of the statements given above are correct?
 
 **Examiner's pattern.** The largest topic in Statistical Methods (32 items). The equicorrelated trivariate setup — all pairwise r equal — is the most repeated single template, asked for both partial and multiple correlation. Also constant: invariance of r under linear transformation (only the SIGN can change), intraclass correlation range, correlation ratio properties, and testing the significance of r.
 
-**Must-know.** r12.3 = (r12 - r13*r23)/sqrt((1-r13^2)(1-r23^2)); R^2_1.23 = (r12^2 + r13^2 - 2 r12 r13 r23)/(1 - r23^2); equicorrelated: R^2_1.23 = 2r^2/(1+r); intraclass r lies in [-1/(k-1), 1]; eta^2 >= r^2.
+**Must-know.** r12.3 = (r12 - r13*r23)/sqrt((1-r13^2)(1-r23^2)); R^2_(1.23) = (r12^2 + r13^2 - 2 r12 r13 r23)/(1 - r23^2); equicorrelated: R^2_(1.23) = 2r^2/(1+r); intraclass r lies in [-1/(k-1), 1]; eta^2 >= r^2.
 
 ### Questions (33)
 

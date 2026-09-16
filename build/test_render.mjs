@@ -74,6 +74,15 @@ const report = await page.evaluate(() => {
     (q.solution || []).forEach((s, i) => check(q.id, 'sol' + i, s.text));
   }
 
+  /* Topic Intelligence panel - the last portion shown on an authentic-PYQ
+     reveal, right after the Step-by-Step Solution */
+  const intel = (window.quizMeta && window.quizMeta.topicIntel) || {};
+  for (const code of Object.keys(intel)) {
+    const ti = intel[code];
+    check(code, 'topicIntel.pattern', ti.pattern);
+    check(code, 'topicIntel.mustKnow', ti.mustKnow);
+  }
+
   host.remove();
   return out;
 });

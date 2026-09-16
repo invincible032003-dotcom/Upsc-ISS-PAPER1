@@ -25,8 +25,8 @@
 <header id="topbar">
   <div class="topline">
     <div class="brand">
-      ISS Statistics Paper-I
-      <small>2018–2026 PYQ Mock Engine · 2027 Forecast Bank · 100% offline</small>
+      Offline Mock Engine
+      <small>2018–2026 PYQ · 2027 Forecast Bank · 100% offline</small>
     </div>
     <div class="spacer"></div>
     <button type="button" data-act="go" data-r="search" title="Search (S)">Search</button>
@@ -687,10 +687,18 @@ function provenanceBanner() {
     'project — a study aid, not an official UPSC solution.</div>';
 }
 
+function provenanceBadge(q) {
+  return q.isForecast ? '<span class="fc-badge">FORECAST &middot; AI-generated</span>'
+                       : '<span class="pyq-badge">Authentic PYQ</span>';
+}
+
+/* Full classification line (id, unit, topic, subtopic, question type) -
+   shown only in Review and the Study Card, i.e. after an attempt is over.
+   The live attempt screen (V.exam) shows just the provenance badge, so
+   answering a question is not cluttered with labels the solver did not
+   ask to see. */
 function qMetaLine(q) {
-  return '<div class="qmeta">' +
-    (q.isForecast ? '<span class="fc-badge">FORECAST &middot; AI-generated</span>'
-                  : '<span class="pyq-badge">Authentic PYQ</span>') +
+  return '<div class="qmeta">' + provenanceBadge(q) +
     '<span>' + E(q.id) + '</span><span>' + E(q.unit) +
     '</span><span>' + E(q.topic) + '</span><span>' + E(q.subtopic) +
     '</span><span>' + E(q.questionType) + '</span></div>';
@@ -757,8 +765,8 @@ function revealPanes(q, chosenOriginal, opts) {
       h += '<div class="pane"><div class="hd">Topic intelligence · ' + E(ti.code) + ' ' +
            E(ti.name) + '</div><div class="bd small">' +
            '<p><b>Weight.</b> ' + E(ti.weight) + '</p>' +
-           '<p><b>Examiner\u2019s pattern.</b> ' + E(ti.pattern) + '</p>' +
-           '<p><b>Must-know.</b> ' + E(ti.mustKnow) + '</p></div></div>';
+           '<p><b>Examiner\u2019s pattern.</b> ' + R(ti.pattern) + '</p>' +
+           '<p><b>Must-know.</b> ' + R(ti.mustKnow) + '</p></div></div>';
     }
   }
   return h;
@@ -1211,9 +1219,7 @@ V.exam = function () {
   /* ---- main column ---- */
   h += '<div>';
   h += '<div class="card">';
-  h += '<div class="tiny muted mb">' + E(S.name) + '</div>';
-  if (S.mode !== 'exam') h += qMetaLine(q);
-  else h += '<div class="qmeta"><span>Question ' + (S.cur + 1) + '</span></div>';
+  h += '<div class="qmeta">' + provenanceBadge(q) + '</div>';
   h += sharedStemHtml(q);
   h += '<div class="qtext">' + R(q.question) + '</div>';
   if (!q.options || !q.options.length) {

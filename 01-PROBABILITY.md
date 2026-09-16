@@ -836,7 +836,7 @@ Which is/are correct?
 
 **Examiner's pattern.** Pure transformation drills, and the same half-dozen results recycle: X/Y of two independent standard normals -> Cauchy; X-Y of two iid exponentials -> Laplace; -ln X for U(0,1) -> exponential; the probability integral transform -log F(X) -> exponential(1); Y = X^2 on (0,1); sum of iid exponentials -> Gamma.
 
-**Must-know.** Jacobian method: f_Y(y) = f_X(g^-1(y)) * |d/dy g^-1(y)|. For non-monotone maps sum over all branches. Memorise the six standard results above.
+**Must-know.** Jacobian method: f_Y(y) = f_X(g^-1(y)) * (|d/dy g^-1(y)|). For non-monotone maps sum over all branches. Memorise the six standard results above.
 
 ### Questions (15)
 

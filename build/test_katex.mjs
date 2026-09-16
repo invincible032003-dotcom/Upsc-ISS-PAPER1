@@ -55,6 +55,14 @@ const report = await page.evaluate(async () => {
     (q.tipsTricks || []).forEach((t, i) => push('tip' + i, t));
     (q.solution || []).forEach((s, i) => push('sol' + i, s.text));
   }
+  /* Topic Intelligence panel - shown after the Step-by-Step Solution on
+     every authentic-PYQ reveal, and in every PDF's topic section header */
+  const intel = (window.quizMeta && window.quizMeta.topicIntel) || {};
+  for (const code of Object.keys(intel)) {
+    const ti = intel[code];
+    if (ti.pattern) fields.push([code, 'topicIntel.pattern', ti.pattern]);
+    if (ti.mustKnow) fields.push([code, 'topicIntel.mustKnow', ti.mustKnow]);
+  }
   out.fields = fields.length;
 
   /* pull out every math segment exactly as the renderer does */

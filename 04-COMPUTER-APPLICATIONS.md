@@ -160,7 +160,7 @@ Select the correct answer using the code given below:
 
 **Weight:** 11 questions (6.1% of Computer Application and Data Processing) · appeared in **5 of 9** papers · peak year 2020 (4)
 
-**Examiner's pattern.** Device classification and one arithmetic item. Know input vs output vs both, the OCR/OMR/MICR trio, CRT internals, and plotter/printer behaviour. The dpi calculation (dots = dpi^2 x page area) has appeared as a numerical question.
+**Examiner's pattern.** Device classification and one arithmetic item. Know input vs output vs both, the OCR/OMR/MICR trio, CRT internals, and plotter/printer behaviour. The dpi calculation, which multiplies dpi^2 by the page area to get the dot count, has appeared as a numerical question.
 
 **Must-know.** Total dots = dpi^2 * width * height in inches. MICR reads magnetic ink characters (banking); OMR reads marks; OCR reads printed characters. A webcam and a light pen are input devices.
 
@@ -220,7 +220,7 @@ Which of the statements given above are correct?
 
 **Examiner's pattern.** Memory hierarchy plus address arithmetic. Recurring: RAM vs ROM vs PROM/EPROM, volatile vs non-volatile, where the CPU looks first (cache), registers such as the program counter and accumulator, virtual memory, and computing either address lines or total disk capacity.
 
-**Must-know.** Address lines = log2(number of locations); disk capacity = surfaces x tracks x sectors x bytes-per-sector; 1 GB = 2^30 bytes; ROM/EPROM/flash are non-volatile, DRAM/SRAM are volatile; the accumulator stores ALU results.
+**Must-know.** Address lines = log_2(number of locations); disk capacity = surfaces x tracks x sectors x bytes-per-sector; 1 GB = 2^30 bytes; ROM/EPROM/flash are non-volatile, DRAM/SRAM are volatile; the accumulator stores ALU results.
 
 ### Questions (23)
 
@@ -692,7 +692,7 @@ Which are correct?
 
 **Examiner's pattern.** The biggest computer topic (29 items). Layer-mapping questions dominate: ICMP and ARP at the network layer, SMTP/FTP/HTTP at the application layer. ARP resolving an IP to a MAC address was asked in both 2021 and 2026. Also: topology failure behaviour, DNS, port numbers, transmission media, IEEE 802.11 and connecting devices.
 
-**Must-know.** ARP: IP -> MAC. DNS: name -> IP. Ports: FTP 21, SMTP 25, HTTP 80, POP3 110, IMAP 143. In a star topology only the hub is a single point of failure; a ring breaks on any single node failure. Wi-Fi = IEEE 802.11.
+**Must-know.** ARP: IP -> MAC. DNS: name -> IP. Ports: FTP 21, SMTP 25, HTTP 80, POP3 110, IMAP 143. In a star topology only the hub is a single point of failure; a ring breaks on any single node failure. The brand name WiFi refers to IEEE 802.11.
 
 ### Questions (29)
 

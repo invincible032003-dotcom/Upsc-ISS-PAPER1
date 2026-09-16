@@ -264,8 +264,8 @@ for (const spec of UNITS) {
       if (intel) {
         h += '<div class="intel">' +
           '<p><b>Weight.</b> ' + E(intel.weight) + '</p>' +
-          '<p><b>Examiner’s pattern.</b> ' + E(intel.pattern) + '</p>' +
-          '<p><b>Must-know.</b> ' + E(intel.mustKnow) + '</p></div>';
+          '<p><b>Examiner’s pattern.</b> ' + R(intel.pattern) + '</p>' +
+          '<p><b>Must-know.</b> ' + R(intel.mustKnow) + '</p></div>';
       }
 
       g.items.forEach((q, i) => {

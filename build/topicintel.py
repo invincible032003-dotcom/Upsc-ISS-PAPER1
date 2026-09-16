@@ -5,8 +5,12 @@ code (P1..P13, S1..S14, N1..N8, C1..C10)."""
 import json
 import os
 import re
+import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import mathify                                              # noqa: E402
+
 FILES = [
     '01-PROBABILITY.md',
     '02-STATISTICAL-METHODS.md',
@@ -38,11 +42,22 @@ for fname in FILES:
             continue
         m = PATTERN.match(line)
         if m and not intel[code]['pattern']:
-            intel[code]['pattern'] = re.sub(r'\*\*|\*', '', m.group(1))
+            # NB: do not strip single "*" here - within this body text it is
+            # always a multiplication operator (e.g. "Delta*nabla",
+            # "0.5*exp(x)"), never markdown emphasis; only the "**...**"
+            # bold label itself needed stripping, and that is already
+            # excluded by the regex's own capture group above.
+            intel[code]['pattern'] = m.group(1)
             continue
         m = MUSTKNOW.match(line)
         if m and not intel[code]['mustKnow']:
-            intel[code]['mustKnow'] = re.sub(r'\*\*|\*', '', m.group(1))
+            intel[code]['mustKnow'] = m.group(1)
+
+for v in intel.values():
+    # 'weight' is pure bibliographic metadata (counts, percentages, years) -
+    # never contains a formula, so it is left as plain text.
+    v['pattern'] = mathify.convert(v['pattern'])
+    v['mustKnow'] = mathify.convert(v['mustKnow'])
 
 with open(os.path.join(ROOT, 'build', 'topicintel.json'), 'w') as fh:
     json.dump(intel, fh, ensure_ascii=False, indent=1)

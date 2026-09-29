@@ -1,0 +1,172 @@
+@bank tf-notes | True/False drill: Probability | 66 rapid-fire statements from the notes’ P-Bank. Cover the verdict, decide, then check; aim for 63 or more. | time=25
+@tf 1 | P1 | supp | F | A null event must be the empty set. || Continuous laws give each point probability 0.
+@tf 2 | P2 | impl | F | Two disjoint events, each of positive probability, can be independent. || $P(A\cap B)=0<P(A)P(B)$: they are maximally dependent.
+@tf 3 | P2 | val | T | An event independent of itself has probability 0 or 1. || $P(A)=P(A)^2$.
+@tf 4 | P2 | impl | F | Pairwise independent $A,B,C$ satisfy $P(ABC)=P(A)P(B)P(C)$. || Two-coin (Bernstein) example.
+@tf 5 | P1 | supp | F | Some $\sigma$-field on a finite set has exactly 10 members. || Sizes are powers of 2.
+@tf 6 | P2 | val | T | For $P(B)>0$, $P(A\mid B)+P(\bar A\mid B)=1$. || $P(\cdot\mid B)$ is itself a probability measure.
+@tf 7 | P2 | hyp | F | For any $A,B$: $P(A\mid B)+P(A\mid\bar B)=1$. || No such identity; only $P(A\mid B)+P(\bar A\mid B)=1$.
+@tf 8 | P2 | hyp | T | If $A$ beats $B$ within $C$ and within $\bar C$ with common weights, $A$ beats $B$ overall. || Same weights $P(C),P(\bar C)$; Simpson’s paradox needs different weights.
+@tf 9 | P2 | val | T | A knowing host shows a goat: switching wins $2/3$ of the time. || An ignorant host who happens to show a goat gives $1/2$.
+@tf 10 | P2 | sign | F | Prevalence 1 in 1000 and a 99% accurate test: a positive makes disease nearly certain. || About 9%: base rates rule.
+@tf 11 | P2 | val | F | Two children, at least one a girl: both are girls with probability $\tfrac12$. || It is $\tfrac13$; it becomes $\tfrac12$ only if a *named* child (e.g. the elder) is a girl.
+@tf 12 | P2 | val | T | Without replacement, the third ball is red as often as the first. || Symmetry: every draw has the initial red proportion.
+@tf 13 | P3 | conv | F | A distribution function is continuous from the left. || It is continuous from the **right**; left limits give $P(X<x)$.
+@tf 14 | P3 | supp | F | A CDF may jump at uncountably many points. || Jumps are countable.
+@tf 15 | P3 | impl | F | Every continuous CDF has a density. || Cantor law.
+@tf 16 | P3 | supp | F | A density value never exceeds 1. || $U(0,\tfrac12)$ has $f=2$; a pmf never exceeds 1.
+@tf 17 | P3 | val | T | If $F$ and $G$ are CDFs, so is $FG$. || Law of a maximum.
+@tf 18 | P3 | val | T | If $F$ is a CDF, so is $1-(1-F)^5$. || Minimum of five iid copies.
+@tf 19 | P3 | impl | F | If $X$ and $-X$ share a law, $X=0$ a.s. || Any symmetric law; equal in distribution is not equal.
+@tf 20 | P3 | hyp | T | For continuous $F$, $F(X)\sim U(0,1)$. || Probability integral transform.
+@tf 21 | P4 | sign | F | A binomial can have mean 5 and variance 6. || Variance $<$ mean always ($q=\tfrac65>1$ is impossible).
+@tf 22 | P4 | val | T | A Poisson with $\lambda=4$ has modes 3 and 4. || Integer $\lambda$: modes $\lambda-1$ and $\lambda$.
+@tf 23 | P4 | impl | F | The difference of independent Poissons is Poisson. || It can be negative (Skellam).
+@tf 24 | P4 | impl | T | $X\perp\!\!\!\perp Y$ with $X+Y$ Poisson forces both to be Poisson. || Raikov’s theorem.
+@tf 25 | P5 | impl | T | Among continuous laws on $(0,\infty)$ only the exponential is memoryless. || Characterisation of the exponential.
+@tf 26 | P5 | val | F | Half an exponential’s mass lies above its mean. || $P(X>\text{mean})=e^{-1}$; median $<$ mean.
+@tf 27 | P5 | val | F | Two iid $U(0,1)$ sum to $U(0,2)$. || The sum is triangular.
+@tf 28 | P5 | val | F | Two iid $\mathrm{Exp}(\lambda)$ sum to $\mathrm{Exp}(2\lambda)$. || The sum is gamma; the **minimum** is $\mathrm{Exp}(2\lambda)$.
+@tf 29 | P5 | hyp | F | $X$ and $Y$ normal make $X+Y$ normal. || Needs independence or joint normality.
+@tf 30 | P6 | hyp | T | Jointly normal and uncorrelated means independent. || The word “jointly” does all the work.
+@tf 31 | P5 | exist | F | The standard Cauchy has mean 0. || The mean does not exist; use the median.
+@tf 32 | P5 | exist | T | A law can have every moment yet no MGF for $t>0$. || Lognormal.
+@tf 33 | P5 | impl | T | Distinct laws can share every moment. || Lognormal moment-indeterminacy.
+@tf 34 | P4 | sign | F | Sampling without replacement raises the variance of the count. || It lowers it: finite-population factor $\tfrac{N-n}{N-1}<1$.
+@tf 35 | P4 | sign | F | Two multinomial counts can be positively correlated. || $\mathrm{Cov}(X_i,X_j)=-np_ip_j<0$.
+@tf 36 | P5 | conv | F | Laplace$(0,b)$ has variance $b^2$. || Variance is $2b^2$.
+@tf 37 | P4 | sign | F | A negative binomial count has variance below its mean. || Variance exceeds the mean (overdispersion).
+@tf 38 | P5 | val | T | Beta$(1,1)$ is $U(0,1)$. || Every point of $[0,1]$ is a mode.
+@tf 39 | P5 | exist | F | The Gamma$(\alpha,\lambda)$ MGF is finite for every $t$. || Only for $t<\lambda$.
+@tf 40 | P5 | sign | F | A lognormal’s mean lies below its median. || mode $<$ median $<$ mean.
+@tf 41 | P10 | impl | F | Convergence in probability gives a.s. convergence. || Independent indicators with $p_n=1/n$; only a subsequence converges a.s.
+@tf 42 | P10 | impl | T | Convergence in distribution to a constant gives convergence in probability. || The one upgrade that is free.
+@tf 43 | P10 | supp | F | Convergence in distribution needs $F_n(x)\to F(x)$ at every $x$. || Continuity points only ($X_n=1/n$ at $x=0$).
+@tf 44 | P10 | hyp | F | a.s. convergence forces the means to converge. || Needs domination or uniform integrability (tall spike).
+@tf 45 | P10 | impl | T | Mean-square convergence gives convergence in probability. || Markov/Chebyshev on $\lvert X_n-X\rvert^2$.
+@tf 46 | P10 | hyp | F | $X_n\xrightarrow{d}X$ and $Y_n\xrightarrow{d}Y$ give $X_n+Y_n\xrightarrow{d}X+Y$. || The joint law is unspecified; true under Slutsky ($Y$ constant) or independence.
+@tf 47 | P8 | hyp | F | Linearity of expectation needs independence. || $\mathbb{E}(aX+bY)=a\mathbb{E}X+b\mathbb{E}Y$ unconditionally.
+@tf 48 | P6 | impl | F | Zero covariance implies independence. || Only within jointly normal pairs or two 0/1 variables.
+@tf 49 | P8 | val | T | $\mathbb{E}(X\mid Y)$ is a function of $Y$ whose mean is $\mathbb{E}X$. || Tower rule.
+@tf 50 | P8 | impl | F | Mean independence implies independence. || Independence $\Rightarrow$ mean independence $\Rightarrow$ uncorrelated; neither arrow reverses.
+@tf 51 | P8 | val | T | $\mathrm{Var}X=\mathbb{E}\,\mathrm{Var}(X\mid Y)+\mathrm{Var}\,\mathbb{E}(X\mid Y)$. || Total variance.
+@tf 52 | P8 | val | T | For iid $X_i$, $\mathbb{E}(X_1\mid X_1+\cdots+X_n)=\bar X$. || Symmetry.
+@tf 53 | P9 | exist | F | Some distributions have no characteristic function. || The CF always exists; the MGF may not.
+@tf 54 | P9 | impl | F | If the CF of $X+Y$ factorises, $X$ and $Y$ are independent. || $X$ Cauchy and $Y=X$ satisfy it.
+@tf 55 | P9 | impl | T | A real-valued CF means a law symmetric about 0. || And conversely.
+@tf 56 | P9 | hyp | T | $\phi_n\to e^{-t^2/2}$ pointwise gives $X_n\xrightarrow{d}N(0,1)$. || Lévy continuity: the limit is a CF, continuous at 0.
+@tf 57 | P9 | hyp | F | Every pointwise limit of CFs is a CF. || $N(0,n)$ has a limit discontinuous at 0.
+@tf 58 | P11 | hyp | F | The first Borel–Cantelli lemma needs independence. || Independence belongs to the second lemma.
+@tf 59 | P11 | hyp | T | Independent events with $\sum P(A_n)=\infty$ occur infinitely often a.s. || Borel–Cantelli II.
+@tf 60 | P11 | hyp | T | For independent $X_n$, $\{\bar X_n\text{ converges}\}$ has probability 0 or 1. || Tail event: Kolmogorov 0–1 law.
+@tf 61 | P12 | hyp | F | Chebyshev’s bound can be improved with no extra assumption. || It is attained by a three-point law.
+@tf 62 | P12 | val | T | Kolmogorov bounds $P(\max_{k\le n}\lvert S_k\rvert\ge\varepsilon)$ by $\mathrm{Var}\,S_n/\varepsilon^2$. || Maximal form of Chebyshev.
+@tf 63 | P13 | hyp | F | The iid WLLN needs a finite variance. || A finite mean suffices (Khinchin).
+@tf 64 | P13 | exist | F | The SLLN holds for iid Cauchy variables. || No finite mean; $\bar X_n$ is Cauchy for every $n$.
+@tf 65 | P13 | hyp | F | Lyapunov’s condition is necessary for the CLT. || Sufficient only; Lindeberg–Feller is necessary and sufficient.
+@tf 66 | P13 | hyp | F | $S_n$ itself converges in distribution to a normal law. || Only after standardising.
+
+@bank tf-sm | True/False drill: Statistical Methods | 35 rapid-fire statements from the notes’ S-Bank. Cover the verdict, decide, then check. | time=15
+@tf 1 | S2 | val | T | The median minimises $\sum\lvert x-a\rvert$. || Absolute deviations are least about the median.
+@tf 2 | S2 | val | F | The mean minimises $\sum\lvert x-a\rvert$. || The median does; the mean minimises $\sum(x-a)^2$.
+@tf 3 | S2 | inv | F | The SD is unaffected by change of origin and scale. || Scale changes it: $s_y=\lvert b\rvert s_x$.
+@tf 4 | S2 | inv | T | The CV is free of units. || $100\sigma/\bar x$ is a ratio.
+@tf 5 | S2 | sign | T | For any data, MD about the mean $\le$ SD. || Universal inequality.
+@tf 6 | S8 | inv | T | $r$ is unaffected by change of origin and positive scaling. || Only the sign can flip under negative scaling.
+@tf 7 | S8 | impl | F | $r=0$ implies independence. || $r$ sees only linear association.
+@tf 8 | S7 | sign | F | Both regression coefficients can exceed 1. || $b_{yx}b_{xy}=r^2\le1$.
+@tf 9 | S7 | sign | T | $b_{yx}$ and $b_{xy}$ always have the same sign. || Both share the sign of $r$.
+@tf 10 | S7 | val | T | The regression lines meet at $(\bar x,\bar y)$. || Both pass through the means.
+@tf 11 | S8 | sign | F | $\eta_{yx}=\eta_{xy}$ always. || $\eta_{yx}\ne\eta_{xy}$ in general.
+@tf 12 | S8 | sign | F | $R_{1.23}$ can be smaller than $\lvert r_{12}\rvert$. || $R_{1.23}\ge\lvert r_{12}\rvert$ always.
+@tf 13 | S8 | supp | F | A partial correlation can exceed 1 in absolute value. || $\lvert r_{12.3}\rvert\le1$.
+@tf 14 | S4 | inv | F | Yule’s $Q$ depends on the relative sizes of the $A$ and $\alpha$ groups. || $Q$ ignores them (multiply a row or column by a constant and $Q$ stays); $\phi$ does not.
+@tf 15 | S4 | supp | F | The contingency coefficient can equal 1. || $C<1$.
+@tf 16 | S11 | conv | T | The $\chi^2$ goodness-of-fit test is right-tailed. || Large $\chi^2$ rejects.
+@tf 17 | S11 | hyp | T | Expected frequencies below 5 should be pooled. || $\chi^2$ validity condition.
+@tf 18 | S10 | exist | T | $t_n$ has a finite variance only for $n>2$. || $\mathrm{Var}=n/(n-2)$.
+@tf 19 | S10 | val | T | The mode of $F(m,n)$ is below 1. || $\tfrac{m-2}m\cdot\tfrac n{n+2}<1$ for $m>2$.
+@tf 20 | S10 | sign | F | The mean of $F(m,n)$ is below 1. || $\tfrac{n}{n-2}>1$.
+@tf 21 | S10 | val | T | If $n_1=n_2$, the median of $F$ is 1. || $F$ and $1/F$ have the same law when the df are equal.
+@tf 22 | S12 | conv | F | The sign test uses the sizes of the differences. || It uses signs only.
+@tf 23 | S12 | hyp | T | The Wilcoxon signed-rank test assumes symmetry. || Uses sign and rank.
+@tf 24 | S12 | val | T | Mann–Whitney $U$ and the Wilcoxon rank-sum test are equivalent. || $U=R_1-\tfrac{n_1(n_1+1)}2$.
+@tf 25 | S12 | val | T | The Wald–Wolfowitz run test rejects for too few runs. || Left-tailed.
+@tf 26 | S12 | hyp | F | K–S is exact for discrete distributions. || Exact for continuous $F_0$; conservative otherwise.
+@tf 27 | S14 | val | F | For normal data the median is asymptotically more efficient than the mean. || ARE $=2/\pi<1$.
+@tf 28 | S14 | val | T | For a Laplace parent the sign test beats the $t$ test. || ARE 2.
+@tf 29 | S13 | val | T | For $U(0,1)$ samples $X_{(r)}\sim\mathrm{Beta}(r,n-r+1)$. || Uniform order statistics are Beta.
+@tf 30 | S13 | val | T | The range of a $U(0,1)$ sample has mean $\tfrac{n-1}{n+1}$. || Range $\sim\mathrm{Beta}(n-1,2)$.
+@tf 31 | S9 | val | T | For normal data the SE of the median exceeds that of the mean. || Factor $1.2533$.
+@tf 32 | S2 | hyp | F | Sheppard’s correction applies to J-shaped distributions. || Only continuous, high-contact (tapering) distributions.
+@tf 33 | S3 | sign | T | $\beta_2<3$ means platykurtic. || $3$ mesokurtic, $>3$ leptokurtic.
+@tf 34 | S3 | sign | F | A percentile kurtosis above 0.263 means leptokurtic. || Reversed: above 0.263 is platykurtic.
+@tf 35 | S8 | sign | F | The intraclass correlation can be $-1$ for families of three. || Minimum is $-\tfrac1{k-1}=-\tfrac12$.
+
+@bank tf-trap | Trap statements: the 2027 expected-question bank | 66 statements written as MCQ options, with verdicts, from the Top-1% Trap Compendium (§12). Decide True/False before reading the verdict; target 58+/66 with reasons. Anything missed goes into your error ledger. | time=25
+@tf 1 | P1 | supp | F | If $P(A)=0$ then $A=\varnothing$. || Null $\ne$ empty: $U(0,1)$ hits any point with probability 0.
+@tf 2 | P2 | impl | F | Mutually exclusive events with positive probabilities can be independent. || $P(A\cap B)=0<P(A)P(B)$.
+@tf 3 | P2 | val | T | If $A$ is independent of itself, $P(A)\in\{0,1\}$. || $P(A)=P(A)^2$.
+@tf 4 | P2 | impl | F | Pairwise independence of $A,B,C$ implies $P(A\cap B\cap C)=P(A)P(B)P(C)$. || Bernstein’s two-coin example.
+@tf 5 | P1 | supp | F | A $\sigma$-field on a finite set can contain exactly 6 events. || Cardinality is $2^k$.
+@tf 6 | P2 | val | T | $P(A\mid B)+P(A^c\mid B)=1$ whenever $P(B)>0$. || $P(\cdot\mid B)$ is a probability measure.
+@tf 7 | P2 | hyp | F | $P(A\mid B)+P(A\mid B^c)=1$ in general. || No such identity.
+@tf 8 | P2 | hyp | T | If $P(A\mid C)>P(B\mid C)$ and $P(A\mid C^c)>P(B\mid C^c)$, then $P(A)>P(B)$. || A mixture of strict inequalities with the same weights $P(C),P(C^c)$. Simpson’s paradox uses different weights for A-type and B-type groups: read stems letter by letter.
+@tf 9 | P2 | val | T | In the Monty Hall game with a knowing host, switching wins with probability $2/3$. || With an ignorant host who happens to reveal a goat, $1/2$.
+@tf 10 | P2 | sign | F | A positive test from a 99%-accurate test for a 1-in-1000 disease implies $P(\text{disease})\approx0.99$. || $\approx0.09$; base rates rule.
+@tf 11 | P2 | val | F | “Two children, at least one boy”: $P(\text{both boys})=1/2$. || $1/3$; it becomes $1/2$ if the identified (e.g. elder) child is a boy.
+@tf 12 | P2 | val | T | In sampling without replacement, the probability the second draw is red equals the initial red proportion. || Symmetry / exchangeability.
+@tf 13 | P3 | conv | F | Every CDF is continuous from the left. || Right-continuity is the axiom; left limits give $P(X<x)$.
+@tf 14 | P3 | supp | F | A CDF can have uncountably many discontinuities. || Jumps are countable.
+@tf 15 | P3 | impl | F | If a CDF is continuous everywhere, the random variable has a density. || Cantor distribution.
+@tf 16 | P3 | supp | F | A valid pdf never exceeds 1. || $U(0,\tfrac12)$: $f\equiv2$; Beta$(\tfrac12,\tfrac12)$ is unbounded.
+@tf 17 | P3 | val | T | If $F$ and $G$ are CDFs, $FG$ is a CDF. || Law of $\max(X,Y)$ under independence.
+@tf 18 | P3 | val | T | If $F$ is a CDF, $1-(1-F)^3$ is a CDF. || Minimum of 3 iid copies.
+@tf 19 | P3 | impl | F | $X$ and $-X$ having the same distribution implies $X=0$ a.s. || Any symmetric law; equal in distribution $\ne$ equal.
+@tf 20 | P3 | hyp | T | For continuous $F$, $F(X)\sim U(0,1)$. || Probability integral transform.
+@tf 21 | P4 | sign | F | A binomial variable can have mean 6 and variance 8. || Needs $q=\tfrac43>1$; variance $<$ mean always.
+@tf 22 | P4 | val | T | A Poisson variable with integer mean $\lambda$ has two modes. || $\lambda-1$ and $\lambda$.
+@tf 23 | P4 | impl | F | If $X,Y$ are independent Poisson, $X-Y$ is Poisson. || Negative values are possible; Skellam.
+@tf 24 | P4 | impl | T | If $X\perp\!\!\!\perp Y$ and $X+Y$ is Poisson, both $X,Y$ are Poisson. || Raikov’s theorem. (Normal analogue: Cramér’s theorem, also True.)
+@tf 25 | P5 | impl | T | The exponential distribution satisfies $P(X>s+t\mid X>s)=P(X>t)$, and it is the unique continuous law on $(0,\infty)$ doing so. || Memorylessness characterisation.
+@tf 26 | P5 | val | F | For exponential $X$, $P(X>\mathbb{E}X)=\tfrac12$. || $e^{-1}\approx0.368$; median $<$ mean.
+@tf 27 | P5 | val | F | The sum of two independent $U(0,1)$ variables is $U(0,2)$. || Triangular.
+@tf 28 | P5 | val | F | The sum of two independent exponentials with the same rate is exponential. || $\mathrm{Gamma}(2,\lambda)$; the minimum is exponential.
+@tf 29 | P5 | hyp | F | If $X,Y$ are normal, $X+Y$ is normal. || Needs independence or joint normality; the sign-flip counterexample has an atom at 0.
+@tf 30 | P6 | hyp | T | Uncorrelated jointly normal variables are independent. || The “jointly” does all the work.
+@tf 31 | P5 | exist | F | The Cauchy distribution has mean 0 by symmetry. || The mean does not exist; use the median.
+@tf 32 | P5 | exist | T | Some distributions possess every moment yet have no MGF for $t>0$. || Lognormal.
+@tf 33 | P5 | impl | T | Two different distributions can share all moments. || Lognormal’s moment-indeterminacy.
+@tf 34 | P4 | sign | F | Hypergeometric sampling gives a larger variance than binomial with the same $n$ and $p=K/N$. || Smaller: finite-population factor $\tfrac{N-n}{N-1}<1$.
+@tf 35 | P4 | sign | F | In a multinomial, $\mathrm{Cov}(X_i,X_j)>0$ can occur. || Always $-np_ip_j<0$.
+@tf 36 | P5 | conv | F | For the Laplace$(\mu,b)$ law, the variance is $b^2$. || It is $2b^2$; the MLE of $\mu$ is the sample median.
+@tf 37 | P4 | sign | T | For a negative binomial count of failures, variance exceeds mean. || Overdispersion signature (binomial under-, Poisson equi-).
+@tf 38 | P5 | val | T | Beta$(1,1)$ is the uniform law on $(0,1)$. || And $U_{(k)}\sim\mathrm{Beta}(k,n+1-k)$.
+@tf 39 | P5 | exist | F | The Gamma$(\alpha,\lambda)$ MGF exists for all real $t$. || Only $t<\lambda$.
+@tf 40 | P5 | sign | F | For lognormal: mean $<$ median. || Mean $e^{\mu+\sigma^2/2}>$ median $e^\mu>$ mode $e^{\mu-\sigma^2}$.
+@tf 41 | P10 | impl | F | Convergence in probability implies almost-sure convergence. || Independent indicators with $p_n=1/n$; a subsequence does converge a.s.
+@tf 42 | P10 | impl | T | Convergence in distribution to a constant implies convergence in probability. || The one upgrade that is free.
+@tf 43 | P10 | supp | F | $X_n\xrightarrow{d}X$ requires $F_n(x)\to F(x)$ for every real $x$. || Only at continuity points of $F$; $X_n=1/n$ vs $x=0$.
+@tf 44 | P10 | hyp | F | If $X_n\xrightarrow{a.s.}X$ then $\mathbb{E}X_n\to\mathbb{E}X$. || Tall-spike example; needs uniform integrability / domination.
+@tf 45 | P10 | impl | T | If $X_n\to X$ in mean square, then $X_n\xrightarrow{P}X$. || Markov/Chebyshev on $\lvert X_n-X\rvert^2$.
+@tf 46 | P10 | hyp | F | $X_n\xrightarrow{d}X$ and $Y_n\xrightarrow{d}Y$ imply $X_n+Y_n\xrightarrow{d}X+Y$. || Joint law unspecified; true under Slutsky ($Y$ constant) or independence.
+@tf 47 | P8 | hyp | F | $\mathbb{E}(X+Y)=\mathbb{E}X+\mathbb{E}Y$ requires independence. || Linearity is unconditional: the most profitable True/False in the paper.
+@tf 48 | P8 | impl | F | $\mathbb{E}(XY)=\mathbb{E}X\,\mathbb{E}Y$ implies $X\perp\!\!\!\perp Y$. || $X\sim N(0,1)$, $Y=X^2$.
+@tf 49 | P8 | val | T | $\mathbb{E}[X\mid Y]$ is a random variable and $\mathbb{E}\{\mathbb{E}[X\mid Y]\}=\mathbb{E}X$. || Tower property.
+@tf 50 | P8 | impl | F | $\mathbb{E}[X\mid Y]=\mathbb{E}X$ implies $X\perp\!\!\!\perp Y$. || Mean independence is weaker.
+@tf 51 | P8 | val | T | $\mathrm{Var}X=\mathbb{E}[\mathrm{Var}(X\mid Y)]+\mathrm{Var}(\mathbb{E}[X\mid Y])$. || Total variance; both pieces $\ge0$.
+@tf 52 | P8 | val | T | For iid $X_1,\dots,X_n$, $\mathbb{E}\left[X_1\mid\sum X_i\right]=\sum X_i/n$. || Symmetry.
+@tf 53 | P9 | exist | F | A characteristic function may fail to exist for heavy-tailed laws. || CFs always exist; MGFs may not.
+@tf 54 | P9 | impl | F | $\phi_{X+Y}=\phi_X\phi_Y$ implies $X\perp\!\!\!\perp Y$. || Cauchy $Y=X$ example.
+@tf 55 | P9 | impl | T | A real-valued CF implies the distribution is symmetric about 0. || And conversely.
+@tf 56 | P9 | hyp | T | If $\phi_n(t)\to e^{-t^2/2}$ pointwise, then $X_n\xrightarrow{d}N(0,1)$. || Lévy continuity: the limit is a CF, continuous at 0.
+@tf 57 | P9 | hyp | F | If $\phi_n(t)\to L(t)$ pointwise, $X_n$ always converges in distribution. || $N(0,n)$: $L=\mathbf 1\{t=0\}$ is discontinuous at 0; mass escapes.
+@tf 58 | P11 | hyp | F | $\sum P(A_n)<\infty$ implies $P(A_n\text{ i.o.})=0$ only for independent events. || BC-I needs no independence; independence belongs to BC-II.
+@tf 59 | P11 | hyp | T | For independent events with $\sum P(A_n)=\infty$, $P(A_n\text{ i.o.})=1$. || Borel’s 0–1 law.
+@tf 60 | P11 | hyp | T | For an independent sequence, $\{\lim_n\bar X_n\text{ exists}\}$ has probability 0 or 1. || Tail event; Kolmogorov’s 0–1 law.
+@tf 61 | P12 | hyp | F | Tchebycheff’s inequality can be sharpened without further assumptions. || A three-point law attains it.
+@tf 62 | P12 | val | T | Kolmogorov’s inequality bounds $P(\max_{k\le n}\lvert S_k\rvert\ge\varepsilon)$ by $\mathrm{Var}(S_n)/\varepsilon^2$. || Maximal strengthening of Tchebycheff.
+@tf 63 | P13 | hyp | F | The WLLN for iid sequences requires finite variance. || Khinchin needs only a finite mean.
+@tf 64 | P13 | exist | F | The SLLN holds for iid Cauchy variables. || No finite mean; $\bar X_n\sim$ Cauchy forever.
+@tf 65 | P13 | hyp | F | Lyapunov’s condition is necessary for the CLT of independent arrays. || Sufficient only; Lindeberg–Feller carries the iff (under negligibility).
+@tf 66 | P13 | hyp | F | By the CLT, $S_n$ itself converges in distribution to a normal law. || Only the standardised $(S_n-n\mu)/(\sigma\sqrt n)$ does.

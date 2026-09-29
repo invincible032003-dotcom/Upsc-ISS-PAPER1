@@ -1,0 +1,74 @@
+@sec blueprint | Blueprint: where the 40 marks come from | Start here
+@meta codes= tier=0
+@lede Probability and Statistical Methods supplied 360 of the 720 Paper-I questions in 2018–2026 (196 + 164), about 40 per paper. Three stems carry the block: a shared joint density (P6), the bivariate normal (S6) and correlation algebra (S8).
+@grp Paper facts
+-* **80 questions, 120 minutes, 200 marks:** $+2.5$ for a right answer, $-0.83$ for a wrong one.
+-* A blind guess is worth $0$; with one option eliminated it is worth $\tfrac13(2.5)-\tfrac23(0.83)=+0.28$, with two eliminated $+0.83$. **Answer every question in which you can kill one option.**
+- Expected counts are a frequency-based forecast from the 2018–2026 papers; tiers rank revision priority. **Tier 1 is eight sub-topics worth about 23 of the 40 questions**, so revise in tier order. Treat 22–26 Probability plus 16–19 Statistical Methods questions as the working range.
+@grp Forecast by sub-topic (Probability)
+| Code | Sub-topic | PYQs | 2027 | Tier | Archetype to own |
+| P6 | Joint, marginal, conditional | 40 | 4.8 | 1 | One density $\to$ marginal $\to f(y\mid x)\to \mathbb{E}(Y\mid x)\to$ region probability |
+| P8 | Expectation, conditional expectation | 24 | 2.5 | 1 | Tower rule and total variance; does the mean exist at all? |
+| P5 | Continuous families | 21 | 2.8 | 1 | Beta-I $(m,n)$ from mean and variance; maximum of $P(a\le X\le b)$ for the exponential |
+| P9 | CF, MGF, PGF | 21 | 2.6 | 1 | Compound sum $M_N(\ln M_X(t))$; CF of $X_1X_2$ is $(1+t^2)^{-1/2}$ |
+| P4 | Discrete families | 20 | 2.1 | 1 | Negative-binomial waiting time; binomial mode and skew; $P(X\text{ even})$ |
+| P7 | Functions of random variables | 15 | 1.4 | 2 | Normal ratio $\to$ Cauchy or $F(1,1)$; $-2\ln U\sim\chi^2_2$; Jacobian of a linear map |
+| P2 | Conditional probability, Bayes | 13 | 1.5 | 2 | Unequal-prior Bayes; Pólya urn; truncated uniform |
+| P1 | Classical, geometric | 10 | 1.1 | 2 | $1-\prod(1-p_i)$; real roots of a random quadratic |
+| P3 | Distribution functions | 10 | 0.9 | 2 | Piecewise $F$ with an unknown $\alpha$: non-decreasing and right-continuous |
+| P12 | Chebyshev, Kolmogorov | 7 | 0.7 | 3 | “At least” bound; $n\ge\sigma^2/(\varepsilon^2\alpha)$ |
+| P13 | LLN, CLT | 7 | 0.9 | 3 | Binomial tail sum $\to\tfrac12$; median $\approx N(\mu,\pi\sigma^2/2n)$ |
+| P10 | Modes of convergence | 5 | 0.7 | 3 | $c_n\mathbf 1(U<1/n^2)$: a.s. always; mean square iff $c_n^2/n^2\to0$ |
+| P11 | Zero–one laws | 3 | 0.5 | 3 | $\sum P(A_n)<\infty\Rightarrow0$; independent with $\sum P(A_n)=\infty\Rightarrow1$ |
+@grp Forecast by sub-topic (Statistical Methods)
+| Code | Sub-topic | PYQs | 2027 | Tier | Archetype to own |
+| S8 | Correlation: $r$, partial, multiple, ICC, $\eta$ | 33 | 2.9 | 1 | Equicorrelation: $r_{12.3}=r/(1+r)$, $R^2=2r^2/(1+r)$ |
+| S6 | Bivariate normal | 25 | 2.6 | 1 | Read $\Sigma$ off the exponent; $\mathbb{E}\max(X,Y)=\sqrt{(1-\rho)/\pi}$ |
+| S10 | Sampling distributions $t,\chi^2,F$ | 23 | 2.4 | 1 | Build $t$ or $F$ from normals ($C=\sqrt{3/2}$); $\mathbb{E}(F)\,\mathbb{E}(1/F)$ |
+| S13 | Order statistics | 16 | 1.7 | 2 | Minimum of exponentials is $\mathrm{Exp}(n\lambda)$; uniform order statistics are Beta |
+| S12 | Non-parametric tests | 13 | 1.1 | 2 | KS is the $\chi^2$-GOF analogue; counting runs; $\mathrm{Var}(U)=mn(m+n+1)/12$ |
+| S4 | Association, contingency | 12 | 1.2 | 2 | Yule’s $Q$; consistency; $(AB)$ against $(A)(B)/N$ |
+| S2 | Location, dispersion | 10 | 1.1 | 2 | Mean deviation least about the median; pooled variance |
+| S11 | Small-sample tests | 8 | 1.1 | 2 | df of the $F$ test; Type I and II errors; $\chi^2$ validity |
+| S7 | Regression | 8 | 0.9 | 3 | Which line is which: $b_{yx}b_{xy}\le1$ |
+| S9 | Standard errors, large samples | 6 | 0.8 | 3 | $\mathrm{SE}(r)=(1-r^2)/\sqrt n$; $\mathrm{SE}(p)=\sqrt{pq/n}$ |
+| S3 | Skewness, kurtosis | 4 | 0.6 | 3 | Binomial $\gamma_1,\gamma_2\to(n,p)$ |
+| S5 | Curve fitting, orthogonal polynomials | 3 | 0.5 | 3 | Hermite $x^3-3x$; pick the lower residual SS |
+| S1 | Data, scales | 2 | 0.4 | 3 | Nominal, ordinal, interval, ratio |
+| S14 | ARE | 1 | 0.3 | 3 | Median vs mean at the normal $=2/\pi$ |
+@grp The 90-second protocol for every MCQ
+- **10 s** – name the trap class: support, convention, hypothesis of a theorem, sign, invariance.
+- **40 s** – apply the stored result; compute only what the options differ in.
+- **20 s** – kill options with a special value ($n=1$, $\rho=0$, $p=\tfrac12$, $x=0$) or a range check.
+- **Decide** – answer whenever one option is dead; leave only true blanks.
+@grp Option-killers that work on any stem
+-* **Range:** probabilities in $[0,1]$; $|r|\le1$; $R_{1.23}\ge|r_{12}|$; $\eta\ge|r|$; variances $\ge0$; a CDF ends at 1.
+-* **Invariance:** $r$, $\eta^2$, $Q$ and $C$ ignore change of origin and scale; only the sign of $r$ can flip.
+-* **Convention:** geometric and negative binomial (trials or failures), exponential (rate or mean), gamma (rate or scale).
+-* **Support first:** a non-rectangular support means dependence and fixes every integration limit.
+-* **Limits:** $n\to\infty$, $\rho\to0$ or $\theta\to0$ must reproduce the known special case.
+
+@sec unlearn | Look-right-but-wrong: statements to unlearn | Start here
+@meta codes= tier=0
+@lede Each statement in the left column looks right and is wrong or incomplete; memorised as written, it costs a mark. Switch on Recall mode to cover the correct version and test yourself.
+@grp The statements
+| Looks right | Correct version | Why |
+| 5 draws without replacement from 20 items, 8 marked: variance of the marked count $=9/19$ | **18/19** | $n\tfrac KN\left(1-\tfrac KN\right)\tfrac{N-n}{N-1}=5(0.4)(0.6)\tfrac{15}{19}$ |
+| $X\sim U(0,12)$: $P(5<X<7\mid X>6)=0$ | **1/6** ([2026 Q16]) | Intersect first: $\tfrac{P(6<X<7)}{P(X>6)}=\tfrac{1/12}{1/2}$ |
+| Birthday: $P(\text{shared})=1-\sum(1-i/365)$ | **$1-\prod_{i=1}^{n-1}(1-i/365)$** | Successive “new birthday” events multiply |
+| $R_{1.23}\ge r_{12},r_{13},r_{23}$ | $R_{1.23}\ge|r_{12}|,|r_{13}|,|r_{12.3}|,|r_{13.2}|$ only | $X_2=X_3$ with $X_1$ independent: $R=0$ but $r_{23}=1$ |
+| $P\left(X=(-1)^{k-1}k\right)=\tfrac{6}{\pi^2k^2}$ obeys the WLLN by Khinchin | **No mean; the WLLN fails** | $\mathbb{E}\lvert X\rvert=\tfrac6{\pi^2}\sum\tfrac1k=\infty$ and $nP(\lvert X\rvert>n)\to\tfrac6{\pi^2}\ne0$ |
+| $\mathbb{E}(S_m/S_n)=m/n$ for independent $X_k$ with a common mean | Needs **iid positive** $X_k$ | Symmetry then gives $\mathbb{E}(X_i/S_n)=1/n$ |
+| Regression lines are perpendicular when $b_{yx}=-b_{xy}$ | **Perpendicular iff $r=0$** | The two $b$’s share the sign of $r$ |
+| Inflexion points always sum to twice the mode | Only when symmetric about the mode (normal, $\chi^2$, $F$) | Not a general law |
+| $\sigma_A=K\sigma_B$ makes A’s peak $1/K$ of B’s | True for normal curves **with equal totals** | Peak ordinate $=N/(\sigma\sqrt{2\pi})$ |
+| $G=M\left(1-\tfrac{\sigma^2}{2M^2}\right)$, $M^2-G^2=\sigma^2$, $H=M\left(1-\tfrac{\sigma^2}{M^2}\right)$ exactly | **Approximations** | Second-order expansions, valid for small $\sigma/M$ |
+| Percentile kurtosis above 0.263 means leptokurtic | **Reversed**: below 0.263 lepto, above platy | Laplace 0.215, normal 0.263, uniform 0.3125 |
+| A variable can have an MGF yet no moments | Only if the MGF is finite on one side of 0 | Finite on an open interval around 0 forces every moment |
+| A consistent test is UMP | UMP $\Rightarrow$ unbiased; unbiased or consistent $\not\Rightarrow$ UMP | Consistency only says power $\to1$ |
+@grp PYQ misprints to recognise in the hall
+-! [2019 Q32] hypergeometric variance: option (b) prints $(m+n+1)$; the true denominator is $(m+n)^2(m+n-1)$. Still mark **(b)**.
+-! [2022 Q12] no option equals $\mathbb{E}(T^2\bar X^2)=24/5=4.8$ (the correct key of [2019 Q25]); $24.2$ would be $\mathbb{E}(T^2)+\mathbb{E}(\bar X^2)$.
+-! [2026 Q10] both $3/4$ and $3/5$ are offered: the trials convention gives $3/4$, the failures convention of Indian texts gives $3/5$.
+-! [2019 Q18] statement 1 prints $a^2/(a-b)^2$; the quantity that must be an integer is $n=a^2/(a-b)$.
+-! [2018 Q26] the printed joint pdf does not integrate to 1, but $Y\mid X=x\sim\mathrm{Exp}(\text{rate }1+x)$ still holds, so $\mathbb{E}(Y\mid x)=1/(1+x)$, option **(a)**.

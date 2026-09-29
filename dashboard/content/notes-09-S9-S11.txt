@@ -1,0 +1,98 @@
+@sec S10 | Sampling distributions: mean, variance, t, chi-square, F | Statistical Methods
+@meta codes=S10 pyq=23 f27=2.4 tier=1
+@lede Most items do one of two things: build a $t$, $\chi^2$ or $F$ from standard normals, or apply a standard error to a large-sample $z$ (S9–S11 together supplied 37 PYQs, about 4 in 2027).
+@grp Sampling from N(μ, σ²): the four facts
+$$\bar X\sim N\left(\mu,\frac{\sigma^2}{n}\right),\qquad \frac{(n-1)S^2}{\sigma^2}=\frac{\sum(X_i-\bar X)^2}{\sigma^2}\sim\chi^2_{n-1},\qquad \bar X\perp\!\!\!\perp S^2,\qquad \frac{\sqrt n(\bar X-\mu)}{S}\sim t_{n-1}.$$
+-* $\bar X\perp\!\!\!\perp S^2$ characterises the normal.
+- With the divisor $n$: $ns^2/\sigma^2$ is the same sum, still $\chi^2_{n-1}$ ([2026 Q24] **χ²_{(n−1)}**; [2023 Q36] **χ²(n−1)**; [2023 Q38] known $\sigma$ gives **N(0,1)**).
+- $\mathbb{E}S^2=\sigma^2$, $\mathrm{Var}\,S^2=\tfrac{2\sigma^4}{n-1}$, MGF of $S^2$ is $\left(1-\tfrac{2\sigma^2t}{n-1}\right)^{-(n-1)/2}$ ([2024 Q2] **(c)**).
+- $\mathbb{E}(1/S^2)=\tfrac{n-1}{(n-3)\sigma^2}$; with $r=\tfrac12\Gamma\left(\tfrac{n-3}2\right)/\Gamma\left(\tfrac{n-1}2\right)=\tfrac1{n-3}$ this is **(n−1)r/σ²** ([2024 Q3]).
+-! $\mathbb{E}S=\sigma\sqrt{\tfrac2{n-1}}\tfrac{\Gamma(n/2)}{\Gamma((n-1)/2)}<\sigma$: $S$ is biased for $\sigma$.
+- [2018 Q34], [2026 Q33] mean 0.1, SD 2.1, $n=900$: $\mathrm{SE}=0.07$, $z=-1.43$, $P(\bar x<0)=$ **0.0764**.
+- [2019 Q25] $T=\sum(X_i-\bar X)^2\sim\chi^2_4\perp\!\!\!\perp\bar X\sim N(0,\tfrac15)$: $\mathbb{E}T^2=8+16=24$, so $\mathbb{E}(T^2\bar X^2)=$ **4.8**.
+- [2026 Q35] $n=5$, $\sigma^2=36$: $27<S^2<45\iff3<\chi^2_4<5$, probability $0.71270-0.44217=$ **0.27053**.
+- [2022 Q17] substitute $u=y^2$: $\Gamma(\tfrac f2)2^{f/2}\times\sqrt{2\pi}\,e^{\mu^2/2}=$ **Γ(f/2) 2^{(f+1)/2} √π e^{μ²/2}**.
+@grp χ², t and F at a glance
+| Property | $\chi^2_n$ | $t_n$ | $F(m,n)$ |
+| Construction | $\sum_{i=1}^nZ_i^2$ | $Z\big/\sqrt{\chi^2_n/n}$, independent parts | $\dfrac{\chi^2_m/m}{\chi^2_n/n}$, independent parts |
+| Mean | $n$ | 0 ($n>1$) | $\tfrac{n}{n-2}$, $n>2$ |
+| Variance | $2n$ | $\tfrac n{n-2}$, $n>2$ | $\tfrac{2n^2(m+n-2)}{m(n-2)^2(n-4)}$, $n>4$ |
+| Mode | $n-2$ ($n\ge2$) | 0 | $\tfrac{m-2}m\cdot\tfrac n{n+2}<1$, $m>2$ |
+| Shape | $\beta_1=\tfrac8n$, $\beta_2=3+\tfrac{12}n$ | $\beta_2=3+\tfrac6{n-4}$ | Positively skewed |
+| Inflexion points | $(n-2)\pm\sqrt{2(n-2)}$ | $\pm\sqrt{n/(n+2)}$ | Symmetric about the mode |
+| MGF | $(1-2t)^{-n/2}$ | none | none |
+| Moments that exist | all | order $<n$ | $\mathbb{E}F^r$ for $r<n/2$ |
+| Large df | $\tfrac{\chi^2-n}{\sqrt{2n}}\xrightarrow{d}N(0,1)$; $\sqrt{2\chi^2}\approx N(\sqrt{2n-1},1)$ | $\to N(0,1)$; $t_1$ is Cauchy | $mF\to\chi^2_m$ as $n\to\infty$ |
+- Wilson–Hilferty: $(\chi^2_n/n)^{1/3}\approx N\left(1-\tfrac2{9n},\tfrac2{9n}\right)$. Fisher’s $z=\tfrac12\ln F\approx N\left(\tfrac12(\tfrac1n-\tfrac1m),\tfrac12(\tfrac1m+\tfrac1n)\right)$.
+-* $t_n^2=F(1,n)$; $F(m,\infty)=\chi^2_m/m$; $t_\infty=N(0,1)$; $1/F(m,n)\sim F(n,m)$, so $F_{1-\alpha}(m,n)=1/F_\alpha(n,m)$.
+- $\tfrac{mF}{n+mF}\sim$ Beta-I$\left(\tfrac m2,\tfrac n2\right)$; $\tfrac mnF\sim$ Beta-II$\left(\tfrac m2,\tfrac n2\right)$. $\chi^2_2=\mathrm{Exp}(\text{mean }2)$: $P(\chi^2_2>x)=e^{-x/2}$.
+-! Independent $\chi^2$ variables add; without independence the sum need not be $\chi^2$ ([2021 Q33] **1 only**). The normal is not a special case of $\chi^2_1$ ([2018 Q38] **2 and 3**).
+- MD of $t_n$ about 0 $=\dfrac{\sqrt n\,\Gamma((n-1)/2)}{\sqrt\pi\,\Gamma(n/2)}$. $X_1,X_2\overset{\text{iid}}{\sim}\chi^2_n$: $\dfrac{\sqrt n(X_1-X_2)}{2\sqrt{X_1X_2}}\sim t_n$.
+-* [2018 Q36], [2019 Q29] $\mathbb{E}(F)\,\mathbb{E}(1/F)=$ **mn/((m−2)(n−2))**. [2020 Q4] $F(5,10)$: mean $1.25>1$, mode $0.5<1$: **1 only**.
+- [2019 Q21] $r$ is not a proportion (false); $Z^2=\chi^2_1$ for the $2\times2$ test (true); $t_n$ is mesokurtic as $n\to\infty$ (true); the reciprocal rule swaps $\alpha$ and $1-\alpha$, so statement 4 is false: **(a) 2 and 3**.
+- [2025 Q10] $\tfrac{X-n}{\sqrt{2n}}\to N(0,1)$ and $\tfrac Xn\approx N(1,\tfrac2n)$: **both**. [2024 Q14] $\tfrac{nX}{mY}\sim F(m,n)$ and $\tfrac{mY}{nX}\sim F(n,m)$: **both**.
+@grp Building t and F from normals
+.key Numerator: a combination scaled to $N(0,1)$. Denominator: $\sqrt{\chi^2_k/k}$ from different, independent variables. The df is the number of squared standard normals below; $C=\sqrt k$ divided by the numerator’s SD.
+- [2018 Q35], [2019 Q28] $\dfrac{C(X_1+X_2)}{\sqrt{X_3^2+X_4^2+X_5^2}}$ is $t_3$ when $C=$ **√(3/2)** ([2025 Q59] prints the same value as option **(a)**).
+- [2024 Q7] $\dfrac{\sqrt2(X_5-X_6+X_7)}{\sqrt{(X_1+X_2+X_3)^2+3X_4^2}}$: the denominator is $3\chi^2_2$ and the numerator $\sqrt2\sqrt3\,Z$, so **t₂**.
+- [2025 Q56] 53 squares under 3 independent linear restrictions: **χ²₅₀**.
+- Cochran: if $\sum X_i^2=Q_1+\cdots+Q_k$ with ranks $r_j$, the $Q_j$ are independent $\chi^2_{r_j}$ iff $\sum r_j=n$. It underlies ANOVA and $\bar X\perp\!\!\!\perp S^2$.
+
+@sec S9 | Standard errors and large-sample tests | Statistical Methods
+@meta codes=S9 pyq=6 f27=0.8 tier=3
+@lede Apply a standard error to a large-sample $z$: identify the statistic, take its SE from the table, and compare with 1.96 / 2.58.
+@grp Standard errors
+| Statistic | Standard error (normal parent where relevant) |
+| $\bar x$ | $\sigma/\sqrt n$; without replacement $\times\sqrt{(N-n)/(N-1)}$ |
+| $s$ | $\sigma/\sqrt{2n}$ |
+| $s^2$ | $\sigma^2\sqrt{2/n}$ |
+| Median | $1.2533\,\sigma/\sqrt n$ $\left(=\sqrt{\pi/2}\,\sigma/\sqrt n\right)$ |
+| Quartiles | $1.3626\,\sigma/\sqrt n$ |
+| Quartile deviation | $0.7867\,\sigma/\sqrt n$ |
+| Mean deviation | $0.6028\,\sigma/\sqrt n$ |
+| Proportion | $\sqrt{PQ/n}$ |
+| $r$ | $(1-\rho^2)/\sqrt n$ |
+| Coefficient of variation $v$ (%) | $\tfrac{v}{\sqrt{2n}}\sqrt{1+2v^2/10^4}$ |
+| $\bar x_1-\bar x_2$ | $\sqrt{\sigma_1^2/n_1+\sigma_2^2/n_2}$ |
+| $\hat p_1-\hat p_2$ under $H_0$ | $\sqrt{\hat P\hat Q\left(\tfrac1{n_1}+\tfrac1{n_2}\right)}$, $\hat P=\tfrac{n_1\hat p_1+n_2\hat p_2}{n_1+n_2}$ |
+| $s_1-s_2$ | $\sqrt{\sigma_1^2/2n_1+\sigma_2^2/2n_2}$ |
+-! The finite-population factor is dropped when $n$ is small relative to $N$ or the population is infinite, not when $n=N$ ([2026 Q34] **I and III**).
+@grp Large-sample tests and intervals
+-* $Z=\dfrac{T-\mathbb{E}T}{\mathrm{SE}(T)}$. Two-tailed critical values 1.96 (5%) and 2.58 (1%); one-tailed 1.645 and 2.33. “In all probability” means within 3 SE.
+- 95% CI: $\bar x\pm1.96\,\sigma/\sqrt n$; $\hat p\pm1.96\sqrt{\hat p\hat q/n}$. Sample size to detect a difference $d$: $n\ge(z\sigma_d/d)^2$ per group.
+@grp PYQ keys
+| PYQ | Stem | Answer |
+| [2019 Q23] | SE of $\bar X_1-\bar X_2$ from SEs $W_1,W_2$ | **√(W₁²+W₂²)** |
+| [2022 Q59] | $n=100$, $\sigma^2=25$, $\bar x=5.96$ | $5.96\pm0.98=$ **[4.98, 6.94]** |
+| [2023 Q33] | $r=0.67$, $n=900$ | $\tfrac{1-0.4489}{30}=$ **0.018** |
+| [2023 Q34] | $n=100$, $\sigma=3$, $\bar x=64$, $z=2$ | **(63.4, 64.6)** |
+| [2023 Q35] | 380 singers of 800 | $1{,}280{,}000\times\tfrac{0.475\times0.525}{800}=$ **399** |
+| [2019 Q24] | Recoveries 75/100 vs 65/100 | $\hat P=0.7$, $\mathrm{SE}\approx0.065$, $Z=1.54$: chance at 5%, effective at 10%, 70 expected: **1, 2 and 3** |
+| [2026 Q31] | Equal means, SDs $\sigma$ and $2\sigma$, $n=2000$ each | $\mathrm{SE}=\sigma\sqrt{5/2000}=0.05\sigma$, so the difference is **less than 0.15σ** |
+| [2026 Q32] | 68.2 vs 67.5, SDs 2.5 and 2.8, 50 each | $\tfrac{0.7\sqrt n}{\sqrt{14.09}}\ge1.645$ needs $n\ge78$: **at least 28 more** |
+
+@sec S11 | Tests of significance and small-sample tests | Statistical Methods
+@meta codes=S11 pyq=8 f27=1.1 tier=2
+@lede Know the statistic and its degrees of freedom for every named test, the Type I / II error vocabulary, and the validity conditions of the chi-square test.
+@grp Tests and their degrees of freedom
+| Test | Statistic | df |
+| One-sample $t$ | $\sqrt n(\bar x-\mu_0)/S$ | $n-1$ |
+| Two-sample $t$, equal variances | $\dfrac{\bar x_1-\bar x_2}{S_p\sqrt{1/n_1+1/n_2}}$, $S_p^2=\dfrac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}$ | $n_1+n_2-2$ |
+| Paired $t$ | $\sqrt n\,\bar d/S_d$ | $n-1$ |
+| $r$, simple | $r\sqrt{n-2}/\sqrt{1-r^2}$ | $n-2$ |
+| $r$, partial of order $k$ | $r\sqrt{n-k-2}/\sqrt{1-r^2}$ | $n-k-2$ |
+| Regression coefficient | $b/\mathrm{SE}(b)$ | $n-2$ |
+| Variance, mean unknown / known | $(n-1)S^2/\sigma_0^2$; $\sum(x-\mu)^2/\sigma_0^2$ | $n-1$; $n$ |
+| Goodness of fit | $\sum(O-E)^2/E$ | classes $-1-$ parameters estimated |
+| Independence, $r\times c$ | $\sum(O-E)^2/E$ | $(r-1)(c-1)$ |
+| Two variances | $S_1^2/S_2^2$, larger on top | $(n_1-1,\ n_2-1)$ |
+| Multiple $R$, $p$ regressors | $\dfrac{R^2/p}{(1-R^2)/(n-p-1)}$ | $(p,\ n-p-1)$ |
+| Bartlett, $k$ variances | $\approx\chi^2$ | $k-1$ |
+| Fisher’s combination of $k$ $p$-values | $-2\sum\ln p_i\sim\chi^2$ | $2k$ |
+| Behrens–Fisher, unequal variances | Welch $t$ with Satterthwaite df | $\nu=\dfrac{(s_1^2/n_1+s_2^2/n_2)^2}{\frac{(s_1^2/n_1)^2}{n_1-1}+\frac{(s_2^2/n_2)^2}{n_2-1}}$ |
+-* Goodness-of-fit df drill: Poisson fitted to 8 classes gives 6; normal fitted to 10 classes gives 7; a $4\times5$ table gives 12. [2020 Q18] samples of 20 and 37: **19 and 36**. [2022 Q54] $H_0:\sigma^2=\sigma_0^2$: **chi-square**. [2026 Q36] doubling the sample variance divides $t$ by $\sqrt2$: **3/√2**.
+@grp Testing vocabulary
+-* Type I error $\alpha=P(\text{reject }H_0\mid H_0\text{ true})$, fixed by the experimenter; Type II $\beta=P(\text{accept }H_0\mid H_1\text{ true})$; power $=1-\beta$.
+- For fixed $n$, lowering $\alpha$ raises $\beta$; only a larger $n$ lowers both. The $p$-value is the smallest $\alpha$ at which $H_0$ is rejected.
+- [2019 Q22] statements 1 and 4 are true and 2, 3 false; no option matches exactly, and **(c)** is the closest key.
+-* $\chi^2$ validity: independent observations, $N$ reasonably large (about 50 or more), every expected frequency at least 5 (pool classes otherwise), and linear constraints on the cells. [2019 Q27] “constraints should not be linear” is the one not needed: **2 only**.

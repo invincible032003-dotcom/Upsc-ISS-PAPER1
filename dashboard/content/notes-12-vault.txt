@@ -1,0 +1,54 @@
+@sec VAULT | Last-48-hour formula vault | Revise
+@meta codes=P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13,S1,S2,S3,S4,S5,S6,S7,S8,S9,S10,S11,S12,S13,S14 tier=0
+@lede One sweep for the night before: every line below has already scored in a PYQ or sits one step from one.
+@grp Probability
+| Item | Result |
+| Union of independent events | $1-\prod(1-p_i)$ |
+| Matching $n$ letters | $P(\text{no match})\to1/e$; expected matches $=1$ |
+| Total variance | $\mathrm{Var}X=\mathbb{E}[\mathrm{Var}(X\mid Y)]+\mathrm{Var}[\mathbb{E}(X\mid Y)]$ |
+| Random sum $S_N$ | $\mathbb{E}=\mathbb{E}N\,\mathbb{E}X$; $\mathrm{Var}=\mathbb{E}N\,\mathrm{Var}X+\mathrm{Var}N(\mathbb{E}X)^2$; MGF $M_N(\ln M_X(t))$ |
+| PGF | $\mathbb{E}X=G'(1)$; $\mathrm{Var}X=G''(1)+G'(1)-G'(1)^2$; $\sum P(X>k)s^k=\tfrac{1-G}{1-s}$; $P(\text{even})=\tfrac12\{1+G(-1)\}$ |
+| Chebyshev | $P(\lvert X-\mu\rvert<k\sigma)\ge1-1/k^2$; sample size $n\ge\sigma^2/(\varepsilon^2\alpha)$ |
+| Maximum, minimum of $n$ iid | $F^n$; $1-(1-F)^n$ |
+| Exponential | Minimum $\sim\mathrm{Exp}(\sum\lambda_i)$; $P(X_1<X_2)=\tfrac{\lambda_1}{\lambda_1+\lambda_2}$; memoryless |
+| Binomial from mean $\mu$, variance $\sigma^2$ | $q=\sigma^2/\mu$, $n=\mu^2/(\mu-\sigma^2)$ |
+| Beta-I from mean $\mu$, variance $\sigma^2$ | $m+n=\mu(1-\mu)/\sigma^2-1$, $m=\mu(m+n)$ |
+| Binomial mode, skew | $\lfloor(n+1)p\rfloor$; sign of $q-p$ |
+| Normal constants | $\mathbb{E}\lvert Z\rvert=\sqrt{2/\pi}$; MD $\approx0.8\sigma$; QD $\approx0.6745\sigma$; $\mu_4=3\sigma^4$ |
+| Bivariate normal | $Y\mid x$: mean $\mu_2+\rho\tfrac{\sigma_2}{\sigma_1}(x-\mu_1)$, variance $\sigma_2^2(1-\rho^2)$; $P(X>0,Y>0)=\tfrac14+\tfrac{\sin^{-1}\rho}{2\pi}$; $\mathbb{E}\max=\sqrt{(1-\rho)/\pi}$ |
+| CF of $X_1X_2$, iid $N(0,1)$ | $(1+t^2)^{-1/2}$ |
+| Classic CLT limits | $e^{-n}\sum n^k/k!\to\tfrac12$; binomial tail from its mean $\to\tfrac12$ |
+| Median asymptotics | $N(\mu,\pi\sigma^2/2n)$ for the normal |
+@grp Statistical Methods
+| Item | Result |
+| Pooled variance | $\dfrac{n_1(\sigma_1^2+d_1^2)+n_2(\sigma_2^2+d_2^2)}{n_1+n_2}$ |
+| Sheppard | $\mu_2-\tfrac{h^2}{12}$; $\mu_4-\tfrac{h^2}2\mu_2+\tfrac{7h^4}{240}$ |
+| Empirical mode | $3\,\text{Median}-2\,\text{Mean}$ |
+| $r$ from sum and difference | $\dfrac{\sigma_{X+Y}^2-\sigma_{X-Y}^2}{4\sigma_X\sigma_Y}$ |
+| Regression | $r^2=b_{yx}b_{xy}$; both lines through $(\bar x,\bar y)$; perpendicular iff $r=0$ |
+| Partial | $r_{12.3}=\dfrac{r_{12}-r_{13}r_{23}}{\sqrt{(1-r_{13}^2)(1-r_{23}^2)}}$ |
+| Multiple | $1-R_{1.23}^2=(1-r_{12}^2)(1-r_{13.2}^2)$; $R\ge$ every $\lvert r_{1j}\rvert$ |
+| Equicorrelation | $r_{12.3}=\tfrac{r}{1+r}$; $R^2=\tfrac{2r^2}{1+r}$ |
+| Spearman | $1-\tfrac{6\sum d^2}{n(n^2-1)}$, add $\tfrac{m^3-m}{12}$ per tie |
+| Tests on $r$ | $t=\tfrac{r\sqrt{n-2}}{\sqrt{1-r^2}}$; smallest significant $r^2=\tfrac{t^2}{t^2+\nu}$; $z=\tanh^{-1}r\sim N\left(\tanh^{-1}\rho,\tfrac1{n-3}\right)$ |
+| Yule | $Q=\tfrac{ad-bc}{ad+bc}=\tfrac{2Y}{1+Y^2}$ |
+| $2\times2$ $\chi^2$ | $\tfrac{N(ad-bc)^2}{(a+b)(c+d)(a+c)(b+d)}$; $C=\sqrt{\tfrac{\chi^2}{\chi^2+N}}\le\sqrt{\tfrac{k-1}k}$ |
+| Standard errors | $\bar x$: $\tfrac\sigma{\sqrt n}$; median: $\tfrac{1.2533\sigma}{\sqrt n}$; $s$: $\tfrac\sigma{\sqrt{2n}}$; $r$: $\tfrac{1-r^2}{\sqrt n}$; $p$: $\sqrt{\tfrac{pq}n}$ |
+| Sample variance | $\tfrac{(n-1)S^2}{\sigma^2}\sim\chi^2_{n-1}$; $\mathrm{Var}S^2=\tfrac{2\sigma^4}{n-1}$; $\bar X\perp\!\!\!\perp S^2$ |
+| $\chi^2_n$, $t_n$ | $\chi^2$: mean $n$, variance $2n$, mode $n-2$; $t$: variance $\tfrac n{n-2}$, $t^2=F(1,n)$ |
+| $F(m,n)$ | Mean $\tfrac n{n-2}$; $\mathbb{E}F\,\mathbb{E}(1/F)=\tfrac{mn}{(m-2)(n-2)}$; $F_{1-\alpha}(m,n)=1/F_\alpha(n,m)$ |
+| Order statistics, $U(0,1)$ | $X_{(r)}\sim\mathrm{Beta}(r,n-r+1)$; range pdf $n(n-1)r^{n-2}(1-r)$ |
+| Mann–Whitney | Mean $\tfrac{mn}2$, variance $\tfrac{mn(m+n+1)}{12}$ |
+| Wilcoxon signed-rank | Mean $\tfrac{n(n+1)}4$, variance $\tfrac{n(n+1)(2n+1)}{24}$ |
+| Runs | Mean $1+\tfrac{2mn}N$, variance $\tfrac{2mn(2mn-N)}{N^2(N-1)}$ |
+| Kolmogorov–Smirnov | $D=\sup\lvert F_n-F_0\rvert$, 5% cut-off $\approx1.36/\sqrt n$ |
+| ARE at the normal | Median : mean $2/\pi$; sign : $t$ $2/\pi$; Wilcoxon : $t$ $3/\pi$ |
+@grp Numbers
+| Constant | Value | Constant | Value | Constant | Value |
+| $\Phi(1)$ | 0.8413 | $\Phi(2.33)$ | 0.99 | $e^{-2}$ | 0.1353 |
+| $\Phi(1.645)$ | 0.95 | $\Phi(2.58)$ | 0.995 | $e^{-3}$ | 0.0498 |
+| $\Phi(1.96)$ | 0.975 | $\Phi(3)$ | 0.99865 | $\sqrt{2/\pi}$ | 0.7979 |
+| $\Phi(2)$ | 0.9772 | $e^{-1}$ | 0.3679 | $1/\sqrt\pi$ | 0.5642 |
+| $1/\sqrt{2\pi}$ | 0.3989 | $2/\pi$ | 0.6366 | $3/\pi$ | 0.9549 |
+| $\ln2$ | 0.6931 | $6/\pi^2$ | 0.6079 | $\pi^2/6$ | 1.6449 |
+.trap **Traps.** Uncorrelated $\Rightarrow$ independent only for jointly normal pairs or two 0/1 variables. Pairwise $\Rightarrow$ mutual independence: false. Mutually exclusive $\Rightarrow$ independent: false unless a probability is 0. “The Cauchy mean is 0”: false. a.s. $\Rightarrow$ mean square: false. $d\Rightarrow P$ only when the limit is a constant. A sum of $\chi^2$ variables is $\chi^2$ only with independence. Normal marginals $\Rightarrow$ BVN: false. $R_{1.23}\ge r_{23}$: false. “Consistent $\Rightarrow$ UMP”: false. Before any arithmetic check the convention: geometric and negative binomial (trials or failures), exponential (rate or mean), gamma (rate or scale).

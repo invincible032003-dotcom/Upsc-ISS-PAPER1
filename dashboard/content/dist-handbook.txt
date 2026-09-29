@@ -1,0 +1,413 @@
+#! Distribution handbook. One card per law. Values are LaTeX. "-" bullets are remarks.
+#! Keys: pmf/pdf, cdf, support, mean, var, median, mode, skew (gamma_1), kurt (beta_2), exkurt (gamma_2), mgf, cf, pgf, q (quartiles/other), mom (moments)
+@dist bernoulli | Bernoulli | $\mathrm{Bernoulli}(p)$ | d | P4 | in-notes
+par: $0<p<1$, $q=1-p$
+support: $x\in\{0,1\}$
+pmf: $p^xq^{1-x}$
+cdf: $0\ (x<0),\ \ q\ (0\le x<1),\ \ 1\ (x\ge1)$
+mean: $p$
+var: $pq\ (\le\tfrac14)$
+median: $0$ if $p<\tfrac12$; $1$ if $p>\tfrac12$; any point of $[0,1]$ if $p=\tfrac12$
+mode: $1$ if $p>\tfrac12$; $0$ if $p<\tfrac12$; both if $p=\tfrac12$
+skew: $\dfrac{q-p}{\sqrt{pq}}$
+kurt: $\dfrac{1-3pq}{pq}$
+exkurt: $\dfrac{1-6pq}{pq}$
+mgf: $q+pe^t$
+cf: $q+pe^{it}$
+pgf: $q+ps$
+mom: $\mathbb{E}X^k=p$ for every $k\ge1$; $\mu_3=pq(q-p)$
+- Largest variance of a 0–1 variable is $\tfrac14$ at $p=\tfrac12$.
+- Sum of $n$ iid Bernoulli$(p)$ is Bin$(n,p)$.
+@dist dunif | Discrete uniform | $\mathrm{DU}\{1,\dots,n\}$ | d | P4 | in-notes
+par: $n\in\mathbb N$
+support: $x=1,2,\dots,n$
+pmf: $\dfrac1n$
+cdf: $\dfrac{\lfloor x\rfloor}{n}$ for $1\le x\le n$
+mean: $\dfrac{n+1}{2}$
+var: $\dfrac{n^2-1}{12}$
+median: $\dfrac{n+1}{2}$ (any point between the two middle values when $n$ is even)
+mode: none unique (every value)
+skew: $0$
+kurt: $3-\dfrac{6(n^2+1)}{5(n^2-1)}$
+exkurt: $-\dfrac{6(n^2+1)}{5(n^2-1)}$
+mgf: $\dfrac{e^t(1-e^{nt})}{n(1-e^t)}$
+cf: $\dfrac{e^{it}(1-e^{int})}{n(1-e^{it})}$
+pgf: $\dfrac{s(1-s^n)}{n(1-s)}$
+mom: $\sum k=\tfrac{n(n+1)}2$, $\sum k^2=\tfrac{n(n+1)(2n+1)}6$, $\sum k^3=\left[\tfrac{n(n+1)}2\right]^2$
+- On $\{a,a+1,\dots,b\}$ with $m=b-a+1$ points: mean $\tfrac{a+b}2$, variance $\tfrac{m^2-1}{12}$.
+@dist binomial | Binomial | $\mathrm{Bin}(n,p)$ | d | P4 | in-notes
+par: $n\in\mathbb N$, $0<p<1$, $q=1-p$
+support: $x=0,1,\dots,n$
+pmf: $\dbinom nx p^xq^{n-x}$
+cdf: $\sum_{k\le x}\dbinom nkp^kq^{n-k}=I_q(n-x,\,x+1)$ (regularised incomplete beta)
+mean: $np$
+var: $npq$
+median: $\lfloor np\rfloor$ or $\lceil np\rceil$ (equal to $np$ when it is an integer)
+mode: $\lfloor(n+1)p\rfloor$; two modes $(n+1)p-1$ and $(n+1)p$ if $(n+1)p\in\mathbb Z$
+skew: $\dfrac{q-p}{\sqrt{npq}}$
+kurt: $3+\dfrac{1-6pq}{npq}$
+exkurt: $\dfrac{1-6pq}{npq}$
+mgf: $(q+pe^t)^n$
+cf: $(q+pe^{it})^n$
+pgf: $(q+ps)^n$
+mom: $\mu_3=npq(q-p)$, $\mu_4=3(npq)^2+npq(1-6pq)$; factorial moment $\mathbb{E}X^{(r)}=n^{(r)}p^r$
+- Mean $>$ variance always; $n-X\sim\mathrm{Bin}(n,q)$; adds only for a common $p$.
+- Recurrence $\tfrac{P(x+1)}{P(x)}=\tfrac{n-x}{x+1}\cdot\tfrac pq$.
+- $\to$ Poisson$(np)$ as $n\to\infty$, $p\to0$; $\to$ normal (de Moivre–Laplace).
+@dist poisson | Poisson | $\mathrm{Poisson}(\lambda)$ | d | P4 | in-notes
+par: $\lambda>0$
+support: $x=0,1,2,\dots$
+pmf: $\dfrac{e^{-\lambda}\lambda^x}{x!}$
+cdf: $e^{-\lambda}\sum_{k\le x}\dfrac{\lambda^k}{k!}=\dfrac{\Gamma(\lfloor x\rfloor+1,\lambda)}{\lfloor x\rfloor!}=P(\chi^2_{2(x+1)}>2\lambda)$
+mean: $\lambda$
+var: $\lambda$
+median: $\approx\left\lfloor\lambda+\tfrac13-\tfrac{0.02}{\lambda}\right\rfloor$
+mode: $\lfloor\lambda\rfloor$; two modes $\lambda-1,\lambda$ when $\lambda$ is an integer
+skew: $\dfrac1{\sqrt\lambda}$
+kurt: $3+\dfrac1\lambda$
+exkurt: $\dfrac1\lambda$
+mgf: $\exp\{\lambda(e^t-1)\}$
+cf: $\exp\{\lambda(e^{it}-1)\}$
+pgf: $\exp\{\lambda(s-1)\}$
+mom: $\mu_2=\mu_3=\lambda$, $\mu_4=3\lambda^2+\lambda$; every cumulant $=\lambda$; $\mathbb{E}X^{(r)}=\lambda^r$
+- $P(X\text{ even})=\tfrac12(1+e^{-2\lambda})$; $\mathbb{E}\tfrac1{X+1}=\tfrac{1-e^{-\lambda}}{\lambda}$.
+- Sum of independent Poissons is Poisson; $X\mid X+Y=n\sim\mathrm{Bin}\left(n,\tfrac{\lambda_1}{\lambda_1+\lambda_2}\right)$.
+@dist geomT | Geometric (trials) | $\mathrm{Geo}(p)$ on $\{1,2,\dots\}$ | d | P4 | in-notes
+par: $0<p<1$, $q=1-p$; $X$ = trial of the first success
+support: $x=1,2,3,\dots$
+pmf: $q^{x-1}p$
+cdf: $1-q^{x}$; survival $P(X>k)=q^k$
+mean: $\dfrac1p$
+var: $\dfrac q{p^2}$
+median: $\left\lceil\dfrac{-1}{\log_2q}\right\rceil$
+mode: $1$
+skew: $\dfrac{2-p}{\sqrt q}$
+kurt: $9+\dfrac{p^2}{q}$
+exkurt: $6+\dfrac{p^2}{q}$
+mgf: $\dfrac{pe^t}{1-qe^t}$, $t<-\ln q$
+cf: $\dfrac{pe^{it}}{1-qe^{it}}$
+pgf: $\dfrac{ps}{1-qs}$
+mom: $\beta_1=\dfrac{(2-p)^2}{q}=\dfrac{(1+q)^2}{q}$
+- Memoryless: $P(X>m+n\mid X>m)=P(X>n)$; the only such discrete law on $\{1,2,\dots\}$.
+- Minimum of independent Geo$(p_1)$, Geo$(p_2)$ is Geo$(p_1+p_2-p_1p_2)$.
+@dist geomF | Geometric (failures) | $\mathrm{Geo}(p)$ on $\{0,1,\dots\}$ | d | P4 | in-notes
+par: $0<p<1$, $q=1-p$; $Y$ = number of failures before the first success ($Y=X-1$)
+support: $y=0,1,2,\dots$
+pmf: $pq^{y}$
+cdf: $1-q^{y+1}$; survival $P(Y\ge k)=q^k$
+mean: $\dfrac qp$
+var: $\dfrac q{p^2}$
+median: $\left\lceil\dfrac{-1}{\log_2q}\right\rceil-1$
+mode: $0$
+skew: $\dfrac{2-p}{\sqrt q}$
+kurt: $9+\dfrac{p^2}{q}$
+exkurt: $6+\dfrac{p^2}{q}$
+mgf: $\dfrac{p}{1-qe^t}$, $t<-\ln q$
+cf: $\dfrac{p}{1-qe^{it}}$
+pgf: $\dfrac{p}{1-qs}$
+- Indian textbooks (Gupta–Kapoor) use this form; check the support before any numeric answer.
+@dist nbF | Negative binomial (failures) | $\mathrm{NB}(r,p)$ on $\{0,1,\dots\}$ | d | P4 | in-notes
+par: $r>0$ (integer for the waiting-time story), $0<p<1$, $q=1-p$; $Y$ = failures before the $r$-th success
+support: $y=0,1,2,\dots$
+pmf: $\dbinom{y+r-1}{r-1}p^rq^y$
+cdf: $I_p(r,\,y+1)$; also $F_Y(y)=1-F_{\mathrm{Bin}(y+r,\,p)}(r-1)$
+mean: $\dfrac{rq}{p}$
+var: $\dfrac{rq}{p^2}$
+median: no closed form (about $\tfrac{rq}{p}-\tfrac{q}{3p}$ for large $r$)
+mode: $\left\lfloor\dfrac{(r-1)q}{p}\right\rfloor$ for $r>1$; $0$ if $r\le1$
+skew: $\dfrac{2-p}{\sqrt{rq}}$
+kurt: $3+\dfrac{6}{r}+\dfrac{p^2}{rq}$
+exkurt: $\dfrac{6}{r}+\dfrac{p^2}{rq}$
+mgf: $\left(\dfrac{p}{1-qe^t}\right)^r$
+cf: $\left(\dfrac{p}{1-qe^{it}}\right)^r$
+pgf: $\left(\dfrac{p}{1-qs}\right)^r$
+mom: $\beta_1=\dfrac{(1+q)^2}{rq}$, $\beta_2=3+\dfrac{6q+p^2}{rq}$
+- Variance $>$ mean (overdispersion). Sum of $r$ iid Geo(failures). Gamma-mixed Poisson. $\to$ Poisson$(\lambda)$ as $r\to\infty$, $rq\to\lambda$.
+@dist nbT | Negative binomial (trials) | $\mathrm{NB}(r,p)$ on $\{r,r+1,\dots\}$ | d | P4 | in-notes
+par: $r\in\mathbb N$, $0<p<1$, $q=1-p$; $X$ = trial of the $r$-th success ($X=Y+r$)
+support: $x=r,r+1,\dots$
+pmf: $\dbinom{x-1}{r-1}p^rq^{x-r}$
+cdf: $I_p(r,\,x-r+1)$
+mean: $\dfrac rp$
+var: $\dfrac{rq}{p^2}$
+median: no closed form
+mode: $r+\left\lfloor\dfrac{(r-1)q}{p}\right\rfloor=\left\lfloor\dfrac{r-1}{p}\right\rfloor+1$
+skew: $\dfrac{2-p}{\sqrt{rq}}$
+kurt: $3+\dfrac{6q+p^2}{rq}$
+exkurt: $\dfrac{6q+p^2}{rq}$
+mgf: $\left(\dfrac{pe^t}{1-qe^t}\right)^r$
+cf: $\left(\dfrac{pe^{it}}{1-qe^{it}}\right)^r$
+pgf: $\left(\dfrac{ps}{1-qs}\right)^r$
+- “The seventh child is the second daughter” is $\mathrm{NB}$: $\binom61p^2q^5$.
+@dist hyper | Hypergeometric | $\mathrm{Hyp}(N,K,n)$ | d | P4 | in-notes
+par: population $N$, $K$ successes, sample $n$; write $p=K/N$
+support: $\max(0,n+K-N)\le x\le\min(n,K)$
+pmf: $\dfrac{\binom Kx\binom{N-K}{n-x}}{\binom Nn}$
+cdf: $\sum_{k\le x}\dfrac{\binom Kk\binom{N-K}{n-k}}{\binom Nn}$ (no closed form)
+mean: $\dfrac{nK}{N}=np$
+var: $np(1-p)\dfrac{N-n}{N-1}$
+median: about $np$ (nearest integer)
+mode: $\left\lfloor\dfrac{(n+1)(K+1)}{N+2}\right\rfloor$
+skew: $\dfrac{(N-2K)(N-2n)}{N-2}\sqrt{\dfrac{N-1}{nK(N-K)(N-n)}}$
+exkurt: $\dfrac{(N-1)N^2\left[N(N+1)-6K(N-K)-6n(N-n)\right]+6nK(N-K)(N-n)(5N-6)}{nK(N-K)(N-n)(N-2)(N-3)}$
+mgf: $\dfrac{\binom{N-K}{n}}{\binom Nn}\,{}_2F_1(-n,-K;N-K-n+1;e^t)$ (no elementary form)
+pgf: $\dfrac{\binom{N-K}{n}}{\binom Nn}\,{}_2F_1(-n,-K;N-K-n+1;s)$
+mom: $\mathbb{E}X^{(r)}=\dfrac{n^{(r)}K^{(r)}}{N^{(r)}}$ (falling factorials)
+- Each single draw is Bernoulli$(K/N)$; draws are dependent. $\to\mathrm{Bin}(n,K/N)$ as $N\to\infty$. Variance is the binomial's times the finite-population factor $\tfrac{N-n}{N-1}$.
+@dist multinom | Multinomial | $\mathrm{Mult}(n;p_1,\dots,p_k)$ | d | P4 | in-notes
+par: $n\in\mathbb N$, $p_i>0$, $\sum p_i=1$, $q_i=1-p_i$
+support: $x_i\ge0$, $\sum x_i=n$
+pmf: $\dfrac{n!}{x_1!\cdots x_k!}\prod p_i^{x_i}$
+cdf: sum of the pmf over $\{y_i\le x_i\}$ (no closed form)
+mean: $\mathbb{E}X_i=np_i$
+var: $\mathrm{Var}X_i=np_iq_i$; $\mathrm{Cov}(X_i,X_j)=-np_ip_j$
+mode: near $(np_1,\dots,np_k)$ (integer vector maximising the pmf)
+skew: each margin is Bin$(n,p_i)$: $\dfrac{q_i-p_i}{\sqrt{np_iq_i}}$
+mgf: $\left(\sum_ip_ie^{t_i}\right)^n$
+cf: $\left(\sum_jp_je^{it_j}\right)^n$
+pgf: $\left(\sum_ip_is_i\right)^n$
+mom: $\rho_{ij}=-\sqrt{\dfrac{p_ip_j}{(1-p_i)(1-p_j)}}$
+- $X_i\mid X_j=m\sim\mathrm{Bin}\left(n-m,\tfrac{p_i}{1-p_j}\right)$; lumping cells keeps it multinomial; $k=2$ is the binomial.
+@dist unif | Uniform (rectangular) | $U(a,b)$ | c | P5 | in-notes
+par: $a<b$
+support: $a\le x\le b$
+pdf: $\dfrac1{b-a}$
+cdf: $\dfrac{x-a}{b-a}$ for $a\le x\le b$
+mean: $\dfrac{a+b}2$
+var: $\dfrac{(b-a)^2}{12}$
+median: $\dfrac{a+b}2$
+mode: every point of $[a,b]$ (no unique mode)
+skew: $0$
+kurt: $\dfrac95=1.8$
+exkurt: $-\dfrac65$
+mgf: $\dfrac{e^{bt}-e^{at}}{(b-a)t}$ ($t\ne0$)
+cf: $\dfrac{e^{itb}-e^{ita}}{it(b-a)}$
+q: $Q_1=a+\tfrac{b-a}4$, $Q_3=a+\tfrac{3(b-a)}4$; MD about the mean $\tfrac{b-a}4$
+mom: $\mu_r'=\dfrac{b^{r+1}-a^{r+1}}{(r+1)(b-a)}$; $U(-c,c)$: $\mu_{2k}=\dfrac{c^{2k}}{2k+1}$
+- $F(X)\sim U(0,1)$ for continuous $F$; $-\ln U\sim\mathrm{Exp}(1)$; $U_{(k)}\sim\mathrm{Beta}(k,n+1-k)$; sum of two iid $U(0,1)$ is triangular.
+@dist expo | Exponential | $\mathrm{Exp}(\theta)$ (rate $\theta$; mean $1/\theta$) | c | P5 | in-notes
+par: rate $\theta>0$ (mean form $\mu=1/\theta$)
+support: $x>0$
+pdf: $\theta e^{-\theta x}$
+cdf: $1-e^{-\theta x}$; survival $e^{-\theta x}$; hazard $\theta$
+mean: $\dfrac1\theta$
+var: $\dfrac1{\theta^2}$
+median: $\dfrac{\ln2}{\theta}$
+mode: $0$
+skew: $2$
+kurt: $9$
+exkurt: $6$
+mgf: $\dfrac{\theta}{\theta-t}$, $t<\theta$
+cf: $\dfrac{\theta}{\theta-it}$
+q: $Q_1=\dfrac{\ln(4/3)}{\theta}$, $Q_3=\dfrac{\ln4}{\theta}$
+mom: $\mathbb{E}X^k=\dfrac{k!}{\theta^k}$; $\mu_3=\dfrac2{\theta^3}$, $\mu_4=\dfrac9{\theta^4}$
+- Memoryless; $P(X>\text{mean})=e^{-1}$; min of independents is $\mathrm{Exp}(\sum\theta_i)$; sum of $n$ iid is Gamma$(n,\theta)$; $2\theta X\sim\chi^2_2$.
+@dist normal | Normal | $N(\mu,\sigma^2)$ | c | P5 | in-notes
+par: $\mu\in\mathbb R$, $\sigma>0$
+support: $x\in\mathbb R$
+pdf: $\dfrac1{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
+cdf: $\Phi\left(\tfrac{x-\mu}{\sigma}\right)=\tfrac12\left[1+\mathrm{erf}\left(\tfrac{x-\mu}{\sigma\sqrt2}\right)\right]$
+mean: $\mu$
+var: $\sigma^2$
+median: $\mu$
+mode: $\mu$
+skew: $0$
+kurt: $3$
+exkurt: $0$
+mgf: $e^{\mu t+\sigma^2t^2/2}$
+cf: $e^{i\mu t-\sigma^2t^2/2}$
+q: $Q_{1,3}=\mu\mp0.6745\sigma$; MD $=\sigma\sqrt{2/\pi}\approx0.7979\sigma$; inflexions $\mu\pm\sigma$
+mom: $\mu_{2k}=\sigma^{2k}(2k-1)!!$, odd central moments 0; $\mathbb{E}\lvert X-\mu\rvert^r=\dfrac{2^{r/2}\sigma^r\Gamma\left(\frac{r+1}2\right)}{\sqrt\pi}$
+- Coverage $68.27\%,95.45\%,99.73\%$ at $1,2,3\sigma$; $\Phi(-x)=1-\Phi(x)$; $Z^2\sim\chi^2_1$; $X/Y\sim$ Cauchy.
+@dist lognorm | Lognormal | $\mathrm{LN}(\mu,\sigma^2)$ ($\ln X\sim N(\mu,\sigma^2)$) | c | P5 | in-notes
+par: $\mu\in\mathbb R$, $\sigma>0$ (parameters of $\ln X$)
+support: $x>0$
+pdf: $\dfrac1{x\sigma\sqrt{2\pi}}\exp\left\{-\dfrac{(\ln x-\mu)^2}{2\sigma^2}\right\}$
+cdf: $\Phi\left(\dfrac{\ln x-\mu}{\sigma}\right)$
+mean: $e^{\mu+\sigma^2/2}$
+var: $(e^{\sigma^2}-1)e^{2\mu+\sigma^2}$
+median: $e^{\mu}$
+mode: $e^{\mu-\sigma^2}$
+skew: $(e^{\sigma^2}+2)\sqrt{e^{\sigma^2}-1}$
+kurt: $e^{4\sigma^2}+2e^{3\sigma^2}+3e^{2\sigma^2}-3$
+exkurt: $e^{4\sigma^2}+2e^{3\sigma^2}+3e^{2\sigma^2}-6$
+mgf: does not exist for any $t>0$
+cf: exists, but no closed form
+mom: $\mathbb{E}X^k=e^{k\mu+k^2\sigma^2/2}$; $\mathrm{CV}=\sqrt{e^{\sigma^2}-1}$
+- mode $<$ median $<$ mean; not determined by its moments; products of independent lognormals are lognormal.
+@dist cauchy | Cauchy | $\mathrm{Cauchy}(\theta,\sigma)$ | c | P5 | in-notes
+par: location $\theta$, scale $\sigma>0$
+support: $x\in\mathbb R$
+pdf: $\dfrac{\sigma}{\pi\left[\sigma^2+(x-\theta)^2\right]}$
+cdf: $\dfrac12+\dfrac1\pi\tan^{-1}\left(\dfrac{x-\theta}{\sigma}\right)$
+mean: does not exist
+var: does not exist
+median: $\theta$
+mode: $\theta$
+skew: undefined
+kurt: undefined
+mgf: does not exist for any $t\ne0$
+cf: $e^{i\theta t-\sigma\lvert t\rvert}$
+q: $Q_1=\theta-\sigma$, $Q_3=\theta+\sigma$; QD $=\sigma$
+mom: $\mathbb{E}\lvert X\rvert^r<\infty$ only for $r<1$
+- $t_1$ is Cauchy; $\bar X_n$ has the same law as $X$; ratio of iid $N(0,1)$; $1/X$ is Cauchy; sample median estimates $\theta$.
+@dist laplace | Laplace (double exponential) | $\mathrm{Laplace}(\mu,b)$ | c | P5 | in-notes
+par: $\mu\in\mathbb R$, $b>0$
+support: $x\in\mathbb R$
+pdf: $\dfrac1{2b}e^{-\lvert x-\mu\rvert/b}$
+cdf: $\tfrac12e^{(x-\mu)/b}$ for $x\le\mu$; $1-\tfrac12e^{-(x-\mu)/b}$ for $x>\mu$
+mean: $\mu$
+var: $2b^2$
+median: $\mu$
+mode: $\mu$
+skew: $0$
+kurt: $6$
+exkurt: $3$
+mgf: $\dfrac{e^{\mu t}}{1-b^2t^2}$, $\lvert t\rvert<\tfrac1b$
+cf: $\dfrac{e^{i\mu t}}{1+b^2t^2}$
+q: $\mathbb{E}\lvert X-\mu\rvert=b$; $Q_{1,3}=\mu\mp b\ln2$
+- $X_1-X_2$ for iid exponentials is Laplace; MLE of $\mu$ is the sample median; MLE of $b$ is the mean absolute deviation about it.
+@dist gamma | Gamma | $\mathrm{Gamma}(\alpha,\lambda)$ (shape–rate) | c | P5 | in-notes
+par: shape $\alpha>0$, rate $\lambda>0$ (scale $\theta=1/\lambda$)
+support: $x>0$
+pdf: $\dfrac{\lambda^\alpha x^{\alpha-1}e^{-\lambda x}}{\Gamma(\alpha)}$
+cdf: $\dfrac{\gamma(\alpha,\lambda x)}{\Gamma(\alpha)}$ (regularised lower incomplete gamma); for integer $\alpha=n$: $1-e^{-\lambda x}\sum_{k<n}\tfrac{(\lambda x)^k}{k!}$
+mean: $\dfrac\alpha\lambda$
+var: $\dfrac\alpha{\lambda^2}$
+median: no closed form; $\approx\dfrac{\alpha-1/3}{\lambda}$
+mode: $\dfrac{\alpha-1}{\lambda}$ for $\alpha\ge1$ (density unbounded at 0 if $\alpha<1$)
+skew: $\dfrac2{\sqrt\alpha}$
+kurt: $3+\dfrac6\alpha$
+exkurt: $\dfrac6\alpha$
+mgf: $\left(1-\dfrac t\lambda\right)^{-\alpha}$, $t<\lambda$
+cf: $\left(1-\dfrac{it}\lambda\right)^{-\alpha}$
+mom: $\mathbb{E}X^k=\dfrac{\Gamma(\alpha+k)}{\Gamma(\alpha)\lambda^k}$; $\mu_3=\dfrac{2\alpha}{\lambda^3}$; $\beta_1=\dfrac4\alpha$
+- $\mathrm{Gamma}(1,\lambda)=\mathrm{Exp}(\lambda)$; $\chi^2_n=\mathrm{Gamma}(\tfrac n2,\tfrac12)$; $cX\sim\mathrm{Gamma}(\alpha,\lambda/c)$; sum with a common rate adds the shapes.
+@dist beta1 | Beta of the first kind | $\mathrm{Beta}\text{-I}(m,n)$ | c | P5 | in-notes
+par: $m,n>0$
+support: $0<x<1$
+pdf: $\dfrac{x^{m-1}(1-x)^{n-1}}{B(m,n)}$
+cdf: $I_x(m,n)$ (regularised incomplete beta)
+mean: $\dfrac{m}{m+n}$
+var: $\dfrac{mn}{(m+n)^2(m+n+1)}$
+median: $\approx\dfrac{m-1/3}{m+n-2/3}$ for $m,n>1$
+mode: $\dfrac{m-1}{m+n-2}$ for $m,n>1$
+skew: $\dfrac{2(n-m)\sqrt{m+n+1}}{(m+n+2)\sqrt{mn}}$
+exkurt: $\dfrac{6\left[(m-n)^2(m+n+1)-mn(m+n+2)\right]}{mn(m+n+2)(m+n+3)}$
+mgf: ${}_1F_1(m;m+n;t)$ (confluent hypergeometric)
+cf: ${}_1F_1(m;m+n;it)$
+mom: $\mathbb{E}X^r=\dfrac{B(m+r,n)}{B(m,n)}=\prod_{j=0}^{r-1}\dfrac{m+j}{m+n+j}$
+- Beta$(1,1)=U(0,1)$; $1-X\sim\mathrm{Beta}(n,m)$; $m+n=\tfrac{\mu(1-\mu)}{\sigma^2}-1$; U-shaped for $m,n<1$.
+@dist beta2 | Beta of the second kind | $\mathrm{Beta}\text{-II}(m,n)$ | c | P5 | in-notes
+par: $m,n>0$
+support: $x>0$
+pdf: $\dfrac{x^{m-1}}{B(m,n)(1+x)^{m+n}}$
+cdf: $I_{x/(1+x)}(m,n)$
+mean: $\dfrac{m}{n-1}$, $n>1$
+var: $\dfrac{m(m+n-1)}{(n-1)^2(n-2)}$, $n>2$
+median: no closed form
+mode: $\dfrac{m-1}{n+1}$ for $m\ge1$
+skew: $\dfrac{2(2m+n-1)}{n-3}\sqrt{\dfrac{n-2}{m(m+n-1)}}$, $n>3$
+mgf: does not exist for $t>0$
+mom: $\mathbb{E}X^r=\dfrac{B(m+r,n-r)}{B(m,n)}$ for $r<n$
+- $\tfrac X{1+X}\sim\mathrm{Beta}\text{-I}(m,n)$; $\tfrac1X\sim\mathrm{Beta}\text{-II}(n,m)$; ratio of independent Gamma$(m)$/Gamma$(n)$; $F(\nu_1,\nu_2)=\tfrac{\nu_2}{\nu_1}\mathrm{Beta}\text{-II}\left(\tfrac{\nu_1}2,\tfrac{\nu_2}2\right)$.
+@dist chisq | Chi-square | $\chi^2_k$ | c | P5 | extra
+par: degrees of freedom $k\in\mathbb N$
+support: $x>0$
+pdf: $\dfrac{x^{k/2-1}e^{-x/2}}{2^{k/2}\Gamma(k/2)}$
+cdf: $\dfrac{\gamma(k/2,\,x/2)}{\Gamma(k/2)}$; $k=2$: $1-e^{-x/2}$
+mean: $k$
+var: $2k$
+median: $\approx k\left(1-\dfrac2{9k}\right)^3$
+mode: $k-2$ for $k\ge2$; $0$ for $k=1$ (density unbounded)
+skew: $\sqrt{\dfrac8k}$
+kurt: $3+\dfrac{12}k$
+exkurt: $\dfrac{12}k$
+mgf: $(1-2t)^{-k/2}$, $t<\tfrac12$
+cf: $(1-2it)^{-k/2}$
+mom: $\mathbb{E}X^r=k(k+2)\cdots(k+2r-2)$; $\mu_3=8k$; $\mu_4=12k(k+4)$
+- $\sum Z_i^2$; $\tfrac{(n-1)S^2}{\sigma^2}\sim\chi^2_{n-1}$; $\tfrac{\chi^2-k}{\sqrt{2k}}\to N(0,1)$; $\sqrt{2\chi^2}\approx N(\sqrt{2k-1},1)$; Wilson–Hilferty.
+@dist tdist | Student’s t | $t_\nu$ | c | P5 | extra
+par: degrees of freedom $\nu>0$
+support: $x\in\mathbb R$
+pdf: $\dfrac{\Gamma\left(\frac{\nu+1}2\right)}{\sqrt{\nu\pi}\,\Gamma\left(\frac\nu2\right)}\left(1+\dfrac{x^2}\nu\right)^{-\frac{\nu+1}{2}}$
+cdf: $\tfrac12+x\,\dfrac{\Gamma\left(\frac{\nu+1}2\right)}{\sqrt{\pi\nu}\Gamma\left(\frac\nu2\right)}{}_2F_1\left(\tfrac12,\tfrac{\nu+1}2;\tfrac32;-\tfrac{x^2}\nu\right)$
+mean: $0$ for $\nu>1$
+var: $\dfrac\nu{\nu-2}$ for $\nu>2$
+median: $0$
+mode: $0$
+skew: $0$ for $\nu>3$
+kurt: $3+\dfrac6{\nu-4}$ for $\nu>4$
+exkurt: $\dfrac6{\nu-4}$
+mgf: does not exist
+mom: $\mathbb{E}\lvert X\rvert^r<\infty$ only for $r<\nu$; MD $=\dfrac{\sqrt\nu\,\Gamma\left(\frac{\nu-1}2\right)}{\sqrt\pi\,\Gamma\left(\frac\nu2\right)}$
+- $Z/\sqrt{\chi^2_\nu/\nu}$; $t_1$ is Cauchy; $t_\nu\to N(0,1)$; $t^2_\nu=F(1,\nu)$; $\tfrac1{1+t^2/\nu}\sim\mathrm{Beta}\left(\tfrac\nu2,\tfrac12\right)$.
+@dist fdist | Snedecor’s F | $F(m,n)$ | c | P5 | extra
+par: numerator df $m$, denominator df $n$
+support: $x>0$
+pdf: $\dfrac1{B\left(\frac m2,\frac n2\right)}\left(\dfrac mn\right)^{m/2}x^{\frac m2-1}\left(1+\dfrac{mx}n\right)^{-\frac{m+n}2}$
+cdf: $I_{\frac{mx}{mx+n}}\left(\tfrac m2,\tfrac n2\right)$
+mean: $\dfrac n{n-2}$, $n>2$
+var: $\dfrac{2n^2(m+n-2)}{m(n-2)^2(n-4)}$, $n>4$
+median: about $1$ for large df; equal df: exactly $1$
+mode: $\dfrac{n(m-2)}{m(n+2)}$ for $m>2$
+skew: $\dfrac{(2m+n-2)\sqrt{8(n-4)}}{(n-6)\sqrt{m(m+n-2)}}$, $n>6$
+exkurt: $\dfrac{12\left[m(5n-22)(m+n-2)+(n-4)(n-2)^2\right]}{m(n-6)(n-8)(m+n-2)}$, $n>8$
+mgf: does not exist for $t>0$
+mom: $\mathbb{E}F^r=\left(\dfrac nm\right)^r\dfrac{\Gamma\left(\frac m2+r\right)\Gamma\left(\frac n2-r\right)}{\Gamma\left(\frac m2\right)\Gamma\left(\frac n2\right)}$ for $r<\tfrac n2$
+- $1/F(m,n)\sim F(n,m)$, so $F_{1-\alpha}(m,n)=1/F_\alpha(n,m)$; $\mathbb{E}F\,\mathbb{E}(1/F)=\tfrac{mn}{(m-2)(n-2)}$; $mF\to\chi^2_m$ as $n\to\infty$.
+@dist pareto | Pareto | $\mathrm{Pareto}(\alpha,x_0)$ | c | P5 | in-notes
+par: shape $\alpha>0$, scale $x_0>0$
+support: $x\ge x_0$
+pdf: $\dfrac{\alpha x_0^\alpha}{x^{\alpha+1}}$
+cdf: $1-\left(\dfrac{x_0}x\right)^\alpha$
+mean: $\dfrac{\alpha x_0}{\alpha-1}$ for $\alpha>1$
+var: $\dfrac{\alpha x_0^2}{(\alpha-1)^2(\alpha-2)}$ for $\alpha>2$
+median: $x_02^{1/\alpha}$
+mode: $x_0$
+skew: $\dfrac{2(1+\alpha)}{\alpha-3}\sqrt{\dfrac{\alpha-2}\alpha}$ for $\alpha>3$
+exkurt: $\dfrac{6(\alpha^3+\alpha^2-6\alpha-2)}{\alpha(\alpha-3)(\alpha-4)}$ for $\alpha>4$
+mgf: does not exist for $t>0$
+mom: $\mathbb{E}X^k=\dfrac{\alpha x_0^k}{\alpha-k}$ for $k<\alpha$
+- Moments only of order $<\alpha$; $\ln(X/x_0)\sim\mathrm{Exp}(\alpha)$.
+@dist rayleigh | Rayleigh | $\mathrm{Rayleigh}(b)$ | c | P5 | in-notes
+par: scale $b>0$
+support: $x>0$
+pdf: $\dfrac{x}{b^2}e^{-x^2/(2b^2)}$
+cdf: $1-e^{-x^2/(2b^2)}$
+mean: $b\sqrt{\dfrac\pi2}$
+var: $\dfrac{(4-\pi)b^2}{2}$
+median: $b\sqrt{2\ln2}$
+mode: $b$
+skew: $\dfrac{2\sqrt\pi(\pi-3)}{(4-\pi)^{3/2}}\approx0.631$
+exkurt: $-\dfrac{6\pi^2-24\pi+16}{(4-\pi)^2}\approx0.245$
+mom: $\mathbb{E}X^2=2b^2$; $X^2\sim\mathrm{Exp}(\text{mean }2b^2)$
+- $\sqrt{X^2+Y^2}$ for iid $N(0,b^2)$.
+@dist logistic | Logistic | $\mathrm{Logistic}(\alpha,\beta)$ | c | P5 | in-notes
+par: location $\alpha$, scale $\beta>0$; $z=\tfrac{x-\alpha}{\beta}$
+support: $x\in\mathbb R$
+pdf: $\dfrac{e^{-z}}{\beta(1+e^{-z})^2}$
+cdf: $\dfrac1{1+e^{-z}}$
+mean: $\alpha$
+var: $\dfrac{\pi^2\beta^2}3$
+median: $\alpha$
+mode: $\alpha$
+skew: $0$
+kurt: $\dfrac{21}5=4.2$
+exkurt: $\dfrac65$
+mgf: $e^{\alpha t}\dfrac{\pi\beta t}{\sin(\pi\beta t)}$, $\lvert t\rvert<\tfrac1\beta$
+cf: $e^{i\alpha t}\dfrac{\pi\beta t}{\sinh(\pi\beta t)}$
+q: $\mathbb{E}\lvert X-\alpha\rvert=2\beta\ln2$; $Q_{1,3}=\alpha\mp\beta\ln3$
+- $\ln\tfrac{U}{1-U}$ for $U\sim U(0,1)$; CDF solves $F'=F(1-F)/\beta$.
+@dist bvn | Bivariate normal | $\mathrm{BVN}(\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho)$ | c | S6 | in-notes
+par: $\lvert\rho\rvert<1$; $z_i=\tfrac{x_i-\mu_i}{\sigma_i}$
+support: $(x,y)\in\mathbb R^2$
+pdf: $\dfrac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}}\exp\left\{-\dfrac{z_1^2-2\rho z_1z_2+z_2^2}{2(1-\rho^2)}\right\}$
+mean: $(\mu_1,\mu_2)$
+var: $\sigma_1^2,\ \sigma_2^2$; $\mathrm{Cov}=\rho\sigma_1\sigma_2$
+median: marginal medians $\mu_1,\mu_2$
+mode: $(\mu_1,\mu_2)$
+mgf: $\exp\left\{t_1\mu_1+t_2\mu_2+\tfrac12(\sigma_1^2t_1^2+2\rho\sigma_1\sigma_2t_1t_2+\sigma_2^2t_2^2)\right\}$
+cf: same with $t_j\to it_j$: $\exp\left\{i\mathbf t'\boldsymbol\mu-\tfrac12\mathbf t'\Sigma\mathbf t\right\}$
+mom: $Y\mid X=x\sim N\left(\mu_2+\rho\tfrac{\sigma_2}{\sigma_1}(x-\mu_1),\ \sigma_2^2(1-\rho^2)\right)$; $\mathbb{E}X^2Y^2=1+2\rho^2$ (standard)
+- Independent iff $\rho=0$; every linear combination is normal; $P(X>0,Y>0)=\tfrac14+\tfrac{\sin^{-1}\rho}{2\pi}$; $\mathbb{E}\max=\sqrt{(1-\rho)/\pi}$ (standard).

@@ -1,0 +1,92 @@
+@sec X-P | Added for the syllabus: probability results not in your notes | Added
+@meta codes=P1,P2,P3,P6,P8,P9 src=extra
+@lede Standard results from the syllabus that your PDFs do not print. They are clearly marked “Added” so you always know what came from your notes and what was added to close gaps.
+@grp Events, counting and Bayes
+- Inclusion–exclusion: $P\left(\bigcup_{i=1}^nA_i\right)=\sum P(A_i)-\sum_{i<j}P(A_iA_j)+\sum_{i<j<k}P(A_iA_jA_k)-\cdots+(-1)^{n+1}P(A_1\cdots A_n)$. Truncating after an odd (even) number of terms gives an upper (lower) bound: Bonferroni inequalities.
+- De Morgan: $\left(\bigcup A_i\right)^c=\bigcap A_i^c$ and $\left(\bigcap A_i\right)^c=\bigcup A_i^c$. $P(A\triangle B)=P(A)+P(B)-2P(AB)$; $P(A\cap B^c)=P(A)-P(AB)$.
+- Bayes in odds form: posterior odds $=$ prior odds $\times$ likelihood ratio. For a continuous parameter: $f(\theta\mid x)\propto f(x\mid\theta)f(\theta)$.
+- Total probability with conditioning: $P(A\mid C)=\sum_iP(A\mid B_iC)P(B_i\mid C)$.
+- Multiplication for two draws without replacement: $P(A_1A_2)=\tfrac{r}{r+b}\cdot\tfrac{r-1}{r+b-1}$. Probability of exactly $m$ successes in $n$ independent trials with probabilities $p_i$: coefficient of $s^m$ in $\prod(q_i+p_is)$.
+- Occupancy: $n$ distinguishable balls into $N$ cells: $N^n$ outcomes; number of empty cells has mean $N(1-1/N)^n$. Pigeonhole: $n>N$ balls force a shared cell.
+@grp Random variables and distribution functions
+- Discrete: $F(x)=\sum_{t\le x}p(t)$; continuous: $f=F'$ almost everywhere and $F(x)=\int_{-\infty}^xf$. For $Y=g(X)$ with $g$ increasing: $F_Y(y)=F_X(g^{-1}(y))$; decreasing: $F_Y(y)=1-F_X(g^{-1}(y))$ (continuous $X$).
+- Hazard rate $h(x)=\tfrac{f(x)}{1-F(x)}$; survival $S=1-F=\exp\left(-\int_0^xh\right)$. Constant hazard $\iff$ exponential; increasing hazard: Weibull with shape $>1$.
+- Raw and central moments: $\mu_r'=\mathbb{E}X^r$, $\mu_r=\mathbb{E}(X-\mu)^r$; $\mu_2=\mu_2'-\mu^2$; $\beta_1=\mu_3^2/\mu_2^3$, $\beta_2=\mu_4/\mu_2^2$. Factorial moments $\mu_{(r)}=\mathbb{E}X^{(r)}$; $\mu_2'=\mu_{(2)}+\mu_{(1)}$.
+- Cumulants: $K(t)=\ln M(t)=\sum\kappa_r\tfrac{t^r}{r!}$; $\kappa_1=\mu$, $\kappa_2=\sigma^2$, $\kappa_3=\mu_3$, $\kappa_4=\mu_4-3\sigma^4$; $\kappa_r$ add over independent sums.
+- Quantile $\xi_p$: $F(\xi_p)=p$; median $\xi_{1/2}$; quartiles $Q_1,Q_3$; mode maximises $f$. Skewness sign: right skew $\Rightarrow$ mean $>$ median.
+- Standardisation: $Z=(X-\mu)/\sigma$ has mean 0, variance 1; $\mathbb{E}Z^3=\gamma_1$, $\mathbb{E}Z^4=\beta_2$.
+@grp Random vectors: joint laws and the multivariate normal
+- Joint pmf/pdf $f(x,y)\ge0$, $\sum\!\sum f=1$ or $\iint f=1$. Marginals by summing/integrating out; $f(y\mid x)=f(x,y)/f_X(x)$; $F(x,y)=\int_{-\infty}^x\int_{-\infty}^yf$, $f=\tfrac{\partial^2F}{\partial x\partial y}$.
+- $\mathrm{Cov}(X,Y)=\mathbb{E}XY-\mathbb{E}X\mathbb{E}Y$; $\mathrm{Var}(\sum a_iX_i)=\sum a_i^2\mathrm{Var}X_i+2\sum_{i<j}a_ia_j\mathrm{Cov}(X_i,X_j)$; $\mathrm{Cov}(aX+bY,cX+dY)=ac\,\mathrm{Var}X+bd\,\mathrm{Var}Y+(ad+bc)\mathrm{Cov}(X,Y)$.
+- Independence tests: $f=f_Xf_Y$; $F=F_XF_Y$; the joint MGF factorises $M(t_1,t_2)=M_X(t_1)M_Y(t_2)$.
+- Multivariate normal $N_p(\boldsymbol\mu,\Sigma)$: pdf $(2\pi)^{-p/2}\lvert\Sigma\rvert^{-1/2}\exp\left\{-\tfrac12(\mathbf x-\boldsymbol\mu)'\Sigma^{-1}(\mathbf x-\boldsymbol\mu)\right\}$; MGF $\exp\{\mathbf t'\boldsymbol\mu+\tfrac12\mathbf t'\Sigma\mathbf t\}$; $A\mathbf X\sim N(A\boldsymbol\mu,A\Sigma A')$; sub-vectors are normal; components are independent iff uncorrelated.
+- Conditional normal: $\mathbf X_1\mid\mathbf X_2=\mathbf x_2\sim N\left(\boldsymbol\mu_1+\Sigma_{12}\Sigma_{22}^{-1}(\mathbf x_2-\boldsymbol\mu_2),\ \Sigma_{11}-\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21}\right)$; $(\mathbf X-\boldsymbol\mu)'\Sigma^{-1}(\mathbf X-\boldsymbol\mu)\sim\chi^2_p$.
+- Partial correlations from the inverse covariance matrix: $\rho_{ij\cdot\text{rest}}=-\dfrac{(\Sigma^{-1})_{ij}}{\sqrt{(\Sigma^{-1})_{ii}(\Sigma^{-1})_{jj}}}$.
+@grp Expectation and conditional expectation
+- $\mathbb{E}g(X,Y)=\iint g\,f$. Discrete: $\mathbb{E}(X\mid Y=y)=\sum xp(x\mid y)$; continuous: $\int xf(x\mid y)\,dx$.
+- $\mathrm{Cov}(X,Y)=\mathrm{Cov}(\mathbb{E}(X\mid Z),\mathbb{E}(Y\mid Z))+\mathbb{E}\,\mathrm{Cov}(X,Y\mid Z)$.
+- Wald’s identity: for a stopping time $N$ with $\mathbb{E}N<\infty$, $\mathbb{E}S_N=\mathbb{E}N\,\mathbb{E}X_1$.
+- Prediction: the mean minimises $\mathbb{E}(X-c)^2$; the median minimises $\mathbb{E}\lvert X-c\rvert$; $\mathbb{E}(X\mid Y)$ minimises $\mathbb{E}(X-g(Y))^2$ over all $g$.
+@grp Generating functions: how they relate
+| Function | Definition | Gives | Existence |
+| PGF | $G(s)=\mathbb{E}s^X$ | $p_k=G^{(k)}(0)/k!$; $G^{(r)}(1)=\mathbb{E}X^{(r)}$ | Non-negative integer $X$; $\lvert s\rvert\le1$ |
+| MGF | $M(t)=\mathbb{E}e^{tX}$ | $M^{(r)}(0)=\mathbb{E}X^r$; $M(t)=G(e^t)$ | Only if finite near 0 |
+| CF | $\varphi(t)=\mathbb{E}e^{itX}$ | $\varphi^{(r)}(0)=i^r\mathbb{E}X^r$; $\varphi(t)=M(it)=G(e^{it})$ | Always |
+| Cumulant GF | $K(t)=\ln M(t)$ | $\kappa_r=K^{(r)}(0)$ | Where $M$ exists |
+- Joint: $M(t_1,t_2)=\mathbb{E}e^{t_1X+t_2Y}$; $\mathbb{E}X^rY^s=\left.\partial_{t_1}^r\partial_{t_2}^sM\right\rvert_0$. Uniqueness: equal MGFs on a neighbourhood of 0 (or equal CFs) imply equal laws.
+- Linear transformation: $M_{aX+b}(t)=e^{bt}M_X(at)$; sums of independent variables multiply MGFs, CFs and PGFs; $M_{\bar X}(t)=M_X(t/n)^n$.
+@sec X-L | Added for the syllabus: limit theorems and inequalities | Added
+@meta codes=P10,P11,P12,P13 src=extra
+@lede Precise statements of the theorems named in the syllabus that your notes use without stating in full.
+@grp Precise statements
+- **Borel–Cantelli lemmas.** I: $\sum P(A_n)<\infty\Rightarrow P(A_n\text{ i.o.})=0$. II: $A_n$ independent and $\sum P(A_n)=\infty\Rightarrow P(A_n\text{ i.o.})=1$.
+- **Kolmogorov three-series theorem.** For independent $X_n$, $\sum X_n$ converges a.s. iff for some $c>0$: $\sum P(\lvert X_n\rvert>c)<\infty$, $\sum\mathbb{E}X_n\mathbf 1(\lvert X_n\rvert\le c)$ converges and $\sum\mathrm{Var}(X_n\mathbf 1(\lvert X_n\rvert\le c))<\infty$.
+- **Lindeberg condition.** With $s_n^2=\sum\sigma_i^2$: $\dfrac1{s_n^2}\sum_i\mathbb{E}\left[(X_i-\mu_i)^2\mathbf 1(\lvert X_i-\mu_i\rvert>\varepsilon s_n)\right]\to0$ for every $\varepsilon>0$. It implies the CLT and uniform asymptotic negligibility; conversely (Feller) CLT plus negligibility implies it.
+- **Lévy continuity theorem.** $X_n\xrightarrow{d}X\iff\varphi_n(t)\to\varphi(t)$ for all $t$; if $\varphi_n\to g$ pointwise and $g$ is continuous at 0, then $g$ is a CF of some $X$ and $X_n\xrightarrow{d}X$.
+- **Chebyshev WLLN** (independent, $\mathrm{Var}(S_n)/n^2\to0$); **Khinchin** (iid, finite mean); **Kolmogorov SLLN** (iid iff finite mean); **Etemadi**: pairwise independent identically distributed with finite mean also obey the SLLN.
+- **Glivenko–Cantelli.** For iid $X_i$ with CDF $F$: $\sup_x\lvert F_n(x)-F(x)\rvert\to0$ a.s.
+- **Lyapunov inequality** $(\mathbb{E}\lvert X\rvert^s)^{1/s}\le(\mathbb{E}\lvert X\rvert^r)^{1/r}$ for $0<s<r$; **Hölder** $\mathbb{E}\lvert XY\rvert\le\lVert X\rVert_p\lVert Y\rVert_q$, $\tfrac1p+\tfrac1q=1$; **Minkowski** $\lVert X+Y\rVert_p\le\lVert X\rVert_p+\lVert Y\rVert_p$.
+- **Continuity correction.** $P(X\le k)\approx\Phi\left(\tfrac{k+0.5-\mu}{\sigma}\right)$ for integer-valued $X$; $P(X\ge k)\approx1-\Phi\left(\tfrac{k-0.5-\mu}{\sigma}\right)$.
+- **Central limit for sums.** $P(S_n\le x)\approx\Phi\left(\tfrac{x-n\mu}{\sigma\sqrt n}\right)$; for the sample mean $P(\bar X\le x)\approx\Phi\left(\tfrac{\sqrt n(x-\mu)}{\sigma}\right)$.
+@sec X-S | Added for the syllabus: Statistical Methods results | Added
+@meta codes=S1,S2,S3,S4,S5,S7,S8,S9,S10,S11,S12,S13 src=extra
+@lede Extra formulas and remarks to make each Statistical Methods syllabus item complete.
+@grp Data, location and dispersion
+- Relative frequency $f_i/N$; cumulative frequency; frequency density $f_i/h_i$. Pie angle $=360^\circ\times f_i/N$; bar heights $\propto$ values.
+- Grouped mean by step deviation: $\bar x=A+h\dfrac{\sum fu}{N}$, $u=\tfrac{x-A}{h}$. Combined mean of $k$ groups $\bar x=\dfrac{\sum n_i\bar x_i}{\sum n_i}$.
+- Charlier’s check: $\sum f(u+1)^2=\sum fu^2+2\sum fu+N$.
+- Median of grouped data: $L+\dfrac{N/2-c}{f}h$; quartiles $Q_i=L+\dfrac{iN/4-c}{f}h$; mode $L+\dfrac{f_1-f_0}{2f_1-f_0-f_2}h$.
+- Variance: $\sigma^2=\dfrac{\sum fx^2}{N}-\bar x^2=h^2\left[\dfrac{\sum fu^2}{N}-\left(\dfrac{\sum fu}{N}\right)^2\right]$. Gini index $G=1-\sum(p_i-p_{i-1})(q_i+q_{i-1})$ from a Lorenz curve.
+- Relations between averages: $\mathrm{AM}\ge\mathrm{GM}\ge\mathrm{HM}$; $\mathrm{GM}=\sqrt{\mathrm{AM}\cdot\mathrm{HM}}$ for two positive numbers; the GM of ratios is the ratio of GMs.
+@grp Moments, skewness and kurtosis
+- Raw to central: $\mu_2=\mu_2'-\mu_1'^2$; $\mu_3=\mu_3'-3\mu_2'\mu_1'+2\mu_1'^3$; $\mu_4=\mu_4'-4\mu_3'\mu_1'+6\mu_2'\mu_1'^2-3\mu_1'^4$. Central to raw: $\mu_2'=\mu_2+\mu_1'^2$, $\mu_3'=\mu_3+3\mu_2\mu_1'+\mu_1'^3$.
+- Change of origin and scale: $\mu_r(y)=b^r\mu_r(x)$ for $y=a+bx$; $\beta_1,\beta_2$ are unchanged; $\gamma_1$ changes sign if $b<0$.
+- Coefficient of skewness: Karl Pearson $\dfrac{\text{Mean}-\text{Mode}}{\sigma}$; Bowley $\dfrac{Q_3+Q_1-2M}{Q_3-Q_1}$; moment $\gamma_1=\dfrac{\mu_3}{\sigma^3}$. Kurtosis $\beta_2=\dfrac{\mu_4}{\mu_2^2}$; $\beta_2\ge1$; $\beta_2\ge\beta_1+1$.
+@grp Association and contingency
+- Goodman–Kruskal $\gamma=\dfrac{C-D}{C+D}$ for ordinal tables; Kendall $\tau_b=\dfrac{C-D}{\sqrt{(C+D+T_x)(C+D+T_y)}}$.
+- Class-frequency identities: $(A)=(AB)+(A\beta)$; $(AB)=(ABC)+(AB\gamma)$; $N=(A)+(\alpha)$.
+- Coefficient of mean square contingency $\phi^2=\chi^2/N$; for a $2\times2$ table $\phi^2=\dfrac{(ad-bc)^2}{(a+b)(c+d)(a+c)(b+d)}$.
+@grp Curve fitting and orthogonal polynomials
+- Orthogonal polynomials for $n$ equally spaced $x$ with $u=x-\bar x$ and unit spacing: $\xi_1=u$; $\xi_2=u^2-\tfrac{n^2-1}{12}$; $\xi_3=u^3-\tfrac{3n^2-7}{20}u$; $\xi_4=u^4-\tfrac{3n^2-13}{14}u^2+\tfrac{3(n^2-1)(n^2-9)}{560}$. Recurrence $\xi_{r+1}=u\,\xi_r-\dfrac{r^2(n^2-r^2)}{4(4r^2-1)}\xi_{r-1}$.
+- Fit $y=\sum_kb_k\xi_k$ with $b_k=\dfrac{\sum y\xi_k}{\sum\xi_k^2}$; regression sum of squares of degree $k$ is $b_k\sum y\xi_k$; residual $\mathrm{SS}=\sum y^2-\sum_kb_k\sum y\xi_k$.
+- Exponential $y=ae^{bx}$: fit $\ln y=\ln a+bx$. Power $y=ax^b$: fit $\ln y=\ln a+b\ln x$. Modified exponential and logistic use three-point or partial-sum methods.
+- Second-degree normal equations: $\sum y=na+b\sum x+c\sum x^2$; $\sum xy=a\sum x+b\sum x^2+c\sum x^3$; $\sum x^2y=a\sum x^2+b\sum x^3+c\sum x^4$.
+@grp Regression and correlation
+- Regression of $y$ on $x$: $b_{yx}=\dfrac{S_{xy}}{S_{xx}}$, $a=\bar y-b\bar x$; $\mathrm{SE}(b)=\dfrac{s}{\sqrt{S_{xx}}}$, $s^2=\dfrac{S_{yy}-bS_{xy}}{n-2}$; $t=b/\mathrm{SE}(b)\sim t_{n-2}$. Coefficient of determination $R^2=\dfrac{b\,S_{xy}}{S_{yy}}=r^2$.
+- ANOVA identity $S_{yy}=\text{SSR}+\text{SSE}$; $F=\dfrac{\text{SSR}/1}{\text{SSE}/(n-2)}=t^2$.
+- Confidence interval for $\rho$: $\tanh\left(z\pm\dfrac{1.96}{\sqrt{n-3}}\right)$ with $z=\tanh^{-1}r$. Testing $\rho=\rho_0$: $\dfrac{z-\tanh^{-1}\rho_0}{1/\sqrt{n-3}}\sim N(0,1)$.
+- Correlation ratio decomposition: $S_{yy}=\text{between}+\text{within}$; $\eta^2=\dfrac{\text{between}}{S_{yy}}$; intraclass $r=\dfrac{\mathrm{MSB}-\mathrm{MSW}}{\mathrm{MSB}+(k-1)\mathrm{MSW}}$.
+- Multiple correlation from a correlation matrix $R$: $R_{1.23\ldots}^2=1-\dfrac{\lvert R\rvert}{R_{11}}$; multiple regression normal equations $\hat{\mathbf b}=S^{-1}\mathbf s$.
+@grp Standard errors, intervals and tests
+- Confidence intervals (level $1-\alpha$): mean, $\sigma$ known $\bar x\pm z_{\alpha/2}\sigma/\sqrt n$; $\sigma$ unknown $\bar x\pm t_{n-1,\alpha/2}s/\sqrt n$; difference of means $\bar x_1-\bar x_2\pm t\,S_p\sqrt{1/n_1+1/n_2}$; proportion $\hat p\pm z\sqrt{\hat p\hat q/n}$; variance $\left(\dfrac{(n-1)s^2}{\chi^2_{n-1,\alpha/2}},\ \dfrac{(n-1)s^2}{\chi^2_{n-1,1-\alpha/2}}\right)$.
+- Test statistics: $z=\dfrac{\bar x-\mu_0}{\sigma/\sqrt n}$; $t=\dfrac{\bar x-\mu_0}{s/\sqrt n}$; two proportions $z=\dfrac{\hat p_1-\hat p_2}{\sqrt{\hat P\hat Q(1/n_1+1/n_2)}}$; variance ratio $F=S_1^2/S_2^2$.
+- Power of the one-sided $z$ test for $H_1:\mu=\mu_1>\mu_0$: $1-\Phi\left(z_\alpha-\dfrac{(\mu_1-\mu_0)\sqrt n}{\sigma}\right)$.
+- Neyman–Pearson: the most powerful test rejects when the likelihood ratio $\dfrac{L(\theta_1)}{L(\theta_0)}>k$; the size is $\alpha=P(\text{reject}\mid H_0)$.
+- Paired data: $t=\dfrac{\bar d}{s_d/\sqrt n}$, $n-1$ df. Large-sample test for $\rho=0$: $z=r\sqrt{n}$ approximately (for large $n$).
+@grp Non-parametric tests and order statistics
+- Sign test with normal approximation: $z=\dfrac{S-n/2\pm0.5}{\sqrt n/2}$; exact $S\sim\mathrm{Bin}(n,\tfrac12)$. Wilcoxon signed-rank with ties: $\mathrm{Var}\,T^+=\tfrac{n(n+1)(2n+1)}{24}-\tfrac1{48}\sum(t_i^3-t_i)$.
+- Two-sample Kolmogorov–Smirnov: $D=\sup_x\lvert F_m(x)-G_n(x)\rvert$; large-sample 5% cut-off $1.36\sqrt{\dfrac{m+n}{mn}}$.
+- Runs test large-sample: $z=\dfrac{R-\mathbb{E}R}{\sqrt{\mathrm{Var}R}}$. Kruskal–Wallis ties: divide $H$ by $1-\dfrac{\sum(t^3-t)}{N^3-N}$.
+- $\chi^2$ goodness of fit: $\sum\dfrac{(O-E)^2}{E}\sim\chi^2_{k-1-m}$ with $m$ estimated parameters; independence in an $r\times c$ table $(r-1)(c-1)$ df.
+- Range of $n$ iid observations: $f_R(r)=n(n-1)\int[F(x+r)-F(x)]^{n-2}f(x)f(x+r)\,dx$. Expected maximum of $n$ iid $N(0,1)$: $0.564$ ($n=2$), $0.846$ ($n=3$), $1.029$ ($n=4$), $1.163$ ($n=5$), $1.539$ ($n=10$).
+- Sample quantile: $\xi_{\lceil np\rceil:n}$ is asymptotically $N\left(\xi_p,\dfrac{p(1-p)}{nf(\xi_p)^2}\right)$.

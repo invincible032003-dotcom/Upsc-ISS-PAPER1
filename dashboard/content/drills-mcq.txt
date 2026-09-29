@@ -1,0 +1,602 @@
+@bank drill-1 | Forecast drill set I | D1–D42: Statistical Methods then Probability. Sit them in 60 minutes at +2.5 / −0.83 and redo every miss after 48 hours. | time=60
+@q D1 | S7 | conv
+Regression lines $8x-10y+66=0$ and $40x-18y=214$; $\mathrm{Var}(x)=9$. Then $\sigma_y=$
+a: $3$
+b: $4$
+c: $5$
+d: $6$
+key: b
+why: Means $(13,17)$; $b_{yx}=0.8$, $b_{xy}=0.45$, $r=0.6$; $\sigma_y=0.8\times3/0.6=4$.
+@q D2 | S2 | hyp
+Group 1: $n=40$, mean 50, SD 6. Group 2: $n=60$, mean 40, SD 8. The combined variance is
+a: $52$
+b: $64.8$
+c: $76.8$
+d: $80$
+key: c
+why: Mean $44$; $[40(36+36)+60(64+16)]/100=76.8$.
+@q D3 | S8 | hyp
+$n=10$, $\sum d^2=33$, but one $d$ was recorded as 3 instead of 7. The corrected Spearman $\rho$ is
+a: $0.80$
+b: $0.62$
+c: $0.558$
+d: $0.44$
+key: c
+why: $\sum d^2=33-9+49=73$; $1-438/990=0.558$ (0.8 before correcting).
+@q D4 | S8 | val
+Every pairwise $r$ among $X_1,X_2,X_3$ is $0.5$. Then $r_{12.3}$ and $R_{1.23}^2$ are
+a: $\tfrac13,\ \tfrac13$
+b: $\tfrac12,\ \tfrac13$
+c: $\tfrac13,\ \tfrac12$
+d: $\tfrac12,\ \tfrac12$
+key: a
+why: $r/(1+r)=\tfrac13$; $2r^2/(1+r)=\tfrac13$.
+@q D5 | S8 | sign
+Which $(r_{12},r_{13},r_{23})$ is impossible?
+a: $0.8,\ 0.8,\ 0.8$
+b: $0.6,\ -0.4,\ 0.7$
+c: $0.5,\ 0.5,\ -0.5$
+d: $0.9,\ 0.9,\ 0.7$
+key: b
+why: $1-0.36-0.16-0.49-0.336=-0.346<0$.
+@q D6 | S4 | conv
+$(AB)=30$, $(A\beta)=20$, $(\alpha B)=10$, $(\alpha\beta)=40$. Yule’s $Q$ is
+a: $0.42$
+b: $5/7$
+c: $0.5$
+d: $3/7$
+key: b
+why: $(1200-200)/(1200+200)=5/7$; $0.42$ is the colligation coefficient $Y$.
+@q D7 | S4 | sign
+$(A)=50$, $(B)=40$, $(AB)=5$, $N=80$. The attributes are
+a: positively associated
+b: negatively associated
+c: independent
+d: given by inconsistent data
+key: d
+why: $(\alpha\beta)=80-50-40+5=-5$.
+@q D8 | S3 | conv
+Mean 45, median 42, $\sigma=10$. Pearson’s skewness using the empirical mode is
+a: $0.3$
+b: $0.9$
+c: $-0.9$
+d: $0.6$
+key: b
+why: Mode $=3(42)-2(45)=36$; $(45-36)/10=0.9$.
+@q D9 | S3 | val
+$Q_1=20$, median 30, $Q_3=50$. Bowley’s coefficient is
+a: $\tfrac13$
+b: $-\tfrac13$
+c: $\tfrac12$
+d: $0$
+key: a
+why: $(50+20-60)/(50-20)=\tfrac13$.
+@q D10 | S3 | val
+The first four moments about 4 are $1,4,10,45$. Then $\beta_2=$
+a: $3$
+b: $26/9$
+c: $45/16$
+d: $5/3$
+key: b
+why: Mean $5$, $\mu_2=3$, $\mu_3=0$, $\mu_4=26$; $26/9$, platykurtic.
+@q D11 | S2 | conv
+Class width 6. The Sheppard-corrected $\mu_2$ is
+a: $\mu_2-3$
+b: $\mu_2+3$
+c: $\mu_2-0.5$
+d: $\mu_2-6$
+key: a
+why: $h^2/12=36/12=3$.
+@q D12 | S7 | val
+$x=1,\dots,5$ and $y=2,3,5,4,6$. The least-squares line of $y$ on $x$ is
+a: $y=1.3+0.9x$
+b: $y=0.9+1.3x$
+c: $y=1+x$
+d: $y=2+0.6x$
+key: a
+why: $b=(345-300)/(275-225)=0.9$; $a=4-2.7=1.3$.
+@q D13 | S5 | val
+Quadratic orthogonal polynomial values for $n=5$ equally spaced points:
+a: $2,-1,-2,-1,2$
+b: $1,-2,1,0,0$
+c: $-2,-1,0,1,2$
+d: $1,-4,6,-4,1$
+key: a
+why: $u^2-2$ at $u=-2,\dots,2$.
+@q D14 | S8 | sign
+Intraclass correlation, families of 5 members: the smallest possible value is
+a: $-1$
+b: $-\tfrac14$
+c: $-\tfrac15$
+d: $0$
+key: b
+why: $-1/(k-1)$.
+@q D15 | S8 | impl
+Always true for the correlation ratio:
+a: $\eta_{yx}=\eta_{xy}$
+b: $\eta_{yx}^2\ge r^2$
+c: $\eta_{yx}<\lvert r\rvert$ can happen
+d: $\eta$ changes with the origin
+key: b
+why: $\eta^2\ge r^2$, equal iff the regression is linear.
+@q D16 | S9 | val
+Normal parent, $\sigma=10$, $n=100$. The SE of the sample median is
+a: $1$
+b: $1.2533$
+c: $1.3626$
+d: $0.7979$
+key: b
+why: $1.2533\sigma/\sqrt n=1.2533$.
+@q D17 | S11 | conv
+df for: two-sample $t$ (sizes 10, 12); paired $t$ (12 pairs); $t$ for $r$ ($n=27$); $t$ for $r_{12.34}$ ($n=30$):
+a: $20,\ 11,\ 25,\ 26$
+b: $22,\ 12,\ 27,\ 28$
+c: $21,\ 11,\ 25,\ 27$
+d: $20,\ 12,\ 26,\ 26$
+key: a
+why: $n_1+n_2-2$; $n-1$; $n-2$; $n-k-2$.
+@q D18 | S11 | conv
+$\chi^2$ df: Poisson fitted to 8 classes; normal fitted to 10 classes; a $4\times5$ table:
+a: $7,\ 9,\ 20$
+b: $6,\ 7,\ 12$
+c: $7,\ 8,\ 12$
+d: $6,\ 7,\ 20$
+key: b
+why: $8-1-1$; $10-1-2$; $3\times4$.
+@q D19 | S10 | val
+$F_{0.05}(8,12)=2.85$. The lower 5% point of $F(12,8)$ is
+a: $0.351$
+b: $2.85$
+c: $0.285$
+d: $3.51$
+key: a
+why: $1/2.85$ (reciprocal rule).
+@q D20 | S10 | val
+Mode of $\chi^2_{10}$ and variance of $t_6$:
+a: $10,\ 1$
+b: $8,\ 1.5$
+c: $8,\ 1.2$
+d: $9,\ 1.5$
+key: b
+why: $n-2=8$; $6/4=1.5$.
+@q D21 | S12 | val
+Mann–Whitney $U$, sizes 8 and 10: null mean and variance
+a: $40,\ 126.67$
+b: $80,\ 126.67$
+c: $40,\ 133.33$
+d: $45,\ 120$
+key: a
+why: $mn/2=40$; $80\times19/12=126.67$.
+@q D22 | S12 | val
+Wilcoxon signed-rank, $n=20$: null mean and variance
+a: $105,\ 717.5$
+b: $210,\ 717.5$
+c: $105,\ 1435$
+d: $100,\ 700$
+key: a
+why: $20\times21/4=105$; $20\times21\times41/24=717.5$.
+@q D23 | S12 | val
+Runs test with 10 of each symbol: $\mathbb{E}R$ and $\mathrm{Var}\,R$
+a: $10,\ 5$
+b: $11,\ 4.737$
+c: $11,\ 5.263$
+d: $10,\ 4.737$
+key: b
+why: $1+200/20=11$; $200\times180/(400\times19)=4.737$.
+@q D24 | S13 | val
+$U(0,1)$, $n=5$: $\mathbb{E}(\text{range})$ and $\mathbb{E}X_{(2)}$
+a: $\tfrac23,\ \tfrac13$
+b: $\tfrac45,\ \tfrac25$
+c: $\tfrac56,\ \tfrac13$
+d: $\tfrac23,\ \tfrac25$
+key: a
+why: $\tfrac{n-1}{n+1}=\tfrac23$; $\tfrac r{n+1}=\tfrac13$.
+@q D25 | S13 | val
+$n=6$ from a continuous law: $P(\text{population median lies between the sample minimum and maximum})$
+a: $31/32$
+b: $63/64$
+c: $15/16$
+d: $\tfrac12$
+key: a
+why: $1-(\tfrac12)^5=31/32$.
+@q D26 | S2 | val
+Two positive numbers have AM 25 and GM 15. Their HM is
+a: $9$
+b: $10$
+c: $12$
+d: $15$
+key: a
+why: $H=G^2/A=225/25=9$ (numbers 45 and 5).
+@q D27 | S6 | val
+Standard BVN with $\rho=\tfrac12$: $P(X>0,Y>0)=$
+a: $\tfrac14$
+b: $\tfrac13$
+c: $\tfrac38$
+d: $\tfrac12$
+key: b
+why: $\tfrac14+\tfrac{\pi/6}{2\pi}=\tfrac13$.
+@q D28 | S8 | val
+Five ranked pairs with 8 concordant and 2 discordant pairs. Kendall’s $\tau$ is
+a: $0.6$
+b: $0.8$
+c: $0.4$
+d: $0.3$
+key: a
+why: $(8-2)/10=0.6$.
+@q D29 | S4 | val
+$2\times2$ table $20,10$ over $10,20$. $\chi^2$ and $C$ are
+a: $6.667,\ 0.316$
+b: $6.667,\ 0.333$
+c: $3.333,\ 0.316$
+d: $10,\ 0.378$
+key: a
+why: $60\times300^2/30^4=6.667$; $\sqrt{6.667/66.667}=0.316$.
+@q D30 | P13 | val
+$\displaystyle\lim_{n\to\infty}e^{-n}\sum_{k=0}^{n}\frac{n^k}{k!}=$
+a: $0$
+b: $\tfrac12$
+c: $1/e$
+d: $1$
+key: b
+why: $P(\mathrm{Poisson}(n)\le n)\to\tfrac12$ by the CLT.
+@q D31 | P4 | val
+$X\sim\mathrm{Poisson}(\lambda)$: $P(X\text{ even})=$
+a: $\tfrac{1+e^{-2\lambda}}{2}$
+b: $\tfrac{1-e^{-2\lambda}}{2}$
+c: $e^{-\lambda}\sinh\lambda$
+d: $\tfrac12$
+key: a
+why: $\tfrac12\{1+G(-1)\}$ with $G(-1)=e^{-2\lambda}$.
+@q D32 | P6 | supp
+$X_1,X_2\overset{\text{iid}}{\sim}\mathrm{Exp}(\lambda)$: the law of $X_1$ given $X_1+X_2=t$ is
+a: $\mathrm{Exp}(\lambda)$
+b: $U(0,t)$
+c: $\mathrm{Gamma}(2,\lambda)$
+d: $N(t/2,\,t^2/12)$
+key: b
+why: The joint density depends on $x_1+x_2$ only.
+@q D33 | P8 | val
+Fair coin: expected tosses until HH, and until HT
+a: $6,\ 4$
+b: $4,\ 6$
+c: $6,\ 6$
+d: $4,\ 4$
+key: a
+why: HH has mean 6; HT has mean 4 (wait for H, then for T).
+@q D34 | P1 | val
+$n$ letters placed at random in $n$ envelopes, $n$ large: $P(\text{no letter in its own envelope})\approx$
+a: $0$
+b: $1/e$
+c: $1-1/e$
+d: $\tfrac12$
+key: b
+why: $\sum(-1)^k/k!\to e^{-1}$.
+@q D35 | P1 | val
+A needle of length $l$ falls on parallel lines $2l$ apart. $P(\text{it crosses a line})=$
+a: $1/\pi$
+b: $2/\pi$
+c: $\tfrac12$
+d: $1/(2\pi)$
+key: a
+why: $2l/(\pi d)$ with $d=2l$.
+@q D36 | P4 | conv
+Binomial with mean 4 and variance 3.2: $(n,p)=$
+a: $(20,\ 0.2)$
+b: $(16,\ 0.25)$
+c: $(25,\ 0.16)$
+d: $(10,\ 0.4)$
+key: a
+why: $q=3.2/4=0.8$, $n=16/0.8=20$.
+@q D37 | P5 | val
+Beta-I with mean $0.4$ and variance $0.04$: $(m,n)=$
+a: $(2,\ 3)$
+b: $(3,\ 2)$
+c: $(4,\ 6)$
+d: $(1,\ 1.5)$
+key: a
+why: $m+n=0.24/0.04-1=5$, $m=0.4\times5=2$.
+@q D38 | P12 | hyp
+Mean 20, SD 2: Chebyshev’s lower bound for $P(14<X<26)$ is
+a: $\tfrac34$
+b: $\tfrac89$
+c: $\tfrac{15}{16}$
+d: $0.9973$
+key: b
+why: $k=3$: $1-\tfrac19$.
+@q D39 | P7 | val
+$X,Y\overset{\text{iid}}{\sim}N(0,1)$: the law of $(X-Y)^2/(X+Y)^2$ is
+a: $\chi^2_1$
+b: $F(1,1)$
+c: $t_1$
+d: $\mathrm{Beta}(\tfrac12,\tfrac12)$
+key: b
+why: $(X\pm Y)/\sqrt2$ are iid $N(0,1)$.
+@q D40 | P9 | val
+$N\sim\mathrm{Poisson}(3)$ and $X_i\overset{\text{iid}}{\sim}\mathrm{Bernoulli}(p)$, independent of $N$. The law of $X_1+\cdots+X_N$ is
+a: $\mathrm{Poisson}(3p)$
+b: $\mathrm{Bin}(3,p)$
+c: $\mathrm{Poisson}(3)$
+d: $\mathrm{Poisson}(p/3)$
+key: a
+why: $G_N(q+ps)=e^{3p(s-1)}$.
+@q D41 | P4 | conv
+A die is thrown until the first six: mean and variance of the number of throws
+a: $6,\ 30$
+b: $5,\ 30$
+c: $6,\ 36$
+d: $5,\ 25$
+key: a
+why: $1/p=6$; $q/p^2=30$.
+@q D42 | P2 | impl
+$P(A)=0.5$, $P(B)=0.4$, $P(A\cup B)=0.7$. Then $A$ and $B$ are
+a: mutually exclusive
+b: independent
+c: $A\subset B$
+d: none of these
+key: b
+why: $P(AB)=0.2=0.5\times0.4$.
+
+@bank drill-2 | Drill set II: shared stems | D43–D74: Probability in the shared-stem format. Since 2023 the paper hangs three or four items on one stem; sit this set in 45 minutes with the same scoring. | time=45
+@stem A | **Stem A (D43–D46):** $f(x,y)=k(x+y)$ on $0<x<y<1$.
+@q D43 | P6 | val | A
+$k=$
+a: $1$
+b: $2$
+c: $3$
+d: $4$
+key: b
+why: $\int_0^1\int_0^y(x+y)\,dx\,dy=\int_0^1\tfrac32y^2\,dy=\tfrac12$, so $k=2$.
+@q D44 | P6 | val | A
+The marginal pdf of $Y$ is
+a: $3y^2$
+b: $2y$
+c: $1+2y-3y^2$
+d: $4y^3$
+key: a
+why: $2\int_0^y(x+y)\,dx=3y^2$.
+@q D45 | P6 | val | A
+$\mathbb{E}(X\mid Y=y)=$
+a: $y/2$
+b: $5y/9$
+c: $2y/3$
+d: $5y/12$
+key: b
+why: $\int_0^yx\cdot2(x+y)\,dx\big/(3y^2)=\tfrac{5y^3/3}{3y^2}=\tfrac{5y}{9}$.
+@q D46 | P6 | supp | A
+$P(X+Y<1)=$
+a: $\tfrac14$
+b: $\tfrac13$
+c: $\tfrac5{24}$
+d: $\tfrac12$
+key: b
+why: $\int_0^{1/2}3y^2\,dy+\int_{1/2}^1(1-y^2)\,dy=\tfrac18+\tfrac5{24}=\tfrac13$.
+@stem B | **Stem B (D47–D50):** $f(x,y)=k\exp\left\{-\tfrac23\left[(x-1)^2-(x-1)(y+2)+(y+2)^2\right]\right\}$
+@q D47 | S6 | val | B
+$k=$
+a: $\tfrac1{2\pi}$
+b: $\tfrac1{\pi\sqrt3}$
+c: $\tfrac{\sqrt3}{2\pi}$
+d: $-\tfrac2{\pi\sqrt3}$
+key: b
+why: Standard pair with $\rho=\tfrac12$: $\tfrac1{2\pi\sqrt{1-\rho^2}}=\tfrac1{\pi\sqrt3}$.
+@q D48 | S6 | val | B
+$\rho$ and $\mathrm{Var}\,X$:
+a: $\tfrac12,\ 1$
+b: $-\tfrac12,\ 1$
+c: $\tfrac12,\ \tfrac43$
+d: $\tfrac14,\ \tfrac34$
+key: a
+why: Exponent $-\tfrac{u^2-2\rho uv+v^2}{2(1-\rho^2)}$ with $\rho=\tfrac12$ gives the factor $\tfrac23$.
+@q D49 | S6 | val | B
+$\mathbb{E}(Y\mid X=3)$ and $\mathrm{Var}(Y\mid X=3)$:
+a: $-1,\ \tfrac34$
+b: $-2,\ \tfrac34$
+c: $-1,\ 1$
+d: $0,\ \tfrac34$
+key: a
+why: $-2+\tfrac12(3-1)=-1$; $1-\tfrac14=\tfrac34$.
+@q D50 | S6 | val | B
+$P(X>1,\ Y>-2)=$
+a: $\tfrac14$
+b: $\tfrac13$
+c: $\tfrac5{12}$
+d: $\tfrac12$
+key: b
+why: $\tfrac14+\tfrac{\sin^{-1}(1/2)}{2\pi}=\tfrac14+\tfrac1{12}=\tfrac13$.
+@stem C | **Stem C (D51–D53):** $P(N=n)=\left(\tfrac12\right)^{n+1}$, $n\ge0$; $X_i\overset{\text{iid}}{\sim}\mathrm{Exp}(\text{mean }1)$, independent of $N$; $S=X_1+\cdots+X_N$ ($S=0$ if $N=0$).
+@q D51 | P9 | val | C
+The MGF of $S$ is
+a: $\tfrac{1-t}{1-2t}$, $t<\tfrac12$
+b: $\tfrac1{1-2t}$
+c: $\tfrac1{2-t}$
+d: $\tfrac{1-2t}{1-t}$
+key: a
+why: $G_N(s)=\tfrac1{2-s}$ at $s=\tfrac1{1-t}$.
+@q D52 | P8 | val | C
+$\mathbb{E}S$ and $\mathrm{Var}\,S$:
+a: $1,\ 3$
+b: $1,\ 2$
+c: $2,\ 3$
+d: $1,\ 1$
+key: a
+why: $\mathbb{E}N=1$, $\mathrm{Var}\,N=2$: $1\cdot1+2\cdot1^2=3$.
+@q D53 | P8 | supp | C
+$P(S=0)=$
+a: $0$
+b: $\tfrac12$
+c: $e^{-1}$
+d: $\tfrac14$
+key: b
+why: $S=0$ exactly when $N=0$ (the exponentials are positive).
+@stem GF | **Generating functions (D54–D57)**
+@q D54 | P9 | val | GF
+$X\sim N(0,1)$ independent of $Y\sim\mathrm{Exp}(1)$. The CF of $X\sqrt{2Y}$ is
+a: $e^{-t^2}$
+b: $\tfrac1{1+t^2}$
+c: $(1+t^2)^{-1/2}$
+d: $e^{-\lvert t\rvert}$
+key: b
+why: Given $Y$: $N(0,2Y)$, CF $e^{-Yt^2}$; $\mathbb{E}e^{-Yt^2}=\tfrac1{1+t^2}$ (Laplace).
+@q D55 | P9 | exist | GF
+Which is *not* a CF?
+a: $e^{-\lvert t\rvert}$
+b: $\tfrac1{1+t^2}$
+c: $e^{-t^4}$
+d: $\cos^2(t/2)$
+key: c
+why: $1+o(t^2)$ near 0 forces $X\equiv0$.
+@q D56 | P9 | val | GF
+PGF $G(s)=e^{2(s^2-1)}$. $\mathbb{E}X$ and $\mathrm{Var}\,X$:
+a: $4,\ 8$
+b: $2,\ 2$
+c: $4,\ 4$
+d: $4,\ 16$
+key: a
+why: $X=2Y$, $Y\sim\mathrm{Poisson}(2)$: $4$ and $4\times2$.
+@q D57 | P9 | conv | GF
+$P(X=k)=pq^k$, $k=0,1,\dots$ Then $\sum_kP(X>k)s^k=$
+a: $\tfrac q{1-qs}$
+b: $\tfrac p{1-qs}$
+c: $\tfrac1{1-qs}$
+d: $\tfrac{qs}{1-qs}$
+key: a
+why: $P(X>k)=q^{k+1}$, so $\sum q^{k+1}s^k$.
+@stem FA | **Families (D58–D62)**
+@q D58 | P5 | val | FA
+$X\sim\mathrm{Exp}(\text{rate }\theta)$. The maximum over $\theta$ of $P(1\le X\le3)$ is
+a: $\tfrac14$
+b: $\tfrac2{3\sqrt3}$
+c: $\tfrac1e$
+d: $\tfrac13$
+key: b
+why: $u=e^{-\theta}$: $u-u^3$ peaks at $u=1/\sqrt3$.
+@q D59 | P4 | conv | FA
+Fair coin: $P(\text{the third head comes on the fifth toss})=$
+a: $\tfrac3{16}$
+b: $\tfrac5{16}$
+c: $\tfrac18$
+d: $\tfrac3{32}$
+key: a
+why: $\binom42\left(\tfrac12\right)^5=\tfrac6{32}$.
+@q D60 | P4 | val | FA
+Mode(s) of $\mathrm{Bin}(19,\tfrac12)$:
+a: 9 only
+b: 10 only
+c: 9 and 10
+d: $9.5$
+key: c
+why: $(n+1)p=10$ is an integer.
+@q D61 | P4 | val | FA
+Poisson with $P(X=2)=2P(X=3)$. The variance is
+a: $1$
+b: $1.5$
+c: $2$
+d: $3$
+key: b
+why: $\lambda^2/2=2\lambda^3/6$ gives $\lambda=1.5$.
+@q D62 | P5 | val | FA
+$X\sim U(a,b)$ with mean 3 and variance 3. $P(X>4)=$
+a: $\tfrac14$
+b: $\tfrac13$
+c: $\tfrac12$
+d: $\tfrac16$
+key: b
+why: $(b-a)^2=36$ and $a+b=6$: $U(0,6)$.
+@stem CT | **Conditioning, transformations, limits (D63–D69)**
+@q D63 | P8 | val | CT
+$X\sim\mathrm{Exp}(1)$ and $Y\mid X=x\sim\mathrm{Poisson}(x)$. $\mathrm{Var}\,Y$ and $P(Y=0)$:
+a: $2,\ \tfrac12$
+b: $1,\ \tfrac12$
+c: $2,\ e^{-1}$
+d: $1,\ e^{-1}$
+key: a
+why: $\mathbb{E}X+\mathrm{Var}\,X=2$; $P(Y=0)=\mathbb{E}e^{-X}=\tfrac12$.
+@q D64 | P8 | val | CT
+$X\sim U(0,1)$ and $Y\mid X=x\sim U(0,x)$. $\mathbb{E}Y$ and $\mathrm{Var}\,Y$:
+a: $\tfrac14,\ \tfrac7{144}$
+b: $\tfrac14,\ \tfrac1{48}$
+c: $\tfrac12,\ \tfrac1{12}$
+d: $\tfrac14,\ \tfrac1{36}$
+key: a
+why: $\mathbb{E}(X^2)/12+\mathrm{Var}(X/2)=\tfrac1{36}+\tfrac1{48}=\tfrac7{144}$.
+@q D65 | P7 | conv | CT
+$U\sim U(0,1)$, $\theta>0$. The law of $-\tfrac1\theta\ln U$ is
+a: $\mathrm{Exp}(\text{rate }\theta)$
+b: $\mathrm{Exp}(\text{rate }\tfrac1\theta)$
+c: $\chi^2_2$
+d: $\mathrm{Gamma}(2,\theta)$
+key: a
+why: $P(-\ln U>\theta x)=e^{-\theta x}$.
+@q D66 | P7 | hyp | CT
+$X,Y\overset{\text{iid}}{\sim}\mathrm{Exp}(1)$. Which is true?
+a: $\tfrac{X}{X+Y}\sim U(0,1)$, independent of $X+Y$
+b: $\tfrac{X}{X+Y}\sim\mathrm{Beta}(2,1)$
+c: $X+Y\sim\mathrm{Exp}(\tfrac12)$
+d: $X-Y\sim\mathrm{Exp}(1)$
+key: a
+why: Gamma-ratio result with $\alpha_1=\alpha_2=1$.
+@q D67 | P10 | hyp | CT
+$X_n=n\,\mathbf 1(U<n^{-3})$, $U\sim U(0,1)$. Then $X_n\to0$
+a: a.s. only
+b: in probability only
+c: a.s. and in mean square
+d: in distribution only
+key: c
+why: $\sum n^{-3}<\infty$ and $\mathbb{E}X_n^2=1/n\to0$.
+@q D68 | P13 | hyp | CT
+iid with mean 2 and variance 4. $\lim_{n\to\infty}P\left(\sum X_i\le2n+2\sqrt n\right)=$
+a: $\tfrac12$
+b: $0.8413$
+c: $0.9772$
+d: $1$
+key: b
+why: $(S_n-2n)/(2\sqrt n)\le1\to\Phi(1)$.
+@q D69 | P12 | hyp | CT
+The smallest $n$ that Chebyshev guarantees for $P(\lvert\bar X-\mu\rvert<0.1\sigma)\ge0.9$ is
+a: $100$
+b: $900$
+c: $1000$
+d: $10000$
+key: c
+why: $\tfrac{1}{n\times0.01}\le0.1$.
+@stem BG | **Bayes, geometry, statements (D70–D74)**
+@q D70 | P2 | val | BG
+Prevalence 2%, sensitivity 95%, false-positive rate 5%. $P(\text{disease}\mid\text{positive})\approx$
+a: $0.95$
+b: $0.50$
+c: $0.28$
+d: $0.02$
+key: c
+why: $0.019/(0.019+0.049)=0.279$.
+@q D71 | P2 | val | BG
+Coins: fair, two-headed, and $P(H)=\tfrac34$. One picked at random shows heads twice in two tosses. $P(\text{two-headed})=$
+a: $\tfrac13$
+b: $\tfrac{16}{29}$
+c: $\tfrac9{29}$
+d: $\tfrac47$
+key: b
+why: Likelihoods $\tfrac14,\ 1,\ \tfrac9{16}$: $1\big/\tfrac{29}{16}$.
+@q D72 | P7 | val | BG
+$X,Y\overset{\text{iid}}{\sim}U(0,1)$. $P(XY<\tfrac12)=$
+a: $\tfrac12$
+b: $\tfrac{1+\ln2}{2}$
+c: $\ln2$
+d: $\tfrac34$
+key: b
+why: $\tfrac12+\int_{1/2}^1\tfrac{dx}{2x}=\tfrac12+\tfrac12\ln2$.
+@q D73 | P8 | impl | BG
+I. $X\perp\!\!\!\perp Y\Rightarrow\mathbb{E}(X\mid Y)=\mathbb{E}X$. II. $\mathbb{E}(X\mid Y)=\mathbb{E}X\Rightarrow\mathrm{Cov}(X,Y)=0$. III. $\mathrm{Cov}(X,Y)=0\Rightarrow X\perp\!\!\!\perp Y$. Correct:
+a: I only
+b: I and II only
+c: II and III only
+d: I, II and III
+key: b
+why: Mean independence gives zero covariance; the converse chain fails.
+@q D74 | P3 | supp | BG
+I. A pdf can exceed 1. II. A pmf can exceed 1. III. A CDF is right-continuous. Correct:
+a: I and III only
+b: I and II only
+c: III only
+d: I, II and III
+key: a
+why: A pmf value is a probability, so at most 1.

@@ -1,0 +1,95 @@
+@sec S1 | Data, presentation and frequency distributions | Statistical Methods
+@meta codes=S1 pyq=2 f27=0.4 tier=3
+@lede Only two PYQs in nine years, both on scales and condensation: learn the four scales and which graph locates which average, then move on.
+@grp Scales of measurement
+| Scale | What it has | Examples | Allowed summaries |
+| Nominal | Categories only | Gender, hair colour, barcodes, jersey numbers | Mode; pie and bar charts |
+| Ordinal | Order, unequal gaps | Grades, ranks, “happy / very happy” | Median (and mode); rank correlation |
+| Interval | Equal gaps, arbitrary zero | Temperature in °C or °F, calendar years | Mean, SD; add and subtract, no ratios; CV meaningless |
+| Ratio | True zero | Height, weight, income, age, counts | Everything, including GM, HM, CV and ratios |
+- [2018 Q21] a box’s weight is ratio-scale (statement 1 false); admissions to each IIM in 2007 are cross-sectional; barcodes are nominal: **2 and 3**.
+- [2019 Q1] median is the recommended average for ordinal data but not for ratio data (mean), while pie/bar suit nominal data and histogram/SD suit interval data: **(b) 2 and 3**.
+- [2023 Q21] a frequency distribution condenses data and the histogram and ogives display that condensed form; an array only orders: **(c) 2, 3 and 4**.
+@grp Data and tables
+- Primary vs secondary; cross-sectional (many units, one time) vs time series (one unit, many times) vs panel; census vs sample.
+- Primary collection: direct personal investigation, indirect oral investigation, local correspondents, mailed questionnaire, schedules filled by enumerators.
+- Classification is geographical, chronological, qualitative or quantitative. A frequency distribution condenses data; an array only orders it.
+- Parts of a table: number, title, head note, captions (column heads), stubs (row heads), body, footnote, source note.
+-* Inclusive classes (10–19, 20–29) become boundaries by $\pm0.5$; exclusive classes (10–20, 20–30) exclude the upper limit.
+- Class mark = mid-point; width = difference of boundaries; Sturges: $k=1+3.322\log_{10}N$ classes. Unequal widths need frequency density $=f/\text{width}$.
+@grp Diagrams and graphs
+| Tool | Use | What to remember |
+| Bar diagram (simple, multiple, sub-divided, percentage) | Categories, discrete data | One-dimensional: length $\propto$ value, gaps between bars |
+| Pie | Parts of a whole | Angle $=360^\circ\times$ share |
+| Histogram | Continuous grouped data | Adjacent bars, **area $\propto$ frequency**; locates the **mode** |
+| Frequency polygon | Shape, comparing groups | Joins mid-points; same area as the histogram |
+| Ogives | Cumulative frequency | Less-than uses upper boundaries, more-than uses lower; they cross at the **median** |
+| Lorenz curve | Inequality | Gini = area between the equality line and the curve $\div$ area under the equality line |
+| Box plot | Five-number summary | Points beyond $1.5\,\mathrm{IQR}$ from the quartiles are outliers |
+| Stem-and-leaf | Small data sets | Keeps the raw values |
+| Semi-log chart | Rates of change | Equal vertical steps = equal ratios |
+| Z-chart | Time series | Original, cumulative and moving-total lines together |
+-* The mean cannot be located graphically; the median can (ogives) and so can the mode (histogram). With open-end classes the median and mode still work; the mean needs an assumption. Frequency curves are symmetric, moderately skewed, J, reverse-J, U-shaped or bimodal.
+
+@sec S2 | Location, dispersion and moments | Statistical Methods
+@meta codes=S2 pyq=10 f27=1.1 tier=2
+@lede Expect one or two marks: an extremal property (absolute deviations least about the median, squares least about the mean), a linear transformation, pooling two groups, or backing $\sigma$ out of a skewness coefficient (14 PYQs across S2–S3).
+@grp Location
+| Measure | Formula | Properties and uses |
+| AM | $\tfrac{\sum fx}{N}=A+h\tfrac{\sum fu}{N}$ | $\sum(x-\bar x)=0$; $\sum(x-a)^2$ least at $a=\bar x$; pooled $\bar x=\tfrac{\sum n_i\bar x_i}{\sum n_i}$ |
+| GM | $\log G=\tfrac{\sum f\log x}{N}$ | Ratios, growth rates, index numbers; $G(xy)=G(x)G(y)$; one zero makes $G=0$ |
+| HM | $\tfrac{N}{\sum f/x}$ | Average speed over equal distances; average price for equal outlays |
+| Median | $l+\tfrac{N/2-c}{f}h$ | $\sum\lvert x-a\rvert$ least at the median; ordinal data; open-end classes |
+| Quartiles, deciles, percentiles | $l+\tfrac{iN/4-c}{f}h$, etc. | Read off the ogive |
+| Mode | $l+h\tfrac{f_1-f_0}{2f_1-f_0-f_2}$ | Nominal data; from the histogram; empirically Mode $\approx3$ Median $-\,2$ Mean |
+-* AM $\ge$ GM $\ge$ HM, equality iff all values are equal. For two numbers $G^2=A\cdot H$: $A=25$, $G=15$ give $H=9$ and the numbers 45 and 5.
+- Positive skew: Mean $>$ Median $>$ Mode; negative skew reverses it; the median sits a third of the way from the mean towards the mode.
+- $1,2,\dots,n$: mean $\tfrac{n+1}2$, variance $\tfrac{n^2-1}{12}$, $\sum k^2=\tfrac{n(n+1)(2n+1)}6$, $\sum k^3=\left[\tfrac{n(n+1)}2\right]^2$. Weighting $k$ by $k$ gives mean $\tfrac{2n+1}3$.
+- [2026 Q40] the mean of $k(n+1-k)^2$, $k=1,\dots,n$, is **(n+1)²(n+2)/12**.
+-* $y=a+bx$: $\bar y=a+b\bar x$ (median, mode, quartiles alike); $s_y=\lvert b\rvert s_x$ and $\mathrm{MD}_y=\lvert b\rvert\mathrm{MD}_x$; $\beta_1,\beta_2$ unchanged; skewness flips sign when $b<0$.
+@grp Dispersion
+| Measure | Formula | Notes |
+| Range | $\max-\min$; coefficient $\tfrac{\max-\min}{\max+\min}$ | Uses the extremes only |
+| Quartile deviation | $\tfrac{Q_3-Q_1}2$; coefficient $\tfrac{Q_3-Q_1}{Q_3+Q_1}$ | Normal: $\approx0.6745\sigma\approx\tfrac23\sigma$ |
+| Mean deviation about $A$ | $\tfrac{\sum f\lvert x-A\rvert}{N}$ | Least about the median; normal $\approx0.7979\sigma\approx\tfrac45\sigma$; MD $\le$ SD |
+| Standard deviation | $\sqrt{\tfrac{\sum fx^2}{N}-\bar x^2}$ | $\sigma^2=\tfrac1{2n^2}\sum\sum(x_i-x_j)^2$; $\tfrac{\text{range}}{\sqrt{2n}}\le\sigma\le\tfrac{\text{range}}2$ |
+| Coefficient of variation | $100\,\sigma/\bar x$ | Compares series in different units; smaller CV = more consistent |
+| Gini’s mean difference | $\tfrac{\sum\sum\lvert x_i-x_j\rvert}{n(n-1)}$ | Normal: $2\sigma/\sqrt\pi$ |
+-* Normal ratios QD : MD : SD $\approx10:12:15$; range $\approx6\sigma$. Two observations: $\sigma=\lvert x_1-x_2\rvert/2$.
+-* Pooled variance: $\sigma^2=\tfrac{n_1(\sigma_1^2+d_1^2)+n_2(\sigma_2^2+d_2^2)}{n_1+n_2}$, where $d_i=\bar x_i-\bar x$.
+- Grouped MD about the mean $=\tfrac2N\left[\bar x\sum f-\sum fx\right]$, both sums over $x<\bar x$.
+-! Sheppard’s corrections (width $h$): $\mu_2-\tfrac{h^2}{12}$; $\mu_4-\tfrac{h^2}2\mu_2+\tfrac7{240}h^4$; $\mu_1$ and $\mu_3$ unchanged. Only for continuous, high-contact (tapering) distributions, never J- or U-shaped ones.
+@grp PYQ keys
+| PYQ | Stem | Answer |
+| [2019 Q3] | Height CV $6.5/115=5.7\%$, weight CV $2.7/23=11.7\%$ | Weight **twice as variable** |
+| [2020 Q11] | Multiply scores by $c$; add a constant | SD$\times\lvert c\rvert$, SD unchanged: **2 and 3** |
+| [2021 Q13] | MD least about the median; comparing units by SD; smaller CV | **1 and 3** |
+| [2021 Q31] | Classes 1–5, …, 26–30, $N=100$ | $D_1=5.5$, $Q_1=10.5$, $M_d=15.5$, QD $=5$: **(a)** |
+| [2021 Q39] | $\mathrm{MD}(x)=5$, $y=2x+3$ | **10** |
+| [2022 Q51] | Ratios of deviation sums about $M,A,\bar x$ | **All three** |
+| [2023 Q22] | $X=2,5,0,6,3,8,1,3,0,2$ | Variance $15.2-9=6.2$; $\mathrm{Var}(2X+2)=$ **24.8** |
+| [2026 Q28] | $n_1=100$, $\bar x_1=15$, $s_1=3$; all 250: mean 15.6, variance 13.44 | $\bar x_2=16$; $3360=936+150s_2^2+24$, so $s_2^2=$ **16** |
+@grp Moments
+$$\mu_2=\mu_2'-\mu_1'^2,\qquad \mu_3=\mu_3'-3\mu_2'\mu_1'+2\mu_1'^3,\qquad \mu_4=\mu_4'-4\mu_3'\mu_1'+6\mu_2'\mu_1'^2-3\mu_1'^4$$
+- Worked: moments about 4 are $1,4,10,45$, so the mean is 5, $\mu_2=3$, $\mu_3=0$, $\mu_4=26$; $\beta_1=0$ and $\beta_2=26/9\approx2.89$ (symmetric, platykurtic).
+- Absolute moments: $\nu_r^{1/r}$ increases with $r$, and $\nu_r^2\le\nu_{r-1}\nu_{r+1}$.
+
+@sec S3 | Skewness and kurtosis | Statistical Methods
+@meta codes=S3 pyq=4 f27=0.6 tier=3
+@lede Four PYQs: coefficients of skewness, a binomial’s $\gamma_1,\gamma_2$ read back into $(n,p)$, and the benchmarks for $\beta_2$.
+@grp Skewness and kurtosis
+| Measure | Formula | Range and notes |
+| Karl Pearson | $\tfrac{\text{Mean}-\text{Mode}}{\sigma}\approx\tfrac{3(\text{Mean}-\text{Median})}{\sigma}$ | The second form lies in $[-3,3]$ |
+| Bowley | $\tfrac{Q_3+Q_1-2M_d}{Q_3-Q_1}$ | $[-1,1]$; works with open-end classes |
+| Kelly | $\tfrac{P_{90}+P_{10}-2P_{50}}{P_{90}-P_{10}}$ | $[-1,1]$ |
+| Moment | $\beta_1=\mu_3^2/\mu_2^3$, $\gamma_1=\mu_3/\sigma^3$ | Sign from $\mu_3$ |
+| Kurtosis | $\beta_2=\mu_4/\mu_2^2$, $\gamma_2=\beta_2-3$ | 3 mesokurtic, $>3$ leptokurtic, $<3$ platykurtic |
+-* $\beta_2\ge1+\beta_1\ge1$ always, with equality only for a two-point distribution.
+-* $\beta_2$ benchmarks: uniform 1.8, normal 3, logistic 4.2, Laplace 6, exponential 9, $t_n$: $3+\tfrac6{n-4}$.
+- Pearson curves by $\kappa=\dfrac{\beta_1(\beta_2+3)^2}{4(4\beta_2-3\beta_1)(2\beta_2-3\beta_1-6)}$: normal $\beta_1=0,\beta_2=3$; Type I $\kappa<0$ (Beta-I); Type II $\beta_1=0,\beta_2<3$; Type III $2\beta_2-3\beta_1-6=0$ (gamma); Type IV $0<\kappa<1$; Type V $\kappa=1$; Type VI $\kappa>1$ (Beta-II, $F$); Type VII $\beta_1=0,\beta_2>3$ ($t$).
+@grp PYQ keys
+| PYQ | Stem | Answer |
+| [2018 Q23] | Mean 62, median 65, $Sk=-0.3$ | $3(62-65)/\sigma=-0.3$, $\sigma=$ **30** |
+| [2021 Q30] | Binomial $\gamma_1=\tfrac16$, $\gamma_2=-\tfrac1{12}$ | $n=18$, $p=\tfrac13$: $npq=4$, $\gamma_1=\tfrac{1/3}{2}$, $\gamma_2=\tfrac{1-4/3}{4}$, **(b)** |
+| [2023 Q23] | Bin$(10,\tfrac12)$: $\mu_3$ | **0** |
+| [2025 Q50] | $\phi(t)=e^{2it-2t^2}$ | $N(2,4)$: $\mu_4=3\sigma^4=$ **48** |

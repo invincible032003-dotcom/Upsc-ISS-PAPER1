@@ -1,0 +1,705 @@
+@bank nm | Notes mocks
+@q NM-P6-01 | P6 | val
+$f(x,y)=2$ on $0<x<y<1$. The marginal density of $Y$ is
+a: $2y$
+b: $2(1-y)$
+c: $1$
+d: $2y^2$
+key: a
+why: $\int_0^y2\,dx=2y$; $f_X=2(1-x)$ [2022 Q49].
+@q NM-P6-02 | P6 | val
+$f(x,y)=2$ on $0<x<y<1$. $\mathbb{E}(Y\mid X=x)=$
+a: $\tfrac{1+x}{2}$
+b: $\tfrac{x}{2}$
+c: $\tfrac23$
+d: $\tfrac{1}{2}$
+key: a
+why: $Y\mid x\sim U(x,1)$.
+@q NM-P6-03 | P6 | val
+$f(x,y)=2$ on $0<x<y<1$. The correlation $\rho(X,Y)$ is
+a: $\tfrac12$
+b: $-\tfrac12$
+c: $0$
+d: $\tfrac13$
+key: a
+why: $\mathrm{Var}=\tfrac1{18}$ each, $\mathrm{Cov}=\tfrac1{36}$, so $\rho=\tfrac12$.
+@q NM-P6-04 | P6 | val
+$f(x,y)=8xy$ on $0<x<y<1$. $f_X(x)=$
+a: $4x(1-x^2)$
+b: $4y^3$
+c: $2x$
+d: $4x^3$
+key: a
+why: $\int_x^18xy\,dy=4x(1-x^2)$; $f_Y=4y^3$.
+@q NM-P6-05 | P6 | val
+$f(x,y)=6(1-x-y)$ on the simplex $x,y>0$, $x+y<1$. $\mathrm{Cov}(X,Y)=$
+a: $-\tfrac1{80}$
+b: $\tfrac1{80}$
+c: $-\tfrac1{20}$
+d: $0$
+key: a
+why: $\mathbb{E}XY=\tfrac1{20}$, $\mathbb{E}X=\mathbb{E}Y=\tfrac14$: $\tfrac1{20}-\tfrac1{16}=-\tfrac1{80}$ [2021 Q1–2].
+@q NM-P6-06 | P6 | val
+$f(x,y)=6(1-x-y)$ on the simplex. $P(X\ge0.4)=$
+a: $0.216$
+b: $0.4$
+c: $0.6$
+d: $0.064$
+key: a
+why: $f_X=3(1-x)^2$, so $P(X\ge0.4)=(0.6)^3$ [2020 Q26].
+@q NM-P6-07 | P6 | val
+$f(x,y)=x+y$ on the unit square. $\rho(X,Y)=$
+a: $-\tfrac1{11}$
+b: $\tfrac1{11}$
+c: $0$
+d: $-\tfrac1{12}$
+key: a
+why: $\mathrm{Var}X=\tfrac{11}{144}$, $\mathrm{Cov}=-\tfrac1{144}$.
+@q NM-P6-08 | P6 | supp
+$f(x,y)=8xy$ on $0<x<y<1$. $X$ and $Y$ are
+a: independent, because $f=g(x)h(y)$
+b: dependent, because the support is not a rectangle
+c: independent, because $\mathrm{Cov}=0$
+d: identically distributed
+key: b
+why: A non-rectangular support means dependence whatever the formula.
+@q NM-P6-09 | P6 | impl
+$f=(1+xy)/4$ on $[-1,1]^2$. Which is TRUE?
+a: $X,Y$ independent
+b: $X,Y$ dependent but $X^2,Y^2$ independent
+c: $X,Y$ dependent and $X^2,Y^2$ dependent
+d: $X,Y$ uncorrelated hence independent
+key: b
+why: [2018 Q5]: $f_X=\tfrac12$ but the joint does not factor; $X^2$ and $Y^2$ factor.
+@q NM-P6-10 | P6 | impl
+Uncorrelated variables are independent
+a: always
+b: for two 0/1 variables or inside a jointly normal pair
+c: whenever the marginals are normal
+d: whenever $\mathbb{E}XY=0$
+key: b
+why: Counterexamples: $Y=X^2$ with symmetric $X$; uniform on a disc.
+@q NM-P6-11 | P6 | val
+$f(x,y)=e^{-y}$ on $0<x<y$. $\mathrm{Cov}(X,Y)$ and $\rho$ are
+a: $1,\ 1/\sqrt2$
+b: $1,\ 1/2$
+c: $2,\ 1/\sqrt2$
+d: $0,\ 0$
+key: a
+why: $X\sim\mathrm{Exp}(1)$, $Y\sim\mathrm{Gamma}(2,1)$, $Y-X\perp\!\!\!\perp X$: $\mathrm{Cov}=\mathrm{Var}X=1$, $\rho=\tfrac{1}{\sqrt2}$.
+@q NM-P6-12 | P6 | val
+$f(x,y)=xe^{-x(y+1)}$, $x,y>0$. $\mathbb{E}(Y\mid X=x)=$
+a: $1/x$
+b: $x$
+c: $1+x$
+d: $2(1+x)$
+key: a
+why: $Y\mid x\sim\mathrm{Exp}(\text{rate }x)$: a non-linear regression.
+@q NM-P6-13 | P6 | val
+$f(x,y)=\dfrac{ye^{-y/(1+x)}}{(1+x)^4}$. $\mathbb{E}(Y\mid X=x)=$
+a: $2(1+x)$
+b: $1+x$
+c: $\tfrac{1}{1+x}$
+d: $2/(1+x)$
+key: a
+why: $Y\mid x\sim\mathrm{Gamma}(2,\text{scale }1+x)$: linear regression [2022 Q9–10].
+@q NM-P6-14 | P6 | val
+$c|x+y|$ on $\{-2,\dots,2\}^2$. $c=$
+a: $\tfrac1{40}$
+b: $\tfrac1{25}$
+c: $\tfrac1{20}$
+d: $\tfrac1{50}$
+key: a
+why: $\sum|x+y|=40$ [2026 Q1–3].
+@q NM-P6-15 | P6 | val
+$X,Y$ iid continuous. $P(X<Y)$ and $P(X=Y)$ are
+a: $\tfrac12,\ 0$
+b: $\tfrac12,\ \tfrac12$
+c: $1,\ 0$
+d: $\tfrac13,\ \tfrac13$
+key: a
+why: Symmetry; ties have probability zero.
+@q NM-P6-16 | P6 | supp
+Uniform on the unit **disc** $x^2+y^2\le1$: $X$ and $Y$ are
+a: independent
+b: uncorrelated but dependent
+c: correlated
+d: identical
+key: b
+why: The range of $Y$ depends on $X$.
+@q NM-P7-01 | P7 | val
+$X\sim N(0,1)$. The law of $X^2$ is
+a: $\chi^2_1=\mathrm{Gamma}(\tfrac12,\text{rate }\tfrac12)$
+b: $\mathrm{Exp}(1)$
+c: $N(0,1)$
+d: $t_1$
+key: a
+why: Square: $f_Y=\tfrac{f_X(\sqrt y)+f_X(-\sqrt y)}{2\sqrt y}$.
+@q NM-P7-02 | P7 | val
+$X,Y$ iid $N(0,1)$. $X/Y$ has the
+a: Cauchy(0,1) distribution
+b: $N(0,1)$ distribution
+c: $F(1,1)$ distribution
+d: $t_2$ distribution
+key: a
+why: Ratio of independent standard normals [2026 Q11].
+@q NM-P7-03 | P7 | val
+$X,Y$ iid $N(0,1)$. $\left(\dfrac{X-Y}{X+Y}\right)^2\sim$
+a: $F(1,1)$
+b: $\chi^2_1$
+c: Cauchy
+d: $\mathrm{Beta}(\tfrac12,\tfrac12)$
+key: a
+why: $(X\pm Y)/\sqrt2$ are iid $N(0,1)$; ratio of two $\chi^2_1$ [2020 Q17].
+@q NM-P7-04 | P7 | val
+$U\sim U(0,1)$. $-2\ln U$ has the law
+a: $\chi^2_2=\mathrm{Exp}(\text{mean }2)$
+b: $\mathrm{Exp}(1)$
+c: $\chi^2_1$
+d: $U(0,2)$
+key: a
+why: $-\ln U\sim\mathrm{Exp}(1)$, so $-2\ln U\sim\mathrm{Exp}(\text{rate }\tfrac12)=\chi^2_2$.
+@q NM-P7-05 | P7 | val
+$X\sim N(4,100)$. $\tfrac12\left(\tfrac{X-4}{10}\right)^2$ has the law
+a: $\mathrm{Gamma}(\text{shape }\tfrac12,\text{rate }1)$
+b: $\chi^2_1$
+c: $\mathrm{Exp}(1)$
+d: $\mathrm{Gamma}(1,\tfrac12)$
+key: a
+why: $\tfrac12\chi^2_1=\mathrm{Gamma}(\tfrac12,1)$ [2018 Q8].
+@q NM-P7-06 | P7 | val
+$X,Y$ iid $\mathrm{Exp}(\lambda)$. $X-Y$ has the
+a: Laplace distribution
+b: exponential distribution
+c: gamma distribution
+d: normal distribution
+key: a
+why: $\lvert X-Y\rvert\sim\mathrm{Exp}(\lambda)$ with a random sign [2019 Q40].
+@q NM-P7-07 | P7 | val
+$U_1,\dots,U_n$ iid $U(0,1)$. $T=-\ln\prod U_i$ has
+a: mean $n$ and MGF $(1-t)^{-n}$
+b: mean $1$ and MGF $(1-t)^{-1}$
+c: mean $n^2$ and MGF $e^{nt}$
+d: mean $n$ and MGF $(1-2t)^{-n/2}$
+key: a
+why: Sum of $n$ iid $\mathrm{Exp}(1)$ is $\mathrm{Gamma}(n,1)$ [2024 Q4–6].
+@q NM-P7-08 | P7 | val
+$U\sim U(0,1)$. The density of $U^2$ is
+a: $\dfrac{1}{2\sqrt y}$
+b: $2y$
+c: $\dfrac1{\sqrt y}$
+d: $1$
+key: a
+why: $f_Y(y)=f_U(\sqrt y)\cdot\tfrac1{2\sqrt y}$ [2024 Q39].
+@q NM-P7-09 | P7 | hyp
+$\mathbf u=A\mathbf x$ with $\det A=\tfrac14$. The joint density of $\mathbf u$ is
+a: $f(A^{-1}\mathbf u)/\lvert\det A\rvert=4f(A^{-1}\mathbf u)$
+b: $\lvert\det A\rvert f(A^{-1}\mathbf u)$
+c: $f(A\mathbf u)$
+d: $4f(A\mathbf u)$
+key: a
+why: The inverse Jacobian is $1/\lvert\text{forward Jacobian}\rvert$ [2020 Q38].
+@q NM-P7-10 | P7 | val
+$X\sim\mathrm{Exp}(1)$. $e^{-X}$ has the law
+a: $U(0,1)$
+b: $\mathrm{Exp}(1)$
+c: $\mathrm{Beta}(1,2)$
+d: $N(0,1)$
+key: a
+why: $F(X)$ is uniform and $F(X)=1-e^{-X}$; $U$ and $1-U$ share a law.
+@q NM-P7-11 | P7 | val
+For independent $X,Y$ the correlation of $X+Y$ and $X-Y$ is
+a: $\dfrac{\sigma_X^2-\sigma_Y^2}{\sigma_X^2+\sigma_Y^2}$
+b: $0$ always
+c: $\dfrac{\sigma_X^2+\sigma_Y^2}{\sigma_X^2-\sigma_Y^2}$
+d: $\rho$
+key: a
+why: Zero iff the variances are equal.
+@q NM-P7-12 | P7 | val
+$X,Y$ iid $\mathrm{Exp}(\lambda)$. $\dfrac{X}{X+Y}\sim$
+a: $U(0,1)$
+b: $\mathrm{Exp}(\lambda)$
+c: $\mathrm{Beta}(2,1)$
+d: $\mathrm{Gamma}(2,\lambda)$
+key: a
+why: Gamma ratio with $\alpha_1=\alpha_2=1$: $\mathrm{Beta}(1,1)$ [2018 Q9].
+@q NM-P8-01 | P8 | val
+$\mathbb{E}(X\mid Y)=Y^2+1$, $\mathbb{E}Y=1$, $\mathrm{Var}\,Y=2$. Then $\mathbb{E}X=$
+a: $2$
+b: $3$
+c: $4$
+d: $5$
+key: c
+why: $\mathbb{E}Y^2=2+1=3$, so $\mathbb{E}X=3+1=4$.
+@q NM-P8-02 | P8 | val
+$X\sim N(0,1)$ and $Y\mid X\sim U(X-1,X+1)$. $\mathbb{E}[\mathbb{E}^2(Y\mid X)]=$
+a: $0$
+b: $1$
+c: $\tfrac13$
+d: $\tfrac43$
+key: b
+why: $\mathbb{E}(Y\mid X)=X$, so the expectation is $\mathbb{E}X^2=1$ [2023 Q2].
+@q NM-P8-03 | P8 | exist
+Which statement is FALSE?
+a: $\mathbb{E}(aX+bY)=a\mathbb{E}X+b\mathbb{E}Y$ needs no independence
+b: A symmetric density always has mean 0
+c: $\mathbb{E}g(X)\ge g(\mathbb{E}X)$ for convex $g$
+d: $\mathrm{Var}X=\mathbb{E}\,\mathrm{Var}(X\mid Y)+\mathrm{Var}\,\mathbb{E}(X\mid Y)$
+key: b
+why: The Cauchy is symmetric with no mean.
+@q NM-P8-04 | P8 | val
+$\mathrm{Var}X=4$, $\mathrm{Var}Y=9$, $\mathrm{Cov}(X,Y)=1$. $\mathrm{Var}(2X-3Y)=$
+a: $85$
+b: $97$
+c: $73$
+d: $61$
+key: a
+why: $16+81-12=85$.
+@q NM-P8-05 | P8 | val
+A random permutation of $n$ objects: the expected number of fixed points is
+a: $1$
+b: $n/2$
+c: $1/n$
+d: $1/e$
+key: a
+why: Indicators; the variance is also 1.
+@q NM-P8-06 | P8 | val
+$\mathbb{E}\max(Z_1,Z_2)$ for iid $N(0,1)$ is
+a: $1/\sqrt\pi$
+b: $\sqrt{2/\pi}$
+c: $0$
+d: $2/\sqrt\pi$
+key: a
+why: $\max=\tfrac{Z_1+Z_2+\lvert Z_1-Z_2\rvert}{2}$ and $\mathbb{E}\lvert Z_1-Z_2\rvert=2/\sqrt\pi$.
+@q NM-P8-07 | P8 | val
+$\mathbb{E}\lvert Z\rvert$ for $Z\sim N(0,1)$ is
+a: $\sqrt{2/\pi}$
+b: $1/\sqrt{2\pi}$
+c: $0$
+d: $\tfrac12$
+key: a
+why: Half-normal mean.
+@q NM-P8-08 | P8 | sign
+For a positive random variable $X$
+a: $\mathbb{E}(1/X)\ge1/\mathbb{E}X$
+b: $\mathbb{E}(1/X)\le1/\mathbb{E}X$
+c: $\mathbb{E}(1/X)=1/\mathbb{E}X$
+d: $\mathbb{E}(1/X)=\mathbb{E}X$
+key: a
+why: Jensen with the convex function $1/x$.
+@q NM-P8-09 | P8 | val
+$X\sim\mathrm{Bin}(3,\tfrac13)$. $\mathbb{E}\left[\dfrac{X}{X+1}\right]=$
+a: $\tfrac{43}{108}$
+b: $\tfrac13$
+c: $\tfrac{65}{108}$
+d: $\tfrac12$
+key: a
+why: $1-\mathbb{E}\tfrac1{X+1}=1-\tfrac{1-q^{4}}{4p}=1-\tfrac{1-16/81}{4/3}$ [2020 Q39].
+@q NM-P8-10 | P8 | val
+iid positive $X_1,\dots,X_n$. $\mathbb{E}(S_m/S_n)$ for $m\le n$ is
+a: $m/n$
+b: $1/n$
+c: $m$
+d: $1$
+key: a
+why: Symmetry gives $\mathbb{E}(X_i/S_n)=1/n$.
+@q NM-P8-11 | P8 | val
+$X_1,\dots,X_n$ iid $U(0,1)$. $\mathbb{E}\max=$
+a: $\tfrac{n}{n+1}$
+b: $\tfrac{1}{n+1}$
+c: $\tfrac12$
+d: $\tfrac{n-1}{n+1}$
+key: a
+why: $X_{(n)}\sim\mathrm{Beta}(n,1)$.
+@q NM-P8-12 | P8 | impl
+Which chain is correct?
+a: independence $\Rightarrow$ mean independence $\Rightarrow$ uncorrelated
+b: uncorrelated $\Rightarrow$ mean independence $\Rightarrow$ independence
+c: mean independence $\Rightarrow$ independence
+d: uncorrelated $\Rightarrow$ independence
+key: a
+why: Neither arrow reverses.
+@q NM-P8-13 | P8 | val
+$N\sim\mathrm{Poisson}(\lambda)$ and $X_i$ iid $\mathrm{Exp}(1)$ independent of $N$. $\mathrm{Var}(S_N)=$
+a: $2\lambda$
+b: $\lambda$
+c: $\lambda^2$
+d: $\lambda+\lambda^2$
+key: a
+why: $\mathbb{E}N\,\mathrm{Var}X+\mathrm{Var}N(\mathbb{E}X)^2=\lambda+\lambda$.
+@q NM-P8-14 | P8 | val
+$X\sim\mathrm{Exp}(1)$ and $Y\mid X=x\sim\mathrm{Poisson}(x)$. $\mathrm{Var}\,Y=$
+a: $2$
+b: $1$
+c: $3$
+d: $\tfrac12$
+key: a
+why: $\mathbb{E}X+\mathrm{Var}X=1+1$.
+@q NM-P9-01 | P9 | val
+The MGF of $\chi^2_{10}$ is
+a: $(1-2t)^{-5}$
+b: $(1-2t)^{-10}$
+c: $(1-t)^{-5}$
+d: $(1-2t)^{5}$
+key: a
+why: $(1-2t)^{-n/2}$ [2024 Q16].
+@q NM-P9-02 | P9 | val
+$X_1,X_2$ iid $N(0,1)$. The CF of $X_1X_2$ is
+a: $(1+t^2)^{-1/2}$
+b: $e^{-t^2}$
+c: $\tfrac1{1+t^2}$
+d: $e^{-\lvert t\rvert}$
+key: a
+why: $\mathbb{E}e^{-t^2X_2^2/2}=(1+t^2)^{-1/2}$ [2024 Q25].
+@q NM-P9-03 | P9 | exist
+Which is NOT a characteristic function?
+a: $e^{-\lvert t\rvert}$
+b: $\tfrac1{1+t^2}$
+c: $e^{-t^4}$
+d: $\cos t$
+key: c
+why: $1+o(t^2)$ near 0 would force $X\equiv0$.
+@q NM-P9-04 | P9 | impl
+$\varphi_{X+Y}=\varphi_X\varphi_Y$. Then
+a: $X,Y$ must be independent
+b: $X,Y$ need not be independent (e.g. Cauchy $Y=X$)
+c: $X,Y$ are identically distributed
+d: $X+Y$ is normal
+key: b
+why: For standard Cauchy $X$, $Y=X$: both sides are $e^{-2\lvert t\rvert}$.
+@q NM-P9-05 | P9 | val
+$G(s)$ is the PGF of $X$. $\mathrm{Var}X=$
+a: $G''(1)+G'(1)-G'(1)^2$
+b: $G''(1)-G'(1)^2$
+c: $G''(1)$
+d: $G'(1)-G'(1)^2$
+key: a
+why: $G''(1)=\mathbb{E}X(X-1)$.
+@q NM-P9-06 | P9 | val
+$G(s)=e^{\lambda(s-1)}$ equals $e^{-1}$ at $s=\tfrac23$. Then $\lambda=$
+a: $3$
+b: $\tfrac13$
+c: $1$
+d: $\tfrac32$
+key: a
+why: $\lambda(\tfrac23-1)=-1$ [2020 Q35].
+@q NM-P9-07 | P9 | val
+For a random sum $S_N=X_1+\cdots+X_N$ the MGF is
+a: $M_N(\ln M_X(t))$
+b: $M_X(\ln M_N(t))$
+c: $M_N(t)M_X(t)$
+d: $M_N(M_X(t))$
+key: a
+why: Condition on $N$: $\mathbb{E}\,M_X(t)^N$.
+@q NM-P9-08 | P9 | val
+$N$ and $X$ are both Poisson$(\lambda)$ and $Z=X_1+\cdots+X_N$. $\mathrm{Var}Z=$
+a: $\lambda^2+\lambda^3$
+b: $\lambda^2$
+c: $2\lambda$
+d: $\lambda+\lambda^2$
+key: a
+why: $\lambda\cdot\lambda+\lambda\cdot\lambda^2$ [2025 Q45–47].
+@q NM-P9-09 | P9 | hyp
+$X_n\sim N(0,n)$. Then $\varphi_n(t)\to$
+a: $e^{-t^2/2}$
+b: $\mathbf 1\{t=0\}$, discontinuous at 0, so there is no limiting distribution
+c: $1$
+d: $0$ for all $t$
+key: b
+why: Lévy continuity needs the limit to be continuous at 0.
+@q NM-P9-10 | P9 | hyp
+Which is TRUE?
+a: If $\int\lvert\varphi\rvert<\infty$ then $X$ has a bounded continuous density
+b: Every density has an integrable CF
+c: A CF may fail to exist for heavy tails
+d: $\varphi$ real implies $\mathbb{E}X=0$
+key: a
+why: Inversion theorem; the Cauchy CF is real but there is no mean.
+@q NM-P9-11 | P9 | val
+$X\sim\mathrm{Bin}(10,\tfrac14)$ and $Y=10-X$. The third cumulant $\kappa_3(Y)$ is
+a: $-\tfrac{15}{16}$
+b: $\tfrac{15}{16}$
+c: $\tfrac{15}{8}$
+d: $0$
+key: a
+why: $\kappa_3(X)=npq(q-p)=\tfrac{15}{8}\cdot\tfrac12=\tfrac{15}{16}$; $\kappa_r(aX+b)=a^r\kappa_r$ with $a=-1$ [2023 Q11].
+@q NM-P9-12 | P9 | val
+$\sum_kP(X>k)s^k=$
+a: $\dfrac{1-G(s)}{1-s}$
+b: $\dfrac{G(s)}{1-s}$
+c: $\dfrac{sG(s)}{1-s}$
+d: $G(s)(1-s)$
+key: a
+why: PGF toolkit; $P(X\le k)$ gives $G(s)/(1-s)$.
+@q NM-P9-13 | P9 | hyp
+An MGF finite in a neighbourhood of 0
+a: gives all moments and determines the law
+b: gives all moments but not the law
+c: exists for every distribution
+d: is real-valued only for symmetric laws
+key: a
+why: “All moments finite” does not determine the law (lognormal).
+@q NM-P9-14 | P9 | val
+$\phi(t)=e^{2t(i-t)}$ is the CF of $N(2,4)$. $\mu_4=$
+a: $48$
+b: $16$
+c: $12$
+d: $32$
+key: a
+why: $3\sigma^4=3\cdot16$ [2025 Q50].
+@q NM-P10-01 | P10 | impl
+Which implication holds in general?
+a: convergence in probability $\Rightarrow$ a.s.
+b: a.s. $\Rightarrow$ in probability
+c: in distribution $\Rightarrow$ in probability
+d: a.s. $\Rightarrow$ mean square
+key: b
+why: The three free implications are a.s.$\Rightarrow$P, $r$th mean$\Rightarrow$P, P$\Rightarrow$d.
+@q NM-P10-02 | P10 | impl
+$X_n=n\,\mathbf 1(U<1/n)$, $U\sim U(0,1)$. Then $X_n\to0$
+a: a.s. and in probability but not in mean square
+b: in mean square only
+c: in distribution only
+d: in every mode
+key: a
+why: $\mathbb{E}X_n=1$, $\mathbb{E}X_n^2=n$.
+@q NM-P10-03 | P10 | hyp
+Independent $X_n\sim\mathrm{Bernoulli}(1/n)$. Then $X_n\to0$
+a: in probability but not a.s.
+b: a.s.
+c: not in probability
+d: in mean square but not in probability
+key: a
+why: Borel–Cantelli II with $\sum1/n=\infty$.
+@q NM-P10-04 | P10 | hyp
+Independent $X_n\sim\mathrm{Bernoulli}(1/n^2)$. Then $X_n\to0$
+a: a.s. (Borel–Cantelli I)
+b: not a.s.
+c: only in distribution
+d: only in probability
+key: a
+why: $\sum1/n^2<\infty$.
+@q NM-P10-05 | P10 | impl
+$X\sim N(0,1)$ and $X_n=-X$ for all $n$. Then $X_n\to X$
+a: in distribution only
+b: in probability
+c: a.s.
+d: in mean square
+key: a
+why: $\lvert X_n-X\rvert=2\lvert X\rvert$ never shrinks.
+@q NM-P10-06 | P10 | supp
+$X_n\equiv1/n$. Then $X_n\xrightarrow{d}0$ even though $F_n(0)=0\not\to F(0)=1$ because
+a: $0$ is not a continuity point of the limit CDF
+b: $F_n$ is not right-continuous
+c: convergence needs only $x>0$
+d: the limit is not a CDF
+key: a
+why: Convergence in distribution is required only at continuity points of $F$.
+@q NM-P10-07 | P10 | val
+$X_n=c_n\mathbf 1(U<n^{-2})$ with $c_n=n$. Then $X_n\to0$
+a: a.s. only (not in mean square)
+b: a.s. and in mean square
+c: in mean square only
+d: not at all
+key: a
+why: Mean square needs $c_n^2/n^2\to0$; here it equals 1 [2020 Q32].
+@q NM-P10-08 | P10 | hyp
+Slutsky’s theorem requires that $Y_n\xrightarrow{P}$
+a: a constant $c$
+b: a random variable $Y$
+c: $X$
+d: $0$ only
+key: a
+why: $X_n\xrightarrow{d}X$, $Y_n\xrightarrow{P}c\Rightarrow X_n+Y_n\xrightarrow{d}X+c$.
+@q NM-P11-01 | P11 | hyp
+$\sum P(A_n)<\infty$ implies $P(A_n\text{ i.o.})=0$
+a: with no independence assumption
+b: only for independent events
+c: only for identical events
+d: only for disjoint events
+key: a
+why: First Borel–Cantelli lemma.
+@q NM-P11-02 | P11 | hyp
+$A_n=A$ with $P(A)=\tfrac12$ for all $n$. Then $\sum P(A_n)=\infty$ and $P(A_n\text{ i.o.})=$
+a: $1$
+b: $\tfrac12$
+c: $0$
+d: undefined
+key: b
+why: Independence is essential in Borel–Cantelli II.
+@q NM-P11-03 | P11 | supp
+For an independent sequence, which is NOT a tail event?
+a: $\{\sum X_n\text{ converges}\}$
+b: $\{\bar X_n\text{ converges}\}$
+c: $\{X_1>0\}$
+d: $\{\limsup X_n>c\}$
+key: c
+why: It depends on the first term.
+@q NM-P11-04 | P11 | hyp
+Kolmogorov’s 0–1 law says a tail event has probability
+a: 0 or 1, without saying which
+b: exactly $\tfrac12$
+c: 1
+d: 0
+key: a
+why: Determining which needs Borel–Cantelli or the three-series theorem.
+@q NM-P11-05 | P11 | val
+In iid Bernoulli trials a fixed pattern such as SFSF occurs infinitely often with probability
+a: $1$
+b: $0$
+c: $\tfrac1{16}$
+d: $\tfrac12$
+key: a
+why: Disjoint blocks are independent, so Borel–Cantelli II applies [2022 Q46].
+@q NM-P11-06 | P11 | val
+$X$ iid with finite mean. $P(\lvert X_n\rvert>n/2\text{ i.o.})=$
+a: $0$
+b: $1$
+c: $\tfrac12$
+d: $\infty$
+key: a
+why: $\sum P(\lvert X\rvert>n/2)<\infty$ [2021 Q21].
+@q NM-P12-01 | P12 | val
+Mean 16 and variance 9. Chebyshev’s lower bound for $P(10<X<22)$ is
+a: $0.75$
+b: $0.89$
+c: $0.5$
+d: $0.95$
+key: a
+why: $k=2$: $1-\tfrac14$ [2018 Q19].
+@q NM-P12-02 | P12 | val
+The smallest $k$ with $1-1/k^2\ge0.99$ is
+a: $10$
+b: $9$
+c: $100$
+d: $5$
+key: a
+why: $k^2\ge100$ [2019 Q34].
+@q NM-P12-03 | P12 | val
+$\sigma=1$, $\varepsilon=0.5$, confidence at least $0.95$. Chebyshev requires $n\ge$
+a: $80$
+b: $40$
+c: $100$
+d: $20$
+key: a
+why: $n\ge\sigma^2/(\varepsilon^2\alpha)=1/(0.25\times0.05)$ [2021 Q6].
+@q NM-P12-04 | P12 | hyp
+Markov’s inequality $P(X\ge a)\le\mathbb{E}X/a$
+a: needs $X\ge0$ and is useless for $a\le\mathbb{E}X$
+b: needs finite variance
+c: is sharper than Chebyshev
+d: needs symmetry
+key: a
+why: The bound exceeds 1 when $a\le\mathbb{E}X$.
+@q NM-P12-05 | P12 | hyp
+Kolmogorov’s inequality bounds $P\left(\max_{k\le n}\lvert S_k\rvert\ge\varepsilon\right)$ by
+a: $\mathrm{Var}(S_n)/\varepsilon^2$
+b: $\mathrm{Var}(S_n)/\varepsilon$
+c: $n\mathrm{Var}(X_1)/\varepsilon$
+d: $\varepsilon^2/\mathrm{Var}(S_n)$
+key: a
+why: Chebyshev is its $n=1$ case.
+@q NM-P12-06 | P12 | val
+Mean 12 and $P(2<X<22)\ge\tfrac34$ from Chebyshev with $k=2$. Then $\mathbb{E}X^2=$
+a: $169$
+b: $144$
+c: $25$
+d: $196$
+key: a
+why: $2\sigma=10$, $\sigma^2=25$, $\mathbb{E}X^2=25+144$ [2021 Q23].
+@q NM-P12-07 | P12 | hyp
+Chebyshev’s inequality
+a: is sharp: a three-point law attains it
+b: can always be improved
+c: needs normality
+d: is exact for all symmetric laws
+key: a
+why: $X=\pm k\sigma$ w.p. $\tfrac1{2k^2}$ each, $0$ otherwise.
+@q NM-P12-08 | P12 | val
+$\bar X$ of $n=10$ exponential$(\text{mean }\theta)$ observations. Chebyshev’s lower bound for $P(0<\bar X<2\theta)$ is
+a: $0.9$
+b: $0.75$
+c: $0.5$
+d: $0.99$
+key: a
+why: $1-\tfrac{\theta^2/10}{\theta^2}$ [2024 Q38].
+@q NM-P13-01 | P13 | hyp
+Khinchin’s WLLN for iid variables requires
+a: a finite mean only
+b: a finite variance
+c: a finite fourth moment
+d: normality
+key: a
+why: No variance assumption.
+@q NM-P13-02 | P13 | hyp
+Kolmogorov’s SLLN criterion for independent non-iid variables is
+a: $\sum\mathrm{Var}(X_n)/n^2<\infty$
+b: $\sum\mathrm{Var}(X_n)/n<\infty$
+c: $\sum\mathrm{Var}(X_n)<\infty$
+d: $\sum\mathrm{Var}(X_n)/n^3<\infty$
+key: a
+why: Note the $n^2$ in the denominator.
+@q NM-P13-03 | P13 | exist
+For iid Cauchy variables
+a: $\bar X_n$ is Cauchy for every $n$; no LLN and no CLT
+b: the SLLN holds with limit 0
+c: the CLT holds with variance 1
+d: the WLLN holds
+key: a
+why: Averaging does nothing; the mean does not exist.
+@q NM-P13-04 | P13 | val
+Sample of size $n$ from $U[-3,3]$. $\sqrt n\,\bar X\xrightarrow{d}$
+a: $N(0,3)$
+b: $N(0,9)$
+c: $N(0,1)$
+d: $N(0,12)$
+key: a
+why: $\sigma^2=\tfrac{6^2}{12}=3$ [2018 Q33].
+@q NM-P13-05 | P13 | val
+The sample median of $n=20$ from $N(1,2)$ is approximately
+a: $N(1,\pi/20)$
+b: $N(1,1/10)$
+c: $N(1,2/20)$
+d: $N(0,\pi/20)$
+key: a
+why: $N(\mu,\pi\sigma^2/2n)$ with $\sigma^2=2$, $n=20$ [2024 Q13].
+@q NM-P13-06 | P13 | val
+$e^{-n}\sum_{k=0}^n n^k/k!\to$
+a: $\tfrac12$
+b: $0$
+c: $1$
+d: $e^{-1}$
+key: a
+why: $P(\mathrm{Poisson}(n)\le n)\to\tfrac12$ by the CLT.
+@q NM-P13-07 | P13 | hyp
+By the CLT
+a: only the standardised sum converges in distribution to a normal law
+b: $S_n$ converges to a normal law
+c: $\bar X_n$ converges to a normal law
+d: $\bar X_n$ converges to $N(0,1)$
+key: a
+why: $S_n$ diverges and $\bar X_n$ collapses to $\mu$.
+@q NM-P13-08 | P13 | val
+For iid $U(0,1)$, $\left(\prod X_i\right)^{1/n}\xrightarrow{P}$
+a: $e^{-1}$
+b: $\tfrac12$
+c: $0$
+d: $1/e^2$
+key: a
+why: $\ln$ of it is an average with mean $\mathbb{E}\ln U=-1$.
+@q NM-P13-09 | P13 | hyp
+Lyapunov’s condition for the CLT is
+a: sufficient but not necessary; Lindeberg–Feller is necessary and sufficient
+b: necessary and sufficient
+c: necessary but not sufficient
+d: implied by the WLLN
+key: a
+why: Under uniform asymptotic negligibility Lindeberg–Feller is the iff.
+@q NM-P13-10 | P13 | val
+iid with $\mathbb{E}X=1$ and $(\sum X_i^2-5n)/\sqrt{12n}\xrightarrow{d}N(0,1)$. Then $\mathrm{Var}X=$
+a: $4$
+b: $5$
+c: $1$
+d: $12$
+key: a
+why: $\mathbb{E}X^2=5$, so $5-1=4$ [2021 Q26].

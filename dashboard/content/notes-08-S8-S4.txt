@@ -1,0 +1,61 @@
+@sec S8 | Correlation: distribution of r, partial, multiple, intraclass, ratio | Statistical Methods
+@meta codes=S8 pyq=33 f27=2.9 tier=1
+@lede The biggest single Statistical Methods topic: equicorrelation shortcuts for partial and multiple correlation, the distribution of $r$ under $\rho=0$, and the range and invariance of $\eta$ and the intraclass coefficient (33 PYQs, about 2.9 in 2027).
+@grp Distribution of the sample r
+-* $\rho=0$: $f(r)=\dfrac{(1-r^2)^{(n-4)/2}}{B\left(\tfrac12,\tfrac{n-2}2\right)}$, $-1<r<1$; $r^2\sim\mathrm{Beta}\left(\tfrac12,\tfrac{n-2}2\right)$ ([2022 Q19] **(b)**); $\mathbb{E}r=0$, $\mathrm{Var}\,r=\tfrac1{n-1}$; $\mathbb{E}\left[\tfrac1{1-r^2}\right]=$ **(n−3)/(n−4)** [2018 Q30].
+-* $t=\dfrac{r\sqrt{n-2}}{\sqrt{1-r^2}}\sim t_{n-2}$. [2021 Q34] $r=0.6$, $n=11$: $t=$ **2.25**. [2026 Q22] $0.75\sqrt{n-2}>2.72$ needs $n>$ **15**.
+- Smallest significant $r$: $r^2=\dfrac{t^2}{t^2+\nu}$. [2025 Q19] $\tfrac{2.06^2}{2.06^2+25}=$ **0.1451**.
+-* $\rho\ne0$: Fisher $z=\tfrac12\ln\tfrac{1+r}{1-r}\approx N\left(\tanh^{-1}\rho,\tfrac1{n-3}\right)$ ([2019 Q8] **1/(n−3)**).
+- Two samples: $\dfrac{z_1-z_2}{\sqrt{\tfrac1{n_1-3}+\tfrac1{n_2-3}}}\sim N(0,1)$. $k$ samples: weights $n_i-3$, $\sum(n_i-3)(z_i-\bar z)^2\sim\chi^2_{k-1}$, pooled $\hat\rho=\tanh\bar z$.
+- $\mathbb{E}r\approx\rho\left[1-\tfrac{1-\rho^2}{2n}\right]$ (biased toward 0); $\mathrm{Var}\,r\approx(1-\rho^2)^2/n$.
+@grp Partial and multiple correlation
+$$r_{12.3}=\frac{r_{12}-r_{13}r_{23}}{\sqrt{(1-r_{13}^2)(1-r_{23}^2)}},\qquad R_{1.23}^2=\frac{r_{12}^2+r_{13}^2-2r_{12}r_{13}r_{23}}{1-r_{23}^2},\qquad 1-R_{1.23}^2=(1-r_{12}^2)(1-r_{13.2}^2)$$
+- Also $1-R_{1.23}^2=(1-r_{13}^2)(1-r_{12.3}^2)$; in general $1-R^2=\lvert R\rvert/R_{11}$ and $r_{12.3\ldots p}=-R_{12}/\sqrt{R_{11}R_{22}}$ (cofactors).
+- $\sigma_{1.23}^2=\sigma_1^2(1-R_{1.23}^2)$; an order-$p$ SD = order-$(p-1)$ SD $\times\sqrt{1-r^2}$ of order $p-1$.
+- $b_{12.3}=\tfrac{\sigma_1}{\sigma_2}\cdot\tfrac{r_{12}-r_{13}r_{23}}{1-r_{23}^2}$; $b_{12.3}\,b_{21.3}=r_{12.3}^2$ ([2026 Q23] **r²_{13.2}**).
+-* $0\le R\le1$ and $R_{1.23}\ge\lvert r_{12}\rvert,\lvert r_{13}\rvert,\lvert r_{12.3}\rvert,\lvert r_{13.2}\rvert$ ([2026 Q27] **II and III**). $R=1$ means an exact linear relation.
+- $R_{1.23}=0\iff r_{12}=r_{13}=0$ ([2022 Q20] **1 and 3**). $r_{12.3}=0\iff r_{12}=r_{13}r_{23}$.
+-* Consistency: $1-r_{12}^2-r_{13}^2-r_{23}^2+2r_{12}r_{13}r_{23}\ge0$. The set $0.6,-0.4,0.7$ fails ($-0.346$).
+-* Exact $X_3=aX_1+bX_2$: $r_{13.2}=\mathrm{sign}\,a$, $r_{23.1}=\mathrm{sign}\,b$, $r_{12.3}=-\mathrm{sign}(ab)$. [2018 Q31] $aX_1+bX_2+cX_3=0$ with positive coefficients: $r_{12.3}=$ **−1**.
+- Residuals: $r(e_{1.23},e_{2.13})=-r_{12.3}$; $\sum x_2e_{1.23}=\sum x_3e_{1.23}=0$; a product of two residuals sums to 0 when all subscripts of one appear among the secondary subscripts of the other.
+- Tests: partial $r$ of order $k$: $t=\dfrac{r\sqrt{n-k-2}}{\sqrt{1-r^2}}$; multiple $R$ with $p$ regressors: $F=\dfrac{R^2/p}{(1-R^2)/(n-p-1)}\sim F(p,n-p-1)$. Adjusted $\bar R^2=1-(1-R^2)\tfrac{n-1}{n-p-1}$.
+.key **Equicorrelation** $r$ (needs $r\ge-\tfrac12$): $r_{12.3}=\dfrac r{1+r}$, $R^2=\dfrac{2r^2}{1+r}$, $R=\dfrac{\sqrt2\,r}{\sqrt{1+r}}$, $1-R^2=\dfrac{(1-r)(1+2r)}{1+r}$. [2021 Q32], [2018 Q29], [2020 Q16], [2022 Q16] **(b)**. [2025 Q14] $r_{12}=0.8$, $r_{13}=-0.4$, $r_{23}=0$: $r_{13.2}=\tfrac{-0.4}{0.6}=$ **−2/3**. [2020 Q8] $\sin^2\theta,\cos\theta,\sin\theta$: $r_{12.3}=$ **tan θ − 1**.
+@grp Intraclass correlation and correlation ratio
+-* Intraclass ($n$ families of $k$ members, all ordered within-family pairs): $r=\dfrac{k\sigma_m^2/\sigma^2-1}{k-1}$, $\sigma_m^2$ = variance of family means. Range **−1/(k−1) to 1** ([2023 Q32]); a negative value is weaker evidence than the same positive value.
+-* $\eta_{yx}^2=\dfrac{\sum n_i(\bar y_i-\bar y)^2}{\sum(y-\bar y)^2}=1-\dfrac{\sigma_e^2}{\sigma_y^2}$; $0\le r^2\le\eta^2\le1$; $\eta=\lvert r\rvert$ iff the regression is linear; $\eta_{yx}\ne\eta_{xy}$; $\eta^2$ is free of origin and scale ([2025 Q15] **I and III**).
+- Tests: $F=\dfrac{\eta^2/(h-1)}{(1-\eta^2)/(N-h)}\sim F(h-1,N-h)$; linearity $F=\dfrac{(\eta^2-r^2)/(h-2)}{(1-\eta^2)/(N-h)}\sim F(h-2,N-h)$.
+
+@sec S4 | Attributes: association, consistency, contingency | Statistical Methods
+@meta codes=S4 pyq=12 f27=1.2 tier=2
+@lede Every attribute item is one of three checks: is any ultimate class negative (consistency), is $(AB)$ above or below $(A)(B)/N$ (the verdict), and Yule’s $Q$ from the $2\times2$ table (12 PYQs in 7 of 9 papers, about 1.2 in 2027).
+@grp Notation and consistency
+- $2\times2$ cells: $a=(AB)$, $b=(A\beta)$, $c=(\alpha B)$, $d=(\alpha\beta)$. Greek letters mark absence: $(A)+(\alpha)=N$, $(AB)+(A\beta)=(A)$.
+- $n$ attributes give $3^n$ class frequencies ($N$ included) and $2^n$ ultimate classes; the $2^n$ positive classes determine all the rest.
+-* Data are consistent iff no ultimate class frequency is negative. Two attributes: $(AB)\ge0$, $(AB)\le(A)$, $(AB)\le(B)$, $(AB)\ge(A)+(B)-N$ ([2021 Q12] **all three**).
+- Three attributes: $(ABC)\ge0$; $(ABC)\ge(AB)+(AC)-(A)$ and its two analogues; $(ABC)\le(AB),(AC),(BC)$; $(ABC)\le(AB)+(AC)+(BC)-(A)-(B)-(C)+N$.
+- Consequences: $(AB)+(BC)+(CA)\ge(A)+(B)+(C)-N$ and $(AB)+(AC)-(BC)\le(A)$. In general $(A_1A_2\cdots A_n)\ge\sum(A_i)-(n-1)N$.
+- [2020 Q12] $(AB)>(A)$, $(AB)<(A)+(B)-N$ and $(ABC)>(AB)+(AC)+(BC)-(A)-(B)-(C)+N$ each break a condition: **all three** signal inconsistency.
+- Worked: $(A)=50$, $(B)=40$, $(AB)=5$, $N=80$ gives $(\alpha\beta)=80-90+5=-5$, so inconsistent.
+- Equal marginals $(A)=(B)=(C)=xN$ and $(AB)=(BC)=(CA)=yN$ are consistent iff $\max\{0,2x-1,x-\tfrac13\}\le y\le x$.
+- [2025 Q53] all six first-order classes $=N/2$: $(AB)=(\alpha\beta)$ and $(A\beta)=(\alpha B)$ always; $(ABC)=(\alpha\beta\gamma)$ then gives $2(ABC)=(AB)+(AC)+(BC)-N/2$. **Both.**
+@grp Association verdicts and coefficients
+$$Q=\frac{ad-bc}{ad+bc},\qquad Y=\frac{\sqrt{ad}-\sqrt{bc}}{\sqrt{ad}+\sqrt{bc}},\qquad Q=\frac{2Y}{1+Y^2},\qquad \phi=\frac{ad-bc}{\sqrt{(a+b)(c+d)(a+c)(b+d)}},\qquad \chi^2=N\phi^2$$
+-* Independent iff $(AB)=\tfrac{(A)(B)}{N}\iff ad=bc\iff\tfrac{(AB)}{(A)}=\tfrac{(\alpha B)}{(\alpha)}$. Positive association if $(AB)$ exceeds $(A)(B)/N$, negative if below. $\delta=(AB)-\tfrac{(A)(B)}N=\tfrac{ad-bc}N$.
+- $Q\in[-1,1]$: $Q=1$ iff $bc=0$ (complete association), $-1$ iff $ad=0$, 0 iff independent. $\lvert Y\rvert\le\lvert Q\rvert$ and $\lvert Q\rvert\ge\lvert\phi\rvert$.
+-! $Q$ ignores the relative sizes of the $A$ and $\alpha$ groups (multiply a row or a column by a constant and $Q$ stays); $\phi$ does not.
+- Partial association: the $A$–$B$ association within the sub-universes $C$ and $\gamma$. Illusory (misleading) association: $A$ and $B$ associated overall only through their links with $C$.
+| PYQ | Stem | Answer |
+| [2018 Q24] | Father–son smoking 50, 10, 10, 30 | $\tfrac{1500-100}{1500+100}=$ **7/8** |
+| [2018 Q25] | Textbook definitions of positive, negative, independent | **1 and 2** (independence is not “a linear relationship”) |
+| [2019 Q4] | $(A)=50$, $(B)=60$, $(AB)=40$, $N=100$ | Expected $30<40$: **positive** |
+| [2022 Q56] | 1482 exposed, 368 attacked, 343 vaccinated, 35 of them attacked | Expected $85.2>35$: negative association, so **2 only** (vaccination may prevent) |
+| [2025 Q20] | 25 lakh men, 2 lakh literate, 26,000 criminal, 2000 both | Expected $2080>2000$: **negative** |
+| [2025 Q60] | $Q=Y=1$ if $bc=0$; $Q=-1$ if $ad=0$; $Q=0$ if $ad=bc$ | **All three** |
+@grp Contingency tables
+- $r\times c$ table: $E_{ij}=R_iC_j/N$, $\chi^2=\sum\tfrac{(O-E)^2}{E}=N\left[\sum\sum\tfrac{O^2}{R_iC_j}-1\right]$, df $(r-1)(c-1)$.
+-* $2\times2$ shortcut: $\chi^2=\dfrac{N(ad-bc)^2}{(a+b)(c+d)(a+c)(b+d)}$ on 1 df. Yates: replace $\lvert ad-bc\rvert$ by $\lvert ad-bc\rvert-N/2$ when an expected count is below 5.
+- Proportional rows give $\chi^2=0$ exactly ([2023 Q24] 30, 30 over 20, 20: **0**).
+- Contingency coefficient $C=\sqrt{\chi^2/(\chi^2+N)}$, $0\le C<1$; its maximum for a $k\times k$ table is $\sqrt{(k-1)/k}$, $0.707$ for $2\times2$. [2019 Q26] $\sqrt{2.38/202.38}=$ **0.1084**.
+- Tschuprow $T=\sqrt{\chi^2\big/\left(N\sqrt{(r-1)(c-1)}\right)}$; Cramér $V=\sqrt{\chi^2\big/\left(N\min(r-1,c-1)\right)}\in[0,1]$; mean square contingency $\phi^2=\chi^2/N$.
+- [2020 Q2] leaked row: $X_1+X_2=100$; not-leaked row: $Y=18$; equal C and D totals: $X_1-X_2=32$, so **66, 34, 18**.
+- Worked: $(20,10,10,20)$ gives $\chi^2=6.667$, $\phi=\tfrac13$, $C=0.316$, $Q=0.6$. $(30,20,10,40)$ gives $Q=5/7$ and $Y\approx0.42$.

@@ -1,0 +1,98 @@
+@sec T5 | Standard distributions: distribution-by-distribution ambush points | Trap compendium
+@meta codes=P4,P5 src=traps
+@lede For every family memorise five hooks: (support, mean, variance, generating function, one *characterising* property). The characterising property is what the top-1% items test.
+@grp Bernoulli(p)
+- $\mathbb{E}X=p$, $\mathrm{Var}X=pq\le\tfrac14$, maximised at $p=\tfrac12$. **MCQ angle:** “Largest possible variance of a 0–1 variable” $=\tfrac14$.
+- $X^k=X$ for all $k\ge1$: every raw moment equals $p$. A one-line MCQ.
+- Indicator calculus: $\mathbf 1_{A\cap B}=\mathbf 1_A\mathbf 1_B$, $\mathbf 1_{A\cup B}=\mathbf 1_A+\mathbf 1_B-\mathbf 1_A\mathbf 1_B$; expectation of an indicator is a probability — the trick behind “matching/coupon” expectation items.
+@grp Binomial(n, p)
+- MGF $(q+pe^t)^n$; PGF $(q+ps)^n$. Mean $np$ **always exceeds** variance $npq$ (underdispersion). **MCQ angle:** “mean $=8$, variance $=16$” is impossible for a binomial — instant elimination.
+- If mean $np=a$ and variance $npq=b$ then $q=b/a$, $p=1-b/a$, $n=a^2/(a-b)$; $n$ must come out a positive integer, else no such binomial exists.
+- Mode: $\lfloor(n+1)p\rfloor$; if $(n+1)p$ is an integer, *two* modes: $(n+1)p$ and $(n+1)p-1$. Recurrence $\tfrac{P(X=k+1)}{P(X=k)}=\tfrac{n-k}{k+1}\cdot\tfrac pq$.
+-! Additivity: $\mathrm{Bin}(m,p)+\mathrm{Bin}(n,p)=\mathrm{Bin}(m+n,p)$ for independent summands — *only with common $p$*. Different $p$’s give a non-binomial law.
+- Symmetric iff $p=\tfrac12$. $n-X\sim\mathrm{Bin}(n,q)$.
+- Limits: $n\to\infty$, $np\to\lambda$: Poisson (law of rare events); fixed $p$, large $n$: normal (de Moivre–Laplace) with continuity correction $P(X\le k)\approx\Phi\left(\tfrac{k+0.5-np}{\sqrt{npq}}\right)$. **MCQ angle:** Poisson approximation is good when $n$ large, $p$ small; normal when $npq$ large.
+@grp Poisson(λ)
+- Mean = variance $=\lambda$: the *equidispersion* signature. Factorial moments $\mathbb{E}X(X-1)\cdots(X-r+1)=\lambda^r$.
+- Mode $\lfloor\lambda\rfloor$; two modes $\lambda-1,\lambda$ when $\lambda$ is a positive integer. Recurrence $P(X=k+1)=\tfrac{\lambda}{k+1}P(X=k)$.
+-* PGF $e^{\lambda(s-1)}$; MGF $e^{\lambda(e^t-1)}$. Additive: independent Poissons sum to Poisson (rates add). **Raikov’s theorem** (converse, top-1%): if $X\perp\!\!\!\perp Y$, both non-degenerate, and $X+Y$ is Poisson, then $X$ and $Y$ are each Poisson.
+-! The *difference* of independent Poissons is **not** Poisson (it can be negative; it is Skellam). Constant multiples $cX$ ($c\ne1$) are not Poisson either — “$2X$ is Poisson with mean $2\lambda$” is False.
+-* Conditional: $X\mid X+Y=n\sim\mathrm{Bin}\left(n,\tfrac{\lambda_1}{\lambda_1+\lambda_2}\right)$ — a recurring exam favourite.
+- Thinning: independently keeping each event with probability $p$ turns Poisson$(\lambda)$ into Poisson$(p\lambda)$; the kept and discarded streams are *independent* (surprising — classic top-end MCQ).
+- $P(X\text{ even})=e^{-\lambda}\cosh\lambda=\tfrac12(1+e^{-2\lambda})>\tfrac12$.
+- Poisson $\to$ Normal as $\lambda\to\infty$ (standardised); continuity correction applies.
+@grp Geometric(p): the discrete memoryless law
+-! **Two conventions.** Trials to first success, support $\{1,2,\dots\}$: $P(X=k)=q^{k-1}p$, $\mathbb{E}X=1/p$, $\mathrm{Var}X=q/p^2$, $P(X>k)=q^k$. Failures before first success, support $\{0,1,\dots\}$: $\mathbb{E}Y=q/p$, same variance. Check the support before answering *any* numeric item.
+- Memorylessness $P(X>m+n\mid X>m)=P(X>n)$ characterises the geometric among discrete laws on $\{1,2,\dots\}$ (and the exponential among continuous laws). “The only memoryless discrete distribution” — True (with that support).
+- $\min(X_1,X_2)$ of independent geometrics is geometric with $q=q_1q_2$.
+- Mode is always the smallest support point (1 or 0); the pmf is strictly decreasing.
+@grp Uniform / Rectangular
+-! **Two objects share the name.** *Discrete* uniform on $\{1,\dots,n\}$: mean $\tfrac{n+1}2$, variance $\tfrac{n^2-1}{12}$. *Continuous* (rectangular) $U(a,b)$: mean $\tfrac{a+b}2$, variance $\tfrac{(b-a)^2}{12}$. The two variance formulas are deliberately confusable.
+- $U(a,b)$: MGF exists everywhere: $\tfrac{e^{bt}-e^{at}}{(b-a)t}$ ($t\ne0$); all moments finite. No unique mode.
+-! Sum of two iid $U(0,1)$ is **triangular** on $(0,2)$ — not uniform. $X+Y$ uniform is impossible for iid $X,Y$ (no distribution convolves with itself to a uniform).
+- $-\ln U\sim\mathrm{Exp}(1)$; $F^{-1}(U)$ simulates $F$; $F(X)\sim U(0,1)$ for continuous $F$ (probability integral transform).
+- Order statistics: $U_{(k)}\sim\mathrm{Beta}(k,n+1-k)$; $\mathbb{E}U_{(k)}=\tfrac{k}{n+1}$; range $R=U_{(n)}-U_{(1)}\sim\mathrm{Beta}(n-1,2)$.
+- Maximum entropy on a bounded interval.
+@grp Exponential(λ): the continuous memoryless law
+-! Mean $1/\lambda$, variance $1/\lambda^2$, median $\tfrac{\ln2}{\lambda}\approx0.693/\lambda<$ mean; $P(X>\mathbb{E}X)=e^{-1}\approx0.368$ (not $\tfrac12$ — a beloved trap). Mode $=0$.
+- Memorylessness characterises it among continuous laws on $(0,\infty)$; equivalently constant hazard rate $\lambda$. “Used/unused component equally good” wordings.
+-* $\min(X_1,\dots,X_n)\sim\mathrm{Exp}(\lambda_1+\cdots+\lambda_n)$; $P(X_1<X_2)=\tfrac{\lambda_1}{\lambda_1+\lambda_2}$; the minimum and the index achieving it are *independent* (top-1% fact).
+-! Sums are *not* exponential: $\sum_{i=1}^n$ iid $\mathrm{Exp}(\lambda)=\mathrm{Gamma/Erlang}(n,\lambda)$. The *max* of iid exponentials is not exponential either.
+- $X_1-X_2$ (iid) $\sim$ Laplace; $2\lambda X\sim\chi^2_2$; interarrival times of a Poisson process are iid exponential — the bridge fact.
+- Maximum entropy on $(0,\infty)$ given the mean.
+@grp Normal(μ, σ²)
+- MGF $e^{\mu t+\sigma^2t^2/2}$ (exists everywhere); mean = median = mode; inflection points at $\mu\pm\sigma$; central moments: odd all 0, $\mathbb{E}(X-\mu)^{2k}=\sigma^{2k}(2k-1)!!$, so $\mathbb{E}(X-\mu)^4=3\sigma^4$ (kurtosis 3, excess 0).
+- Coverage: $\mu\pm\sigma$: 68.27%, $\mu\pm2\sigma$: 95.45%, $\mu\pm3\sigma$: 99.73%. Mean deviation $=\sigma\sqrt{2/\pi}\approx0.7979\sigma$; QD $\approx0.6745\sigma$; QD : MD : SD $\approx10:12:15$.
+-! Any linear combination of independent normals is normal: $aX+bY\sim N(a\mu_1+b\mu_2,a^2\sigma_1^2+b^2\sigma_2^2)$. Variances add with $a^2,b^2$ — for $X-Y$ the variance is $\sigma_1^2+\sigma_2^2$ (never subtract).
+-! $X$ normal, $Y$ normal $\not\Rightarrow X+Y$ normal, unless independent or jointly normal. Counterexample: $Y=X\cdot S$ with $S=\pm1$ a fair sign flip independent of $X\sim N(0,1)$: $Y\sim N(0,1)$, but $X+Y$ has an atom at 0 ($P(X+Y=0)=\tfrac12$), so it is not normal. Same example shows: marginally normal, uncorrelated, yet dependent — “uncorrelated normals are independent” is False without joint normality.
+-* Characterisations (top-1% material): Cramér: if $X\perp\!\!\!\perp Y$ and $X+Y$ is normal, each is normal. Bernstein: if $X,Y$ iid and $X+Y\perp\!\!\!\perp X-Y$, then they are normal. For iid $N(\mu,\sigma^2)$, $X+Y$ and $X-Y$ are independent — special to the normal. Maximum entropy for fixed variance. $\bar X\perp\!\!\!\perp S^2$ iff normal.
+- $Z^2\sim\chi^2_1=\mathrm{Gamma}(\tfrac12,\tfrac12)$; $X/Y\sim$ Cauchy for iid $N(0,1)$; $\lvert Z\rvert$ is half-normal with $\mathbb{E}\lvert Z\rvert=\sqrt{2/\pi}$; $\bar X_n\sim N(\mu,\sigma^2/n)$ exactly, at every $n$.
+-! $\Phi(-x)=1-\Phi(x)$; standardisation $Z=(X-\mu)/\sigma$ — sign errors here are the cheapest marks lost in the exam.
+@grp Cauchy(θ, σ): the professional counterexample
+-! Density $\tfrac1\pi\cdot\tfrac{\sigma}{\sigma^2+(x-\theta)^2}$. **No mean** (the defining integral diverges: undefined, not “0 by symmetry” — a razor-sharp trap), hence no variance, no higher moments, no MGF at any $t\ne0$. Median = mode $=\theta$; quartiles $\theta\pm\sigma$; use quartile deviation, not SD.
+- CF: $\phi(t)=e^{i\theta t-\sigma\lvert t\rvert}$ — exists (CFs always do), but is not differentiable at 0, matching the nonexistent mean.
+-! $\bar X_n\sim\mathrm{Cauchy}(\theta,\sigma)$ for every $n$: averaging does nothing. Hence WLLN, SLLN and CLT all fail; the sample median, not the sample mean, estimates $\theta$.
+- Stable family: independent Cauchys add to a Cauchy (location and scale both add). $1/X$, $\tan U$ for $U\sim U(-\tfrac\pi2,\tfrac\pi2)$, and the ratio of iid $N(0,1)$ are standard Cauchy; Cauchy $=t$-distribution with 1 degree of freedom.
+@grp Hypergeometric(N, K, n)
+- Sampling without replacement: draws are dependent. Mean $n\tfrac KN$ (same as binomial); variance $n\tfrac KN\left(1-\tfrac KN\right)\tfrac{N-n}{N-1}$ — binomial variance shrunk by the finite population correction $\tfrac{N-n}{N-1}<1$. **MCQ angle:** “Same mean, smaller variance than the matching binomial” — True.
+- As $N\to\infty$ with $K/N\to p$: converges to $\mathrm{Bin}(n,p)$ — justifies treating draws from huge populations as independent.
+-! By symmetry the unconditional law of each single draw is Bernoulli$(K/N)$ even without replacement — independence fails, identical distribution does not.
+@grp Multinomial(n; p₁, …, p_k)
+-! Marginals: $X_i\sim\mathrm{Bin}(n,p_i)$. Components are **negatively** correlated by the constraint $\sum X_i=n$: $\mathrm{Cov}(X_i,X_j)=-np_ip_j$, $\rho_{ij}=-\sqrt{\tfrac{p_ip_j}{(1-p_i)(1-p_j)}}$ — the sign question is a standard MCQ.
+- Conditionals stay in the family: $X_i\mid X_j=m\sim\mathrm{Bin}\left(n-m,\tfrac{p_i}{1-p_j}\right)$; lumping cells keeps it multinomial.
+- The joint pmf coefficient is $\binom n{x_1\cdots x_k}=\tfrac{n!}{x_1!\cdots x_k!}$; for $k=2$ it collapses to the binomial — “binomial is a multinomial with $k=2$”.
+@grp Laplace (double exponential)(μ, b)
+-! Density $\tfrac1{2b}e^{-\lvert x-\mu\rvert/b}$: a symmetric peak (not smooth) at $\mu$. Mean = median = mode $=\mu$; variance $2b^2$ (not $b^2$); kurtosis 6 (excess 3): sharply leptokurtic — “more peaked and heavier-tailed than normal”.
+- $X_1-X_2$ for iid exponentials is Laplace — the constructive definition MCQs use.
+- CF $\tfrac{e^{i\mu t}}{1+b^2t^2}$; MGF exists only for $\lvert t\rvert<1/b$.
+- MLE of $\mu$ is the sample median (contrast: normal $\to$ mean, uniform $\to$ midrange) — a three-way matching question waiting to happen.
+@grp Negative Binomial(r, p)
+-! **Two conventions again.** Trials until $r$-th success $X$ (support $\{r,r+1,\dots\}$): $\mathbb{E}X=r/p$, $\mathrm{Var}=rq/p^2$. Failures before $r$-th success $Y$ (support $\{0,1,\dots\}$): $\mathbb{E}Y=rq/p$, $\mathrm{Var}=rq/p^2$. Variance $>$ mean (overdispersion) — the mirror image of the binomial; the “mean vs variance” triage (binomial $<$, Poisson $=$, negative binomial $>$) is a guaranteed MCQ.
+- Sum of $r$ iid geometrics; closed under independent addition with common $p$ (add the $r$’s).
+- Gamma-mixed Poisson is negative binomial — the standard model for overdispersed counts (top-1% link fact).
+- Limit: $r\to\infty$, $q\to0$, $rq\to\lambda$ gives Poisson$(\lambda)$.
+@grp Beta(α, β)
+- Support $(0,1)$; mean $\tfrac\alpha{\alpha+\beta}$; variance $\tfrac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$; mode $\tfrac{\alpha-1}{\alpha+\beta-2}$ for $\alpha,\beta>1$.
+- Shape triage: $\alpha=\beta$ symmetric; both $<1$: U-shaped (arcsine Beta$(\tfrac12,\tfrac12)$ has unbounded density — densities need not be bounded); Beta$(1,1)=U(0,1)$.
+- $1-X\sim\mathrm{Beta}(\beta,\alpha)$; uniform order statistics $U_{(k)}\sim\mathrm{Beta}(k,n+1-k)$.
+- Gamma bridge: for independent Gamma$(\alpha_1,\lambda)$, Gamma$(\alpha_2,\lambda)$: $\tfrac X{X+Y}\sim\mathrm{Beta}(\alpha_1,\alpha_2)$ and is independent of $X+Y$ (Lukacs’ characterisation of the gamma — elite MCQ material).
+@grp Gamma(α, λ) (shape–rate)
+-! Mean $\alpha/\lambda$, variance $\alpha/\lambda^2$, MGF $(1-t/\lambda)^{-\alpha}$ valid **only for $t<\lambda$** — “MGF exists for all $t$” is False. Skewness $2/\sqrt\alpha\to0$: gamma $\to$ normal as $\alpha\to\infty$.
+-! Shape–rate vs shape–scale parametrisations differ by $\lambda\leftrightarrow1/\theta$; check which one the question uses before computing anything.
+- Additivity in the shape parameter for common rate: Gamma$(\alpha_1,\lambda)+$Gamma$(\alpha_2,\lambda)=$ Gamma$(\alpha_1+\alpha_2,\lambda)$. Special cases: exponential $=$ Gamma$(1,\lambda)$; $\chi^2_k=$ Gamma$(k/2,\tfrac12)$.
+- Scaling: $cX\sim\mathrm{Gamma}(\alpha,\lambda/c)$ — shape is scale-invariant.
+- Mode $\tfrac{\alpha-1}{\lambda}$ for $\alpha\ge1$; for $\alpha<1$ the density blows up at 0.
+@grp Lognormal(μ, σ²)
+-! $X=e^Z$, $Z\sim N(\mu,\sigma^2)$. $\mu,\sigma^2$ are the mean/variance of $\ln X$, **not** of $X$. Median $e^\mu$; mean $e^{\mu+\sigma^2/2}$; mode $e^{\mu-\sigma^2}$; always mode $<$ median $<$ mean (right skew).
+-! All moments finite: $\mathbb{E}X^k=e^{k\mu+k^2\sigma^2/2}$ — yet the MGF does not exist for any $t>0$. “All moments exist $\Rightarrow$ MGF exists” is False; the lognormal is the canonical counterexample.
+-! The lognormal is not determined by its moments: distinct distributions share all its moments (moment problem indeterminacy). “Equal moments of all orders $\Rightarrow$ equal distributions” is False in general (true if an MGF exists in a neighbourhood of 0).
+- Products (not sums) of independent lognormals are lognormal; multiplicative CLT: products of many positive iid factors are asymptotically lognormal.
+@grp Cross-family cheat tables (matching-type questions)
+| Question type | Answer set |
+| Closed under independent summation | Binomial (common $p$), Poisson, Normal, Gamma (common rate; includes $\chi^2$), Cauchy, Negative binomial (common $p$) |
+| Not closed | Uniform (sum triangular), Exponential (sum Gamma), Geometric (sum NB), Bernoulli (sum Binomial), Beta, Laplace, Hypergeometric, Lognormal (products instead) |
+| Limit lattice | Hypergeometric $\to$ Binomial ($N\to\infty$); Binomial $\to$ Poisson ($n\to\infty$, $np\to\lambda$); Binomial $\to$ Normal (de Moivre–Laplace); Poisson $\to$ Normal ($\lambda\to\infty$); Negative binomial $\to$ Poisson ($r\to\infty$, $rq\to\lambda$); Gamma $\to$ Normal ($\alpha\to\infty$); Geometric (rescaled) $\to$ Exponential; $t_\nu\to$ Normal ($\nu\to\infty$) with $t_1=$ Cauchy |
+| Mean vs variance triage (count data) | Binomial: Var $<$ Mean; Poisson: Var $=$ Mean; Negative binomial: Var $>$ Mean |
+| Memorylessness | Geometric (only discrete), Exponential (only continuous). No other distribution qualifies — any MCQ claiming otherwise is False |
+| Maximum entropy | Bounded support $\to$ Uniform; positive with fixed mean $\to$ Exponential; fixed mean and variance on $\mathbb R$ $\to$ Normal |
+| MGF existence | Everywhere: Normal, Binomial, Poisson, Uniform, Bernoulli; in a neighbourhood only: Exponential/Gamma ($t<\lambda$), Laplace ($\lvert t\rvert<1/b$), Geometric/NB ($e^t<1/q$); nowhere useful: Cauchy (no $t\ne0$), Lognormal (no $t>0$). CFs exist for all of them, always |

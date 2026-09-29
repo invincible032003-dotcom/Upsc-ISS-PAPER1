@@ -1,0 +1,160 @@
+@sec P9 | Characteristic, moment and probability generating functions | Probability
+@meta codes=P9 pyq=21 f27=2.6 tier=1
+@lede Generating functions are the fastest-rising block (7 PYQs in 2024, 5 in 2025): identify a law from its MGF, apply $M_{aX+b}$, use the compound rule $M_N(\ln M_X)$, and condition to get CFs of products (21 PYQs, about 2.6 in 2027).
+@grp Core identities
+- $M(t)=\mathbb{E}e^{tX}$, $\phi(t)=\mathbb{E}e^{itX}$, $G(s)=\mathbb{E}s^X$ (non-negative integers), $K(t)=\ln M(t)$.
+-* $M_{aX+b}(t)=e^{bt}M(at)$ and $\phi_{aX+b}(t)=e^{ibt}\phi(at)$. Independent sums multiply generating functions and add cumulants.
+- $M^{(r)}(0)=\mathbb{E}X^r$; $\phi^{(r)}(0)=i^r\mathbb{E}X^r$; $G'(1)=\mathbb{E}X$, $G''(1)=\mathbb{E}X(X-1)$, $\mathrm{Var}X=G''(1)+G'(1)-G'(1)^2$; $P(X=k)=G^{(k)}(0)/k!$.
+- Cumulants: $\kappa_1=\mu$, $\kappa_2=\mu_2$, $\kappa_3=\mu_3$, $\kappa_4=\mu_4-3\mu_2^2$; $\kappa_r(aX+b)=a^r\kappa_r$ for $r\ge2$. [2025 Q12] all three statements, **(d)**.
+- [2023 Q11] $Y=10-X$, $X\sim\mathrm{Bin}(10,\tfrac14)$: $\kappa_3(Y)=-npq(q-p)=$ **−15/16**.
+- Poisson: every $\kappa=\lambda$. Normal: $\kappa_r=0$ for $r\ge3$, and a polynomial cumulant function forces normality. $\mathrm{Gamma}(n,1)$: $\kappa_r=n(r-1)!$, $\mu_r'=\Gamma(n+r)/\Gamma(n)$, $\phi=(1-it)^{-n}$.
+- $\mu_r'=(r+1)!\,2^r$ is the MGF $(1-2t)^{-2}$ of $\chi^2_4$.
+@grp CF statements (verdict fuel)
+-* A CF always exists; $\phi(0)=1$, $\lvert\phi\rvert\le1$, $\phi$ is uniformly continuous, $\phi(-t)=\overline{\phi(t)}$. [2021 Q8] **1, 2 and 3**.
+-! $\phi$ real $\iff$ $X$ symmetric about 0 (the Cauchy CF is real, yet there is no mean).
+- Closure: $\lvert\phi\rvert^2$, $\mathrm{Re}\,\phi$, $\phi^n$, products, mixtures, $e^{\lambda(\phi-1)}$ and $p/(1-q\phi)$ are all CFs.
+-! $\phi_{X+Y}=\phi_X\phi_Y$ does not certify independence: $X$ Cauchy and $Y=X$ satisfy it.
+- $\lvert\phi(t_0)\rvert=1$ for some $t_0\ne0\Rightarrow X$ (after a shift) is lattice with span $2\pi/\lvert t_0\rvert$.
+- $\phi(t)=1+o(t^2)$ near $0\Rightarrow X\equiv0$; so $e^{-t^4}$ and $e^{-\lvert t\rvert^3}$ are not CFs, while $e^{-\lvert t\rvert^\alpha}$ is a CF for $0<\alpha\le2$.
+- Pólya: real, even, convex on $(0,\infty)$, decreasing, $\phi(0)=1\Rightarrow$ a CF. $(1-\lvert t\rvert)^+$ is the CF of $f(x)=\tfrac{1-\cos x}{\pi x^2}$.
+-! $\phi$ differentiable at 0 does not guarantee $\mathbb{E}X$ exists; $\phi''(0)$ existing does force $\mathbb{E}X^2<\infty$.
+- Inversion: if $\int\lvert\phi\rvert<\infty$, $f(x)=\tfrac1{2\pi}\int e^{-itx}\phi(t)\,dt$, bounded and continuous. Integer-valued $X$: $P(X=k)=\tfrac1{2\pi}\int_{-\pi}^{\pi}e^{-itk}\phi(t)\,dt$.
+-* Uniqueness: $\phi$ determines $F$; agreement on an interval does not. Lévy continuity: $\phi_n\to\phi$ with $\phi$ continuous at $0\iff X_n\xrightarrow{d}X$; $N(0,n)$ gives a limit discontinuous at 0 and no limit law.
+- An MGF finite near 0 gives all moments and fixes the law; all moments finite does not (lognormal).
+@grp Landmark CFs
+| Law | CF |
+| Degenerate at $c$ | $e^{ict}$ |
+| Bin$(n,p)$ | $(q+pe^{it})^n$ |
+| Poisson$(\lambda)$ | $\exp\{\lambda(e^{it}-1)\}$ |
+| Geometric, failures | $p/(1-qe^{it})$ |
+| $U(-a,a)$ | $\sin(at)/(at)$ |
+| Exp(rate $\lambda$); Gamma$(\alpha,\lambda)$ | $(1-it/\lambda)^{-1}$; $(1-it/\lambda)^{-\alpha}$ |
+| $\chi^2_n$ | $(1-2it)^{-n/2}$ |
+| $N(\mu,\sigma^2)$ | $e^{i\mu t-\sigma^2t^2/2}$ |
+| Cauchy$(\theta,\sigma)$ | $e^{i\theta t-\sigma\lvert t\rvert}$ |
+| Laplace$(0,b)$ | $1/(1+b^2t^2)$ |
+| $\pm1$ with probability $\tfrac12$ each | $\cos t$ |
+| $X_1X_2$, iid $N(0,1)$ | $(1+t^2)^{-1/2}$ |
+| $U_1-U_2$, iid $U(0,1)$ | $\left[\sin(t/2)/(t/2)\right]^2$ |
+-* MGF identifications: [2024 Q16] $\chi^2_{10}\to$ **(1−2t)^{−5}**; [2024 Q40] $\tfrac{\lambda}{\lambda-t}\to$ mean **1/λ**, variance **1/λ²**; [2020 Q28] $f=e^y$ on $y<0\to$ **1/(1+t), t>−1**; [2018 Q17] $Z=4X-5Y\to$ mean 15, variance $144+100$, **exp(15t+122t²)**.
+@grp Compound (random) sums: asked in 2024, 2025 and 2026
+$$M_{S_N}(t)=M_N\left(\ln M_X(t)\right),\qquad G_{S_N}(s)=G_N\left(G_X(s)\right),\qquad \mathrm{Var}\,S_N=\mathbb{E}N\ \mathrm{Var}X+\mathrm{Var}N\,(\mathbb{E}X)^2.$$
+-* [2026 Q18] **M_N(log M_X(t))**.
+- [2025 Q45–47] $N$ and $X$ both Poisson$(\lambda)$: $\mathbb{E}Z=$ **λ²**, $\mathrm{Var}Z=\lambda\cdot\lambda+\lambda\cdot\lambda^2=$ **λ²+λ³**, MGF **exp{λ[e^{λ(e^t−1)}−1]}**.
+- Model: $N\sim$ Poisson(2), $X\sim$ Poisson(3) gives **exp{2[exp(3(e^t−1))−1]}**.
+@grp Condition, then average (CFs of products)
+- [2024 Q25]: $\mathbb{E}e^{itX_1X_2}=\mathbb{E}e^{-t^2X_2^2/2}=$ **(1+t²)^{−1/2}**.
+- [2024 Q23] $(X+YZ)/\sqrt{1+Z^2}$ is $N(0,1)$ given $Z$, hence $N(0,1)$: **e^{−t²/2}**.
+- [2024 Q24] $X=\pm1$, $Y\sim N(0,1)$: $XY\sim N(0,1)$, so $2XY\sim N(0,4)$: **e^{−2t²}**.
+- [2025 Q9] $M_Y=(0.75+0.25e^{2t})M_X$ means $Y=X+2B$, $B\sim$ Bernoulli$(\tfrac14)$: $\mathrm{Var}Y=\tfrac14+4\cdot\tfrac3{16}=$ **1**.
+- [2024 Q37] $X\sim\mathrm{Bin}(3,\tfrac14)$, $Y\sim$ Poisson(2): $P(X+Y<2)=\tfrac{27}{64}e^{-2}(1+2+1)=$ **27/16 · e^{−2}**.
+- [2025 Q50] $\phi=e^{2t(i-t)}$ is $N(2,4)$: $\mu_4=3\sigma^4=$ **48**.
+@grp PGF toolkit
+| Sequence $q_k$ | Generating function $\sum_kq_ks^k$ |
+| $P(X>k)$ | $\tfrac{1-G(s)}{1-s}$ |
+| $P(X\le k)$ | $\tfrac{G(s)}{1-s}$ |
+| $P(X<k)$ | $\tfrac{sG(s)}{1-s}$ |
+| $P(X=2k)$ | $\tfrac12\left[G(\sqrt s)+G(-\sqrt s)\right]$ |
+- [2023 Q13] $\sum s^{2n}P(X\le n)=$ **G(s²)/(1−s²)**; likewise $\sum s^nP(X\le n)=G(s)/(1-s)$.
+- $P(X\text{ even})=\tfrac12\{1+G(-1)\}$. $\mathbb{E}\left[\tfrac1{X+a}\right]=\int_0^1t^{a-1}G(t)\,dt$.
+- [2018 Q18] throws until a 3 or 4: $G=s/(3-2s)$, $\lvert s\rvert<\tfrac32$. [2020 Q35] $e^{\lambda(s-1)}=e^{-1}$ at $s=\tfrac23$ gives $\lambda=$ **3**.
+- Sum of $n$ iid uniforms on $\{0,\dots,a-1\}$: $G=\left[\tfrac{1-s^a}{a(1-s)}\right]^n$. Branching process: the extinction probability is the smallest root of $s=G(s)$ in $[0,1]$.
+
+@sec P10 | Modes of convergence | Probability
+@meta codes=P10 pyq=5 f27=0.7 tier=3
+@lede Convergence, inequalities, zero–one laws, LLN and CLT give about three questions a year, and every one is hypothesis-checking: name the mode, inequality or law, then test its exact conditions.
+@grp The implication map
+.fig conv
+-* **Only three implications come free:** a.s. $\Rightarrow$ P, $r$th mean $\Rightarrow$ P, P $\Rightarrow$ d.
+- a.s. and $r$th mean: **neither implies the other.** $L^r\Rightarrow L^s$ for $s<r$ (Lyapunov).
+- The dashed arrows are the only partial converses: in probability $\Rightarrow$ some subsequence converges a.s.; in distribution $\Rightarrow$ in probability **only when the limit is a constant**.
+- No other implication holds in general.
+@grp Counterexamples that settle convergence MCQs
+| Sequence | a.s. | In prob. | Mean square | In dist. |
+| $X_n=c_n\mathbf 1(U<n^{-2})$, $U\sim U(0,1)$ | Yes ($\sum n^{-2}<\infty$) | Yes | Iff $c_n^2/n^2\to0$: $c_n=\sqrt n$ yes ([2020 Q32] **both**); $c_n=n$ no (**a.s. only**) | Yes |
+| $X_n=n\mathbf 1(U<1/n)$ | Yes | Yes | No: $\mathbb{E}X_n^2=n$, and $\mathbb{E}X_n=1\not\to0$ | Yes |
+| Independent $X_n\sim$ Bernoulli$(1/n)$ | No (Borel–Cantelli II) | Yes | Yes | Yes |
+| Independent $X_n\sim$ Bernoulli$(1/n^2)$ | Yes (Borel–Cantelli I) | Yes | Yes | Yes |
+| Sliding indicators sweeping $[0,1]$ | No | Yes | Yes | Yes |
+| $X_n=-X$, $X\sim N(0,1)$, limit $X$ | No | No | No | Yes |
+| $X_n\equiv1/n$, limit 0 | Yes | Yes | Yes | Yes* |
+-! *$F_n(0)=0\not\to F(0)=1$, but 0 is not a continuity point of the limit, so convergence in distribution still holds.
+@grp Rules and PYQ keys
+-! Convergence in distribution concerns laws only: $X_n\xrightarrow{d}X$ and $Y_n\xrightarrow{d}Y$ do not give $X_n+Y_n\xrightarrow{d}X+Y$.
+-* Slutsky: $X_n\xrightarrow{d}X$ and $Y_n\xrightarrow{P}c$ give $X_n+Y_n\xrightarrow{d}X+c$, $X_nY_n\xrightarrow{d}cX$ and $X_n/Y_n\xrightarrow{d}X/c$ ($c\ne0$). The second limit must be a constant.
+- Continuous mapping keeps each mode. Limits in probability are a.s. unique. Pólya: $F_n\to F$ with $F$ continuous is uniform in $x$. Scheffé: pointwise convergence of densities $\Rightarrow$ convergence in distribution.
+-! a.s. convergence says nothing about moments: $\mathbb{E}X_n\to\mathbb{E}X$ needs domination or uniform integrability.
+- [2022 Q45] $F_n$ uniform on $[-n,n]$ tends to $\tfrac12$ everywhere: **no limiting distribution**.
+- [2025 Q49] shifted exponential $e^{-(x-\theta)}$, $x\ge\theta$: $\bar X\xrightarrow{P}$ **1+θ**.
+- [2022 Q3] $X_i/i$ has mean $-\tfrac14$ and fixed variance, so $Y_n=n^{-\alpha}\sum X_i/i\xrightarrow{P}0$ iff **α>1**.
+- [2021 Q25] $P(S_n\le x\sqrt n)\to\Phi(2)$ forces $\mu=0$ and $x/\sigma=2$, so $x=4$; then $P(S_n\le\sqrt n/4)\to$ **Φ(1/8)**.
+
+@sec P11 | Zero–one laws | Probability
+@meta codes=P11 pyq=3 f27=0.5 tier=3
+@lede Borel–Cantelli and the two 0–1 laws: name the hypothesis (independence? summability?) and the answer follows.
+@grp Zero–one laws
+- $\limsup A_n=\bigcap_n\bigcup_{k\ge n}A_k=\{A_n\text{ i.o.}\}$; $\liminf A_n=\{A_n\text{ eventually always}\}$; $P(\liminf A_n)\le\liminf P(A_n)\le\limsup P(A_n)\le P(\limsup A_n)$.
+-* Borel–Cantelli I: $\sum P(A_n)<\infty\Rightarrow P(A_n\text{ i.o.})=0$, **with no independence needed** ([2021 Q7] **0**).
+-! Borel–Cantelli II: independent and $\sum P(A_n)=\infty\Rightarrow P(A_n\text{ i.o.})=1$. Independence is essential: $A_n=A$ with $P(A)=\tfrac12$ gives $\tfrac12$.
+- Borel 0–1 law: for independent events $P(A_n\text{ i.o.})$ is 0 or 1 as $\sum P(A_n)$ converges or diverges.
+-! Kolmogorov 0–1 law: a tail event of an independent sequence has probability 0 or 1, and the law does not say which. Tail: $\{\sum X_n\text{ converges}\}$, $\{\bar X_n\text{ converges}\}$, $\{\limsup X_n>c\}$. Not tail: $\{X_1>0\}$, $\{\sum X_n>0\}$, $\{S_n=0\text{ i.o.}\}$.
+- [2021 Q21] iid with finite mean: $\sum P(\lvert X\rvert>n/2)<\infty$, so $P(\lvert X_n\rvert>n/2\text{ i.o.})=$ **0**.
+- [2022 Q46] a fixed pattern such as SFSF in Bernoulli trials occurs infinitely often with probability **1** (disjoint blocks are independent).
+
+@sec P12 | Chebyshev and Kolmogorov inequalities | Probability
+@meta codes=P12 pyq=7 f27=0.7 tier=3
+@lede Spot “at least” next to a mean and a variance: that is Chebyshev. Kolmogorov’s inequality is its maximal form.
+@grp Inequalities
+-* Markov, $X\ge0$: $P(X\ge a)\le\mathbb{E}X/a$, so $P(X\ge t\mu)\le1/t$ ([2020 Q29] **(b)**). Useless when $a\le\mathbb{E}X$.
+-* Chebyshev: $P(\lvert X-\mu\rvert\ge k\sigma)\le1/k^2$, i.e. $P(\lvert X-\mu\rvert<k\sigma)\ge1-1/k^2$. At least 75% within $2\sigma$ and 88.9% within $3\sigma$ (normal: 95.45%, 99.73%).
+-! Chebyshev is sharp: $\mu\pm k\sigma$ with probability $\tfrac1{2k^2}$ each and $\mu$ otherwise attains it.
+- One-sided (Cantelli): $P(X-\mu\ge k\sigma)\le\tfrac1{1+k^2}$. Unimodal symmetric (Camp–Meidell): $P(\lvert X-\mu\rvert\ge k\sigma)\le\tfrac4{9k^2}$.
+-* Kolmogorov: independent, mean 0, finite variances: $P\left(\max_{k\le n}\lvert S_k\rvert\ge\varepsilon\right)\le\mathrm{Var}(S_n)/\varepsilon^2$. Chebyshev is its $n=1$ case, and it drives the SLLN.
+-* Sample size for $\lvert\bar X-\mu\rvert<\varepsilon$ with probability $\ge1-\alpha$: $n\ge\sigma^2/(\varepsilon^2\alpha)$.
+- Also: Chernoff $P(X\ge a)\le e^{-ta}M(t)$; Hölder $\mathbb{E}\lvert XY\rvert\le(\mathbb{E}\lvert X\rvert^p)^{1/p}(\mathbb{E}\lvert Y\rvert^q)^{1/q}$; Minkowski; Jensen; Lyapunov.
+@grp PYQ keys
+| PYQ | Stem | Answer |
+| [2018 Q19] | Mean 16, variance 9: $P(10<X<22)\ge$? | $k=2$: **0.75** |
+| [2019 Q33] | Mean 50, variance 25: $P(40<X<60)\ge$? | **0.75** |
+| [2019 Q34] | Smallest $k$ with $1-1/k^2\ge0.99$ | **k=10** |
+| [2021 Q6] | $\sigma=1$, $\varepsilon=0.5$, probability $\ge0.95$ | $n\ge\tfrac1{0.25\times0.05}=$ **80** |
+| [2021 Q23] | Mean 12, $P(2<X<22)\ge\tfrac34$ | $\sigma^2=25$, $\mathbb{E}X^2=$ **169** |
+| [2024 Q38] | Exponential mean $\theta$, $n=10$: $P(0<\bar X<2\theta)\ge$? | $1-\tfrac{\theta^2/10}{\theta^2}=$ **0.9** |
+
+@sec P13 | Laws of large numbers and central limit theorems | Probability
+@meta codes=P13 pyq=7 f27=0.9 tier=3
+@lede Every LLN/CLT item is hypothesis bookkeeping: iid? finite mean? finite variance? independence? standardised?
+@grp Laws of large numbers
+| Law | Hypotheses | Conclusion |
+| Chebyshev WLLN | Independent (or uncorrelated), $\mathrm{Var}(S_n)/n^2\to0$ | $\bar X_n-\mathbb{E}\bar X_n\xrightarrow{P}0$ |
+| Markov WLLN | $\mathrm{Var}(S_n)/n^2\to0$, any dependence; or independent with $\mathbb{E}\lvert X_i\rvert^{1+\delta}$ bounded | Same |
+| Khinchin WLLN | iid with finite mean; **no variance needed** | $\bar X_n\xrightarrow{P}\mu$ |
+| Bernoulli and Poisson LLN | Bernoulli trials, fixed $p$ or varying $p_i$ | Relative frequency $\xrightarrow{P}p$: consistency of $f/n$ ([2021 Q10] **LLN**) |
+| Gnedenko (iff) | $Y_n=(S_n-\mathbb{E}S_n)/n$ | WLLN iff $\mathbb{E}\left[Y_n^2/(1+Y_n^2)\right]\to0$ |
+| Feller (iid) | $n\,P(\lvert X\rvert>n)\to0$ | WLLN with centring $\mathbb{E}[X;\lvert X\rvert\le n]$ |
+| Kolmogorov SLLN, iid | $\mathbb{E}\lvert X\rvert<\infty$ (necessary and sufficient) | $\bar X_n\xrightarrow{a.s.}\mu$ ([2022 Q41] **E(X_k)<∞**) |
+| Kolmogorov SLLN, independent | $\sum\mathrm{Var}(X_n)/n^2<\infty$ | $(S_n-\mathbb{E}S_n)/n\xrightarrow{a.s.}0$ |
+| Borel SLLN | Bernoulli trials | $f_n/n\xrightarrow{a.s.}p$ |
+- $X_i=\pm i$ with probability $\tfrac12$: $\mathrm{Var}(S_n)\approx n^3/3$, so the WLLN fails. $X_i=\pm i^\alpha$: holds iff $\alpha<\tfrac12$.
+- $X_k=\pm2^k$ with probability $2^{-(2k+1)}$ each, 0 otherwise: $\mathrm{Var}X_k=1$, so the WLLN holds.
+- Jointly normal, variance 1, correlation $\rho$ only between neighbours: $\mathrm{Var}(S_n)=n+2(n-1)\rho$, so the WLLN holds.
+-! iid Cauchy: $\bar X_n$ is Cauchy for every $n$, so no LLN and no CLT. iid $U(0,1)$: $\left(\prod X_i\right)^{1/n}\xrightarrow{P}e^{-1}$ (for $U(0,\theta)$: $\theta/e$).
+@grp Central limit theorems
+-* Lindeberg–Lévy: iid with $0<\sigma^2<\infty$ gives $\sqrt n(\bar X-\mu)/\sigma\xrightarrow{d}N(0,1)$. **Finite variance is essential.**
+- De Moivre–Laplace: $(X-np)/\sqrt{npq}\xrightarrow{d}N(0,1)$; $P(X\le k)\approx\Phi\left((k+0.5-np)/\sqrt{npq}\right)$.
+-! Lyapunov: $\sum\mathbb{E}\lvert X_i-\mu_i\rvert^{2+\delta}/s_n^{2+\delta}\to0$ is sufficient, not necessary. Lindeberg–Feller is necessary and sufficient under uniform asymptotic negligibility.
+- CF proof skeleton: $\left(1-\tfrac{t^2}{2n}+o(\tfrac1n)\right)^n\to e^{-t^2/2}$, finished by Lévy continuity. Berry–Esseen error $\le C\rho/(\sigma^3\sqrt n)$.
+-! Only the standardised sum converges; $S_n$ itself does not, and $\bar X_n$ collapses to $\mu$.
+- Delta method: $\sqrt n\left(g(\bar X)-g(\mu)\right)\xrightarrow{d}N\left(0,\sigma^2g'(\mu)^2\right)$. Variance-stabilising: $\sqrt X$ (Poisson), $\sin^{-1}\sqrt p$ (proportion), $\tanh^{-1}r$ (correlation).
+@grp PYQ keys and classics
+| PYQ or classic | Stem | Answer |
+| [2018 Q33] | Sample from $U[-3,3]$: $\sqrt n\,\bar X$ | **N(0,3)** |
+| [2021 Q9] | $\sum_{j=n}^{4n}\binom{4n}{j}\left(\tfrac14\right)^j\left(\tfrac34\right)^{4n-j}$ | $P(X\ge\text{its mean})\to$ **1/2** |
+| Classic | $e^{-n}\sum_{k=0}^nn^k/k!$ | $P(\mathrm{Poisson}(n)\le n)\to$ **1/2** |
+| Classic | $\int_0^ne^{-x}x^{n-1}/(n-1)!\,dx$ | $P(\mathrm{Gamma}(n)\le n)\to$ **1/2** |
+| [2021 Q26] | $(\sum X_i^2-5n)/\sqrt{12n}\xrightarrow{d}N(0,1)$, $\mathbb{E}X=1$ | $\mathbb{E}X^2=5$, so $\mathrm{Var}X=$ **4** |
+| [2024 Q13] | Median, $N(1,2)$, $n=20$ | $N(\mu,\pi\sigma^2/2n)=$ **N(1, π/20)** |
+| [2025 Q51] | Empirical CDF | $F_n(x)\approx N\left(x,\tfrac{x(1-x)}n\right)$ for $U(0,1)$; $\sqrt n(F_n-F)\xrightarrow{d}$ **N(0, F(1−F))** |
+| Classic | $\sqrt n\,(X_1X_2+\cdots+X_{2n-1}X_{2n})\big/(X_1^2+\cdots+X_{2n}^2)$, iid mean 0 | $\xrightarrow{d}$ **N(0, 1/4)** |
+| Classic | $X_{(n)}-\ln n$, iid $\mathrm{Exp}(1)$ | Gumbel, CDF **e^{−e^{−x}}** |
+| Classic | Sample $p$-quantile | $\approx N\left(\xi_p,\ p(1-p)/\{nf(\xi_p)^2\}\right)$ |

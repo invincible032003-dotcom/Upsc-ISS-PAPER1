@@ -1,0 +1,97 @@
+@sec T10 | Zero–one laws and the classical inequalities | Trap compendium
+@meta codes=P11,P12 src=traps
+@lede Borel–Cantelli and Kolmogorov’s 0–1 law fix a probability at 0 or 1 (never which one); Markov, Chebyshev and Kolmogorov bound it with exact hypotheses.
+@grp Borel–Cantelli and Borel’s 0–1 law
+-* **BC-I:** $\sum P(A_n)<\infty\Rightarrow P(A_n\text{ i.o.})=0$. Needs *no* independence — planted MCQs claim it does.
+-! **BC-II:** if the $A_n$ are independent and $\sum P(A_n)=\infty$, then $P(A_n\text{ i.o.})=1$. Independence here is essential: take $A_n=A$ with $P(A)=\tfrac12$ for all $n$; the sum diverges but $P(A_n\text{ i.o.})=\tfrac12$.
+- **Borel’s 0–1 law:** for independent events, $P(A_n\text{ i.o.})$ is 0 or 1 according as $\sum P(A_n)$ converges or diverges — no middle value possible. Infinite-monkey corollary: any fixed finite pattern in iid typing occurs infinitely often with probability 1.
+- i.o. notation: $\{A_n\text{ i.o.}\}=\limsup A_n=\bigcap_n\bigcup_{k\ge n}A_k$; $\liminf A_n=\{A_n\text{ eventually always}\}$; $\liminf A_n\subseteq\limsup A_n$; $P(\liminf A_n)\le\liminf P(A_n)\le\limsup P(A_n)\le P(\limsup A_n)$ (Fatou for sets) — the inequality chain itself is an MCQ.
+@grp Kolmogorov’s 0–1 law
+- For an independent sequence $X_1,X_2,\dots$, every **tail event** (unchanged by altering finitely many $X_i$’s) has probability 0 or 1.
+-! Tail events (probability forced to $\{0,1\}$): $\{\sum X_n\text{ converges}\}$, $\{\lim X_n\text{ exists}\}$, $\{\limsup X_n>c\}$, $\{X_n\in B\text{ i.o.}\}$, $\{\bar X_n\text{ converges}\}$. Non-tail (trap options): $\{X_1>0\}$, $\{\sum X_n>0\}$, $\{S_n=0\text{ i.o.}\}$ — these depend on early terms.
+-! The law says the probability is 0 or 1; it does **not** tell you which. Determining which one is the hard analytic work (e.g. via Borel–Cantelli or the three-series theorem).
+- Consequences: $\limsup X_n$, $\limsup S_n/n$ etc. are a.s. constants (possibly $\pm\infty$) for independent sequences.
+@grp Tchebycheff, Markov, Kolmogorov: exact hypotheses, exact bounds
+-! **Markov:** $X\ge0$, $a>0$: $P(X\ge a)\le\mathbb{E}X/a$. Non-negativity is essential; the bound is useless for $a\le\mathbb{E}X$ (bound $\ge1$).
+-* **Tchebycheff:** $P(\lvert X-\mu\rvert\ge k\sigma)\le1/k^2$, equivalently $P(\lvert X-\mu\rvert\ge\varepsilon)\le\sigma^2/\varepsilon^2$. Needs finite variance, no distributional shape. **MCQ angle:** complement form $P(\lvert X-\mu\rvert<k\sigma)\ge1-1/k^2$ (at least 75% within $2\sigma$, 88.9% within $3\sigma$ — compare with 95.45%, 99.73% for the normal: “universal vs normal” pairs are repeatedly asked).
+-! Tchebycheff is **sharp**: $X=\pm k\sigma$ w.p. $\tfrac1{2k^2}$ each and 0 w.p. $1-\tfrac1{k^2}$ attains equality — so “the inequality can be improved without further assumptions” is False. One-sided (Cantelli): $P(X-\mu\ge\varepsilon)\le\tfrac{\sigma^2}{\sigma^2+\varepsilon^2}$ — strictly better on one side.
+-* **Kolmogorov’s inequality:** independent, mean-zero, finite-variance $X_i$, $S_k=\sum_{i\le k}X_i$: $P\left(\max_{1\le k\le n}\lvert S_k\rvert\ge\varepsilon\right)\le\tfrac{\mathrm{Var}(S_n)}{\varepsilon^2}$. It bounds the maximum of all partial sums by the same quantity Tchebycheff uses for $S_n$ alone — “Kolmogorov strengthens Tchebycheff” is the expected true statement; it is the engine of the SLLN proof.
+
+@sec T11 | Laws of large numbers and central limit theorems | Trap compendium
+@meta codes=P13 src=traps
+@lede LLN and CLT items are hypothesis bookkeeping: iid? finite mean? finite variance? independence? standardisation? The marks sit in the hypotheses.
+@grp WLLN vs SLLN: hypothesis bookkeeping (pure MCQ fuel)
+- **Tchebycheff/Markov WLLN** (not nec. identically distributed): pairwise uncorrelated with $\mathrm{Var}(S_n)/n^2\to0$ (e.g. uniformly bounded variances) $\Rightarrow\bar X_n-\mathbb{E}\bar X_n\xrightarrow{P}0$. Needs variances.
+-* **Khinchin’s WLLN:** iid with finite mean $\Rightarrow\bar X_n\xrightarrow{P}\mu$. **No variance assumption.** “WLLN requires finite variance” — False (for iid); this is among the most re-asked discriminator items.
+-* **Kolmogorov’s SLLN (iid):** $\bar X_n\xrightarrow{a.s.}\mu\iff\mathbb{E}\lvert X_1\rvert<\infty$ (and then $\mu=\mathbb{E}X_1$). Finite mean is necessary and sufficient.
+-! **Kolmogorov’s SLLN (independent, non-iid):** $\sum_n\mathrm{Var}(X_n)/n^2<\infty\Rightarrow\tfrac{S_n-\mathbb{E}S_n}{n}\xrightarrow{a.s.}0$ (Kolmogorov’s criterion). Note the $n^2$ in the denominator — MCQs swap it with $n$.
+-! Cauchy kills everything: iid Cauchy has $\bar X_n\sim$ Cauchy for all $n$: no WLLN, no SLLN, no CLT. The St. Petersburg variable (infinite mean) gives $\bar X_n\to\infty$. “LLN holds for every iid sequence” — False; finite mean is the gatekeeper.
+- SLLN $\Rightarrow$ WLLN (a.s. implies in probability). A sequence can obey the WLLN and violate the SLLN (independent, suitably weighted examples) — direction matters.
+- Bernoulli LLN: relative frequency $\xrightarrow{P}p$ — the formal bridge between the frequency interpretation and the axioms; also $\xrightarrow{a.s.}$ by Borel’s SLLN (1909), historically the first strong law.
+@grp CLT: the three named versions
+-* **Lindeberg–Lévy (iid):** iid, $\mathbb{E}X=\mu$, $\mathrm{Var}X=\sigma^2\in(0,\infty)$: $\tfrac{\sqrt n(\bar X_n-\mu)}{\sigma}\xrightarrow{d}N(0,1)$. Both moments finite is the only distributional assumption — no symmetry, no continuity. Finite variance is essential: iid Cauchy fails; iid Pareto with infinite variance converges to stable, non-normal, laws.
+- **de Moivre–Laplace:** the binomial special case, $\tfrac{X-np}{\sqrt{npq}}\xrightarrow{d}N(0,1)$; with continuity correction $P(X\le k)\approx\Phi\left(\tfrac{k+0.5-np}{\sqrt{npq}}\right)$ — expect a numeric MCQ where the 0.5 decides between two options.
+-! **Lyapunov** (independent, non-iid): if for some $\delta>0$ $\tfrac{\sum_i\mathbb{E}\lvert X_i-\mu_i\rvert^{2+\delta}}{s_n^{2+\delta}}\to0$ (with $s_n^2=\sum\mathrm{Var}X_i$), then $\tfrac{S_n-\mathbb{E}S_n}{s_n}\xrightarrow{d}N(0,1)$. Lyapunov’s condition is *sufficient*, not necessary; the sharp iff-type condition (given uniform negligibility) is **Lindeberg–Feller** — knowing which name carries the “necessary and sufficient” label is a top-1% discriminator.
+- CLT vs LLN division of labour: LLN says $\bar X_n\to\mu$; CLT says the error is of exact order $n^{-1/2}$ with a universal Gaussian shape: $\bar X_n\approx N(\mu,\sigma^2/n)$. Berry–Esseen quantifies the speed: $\sup_x\lvert F_n(x)-\Phi(x)\rvert\le C\rho/(\sigma^3\sqrt n)$ (order $n^{-1/2}$, needs a third moment).
+-! The CLT is about the *standardised* sum: $S_n$ itself diverges, and $\bar X_n$ collapses to a constant; neither is asymptotically normal without the $\sqrt n$ scaling — sloppy MCQ stems exploit this.
+- Proof-sketch fact examiners quote: CF method — $\varphi_{S_n/\sqrt n}(t)=\left(1-\tfrac{t^2}{2n}+o(1/n)\right)^n\to e^{-t^2/2}$, then Lévy continuity. Know this two-line skeleton; “which theorem finishes the CF proof of the CLT?” has appeared in several exams’ orbit.
+
+@sec T12 | The two 66-item verdict banks | Trap compendium
+@meta codes=P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13 src=traps
+@lede The compendium’s §12 “expected-question bank” holds every trap as a true/false statement with its verdict. Decide first, then check. Score 58–60 (of the printed 60): exam-ready on theory traps; 52–57: re-read the matching sections and retest in 48 hours; below 52: restart the compendium with the counterexamples first.
+@grp Practise the bank
+.launch tf-trap | Start the 66 trap statements (Learn or Exam)
+.launch tf-notes | Start the 66-item notes drill (Learn or Exam)
+.key Anything you miss goes into the **error ledger**: in this dashboard every wrong answer is saved automatically in your Revise tab, tagged with its trap class.
+
+@sec T13 | The mistakes that waste 80% of beginners’ time | Trap compendium
+@meta codes= src=traps
+@lede The same fourteen mistakes account for most lost marks. Read them as a checklist before every mock.
+@grp The fourteen mistakes
+-! **Reading theory before PYQs.** You cannot recognise a trap you have never been cut by. Invert: questions first, theory as the debrief.
+-! **Deriving in the exam what should be a lookup.** Modes, memorylessness, closure-under-addition, mean/variance of all 16 families, the convergence hierarchy: these must be reflexes (under 10 seconds), not derivations. Every derivation in the hall is 2 minutes stolen from 3 other questions.
+-! Learning distributions as isolated formulas instead of as a **network** (limit lattice, closure table, characterisations). Matching questions are set on the network, not the formulas.
+-! **Ignoring parametrisation conventions.** Geometric (from 0 or 1), negative binomial (trials or failures), gamma (rate or scale), exponential ($\lambda$ or mean $\theta$): more marks die here than on any genuinely hard idea.
+-! **Believing symmetry authorises expectations.** The Cauchy mean does not exist. Full stop.
+-! **Treating a.s. convergence and mean-square convergence as ordered.** They are not comparable; keep the two counterexamples loaded.
+-! **Confusing pairwise with mutual independence, and uncorrelatedness with independence.** Three different notions, strictly ordered only one way.
+-! **Forgetting the support.** Non-rectangular support kills independence regardless of the formula; convolution limits come from supports; conditional densities exist only where the marginal is positive.
+-! **Skipping the “jointly” in jointly normal.** Marginal normality is almost never enough for anything.
+-! **Over-practising integration, under-practising verdicts.** ISS objective papers reward 90-second true/false discrimination, not 15-minute integrals. Allocate practice in that proportion.
+-! **No error ledger.** Unlogged mistakes recur with probability $\approx1$ (a very strong law). The ledger, revised weekly, is the highest-ROI hour of the week.
+-! **Leaving eliminate-one questions blank.** Expected value of a guess after one elimination is positive ($\approx+0.28$ marks). Blind blanks are a scoring error, not caution.
+-! **Mock-hoarding.** Twenty analysed mocks beat sixty unanalysed ones. The analysis (trap-class tagging) is the practice.
+-! Studying limit theorems as folklore (“everything becomes normal”) instead of as precise statements with hypotheses. The marks sit in the hypotheses: iid?, finite mean?, finite variance?, independence?, standardisation?
+
+@sec T14 | The aggressive 2027 practice plan | Trap compendium
+@meta codes= src=traps
+@lede Assumption: ISS 2027 written exam around mid-2027 (UPSC typically notifies in February and examines in June). This plan covers the Probability block of Statistics-I; run parallel tracks for the other blocks with the same architecture.
+@grp Phase 0 — Calibration (weeks 1–2)
+- Attempt every probability question from ISS Statistics-I PYQs 2020–2025, untimed, closed book. Record: correct / wrong / lucky / blank.
+- Tag every error with a trap-class from this compendium (e.g. “support”, “parametrisation”, “hierarchy”, “hypothesis of theorem”). This tagging is the diagnosis; it tells you which sections here to over-weight.
+- Set up the error ledger (one line per error: date, source, trap-class, the one-sentence reason, retest date +7d and +30d). *In this dashboard the Revise tab is that ledger.*
+@grp Phase 1 — Trap-first mastery (weeks 3–14; the engine room)
+.p Six blocks, two weeks each, in this order (dependency-sorted): (1) Foundations + conditioning/Bayes; (2) RVs + CDFs + univariate transformations; (3) The 16 distributions (one family per morning, cross-tables at week end); (4) Random vectors + Jacobians + order statistics; (5) Expectation + conditional expectation + CF/MGF/PGF; (6) Convergence + inequalities + 0–1 laws + LLN/CLT.
+- **Daily rhythm (2.5–3 h):** 30 min: read the matching compendium section actively (cover the verdict, predict, check).
+- 75 min: 25–35 MCQs on that block. Sources in priority order: ISS PYQs (2016–2025), IIT JAM (MS) PYQs, GATE (ST) PYQs, CSIR–NET Statistics Part B — these share the ISS question-setting culture; standard drill books (Gupta–Kapoor for volume; Rohatgi–Saleh and Casella–Berger exercises for the top-1% edge) fill gaps.
+- 20 min: ledger entries + flashcards (every TRAP line in this file is one card).
+- Weekly: one 25-question mixed timed set (30 min) across all blocks opened so far + the 66-item trap bank as a monthly full retest.
+@grp Phase 2 — Mixed-speed training (weeks 15–30)
+- Alternate days: (a) 40-question mixed probability sprints at 75 s/question; (b) full-syllabus Statistics-I sectionals where probability is embedded among other topics — discrimination under interference is the real exam skill.
+-* Introduce the **90-second protocol** per MCQ: 10 s classify the trap-class → 40 s apply the known verdict/counterexample → 20 s eliminate → decide (answer if at least one option eliminated) → 20 s buffer. Practise the protocol until it is automatic.
+- Ledger metric to track weekly: repeat-error rate (same trap-class twice). Target under 10% by week 24. Accuracy target on sprints: 85% by week 20, 90% by week 30.
+@grp Phase 3 — Exam simulation (weeks 31–42)
+- Two full Statistics-I mocks weekly (80 Q / 120 min) under strict conditions, each followed the same day by a 90-minute autopsy: every error tagged, every guess audited (was the elimination real?), negative-marking discipline scored.
+- Rebuild speed reserves: first pass $\le90$ min answering all sure questions; second pass for the eliminate-and-decide pool; never a third pass.
+- Weeks 39–42: taper new material to zero; only ledger, flashcards, the 66-item bank, and the cross-family tables of the distributions chapter.
+@grp Phase 4 — Peak (final 4 weeks before the paper)
+- Daily 30-minute recall of: closure table, limit lattice, mean/variance table, convergence hierarchy + four counterexamples, the three CF theorems, hypothesis tables of the LLNs/CLTs, and the paradox verdicts.
+- Three final mocks, spaced 4–5 days, last one 7 days out. No mock in the final week; the final week belongs to the ledger only.
+- Sleep is a study technique: memory consolidation of exactly this kind of discrete fact-lattice happens offline. Protect it.
+@grp Non-negotiables (the whole plan in five lines)
+-* PYQs before theory; theory as debrief.
+-* Every mistake becomes a ledger line with a trap-class and two retest dates.
+-* Counterexamples are carried as flashcards until they answer themselves in under 10 s.
+-* Timed practice at 75–90 s/question from week 15 onward, with the guessing arithmetic applied ruthlessly.
+-* The 66-item bank is retaken monthly; 58+ or the block reopens.
+.key **Final word from the faculty desk.** The syllabus paragraph you are chasing — from Kolmogorov’s axioms to the central limit theorem — is a single connected story: measures $\to$ variables $\to$ distributions $\to$ transformations $\to$ generating functions $\to$ convergence $\to$ limit laws. The exam samples the story at its joints. Own the joints (every TRAP in this file), and the 2027 paper will read like a list of questions you have already answered.

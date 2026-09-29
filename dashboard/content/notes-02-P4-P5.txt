@@ -1,0 +1,114 @@
+@sec P4 | Discrete distributions | Probability
+@meta codes=P4 pyq=20 f27=2.1 tier=1
+@lede Discrete items test a disguised family (“the seventh child is the second daughter” is negative binomial), the binomial mode and skew, and the convention trap; check the support before any number (20 PYQs, about 2 in 2027).
+@grp Master table
+| Law | pmf, support | Mean | Variance | PGF | Key facts |
+| Bernoulli$(p)$ | $p^xq^{1-x}$, $x=0,1$ | $p$ | $pq\le\tfrac14$ | $q+ps$ | Every raw moment $=p$ |
+| Bin$(n,p)$ | $\binom nxp^xq^{n-x}$ | $np$ | $npq$ | $(q+ps)^n$ | Mode $\lfloor(n+1)p\rfloor$; two modes if $(n+1)p\in\mathbb Z$ |
+| Poisson$(\lambda)$ | $e^{-\lambda}\lambda^x/x!$ | $\lambda$ | $\lambda$ | $e^{\lambda(s-1)}$ | Mode $\lfloor\lambda\rfloor$ ($\lambda-1,\lambda$ if integer); every cumulant $=\lambda$ |
+| Geometric, failures (Indian texts) | $pq^x$, $x=0,1,\dots$ | $q/p$ | $q/p^2$ | $\tfrac{p}{1-qs}$ | $P(X\ge k)=q^k$; memoryless; mode 0 |
+| Geometric, trials | $pq^{x-1}$, $x=1,2,\dots$ | $1/p$ | $q/p^2$ | $\tfrac{ps}{1-qs}$ | $P(X>k)=q^k$; mode 1 |
+| Neg. binomial, failures | $\binom{x+r-1}{r-1}p^rq^x$, $x\ge0$ | $rq/p$ | $rq/p^2$ | $\left(\tfrac{p}{1-qs}\right)^r$ | Variance $>$ mean |
+| Neg. binomial, trials | $\binom{x-1}{r-1}p^rq^{x-r}$, $x\ge r$ | $r/p$ | $rq/p^2$ | $\left(\tfrac{ps}{1-qs}\right)^r$ | Waiting time to the $r$-th success |
+| Hypergeometric $(N,K,n)$ | $\binom Kx\binom{N-K}{n-x}\big/\binom Nn$ | $\tfrac{nK}{N}$ | $n\tfrac KN\left(1-\tfrac KN\right)\tfrac{N-n}{N-1}$ | – | $\to\mathrm{Bin}(n,K/N)$ as $N\to\infty$ |
+| Discrete uniform $1,\dots,n$ | $1/n$ | $\tfrac{n+1}2$ | $\tfrac{n^2-1}{12}$ | $\tfrac{s(1-s^n)}{n(1-s)}$ | No unique mode |
+| Multinomial$(n;p_i)$ | $\tfrac{n!}{\prod x_i!}\prod p_i^{x_i}$ | $np_i$ | $np_iq_i$ | $\left(\sum p_is_i\right)^n$ | $\mathrm{Cov}(X_i,X_j)=-np_ip_j$ |
+@grp Shape numbers
+| Law | $\mu_3$ | $\beta_1$ | $\beta_2$ |
+| Binomial | $npq(q-p)$ | $\tfrac{(q-p)^2}{npq}$ | $3+\tfrac{1-6pq}{npq}$ |
+| Poisson | $\lambda$ | $1/\lambda$ | $3+1/\lambda$ |
+| Geometric | – | $(1+q)^2/q$ | $9+p^2/q$ |
+| Negative binomial | – | $(1+q)^2/(rq)$ | $3+(6q+p^2)/(rq)$ |
+- Binomial skew is positive if $p<\tfrac12$, zero if $p=\tfrac12$, negative if $p>\tfrac12$. $\mu_4=3(npq)^2+npq(1-6pq)$ for the binomial and $3\lambda^2+\lambda$ for the Poisson.
+@grp Shortcuts
+-* Binomial from mean $a$ and variance $b$: $q=b/a$, $n=a^2/(a-b)$, which must be a positive integer. **Variance $\ge$ mean is impossible** (mean 6, variance 8 dies at once).
+- Recurrences: binomial $\tfrac{P(x+1)}{P(x)}=\tfrac{n-x}{x+1}\cdot\tfrac pq$; Poisson $P(x+1)=\tfrac{\lambda}{x+1}P(x)$. Poisson $P(k)=P(k+1)$ gives $\lambda=k+1$.
+-* $P(X\text{ even})=\tfrac12\{1+G(-1)\}$: binomial $\tfrac12\{1+(q-p)^n\}$, Poisson $\tfrac12\{1+e^{-2\lambda}\}>\tfrac12$.
+- $n-X\sim\mathrm{Bin}(n,q)$. **Binomials add only with a common $p$;** Poissons always add.
+- $\mathbb{E}\left[\tfrac1{X+1}\right]=\tfrac{1-q^{n+1}}{(n+1)p}$ for $\mathrm{Bin}(n,p)$ and $\tfrac{1-e^{-\lambda}}{\lambda}$ for Poisson$(\lambda)$.
+- Poisson approximation: $\lambda=np$, good for large $n$ and small $p$.
+-* Poisson split: $X\mid X+Y=n\sim\mathrm{Bin}\left(n,\tfrac{\lambda_1}{\lambda_1+\lambda_2}\right)$. Thinning Poisson$(\lambda)$ with $p$ gives Poisson$(p\lambda)$, and the kept and dropped streams are independent.
+-! $X-Y$ and $2X$ are not Poisson. Raikov: $X\perp\!\!\!\perp Y$ with $X+Y$ Poisson forces both to be Poisson.
+- Independent Poissons: $P(X=Y)=e^{-(\lambda_1+\lambda_2)}\sum_r\tfrac{(\lambda_1\lambda_2)^r}{(r!)^2}$; $P(X-Y=r)=$ coefficient of $t^r$ in $\exp(\lambda_1t+\lambda_2/t-\lambda_1-\lambda_2)$.
+- Independent $\mathrm{Bin}(n,p)$: $P(X=Y)=\sum_r\left[\binom nrp^rq^{n-r}\right]^2$. A coin tossed $2n$ times: $P(\text{heads}>\text{tails})=\tfrac12\left[1-\binom{2n}{n}4^{-n}\right]$.
+- Geometric: the minimum of independent Geo$(p_1)$, Geo$(p_2)$ is Geo$(p_1+p_2-p_1p_2)$; the minimum of $k$ iid copies is Geo$(1-q^k)$. For iid geometrics, $\min(X,Y)\perp\!\!\!\perp X-Y$.
+- Multinomial: $X_i\mid X_j=m\sim\mathrm{Bin}\left(n-m,\tfrac{p_i}{1-p_j}\right)$ and $\rho_{ij}=-\sqrt{\tfrac{p_ip_j}{(1-p_i)(1-p_j)}}$.
+-* Count triage: binomial variance $<$ mean, Poisson $=$, negative binomial $>$.
+@grp Links between families
+- Binomial–Beta: $P(X\ge k)=P\left(\mathrm{Beta}(k,n-k+1)\le p\right)$.
+- Binomial–$F$: $P(X\le k-1)=P\left(F_{2k,\,2(n-k+1)}>\tfrac{n-k+1}{k}\cdot\tfrac pq\right)$.
+- Binomial–negative binomial: $F_X(r-1)=1-F_Y(n-r)$, where $Y$ = failures before the $r$-th success.
+- Poisson–$\chi^2$: $P(\mathrm{Poisson}(\lambda)\le k)=P(\chi^2_{2(k+1)}>2\lambda)$.
+-* Limits: hypergeometric $\to$ binomial $\to$ Poisson ($np\to\lambda$); negative binomial $\to$ Poisson ($rq\to\lambda$); binomial and Poisson $\to$ normal.
+@grp PYQ keys
+| PYQ | Stem | Answer |
+| [2018 Q7] | Bin$(13,0.3)$: mode 3? negatively skewed? | $(n+1)p=4.2$, mode 4; skew positive: **neither** |
+| [2019 Q15] | Seventh child is the second daughter | $\binom61/2^7=$ **3/64** |
+| [2019 Q17] | Weekly ticket until the first win | **1/p** (trials) |
+| [2019 Q18] | Mean 3.5, var 1.75 bimodal? Mean 4, var $\tfrac43$: $P(X\ge1)>0.99$? | $n=7,p=\tfrac12$: modes 3, 4; $n=6$, $1-3^{-6}$: **2 and 3** |
+| [2019 Q16] | $Y=X^2+3$, $X\sim$ Poisson$(\lambda)$ | $P(Y=y)=\dfrac{e^{-\lambda}\lambda^{\sqrt{y-3}}}{(\sqrt{y-3})!}$, $y=3,4,7,12,\dots$: **(a)** (it misprints the factorial) |
+| [2019 Q32] | Black balls in $r$ draws without replacement | $r\tfrac{m}{m+n}\tfrac{n}{m+n}\tfrac{m+n-r}{m+n-1}$, option **(b)** |
+| [2021 Q24] | 8 positives in 200; a sample of 500 | **Poisson(20)** |
+| [2022 Q1] | $X_1+X_2+X_3$ (Bernoulli $\tfrac13$) $+3-X_4$, $X_4\sim\mathrm{Bin}(3,\tfrac23)$ | $3-X_4\sim\mathrm{Bin}(3,\tfrac13)$; total **Bin(6, 1/3)** |
+| [2022 Q2] | 10 selected, A twice as likely as B or C | $p_B=p_C=\tfrac14$: $\mathrm{Cov}=-\tfrac{10}{16}=$ **−5/8** |
+| [2022 Q6] | Bin$(3,\tfrac13)$: $\mathbb{E}(X-1)^3$ | $\mu_3=npq(q-p)=$ **2/9** |
+| [2023 Q4] | $\binom{10}{x}2^x3^{10-x}/5^{10}$ | Bin$(10,0.4)$: **4, 2.4** |
+| [2024 Q27–28] | Stop after the first win at trial $N$ | $W=$ **2−N**; $P(W<0)=P(N\ge3)=$ **1/4** |
+| [2024 Q29–30] | Roll until two successive rolls match | $P(X=10)=$ **5^8/6^9**; $X-1\sim\mathrm{Geo}(\tfrac16)$, $\mathbb{E}X=$ **7** |
+| [2025 Q17] | Minimum of $k$ iid Geo$(p)$ | **1−(1−p)^k** |
+| [2025 Q48] | Ace of spades twice in 104 draws | $\lambda=2$: $1-3e^{-2}=$ **0.5941** |
+| [2026 Q10] | $\mathbb{E}(X+Y-Z)=0$, $X,Y\sim\mathrm{Geo}(\tfrac12)$, $Z\sim\mathrm{NB}(3,p)$ | Failures: **3/5**; trials: 3/4 |
+| [2026 Q17] | Bin$(n,p)$: $P(X=0\text{ or even})$ | $\tfrac12\{1+(q-p)^n\}$ |
+| [2025 Q41–44] | Multinomial$(50;\tfrac14\text{ each})$ | $50-X_1\sim\mathrm{Bin}(50,\tfrac34)$; $X_1\mid X_2=5\sim\mathrm{Bin}(45,\tfrac13)$: $\mathbb{E}=$ **15**, Var $=$ **10**; $\rho=$ **−1/3** |
+
+@sec P5 | Continuous distributions | Probability
+@meta codes=P5 pyq=21 f27=2.8 tier=1
+@lede Beta-I is the recent favourite (parameters from mean and variance, the mode), with the exponential interval maximum, the Laplace CDF and normal $\Phi$-algebra close behind (21 PYQs, about 3 in 2027).
+@grp Master table
+| Law | pdf, support | Mean | Variance | MGF | Key facts |
+| $U(a,b)$ | $\tfrac1{b-a}$ | $\tfrac{a+b}2$ | $\tfrac{(b-a)^2}{12}$ | $\tfrac{e^{bt}-e^{at}}{(b-a)t}$ | MD about mean $\tfrac{b-a}4$; $U(-a,a)$: $\mu_{2n}=\tfrac{a^{2n}}{2n+1}$; $\beta_2=1.8$ |
+| Exp, rate $\theta$ | $\theta e^{-\theta x}$, $x>0$ | $\tfrac1\theta$ | $\tfrac1{\theta^2}$ | $\tfrac{\theta}{\theta-t}$, $t<\theta$ | Median $\tfrac{\ln2}\theta$; $P(X>\text{mean})=e^{-1}$; mode 0; $\beta_1=4$, $\beta_2=9$ |
+| Gamma$(\alpha,\lambda)$, rate $\lambda$ | $\tfrac{\lambda^\alpha x^{\alpha-1}e^{-\lambda x}}{\Gamma(\alpha)}$ | $\tfrac\alpha\lambda$ | $\tfrac\alpha{\lambda^2}$ | $(1-t/\lambda)^{-\alpha}$ | Mode $\tfrac{\alpha-1}\lambda$; $\beta_1=\tfrac4\alpha$, $\beta_2=3+\tfrac6\alpha$; $\chi^2_n=\mathrm{Gamma}(\tfrac n2,\tfrac12)$ |
+| Beta-I$(m,n)$ | $\tfrac{x^{m-1}(1-x)^{n-1}}{B(m,n)}$, $0<x<1$ | $\tfrac m{m+n}$ | $\tfrac{mn}{(m+n)^2(m+n+1)}$ | – | Mode $\tfrac{m-1}{m+n-2}$ ($m,n>1$); $1-X\sim\mathrm{Beta}(n,m)$ |
+| Beta-II$(m,n)$ | $\tfrac{x^{m-1}}{B(m,n)(1+x)^{m+n}}$, $x>0$ | $\tfrac{m}{n-1}$ | $\tfrac{m(m+n-1)}{(n-1)^2(n-2)}$ | – | $\tfrac{X}{1+X}\sim$ Beta-I$(m,n)$; $\tfrac1X\sim$ Beta-II$(n,m)$ |
+| $N(\mu,\sigma^2)$ | $\tfrac1{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ | $\mu$ | $\sigma^2$ | $e^{\mu t+\sigma^2t^2/2}$ | Inflexions $\mu\pm\sigma$; MD $=\sigma\sqrt{2/\pi}$; QD $\approx0.6745\sigma$; $\mu_{2k}=\sigma^{2k}(2k-1)!!$ |
+| Lognormal | $\ln X\sim N(\mu,\sigma^2)$ | $e^{\mu+\sigma^2/2}$ | $e^{2\mu+\sigma^2}(e^{\sigma^2}-1)$ | none for $t>0$ | Median $e^\mu$; mode $e^{\mu-\sigma^2}$; $\mathbb{E}X^k=e^{k\mu+k^2\sigma^2/2}$ |
+| Cauchy$(\theta,\sigma)$ | $\tfrac{\sigma}{\pi[\sigma^2+(x-\theta)^2]}$ | none | none | none; CF $e^{i\theta t-\sigma\lvert t\rvert}$ | Median = mode $=\theta$; quartiles $\theta\pm\sigma$; $\bar X$ has the same law |
+| Laplace$(\mu,b)$ | $\tfrac1{2b}e^{-\lvert x-\mu\rvert/b}$ | $\mu$ | $2b^2$ | $\tfrac{e^{\mu t}}{1-b^2t^2}$, $\lvert t\rvert<\tfrac1b$ | $\beta_2=6$; $\mathbb{E}\lvert X-\mu\rvert=b$; MLE of $\mu$ is the sample median |
+| Pareto$(\alpha,x_0)$ | $\tfrac{\alpha x_0^\alpha}{x^{\alpha+1}}$, $x\ge x_0$ | $\tfrac{\alpha x_0}{\alpha-1}$ | finite iff $\alpha>2$ | none | Moments of order $<\alpha$ only |
+| Rayleigh$(b)$ | $\tfrac{x}{b^2}e^{-x^2/2b^2}$, $x>0$ | $b\sqrt{\pi/2}$ | $\tfrac{(4-\pi)b^2}2$ | – | $X^2\sim\mathrm{Exp}(\text{mean }2b^2)$ |
+| Logistic$(\alpha,\beta)$ | $\tfrac{e^{-z}}{\beta(1+e^{-z})^2}$, $z=\tfrac{x-\alpha}\beta$ | $\alpha$ | $\tfrac{\pi^2\beta^2}3$ | – | Symmetric; $\beta_2=4.2$ |
+@grp Normal: Φ-algebra and reading the exponent
+- Coverage 68.27%, 95.45%, 99.73% at $1,2,3\sigma$. Two-tailed $z$: 1.645 (10%), 1.96 (5%), 2.58 (1%); one-tailed: 1.28, 1.645, 2.33.
+- $P(a\le X\le b)=\Phi\left(\tfrac{b-\mu}\sigma\right)-\Phi\left(\tfrac{a-\mu}\sigma\right)$ [2025 Q55]; $\Phi(-x)=1-\Phi(x)$ [2026 Q4].
+-* Complete the square: $f\propto\exp(-x^2/8+2x)=\exp\{-(x-8)^2/8+8\}$ gives $\mu=$ **8**, $\sigma^2=$ **4** [2019 Q38].
+- Disc probability: for iid $N(0,1)$, $P(X^2+Y^2\le r^2)=1-e^{-r^2/2}$. A circle of unit area has $r^2=1/\pi$, giving **$1-e^{-1/(2\pi)}$** [2023 Q7].
+- [2026 Q5] $\int_{-10}^{10}\int_{-y}^{y}\phi(x)\,dx\,dy=$ **0**: the inner integral $2\Phi(y)-1$ is odd in $y$.
+- [2025 Q58] $\sigma=\mu$: $P(X<-\mu\mid X<\mu)=\Phi(-2)/\tfrac12=$ **2{1−Φ(2)}**.
+- [2019 Q35] 1000 round-off errors $U(-0.05,0.05)$: $\mathrm{SD}(S)=\sqrt{1000\times0.01/12}=0.913$, so $P(\lvert S\rvert<2)=2\Phi(2.19)-1=$ **0.97**.
+- Maximum ordinate $1/(\sigma\sqrt{2\pi})$: with equal totals, a curve with $K$ times the SD is $1/K$ as tall.
+- For $n=2$ from $N(\mu,\sigma^2)$: $\mathbb{E}X_{(1)}=\mu-\sigma/\sqrt\pi$, $\mathbb{E}(\text{range})=2\sigma/\sqrt\pi$; for $n=3$, $\mathbb{E}(\text{range})=3\sigma/\sqrt\pi$.
+@grp Exponential and gamma
+-* $\max_\theta P(a\le X\le2a)$: with $u=e^{-a\theta}$, $u-u^2$ peaks at $\tfrac14$ [2020 Q34].
+- Variance $>$ mean iff $\theta<1$ (rate form): [2018 Q10] **all three statements**; [2023 Q3] **1 only** (memorylessness holds for every $\theta$; $X_{(1)}$ is exponential, not $\chi^2$).
+-* Minimum of independent $\mathrm{Exp}(\theta_i)$ is $\mathrm{Exp}(\sum\theta_i)$; $P(X_1<X_2)=\tfrac{\theta_1}{\theta_1+\theta_2}$. [2018 Q13] rates 1 and 2: **1/3**.
+- iid exponentials: $X-Y$ is Laplace [2019 Q40]; $\lvert X-Y\rvert\sim\mathrm{Exp}(\theta)$, so [2018 Q12] $P(\lvert X-Y\rvert\le10)=$ **1−e^{−10}**.
+- Sum of $n$ iid $\mathrm{Exp}(\theta)$ is $\mathrm{Gamma}(n,\theta)$; their mean is $\mathrm{Gamma}(n,n\theta)$ [2023 Q12] **(d)**. $2\theta X\sim\chi^2_2$.
+- Given $X_1+X_2=t$ (iid exponential), $X_1\sim U(0,t)$. $\lfloor X\rfloor$ is geometric with $p=1-e^{-\theta}$.
+- Gamma ratios: $\tfrac X{X+Y}\sim$ Beta-I$(\alpha_1,\alpha_2)$, independent of $X+Y$ [2018 Q9]; $\tfrac XY\sim$ Beta-II$(\alpha_1,\alpha_2)$.
+- $X\sim$ Beta-I$(u,v)$ independent of $Y\sim\mathrm{Gamma}(\lambda,u+v)$ gives $XY\sim\mathrm{Gamma}(\lambda,u)$. $\mathbb{E}\sqrt{\mathrm{Gamma}(m,1)}=\Gamma(m+\tfrac12)/\Gamma(m)$.
+@grp Beta, uniform, Cauchy, Laplace, lognormal, Pareto
+.key **Beta parameters in one line.** $m+n=\tfrac{\mu(1-\mu)}{\sigma^2}-1$, $\quad m=\mu\,(m+n)$. [2022 Q48] $\mu=\tfrac13,\ \sigma^2=\tfrac2{63}\Rightarrow m+n=6$, **(2, 4)**; same mean, $\sigma^2=\tfrac1{45}\Rightarrow$ **(3, 6)**.
+- [2025 Q1] Beta mode $\tfrac{\alpha-1}{\alpha+\beta-2}$. [2025 Q2] Beta$(1,1)=U(0,1)$: every point of $[0,1]$ (not $[0,2]$) is a mode, so **I only**.
+- [2020 Q27] $12x^2(1-x)$ is Beta$(3,2)$: mean **0.6**. [2025 Q8] $kx(1-x)$ is symmetric: mean $\tfrac12$.
+- [2025 Q54] uniform with mean 1 and variance $\tfrac43$ is $U(-1,3)$: $P(X<0)=\tfrac14$. [2026 Q14] SD $=(b-a)/(2\sqrt3)$. [2025 Q3] $aX+b\sim U(2a+b,\,10a+b)$.
+-! Cauchy: the mean does not exist (not “0 by symmetry”). $X/Y$ for iid $N(0,1)$, $1/X$ and $\tan(\pi U-\pi/2)$ are Cauchy. Truncated to $(-\beta,\beta)$: variance $\beta/\tan^{-1}\beta-1$. Product of two iid standard Cauchy: pdf $\tfrac2{\pi^2}\tfrac{\ln\lvert x\rvert}{x^2-1}$.
+- [2024 Q10] $(X_3+\cdots+X_7)/(X_1+X_2)=\sqrt{5/2}\cdot$Cauchy, so $\lambda^2=\tfrac25$ and $5\lambda^2=$ **2**.
+- Laplace CDF: $\tfrac12e^x$ for $x\le0$, $1-\tfrac12e^{-x}$ for $x>0$ [2025 Q6]. [2022 Q43] $P(-1<X<2)=\tfrac12(2-e^{-1}-e^{-2})$.
+- [2023 Q5] $Y=\sigma X^\mu$ with $X$ lognormal: $\ln(Y/\sigma)\sim N(\mu^2,\mu^2\sigma^2)$, so $\mathrm{Var}\left[\{\ln(Y/\sigma)-\mu^2\}^2\right]=$ **2μ⁴σ⁴**.
+- [2018 Q6] $f=2/x^3$, $x\ge1$ (Pareto, $\alpha=2$): **mean 2 exists, variance does not**.
+@grp Characterisation cards
+-* Memoryless: geometric (discrete) and exponential (continuous) only [2020 Q25].
+- Maximum entropy: uniform on a bounded interval; exponential on $(0,\infty)$ with fixed mean; normal with fixed variance.
+- $\bar X\perp\!\!\!\perp S^2$ only for the normal (Geary). $X+Y\perp\!\!\!\perp X-Y$ for iid $X,Y$ only for the normal (Bernstein). $X\perp\!\!\!\perp Y$ with $X+Y$ normal forces both normal (Cramér).
+- MGF exists everywhere: normal, binomial, Poisson, uniform. Near 0 only: exponential, gamma, Laplace, geometric, negative binomial. Useless: Cauchy, lognormal ($t>0$), Pareto, $t$. The CF always exists.

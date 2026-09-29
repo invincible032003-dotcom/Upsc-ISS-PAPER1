@@ -1,0 +1,83 @@
+@sec S7 | Regression and simple correlation | Statistical Methods
+@meta codes=S7 rel=S8 pyq=8 f27=0.9 tier=3
+@lede The two-regression-lines problem dominates: test which line is which with $b_{yx}b_{xy}\le1$, take $r=\pm\sqrt{b_{yx}b_{xy}}$ with their common sign, and remember both lines pass through $(\bar x,\bar y)$.
+@grp Simple correlation r
+$$r=\frac{\mathrm{Cov}(X,Y)}{\sigma_X\sigma_Y}=\frac{n\sum XY-\sum X\sum Y}{\sqrt{\left[n\sum X^2-(\sum X)^2\right]\left[n\sum Y^2-(\sum Y)^2\right]}},\qquad r=\frac{\sigma_{X+Y}^2-\sigma_{X-Y}^2}{4\sigma_X\sigma_Y}$$
+-* $-1\le r\le1$, with $\pm1$ iff an exact line. $aX+bY+c=0$ exactly: $r=+1$ if $a,b$ have opposite signs, $-1$ if the same sign.
+-* $r(a+bX,\,c+dY)=\mathrm{sign}(bd)\,r$. [2018 Q28] adding 3 leaves **0.65**; [2019 Q19] $Z=aY+b$ gives $\tfrac{a}{\lvert a\rvert}r$; [2026 Q25] $r(2x,y)=0.25$ gives $r\left(4x-3,\tfrac{7-4y}{8}\right)=$ **−0.25**.
+- [2020 Q13] $\sigma_{X-Y}^2=\sigma_X^2+\sigma_Y^2$ forces $r=$ **0**.
+- [2019 Q10] $4.8=0.6\times3\times\sigma_Y$ gives $\sigma_Y=$ **2.67**; [2023 Q25] $32=0.8\times2\times\sigma_Y$ gives $V(Y)=$ **400**.
+-! $r$ sees only linear association: [2022 Q11] $Y=(X-3)^2$ on $X=1,\dots,5$ gives $r=$ **0**; [2019 Q9] $Y=X-1$ gives $r=1$ while $r(X^2,Y^2)<0$, **(a)**.
+- [2020 Q14] $Y=20-X$ makes $(X+Y)X=20X$, so $r=$ **1**.
+- $r^2$ = share of variance explained; $1-r^2$ non-determination; $\sqrt{1-r^2}$ alienation. [2020 Q15] $r=0.7$: 49% explained, both $b$’s positive, **1 and 2**. The correlation of $y$ with fitted $\hat y$ is $\lvert r\rvert$.
+- $\mathrm{SE}(r)=(1-r^2)/\sqrt n$; $\mathrm{PE}=0.6745\,\mathrm{SE}$; $r$ is significant if $r>6\,\mathrm{PE}$ and not if $r<\mathrm{PE}$.
+- Rotation $U=X\cos\alpha+Y\sin\alpha$, $V=Y\cos\alpha-X\sin\alpha$ is uncorrelated iff $\tan2\alpha=\dfrac{2r\sigma_X\sigma_Y}{\sigma_X^2-\sigma_Y^2}$.
+- $U=aX+bY$ and $V=cX+dY$ uncorrelated $\Rightarrow\sigma_U\sigma_V=\lvert ad-bc\rvert\,\sigma_X\sigma_Y\sqrt{1-r^2}$.
+- Standardised $X,Y$: $r(aX+bY,\ bX+aY)=\dfrac{2ab+(a^2+b^2)r}{a^2+b^2+2abr}$.
+- Spurious correlation of ratios $X_1/X_3$ and $X_2/X_3$ ($X_i$ uncorrelated): $\approx\dfrac{v_3^2}{\sqrt{(v_1^2+v_3^2)(v_2^2+v_3^2)}}$, $v_i$ the CVs.
+-* Spearman: $\rho=1-\dfrac{6\sum d^2}{n(n^2-1)}$; add $\tfrac{m^3-m}{12}$ to $\sum d^2$ for each tie of size $m$; $\sum d^2=\tfrac{n(n^2-1)}3$ at $\rho=-1$. [2020 Q9] two individuals give only **−1 and 1**.
+- Kendall $\tau=\dfrac{C-D}{n(n-1)/2}$. Concurrent deviations: $r_c=\pm\sqrt{\pm(2c-m)/m}$, $m=n-1$.
+- Wrongly recorded data: correct the sums (or replace the wrong $d^2$ in $\sum d^2$) and recompute.
+@grp Regression lines
+$$y-\bar y=r\frac{\sigma_y}{\sigma_x}(x-\bar x),\qquad x-\bar x=r\frac{\sigma_x}{\sigma_y}(y-\bar y),\qquad r^2=b_{yx}b_{xy},\qquad \tan\theta=\frac{1-r^2}{\lvert r\rvert}\cdot\frac{\sigma_x\sigma_y}{\sigma_x^2+\sigma_y^2}$$
+- The two $b$’s share the sign of $r$; $\tfrac12(\lvert b_{yx}\rvert+\lvert b_{xy}\rvert)\ge\lvert r\rvert$.
+- Unaffected by change of origin, not of scale: with $u=\tfrac{x-a}h$, $v=\tfrac{y-b}k$, $b_{yx}=\tfrac kh\,b_{vu}$.
+- Perpendicular iff $r=0$; coincident iff $r=\pm1$.
+-* Identification: call line 1 “$y$ on $x$” and line 2 “$x$ on $y$”; if $b_{yx}b_{xy}>1$, swap.
+- $\min_a\mathrm{Var}(Y-aX)=(1-\rho^2)\,\mathrm{Var}\,Y$ ([2018 Q22] **(d)**); standard error of estimate $S_{yx}=\sigma_y\sqrt{1-r^2}$.
+- Residuals: $\sum e=0$, $\sum xe=0$, $\sum\hat ye=0$. Regression from a joint pdf is $\mathbb{E}(Y\mid X=x)$, linear only in special cases.
+.key **Worked pair.** $8x-10y+66=0$ and $40x-18y=214$ meet at $(13,17)$; $b_{yx}=0.8$, $b_{xy}=0.45$, $r=0.6$; with $\mathrm{Var}\,x=9$, $\sigma_y=4$. [2024 Q15]: “$b_{xy}=0.8$” is false, $r=0.6$ and $\hat y(30)=30.6$ are true: **II and III**. Classic pair $3x+2y=26$, $6x+y=31$: means $(4,7)$, $r=-0.5$.
+@grp PYQ keys
+| PYQ | Stem | Answer |
+| [2019 Q5] | $x=4y+5$ ($x$ on $y$), $y=kx+4$ | $4k\le1$ with the same sign: **0 ≤ k ≤ 1/4** |
+| [2019 Q6] | $Y=aX+b$, $X=cY+d$ | $r=\sqrt{ac}$, $s_X/s_Y=\sqrt{c/a}$ |
+| [2021 Q3] | $6(1-x-y)$ on the simplex | **X=(1−Y)/3** |
+| [2022 Q10], [2026 Q30] | $y\,e^{-y/(1+x)}/(1+x)^4$ | **Y=2X+2**, linear |
+| [2022 Q14] | $n=4$, $\sum x=24$, $\sum y=44$, $\sum x^2=164$, $\sum y^2=572$, $\sum xy=300$ | $S_{xy}=36$, $S_{yy}=88$: $\hat X$ at $Y=10$ is $6-\tfrac{36}{88}=$ **5.59** |
+| [2018 Q26] | $Y\mid x\sim\mathrm{Exp}(\text{rate }1+x)$ | **y=1/(1+x)** |
+
+@sec S5 | Curve fitting and orthogonal polynomials | Statistical Methods
+@meta codes=S5 pyq=3 f27=0.5 tier=3
+@lede Three PYQs: write the normal equations, choose the model with the smaller residual sum of squares, and know the orthogonal-polynomial values and the Hermite family.
+@grp Curve fitting
+- Line: $\sum y=na+b\sum x$ and $\sum xy=a\sum x+b\sum x^2$. Parabola adds $\sum x^2y=a\sum x^2+b\sum x^3+c\sum x^4$.
+- Equally spaced $x$: code $u=(x-\text{middle})/h$ so that $\sum u=\sum u^3=0$; then $a=\bar y$ and $b=\sum uy/\sum u^2$.
+-! Linearise: $y=ab^x$ and $y=ae^{bx}\to\log y$ on $x$; $y=ax^b\to\log y$ on $\log x$. This minimises errors in $\log y$, not in $y$.
+-* Pick the model with the smaller residual SS: [2023 Q37] $13.36<15.48$, so $Y(6)=-36+48+2=$ **14**.
+@grp Orthogonal polynomials
+- $b_k=\sum y\xi_k'\big/\sum\xi_k'^2$; adding a higher degree leaves lower coefficients unchanged, and each degree adds its own $\mathrm{SS}=(\sum y\xi_k')^2\big/\sum\xi_k'^2$.
+- Unit spacing, $u=x-\bar x$: $\xi_1=u$, $\xi_2=u^2-\tfrac{n^2-1}{12}$, $\xi_3=u^3-u\,\tfrac{3n^2-7}{20}$.
+| $n$ | Linear | Quadratic | Cubic | Quartic |
+| 3 | −1, 0, 1 | 1, −2, 1 | – | – |
+| 4 | −3, −1, 1, 3 | 1, −1, −1, 1 | −1, 3, −3, 1 | – |
+| 5 | −2, −1, 0, 1, 2 | 2, −1, −2, −1, 2 | −1, 2, 0, −2, 1 | 1, −4, 6, −4, 1 |
+-* Hermite polynomials (orthogonal under the normal weight): $1,\ x,\ x^2-1,\ x^3-3x$ ([2021 Q17]), $x^4-6x^2+3$.
+- [2024 Q11] pairs of quadratic forms are orthogonal when their coefficient vectors are: $(1,2,1)\cdot(1,2,1)=6$, $(1,-2,-1)\cdot(2,1,-1)=1$, $(1,2,-2)\cdot(2,1,2)=0$, $(1,1,-1)\cdot(1,1,-1)=3$, so **(c) three** pairs are non-orthogonal (pair III is built to give 0; a matrix inner product would make all four non-orthogonal).
+
+@sec S6 | Bivariate normal | Statistical Methods
+@meta codes=S6 pyq=25 f27=2.6 tier=1
+@lede Read the BVN parameters off its exponent (a multi-question stem is common), then use linear regression with constant conditional variance. With S8 this is the biggest Statistical Methods block (58 PYQs, about 5.5 in 2027).
+@grp Bivariate normal
+$$f(x,y)=\frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}}\exp\left\{-\frac{z_1^2-2\rho z_1z_2+z_2^2}{2(1-\rho^2)}\right\},\qquad z_i=\frac{x_i-\mu_i}{\sigma_i}$$
+$$Y\mid X=x\ \sim\ N\left(\mu_2+\rho\frac{\sigma_2}{\sigma_1}(x-\mu_1),\ \sigma_2^2(1-\rho^2)\right)\quad\text{(linear and homoscedastic)}$$
+-* Marginals are $N(\mu_i,\sigma_i^2)$ ([2025 Q18] **(a)**). Independent iff $\rho=0$ ([2018 Q27] **all three**; [2026 Q29] **III only**, since the means are free).
+-! $(X,Y)$ is BVN iff every $aX+bY$ is normal ([2021 Q14] **1 only**); normal marginals alone are not enough.
+- No density iff $\lvert\rho\rvert=1$, i.e. $\mathrm{Cov}^2=\sigma_1^2\sigma_2^2$: [2020 Q31] $\alpha=\pm\sqrt6$.
+- MGF $\exp\left\{t_1\mu_1+t_2\mu_2+\tfrac12(\sigma_1^2t_1^2+2\rho\sigma_1\sigma_2t_1t_2+\sigma_2^2t_2^2)\right\}$. [2022 Q13] $\mathrm{Var}(X+Y)=300$, so $\mathbb{E}e^{X+Y}=$ **e^{180}**.
+- $aX+bY\sim N(a\mu_1+b\mu_2,\ a^2\sigma_1^2+b^2\sigma_2^2+2ab\rho\sigma_1\sigma_2)$. [2024 Q12] $\mathrm{Var}(2X-3Y)=16+17-24=9$: $\tfrac1{\sqrt{18\pi}}e^{-z^2/18}$.
+- Standard BVN$(0,0,1,1,\rho)$: $\mathbb{E}X^2Y^2=1+2\rho^2$ ([2022 Q15] **(d)**), $\mu_{31}=3\rho$, odd-order product moments vanish, $\mathrm{Cov}(X^2,Y^2)=2\rho^2$.
+-* $X+Y\perp\!\!\!\perp X-Y$ iff $\sigma_1=\sigma_2$; $\mathrm{Var}(X\pm Y)=2(1\pm\rho)$ in standard form ([2022 Q18] **all three**).
+- $Y-\rho X\perp\!\!\!\perp X$ with variance $1-\rho^2$: [2023 Q39] $\mathrm{Cov}=$ **0**; [2023 Q31] $\mathbb{E}[(Y-\rho X)^4\mid X]/(1-\rho^2)^2=$ **3**.
+- $\tfrac{x^2-2\rho xy+y^2}{1-\rho^2}\sim\chi^2_2$, so $X^2+Y^2-2\rho XY$ has MGF **(1−2t+2ρ²t)^{−1}** [2023 Q40].
+-* $P(X>0,Y>0)=\tfrac14+\tfrac{\sin^{-1}\rho}{2\pi}$; $P(XY<0)=\tfrac{\cos^{-1}\rho}{\pi}$, so $\rho=\cos(\pi q)$.
+-* $\mathbb{E}\max(X,Y)=\sqrt{(1-\rho)/\pi}$ ([2021 Q15] **(d)**); for $\rho=0$ it is $1/\sqrt\pi$ ([2019 Q36]).
+- $X/Y\sim\mathrm{Cauchy}\left(\rho,\sqrt{1-\rho^2}\right)$; $\rho(X,\Phi(Y))=\rho\sqrt{3/\pi}$; $\rho(X,\Phi(X))=\sqrt{3/\pi}$.
+- [2019 Q7] $(X+\theta Z,\,Y+\theta Z)$ has $\rho=\tfrac{\theta^2}{1+\theta^2}=\tfrac14$, so $\lvert\theta\rvert=$ **1/√3**.
+@grp Reading a BVN off its exponent (multi-question stems)
+.key Write the exponent as $-(ax^2+bxy+cy^2+\text{linear terms})$. The precision matrix is $P=\begin{pmatrix}2a&b\\b&2c\end{pmatrix}$, $\Sigma=P^{-1}$, the mean solves $\nabla=0$, $2\pi f(\mu)=\sqrt{\lvert P\rvert}$, and $Y\mid x$ has mean $\mu_y-\tfrac{b}{2c}(x-\mu_x)$ and variance $\tfrac1{2c}$.
+| PYQ | Exponent | Answers |
+| [2023 Q26–30] | $-(2x^2+3xy+4y^2-7x-11y)$ | $P=\begin{pmatrix}4&3\\3&8\end{pmatrix}$, $\lvert P\rvert=23$, mean $(1,1)$: $\mathbb{E}X+\mathbb{E}Y+3=$ **5**; $23(\mathrm{Var}X+\mathrm{Var}Y)=$ **12**; $\sqrt2\,r=$ **−3/4**; $Y\mid x\sim N\left(\tfrac{11-3x}{8},\tfrac18\right)$; $2\pi f(\mu)=$ **√23** |
+| [2021 Q18–20] | $-\tfrac{8}{27}\left[u^2-2uv+4v^2\right]$, $u=x-7$, $v=y+5$ | $\mathrm{Var}X=$ **9/4**, $\mathrm{Var}Y=$ **9/16**, $\rho=\tfrac12$; $k=\tfrac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}}\approx$ **0.51/π**; **Y=0.25X−6.75** |
+| [2024 Q36] | BN$(1,0,36,16,\tfrac12)$ | $\mathbb{E}(Y\mid X=7)=2$; $\mathrm{Cov}(X+Y,Y-X)=16-36=-20$; $V(X\mid Y)=27$: **all three** |
+| [2025 Q13] | Means 2, 2; variances 100, 144; $\rho=0.5$ | $\mathbb{E}(Y\mid x)=0.8+0.6x$ (not $3.2+0.6x$); $V=108$: **II only** |
+| [2026 Q13] | $\sigma_x^2=16$, $\sigma_y^2=9$, $\rho=0.6$ | $b_{yx}=0.6\times\tfrac34=$ **9/20** |

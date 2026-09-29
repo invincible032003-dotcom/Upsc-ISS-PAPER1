@@ -1,0 +1,52 @@
+@sec SBANK | Statistical Methods: complete fact bank | Statistical Methods
+@meta codes=S1,S2,S3,S4,S5,S6,S7,S8,S9,S10,S11,S12,S13,S14 tier=0
+@lede Results behind statement-type Statistical Methods MCQs that sit outside S1–S14, in syllabus order, followed by a 35-item verdict drill.
+@grp Descriptive measures
+- Universal inequalities: $\lvert\text{mean}-\text{median}\rvert\le\sigma$; MD about the median $\le$ MD about the mean $\le$ SD; $\tfrac{R^2}{2n}\le s^2\le\tfrac{R^2}4$ (so $s\le R$); $\beta_2\ge\beta_1+1$.
+- Pooled averages: $\bar x=\tfrac{\sum n_i\bar x_i}{\sum n_i}$, $\log G=\tfrac{\sum n_i\log G_i}{\sum n_i}$, $H=\tfrac{\sum n_i}{\sum n_i/H_i}$.
+- Coefficients of dispersion: $\tfrac{\max-\min}{\max+\min}$ (range), $\tfrac{Q_3-Q_1}{Q_3+Q_1}$ (quartiles), $\tfrac{\sigma}{\bar x}$ (SD).
+-! Percentile kurtosis $\kappa=\tfrac{Q}{P_{90}-P_{10}}$ with $Q$ the quartile deviation: 0.263 for the normal, *below* 0.263 leptokurtic, *above* 0.263 platykurtic (Laplace 0.215, uniform 0.3125).
+- Cumulants: $\mu_2=\kappa_2$, $\mu_3=\kappa_3$, $\mu_4=\kappa_4+3\kappa_2^2$.
+@grp Attributes
+- Class frequencies: $(A),(B),(ABC)$ are positive; $(\alpha),(\beta),(\alpha\beta\gamma)$ negative; mixed ones such as $(\alpha B)$, $(A\beta C)$ contrary. Classes of the highest order are the ultimate classes; they specify the data completely, and every lower-order frequency is a sum of them.
+- Complete association: all $A$’s are $B$’s or all $B$’s are $A$’s, i.e. $(AB)=(A)$ or $(AB)=(B)$. Complete disassociation: $(AB)=0$ or $(\alpha\beta)=0$.
+- Association is symmetric: $\tfrac{(AB)}{(B)}>\tfrac{(A\beta)}{(\beta)}\iff\tfrac{(AB)}{(A)}>\tfrac{(\alpha B)}{(\alpha)}$.
+- Syllogisms: all $A$ are $B$ and all $B$ are $C\Rightarrow$ all $A$ are $C$; all $A$ are $B$ and no $B$ is $C\Rightarrow$ no $A$ is $C$.
+- Classic consistency exercise: $(A)=xN$, $(B)=2xN$, $(C)=3xN$, $(AB)=(BC)=(CA)=yN$. The conditions $y\le x$ and $y\ge5x-1$ give $y\le x\le\tfrac14$.
+@grp Correlation and regression
+- $\rho=0$: the lines are $y=\bar y$ and $x=\bar x$, perpendicular. BVN regression assumptions: linear, homoscedastic, normal arrays.
+-* Given $r_{12}$ and $r_{13}$, $r_{23}$ must lie in $r_{12}r_{13}\pm\sqrt{(1-r_{12}^2)(1-r_{13}^2)}$.
+- $b_{12.3}=\tfrac{\sum x_{1.3}x_{2.3}}{\sum x_{2.3}^2}$ (regression of residual on residual) $=r_{12.3}\tfrac{\sigma_{1.3}}{\sigma_{2.3}}$, with $\sigma_{1.3}=\sigma_1\sqrt{1-r_{13}^2}$.
+- Second-order partial: $r_{12.34}=\dfrac{r_{12.4}-r_{13.4}r_{23.4}}{\sqrt{(1-r_{13.4}^2)(1-r_{23.4}^2)}}$.
+- $r(e_{1.23},e_{2.13})=-r(e_{1.3},e_{2.3})=-r_{12.3}$.
+- $r_{12.3}=0$ means $X_1,X_2$ are correlated only through $X_3$ ($r_{12}=r_{13}r_{23}$). Partial correlation decides whether an extra regressor is worth adding.
+- $R_{1.23}$ is the largest correlation between $X_1$ and any linear function of $X_2,X_3$, and equals $r(X_1,\hat X_1)$. $R_{1.23}=0$: every total and partial correlation involving $X_1$ vanishes.
+- $\eta_{yx}$ equals the correlation between $y$ and the array means $\bar y_x$.
+- Least squares: $\mathrm{SE}(b)=s/\sqrt{S_{xx}}$ with $s^2=\mathrm{RSS}/(n-2)$; $\mathrm{SSR}=b\,S_{xy}$; $\mathbb{E}(\mathrm{SSR})=\sigma^2+\beta^2S_{xx}$; residual SS $\sim\sigma^2\chi^2_{n-p}$.
+- Null moments of rank correlations: Spearman $\mathrm{Var}\,\rho=\tfrac1{n-1}$; Kendall $\mathrm{Var}\,\tau=\tfrac{2(2n+5)}{9n(n-1)}$; both have mean 0.
+- Rank correlation is distribution-free; inference on Pearson’s $r$ assumes normality.
+@grp Sampling and tests
+- Sample size depends on $\alpha$, power, variability and effect size. The critical region depends on the Type I error only. Too small an $n$ causes Type II errors; $n$ does not set the Type I error.
+- A one-tailed $z$ at level $\alpha$ uses the two-tailed critical value at $2\alpha$. For a fixed true effect, the $p$-value falls as $n$ grows. Smaller chance variability makes $F$ larger.
+- Small-sample $t$, $\chi^2$ and $F$ theory assumes a normal parent. Two-sample $t$ also assumes equal unknown variances and independent random samples. Do not use $t$ for small samples from clearly non-normal populations.
+- Normal samples: $\bar X$ is independent of every deviation $X_i-\bar X$. $n$ squares under $m$ independent homogeneous linear constraints give $\chi^2_{n-m}$.
+- Uses of $t$: one mean, two means, paired, simple $r$ ($n-2$), partial $r$ of order $k$ ($n-k-2$), regression coefficient ($n-2$).
+- Uses of $\chi^2$: goodness of fit (right-tailed), independence of attributes, a variance, homogeneity of variance estimates and of correlation estimates, combining independent $p$-values.
+- Uses of $F$: two variances, multiple $R$ ($F(p,n-p-1)$), linearity of regression, correlation ratio ($F(h-1,N-h)$), several means (ANOVA).
+- $\tfrac{t^2}{\nu}\sim$ Beta-II$\left(\tfrac12,\tfrac\nu2\right)$; for large df $F\approx N\left(1,2(\tfrac1{n_1}+\tfrac1{n_2})\right)$; $F$ has mean $>1$ and mode $<1$.
+- Several correlations: $\sum(n_i-3)(z_i-\bar z)^2\sim\chi^2_{k-1}$ with $\bar z$ weighted by $n_i-3$; the pooled $z$ has variance $1/\sum(n_i-3)$.
+@grp Non-parametric methods and order statistics
+- Zero differences: drop them (standard), assign signs at random, or assign them in favour of $H_0$.
+- Large-sample forms (each $\approx N(0,1)$ under $H_0$): $\tfrac{r-np_0}{\sqrt{np_0(1-p_0)}}$, $\ \tfrac{T-\frac{n(n+1)}4}{\sqrt{\frac{n(n+1)(2n+1)}{24}}}$, $\ \tfrac{U-\frac{mn}2}{\sqrt{\frac{mn(m+n+1)}{12}}}$, $\ \tfrac{V-\frac m2}{\sqrt{\frac{mn}{4(N-1)}}}$ for the sign, signed-rank, Mann–Whitney and median tests. For odd $N$ the median test has mean $\tfrac m2\cdot\tfrac{N-1}N$ and variance $\tfrac{mn}4\cdot\tfrac{N+1}{N^2}$.
+- Confidence intervals from uniform order statistics, $X_i\overset{\text{iid}}{\sim}U(0,\theta)$: $\left(X_{(n)},\ X_{(n)}/\alpha^{1/n}\right)$ has coverage $1-\alpha$; with the range $R$, $(R,R/\psi)$ has coverage $1-\alpha$ when $\psi^{n-1}\{n-(n-1)\psi\}=\alpha$.
+- For $U(0,\theta)$, $\left(\prod X_i\right)^{1/n}\xrightarrow{P}\theta/e$.
+@grp Rapid-fire true/false battery (35 statements)
+.launch tf-sm | Start the 35-item drill (Learn or Exam)
+.p Every item is also in the **T/F drill** bank so it counts towards your mistakes, bookmarks and revision queue.
+@grp How marks are lost
+- Re-deriving in the hall what should be instant recall: family moments, modes, closure rules, the convergence map.
+- Skipping the convention check: does the geometric or negative binomial count trials or failures; is the exponential or gamma in rate or scale form?
+- Letting symmetry stand in for a mean (Cauchy), or zero correlation stand in for independence without joint normality.
+- Ignoring the support, which decides independence, integration limits and where conditional densities live.
+- Quoting a limit theorem without checking its hypotheses: iid or independent, finite mean or finite variance, standardised or not.
+- Leaving a question blank after one option is dead, which throws away $+0.28$ marks on average.

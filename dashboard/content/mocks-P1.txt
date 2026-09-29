@@ -1,0 +1,529 @@
+@bank nm | Notes mocks | Original MCQs written from every topic of your ISS 2027 notes, sized to the paper pattern. Learn mode explains each answer and links the notes section; Exam mode scores +2.5 / −0.83. | time=0
+@q NM-P1-01 | P1 | impl
+Which statement about the axioms of probability is TRUE?
+a: Probability is additive over arbitrary (uncountable) unions
+b: Countable additivity holds iff finite additivity holds together with continuity at $\varnothing$
+c: $P(A)=0$ implies $A=\varnothing$
+d: A $\sigma$-field on a finite set can have exactly 6 members
+key: b
+why: Uncountable additivity fails under $U(0,1)$; null $\ne$ empty; a finite $\sigma$-field has $2^k$ members.
+@q NM-P1-02 | P1 | val
+Independent events have probabilities $\tfrac12,\tfrac14,\tfrac18,\tfrac1{16}$. The probability that at least one occurs is
+a: $\tfrac{315}{1024}$
+b: $\tfrac{709}{1024}$
+c: $\tfrac{15}{16}$
+d: $\tfrac12$
+key: b
+why: $1-\prod(1-p_i)=1-\tfrac12\cdot\tfrac34\cdot\tfrac78\cdot\tfrac{15}{16}=1-\tfrac{315}{1024}$ [2018 Q1].
+@q NM-P1-03 | P1 | val
+$P(A)=\tfrac13$, $P(B)=\tfrac15$ and $P(A\mid B)+P(B\mid A)=\tfrac23$. Then $12\,P(\bar A\cup\bar B)=$
+a: $1$
+b: $5$
+c: $11$
+d: $12$
+key: c
+why: $P(AB)(5+3)=\tfrac23\Rightarrow P(AB)=\tfrac1{12}$, so $12\cdot\tfrac{11}{12}=11$ [2024 Q31].
+@q NM-P1-04 | P1 | val
+Eight people sit at a round table. The probability that two named people sit adjacent is
+a: $\tfrac14$
+b: $\tfrac27$
+c: $\tfrac17$
+d: $\tfrac28$
+key: b
+why: At a round table it is $2/(n-1)=2/7$ (in a row it would be $2/n$).
+@q NM-P1-05 | P1 | val
+$n$ letters are put at random into $n$ addressed envelopes. The expected number of letters in the right envelope is
+a: $1/n$
+b: $1$
+c: $n/2$
+d: $1/e$
+key: b
+why: Indicators plus linearity give $n\cdot\tfrac1n=1$ for every $n$.
+@q NM-P1-06 | P1 | conv
+The smallest number of people for which the chance that at least one shares **my** birthday exceeds $\tfrac12$ is
+a: $23$
+b: $183$
+c: $253$
+d: $365$
+key: c
+why: “Someone shares my birthday” needs $253$; $23$ is for *some* shared birthday.
+@q NM-P1-07 | P1 | val
+A needle of length 3 is dropped on parallel lines 6 apart. The probability it crosses a line is
+a: $1/\pi$
+b: $2/\pi$
+c: $1/(2\pi)$
+d: $\tfrac13$
+key: a
+why: Buffon: $2l/(\pi d)=6/(6\pi)$ [2019 Q11 pattern].
+@q NM-P1-08 | P1 | val
+$U,V$ iid $U(0,1)$. The probability that $t^2-Ut+V=0$ has real roots is
+a: $\tfrac1{12}$
+b: $\tfrac16$
+c: $\tfrac14$
+d: $\tfrac13$
+key: a
+why: Real roots iff $V\le U^2/4$: $\int_0^1u^2/4\,du=\tfrac1{12}$.
+@q NM-P1-09 | P1 | val
+Three fair dice give $a,b,c$. $P(ax^2+bx+c=0\text{ has real roots})=$
+a: $\tfrac{43}{216}$
+b: $\tfrac{19}{72}$
+c: $\tfrac12$
+d: $\tfrac{91}{216}$
+key: a
+why: Stored result: $43/216$ (count $b^2\ge4ac$).
+@q NM-P1-10 | P1 | val
+$A$ polls 7 votes and $B$ polls 3. The probability $A$ is strictly ahead throughout the count is
+a: $\tfrac25$
+b: $\tfrac7{10}$
+c: $\tfrac3{10}$
+d: $\tfrac47$
+key: a
+why: Ballot theorem: $(a-b)/(a+b)=4/10$.
+@q NM-P1-11 | P1 | conv
+Bertrand’s chord paradox shows that
+a: the classical definition fails on every finite sample space
+b: “at random” on a continuous space has no meaning until the randomising mechanism is fixed
+c: the required probability is $\tfrac12$ by every method
+d: geometric probability is not a probability measure
+key: b
+why: Random endpoints $\tfrac13$, random midpoint on a radius $\tfrac12$, random midpoint in the disc $\tfrac14$.
+@q NM-P1-12 | P1 | impl
+A point is chosen in the unit square. $P(0.5<x+y<1.5)=$
+a: $\tfrac12$
+b: $\tfrac34$
+c: $\tfrac58$
+d: $\tfrac78$
+key: b
+why: $1-2\cdot\tfrac18=0.75$ [2024 Q21].
+@q NM-P2-01 | P2 | impl
+Which statement is FALSE?
+a: $P(A\mid B)+P(\bar A\mid B)=1$ when $P(B)>0$
+b: $P(A\mid B)+P(A\mid\bar B)=1$ always
+c: Mutually exclusive events of positive probability are never independent
+d: An event of probability 0 or 1 is independent of every event
+key: b
+why: Only the complement inside the same conditioning event sums to 1.
+@q NM-P2-02 | P2 | hyp
+Bernstein’s two-coin example ($A$ first head, $B$ second head, $C$ exactly one head) shows
+a: pairwise independence does not imply mutual independence
+b: mutual independence does not imply pairwise independence
+c: independence implies mutual exclusivity
+d: conditional independence implies independence
+key: a
+why: Each pair is independent but $P(ABC)=0\ne\tfrac18$.
+@q NM-P2-03 | P2 | val
+$X\sim U(0,12)$. $P(5<X<7\mid X>6)=$
+a: $0$
+b: $\tfrac16$
+c: $\tfrac1{12}$
+d: $\tfrac12$
+key: b
+why: Intersect first: $\tfrac{P(6<X<7)}{P(X>6)}=\tfrac{1/12}{1/2}=\tfrac16$ [2026 Q16].
+@q NM-P2-04 | P2 | val
+Urns $(7W,10B)$, $(5W,12B)$, $(17W)$ each have 17 balls; an urn is chosen at random and a white ball drawn. $P(\text{urn 3})=$
+a: $\tfrac{17}{29}$
+b: $\tfrac7{29}$
+c: $\tfrac5{29}$
+d: $\tfrac13$
+key: a
+why: Posterior $\propto7:5:17$ [2018 Q4].
+@q NM-P2-05 | P2 | val
+Three machines produce 50%, 30% and 20% of output with defective rates 1%, 2% and 4%. A defective item came from the third machine with probability
+a: $\tfrac5{19}$
+b: $\tfrac8{19}$
+c: $\tfrac{6}{19}$
+d: $\tfrac12$
+key: b
+why: Total defective $=0.005+0.006+0.008=0.019$; the third machine contributes $0.008$, so $\tfrac{0.008}{0.019}=\tfrac8{19}$.
+@q NM-P2-06 | P2 | val
+A coin is fair or two-headed with equal chance. Two heads appear in two tosses. $P(\text{two-headed})=$
+a: $\tfrac12$
+b: $\tfrac23$
+c: $\tfrac45$
+d: $\tfrac58$
+key: c
+why: $\tfrac{1/2}{5/8}=\tfrac45$ [2022 Q44].
+@q NM-P2-07 | P2 | val
+Balls are drawn one by one **without replacement** from an urn of $r$ red and $b$ blue. The unconditional probability that the third ball drawn is red is
+a: $\tfrac{r}{r+b}$
+b: $\tfrac{r}{r+b-2}$
+c: $\tfrac{r(r-1)}{(r+b)(r+b-1)}$
+d: $\tfrac12$
+key: a
+why: Symmetry: every draw has the initial red proportion.
+@q NM-P2-08 | P2 | val
+Prevalence 0.1%, sensitivity = specificity = 99%. $P(\text{disease}\mid+)\approx$
+a: $99\%$
+b: $50\%$
+c: $9\%$
+d: $1\%$
+key: c
+why: $\tfrac{0.99\times0.001}{0.99\times0.001+0.01\times0.999}\approx0.09$.
+@q NM-P2-09 | P2 | conv
+Two children, at least one is a boy. $P(\text{both boys})=$
+a: $\tfrac12$
+b: $\tfrac13$
+c: $\tfrac14$
+d: $\tfrac{13}{27}$
+key: b
+why: Sample space $\{BB,BG,GB\}$; $\tfrac{13}{27}$ is for a boy born on a Tuesday.
+@q NM-P2-10 | P2 | val
+A trapped miner: door 1 leads out in 3 h; doors 2 and 3 return in 5 h and 7 h. Each door is equally likely. Expected time to exit is
+a: $9$ h
+b: $12$ h
+c: $15$ h
+d: $5$ h
+key: c
+why: $E=\tfrac13\cdot3+\tfrac13(5+E)+\tfrac13(7+E)\Rightarrow E=15$ [2025 Q5].
+@q NM-P2-11 | P2 | val
+Gambler’s ruin (fair game): start with $i=3$, target $N=10$. $P(\text{reach }N\text{ first})=$
+a: $0.3$
+b: $0.7$
+c: $\tfrac{3}{7}$
+d: $0.5$
+key: a
+why: $i/N=3/10$; expected duration $i(N-i)=21$.
+@q NM-P2-12 | P2 | hyp
+In Monty Hall the host knowingly opens a goat door. If instead the host opens a door **at random** and it happens to show a goat, switching wins with probability
+a: $\tfrac23$
+b: $\tfrac12$
+c: $\tfrac13$
+d: $\tfrac{99}{100}$
+key: b
+why: The host’s knowledge is the entire problem.
+@q NM-P3-01 | P3 | conv
+For a distribution function $F$, $P(X<x)=$
+a: $F(x)$
+b: $F(x^-)$
+c: $1-F(x)$
+d: $F(x)-F(x^-)$
+key: b
+why: Right-continuity is the axiom; left limits give the strict inequality; the jump is the point mass.
+@q NM-P3-02 | P3 | hyp
+$F=x/2$ on $[0,1)$ and $(1-\alpha)x+2\alpha-1$ on $[1,2)$ with $F(2)=1$. For $F$ to be a CDF
+a: $0\le\alpha\le1$
+b: $\tfrac12\le\alpha\le1$
+c: $\alpha\ge1$
+d: $\alpha=\tfrac12$ only
+key: b
+why: $F(1^-)=\tfrac12\le F(1)=\alpha$ and slope $1-\alpha\ge0$ [2020 Q33].
+@q NM-P3-03 | P3 | val
+$F=x/3$ on $[0,2)$, $(1-\alpha)x+3\alpha-2$ on $[2,3)$, for a **continuous** random variable. $\alpha=$
+a: $\tfrac12$
+b: $\tfrac23$
+c: $\tfrac13$
+d: $1$
+key: b
+why: Continuity at 2: $\tfrac23=2(1-\alpha)+3\alpha-2=\alpha$ [2020 Q36].
+@q NM-P3-04 | P3 | impl
+Which is NOT necessarily a CDF when $F,G$ are CDFs?
+a: $FG$
+b: $1-(1-F)^3$
+c: $F+G$
+d: $\tfrac12F+\tfrac12G$
+key: c
+why: $F+G\to2$.
+@q NM-P3-05 | P3 | impl
+$F$ is continuous. Then
+a: $X$ has a density
+b: $F(X)\sim U(0,1)$
+c: $X$ is discrete
+d: $F$ has a jump
+key: b
+why: Probability integral transform; a continuous $F$ need not have a density (Cantor).
+@q NM-P3-06 | P3 | val
+A pdf $f=kx^3/(1+2x)^6$ on $x>0$. $k=$
+a: $160$
+b: $320$
+c: $64$
+d: $1/320$
+key: b
+why: $u=2x$: integral $=B(4,2)/16=1/320$ [2022 Q47].
+@q NM-P3-07 | P3 | val
+$f=\tfrac32x^2$ on $(-1,1)$. $\mathrm{Var}\lvert X\rvert=$
+a: $\tfrac{3}{80}$
+b: $\tfrac35$
+c: $\tfrac9{16}$
+d: $\tfrac{3}{16}$
+key: a
+why: $\mathbb{E}\lvert X\rvert=\tfrac34$, $\mathbb{E}X^2=\tfrac35$: $\tfrac35-\tfrac9{16}=\tfrac3{80}$ [2019 Q39].
+@q NM-P3-08 | P3 | val
+For a non-negative integer variable $X$, $\mathbb{E}X=$
+a: $\sum_{k\ge0}P(X>k)$
+b: $\sum_{k\ge0}P(X\le k)$
+c: $\sum_{k\ge0}kP(X>k)$
+d: $\int_0^\infty F(x)\,dx$
+key: a
+why: Tail-sum formula; $2\sum kP(X>k)=\mathbb{E}X(X-1)$.
+@q NM-P3-09 | P3 | supp
+Which statement is TRUE?
+a: A pdf never exceeds 1
+b: A pmf can exceed 1
+c: A pdf can be unbounded (e.g. Beta$(\tfrac12,\tfrac12)$)
+d: A CDF can jump at uncountably many points
+key: c
+why: Densities need only be non-negative with integral 1.
+@q NM-P3-10 | P3 | supp
+$F_n(x)=\tfrac{x+n}{2n}$ on $[-n,n]$ (0 below, 1 above). As $n\to\infty$
+a: $F_n\to$ a normal CDF
+b: $F_n\to\tfrac12$ everywhere, so there is no limiting distribution
+c: $F_n\to U(0,1)$
+d: $F_n\to\Phi$
+key: b
+why: Mass escapes to $\pm\infty$ [2022 Q45].
+@q NM-P4-01 | P4 | sign
+Which cannot be the mean and variance of a binomial variable?
+a: mean 8, variance 4.8
+b: mean 6, variance 8
+c: mean 4, variance 3.2
+d: mean 5, variance 2.5
+key: b
+why: Variance $<$ mean always: $q=\tfrac86>1$.
+@q NM-P4-02 | P4 | val
+$X\sim\mathrm{Bin}(13,0.3)$. The mode is
+a: $3$
+b: $4$
+c: $3$ and $4$
+d: $5$
+key: b
+why: $(n+1)p=4.2$, so the mode is $\lfloor4.2\rfloor=4$; the skew is positive [2018 Q7].
+@q NM-P4-03 | P4 | val
+$X\sim\mathrm{Bin}(3,\tfrac13)$. $\mathbb{E}(X-1)^3=$
+a: $\tfrac29$
+b: $0$
+c: $-\tfrac29$
+d: $\tfrac49$
+key: a
+why: $\mu_3=npq(q-p)=\tfrac23\cdot\tfrac13=\tfrac29$ (the mean is $np=1$) [2022 Q6].
+@q NM-P4-04 | P4 | val
+Seventh child is the second daughter (girl/boy equally likely). The probability is
+a: $\tfrac{3}{64}$
+b: $\tfrac{3}{32}$
+c: $\tfrac{1}{64}$
+d: $\tfrac{7}{128}$
+key: a
+why: Negative binomial: $\binom61/2^7=\tfrac6{128}=\tfrac3{64}$ [2019 Q15].
+@q NM-P4-05 | P4 | conv
+For $\mathrm{Geo}(p)$ counting **failures** before the first success, the mean is
+a: $1/p$
+b: $q/p$
+c: $p/q$
+d: $q/p^2$
+key: b
+why: The trials form has mean $1/p$; both have variance $q/p^2$.
+@q NM-P4-06 | P4 | val
+$X\sim\mathrm{Poisson}(\lambda)$ with $P(X=1)=P(X=2)$. Then $\lambda=$
+a: $1$
+b: $2$
+c: $\tfrac12$
+d: $4$
+key: b
+why: $\lambda=k+1$ with $k=1$ [2022 Q5].
+@q NM-P4-07 | P4 | val
+$X\sim\mathrm{Poisson}(\lambda)$: $P(X\text{ even})=$
+a: $\tfrac12$
+b: $\tfrac12(1+e^{-2\lambda})$
+c: $\tfrac12(1-e^{-2\lambda})$
+d: $e^{-\lambda}\sinh\lambda$
+key: b
+why: $\tfrac12\{1+G(-1)\}$ with $G(-1)=e^{-2\lambda}$, which exceeds $\tfrac12$.
+@q NM-P4-08 | P4 | impl
+Which is TRUE for independent Poisson $X,Y$?
+a: $X-Y$ is Poisson
+b: $2X$ is Poisson
+c: $X\mid X+Y=n$ is binomial
+d: $X+Y$ is binomial
+key: c
+why: $X\mid X+Y=n\sim\mathrm{Bin}\left(n,\tfrac{\lambda_1}{\lambda_1+\lambda_2}\right)$.
+@q NM-P4-09 | P4 | val
+$N\sim\mathrm{Poisson}(\lambda)$ eggs, each hatching independently with probability $p$. The number hatched is
+a: $\mathrm{Bin}(\lambda,p)$
+b: $\mathrm{Poisson}(p\lambda)$
+c: $\mathrm{Poisson}(\lambda/p)$
+d: $\mathrm{Geo}(p)$
+key: b
+why: Thinning; kept and dropped counts are independent.
+@q NM-P4-10 | P4 | val
+The minimum of $k$ iid $\mathrm{Geo}(p)$ variables (trials form) is $\mathrm{Geo}(\,\cdot\,)$ with success probability
+a: $kp$
+b: $p^k$
+c: $1-(1-p)^k$
+d: $1-p^k$
+key: c
+why: $P(\min>m)=q^{km}$ [2025 Q17].
+@q NM-P4-11 | P4 | val
+A multinomial with $n=50$ and four equally likely cells. $\mathrm{Var}(X_1\mid X_2=5)=$
+a: $10$
+b: $9.375$
+c: $12.5$
+d: $15$
+key: a
+why: $X_1\mid X_2=5\sim\mathrm{Bin}(45,\tfrac13)$: $45\cdot\tfrac13\cdot\tfrac23=10$ [2025 Q41–44].
+@q NM-P4-12 | P4 | sign
+In a multinomial, $\mathrm{Cov}(X_i,X_j)$ is
+a: $np_ip_j$
+b: $-np_ip_j$
+c: $0$
+d: $-np_iq_j$
+key: b
+why: The constraint $\sum X_i=n$ forces a negative covariance.
+@q NM-P4-13 | P4 | sign
+For sampling without replacement, the variance of the number of marked items (sample $n$ from $N$, $K$ marked) is
+a: larger than the binomial's by $\tfrac{N-n}{N-1}$
+b: the binomial variance times $\tfrac{N-n}{N-1}$
+c: equal to the binomial variance
+d: $n\tfrac KN$
+key: b
+why: Finite-population correction $<1$; e.g. $5(0.4)(0.6)\tfrac{15}{19}=\tfrac{18}{19}$.
+@q NM-P4-14 | P4 | val
+$\mathbb{E}\left[\dfrac1{X+1}\right]$ for $X\sim\mathrm{Poisson}(\lambda)$ is
+a: $\tfrac1{\lambda+1}$
+b: $\tfrac{1-e^{-\lambda}}{\lambda}$
+c: $\tfrac{1}{\lambda}$
+d: $e^{-\lambda}$
+key: b
+why: $\sum\tfrac{e^{-\lambda}\lambda^k}{(k+1)!}$.
+@q NM-P4-15 | P4 | val
+Coin tossed $2n$ times: $P(\text{heads}>\text{tails})=$
+a: $\tfrac12$
+b: $\tfrac12\left[1-\binom{2n}{n}4^{-n}\right]$
+c: $\tfrac12\left[1+\binom{2n}{n}4^{-n}\right]$
+d: $1-\binom{2n}{n}4^{-n}$
+key: b
+why: Symmetry removes the tie probability $\binom{2n}n4^{-n}$.
+@q NM-P4-16 | P4 | val
+Roll a die until two successive rolls match. $X-1\sim$
+a: $\mathrm{Geo}(\tfrac16)$ (trials form)
+b: $\mathrm{Bin}(n,\tfrac16)$
+c: $\mathrm{Poisson}(6)$
+d: $\mathrm{Geo}(\tfrac12)$
+key: a
+why: After the first roll each roll matches its predecessor w.p. $\tfrac16$, so $\mathbb{E}X=7$ [2024 Q29–30].
+@q NM-P5-01 | P5 | val
+A Beta-I variable has mean $\tfrac13$ and variance $\tfrac2{63}$. $(m,n)=$
+a: $(1,2)$
+b: $(2,4)$
+c: $(3,6)$
+d: $(2,3)$
+key: b
+why: $m+n=\tfrac{\mu(1-\mu)}{\sigma^2}-1=6$, $m=\mu\cdot6=2$ [2022 Q48].
+@q NM-P5-02 | P5 | val
+The mode of Beta$(3,2)$ is
+a: $\tfrac23$
+b: $\tfrac12$
+c: $\tfrac35$
+d: $\tfrac13$
+key: a
+why: $\tfrac{m-1}{m+n-2}=\tfrac23$ (mean is $0.6$).
+@q NM-P5-03 | P5 | val
+The maximum over $\theta$ of $P(a\le X\le2a)$ for $X\sim\mathrm{Exp}(\text{rate }\theta)$ is
+a: $\tfrac14$
+b: $\tfrac12$
+c: $\tfrac1e$
+d: $\tfrac13$
+key: a
+why: $u=e^{-a\theta}$: $u-u^2$ peaks at $\tfrac14$ [2020 Q34].
+@q NM-P5-04 | P5 | val
+$X_1,X_2$ are independent exponentials with rates 1 and 2 respectively. $P(X_1<X_2)=$
+a: $\tfrac13$
+b: $\tfrac23$
+c: $\tfrac12$
+d: $\tfrac14$
+key: a
+why: $\tfrac{\theta_1}{\theta_1+\theta_2}=\tfrac13$ [2018 Q13].
+@q NM-P5-05 | P5 | val
+Iid $\mathrm{Exp}(\theta)$ variables $X,Y$: $P(\lvert X-Y\rvert\le10)$ with $\theta=1$ is
+a: $1-e^{-10}$
+b: $e^{-10}$
+c: $1-e^{-5}$
+d: $\tfrac12$
+key: a
+why: $\lvert X-Y\rvert\sim\mathrm{Exp}(\theta)$ [2018 Q12].
+@q NM-P5-06 | P5 | val
+$f\propto\exp(-x^2/8+2x)$. The mean and variance are
+a: $8,\ 4$
+b: $2,\ 4$
+c: $8,\ 8$
+d: $4,\ 8$
+key: a
+why: Complete the square: $-\tfrac{(x-8)^2}{8}$ gives $\mu=8$, $\sigma^2=4$ [2019 Q38].
+@q NM-P5-07 | P5 | val
+$X,Y$ iid $N(0,1)$. $P(X^2+Y^2\le r^2)=$
+a: $1-e^{-r^2}$
+b: $1-e^{-r^2/2}$
+c: $\Phi(r)$
+d: $r^2/2$
+key: b
+why: $X^2+Y^2\sim\chi^2_2=\mathrm{Exp}(\text{mean }2)$.
+@q NM-P5-08 | P5 | exist
+The Cauchy distribution
+a: has mean $0$ by symmetry
+b: has no mean, although $\int_{-a}^ax f(x)\,dx=0$ for every $a$
+c: has variance $\sigma^2$
+d: has an MGF for $\lvert t\rvert<1$
+key: b
+why: The defining integral diverges; the CF is $e^{i\theta t-\sigma\lvert t\rvert}$.
+@q NM-P5-09 | P5 | sign
+For a lognormal variable the order of the location measures is
+a: mean $<$ median $<$ mode
+b: mode $<$ median $<$ mean
+c: median $<$ mode $<$ mean
+d: mean $=$ median $=$ mode
+key: b
+why: Mode $e^{\mu-\sigma^2}<$ median $e^\mu<$ mean $e^{\mu+\sigma^2/2}$.
+@q NM-P5-10 | P5 | conv
+The variance of Laplace$(\mu,b)$ is
+a: $b^2$
+b: $2b^2$
+c: $b$
+d: $2b$
+key: b
+why: $\mathbb{E}\lvert X-\mu\rvert=b$ but variance is $2b^2$; kurtosis 6.
+@q NM-P5-11 | P5 | val
+$X\sim\mathrm{Pareto}(\alpha=2,x_0=1)$, $f=2/x^3$, $x\ge1$. Which is TRUE?
+a: both mean and variance exist
+b: the mean exists (value 2) but the variance does not
+c: neither exists
+d: only the variance exists
+key: b
+why: Moments exist only of order $<\alpha$; $\mathbb{E}X=\tfrac{\alpha x_0}{\alpha-1}=2$ [2018 Q6].
+@q NM-P5-12 | P5 | val
+Uniform with mean 1 and variance $\tfrac43$. $P(X<0)=$
+a: $\tfrac14$
+b: $\tfrac13$
+c: $\tfrac12$
+d: $0$
+key: a
+why: $(b-a)^2=16$, $a+b=2$: $U(-1,3)$ [2025 Q54].
+@q NM-P5-13 | P5 | val
+For $X\sim N(\mu,\sigma^2)$ with $\sigma=\mu$: $P(X<-\mu\mid X<\mu)=$
+a: $\Phi(-2)$
+b: $2\{1-\Phi(2)\}$
+c: $\tfrac12$
+d: $1-\Phi(2)$
+key: b
+why: $\Phi(-2)/\tfrac12$ [2025 Q58].
+@q NM-P5-14 | P5 | val
+$X,Y$ iid $\mathrm{Gamma}(\alpha,\lambda)$. Which is TRUE?
+a: $X/(X+Y)\sim\mathrm{Beta}(\alpha,\alpha)$ and is independent of $X+Y$
+b: $X/(X+Y)\sim\mathrm{Beta}(1,1)$ always
+c: $X+Y\sim\mathrm{Gamma}(\alpha,2\lambda)$
+d: $X/Y\sim\mathrm{Beta}(\alpha,\alpha)$
+key: a
+why: Gamma-ratio result; $X/Y$ is Beta-II and $X+Y\sim\mathrm{Gamma}(2\alpha,\lambda)$.
+@q NM-P5-15 | P5 | exist
+Which family has every moment finite yet no MGF for $t>0$?
+a: Exponential
+b: Gamma
+c: Lognormal
+d: Laplace
+key: c
+why: $\mathbb{E}X^k=e^{k\mu+k^2\sigma^2/2}$ but $\mathbb{E}e^{tX}=\infty$.
+@q NM-P5-16 | P5 | hyp
+$X$ and $-X$ share a distribution. Then
+a: $X=0$ a.s.
+b: the law is symmetric about 0 and all existing odd moments vanish
+c: $\mathbb{E}X=0$ always
+d: $X$ is normal
+key: b
+why: Equal in distribution is not equality; the Cauchy is symmetric yet has no mean.

@@ -1,0 +1,91 @@
+@sec T6 | Random vectors: joint, marginal, conditional and transformations | Trap compendium
+@meta codes=P6,P7 src=traps
+@lede The joint law is a one-way street to its marginals; the exam rewards the support check, the independence hierarchy and the exact form of every change-of-variable rule.
+@grp Joint vs marginal: the one-way street
+-! The joint distribution determines all marginals; marginals **never** determine the joint (except under independence). Canonical counterexample: both $(X,Y)$ bivariate normal with $\rho=0$, and the “sign-flipped” pair $(X,SX)$, have standard normal marginals with entirely different joint laws. “Standard normal marginals $\Rightarrow$ bivariate normal” is **False**.
+-! Joint CDF $F(x,y)$ properties: non-decreasing and right-continuous in each argument, $F(-\infty,y)=F(x,-\infty)=0$, $F(\infty,\infty)=1$, *plus* the rectangle inequality $F(b,d)-F(a,d)-F(b,c)+F(a,c)\ge0$. The rectangle condition is the one candidates forget — monotone-in-each-argument alone is *not* sufficient to be a joint CDF (e.g. $F(x,y)=\min(1,\max(0,x+y))$-type examples fail it).
+- Marginal extraction: $F_X(x)=F(x,\infty)$; $f_X(x)=\int f(x,y)\,dy$. Conditional density $f_{Y\mid X}(y\mid x)=f(x,y)/f_X(x)$ for $f_X(x)>0$ — it is a genuine density in $y$ (integrates to 1) — and conditioning on $\{X=x\}$, a null event, is defined through this density, not through the elementary formula (Borel–Kolmogorov again).
+@grp Independence of random variables: precision points
+- Definition: $F(x,y)=F_X(x)F_Y(y)$ for **all** $(x,y)$; equivalently the density/pmf factorises for (almost) all points.
+-* **Factorisation shortcut:** if $f(x,y)=g(x)h(y)$ on a **rectangular** support (product set), then $X\perp\!\!\!\perp Y$ (no need to normalise $g,h$).
+-! If the support is *not* a product set — e.g. $f(x,y)=2$ on the triangle $0<x<y<1$, or uniform on a disc — the variables are dependent *no matter what* the formula looks like. Support check first, always.
+- Uniform on the disc $x^2+y^2\le1$: $X,Y$ uncorrelated but dependent (the range of $Y$ depends on $X$). Uniform on the *square*: independent. A ready-made pair of MCQ options.
+-! $X\perp\!\!\!\perp Y\Rightarrow g(X)\perp\!\!\!\perp h(Y)$ for any (measurable) $g,h$. The converse direction of specific instances fails; and $X\perp\!\!\!\perp Y$, $X\perp\!\!\!\perp Z$ do **not** give $X\perp\!\!\!\perp(Y,Z)$ or $X\perp\!\!\!\perp Y+Z$ in general.
+-! Uncorrelated $\ne$ independent: $X\sim N(0,1)$, $Y=X^2$: $\mathrm{Cov}(X,Y)=\mathbb{E}X^3=0$, yet $Y$ is a function of $X$. Independence $\Rightarrow$ uncorrelated (when moments exist); the converse holds inside a *jointly* normal vector — that “jointly” is the entire MCQ.
+@grp Distributions of functions of random variables
+-! Monotone change of variable: $Y=g(X)$, $g$ strictly monotone with inverse $g^{-1}$: $f_Y(y)=f_X\left(g^{-1}(y)\right)\left\lvert\tfrac{d}{dy}g^{-1}(y)\right\rvert$. Forgetting the absolute value, or using $dg/dx$ instead of $dg^{-1}/dy$, are the two standard planted wrong options.
+- Non-monotone: $Y=X^2$: $f_Y(y)=\tfrac1{2\sqrt y}\left[f_X(\sqrt y)+f_X(-\sqrt y)\right]$, $y>0$. With $X\sim N(0,1)$ this gives $\chi^2_1$ — derive it once, remember it forever.
+-! Bivariate (Jacobian) method: $(U,V)=T(X,Y)$ invertible: $f_{U,V}(u,v)=f_{X,Y}\left(x(u,v),y(u,v)\right)\lvert J\rvert$ where $J=\det\tfrac{\partial(x,y)}{\partial(u,v)}$. The Jacobian of the *inverse* map appears; equivalently $\lvert J\rvert=1/\lvert J_{\text{forward}}\rvert$.
+-! Convolution: $X\perp\!\!\!\perp Y\Rightarrow f_{X+Y}(z)=\int f_X(x)f_Y(z-x)\,dx$. Get limits from the supports; for positive variables the integral runs over $0<x<z$ only.
+-* Standard function-of-variable identities (memorise as a table): $Z^2\sim\chi^2_1$; $X/Y\sim$ Cauchy (iid $N(0,1)$); $-\tfrac1\lambda\ln U\sim\mathrm{Exp}(\lambda)$; $F(X)\sim U(0,1)$; $\tfrac{X}{X+Y}\sim$ Beta (independent gammas, common rate), independent of $X+Y$; min of exponentials exponential; $X_1-X_2$ of iid exponentials Laplace; Box–Muller: $\sqrt{-2\ln U_1}\cos(2\pi U_2)$ and $\sqrt{-2\ln U_1}\sin(2\pi U_2)$ are iid $N(0,1)$.
+-! Order statistics (iid, CDF $F$, density $f$): $F_{X_{(n)}}=F^n$, $F_{X_{(1)}}=1-(1-F)^n$; $f_{X_{(k)}}(x)=\tfrac{n!}{(k-1)!(n-k)!}F^{k-1}(1-F)^{n-k}f(x)$. Max and min of iid variables are **not** independent, and the identity $X_{(1)}+X_{(n)}\overset{d}{=}X_1+X_n$ is false in general.
+- $\mathbb{E}g(X)$ via the law of the unconscious statistician: no need to find the law of $g(X)$ first — but $\mathbb{E}g(X)\ne g(\mathbb{E}X)$ in general (Jensen direction: $\ge$ for convex $g$, $\le$ for concave).
+
+@sec T7 | Modes of convergence: the counterexample arsenal | Trap compendium
+@meta codes=P10 src=traps
+@lede Convergence questions are answered by one picture and four counterexamples; the rest is the exact quantifier in each definition.
+@grp The hierarchy (memorise as a picture)
+.fig conv
+-* No other implication holds in general. **Two special upgrades:** (i) $X_n\xrightarrow{d}c$ (a **constant**) $\Rightarrow X_n\xrightarrow{P}c$; (ii) $X_n\xrightarrow{P}X\Rightarrow$ some *subsequence* converges a.s. Also, a.s. convergence and $L^2$ convergence do not imply each other.
+@grp Definitions with the exact quantifier traps
+- In probability: $\forall\varepsilon>0$, $P(\lvert X_n-X\rvert>\varepsilon)\to0$. The probability of a *single* large deviation dies.
+- Almost surely: $P(\{\omega:X_n(\omega)\to X(\omega)\})=1$. The entire *path* converges, except on a null set. Equivalent tail form: $P(\sup_{k\ge n}\lvert X_k-X\rvert>\varepsilon)\to0$.
+- In mean square: $\mathbb{E}\lvert X_n-X\rvert^2\to0$ (needs second moments). $L^r$ convergence $\Rightarrow L^s$ for $s<r$ (Lyapunov), and $\Rightarrow$ convergence of $\mathbb{E}\lvert X_n\rvert^r\to\mathbb{E}\lvert X\rvert^r$.
+-! In distribution: $F_n(x)\to F(x)$ at every **continuity point** of $F$. Convergence at discontinuity points is *not* required: $X_n=1/n$ (degenerate) $\xrightarrow{d}0$, yet $F_n(0)=0\not\to F(0)=1$. This is a certified classic MCQ.
+-! Convergence in distribution is a statement about *laws*, not values: $X_n$ and $X$ need not even live on the same probability space, and $X_n\xrightarrow{d}X$, $Y_n\xrightarrow{d}Y$ does **not** imply $X_n+Y_n\xrightarrow{d}X+Y$ (unless e.g. independence throughout, or one limit is constant — Slutsky).
+@grp The four counterexamples that answer 90% of convergence MCQs
+-* **Typewriter / sliding blocks** ($\xrightarrow{P}$ and $\xrightarrow{L^2}$ but *not* a.s.): on $[0,1]$ with Lebesgue measure, let $X_n$ be indicators of intervals of shrinking length $1/k$ sweeping repeatedly across $[0,1]$. Then $P(X_n\ne0)\to0$ so $X_n\xrightarrow{P}0$ and $\mathbb{E}X_n^2\to0$, but every $\omega$ is hit infinitely often: $X_n(\omega)$ does not converge *anywhere*.
+-* **Tall spike** ($\xrightarrow{a.s.}$ and $\xrightarrow{P}$ but *not* in mean square): $X_n=n\,\mathbf 1_{(0,1/n)}(U)$, $U\sim U(0,1)$. Then $X_n\to0$ a.s. (for each $\omega$, eventually $U>1/n$), but $\mathbb{E}X_n=1$ for all $n$ and $\mathbb{E}X_n^2=n\to\infty$: no $L^1$ or $L^2$ convergence. Moral: convergence a.s. says nothing about moments — “$X_n\xrightarrow{a.s.}X\Rightarrow\mathbb{E}X_n\to\mathbb{E}X$” is False (needs uniform integrability or dominated convergence).
+-* **Independent rare events** ($\xrightarrow{P}$ but not a.s.): independent $X_n\in\{0,1\}$ with $P(X_n=1)=1/n$. Then $X_n\xrightarrow{P}0$; but $\sum1/n=\infty$ and independence, so by Borel–Cantelli II $X_n=1$ infinitely often a.s.: no a.s. limit. With $P(X_n=1)=1/n^2$ instead, $\sum<\infty$: Borel–Cantelli I gives $X_n\xrightarrow{a.s.}0$. The exponent 1 vs 2 is exactly where the MCQ lives.
+-* **Symmetric flip** ($\xrightarrow{d}$ but not $\xrightarrow{P}$): $X\sim N(0,1)$ and $X_n=-X$ for all $n$. Then $X_n\overset{d}{=}X$ so trivially $X_n\xrightarrow{d}X$, but $\lvert X_n-X\rvert=2\lvert X\rvert$ never shrinks. Convergence of distributions is not convergence of random variables.
+@grp Theorems the examiner expects you to wield in one line
+-! **Slutsky:** $X_n\xrightarrow{d}X$, $Y_n\xrightarrow{P}c\Rightarrow X_n+Y_n\xrightarrow{d}X+c$, $X_nY_n\xrightarrow{d}cX$, $X_n/Y_n\xrightarrow{d}X/c$ ($c\ne0$). $Y_n$ must tend to a *constant*, not a random limit.
+- **Continuous mapping:** $X_n\xrightarrow{d}X\Rightarrow g(X_n)\xrightarrow{d}g(X)$ for $g$ continuous (a.s. w.r.t. the limit law); same statement for $\xrightarrow{P}$ and $\xrightarrow{a.s.}$.
+- **Pólya:** if $F_n\to F$ pointwise and $F$ is continuous, the convergence is automatically uniform in $x$ — an elegant true statement often planted among false ones.
+-! **Scheffé:** pointwise convergence of densities $\Rightarrow$ convergence in distribution (indeed in total variation). The converse fails: $\xrightarrow{d}$ does not imply density convergence (densities may not even exist).
+- **Monotone relationships:** $X_n\xrightarrow{P}X$ and $X_n\xrightarrow{P}Y\Rightarrow X=Y$ a.s. (limits in probability are a.s. unique). Limits in distribution are unique only as laws.
+
+@sec T8 | Expectation and conditional expectation | Trap compendium
+@meta codes=P8 src=traps
+@lede Every expectation item is an existence question, a linearity/Jensen identity, or one of the seven laws of conditional expectation.
+@grp Existence and computation traps
+-* $\mathbb{E}X$ exists (finitely) iff $\mathbb{E}\lvert X\rvert<\infty$.
+-! For the Cauchy, $\int_{-a}^ax f(x)\,dx=0$ for every $a$, yet the mean is undefined — symmetry is not permission. “Cauchy has mean 0 by symmetry” is the single most planted false option in this chapter.
+- St. Petersburg: payoff $2^n$ w.p. $2^{-n}$ ($n=1,2,\dots$): $\mathbb{E}X=\sum1=\infty$. Infinite expectations are legal; the LLN conclusion then reads $\bar X_n\to\infty$ a.s.
+-! Existence ladder (Lyapunov): $\mathbb{E}\lvert X\rvert^r<\infty\Rightarrow\mathbb{E}\lvert X\rvert^s<\infty$ for all $0<s<r$. Higher moments imply lower — the reverse claim is **False** ($t_3$ has a mean and variance but no third moment).
+-* Tail formulas: $X\ge0$: $\mathbb{E}X=\int_0^\infty P(X>x)\,dx$; integer-valued: $\mathbb{E}X=\sum_{k\ge1}P(X\ge k)$. These crack “expected number of trials” MCQs in seconds.
+-* **Linearity is unconditional:** $\mathbb{E}(aX+bY)=a\mathbb{E}X+b\mathbb{E}Y$ requires no independence whatsoever. Half of all “expected number of matches/records” items are solved by indicators + linearity: e.g. expected number of fixed points of a random permutation $=1$, for every $n$.
+-! Products: $X\perp\!\!\!\perp Y\Rightarrow\mathbb{E}(XY)=\mathbb{E}X\,\mathbb{E}Y$. Converse false (uncorrelated $\ne$ independent). And $\mathbb{E}(X/Y)\ne\mathbb{E}X/\mathbb{E}Y$; $\mathbb{E}(1/X)\ne1/\mathbb{E}X$ — Jensen gives $\mathbb{E}(1/X)\ge1/\mathbb{E}X$ for positive $X$.
+- Jensen: $g$ convex $\Rightarrow\mathbb{E}g(X)\ge g(\mathbb{E}X)$ (reverse for concave; equality iff $g$ affine on the support or $X$ degenerate). Consequences: $\mathbb{E}X^2\ge(\mathbb{E}X)^2$ (i.e. $\mathrm{Var}\ge0$); $\mathbb{E}e^{tX}\ge e^{t\mathbb{E}X}$; $\mathbb{E}\ln X\le\ln\mathbb{E}X$.
+- Cauchy–Schwarz: $(\mathbb{E}XY)^2\le\mathbb{E}X^2\,\mathbb{E}Y^2$; equality iff linear dependence a.s. This is also why $\lvert\rho\rvert\le1$ and $\lvert\rho\rvert=1$ iff $Y=aX+b$.
+-! Variance identities: $\mathrm{Var}(aX+b)=a^2\mathrm{Var}X$ (the “$+b$” vanishes, $a$ is squared — so $\mathrm{Var}(-X)=\mathrm{Var}X$); $\mathrm{Var}(X\pm Y)=\mathrm{Var}X+\mathrm{Var}Y\pm2\mathrm{Cov}(X,Y)$ — variances add for the difference of uncorrelated variables. Cov is bilinear; $\mathrm{Cov}(X,c)=0$; correlation is invariant under positive affine maps and flips sign under negative scaling.
+@grp Conditional expectation: the seven laws
+-! $\mathbb{E}[X\mid Y]$ is a **random variable** (a function of $Y$), not a number. MCQs that treat it as a constant are auto-false.
+-* **Tower / total expectation:** $\mathbb{E}\left[\mathbb{E}[X\mid Y]\right]=\mathbb{E}X$. **Total variance:** $\mathrm{Var}X=\mathbb{E}[\mathrm{Var}(X\mid Y)]+\mathrm{Var}(\mathbb{E}[X\mid Y])$ — both terms $\ge0$, hence conditioning never increases expected residual variance: $\mathbb{E}[\mathrm{Var}(X\mid Y)]\le\mathrm{Var}X$.
+- Taking out what is known: $\mathbb{E}[g(Y)X\mid Y]=g(Y)\,\mathbb{E}[X\mid Y]$.
+-! Independence: $X\perp\!\!\!\perp Y\Rightarrow\mathbb{E}[X\mid Y]=\mathbb{E}X$. Converse false: $\mathbb{E}[X\mid Y]=\mathbb{E}X$ (mean independence) does not force independence (e.g. $X=YZ$ with symmetric $Z$). Hierarchy: independence $\Rightarrow$ mean independence $\Rightarrow$ uncorrelated; both arrows strict.
+-! Best predictor: $\mathbb{E}[X\mid Y]$ minimises $\mathbb{E}(X-g(Y))^2$ over all $g$ — the regression function. The best *linear* predictor is generally different (they coincide under joint normality — another “jointly” trap).
+-* Symmetry trick: for iid $X_1,\dots,X_n$ and $S=\sum X_i$: $\mathbb{E}[X_1\mid S]=S/n$. Instant answer to a recurring exam item.
+- Standard-model conditionals to memorise: Poisson split $X\mid X+Y\sim$ Binomial; multinomial cell given another cell $\sim$ Binomial; bivariate normal: $\mathbb{E}[Y\mid X]=\mu_Y+\rho\tfrac{\sigma_Y}{\sigma_X}(X-\mu_X)$ (linear!) with constant conditional variance $\sigma_Y^2(1-\rho^2)$.
+
+@sec T9 | Generating functions: CF, MGF, PGF: inversion, uniqueness, continuity | Trap compendium
+@meta codes=P9 src=traps
+@lede The characteristic function always exists; the MGF may not; the three big theorems (uniqueness, inversion, Lévy continuity) are won by stating their hypotheses exactly.
+@grp Characteristic functions: what is always true
+.p $\varphi_X(t)=\mathbb{E}e^{itX}$.
+-* Exists for **every** distribution (since $\lvert e^{itX}\rvert=1$) — the decisive advantage over the MGF. Properties: $\varphi(0)=1$; $\lvert\varphi(t)\rvert\le1$; uniformly continuous on $\mathbb R$; Hermitian $\varphi(-t)=\overline{\varphi(t)}$; $\varphi_{aX+b}(t)=e^{ibt}\varphi_X(at)$.
+-! $\varphi$ is real-valued $\iff X$ is symmetric about 0. MCQ angle: “$\varphi$ real $\Rightarrow$ mean 0” — False (Cauchy: real CF, no mean).
+-! Independence: $\varphi_{X+Y}=\varphi_X\varphi_Y$. The converse is **False**: for $X$ standard Cauchy and $Y=X$ (maximally dependent), $\varphi_{X+Y}(t)=e^{-2\lvert t\rvert}=\varphi_X(t)\varphi_Y(t)$. Factorisation of the CF does not certify independence.
+-! Not every nice function is a CF: $\lvert\varphi(t)\rvert\le1$ with $\varphi(0)=1$ is necessary, not sufficient (Bochner’s theorem gives the full criterion: non-negative definiteness). E.g. $e^{-t^4}$ is *not* a CF (a genuine top-1% item: if it were, the fourth-moment/kurtosis relations force a degenerate–normal contradiction).
+-! Moments: if $\mathbb{E}\lvert X\rvert^n<\infty$ then $\varphi^{(n)}(0)=i^n\mathbb{E}X^n$; in particular $\varphi'(0)=i\mathbb{E}X$, $\varphi''(0)=-\mathbb{E}X^2$. Differentiability of $\varphi$ at 0 does **not** guarantee the mean exists (one-way street for odd orders; existence of $\varphi^{(2k)}(0)$ *does* force $\mathbb{E}X^{2k}<\infty$ — even orders are special).
+- Landmark CFs: $N(0,1)$: $e^{-t^2/2}$ (self-conjugate shape); Cauchy: $e^{-\lvert t\rvert}$; Poisson: $e^{\lambda(e^{it}-1)}$; $U(-1,1)$: $\tfrac{\sin t}{t}$; Laplace$(0,1)$: $\tfrac1{1+t^2}$; degenerate at $c$: $e^{ict}$.
+@grp The three big theorems (statement precision wins the mark)
+-! **Uniqueness:** $\varphi_X=\varphi_Y$ (for all $t$) $\iff X\overset{d}{=}Y$. CFs are fingerprints. Agreement on an interval is *not* enough in general.
+-* **Inversion:** for continuity points $a<b$: $P(a<X\le b)=\lim_{T\to\infty}\tfrac1{2\pi}\int_{-T}^T\tfrac{e^{-ita}-e^{-itb}}{it}\varphi(t)\,dt$; if $\int\lvert\varphi\rvert<\infty$, $X$ has the bounded continuous density $f(x)=\tfrac1{2\pi}\int e^{-itx}\varphi(t)\,dt$. **MCQ angle:** “integrable CF $\Rightarrow$ density exists” — True; converse False.
+-! **Lévy continuity:** $X_n\xrightarrow{d}X\iff\varphi_n(t)\to\varphi(t)$ for every $t$ with $\varphi$ a CF; equivalently the pointwise limit is **continuous at 0**. The continuity-at-0 clause is the exam’s favourite: $X_n\sim N(0,n)$ gives $\varphi_n(t)=e^{-nt^2/2}\to\mathbf 1\{t=0\}$, discontinuous at 0 — and indeed the mass escapes to $\pm\infty$, no limiting distribution. This single example is worth a full mark every time it appears.
+@grp MGF and PGF: existence fine print
+- MGF $M(t)=\mathbb{E}e^{tX}$ may fail to exist for all $t\ne0$ (Cauchy) or all $t>0$ (lognormal). If $M$ exists on a neighbourhood $(-\delta,\delta)$: all moments are finite, $M^{(k)}(0)=\mathbb{E}X^k$, and $M$ **determines the distribution**.
+-! “All moments finite $\Rightarrow$ distribution determined by moments” is **False** (lognormal). “MGF exists near 0 $\Rightarrow$ determined” is True. Keep the two statements separated in memory; the exam will put them side by side.
+- $M_{X+Y}=M_XM_Y$ under independence (same caveat as CFs on the converse); $M_{aX+b}(t)=e^{bt}M_X(at)$; $M(0)=1$ always; $M$ is convex; $M(t)\ge e^{t\mathbb{E}X}$ (Jensen).
+-* PGF (non-negative integer variables): $G(s)=\mathbb{E}s^X=\sum p_ks^k$, radius $\ge1$; $G(1)=1$; $p_k=G^{(k)}(0)/k!$ (*probabilities* from derivatives at 0); factorial moments from derivatives at 1: $G'(1)=\mathbb{E}X$, $G''(1)=\mathbb{E}X(X-1)$, so $\mathrm{Var}X=G''(1)+G'(1)-[G'(1)]^2$ — this formula is asked directly.
+- $G_{X+Y}=G_XG_Y$ (independent); random sums: $\mathbb{E}s^{S_N}=G_N(G_X(s))$ (compound/branching PGF) with $\mathbb{E}S_N=\mathbb{E}N\,\mathbb{E}X$ (Wald) — top-1% but appears in “number of offspring”-style items.

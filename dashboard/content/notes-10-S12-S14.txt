@@ -1,0 +1,64 @@
+@sec S13 | Order statistics | Statistical Methods
+@meta codes=S13 pyq=16 f27=1.7 tier=2
+@lede Order statistics are the reliable scorer here (16 PYQs, at least one every year): write the pdf of $X_{(r)}$ from the multinomial count, then specialise to the uniform (Beta laws) or the exponential (the minimum is exponential).
+@grp Order statistics: the formulas
+$$f_{(r)}(x)=\frac{n!}{(r-1)!\,(n-r)!}F(x)^{r-1}\left[1-F(x)\right]^{n-r}f(x),\qquad P\left(X_{(r)}\le x\right)=\sum_{k=r}^n\binom nkF^k(1-F)^{n-k}$$
+- Maximum: CDF $F^n$, pdf $nF^{n-1}f$. Minimum: CDF $1-(1-F)^n$, pdf **n(1−F)^{n−1} f** ([2022 Q52]).
+- Joint $(X_{(1)},X_{(n)})$: $n(n-1)\left[F(y)-F(x)\right]^{n-2}f(x)f(y)$ for $x<y$. All $n$ together: $n!\prod f(x_{(i)})$ on the ordered region.
+- Joint $(X_{(r)},X_{(s)})$, $r<s$: $\dfrac{n!}{(r-1)!\,(s-r-1)!\,(n-s)!}F(x)^{r-1}\left[F(y)-F(x)\right]^{s-r-1}\left[1-F(y)\right]^{n-s}f(x)f(y)$.
+- Median of $n=2m+1$: $\tfrac{(2m+1)!}{(m!)^2}F^m(1-F)^mf$; $n=5$ gives **30F²(1−F)²f** ([2020 Q10]).
+-* Counting trick: $X_{(r)}>x\iff$ at most $r-1$ observations fall at or below $x$.
+-* $F(X_{(r)})$ is the $r$-th order statistic of a $U(0,1)$ sample ([2020 Q7] **U(0,1)**), hence $\mathrm{Beta}(r,n-r+1)$.
+@grp Uniform and exponential results
+-* $U(0,1)$: $X_{(r)}\sim\mathrm{Beta}(r,n-r+1)$, with mean $\tfrac r{n+1}$ and variance $\tfrac{r(n-r+1)}{(n+1)^2(n+2)}$.
+- $\mathrm{Cov}(X_{(r)},X_{(s)})=\tfrac{r(n-s+1)}{(n+1)^2(n+2)}$ for $r<s$; $\mathrm{corr}(X_{(1)},X_{(n)})=\tfrac1n$.
+- Range $\sim\mathrm{Beta}(n-1,2)$: pdf **n(n−1)r^{n−2}(1−r)** ([2018 Q40]), mean $\tfrac{n-1}{n+1}$. All $n+1$ spacings are exchangeable with mean $\tfrac1{n+1}$.
+- Median, $n$ odd: mean $\tfrac12$, variance **1/(4n+8)** ([2026 Q39]). $P(X_{(1)}>x)=$ **(1−x)^n** ([2026 Q38]).
+- $U(a,b)$: $\mathbb{E}X_{(1)}=a+\tfrac{b-a}{n+1}$, so ten runners on $U(10,11)$ give **10 + 1/11** ([2020 Q20]). $U[0,2]$, $n=5$: $f_{X_{(1)}}(1)=5\left(\tfrac12\right)^4\cdot\tfrac12=$ **5/32** ([2024 Q20]).
+-* Exponential, rate $\lambda$: $X_{(1)}\sim\mathrm{Exp}(n\lambda)$ ([2024 Q1] **10e^{−10x}**; [2026 Q26] **1−e^{−3y}**). Maximum pdf $n(1-e^{-x})^{n-1}e^{-x}$ ([2024 Q17]).
+- Rényi: $(n-i+1)\left(X_{(i)}-X_{(i-1)}\right)$ are iid $\mathrm{Exp}(\lambda)$, so $\mathbb{E}X_{(r)}=\tfrac1\lambda\sum_{i=1}^r\tfrac1{n-i+1}$ and $\mathbb{E}X_{(n)}=\tfrac1\lambda\left(1+\tfrac12+\cdots+\tfrac1n\right)$.
+- Shifted exponential $e^{-(x-\theta)}$: $2n(M-\theta)\sim\chi^2_2$, i.e. exponential with mean 2 ([2025 Q57]).
+- Normal, $n=2$ from $N(0,\sigma^2)$: $\mathbb{E}X_{(1)}=-\sigma/\sqrt\pi$ ([2018 Q39]); $\mathbb{E}\max(X,Y)=$ **1/√π** for iid $N(0,1)$ ([2019 Q36]).
+- $f=2x$ ($F=x^2$): $n=3$, $P(\text{median}>\tfrac12)=3\left(\tfrac34\right)^2\left(\tfrac14\right)+\left(\tfrac34\right)^3=$ **27/32** ([2019 Q30]); $n=4$, $P(X_{(3)}>\tfrac12)=1-\left(\tfrac14\right)^4-4\left(\tfrac34\right)\left(\tfrac14\right)^3=$ **243/256** ([2021 Q11]).
+@grp Distribution-free intervals and large-sample results
+- $P\left(X_{(1)}<\text{population median}<X_{(n)}\right)=1-\left(\tfrac12\right)^{n-1}$; $n=6$ gives $31/32$.
+- $P\left(X_{(r)}<\xi_p<X_{(s)}\right)=\sum_{k=r}^{s-1}\binom nkp^k(1-p)^{n-k}$, free of $F$.
+- Tolerance: $P\left[F(X_{(n)})-F(X_{(1)})\ge\beta\right]=1-n\beta^{n-1}+(n-1)\beta^n$.
+- Sample median $\approx N\left(\xi,\ 1/\{4nf(\xi)^2\}\right)$; for the normal, $N(\mu,\pi\sigma^2/2n)$. Uniform maximum: $n(1-X_{(n)})\xrightarrow{d}\mathrm{Exp}(1)$.
+
+@sec S12 | Non-parametric tests | Statistical Methods
+@meta codes=S12 pyq=13 f27=1.1 tier=2
+@lede Which test for which situation, and the null moments that decide the numeric items: KS is the $\chi^2$-GOF analogue, runs count the changes, and Mann–Whitney has $\mathrm{Var}(U)=mn(m+n+1)/12$.
+@grp Which test, which moments
+| Situation | Test | Null moments and notes |
+| One sample (median $=m_0$) or paired signs | Sign | $S\sim\mathrm{Bin}(n',\tfrac12)$ after dropping zeros; [2020 Q6] lifetimes vs 250 h: **sign test** |
+| One sample or paired, symmetric, uses sizes | Wilcoxon signed-rank | $\mathbb{E}T^+=\tfrac{n(n+1)}4$, $\mathrm{Var}\,T^+=\tfrac{n(n+1)(2n+1)}{24}$; uses **sign and rank** ([2022 Q57]) |
+| Two independent samples, location | Mann–Whitney $U$ ($\equiv$ Wilcoxon rank-sum) | $U=R_1-\tfrac{n_1(n_1+1)}2$, $U_1+U_2=mn$, $\mathbb{E}U=\tfrac{mn}2$, $\mathrm{Var}\,U=\tfrac{mn(m+n+1)}{12}$ |
+| Two samples, any difference | Wald–Wolfowitz runs | Few runs reject, so left-tailed |
+| Two samples, medians | Median test | First-sample count above the pooled median: $\mathbb{E}=\tfrac m2$, $\mathrm{Var}=\tfrac{mn}{4(N-1)}$ for even $N$ |
+| Randomness of a sequence | Runs | $\mathbb{E}R=1+\tfrac{2mn}N$, $\mathrm{Var}\,R=\tfrac{2mn(2mn-N)}{N^2(N-1)}=\tfrac{(\mathbb{E}R-1)(\mathbb{E}R-2)}{N-1}$ |
+| Goodness of fit, continuous $F_0$ | Kolmogorov–Smirnov | $D=\sup\lvert F_n-F_0\rvert$; 5% cut-off $\approx1.36/\sqrt n$, 1% $\approx1.63/\sqrt n$; the $\chi^2$-GOF analogue ([2018 Q37], [2022 Q53]) |
+| $k$ independent samples | Kruskal–Wallis | $H=\tfrac{12}{N(N+1)}\sum\tfrac{R_j^2}{n_j}-3(N+1)\approx\chi^2_{k-1}$; one-way ANOVA on ranks ([2026 Q37] **(d)**) |
+| $k$ related samples in blocks | Friedman | $\approx\chi^2_{k-1}$ |
+- Zero differences are dropped and ties take average ranks. Drill values: Mann–Whitney with 8 and 10 gives mean 40, variance 126.67; Wilcoxon $n=20$ gives mean 105, variance 717.5; runs with 10 and 10 gives mean 11, variance 4.737.
+@grp PYQ keys
+| PYQ | Stem | Answer |
+| [2020 Q1] | K-S: 0.32, 0.16, 0.98, 0.16, 0.08 vs $U(0,2)$ | At 0.32: $0.8-0.16=$ **0.64** |
+| [2020 Q3] | Cream A on one arm, B on the other | **Paired $t$** (normality assumed) |
+| [2020 Q5] | 30 tosses as printed | **22** runs |
+| [2020 Q19] | Sign test, 60th percentile, reject if $\ge7$ of 10 exceed 25 | $P(X>25)=0.4$ gives $0.055\approx0.05$; 0.6 gives 0.38; the printed hint $(0.6)^7$ points to **0.38** |
+| [2021 Q35] | $x_3<x_2<y_1<y_2<x_4<y_3<x_1$ | $U=\min(5,7)=$ **5** |
+| [2021 Q36] | Sizes 15 and 20 | $\tfrac{15\times20\times36}{12}=$ **900** |
+| [2021 Q40] | 24 lifetimes, runs about the median | Median 257.5, $\mathbb{E}R=13$, but SD $=2.396$, not 1.396: **1 only** |
+| [2022 Q58] | Balls 10, 8, 5, 12, 15; equal frequencies | $\tfrac{0+4+25+4+25}{10}=$ **5.8** |
+
+@sec S14 | Asymptotic relative efficiency | Statistical Methods
+@meta codes=S14 pyq=1 f27=0.3 tier=3
+@lede One PYQ: the median against the mean at the normal, $2/\pi$. Know the Pitman ARE table.
+@grp Asymptotic relative efficiency
+-* $\mathrm{ARE}(T_2:T_1)=\lim\mathrm{Var}(T_1)/\mathrm{Var}(T_2)=$ the inverse ratio of sample sizes needed for equal precision.
+-* Median vs mean at the normal: $2/\pi\approx0.637$ whatever $\mu$ and $\sigma^2$, so the mean wins for **all $\mu$ and $\sigma^2$** ([2021 Q37]).
+| Pitman ARE | Normal | Uniform | Logistic | Laplace | General |
+| Sign vs $t$ | $2/\pi\approx0.64$ | $1/3$ | $\pi^2/12\approx0.82$ | 2 | $4\sigma^2f(0)^2$; $\ge\tfrac13$ for symmetric unimodal |
+| Wilcoxon or Mann–Whitney vs $t$ | $3/\pi\approx0.955$ | 1 | $\pi^2/9\approx1.10$ | 1.5 | $12\sigma^2\left(\int f^2\right)^2$; never below 0.864 |
+| Sign vs Wilcoxon | $2/3$ | $1/3$ | $3/4$ | $4/3$ | Ratio of the two rows above |

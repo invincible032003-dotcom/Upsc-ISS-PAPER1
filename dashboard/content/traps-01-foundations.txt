@@ -1,0 +1,95 @@
+@sec T1 | The unconventional path (read this first) | Trap compendium
+@meta codes= src=traps
+@lede The traditional path is theory → solved examples → exercises → mocks. It takes 14–18 months and produces students who “know” probability but still lose 15–20 questions to traps. The inverted path used by toppers:
+@grp The inverted path
+-* **Traps first.** Learn every statement in this compendium as a *true/false object*, with the counterexample attached. MCQs are built from exactly these fault lines.
+-* **PYQs as the syllabus.** Solve ISS Statistics-I previous-year questions (2016–2025) for probability *before* finishing theory. Also mine IIT JAM (MS), GATE (ST), and CSIR–NET Part B/C for question patterns: these three exams share question-setters’ culture with ISS.
+-* **Counterexample flashcards.** Ninety percent of “assertion–reason” and “which of the following is/are correct” items die instantly if you carry a mental deck of about 40 counterexamples (all included below, marked TRAP).
+-* **Error ledger.** Every mistake goes into a ledger with the trap-class it belongs to. You revise *the ledger*, not the textbook.
+-* **Speed arithmetic of guessing.** With 4 options, $+2.5$ for right, $-0.833$ for wrong: random guessing has expected value $0.25(2.5)-0.75(0.833)=0$ (neutral); eliminating even *one* option makes guessing strictly profitable: $\tfrac13(2.5)-\tfrac23(0.833)\approx+0.28$. Top scorers never leave a question blank once one option is eliminated.
+
+@sec T2 | Classical and axiomatic definitions: where MCQs hide | Trap compendium
+@meta codes=P1 src=traps
+@lede Foundations are examined as true/false statements about the exact strength of the axioms, the direction of each inequality, and the many ways independence is misread.
+@grp Classical (Laplace) definition: the four attack points
+- $P(A)=\dfrac{\text{favourable cases}}{\text{total cases}}$ *only if* outcomes are finite **and** equally likely. **MCQ angle:** “Probability that a natural number chosen at random is even” — ill-posed classically (infinite sample space); needs limiting (natural density) arguments.
+-! The definition is **circular**: “equally likely” already means “equally probable”. A favourite one-liner for assertion–reason items.
+-! It cannot handle unequally likely outcomes (biased coin) or continuous sample spaces. Geometric probability (favourable measure/total measure) extends it, but then Bertrand’s chord paradox shows the extension is *not unique*.
+- Classical probability is automatically a valid probability measure (it satisfies Kolmogorov’s axioms); the converse direction is what fails.
+@grp Kolmogorov’s axioms and their exact strength
+.p On a sample space $\Omega$ with a $\sigma$-field $\mathcal F$: (A1) $P(A)\ge0$; (A2) $P(\Omega)=1$; (A3) **countable** additivity: $P\left(\bigcup_{i=1}^\infty A_i\right)=\sum_{i=1}^\infty P(A_i)$ for pairwise disjoint $A_i$.
+-! The axiom is *countable* additivity, not finite, and not “additivity over arbitrary (uncountable) unions”. Uncountable additivity is **false**: for $X\sim U(0,1)$, $1=P(\Omega)\ne\sum_{x\in[0,1]}P(\{x\})=0$.
+-* Countable additivity $\iff$ finite additivity + continuity from above at $\varnothing$ (if $A_n\downarrow\varnothing$ then $P(A_n)\to0$). **MCQ angle:** “Which additional condition upgrades finite to countable additivity?”
+- Consequences you must be able to *derive*, since MCQs test the direction of each inequality: $P(\varnothing)=0$; $P(A^c)=1-P(A)$; monotonicity $A\subseteq B\Rightarrow P(A)\le P(B)$; $P(A\cup B)=P(A)+P(B)-P(A\cap B)$; inclusion–exclusion for $n$ events; Boole: $P(\bigcup A_i)\le\sum P(A_i)$; Bonferroni: $P(A\cap B)\ge P(A)+P(B)-1$, and generally $P(\bigcap_{i=1}^nA_i)\ge\sum P(A_i)-(n-1)$.
+-! Continuity of probability: $A_n\uparrow A\Rightarrow P(A_n)\uparrow P(A)$ and $A_n\downarrow A\Rightarrow P(A_n)\downarrow P(A)$. Continuity from above needs no extra condition here because $P$ is finite; in general measure theory it needs $\mu(A_1)<\infty$ — a favourite “statistics vs. measure” trick statement.
+-! $P(A)=0$ does **not** imply $A=\varnothing$ (a continuous variable hits any fixed point with probability 0 yet hits *some* point). $P(A)=1$ does not imply $A=\Omega$. Language: “almost surely”.
+-! $P(A)=P(B)$ does not imply $A=B$; $P(A\cap B)=0$ does not imply $A\cap B=\varnothing$.
+- The domain matters: $P$ is defined on a $\sigma$-field (closed under complements and *countable* unions), not on all subsets of $\Omega$ in general. **MCQ angle:** “The smallest $\sigma$-field containing $A$” is $\{\varnothing,A,A^c,\Omega\}$ (4 sets); the smallest $\sigma$-field containing two “generic” events $A,B$ has 16 sets; a $\sigma$-field over a finite $\Omega$ always has $2^k$ members for some $k$ — never 3, 5, or 6 events. A quick kill: “Can a $\sigma$-field contain exactly 6 sets?” No.
+@grp Independence: the single richest MCQ mine in foundations
+- Definition: $P(A\cap B)=P(A)P(B)$. It is a property of the *measure*, not of the sets.
+-! **Mutually exclusive $\ne$ independent.** Disjoint events with $P(A)>0$, $P(B)>0$ are *never* independent ($0\ne P(A)P(B)>0$). They are, in fact, maximally dependent: knowing $A$ happened kills $B$.
+- Any event with probability 0 or 1 is independent of *every* event, including itself. $A$ independent of itself $\iff P(A)\in\{0,1\}$ (since $P(A)=P(A)^2$).
+- If $A\perp\!\!\!\perp B$ then automatically $A\perp\!\!\!\perp B^c$, $A^c\perp\!\!\!\perp B$, $A^c\perp\!\!\!\perp B^c$.
+-! **Pairwise independence $\not\Rightarrow$ mutual independence.** Bernstein’s example: toss two fair coins; $A=\{\text{first is head}\}$, $B=\{\text{second is head}\}$, $C=\{\text{exactly one head}\}$. Each pair is independent ($P=\tfrac14=\tfrac12\cdot\tfrac12$), but $P(A\cap B\cap C)=0\ne\tfrac18$.
+-! Conversely, $P(A\cap B\cap C)=P(A)P(B)P(C)$ alone does *not* give pairwise independence. Mutual independence of $n$ events requires the product rule for **every** sub-collection: $2^n-n-1$ equations.
+- Independence is *not* transitive: $A\perp\!\!\!\perp B$, $B\perp\!\!\!\perp C$ does not give $A\perp\!\!\!\perp C$.
+-! Conditional independence neither implies nor is implied by independence. Classic: two coins, one fair and one two-headed, pick one at random; successive tosses are conditionally independent given the coin but unconditionally dependent.
+
+@sec T3 | Conditional probability, total probability, Bayes: the paradox belt | Trap compendium
+@meta codes=P2 src=traps
+@lede Conditional-probability items are ordinary identities wearing a costume, or a paradox whose verdict you must know by heart.
+@grp Machinery with trap annotations
+- $P(A\mid B)=\dfrac{P(A\cap B)}{P(B)}$, defined **only when** $P(B)>0$. **MCQ angle:** Statements quietly conditioning on probability-zero events are automatically suspect (see Borel–Kolmogorov below).
+-* For fixed $B$, the map $A\mapsto P(A\mid B)$ is itself a full probability measure — so *every* identity (complement rule, inclusion–exclusion, Bayes) holds with an extra “$\mid B$” everywhere. Many MCQs are ordinary identities wearing a conditional costume.
+-! $P(A\mid B)+P(A\mid B^c)$ need **not** equal 1. What equals 1 is $P(A\mid B)+P(A^c\mid B)$.
+-! No general order between $P(A\mid B)$ and $P(A)$: conditioning can raise, lower, or preserve probability. “$B$ occurred, so $A$ is now more likely” is not a theorem.
+- Multiplication rule: $P(A_1\cap\cdots\cap A_n)=P(A_1)P(A_2\mid A_1)\cdots P(A_n\mid A_1\cdots A_{n-1})$ — the backbone of urn/without-replacement questions.
+-! Law of total probability: for a partition $\{B_i\}$ with $P(B_i)>0$: $P(A)=\sum_iP(A\mid B_i)P(B_i)$. The $B_i$ must be exhaustive *and* mutually exclusive; examiners drop one of the two conditions in “which assumptions are needed” items.
+-! Bayes: $P(B_j\mid A)=\dfrac{P(A\mid B_j)P(B_j)}{\sum_iP(A\mid B_i)P(B_i)}$. Confusing $P(A\mid B)$ with $P(B\mid A)$ is the *prosecutor’s fallacy* — tested through medical-test and forensic wordings.
+-* **Symmetry principle** for sampling without replacement: the unconditional probability that the $k$-th draw is red equals the proportion of reds initially, *for every $k$*. (Pólya urn versions also appear.) This one line solves a whole family of “second ball” questions in 10 seconds.
+@grp The paradox arsenal (each is a ready-made 2027 MCQ)
+-* **Base-rate / false-positive paradox.** Disease prevalence 0.1%; test sensitivity 99%, specificity 99%. $P(\text{disease}\mid+)=\tfrac{0.99\times0.001}{0.99\times0.001+0.01\times0.999}\approx9\%$, *not* 99%. When the prior is tiny, even excellent tests give mostly false positives.
+-! **Monty Hall.** Three doors, host *knowingly* opens a goat door; switching wins with probability $\tfrac23$. If the host opens a door at random and it merely *happens* to show a goat, switching wins with probability $\tfrac12$. The host’s knowledge is the entire problem. (100-door version: switching wins $\tfrac{99}{100}$.)
+-* **Boy–girl paradox (order of information).** Two children, equally likely sexes. Given “at least one boy”: $P(\text{both boys})=\tfrac13$. Given “the elder is a boy”: $\tfrac12$. Given “at least one boy born on a Tuesday”: $\tfrac{13}{27}$. *How* you learned the information changes the conditioning event.
+- **Bertrand’s box paradox.** Three boxes: GG, SS, GS. A random coin from a random box is gold; $P(\text{other coin gold})=\tfrac23$, not $\tfrac12$ (count *coins*, not boxes).
+-* **Bertrand’s chord paradox.** “A random chord of a circle is longer than the side of the inscribed equilateral triangle” has answers $\tfrac13$ (random endpoints), $\tfrac12$ (random midpoint on a fixed radius), $\tfrac14$ (random midpoint in the disc). Moral: “at random” in continuous settings is meaningless until the randomising mechanism is fixed — the standard MCQ asks you to match method to answer.
+-! **Simpson’s paradox.** Treatment A can beat B inside *every* subgroup yet lose on aggregate, because group sizes act as hidden weights. **MCQ angle:** It is possible that $P(S\mid A\cap C)>P(S\mid B\cap C)$ and $P(S\mid A\cap C^c)>P(S\mid B\cap C^c)$, yet $P(S\mid A)<P(S\mid B)$ — **True** (the two treatments meet the subgroups with different weights). But with a *common* partition and common weights, $P(A\mid C)>P(B\mid C)$ and $P(A\mid C^c)>P(B\mid C^c)$ *do* force $P(A)>P(B)$ — the exam plays these two lookalike statements against each other.
+- **Gambler’s fallacy.** Independent tosses have no memory: after 10 heads, $P(\text{head})$ is still $\tfrac12$. Contrast deliberately with memorylessness of geometric/exponential (which is a property of those laws, not of “luck”).
+- **Two-envelope paradox.** The bogus computation $\mathbb{E}(\text{other})=\tfrac12(2x)+\tfrac12(x/2)=1.25x$ illegally treats $x$ as fixed under both hypotheses / assumes an improper uniform prior on all amounts. **MCQ angle:** “Where does the argument break?”
+- **Borel–Kolmogorov paradox.** Conditional distributions given a probability-zero event (a point on a great circle of a uniformly random point on a sphere) are not intrinsically defined: different limiting parametrisations give different answers. **Conditioning must be on a $\sigma$-field/partition, not on an isolated null event.**
+- **de Méré’s paradox.** At least one six in 4 throws: $1-(5/6)^4\approx0.518>\tfrac12$; at least one double-six in 24 double throws: $1-(35/36)^{24}\approx0.491<\tfrac12$. Naive proportionality ($4/6$ vs $24/36$) fails.
+-! **Birthday paradox.** 23 people suffice for $P(\text{shared birthday})>\tfrac12$ ($\approx0.507$). The related but different question “someone shares *my* birthday” needs 253 people — examiners swap the two.
+- **St. Petersburg paradox.** Payoff $2^n$ with probability $2^{-n}$: expectation $=\infty$ although the game is “obviously” worth little; shows the mean may fail to exist/be infinite and cannot always guide decisions.
+
+@sec T4 | Random variables and distribution functions: fine print | Trap compendium
+@meta codes=P3 src=traps
+@lede Distribution-function items test the exact properties of a CDF, the strict-vs-weak inequality distinctions, and the “which of these is a CDF” battery.
+@grp Distribution function (CDF): the exact properties
+.p $F(x)=P(X\le x)$ satisfies, and is characterised by: (i) non-decreasing; (ii) right-continuous; (iii) $F(-\infty)=0$, $F(+\infty)=1$. Conversely, every function with (i)–(iii) is the CDF of some random variable (correspondence theorem).
+-! Right-continuous, not necessarily left-continuous. The jump at $x$ is exactly the point mass: $P(X=x)=F(x)-F(x^-)$. Also $P(X<x)=F(x^-)$, $P(a<X\le b)=F(b)-F(a)$, $P(a\le X\le b)=F(b)-F(a^-)$. Examiners live inside these strict-vs-weak inequality distinctions.
+- A CDF has at most countably many discontinuities (jumps of size $\ge1/n$ number at most $n$). **MCQ angle:** “Can a CDF have uncountably many jumps?” No.
+-! “$F$ continuous $\Rightarrow$ density exists” is **false**. The Cantor (Lebesgue singular) distribution has a continuous CDF, no point masses, yet no density: $F'=0$ almost everywhere while $F$ climbs from 0 to 1. Lebesgue decomposition: every CDF = mixture of discrete + absolutely continuous + singular continuous parts. “Continuous random variable” in exam usage means absolutely continuous (density exists) — but a top-1% item can hinge on the distinction.
+-! A pdf may exceed 1 (e.g. $U(0,\tfrac12)$ has $f=2$; Beta$(\tfrac12,\tfrac12)$ is even unbounded). Only $f\ge0$ and $\int f=1$ are required. Contrast: a pmf can never exceed 1.
+- A pdf is not unique — altering it on a set of measure zero changes nothing. And $f$ need not be continuous or bounded.
+- Mixed distributions exist and are examinable: e.g. $F$ with a jump at 0 and a density on $(0,\infty)$ (rainfall; waiting time with $P(X=0)>0$). For these, neither pure $\sum$ nor pure $\int$ computes moments alone.
+- For continuous $F$: $P(X=x)=0$ for every $x$ — yet $X$ always takes some value. “Probability zero” $\ne$ “impossible”.
+- Symmetry about 0 (continuous case): $F(-x)=1-F(x)$; median $=0$; all existing odd moments vanish; the characteristic function is real.
+-! Quantiles: $Q(p)=\inf\{x:F(x)\ge p\}$. The median need not be unique (any point of a flat stretch of $F$ at level $\tfrac12$); conventionally the midpoint is quoted.
+@grp Building new CDFs from old: a favourite “which of these is a CDF” battery
+| Candidate | CDF? | Reason / interpretation |
+| $\alpha F+(1-\alpha)G$, $0\le\alpha\le1$ | Yes | Mixture distribution |
+| $FG$ | Yes | CDF of $\max(X,Y)$, $X\perp\!\!\!\perp Y$ |
+| $F^n$ ($n\in\mathbb N$) | Yes | Max of $n$ iid copies |
+| $1-(1-F)^n$ | Yes | Min of $n$ iid copies |
+| $F+G$ | No | Tends to 2 |
+| $F(ax+b)$, $a>0$ | Yes | Location–scale change |
+| $F(ax+b)$, $a<0$ | No | Decreasing |
+| $F(G(x))$ | **No in general** | Limits are $F(0)\ge0$ and $F(1)\le1$, not 0, 1; valid iff $F$ puts all mass on $[0,1]$ (e.g. uniform/Beta) |
+| $1-F(-x^-)$ | Yes | CDF of $-X$ |
+-* Test the three axioms mechanically; interpret when possible (max/min interpretations also produce direct questions on order statistics).
+@grp Random variables: definitional traps
+- A random variable is a (measurable) function $\Omega\to\mathbb R$; it is neither random nor a variable — assertion–reason bait.
+- A constant is a legitimate random variable (degenerate distribution; CDF is a unit step). Its variance is 0, and $\mathrm{Var}(X)=0\iff X$ is a.s. constant.
+-! Two different random variables can have the same distribution without being equal: $X\sim N(0,1)$ and $-X$ have identical laws but $P(X=-X)=P(X=0)=0$. “Equal in distribution” $\ne$ “equal”. MCQs phrase this as “$X\overset{d}{=}Y\Rightarrow X=Y$?” — False.
+-! If $X$ has CDF $F$ continuous, then $F(X)\sim U(0,1)$ (probability integral transform); conversely $F^{-1}(U)$ has CDF $F$ (inverse transform / simulation). Continuity of $F$ is essential for the first direction; the second works for any $F$ via the generalised inverse.
+- Existence of moments is a property of the tail of $F$. Heavier tail $\Rightarrow$ fewer moments. The Cauchy has none (not even the mean); $t$-type tails with index $\alpha$ have moments of order $<\alpha$ only.

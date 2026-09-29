@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#17457a" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15263c" media="(prefers-color-scheme: dark)">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script>/* colour theme chosen with the top-bar button (per browser) */
+try { var t = localStorage.getItem('upsc.iss.theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+<title>UPSC ISS Statistics Paper-I — Study &amp; Mock App</title>
+<style>
+{{STYLES}}
+</style>
+<!--KATEX-BUNDLE-START-->
+<!-- KaTeX 0.16.22 (MIT licence, https://katex.org) vendored and inlined.
+     Nothing is fetched at runtime: the stylesheet, the script and all
+     twenty WOFF2 math faces are embedded in this file. -->
+<style id="katex-css">
+{{KATEX_CSS}}
+</style>
+<script id="katex-js">
+{{KATEX_JS}}
+</script>
+<!--KATEX-BUNDLE-END-->
+</head>
+<body>
+
+<header id="topbar">
+  <div class="topline">
+    <button type="button" id="tbBack" class="icbtn" data-act="back" aria-label="Back" title="Back"></button>
+    <div class="brand">
+      <span class="mtitle">Offline Mock Engine</span>
+      <small>Notes · Traps · Formulas · PYQ 2018–2026 · Forecast · Computer · 100% offline</small>
+    </div>
+    <div class="spacer"></div>
+    <button type="button" id="tbSearch" class="icbtn" data-act="nav" data-r="search" aria-label="Search" title="Search (S)"></button>
+    <button type="button" id="tbAa" class="icbtn" data-act="disp" aria-label="Display and reading settings" title="Text size, spacing, daily goal"></button>
+    <button type="button" id="themeBtn" class="theme-btn icbtn" title="Colour theme" aria-label="Colour theme"><span aria-hidden="true">&#9680;</span><span class="tlabel"> Auto</span></button>
+  </div>
+  <div id="tbProg" aria-hidden="true"><i></i></div>
+</header>
+
+<nav id="bnav" aria-label="Main"></nav>
+
+<main id="app" class="wrap"></main>
+
+<noscript>
+  <div class="wrap"><div class="card"><h2>JavaScript is required</h2>
+  <p>This application runs entirely in your browser with no server. Please enable
+  JavaScript and reload this file.</p></div></div>
+</noscript>
+
+<script>
+{{PYQ}}
+</script>
+<script id="gk-data">
+{{GK}}
+</script>
+<script id="cs-data">
+{{CS}}
+</script>
+<script id="notes-data">
+{{NOTES}}
+</script>
+<script id="traps-data">
+{{TRAPS}}
+</script>
+<script id="nb-data">
+{{NB}}
+</script>
+<script id="dist-data">
+{{DIST}}
+</script>
+<script>
+{{APP}}
+</script>
+<!--THEME-JS-BEGIN-->
+<script>
+{{THEME}}
+</script>
+<!--THEME-JS-END-->
+</body>
+</html>

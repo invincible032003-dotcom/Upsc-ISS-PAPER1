@@ -1,0 +1,154 @@
+@sec P1 | Classical, axiomatic and geometric probability | Probability
+@meta codes=P1 pyq=10 f27=1.1 tier=2
+@lede Every P1 question is either a counting ratio or an area ratio, and both fall to a stored result (10 PYQs, about 1 in 2027).
+@grp Axioms and their consequences
+-* Axioms on a $\sigma$-field: $P(A)\ge0$, $P(\Omega)=1$, countable additivity. **Uncountable additivity is false:** under $U(0,1)$ every point has probability 0, yet the union has probability 1.
+- Countable additivity $\iff$ finite additivity + continuity at $\varnothing$. Continuity: $A_n\uparrow A\Rightarrow P(A_n)\uparrow P(A)$ and $A_n\downarrow A\Rightarrow P(A_n)\downarrow P(A)$.
+- Union of three: $\sum P(A)-\sum P(AB)+P(ABC)$. Exactly one of $A,B$: $P(A)+P(B)-2P(AB)$.
+- With $S_k$ = sum of all $k$-fold intersections,
+$$P(\text{exactly }m)=\sum_{k\ge m}(-1)^{k-m}\binom km S_k,\qquad P(\text{at least }m)=\sum_{k\ge m}(-1)^{k-m}\binom{k-1}{m-1}S_k.$$
+- Boole: $P\left(\bigcup A_i\right)\le\sum P(A_i)$. Bonferroni: $P\left(\bigcap A_i\right)\ge\sum P(A_i)-(n-1)$.
+- Bounds: $\max\{0,P(A)+P(B)-1\}\le P(AB)\le\min\{P(A),P(B)\}$ and $\max\{P(A),P(B)\}\le P(A\cup B)\le\min\{1,P(A)+P(B)\}$.
+-* Independent events: $P\left(\bigcup A_i\right)=1-\prod(1-P(A_i))$. [2018 Q1] with $\tfrac12,\tfrac14,\tfrac18,\tfrac1{16}$: $1-\tfrac{315}{1024}=$ **709/1024**.
+-! $P(A)=0$ does not force $A=\varnothing$; $P(A)=1$ does not force $A=\Omega$ (“almost surely”).
+-! A $\sigma$-field on a finite $\Omega$ has $2^k$ members, never 3, 5 or 6. $\sigma(A)=\{\varnothing,A,A^c,\Omega\}$; two generic events generate 16 sets.
+-! The classical definition needs finitely many equally likely outcomes, and it is circular (“equally likely” already means equally probable).
+- [2024 Q31] $P(A)=\tfrac13$, $P(B)=\tfrac15$, $P(A\mid B)+P(B\mid A)=\tfrac23$. Then $P(AB)(5+3)=\tfrac23$, so $P(AB)=\tfrac1{12}$ and $12\,P(\bar A\cup\bar B)=12\cdot\tfrac{11}{12}=$ **11**.
+@grp Counting table
+| Situation | Count |
+| Ordered, without replacement, $r$ from $n$ | $n!/(n-r)!$ |
+| Ordered, with replacement | $n^r$ |
+| Unordered, without replacement | $\binom nr$ |
+| Unordered, with replacement | $\binom{n+r-1}{r}$ |
+| $n$ identical balls into $r$ boxes | $\binom{n+r-1}{r-1}$; no box empty: $\binom{n-1}{r-1}$ |
+| $n$ distinct balls into $n$ cells, all occupied | $n!/n^n$, not 1 ([2020 Q21]: statement 2 false) |
+| $n$ people round a table | $(n-1)!$ |
+| Derangements $D_n$ | $n!\sum_{k=0}^n(-1)^k/k!\approx n!/e$ |
+| Arrangements with repeats | $n!/(n_1!\,n_2!\cdots n_k!)$ |
+@grp Stored results for counting stems
+-* Two named people adjacent: $2/n$ in a row, $2/(n-1)$ at a round table.
+- Exactly $k$ people between A and B at a round table of $n$ ($k<(n-2)/2$): $2/(n-1)$. [2021 Q29] $n=16,k=4$: **2/15**.
+- $2n$ boys and $2n$ girls split into two equal batches, each half boys: $\binom{2n}{n}^2\big/\binom{4n}{2n}$ [2022 Q8].
+- $N$ items with $d$ defective inspected one by one: $P(\text{last defective at draw }k)=\binom{k-1}{d-1}\big/\binom Nd$. [2018 Q2]: $\binom83\big/\binom{15}4=$ **8/195**.
+- Matching $n$ letters to $n$ envelopes: $P(\text{no match})=\sum_{k=0}^n(-1)^k/k!\to e^{-1}\approx0.368$; $P(\text{exactly }k)\to e^{-1}/k!$; **the expected number of matches is 1 for every $n$**.
+-! Birthday: $P(\text{a shared birthday among }n)=1-\prod_{i=1}^{n-1}(1-i/365)$; $n=23$ gives 0.507. “Someone shares *my* birthday” needs $n=253$.
+- de Méré: at least one six in 4 throws 0.518; at least one double six in 24 throws 0.491.
+- Coupon collector: expected draws to see all $n$ types $=n\left(1+\tfrac12+\cdots+\tfrac1n\right)$; a die needs 14.7 throws.
+- Two integers chosen at random are coprime with probability $6/\pi^2\approx0.608$.
+- Ballot: A polls $a$, B polls $b$, $a>b$: $P(\text{A strictly ahead throughout})=(a-b)/(a+b)$.
+- Tickets $1,\dots,2n+1$, three drawn: $P(\text{AP})=\tfrac{3n}{4n^2-1}$. Tickets $0,\dots,6n-1$, three drawn: $P(\text{sum}=6n)=\tfrac{3n}{(6n-1)(6n-2)}$.
+- $ax^2+bx+c=0$ with $a,b,c$ from three dice: $P(\text{real roots})=43/216$.
+- [2022 Q4] readers split 50/30/20%, six sampled, pattern 3–2–1: $\tfrac{6!}{3!\,2!\,1!}(0.5)^3(0.3)^2(0.2)=$ **27/200**.
+@grp Geometric probability: favourable area over total area
+| Setup | Answer |
+| Point in the unit square, $0.5<x+y<1.5$ | $1-2\cdot\tfrac18=$ **0.75** [2024 Q21] |
+| $U,V\overset{\text{iid}}{\sim}U(0,1)$: $t^2-Ut+V=0$ has real roots | $P(V\le U^2/4)=1/12$ |
+| $X\sim U(0,6)$, $Y\sim U(0,9)$: $z^2-Xz+Y=0$ has real roots | $\int_0^6\tfrac{x^2}{36}\tfrac{dx}{6}=$ **1/3** [2026 Q20] |
+| Two points on a segment of length $a$: distance $>c$ | $(1-c/a)^2$ |
+| Two uniform points on $(0,1)$: expected distance | $1/3$ |
+| Stick broken at two random points: pieces form a triangle | $1/4$ (one cut in each half: $1/2$) |
+| Rod of length $2l$ broken at random: shorter piece | $U(0,l)$: mean $l/2$, variance $l^2/12$ [2018 Q11] |
+| Buffon: needle $l$ on lines $d$ apart, $l\le d$ | $2l/(\pi d)$; $d=2l$ gives **$1/\pi$** [2019 Q11] |
+| Chord with uniform endpoints at least the radius | $2/3$ |
+| Chord longer than the inscribed triangle’s side | $1/3$, $1/2$ or $1/4$ by method (Bertrand’s paradox) |
+| $x,y\overset{\text{iid}}{\sim}U(0,a)$: $x^2+y^2>a^2$ | $1-\pi/4$ |
+| Two non-negative numbers with sum $2n$: product $\ge\tfrac34$ of its maximum | $1/2$ |
+| $C$ the midpoint of $AB$ (length $a$), one point in each half: distance $<\lambda a$, $\lambda\le\tfrac12$ | $2\lambda^2$ |
+| Three random points on a circle form an acute triangle | $1/4$ |
+.trap **Traps.** Mutually exclusive events with positive probabilities are never independent. The classical formula cannot be used on an infinite sample space. Method for areas: draw the rectangle of $(X,Y)$, shade the favourable side of the curve, integrate the short way.
+
+@sec P2 | Conditional probability, Bayes, independence | Probability
+@meta codes=P2 pyq=13 f27=1.5 tier=2
+@lede The unequal-prior Bayes table is the most reliable P2 item (2018, 2019 twice, 2020, 2023, 2026): write prior × likelihood for each source, then normalise (13 PYQs, about 1.5 in 2027).
+@grp Machinery
+-* $P(A\mid B)=P(AB)/P(B)$, defined only for $P(B)>0$. For fixed $B$ it is a full probability measure, so $P(A\mid B)+P(\bar A\mid B)=1$, but $P(A\mid B)+P(A\mid\bar B)$ need not be 1.
+- Multiplication rule: $P(A_1A_2\cdots A_n)=P(A_1)P(A_2\mid A_1)\cdots P(A_n\mid A_1\cdots A_{n-1})$.
+-! Total probability needs a partition (exhaustive **and** mutually exclusive): $P(A)=\sum_iP(A\mid B_i)P(B_i)$.
+-! Truncated support: intersect first, then divide. [2026 Q16] $X\sim U(0,12)$: $P(5<X<7\mid X>6)=\tfrac{1/12}{1/2}=$ **1/6**.
+-* Symmetry: without replacement, $P(\text{the }k\text{-th draw is red})$ equals the initial red proportion for every $k$.
+- Pólya urn (return the ball plus $c$ of its colour): the next draw keeps the initial proportion. [2022 Q42] **3/7**.
+- Equal priors: the posterior is just the normalised likelihoods.
+$$P(B_j\mid A)=\frac{P(A\mid B_j)\,P(B_j)}{\sum_iP(A\mid B_i)\,P(B_i)}$$
+@grp Bayes templates with their keys
+| PYQ | Setup | Answer |
+| [2018 Q4] | Urns $(7W,10B)$, $(5W,12B)$, $(17W)$; white drawn | $7:5:17\to\tfrac7{29},\tfrac5{29},\tfrac{17}{29}$ (c) |
+| [2019 Q12] | Cannons fire $9:10$, hit rates 0.7 and 0.6 | $6.3/12.3=$ **21/41** |
+| [2019 Q13] | 5% treated; recovery 0.5 vs 0.3 | $0.025/0.310=$ **0.08** |
+| [2020 Q40] | Output 40/35/25%, defective 2/4/3% | $0.008/0.0295=$ **0.27** |
+| [2022 Q44] | Fair or two-headed coin, two heads seen | $\tfrac{1/2}{5/8}=$ **4/5** |
+| [2023 Q1] | Agencies 60/30/10%, oil change 9/20/6% | total probability **0.12** |
+| [2026 Q12] | Urns $(2W,3B)$, $(3W,5B)$, $(5W,2B)$; white | $\tfrac{3/8}{417/280}=$ **35/139** |
+| Model | Output 50/30/20%, defective 1/2/4% | $0.008/0.019=$ **8/19** |
+@grp Condition, then average (first-step analysis)
+- [2025 Q5] trapped miner, doors of 3 h (out), 5 h and 7 h (back): $E=\tfrac13\cdot3+\tfrac13(5+E)+\tfrac13(7+E)$ gives $E=$ **15 h**.
+- [2025 Q4] win $2\times$die on heads, die/2 on tails: $\tfrac12(7)+\tfrac12(1.75)=$ **4.375**.
+- [2020 Q22] odd faces twice as likely: odd 2/9, even 1/9. $P(\text{perfect square})=P\{1,4\}=\tfrac13$ is true; $P(\text{square}\mid{>}3)=\tfrac{1/9}{4/9}=\tfrac14$, so **only statement 1**.
+- [2020 Q30] $P(A)=\tfrac14$, $P(B\mid A)=\tfrac12$, $P(A\mid B)=\tfrac14$ give $P(AB)=\tfrac18$, $P(B)=\tfrac12$. $P(\text{exactly one})=\tfrac12$ and $XY=X^2Y^2$ for indicators, so **only statement 2**.
+@grp Independence
+-* $A\perp\!\!\!\perp B$ implies $A\perp\!\!\!\perp\bar B$, $\bar A\perp\!\!\!\perp B$ and $\bar A\perp\!\!\!\perp\bar B$.
+-* An event of probability 0 or 1 is independent of every event; $A\perp\!\!\!\perp A$ iff $P(A)\in\{0,1\}$.
+- Mutual independence of $n$ events needs $2^n-n-1$ product conditions.
+-! Pairwise $\not\Rightarrow$ mutual (Bernstein): two fair coins, $A$ = first head, $B$ = second head, $C$ = exactly one head. Each pair is independent, yet $P(ABC)=0\ne\tfrac18$.
+-! The triple product rule alone does not give pairwise independence.
+-! Conditional independence and independence imply neither each other (a fair or a two-headed coin, picked at random).
+- [2025 Q11] table $0.4,0.1$ over $0.2,0.3$: $P(A)P(B)=0.3\ne0.4$, so dependent; $P(A\mid\bar B)+P(\bar A\mid B)=0.25+0.33>\tfrac12$. Answer **(b)**.
+@grp Paradox belt
+| Paradox | Verdict |
+| Prevalence 0.1%, sensitivity = specificity = 99% | $P(\text{disease}\mid+)\approx9\%$ |
+| Monty Hall, host knows | Switching wins $2/3$; a host who opens at random and happens to show a goat gives $1/2$ |
+| Two children, at least one boy | $P(\text{two boys})=1/3$; elder is a boy: $1/2$; a boy born on a Tuesday: $13/27$ |
+| Bertrand’s box (GG, SS, GS), gold drawn | $P(\text{other coin gold})=2/3$ |
+| Simpson | Subgroup wins can reverse in aggregate when group weights differ; with common weights, winning both strata forces winning overall |
+| Gambler’s fallacy | Independent trials have no memory |
+| Gambler’s ruin, fair, start $i$, target $N$ | $P(\text{reach }N\text{ first})=i/N$; expected duration $i(N-i)$ |
+| Gambler’s ruin, $p\ne q$ | $P(\text{reach }N\text{ first})=\dfrac{1-(q/p)^i}{1-(q/p)^N}$ |
+| Laplace’s rule of succession | $P(\text{next success}\mid s\text{ of }n)=(s+1)/(n+2)$ |
+| Prosecutor’s fallacy | $P(A\mid B)\ne P(B\mid A)$ |
+
+@sec P3 | Random variables and distribution functions | Probability
+@meta codes=P3 pyq=10 f27=0.9 tier=2
+@lede The house template is a piecewise $F$ with an unknown $\alpha$: impose non-decreasing, right-continuity and the two limits, and add continuity at every joint when the stem says “continuous random variable” (10 PYQs, about 1 in 2027).
+@grp CDF facts
+-* $F(x)=P(X\le x)$ is non-decreasing, right-continuous, $F(-\infty)=0$, $F(\infty)=1$; any function with these four properties is a CDF.
+-* Jump = point mass: $P(X=x)=F(x)-F(x^-)$ and $P(X<x)=F(x^-)$.
+-* $P(a<X\le b)=F(b)-F(a)$; $P(a\le X\le b)=F(b)-F(a^-)$; $P(a<X<b)=F(b^-)-F(a)$; $P(a\le X<b)=F(b^-)-F(a^-)$.
+- A CDF has at most countably many jumps.
+-! Continuous $F$ does not guarantee a density (Cantor law). Every $F$ = discrete + absolutely continuous + singular part.
+-! A pdf may exceed 1 ($U(0,\tfrac12)$ has $f=2$) or be unbounded ($\mathrm{Beta}(\tfrac12,\tfrac12)$); a pmf never exceeds 1.
+- Quantile $\xi_p$: $F(\xi_p^-)\le p\le F(\xi_p)$. The median is not unique where $F$ is flat at $\tfrac12$.
+- Symmetry about $a$ (continuous): $F(a-x)+F(a+x)=1$.
+- $F$ continuous $\Rightarrow F(X)\sim U(0,1)$; for any $F$, $F^{-1}(U)$ has CDF $F$.
+-! $X$ and $-X$ can share a law without $X=0$: equal in distribution is not equal.
+- A joint CDF also needs the rectangle inequality $F(b,d)-F(a,d)-F(b,c)+F(a,c)\ge0$.
+@grp Which-is-a-CDF battery
+| Candidate | CDF? | Reason |
+| $\alpha F+(1-\alpha)G$, $0\le\alpha\le1$ | Yes | Mixture |
+| $FG$ | Yes | Law of $\max(X,Y)$ for independent $X,Y$ |
+| $F^n$ | Yes | Maximum of $n$ iid copies |
+| $1-(1-F)^n$ | Yes | Minimum of $n$ iid copies |
+| $F+G$ | No | Tends to 2 |
+| $F(ax+b)$, $a>0$ | Yes | Location–scale change |
+| $F(ax+b)$, $a<0$ | No | Decreasing |
+| $F(G(x))$ | Only if $F$ puts all mass on $[0,1]$ | Its limits are $F(0)$ and $F(1)$ |
+| $1-F(-x^-)$ | Yes | CDF of $-X$ |
+| $F_n=\tfrac{x+n}{2n}$ on $[-n,n]$ | Limit $\equiv\tfrac12$ | [2022 Q45] **(d)**: mass escapes, no limiting CDF |
+| $F(x,y)=1$ if $x+y\ge1$ (or $x+2y\ge1$), else 0 | No | Rectangle $[0,1]^2$ gives $1-1-1+0<0$ |
+@grp PYQ keys
+- [2020 Q33] $F=x/2$ on $[0,1)$, $(1-\alpha)x+2\alpha-1$ on $[1,2)$: $F(1^-)=\tfrac12$, $F(1)=\alpha$, slope $1-\alpha\ge0$, so $\tfrac12\le\alpha\le1$.
+- [2020 Q36] $F=x/3$ on $[0,2)$, $(1-\alpha)x+3\alpha-2$ on $[2,3)$, continuous r.v.: continuity at 2 forces $\alpha=$ **2/3**.
+- [2020 Q37] $F=\alpha$ on the triangle $x+y<1$ and 1 beyond: the rectangle $[0.4,0.8]^2$ gives $\alpha-1\ge0$, and $\alpha=1$ breaks right-continuity at the axes, so **no $\alpha$ works**.
+- [2019 Q37] $f=ax,\ a,\ 3a-ax$ on $(0,1),(1,2),(2,3)$: total $2a=1$, $a=\tfrac12$.
+- [2020 Q23] $p(x)=kp^x$ on $x=0,2,4,\dots$: $k/(1-p^2)=1$, $k=1-p^2$.
+- [2022 Q47] $f=kx^3/(1+2x)^6$: with $u=2x$ the integral is $B(4,2)/16=1/320$, $k=$ **320**.
+- [2019 Q39] $f=\tfrac32x^2$ on $(-1,1)$: $\mathbb{E}|X|=\tfrac34$, $\mathrm{Var}|X|=\tfrac35-\tfrac9{16}=$ **3/80**.
+- [2019 Q14] $\mathbb{E}|X|$ for values $-1.5,-1,2.5,3$ with probabilities $\tfrac16,\tfrac14,\tfrac12,\tfrac1{12}$: **2**.
+- [2023 Q6] $U(0,5)$: all four listed probabilities are right, **(d)**.
+- [2022 Q50] $F=x/5$ on $[0,5]$: $P(1.5\le X\le2.5)=$ **1/5**.
+-! [2018 Q3] *flawed*: the printed pdf integrates to $\tfrac14+\tfrac12+\tfrac16=\tfrac{11}{12}$. The probable official key is **(b) $\tfrac12$**: numerator $P(1.5<X\le2.5)=\tfrac14+\tfrac18=\tfrac38$ from the printed pdf, denominator $1-F(1)=\tfrac34$.
+@grp Normalising constants in ten seconds
+$$\int_0^1x^{m-1}(1-x)^{n-1}dx=B(m,n)=\frac{\Gamma(m)\Gamma(n)}{\Gamma(m+n)},\qquad \int_0^\infty\frac{x^{m-1}}{(1+ax)^{m+n}}dx=\frac{B(m,n)}{a^m}$$
+$$\int_0^\infty x^ne^{-ax}dx=\frac{n!}{a^{n+1}},\qquad \int_0^\infty e^{-ax^2}dx=\frac12\sqrt{\frac\pi a},\qquad \int_0^\infty xe^{-x^2}dx=\frac12,\qquad \Gamma(\tfrac12)=\sqrt\pi$$
+- Also $B(m+1,n)=B(m,n)\cdot\tfrac{m}{m+n}$ and $\Gamma(n+1)=n\Gamma(n)$.
+@grp Moments straight from F
+-* Any $X$: $\mathbb{E}X=\int_0^\infty(1-F)\,dx-\int_{-\infty}^0F\,dx$. For $X\ge0$: $\mathbb{E}X^r=\int_0^\infty rx^{r-1}\{1-F(x)\}\,dx$.
+-* Non-negative integers: $\mathbb{E}X=\sum_{k\ge0}P(X>k)$ and $2\sum_kk\,P(X>k)=\mathbb{E}[X(X-1)]=\sigma^2+\mu^2-\mu$ ([2023 Q14] **(b)**).

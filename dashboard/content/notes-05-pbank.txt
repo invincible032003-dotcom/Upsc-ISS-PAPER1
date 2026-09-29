@@ -1,0 +1,82 @@
+@sec PBANK | Probability: fine print, family extras and a verdict drill | Probability
+@meta codes=P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,P13 tier=0
+@lede Results that decide statement-type Probability MCQs but sit outside the worked sections above: the fine print of the definitions, family-level extras, the family network, and a 66-item true/false drill.
+@grp Foundations and conditioning: fine print
+-! The equally-likely ratio needs a finite sample space. “A natural number picked at random is even” has no classical answer; it needs a limiting (density) argument. Where the ratio applies, it satisfies all three axioms.
+- $P$ is defined on a $\sigma$-field, not necessarily on every subset. Continuity from above is automatic because $P(\Omega)=1$.
+- Equal probabilities do not make equal events, and an intersection of probability 0 need not be empty.
+- Independence is a statement about $P$, not about how the sets look. Two disjoint events of positive probability are as dependent as events can be: one occurring rules out the other.
+-! No transitivity: $A\perp\!\!\!\perp B$ and $B\perp\!\!\!\perp C$ say nothing about $A$ and $C$. For variables, $X\perp\!\!\!\perp Y$ and $X\perp\!\!\!\perp Z$ do not give $X\perp\!\!\!\perp(Y,Z)$ or $X\perp\!\!\!\perp Y+Z$.
+- Learning that $B$ occurred can raise, lower or leave unchanged the probability of $A$.
+- A conditional law given a probability-zero event depends on how the event is approached (Borel–Kolmogorov); use the conditional density $f(x,y)/f_X(x)$ instead.
+- The two-envelope argument fails because it treats the observed amount as fixed under both scenarios. The St Petersburg game (payoff $2^n$ with probability $2^{-n}$) has infinite expected value. With 100 doors, a knowing host and a switch, you win $99/100$.
+- $n$ people each die within a year with probability $p$, independently. The chance that a named person dies within the year and is the first of the $n$ to die is $\tfrac1n\left[1-(1-p)^n\right]$.
+- Averages of a distribution: $\log G=\mathbb{E}\log X$ and $1/H=\mathbb{E}(1/X)$. For $f=2x$ on $(0,1)$: $A=\tfrac23$, $G=e^{-1/2}\approx0.607$, $H=\tfrac12$.
+- Quartiles from $F$ directly: $f=3x^2$ on $(0,1)$ has $F=x^3$, so $Q_1=0.630$, median $0.794$, $Q_3=0.909$.
+@grp Random variables and distribution functions: fine print
+- A random variable is a measurable map $\Omega\to\mathbb{R}$. A constant qualifies; $\mathrm{Var}X=0$ exactly when $X$ is a.s. constant.
+- Any non-decreasing, right-continuous $F$ running from 0 to 1 is the CDF of some random variable.
+- A density can be altered on a null set without changing anything, and it need not be continuous or bounded. A mixed law (an atom plus a density) needs both a sum and an integral for its moments.
+- For a continuous $F$ every single point has probability 0, yet $X$ always lands somewhere: probability zero is not impossibility.
+- Discrete law symmetric about $a$: $F(a-x)+F(a+x)=1+P(X=a+x)$. Symmetric about 0: every existing odd moment is 0 and the CF is real.
+- Means from $F$ for any $X$: $\mathbb{E}X=\int_0^\infty\{1-F(x)-F(-x)\}\,dx$ and $\mathbb{E}X^2=\int_0^\infty2x\{1-F(x)+F(-x)\}\,dx$. Non-negative integers: $\mathbb{E}X=\sum_{k\ge1}P(X\ge k)$.
+- Finite moments force thin tails: $\mathbb{E}\lvert X\rvert<\infty\Rightarrow nP(\lvert X\rvert>n)\to0$, and $\mathbb{E}\lvert X\rvert^k<\infty\Rightarrow x^kP(\lvert X\rvert>x)\to0$.
+- For $X>0$, $\mathbb{E}X\cdot\mathbb{E}(1/X)\ge1$ by Jensen.
+@grp Family-by-family extras
+| Family | Extra facts |
+| Bernoulli | $X^k=X$; indicators: $\mathbf 1_{A\cap B}=\mathbf 1_A\mathbf 1_B$, $\mathbf 1_{A\cup B}=\mathbf 1_A+\mathbf 1_B-\mathbf 1_A\mathbf 1_B$; the largest variance is $\tfrac14$, at $p=\tfrac12$ |
+| Binomial | $\mathbb{E}X^{(r)}=n^{(r)}p^r$ (falling factorials); with a common $p$, $X_1\mid X_1+X_2=k$ is hypergeometric; $\mathbb{E}(X/n-p)^2=pq/n$; $\mathrm{Cov}\left(\tfrac Xn,\tfrac{n-X}n\right)=-\tfrac{pq}n$; for large $n$ the MD is about $\sqrt{2npq/\pi}$ |
+| Poisson | $P(X\text{ even})=e^{-\lambda}\cosh\lambda$; zero-truncated mean $\tfrac{\lambda}{1-e^{-\lambda}}$; MD of Poisson(1) about its mean is $2/e$; $X\sim$ Poisson$(a)$ and $Y=X+Z$ with $Z\sim$ Poisson$(b)$ independent give $\rho_{XY}=\sqrt{a/(a+b)}$ |
+| Geometric | Trials form: $\mathbb{E}(1/X)=-\tfrac pq\ln p$; the pmf strictly decreases; the minimum of independent geometrics and the index that attains it are independent |
+| Negative binomial | A sum of $r$ iid geometrics; additive in $r$ for a common $p$; a gamma mixture of Poissons is negative binomial |
+| Hypergeometric | Each single draw is Bernoulli$(K/N)$ on its own, though the draws are dependent; same mean as the binomial, smaller variance |
+| Uniform | $\mu_r'=\tfrac{b^{r+1}-a^{r+1}}{(r+1)(b-a)}$; no iid pair has a uniform sum; $n$ iid $U(0,1)$ sum to mean $\tfrac n2$, variance $\tfrac n{12}$ |
+| Exponential | MD about the mean over the SD is $2/e$; the minimum and its index are independent; the maximum is not exponential; constant hazard rate |
+| Shifted exponential | $f=\tfrac1be^{-(x-a)/b}$, $x>a$: mean $a+b$, variance $b^2$, $\mathbb{E}(X-a)^r=r!\,b^r$, MGF $e^{at}(1-bt)^{-1}$, minimum $\sim$ shifted Exp$(a,b/n)$ |
+| Gamma | Scale form: HM = mode $=(n-1)\theta$; $cX\sim\mathrm{Gamma}(\alpha,\lambda/c)$; the density is unbounded at 0 when $\alpha<1$; $\bar X\sim\mathrm{Gamma}(np,\theta/n)$ |
+| Beta-I and Beta-II | Beta-I: HM $=\tfrac{a-1}{a+b-1}$, U-shaped when both parameters are below 1. Beta-II: $\mu_r'=\tfrac{\Gamma(a+r)\Gamma(b-r)}{\Gamma(a)\Gamma(b)}$, HM $=\tfrac{a-1}{b}$, mode $=\tfrac{a-1}{b+1}$ |
+| Normal | $\mathbb{E}\lvert Z\rvert^r=\tfrac{2^{r/2}\Gamma((r+1)/2)}{\sqrt\pi}$; MD/SD $=\sqrt{2/\pi}$; $\bar X\sim N(\mu,\sigma^2/n)$ exactly; with a fair random sign $S\perp\!\!\!\perp X$, $(X,SX)$ has normal marginals and zero correlation, yet $X+SX$ has an atom at 0 |
+| Lognormal | $F(x)=\Phi\left(\tfrac{\ln x-\mu}\sigma\right)$; mode $<$ median $<$ mean; products of independent lognormals are lognormal; the sample GM is $\Lambda(\mu,\sigma^2/n)$ |
+| Cauchy | $F=\tfrac12+\tfrac1\pi\tan^{-1}\tfrac{x-\mu}\sigma$; $\mathbb{E}\lvert X\rvert^r<\infty$ only for $r<1$; $X^2\sim F(1,1)$; the CF has a corner at 0; locations and scales add under independent sums; $t_1$ is Cauchy |
+| Laplace | MLEs: the sample median for the centre and the mean absolute deviation from it for $b$; kurtosis 6 |
+| Logistic | Mean = median = mode $=\alpha$; variance $\tfrac{\pi^2\beta^2}3$; $\mathbb{E}\lvert X-\alpha\rvert=2\beta\ln2$ |
+| $t_n$ and $F$ | $\tfrac1{1+t^2/n}\sim\mathrm{Beta}(\tfrac n2,\tfrac12)$; $\tfrac{t^2}n\sim$ Beta-II$(\tfrac12,\tfrac n2)$. Equal df: the median of $F$ is 1 and $Q_1Q_3=1$; large df: $F\approx N\left(1,2(\tfrac1{n_1}+\tfrac1{n_2})\right)$ |
+| Bivariate normal | Equal means and variances: $\tfrac{X+Y-2\mu}{\lvert X-Y\rvert}\sim\mathrm{Cauchy}\left(0,\sqrt{\tfrac{1+\rho}{1-\rho}}\right)$ |
+@grp The family network
+| Question type | Answer set |
+| Stays in the family under independent sums | Poisson; normal; Cauchy; binomial and negative binomial with a common $p$; gamma with a common rate (so $\chi^2$) |
+| Leaves the family | Uniform $\to$ triangular; exponential $\to$ gamma; geometric $\to$ negative binomial; Bernoulli $\to$ binomial; also Beta, Laplace, hypergeometric; lognormal is closed under products |
+| Limits | Hypergeometric $\to$ binomial $\to$ Poisson; negative binomial $\to$ Poisson; binomial, Poisson, gamma, $t_\nu\to$ normal; a rescaled geometric $\to$ exponential |
+| Memoryless | Geometric among discrete laws, exponential among continuous ones, and nothing else |
+| Maximum entropy | Uniform on a bounded interval; exponential on $(0,\infty)$ with a fixed mean; normal with a fixed variance |
+| MGF domain | All $t$: normal, binomial, Poisson, uniform. Near 0 only: exponential, gamma, Laplace, geometric, negative binomial. Useless: Cauchy, lognormal for $t>0$ |
+| Characterisations | Poisson (Raikov), normal sums (Cramér), $X+Y\perp\!\!\!\perp X-Y$ (Bernstein), $\bar X\perp\!\!\!\perp S^2$ (Geary), gamma ratio independent of sum (Lukacs) |
+@grp Vectors, transformations and order statistics
+- The joint law gives every marginal; the marginals give the joint only under independence.
+-! Being non-decreasing in each argument does not make a joint CDF: the rectangle inequality must also hold.
+- Functions of independent variables are independent. Uniform on a disc: uncorrelated but dependent; uniform on a square: independent.
+- Change-of-variable slips: dropping the absolute value, or differentiating $g$ instead of $g^{-1}$. Convolution limits come from both supports.
+- Box–Muller: $\sqrt{-2\ln U_1}\cos(2\pi U_2)$ and $\sqrt{-2\ln U_1}\sin(2\pi U_2)$ are iid $N(0,1)$.
+-! The sample maximum and minimum are dependent, and $X_{(1)}+X_{(n)}$ generally does not share the law of $X_1+X_n$.
+- $\mathbb{E}g(X)=\int g(x)f(x)\,dx$ needs no law for $g(X)$; but $\mathbb{E}g(X)\ne g(\mathbb{E}X)$ unless $g$ is linear.
+@grp Convergence, expectation and generating functions
+- a.s. convergence in tail form: $P\left(\sup_{k\ge n}\lvert X_k-X\rvert>\varepsilon\right)\to0$. $L^r$ convergence also gives $\mathbb{E}\lvert X_n\rvert^r\to\mathbb{E}\lvert X\rvert^r$.
+- Convergence in distribution needs no common probability space, and its limits are unique only as laws. Convergence in distribution does not give convergence of densities.
+-! Cauchy: $\int_{-a}^ax f(x)\,dx=0$ for every $a$, yet the mean does not exist. An iid sequence with infinite mean has $\bar X_n\to\infty$ a.s.
+- Moments are one-way: $t_3$ has a mean and a variance but no third moment.
+- $\mathrm{Var}(aX+b)=a^2\mathrm{Var}X$, so $\mathrm{Var}(-X)=\mathrm{Var}X$; $\mathrm{Cov}(X,c)=0$; correlation keeps its value under positive rescaling and flips sign under negative.
+- $\mathbb{E}[\mathrm{Var}(X\mid Y)]\le\mathrm{Var}X$. Mean independence without independence: $X=YZ$ with $Z$ symmetric and independent of $Y$.
+- The MGF is convex with $M(0)=1$ and $M(t)\ge e^{t\mathbb{E}X}$. Finite on an open interval around 0 gives every moment; finite on one side only does not.
+- Bochner: CFs are exactly the continuous non-negative-definite functions with $\phi(0)=1$; $\lvert\phi\rvert\le1$ with $\phi(0)=1$ is not enough.
+- Wald: $\mathbb{E}S_N=\mathbb{E}N\,\mathbb{E}X$; the PGF of a random sum is $G_N(G_X(s))$. A PGF converges at least on $\lvert s\rvert\le1$.
+@grp Inequalities, zero–one laws and limit theorems
+- Markov needs $X\ge0$. Cantelli: $P(X-\mu\ge\varepsilon)\le\tfrac{\sigma^2}{\sigma^2+\varepsilon^2}$, one-sided and sharper than Chebyshev.
+- For an independent sequence, $\limsup X_n$ and $\limsup S_n/n$ are a.s. constant (possibly infinite); deciding whether a tail event has probability 0 or 1 needs Borel–Cantelli or the three-series theorem.
+- Any fixed finite pattern in iid trials occurs infinitely often with probability 1.
+-! SLLN $\Rightarrow$ WLLN, never the reverse. Kolmogorov’s condition is $\sum\mathrm{Var}X_n/n^2<\infty$, with $n^2$.
+- Khinchin needs only a finite mean: if $P\left(X=2^r/r^2\right)=2^{-r}$, $r\ge1$, then $\mathbb{E}X=\sum r^{-2}=\pi^2/6$ and the iid WLLN holds.
+- Infinite variance: iid Pareto sums tend to stable non-normal laws. Berry–Esseen needs a third moment.
+- The CLT says $\bar X_n\approx N(\mu,\sigma^2/n)$: the error has exact order $n^{-1/2}$.
+@grp Rapid-fire true/false drill (66 items)
+.launch tf-notes | Start the 66-item drill (Learn or Exam)
+.p Cover the verdict column, decide, then check. Aim for 63 or more. Every item is also in the **T/F drill** bank so it counts towards your mistakes, bookmarks and revision queue.

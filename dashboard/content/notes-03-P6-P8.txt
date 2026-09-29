@@ -1,0 +1,153 @@
+@sec P6 | Joint, marginal and conditional distributions | Probability
+@meta codes=P6 pyq=40 f27=4.8 tier=1
+@lede P6 is the heaviest sub-topic (40 PYQs, about 5 in 2027), and recent papers hang two or three questions on one density, so one clean workflow collects them all.
+@grp One density, six steps
+- **1.** Sketch the support and write each variable’s limits in terms of the other.
+- **2.** Normalise with a Beta or Gamma integral.
+- **3.** Marginal: $f_X(x)=\int f(x,y)\,dy$ over the slice at $x$.
+- **4.** Conditional: $f(y\mid x)=f(x,y)/f_X(x)$, a density in $y$ on that slice.
+- **5.** Moments: $\mathbb{E}(Y\mid x)$, $\mathbb{E}(Y^2\mid x)$, then $\mathbb{E}(XY)$ directly from $f$.
+- **6.** Region probability: integrate over support $\cap$ region in the easier order.
+@grp Independence tests
+-* $f(x,y)=g(x)h(y)$ on a rectangle $\Rightarrow$ independent. **A non-rectangular support $\Rightarrow$ dependent, whatever the formula** ($f=2$ or $8xy$ on $0<x<y<1$).
+- [2024 Q32] $c\,xy\,e^{-(x^2+y^2)}$ on $x,y>0$: $c=4$; $X^2,Y^2$ are iid $\mathrm{Exp}(1)$, so $P(X^2>2Y^2)=\tfrac13$; independent. **All three.**
+- [2018 Q5] $(1+xy)/4$ on the square $[-1,1]^2$: $X,Y$ dependent, yet $X^2$ and $Y^2$ independent. **2 only.**
+- [2018 Q15] a table with $\mathrm{Cov}=0$ but $P(X=0,Y=1)=0\ne\tfrac13\cdot\tfrac13$: uncorrelated, dependent. **2 only.**
+-! Uncorrelated $\iff$ independent holds for two 0/1 variables and inside a jointly normal pair, not in general ($Y=X^2$ with symmetric $X$; uniform on a disc).
+-! Normal marginals do not make the pair bivariate normal. The bivariate Cauchy $\tfrac{c}{2\pi(c^2+x^2+y^2)^{3/2}}$ has Cauchy$(0,c)$ marginals but is not their product.
+- Fréchet bounds: $F_X(x)+F_Y(y)-1\le F(x,y)\le\min\{F_X(x),F_Y(y)\}\le\sqrt{F_XF_Y}$.
+@grp Stored densities (they recur with new numbers)
+| Density | Marginals | Conditional | Moments |
+| $2$ on $0<x<y<1$ | $f_X=2(1-x)$, $f_Y=2y$ | $Y\mid x\sim U(x,1)$; $X\mid y\sim U(0,y)$ | $\mathbb{E}X=\tfrac13$, $\mathbb{E}Y=\tfrac23$, $\mathrm{Var}=\tfrac1{18}$ each, $\mathrm{Cov}=\tfrac1{36}$, $\rho=\tfrac12$; $P(X+Y<1)=\tfrac12$ |
+| $8xy$ on $0<x<y<1$ | $f_X=4x(1-x^2)$, $f_Y=4y^3$ | $f(y\mid x)=\tfrac{2y}{1-x^2}$ | $\mathbb{E}(Y\mid x)=\tfrac23\cdot\tfrac{1-x^3}{1-x^2}$; $\mathbb{E}(Y^2\mid x)=\tfrac{1+x^2}2$ |
+| $6(1-x-y)$ on the simplex | $f_X=3(1-x)^2$ | $X\mid y\propto(1-y-x)$ on $(0,1-y)$ | $\mathbb{E}X=\tfrac14$, $\mathrm{Var}X=\tfrac3{80}$, $\mathbb{E}XY=\tfrac1{20}$, $\mathrm{Cov}=-\tfrac1{80}$, $\rho=-\tfrac13$, $\mathbb{E}(X\mid y)=\tfrac{1-y}3$ |
+| $x+y$ on the unit square | $f_X=x+\tfrac12$ | $f(y\mid x)=\tfrac{x+y}{x+1/2}$ | $\mathbb{E}X=\tfrac7{12}$, $\mathrm{Var}X=\tfrac{11}{144}$, $\mathbb{E}XY=\tfrac13$, $\mathrm{Cov}=-\tfrac1{144}$, $\rho=-\tfrac1{11}$ |
+| $\tfrac{x+y}3$ on $[0,1]\times[0,2]$ | $f_X=\tfrac23(x+1)$ | $f(y\mid x)=\tfrac{x+y}{2(x+1)}$ | $\mathbb{E}XY=\tfrac23$; $\mathbb{E}(Y\mid x=\tfrac12)=\tfrac{11}9$ |
+| $e^{-y}$ on $0<x<y$ | $X\sim\mathrm{Exp}(1)$, $Y\sim\mathrm{Gamma}(2,1)$ | $Y-x\mid x\sim\mathrm{Exp}(1)$; $X\mid y\sim U(0,y)$ | $\mathrm{Cov}=1$, $\rho=1/\sqrt2$ |
+| $x\,e^{-x(y+1)}$, $x,y>0$ | $X\sim\mathrm{Exp}(1)$, $f_Y=\tfrac1{(1+y)^2}$ | $Y\mid x\sim\mathrm{Exp}(\text{rate }x)$ | $\mathbb{E}(Y\mid x)=1/x$: non-linear regression |
+| $\tfrac{y\,e^{-y/(1+x)}}{(1+x)^4}$ | $f_X=\tfrac1{(1+x)^2}$ | $Y\mid x\sim\mathrm{Gamma}(2,\text{scale }1+x)$ | $\mathbb{E}(Y\mid x)=2(1+x)$: linear [2022 Q9–10], [2026 Q30] |
+| $\tfrac{e^{-(x-12y)^2/2y}}{\sqrt{2\pi y}}$, $0<y<1$ | $Y\sim U(0,1)$ | $X\mid y\sim N(12y,y)$ | $\mathbb{E}X=6$, $\mathrm{Var}X=\tfrac12+12=12.5$, $\mathrm{Cov}=1$ [2023 Q8–10] |
+| $\tfrac{\lambda x^{12}}{(1+xy)^{20}}$, $x>0,y>1$ | $X\sim$ Beta-II$(12,7)$, $f_Y=\tfrac{12}{y^{13}}$ | – | $\lambda=19/B(12,7)$ [2023 Q18–20] |
+@grp PYQ keys
+| PYQ | Ask | Answer |
+| [2018 Q12] | $F=(1-e^{-x})(1-e^{-y})$: $P(\lvert X-Y\rvert\le10)$ | **1−e^{−10}** |
+| [2018 Q13] | $2e^{-x}e^{-2y}$: $P(X<Y)$ | **1/3** |
+| [2019 Q2] | $X\in\{0,1\}$, $Y=\pm1$ | $\mathbb{E}X^r=\alpha_3+\alpha_4$, $\mathbb{E}XY=\alpha_4-\alpha_3$, $\mathbb{E}(XY)^{2n}=\alpha_3+\alpha_4$: **all three** |
+| [2019 Q20] | $4xy$ on the unit square | $f_X=$ **2x** |
+| [2020 Q26] | $6(1-x-y)$: $P(X\ge0.4)$ | $(0.6)^3=0.216$, **0.21** |
+| [2021 Q1–2] | $6(1-x-y)$: $\mathbb{E}XY$, Cov | **1/20**, **−1/80** |
+| [2021 Q4–5] | $8xy$: $\mathbb{E}(Y\mid x)$, $\mathbb{E}(Y^2\mid x=0.5)$ | $\tfrac23\tfrac{1-x^3}{1-x^2}$, **0.625** |
+| [2021 Q16] | $\tfrac{x+y}3$: $\mathbb{E}XY$ | **2/3** |
+| [2022 Q7] | $\tfrac{x+y}{21}$, $x=1,2,3$, $y=1,2$: $P(X-Y\le0.5)$ | $\tfrac{2+3+4}{21}=$ **3/7** |
+| [2022 Q49], [2025 Q7] | $2$ on $0<x<y<1$ | $f_Y=$ **2y**; $f_X=$ **2−2x** |
+| [2023 Q15–17] | $\theta$-table given $Y=2$ | $X=-1$ w.p. $\tfrac13$, $+1$ w.p. $\tfrac23$: MGF $\tfrac{e^{-t}+2e^t}3$, $\mathrm{Var}=$ **8/9**, $\mathbb{E}(XY\mid Y=2)=$ **2/3** |
+| [2024 Q33] | $\tfrac{e^{-2}}{x!\,(y-x)!}$ | $Y\sim$ Poisson(2), $X\sim$ Poisson(1): **II only** |
+| [2024 Q35] | Geometric-marginal table | $Y\sim\mathrm{Geo}(\tfrac12)$ on $0,1,\dots$, $\mathrm{Var}\,Y=2$: **I only** |
+| [2025 Q16] | $3\times3$ table | $\mathbb{E}X=\tfrac34$, $\mathbb{E}Y=\tfrac12$, $\mathrm{Cov}=-\tfrac9{56}$: **neither** |
+| [2025 Q52] | $4xy\,e^{-(x^2+y^2)}$, $T^2=X^2+Y^2$ | $T^2\sim\mathrm{Gamma}(2,1)$: $f_T=$ **2t³e^{−t²}** |
+| [2026 Q1–3] | $c\lvert x+y\rvert$ on $\{-2,\dots,2\}^2$ | $c=\tfrac1{40}$; $\mathrm{Var}X=$ **2.35**; $\mathbb{E}(Y\mid X=1)=$ **6/7**; $P(\lvert X-Y\rvert\le1)=$ **0.7** |
+| [2026 Q6–7] | $\tfrac23(x+2y)$ | $X\mid Y=\tfrac12$ has density $\tfrac23(x+1)$: $\mathbb{E}=$ **5/9**, $\mathrm{Var}=$ **13/162** |
+| [2026 Q8–9] | $x^2+\tfrac{xy}3$ on $(0,1)\times(0,2)$ | $f(y\mid x)=\tfrac{3x+y}{2(3x+1)}$; $f(x\mid y)=\tfrac{2x(3x+y)}{2+y}$ |
+| [2026 Q19] | $\tfrac{21}2x^2y$ on $x^2\le y\le1$ | $P(X\ge Y)=$ **0.3** |
+| [2026 Q21] | $\tfrac{x+y}3$ | $\mathbb{E}(Y\mid X=\tfrac12)=$ **11/9** |
+@grp Region tricks
+.key For iid continuous $X,Y$: $P(X<Y)=\tfrac12$ and $P(X=Y)=0$; for iid exponentials $\lvert X-Y\rvert$ has the same exponential law; on a triangle, split the $x$-range where the upper limit changes.
+
+@sec P7 | Functions of random variables | Probability
+@meta codes=P7 pyq=15 f27=1.4 tier=2
+@lede The same dozen results recycle; recognise the input family and the answer is a lookup, not an integral (15 PYQs, about 1.5 in 2027).
+@grp Change-of-variable toolkit
+- Monotone $g$: $f_Y(y)=f_X\left(g^{-1}(y)\right)\left\lvert\tfrac{d}{dy}g^{-1}(y)\right\rvert$. Several branches: add them.
+- Square: $Y=X^2$ gives $f_Y(y)=\tfrac{f_X(\sqrt y)+f_X(-\sqrt y)}{2\sqrt y}$, $y>0$.
+- Two variables: $f_{U,V}(u,v)=f_{X,Y}\left(x(u,v),y(u,v)\right)\left\lvert\tfrac{\partial(x,y)}{\partial(u,v)}\right\rvert$; the inverse Jacobian is $1/\lvert\text{forward Jacobian}\rvert$.
+- Linear map $\mathbf u=A\mathbf x$: $g(\mathbf u)=f(A^{-1}\mathbf u)/\lvert\det A\rvert$. [2020 Q38] $A=\tfrac12\begin{pmatrix}1&1&0\\0&1&1\\1&0&1\end{pmatrix}$ has $\det A=\tfrac14$, so $g=$ **4f(u−v+w, u+v−w, −u+v+w)**.
+- Convolution: $f_{X+Y}(z)=\int f_X(x)f_Y(z-x)\,dx$, limits from both supports ($0<x<z$ for positive variables).
+@grp Input → transform → result
+| Input | Transform | Result |
+| $X\sim N(0,1)$ | $X^2$ | $\chi^2_1=\mathrm{Gamma}(\tfrac12,\text{rate }\tfrac12)$ |
+| $X\sim N(4,100)$ | $\tfrac12\left(\tfrac{X-4}{10}\right)^2$ | **Gamma(shape ½, rate 1)** [2018 Q8] |
+| $X,Y\overset{\text{iid}}{\sim}N(0,1)$ | $X/Y$ | **Cauchy(0,1)** [2026 Q11] |
+| $X,Y\overset{\text{iid}}{\sim}N(0,1)$ | $\left(\tfrac{X-Y}{X+Y}\right)^2$ | **F(1,1)**: $(X\pm Y)/\sqrt2$ are iid $N(0,1)$ [2020 Q17] |
+| $X,Y\overset{\text{iid}}{\sim}N(0,1)$ | $X^2+Y^2$; $\sqrt{X^2+Y^2}$ | $\chi^2_2=\mathrm{Exp}(\text{mean }2)$; Rayleigh |
+| $X,Y\overset{\text{iid}}{\sim}N(0,1)$ | $XY$ | Same law as $\tfrac{X^2-Y^2}{2}$; CF $(1+t^2)^{-1/2}$ |
+| $X\sim N(1,9)\perp\!\!\!\perp Y\sim N(2,16)$ | $X-Y$ | $N(-1,25)$: median $-1$, SD 5, $P(Z+1<0)=\tfrac12$: **both** [2020 Q24] |
+| $U\sim U(0,1)$ | $-\ln U$; $-2\ln U$ | Exp(1) [2024 Q22]; $\chi^2_2=\mathrm{Exp}(\text{rate }\tfrac12)$ [2022 Q60] **(d)** |
+| $U_i\overset{\text{iid}}{\sim}U(0,1)$ | $T=-\ln\prod U_i$ | Gamma$(n,1)$: $\mathbb{E}=$ **n**, $\mathrm{Var}=$ **n**, MGF **(1−t)^{−n}** [2024 Q4–6]; $-2\ln\prod U_i\sim\chi^2_{2n}$ |
+| $U\sim U(0,1)$ | $U^2$ | $f=$ **1/(2√y)** [2024 Q39] |
+| $X$ with continuous $F$ | $F(X)$; $-\ln F(X)$ | $U(0,1)$; Exp(1) – statement 2 explains 1 [2021 Q27] **(a)** |
+| $X,Y\overset{\text{iid}}{\sim}\mathrm{Exp}(\lambda)$ | $X-Y$; $\tfrac{X}{X+Y}$ | **Laplace** [2019 Q40]; $U(0,1)$ |
+| $\mathrm{Gamma}(\alpha_1,\lambda)\perp\!\!\!\perp\mathrm{Gamma}(\alpha_2,\lambda)$ | $\tfrac{X}{X+Y}$ | **Beta-I$(\alpha_1,\alpha_2)$** [2018 Q9] |
+| $f\propto x^3/(1+2x)^6$ | $Y=\tfrac{2X}{1+2X}$ | $2X\sim$ Beta-II$(4,2)$, so **$Y\sim$ Beta-I(4,2)** [2018 Q20] |
+| $f=2x/\pi^2$ on $(0,\pi)$ | $\sin X$ | Two branches: $\tfrac{2}{\pi\sqrt{1-y^2}}$ [2019 Q31] |
+| $U_1,U_2\overset{\text{iid}}{\sim}U(0,1)$ | $U_1+U_2$; $\lvert U_1-U_2\rvert$; $U_1U_2$ | Triangular on $(0,2)$; Beta$(1,2)$, mean $\tfrac13$; $f=-\ln z$ |
+| $X\sim\mathrm{Exp}(1)$ | $e^{-X}$ | $U(0,1)$ |
+| $X_1,X_2\overset{\text{iid}}{\sim}\chi^2_n$ | $\tfrac{\sqrt n(X_1-X_2)}{2\sqrt{X_1X_2}}$ | $t_n$, independent of $X_1+X_2$ |
+| $X\sim$ Cauchy | $1/X$ | Cauchy |
+-* Correlation of sum and difference for independent $X,Y$: $r(X+Y,X-Y)=\dfrac{\sigma_X^2-\sigma_Y^2}{\sigma_X^2+\sigma_Y^2}$, zero iff the variances are equal.
+
+@sec P8 | Expectation and conditional expectation | Probability
+@meta codes=P8 pyq=24 f27=2.5 tier=1
+@lede Almost every expectation item is one identity away: linearity, the tower rule, total variance, or the check “does $\mathbb{E}\lvert X\rvert$ converge?” (24 PYQs, about 2.5 in 2027).
+@grp Does the mean exist?
+-* $\mathbb{E}X$ exists iff $\mathbb{E}\lvert X\rvert<\infty$. A conditionally convergent $\sum x\,p(x)$ is not a mean.
+- [2021 Q38] $X=(-1)^{i+1}2^i/i!$ with probability $2^{-i}$: absolutely convergent, $\mathbb{E}X=\sum(-1)^{i+1}/i!=$ **1−e^{−1}**.
+-! Contrast: $X=(-1)^{k+1}3^k/k$ with probability $2/3^k$ has $\sum\lvert x\rvert p=2\sum\tfrac1k=\infty$, so no mean, although $\sum xp=2\ln2$.
+- Lyapunov: $(\mathbb{E}\lvert X\rvert^r)^{1/r}$ is non-decreasing in $r$, so a higher moment implies every lower one ([2022 Q55] **2 only**). Also $\beta_k^2\le\beta_{k-1}\beta_{k+1}$ for absolute moments.
+- Tails decide: $t_n$ has moments of order $<n$, Pareto($\alpha$) of order $<\alpha$, Cauchy none; St Petersburg has $\mathbb{E}=\infty$.
+@grp Linearity and variance algebra
+-* $\mathbb{E}(aX+bY)=a\mathbb{E}X+b\mathbb{E}Y$ with no independence needed. $\mathrm{Var}(aX+bY)=a^2\sigma_X^2+b^2\sigma_Y^2+2ab\,\mathrm{Cov}(X,Y)$.
+- Model: $\mathrm{Var}X=4$, $\mathrm{Var}Y=9$, $\mathrm{Cov}=1$: $\mathrm{Var}(2X-3Y)=16+81-12=$ **85**.
+- [2021 Q28] $4\sigma_1^2+9\sigma_2^2=72$ and $\sigma_1^2+4\sigma_2^2=25$ give $\sigma_1^2=9$, $\sigma_2^2=4$; $\mathrm{Var}\left(\tfrac23X_1-4X_2\right)=4+64=$ **68**.
+- [2024 Q18] $\sigma_x^2=\tfrac{25}4$, $\sigma_y^2=\tfrac{25}9$: $\mathrm{Var}\left[(2x+3y)/\sqrt2\right]=\tfrac{25+25}{2}=$ **25**.
+- [2024 Q19] $\mathrm{Cov}=2$, $\sigma_x=4$, $\sigma_y=9\sqrt7$: $(18r)^2=$ **1/7**.
+- [2018 Q32] $U=X_1+X_2+X_3$, $V=X_1+X_2+X_4$, uncorrelated with equal variance: $\rho=$ **2/3** (shared terms over total terms).
+- Indicators: $\mathbb{E}(\text{number of events})=\sum P(A_i)$. Fixed points of a random permutation: mean 1 and variance 1.
+-! Independence gives $\mathbb{E}XY=\mathbb{E}X\,\mathbb{E}Y$; the converse fails. $\mathbb{E}(X/Y)\ne\mathbb{E}X/\mathbb{E}Y$; for independent positive $Y$, $\mathbb{E}(X/Y)=\mathbb{E}X\,\mathbb{E}(1/Y)\ge\mathbb{E}X/\mathbb{E}Y$.
+- Jensen (convex $g$): $\mathbb{E}g(X)\ge g(\mathbb{E}X)$, so $\mathbb{E}(1/X)\ge1/\mathbb{E}X$, $\mathbb{E}\ln X\le\ln\mathbb{E}X$, HM $\le$ GM $\le$ AM. Cauchy–Schwarz: $(\mathbb{E}XY)^2\le\mathbb{E}X^2\,\mathbb{E}Y^2$.
+- $\max(x,y)=\tfrac{x+y+\lvert x-y\rvert}2$, $\min(x,y)=\tfrac{x+y-\lvert x-y\rvert}2$; $\mathbb{E}\max\ge\max(\mathbb{E}X,\mathbb{E}Y)$, $\mathbb{E}\min\le\min(\mathbb{E}X,\mathbb{E}Y)$.
+- Chebyshev’s association: $f,g$ monotone in the same direction $\Rightarrow\mathbb{E}[f(X)g(X)]\ge\mathbb{E}f(X)\,\mathbb{E}g(X)$; opposite directions reverse it.
+- iid positive $X_i$: $\mathbb{E}(S_m/S_n)=m/n$.
+@grp Conditional expectation
+$$\mathbb{E}\left[\mathbb{E}(X\mid Y)\right]=\mathbb{E}X,\qquad \mathrm{Var}X=\mathbb{E}\left[\mathrm{Var}(X\mid Y)\right]+\mathrm{Var}\left[\mathbb{E}(X\mid Y)\right],$$
+$$\mathbb{E}S_N=\mathbb{E}N\,\mathbb{E}X,\qquad \mathrm{Var}\,S_N=\mathbb{E}N\ \mathrm{Var}\,X+\mathrm{Var}\,N\,(\mathbb{E}X)^2\quad(\text{random sum, }N\perp\!\!\!\perp X_i).$$
+-* $\mathbb{E}(X\mid Y)$ is a random variable, a function of $Y$. Both parts of the variance split are $\ge0$.
+- Taking out what is known: $\mathbb{E}[g(Y)X\mid Y]=g(Y)\mathbb{E}(X\mid Y)$.
+-! Independence $\Rightarrow$ mean independence $\Rightarrow$ uncorrelated, and neither arrow reverses.
+- $\mathbb{E}(Y\mid X)$ minimises $\mathbb{E}[Y-g(X)]^2$ (the regression function); it equals the best linear predictor under joint normality.
+- iid symmetry: $\mathbb{E}(X_1\mid\sum X_i)=\bar X$.
+@grp PYQ keys
+| PYQ | Stem | Answer |
+| Model | $\mathbb{E}(X\mid Y)=Y^2+1$, $\mathbb{E}Y=1$, $\mathrm{Var}Y=2$ | $\mathbb{E}X=3+1=$ **4** |
+| [2023 Q2] | $X\sim N(0,1)$, $Y\mid X\sim U(X-1,X+1)$ | $\mathbb{E}(Y\mid X)=X$, so $\mathbb{E}[\mathbb{E}^2(Y\mid X)]=$ **1** |
+| [2023 Q10] | $X\mid y\sim N(12y,y)$, $Y\sim U(0,1)$ | $\mathrm{Cov}=12\,\mathrm{Var}Y=$ **1** |
+| [2022 Q9] | $Y\mid x\sim\mathrm{Gamma}(2,\text{scale }1+x)$ | $\mathbb{E}(Y\mid X=10)=$ **22** |
+| [2021 Q22] | $P(Y=k)=2P(Y=-k)$ | $\mathbb{E}(Y\mid Y^2=y)=\tfrac23\sqrt y-\tfrac13\sqrt y=$ **√y/3** |
+| [2026 Q15] | $p(x)=x/15$ on $1,\dots,5$ | $\mathbb{E}(X\mid X>1)=\tfrac{54}{14}=$ **27/7** |
+| [2024 Q34] | $P(X=n)=2^{-n}$; $Y=+1$ if $X$ even | $P(Y=1)=\tfrac13$, $\mathbb{E}Y=-\tfrac13$, $\mathrm{Var}Y=\tfrac89$: **II and III** |
+| [2018 Q14] | $\tfrac{x+y}3$ on $(0,1)\times(0,2)$ | $3\mathbb{E}X^2+6\mathbb{E}XY=\tfrac76+4=$ **31/6** |
+| [2018 Q16] | Symmetric triangular $X$, $V=X^2$ | $\mathrm{Cov}=\mathbb{E}X^3=0$ but dependent: **1 only** |
+| [2020 Q39] | Bin$(3,\tfrac13)$: $\mathbb{E}[X/(X+1)]$ | $1-\tfrac{1-16/81}{4/3}=$ **43/108** |
+| Model | Bin$(4,\tfrac12)$: $\mathbb{E}[X/(X+1)]$ | $1-\tfrac{31}{80}=$ **49/80** |
+| [2022 Q5] | Poisson with $P(1)=P(2)$ | $\lambda=2$, $\mathrm{Var}=$ **2** |
+| [2024 Q8] | $\mathbb{E}[1/(X_1^2+\cdots+X_4^2)]$ | $\mathbb{E}(1/\chi^2_n)=\tfrac1{n-2}=$ **1/2** |
+| [2024 Q9] | $\mathbb{E}\left[(X_1+X_2+X_3)/(X_4^2+\cdots+X_7^2)\right]$ | Independent, numerator mean 0: **0** |
+| [2024 Q26] | $V(t)=U(\log U(t))$, $\mathbb{E}X=2$ | Compound sum: $\mathbb{E}Y=2\times2=$ **4** |
+@grp Values to know cold
+| Quantity | Value |
+| $\mathbb{E}\lvert Z\rvert$, $Z\sim N(0,1)$ | $\sqrt{2/\pi}$ |
+| $\mathbb{E}\max(Z_1,Z_2)$, iid $N(0,1)$ | $1/\sqrt\pi$ |
+| $\mathbb{E}\lvert X_1-X_2\rvert$, iid $N(\mu,\sigma^2)$ | $2\sigma/\sqrt\pi$ |
+| $\mathbb{E}\max$ and $\mathbb{E}\min$ of two iid $\mathrm{Exp}(\lambda)$ | $\tfrac{3}{2\lambda}$ and $\tfrac1{2\lambda}$ |
+| $\mathbb{E}\max$ of $n$ iid $U(0,1)$ | $n/(n+1)$ |
+| Factorial moment $\mathbb{E}[X(X-1)\cdots(X-r+1)]$, Poisson | $\lambda^r$ |
+| $\mathbb{E}(1/X)$, $X\sim\mathrm{Gamma}(\alpha,\text{rate }\lambda)$, $\alpha>1$ | $\lambda/(\alpha-1)$ |
+| $\mathbb{E}[1/(1-r^2)]$, $\rho=0$, sample size $N$ | $(N-3)/(N-4)$ |
+| $\mathbb{E}\lvert X\rvert$, Laplace$(0,1)$ | $1$ |
+| $\mathbb{E}(X\mid X>a)$, $\mathrm{Exp}(\lambda)$ | $a+1/\lambda$ |
+| $\mathbb{E}(X\mid X>a)$, $N(\mu,\sigma^2)$ | $\mu+\sigma\dfrac{\phi(\alpha)}{1-\Phi(\alpha)}$, $\alpha=\tfrac{a-\mu}{\sigma}$ |
+| $\mathbb{E}(e^{-kX})$, $X\sim$ Poisson$(m)$ | $e^{-m(1-e^{-k})}$ |
+| Fair coin: tosses to HH, to HT | 6, 4 |
+| Die throws to see all six faces | 14.7 |
+| Records in $n$ iid draws | $1+\tfrac12+\cdots+\tfrac1n$ |
+| Box of $2^n$ tickets, $\binom ni$ bearing $i$, $m$ drawn: expected sum | $mn/2$ |
+.trap **Traps.** “Linearity needs independence”, “$\mathbb{E}XY=\mathbb{E}X\,\mathbb{E}Y$ implies independence”, “$\mathbb{E}(X\mid Y)=\mathbb{E}X$ implies independence” and “the Cauchy mean is 0” are all false.

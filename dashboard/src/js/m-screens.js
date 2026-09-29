@@ -72,6 +72,8 @@ V.home = function () {
     '<button type="button" class="mode exam" data-act="nav" data-r="examhub"><span class="mi">' + svg('exam') + '</span><b>Exam</b><small>Timed · scored</small></button>' +
     '<button type="button" class="mode rev" data-act="nav" data-r="revise"><span class="mi">' + svg('revise') + '</span><b>Revise</b><small>' + (ds.total ? ds.total + ' due' : 'Wrong · marked') + '</small></button></div>';
 
+  h += practiceTiles();
+
   var plan = dailyPlan(), tot = 0;
   plan.forEach(function (p) { tot += p.m; });
   h += '<div class="card plan"><div class="plh"><h3>Today’s plan</h3><span class="chip">' + tot + ' min · goal ' + u.goal + '</span></div><ul class="plan-list">';
@@ -214,7 +216,7 @@ V.examhub = function () {
   ['tf-notes', 'tf-sm', 'tf-trap'].forEach(function (id) { var b = NB_BANK[id]; h += examRow(E(b.name), E(b.desc.length > 100 ? b.desc.slice(0, 98) + '…' : b.desc), b.time, b.n, 'nbLaunch', ' data-bank="' + id + '" data-mode="exam"'); });
   var dh = NB_BANK.dh;
   h += '</ul><h3 class="sect">Formulas</h3><ul class="list elist">' + examRow('Distribution formula mock', 'PMF/PDF, CDF, mean, variance, mode, skewness, kurtosis, MGF, CF, PGF', Math.round(30 * minPerQ()), dh.n, 'nbLaunch', ' data-bank="dh" data-mode="exam"') + '</ul>';
-  h += '<h3 class="sect">More banks</h3><div class="btnrow wrapbtn">' + navBtn('btn', 'Forecast mocks (AI)', 'forecast') + navBtn('btn', 'Computer sets', 'cs') + navBtn('btn', 'Gupta &amp; Kapoor', 'gk') + navBtn('btn ghost', 'History', 'history') + '</div>';
+  h += '<h3 class="sect">More banks</h3><div class="btnrow wrapbtn">' + navBtn('btn', 'PYQs', 'pyq') + navBtn('btn', 'Sectional', 'sectional') + navBtn('btn', 'PYQ mocks', 'mocks') + navBtn('btn', 'Forecasts', 'forecast') + navBtn('btn', 'Computer', 'cs') + navBtn('btn', 'Gupta &amp; Kapoor', 'gk') + '</div>';
   return h;
 };
 

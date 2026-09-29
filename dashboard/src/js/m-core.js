@@ -28,7 +28,8 @@ var IC = {
   plus: 'M12 5v14M5 12h14',
   book: 'M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11',
   target: 'M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16zM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8zM12 12h.01',
-  chart: 'M5 20V10M12 20V4M19 20v-7'
+  chart: 'M5 20V10M12 20V4M19 20v-7',
+  monitor: 'M3 5h18v11H3zM8.5 20h7M12 16v4'
 };
 function svg(k, cls) {
   return '<svg class="ic ' + (cls || '') + '" viewBox="0 0 24 24" aria-hidden="true"><path d="' + (IC[k] || '') + '"/></svg>';

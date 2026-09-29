@@ -19,7 +19,8 @@ questions and 701 notes questions.
 
 ## Phone behaviour
 
-* Bottom navigation Home · Learn · Exam · Revise · More (a left rail on wide screens).
+* Top-left menu (three lines): PYQs, Topics, Sectional, PYQ mocks, Forecasts, Computer, Gupta & Kapoor, plus notes, formulas, flashcards, Revise and settings. Each practice screen follows the Computer layout: a tab strip (year, unit or chapter), then set cards with a coverage bar and Learn / Exam buttons.
+* Bottom navigation Home · Learn · Exam · Revise · More (a left rail on wide screens). Back from any top-level screen goes to Home, then leaves the app.
 * Bottom sheets for session set-up, submit, exit and display settings; the Android back button closes them.
 * **Aa** in the app bar: text size, line spacing, density, daily goal, exam date, break reminders, keep-awake.
 * Papers autosave; closing the tab or losing the app does not lose your place (resume from Home).
@@ -47,6 +48,7 @@ python3 tools/build.py             # patches + modules + data -> dist/UPSC-ISS-S
 | `m-cards.js` | flashcards |
 | `m-revise.js` | Revise hub, lists, ledger and the revision runner |
 | `m-screens.js` | Home, Learn, Topic, Exam hub, More, display sheet |
+| `m-practice.js` | top-left menu, PYQs / Topics / Sectional / PYQ mocks / Forecasts screens |
 | `m-shell.js` | app bar, navigation, back button, session bar, click routing |
 
 Answer keys for the notes drills and true/false banks are transcribed from the notes and compendium as printed.

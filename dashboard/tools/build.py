@@ -16,7 +16,7 @@ def rd(*p):
     with open(os.path.join(ROOT, *p), encoding='utf-8') as fh:
         return fh.read()
 
-MODULES = ['m-core.js', 'm-notes.js', 'm-banks.js', 'm-cards.js', 'm-revise.js', 'm-screens.js', 'm-shell.js']
+MODULES = ['m-core.js', 'm-notes.js', 'm-banks.js', 'm-cards.js', 'm-revise.js', 'm-screens.js', 'm-practice.js', 'm-shell.js']
 
 def build_app():
     app = rd('src', 'app.base.js')

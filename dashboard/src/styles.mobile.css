@@ -364,3 +364,55 @@ body { overflow-x: clip; }
   .sheet { max-height: 96vh; max-height: 96dvh; }
   .hero { padding: 12px 16px; } .ring { width: 72px; height: 72px; }
 }
+
+/* ------------------------------------------------ top-left menu (drawer) */
+#drawer { position: fixed; inset: 0; z-index: 180; pointer-events: none; }
+body.drawer-open #drawer { pointer-events: auto; }
+body.drawer-open { overflow: hidden; }
+.dscrim { position: absolute; inset: 0; background: rgba(0,0,0,.45); opacity: 0; transition: opacity .2s; }
+body.drawer-open .dscrim { opacity: 1; }
+.dpanel { position: absolute; top: 0; bottom: 0; left: 0; width: min(84vw, 340px); background: var(--surface); color: var(--ink); display: flex; flex-direction: column;
+  transform: translateX(-104%); transition: transform .24s cubic-bezier(.2,.8,.2,1); border-radius: 0 26px 26px 0; box-shadow: 8px 0 40px rgba(0,0,0,.35); overflow: hidden; }
+body.drawer-open .dpanel { transform: none; }
+.dhead { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: var(--brand-ink); padding: calc(20px + env(safe-area-inset-top)) 20px 16px; flex: none; }
+.dh1 { font-size: 1.25rem; font-weight: 750; } .dh2 { opacity: .85; font-size: .82rem; margin-top: 2px; }
+.dh3 { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.dh3 span { background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.3); border-radius: 999px; padding: 2px 10px; font-size: .74rem; font-weight: 650; }
+.dscroll { overflow-y: auto; flex: 1; padding: 4px 10px calc(18px + env(safe-area-inset-bottom)); overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+.dgrp { font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .6px; color: var(--ink-3); margin: 14px 12px 4px; }
+.ditem { display: flex; align-items: center; gap: 14px; width: 100%; min-height: 52px; padding: 4px 14px; border: 0; border-radius: 26px; background: transparent; text-align: left; cursor: pointer; color: var(--ink); }
+.ditem:active { background: var(--surface-3); }
+.ditem.on { background: var(--mark-bg); color: var(--brand); }
+.ditem svg.ic { width: 22px; height: 22px; color: var(--ink-2); } .ditem.on svg.ic { color: var(--brand); }
+.ditem .dl { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.25; } .ditem .dl b { font-weight: 650; }
+.ditem small { color: var(--ink-3); font-size: .72rem; } .ditem.on small { color: var(--brand); opacity: .8; }
+.ditem .db { background: var(--surface-3); color: var(--ink-2); border-radius: 999px; font-size: .68rem; font-weight: 800; padding: 1px 8px; }
+body.in-session #drawer { display: none; }
+
+/* ------------------------ Computer-style bank screens: tabs, set cards */
+.phead { margin: 4px 0 8px; } .phead h1 { font-size: 1.35rem; margin: .2em 0 .1em; } .phc { margin-top: 8px; }
+.subnav { margin-bottom: 8px; }
+.pcov { display: flex; align-items: center; gap: 10px; font-size: .74rem; color: var(--ink-3); margin: 8px 0; } .pcov .progbar { flex: 1; height: 6px; } .pcov span { white-space: nowrap; }
+.progbar > i.ok { background: var(--ok); }
+.ptabs { display: flex; gap: 8px; margin: 0 -12px 10px; padding: 2px 12px 6px; overflow-x: auto; scrollbar-width: none; }
+.ptab { flex: 0 0 auto; min-width: 92px; display: flex; flex-direction: column; align-items: flex-start; gap: 1px; padding: 9px 12px 8px; border-radius: 14px; border: 1.5px solid var(--line-2); background: var(--surface); cursor: pointer; text-align: left; }
+.ptab b { font-size: 1.02rem; } .ptab span { font-size: .72rem; color: var(--ink-3); }
+.ptab .bar { display: block; width: 100%; height: 4px; margin-top: 6px; min-width: 0; } .ptab .bar > i { display: block; height: 100%; background: var(--ok); }
+.ptab.on { border-color: var(--brand); background: var(--brand); color: var(--brand-ink); } .ptab.on span { color: inherit; opacity: .85; } .ptab.on .bar { background: rgba(255,255,255,.3); } .ptab.on .bar > i { background: var(--brand-ink); }
+.psets { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 12px; }
+.pset { background: var(--surface); border: 1px solid var(--line); border-radius: var(--rad); padding: 12px 14px; box-shadow: var(--shadow); }
+.pset.next { border-color: var(--brand); box-shadow: inset 0 0 0 1px var(--brand), var(--shadow); }
+.phd { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; } .phd .sp { flex: 1; } .phd .rng { color: var(--ink-3); font-size: .78rem; } .phd .best { color: var(--ok); font-size: .74rem; font-weight: 700; }
+.pset .themes { color: var(--ink-2); font-size: .82rem; margin-top: 3px; }
+.pset .btnrow { margin-top: 4px; } .pwhole b { display: block; margin-bottom: 8px; }
+@media (min-width: 761px) { .psets { grid-template-columns: 1fr 1fr; } }
+.ptlist > li.ptopic { border: 0; padding: 0; background: none; margin-bottom: var(--gap); }
+.ptrow { display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 15px; min-height: 64px; text-align: left; cursor: pointer; }
+.ptopic.open .ptrow { border-color: var(--brand); border-bottom-left-radius: 0; border-bottom-right-radius: 0; } .ptopic.open .ptrow .go { transform: rotate(90deg); }
+.ptbody { background: var(--surface); border: 1px solid var(--brand); border-top: 0; border-radius: 0 0 15px 15px; padding: 10px 12px 12px; }
+.ptiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.ptile { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface-2); text-align: left; cursor: pointer; min-height: 58px; }
+.ptile .pi { width: 36px; height: 36px; border-radius: 11px; background: var(--surface); display: flex; align-items: center; justify-content: center; color: var(--brand); flex: none; }
+.ptile .pt { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; } .ptile .pt small { color: var(--ink-3); font-size: .7rem; }
+@media (min-width: 900px) { .ptiles { grid-template-columns: repeat(4, 1fr); } }
+.phd .sp { display: none; } .phd .best { margin-left: auto; }

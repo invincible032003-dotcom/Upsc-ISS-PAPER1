@@ -4,16 +4,19 @@
    ====================================================================== */
 var TABS = [['home', 'Home', 'home'], ['learn', 'Learn', 'learn'], ['examhub', 'Exam', 'exam'], ['revise', 'Revise', 'revise'], ['more', 'More', 'more']];
 var ROOT_SET = { home: 1, learn: 1, examhub: 1, revise: 1, more: 1 };
+/* top-level screens (reached from the menu or the tabs) show the menu button; detail screens show back */
+var TOP_SET = { home: 1, learn: 1, examhub: 1, revise: 1, more: 1, pyq: 1, ptopics: 1, sectional: 1, mocks: 1, forecast: 1, cs: 1, gk: 1, dists: 1, cards: 1,
+  search: 1, nsearch: 1, analytics: 1, history: 1, settings: 1, audit: 1, help: 1 };
 var TAB_OF = {
   home: 'home',
   learn: 'learn', topic: 'learn', read: 'learn', dists: 'learn', dist: 'learn', nsearch: 'learn', cards: 'learn', cs: 'learn', gk: 'learn',
-  examhub: 'examhub', setup: 'examhub', forecast: 'examhub',
+  examhub: 'examhub', setup: 'examhub', forecast: 'examhub', pyq: 'examhub', mocks: 'examhub', sectional: 'examhub', ptopics: 'learn',
   revise: 'revise', revlist: 'revise', rev: 'revise', ledger: 'revise', mistakes: 'revise', bookmarks: 'revise',
   more: 'more', search: 'more', analytics: 'more', history: 'more', settings: 'more', audit: 'more', help: 'more'
 };
 var TITLES = { home: 'Statistics Paper-I', learn: 'Learn', examhub: 'Exam', revise: 'Revise', more: 'More', nsearch: 'Search notes', dists: 'Formula handbook',
   cards: 'Flashcards', search: 'Search questions', analytics: 'Analytics', history: 'Attempt history', settings: 'Settings & data', audit: 'Data audit',
-  mistakes: 'Wrong answers', bookmarks: 'Bookmarks', help: 'How it works', cs: 'Computer', gk: 'Gupta Kapoor', forecast: 'Forecast mocks', setup: 'Set up a mock',
+  mistakes: 'Wrong answers', bookmarks: 'Bookmarks', help: 'How it works', cs: 'Computer', gk: 'Gupta Kapoor', forecast: 'Forecasts', pyq: 'PYQs', mocks: 'PYQ mocks', sectional: 'Sectional PYQs', ptopics: 'PYQs by topic', setup: 'Set up a mock',
   ledger: 'Error ledger', study: 'Study card' };
 var LAST_TAB = 'home', NAV_REPLACE = false;
 
@@ -37,6 +40,7 @@ go = function (name, params) {
   if (SHEET) closeSheet(true);
   document.body.classList.remove('pal-open');
   SENT = false;
+  drawerHide();
   if (!viaSent) { try { history.replaceState(Object.assign({}, history.state || {}, { y: window.pageYOffset }), ''); } catch (e) {} }
   baseGo(name, params);
   var rep = NAV_REPLACE && !viaSent;
@@ -44,7 +48,10 @@ go = function (name, params) {
   var st = { iss: 1, r: ROUTE, d: DEPTH, y: 0 };
   try { (rep || viaSent) ? history.replaceState(st, '') : history.pushState(st, ''); } catch (e) {}
 };
-try { history.replaceState({ iss: 1, r: { name: 'home' }, d: 0, y: 0 }, ''); } catch (e) {}
+try {
+  history.replaceState({ iss: 1, base: 1, d: -1 }, '');
+  history.pushState({ iss: 1, r: { name: 'home' }, d: 0, y: 0 }, '');
+} catch (e) {}
 
 function rootOf(name) {
   var tab = name === 'study' ? LAST_TAB : (TAB_OF[name] || 'home');
@@ -56,11 +63,11 @@ function goBack() {
 }
 function navTo(name, params) {
   var dest = function () {
-    NAV_REPLACE = !!(ROOT_SET[name] && ROOT_SET[ROUTE.name]);
+    NAV_REPLACE = !!(TOP_SET[name] && TOP_SET[ROUTE.name]);
     go(name, params);
     NAV_REPLACE = false;
   };
-  if (name === ROUTE.name && ROOT_SET[name] && !SHEET) { window.scrollTo(0, 0); return; }
+  if (name === ROUTE.name && TOP_SET[name] && !SHEET) { window.scrollTo(0, 0); return; }
   if (liveSession()) exitSheet(dest); else dest();
 }
 
@@ -75,7 +82,24 @@ window.addEventListener('popstate', function (ev) {
   if (SENT) {                                  /* system back while a sheet or the palette was open */
     SENT = false;
     if (SHEET) closeSheet(true);
+    drawerHide();
     document.body.classList.remove('pal-open');
+    return;
+  }
+  if (st.base) {                               /* back past the first screen: Home first, then leave the app */
+    DEPTH = 0;
+    if (liveSession()) {
+      var keep0 = ROUTE;
+      try { history.pushState({ iss: 1, r: keep0, d: 0, y: 0 }, ''); } catch (e) {}
+      exitSheet(function () { go('home'); });
+      return;
+    }
+    if (ROUTE.name !== 'home') {
+      try { history.pushState({ iss: 1, r: { name: 'home' }, d: 0, y: 0 }, ''); } catch (e) {}
+      ROUTE = { name: 'home' }; render(); window.scrollTo(0, 0);
+      return;
+    }
+    history.back();
     return;
   }
   var r = st.r || { name: 'home' };
@@ -103,6 +127,7 @@ function buildNav() {
   nav.innerHTML = TABS.map(function (t) {
     return '<button type="button" data-act="nav" data-r="' + t[0] + '" data-tab="' + t[0] + '"><span class="ic">' + svg(t[2]) + '<i class="badge" hidden></i></span><span class="lb">' + t[1] + '</span></button>';
   }).join('');
+  var menu = document.getElementById('tbMenu'); if (menu) menu.innerHTML = svg('more');
   var back = document.getElementById('tbBack'); if (back) back.innerHTML = svg('back');
   var s = document.getElementById('tbSearch'); if (s) s.innerHTML = svg('search');
   var a = document.getElementById('tbAa'); if (a) a.innerHTML = svg('aa');
@@ -147,7 +172,8 @@ function nbAfterRender() {
   b.setAttribute('data-route', name);
   buildNav();
   var tt = document.querySelector('#topbar .mtitle'); if (tt) tt.textContent = routeTitle();
-  var bk = document.getElementById('tbBack'); if (bk) bk.hidden = !!ROOT_SET[name] && !live;
+  var bk = document.getElementById('tbBack'); if (bk) bk.hidden = !!TOP_SET[name] && !live;
+  var mn = document.getElementById('tbMenu'); if (mn) mn.hidden = !TOP_SET[name] || live;
   var nav = document.getElementById('bnav');
   if (nav) {
     Array.prototype.forEach.call(nav.querySelectorAll('button'), function (x) {
@@ -206,7 +232,15 @@ function nbClick(act, t) {
       if (f) f();
       return true;
     }
-    case 'nav': navTo(t.getAttribute('data-r'), pParse(t.getAttribute('data-p'))); return true;
+    case 'nav': {
+      var nm = t.getAttribute('data-r');
+      if (document.body.classList.contains('drawer-open')) {
+        if (nm === ROUTE.name) { drawerClose(); return true; }
+        drawerHide();
+      }
+      navTo(nm, pParse(t.getAttribute('data-p')));
+      return true;
+    }
     case 'back': goBack(); return true;
     case 'study':
       STUDY.qid = t.getAttribute('data-qid');
@@ -215,7 +249,7 @@ function nbClick(act, t) {
       go('study');
       return true;
   }
-  return bankClick(act, t) || readerClick(act, t) || handbookClick(act, t) || cardsClick(act, t) || reviseClick(act, t) ||
+  return practiceClick(act, t) || bankClick(act, t) || readerClick(act, t) || handbookClick(act, t) || cardsClick(act, t) || reviseClick(act, t) ||
     screenClick(act, t) || examClick(act, t) || extraClick(act, t);
 }
 
@@ -225,6 +259,7 @@ document.addEventListener('click', function (ev) {
      bubbles here on its own, and must not be handled a second time */
   if (!ev.target.isConnected || closest(ev.target, '#app')) return;
   if (closest(ev.target, '[data-sheet-close]')) { closeSheet(); return; }
+  if (closest(ev.target, '[data-drawer-close]')) { drawerClose(); return; }
   var t = closest(ev.target, '[data-act]');
   if (!t) return;
   if (t.tagName === 'INPUT') return;
